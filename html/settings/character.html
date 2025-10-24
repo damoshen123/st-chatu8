@@ -1,0 +1,347 @@
+<div id="ch-tab-character">
+    <!-- 子导航 -->
+    <div class="st-chatu8-sub-nav">
+        <a href="#" class="st-chatu8-sub-nav-link active" data-sub-tab="ch-sub-tab-character-settings">角色设定</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-outfit-settings">服装管理</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-character-enable">角色启用管理</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-outfit-enable">启用通用服装列表</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-character-common">启用通用角色列表</a>
+    </div>
+
+    <!-- 角色设定子页面 -->
+    <div id="ch-sub-tab-character-settings" class="st-chatu8-sub-tab-content" style="display: block;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>角色预设</h3>
+            <div class="st-chatu8-field">
+                <label for="character_preset_id">当前预设</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="character_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="character_update" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="character_delete" title="删除"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 角色参数区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>角色详细参数</h3>
+            <div class="st-chatu8-field-col">
+                <label for="char_nameCN">角色中文名称</label>
+                <input type="text" id="char_nameCN" class="st-chatu8-text-input" />
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_nameEN">角色英文名称</label>
+                <input type="text" id="char_nameEN" class="st-chatu8-text-input" />
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_facialFeatures">五官外貌</label>
+                <textarea id="char_facialFeatures" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_facialFeatures-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_facialFeaturesBack">五官外貌背面</label>
+                <textarea id="char_facialFeaturesBack" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_facialFeaturesBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_upperBodySFW">上半身SFW</label>
+                <textarea id="char_upperBodySFW" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_upperBodySFW-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_upperBodySFWBack">上半身SFW背面</label>
+                <textarea id="char_upperBodySFWBack" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_upperBodySFWBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_fullBodySFW">下半身SFW</label>
+                <textarea id="char_fullBodySFW" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_fullBodySFW-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_fullBodySFWBack">下半身SFW背面</label>
+                <textarea id="char_fullBodySFWBack" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_fullBodySFWBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_upperBodyNSFW">上半身NSFW</label>
+                <textarea id="char_upperBodyNSFW" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_upperBodyNSFW-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_upperBodyNSFWBack">上半身NSFW背面</label>
+                <textarea id="char_upperBodyNSFWBack" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_upperBodyNSFWBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_fullBodyNSFW">下半身NSFW</label>
+                <textarea id="char_fullBodyNSFW" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_fullBodyNSFW-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_fullBodyNSFWBack">下半身NSFW背面</label>
+                <textarea id="char_fullBodyNSFWBack" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_fullBodyNSFWBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="char_replace_brackets" style="width: 100%;">
+                    <i class="fa-solid fa-exchange-alt"></i> 替换英文括号
+                </button>
+            </div>
+            
+            <!-- 服装列表管理 -->
+            <div class="st-chatu8-field-col">
+                <label for="char_outfit_list">服装列表（每行一个服装名称）</label>
+                <textarea id="char_outfit_list" class="st-chatu8-textarea" rows="5" placeholder="输入服装名称，每行一个"></textarea>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="char_outfit_check" style="width: 100%;">
+                    <i class="fa-solid fa-check-circle"></i> 检测服装是否存在
+                </button>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 15px;">
+                <label for="char_outfit_selector">从服装预设中选择</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <select id="char_outfit_selector" class="st-chatu8-select" style="flex: 1;"></select>
+                    <button class="st-chatu8-icon-btn" id="char_outfit_refresh" title="刷新列表">
+                        <i class="fa-solid fa-refresh"></i>
+                    </button>
+                    <button class="st-chatu8-btn" id="char_outfit_add">
+                        <i class="fa-solid fa-plus"></i> 添加
+                    </button>
+                </div>
+            </div>
+
+            <div id="char_outfit_check_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>检测结果</label>
+                <div id="char_outfit_check_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 200px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 服装管理子页面 -->
+    <div id="ch-sub-tab-outfit-settings" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>服装预设</h3>
+            <div class="st-chatu8-field">
+                <label for="outfit_preset_id">当前预设</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="outfit_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="outfit_update" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="outfit_delete" title="删除"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 服装参数区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>服装详细参数</h3>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_nameCN">服装中文名称</label>
+                <input type="text" id="outfit_nameCN" class="st-chatu8-text-input" />
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_nameEN">服装英文名称</label>
+                <input type="text" id="outfit_nameEN" class="st-chatu8-text-input" />
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_upperBody">上半身</label>
+                <textarea id="outfit_upperBody" class="st-chatu8-textarea" rows="4"></textarea>
+                <div id="outfit_upperBody-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_upperBodyBack">上半身背面</label>
+                <textarea id="outfit_upperBodyBack" class="st-chatu8-textarea" rows="4"></textarea>
+                <div id="outfit_upperBodyBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_fullBody">下半身服装</label>
+                <textarea id="outfit_fullBody" class="st-chatu8-textarea" rows="4"></textarea>
+                <div id="outfit_fullBody-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_fullBodyBack">下半身背面</label>
+                <textarea id="outfit_fullBodyBack" class="st-chatu8-textarea" rows="4"></textarea>
+                <div id="outfit_fullBodyBack-results" class="ch-autocomplete-results"></div>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="outfit_replace_brackets" style="width: 100%;">
+                    <i class="fa-solid fa-exchange-alt"></i> 替换英文括号
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 角色启用管理子页面 -->
+    <div id="ch-sub-tab-character-enable" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>角色启动预设</h3>
+            <div class="st-chatu8-field">
+                <label for="character_enable_preset_id">当前预设</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="character_enable_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="character_enable_update" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="character_enable_delete" title="删除"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 角色列表管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>启用角色列表</h3>
+            <div class="st-chatu8-field-col">
+                <label for="character_enable_list">角色列表（每行一个角色名称）</label>
+                <textarea id="character_enable_list" class="st-chatu8-textarea" rows="10" placeholder="输入角色名称，每行一个"></textarea>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="character_enable_check" style="width: 100%;">
+                    <i class="fa-solid fa-check-circle"></i> 检测角色是否存在
+                </button>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 15px;">
+                <label for="character_enable_selector">从角色设定中选择</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <select id="character_enable_selector" class="st-chatu8-select" style="flex: 1;"></select>
+                    <button class="st-chatu8-icon-btn" id="character_enable_refresh" title="刷新列表">
+                        <i class="fa-solid fa-refresh"></i>
+                    </button>
+                    <button class="st-chatu8-btn" id="character_enable_add">
+                        <i class="fa-solid fa-plus"></i> 添加
+                    </button>
+                </div>
+            </div>
+
+            <div id="character_enable_check_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>检测结果</label>
+                <div id="character_enable_check_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 200px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 启用通用服装列表子页面 -->
+    <div id="ch-sub-tab-outfit-enable" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>通用服装列表预设</h3>
+            <div class="st-chatu8-field">
+                <label for="outfit_enable_preset_id">当前预设</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="outfit_enable_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_update" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="outfit_enable_delete" title="删除"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 服装列表管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>通用服装列表</h3>
+            <div class="st-chatu8-field-col">
+                <label for="outfit_enable_list">服装列表（每行一个服装名称）</label>
+                <textarea id="outfit_enable_list" class="st-chatu8-textarea" rows="10" placeholder="输入服装名称，每行一个"></textarea>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="outfit_enable_check" style="width: 100%;">
+                    <i class="fa-solid fa-check-circle"></i> 检测服装是否存在
+                </button>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 15px;">
+                <label for="outfit_enable_selector">从服装预设中选择</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <select id="outfit_enable_selector" class="st-chatu8-select" style="flex: 1;"></select>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_refresh" title="刷新列表">
+                        <i class="fa-solid fa-refresh"></i>
+                    </button>
+                    <button class="st-chatu8-btn" id="outfit_enable_add">
+                        <i class="fa-solid fa-plus"></i> 添加
+                    </button>
+                </div>
+            </div>
+
+            <div id="outfit_enable_check_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>检测结果</label>
+                <div id="outfit_enable_check_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 200px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 启用通用角色列表子页面 -->
+    <div id="ch-sub-tab-character-common" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>通用角色列表预设</h3>
+            <div class="st-chatu8-field">
+                <label for="character_common_preset_id">当前预设</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="character_common_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="character_common_update" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="character_common_delete" title="删除"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 角色列表管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>通用角色列表</h3>
+            <div class="st-chatu8-field-col">
+                <label for="character_common_list">角色列表（每行一个角色名称）</label>
+                <textarea id="character_common_list" class="st-chatu8-textarea" rows="10" placeholder="输入角色名称，每行一个"></textarea>
+            </div>
+            
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="character_common_check" style="width: 100%;">
+                    <i class="fa-solid fa-check-circle"></i> 检测角色是否存在
+                </button>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 15px;">
+                <label for="character_common_selector">从角色设定中选择</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <select id="character_common_selector" class="st-chatu8-select" style="flex: 1;"></select>
+                    <button class="st-chatu8-icon-btn" id="character_common_refresh" title="刷新列表">
+                        <i class="fa-solid fa-refresh"></i>
+                    </button>
+                    <button class="st-chatu8-btn" id="character_common_add">
+                        <i class="fa-solid fa-plus"></i> 添加
+                    </button>
+                </div>
+            </div>
+
+            <div id="character_common_check_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>检测结果</label>
+                <div id="character_common_check_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 200px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+</div>

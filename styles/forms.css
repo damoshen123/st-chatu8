@@ -328,3 +328,66 @@
     background-color: var(--st-chatu8-accent-secondary);
     color: var(--st-chatu8-text-highlight, white);
 }
+
+/* Checkbox Styles */
+#st-chatu8-settings .st-chatu8-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    user-select: none;
+}
+
+#st-chatu8-settings .st-chatu8-checkbox-label:hover {
+    background-color: var(--st-chatu8-bg-tertiary);
+}
+
+#st-chatu8-settings .st-chatu8-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--st-chatu8-accent-primary);
+}
+
+#st-chatu8-settings .st-chatu8-checkbox-label span {
+    font-size: 0.95rem;
+    color: var(--st-chatu8-text-primary);
+}
+
+/* Details/Summary (Collapsible Sections) */
+#st-chatu8-settings .st-chatu8-details {
+    margin-bottom: 16px;
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 6px;
+    background: var(--st-chatu8-bg-secondary);
+    overflow: hidden;
+}
+
+#st-chatu8-settings .st-chatu8-details summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    background: var(--st-chatu8-bg-tertiary);
+    color: var(--st-chatu8-text-primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+    user-select: none;
+}
+
+#st-chatu8-settings .st-chatu8-details summary:hover {
+    background: var(--st-chatu8-accent-secondary);
+    color: var(--st-chatu8-text-highlight, white);
+}
+
+#st-chatu8-settings .st-chatu8-details[open] summary {
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+}
+
+#st-chatu8-settings .st-chatu8-details-content {
+    padding: 16px;
+}

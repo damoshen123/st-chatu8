@@ -34,3 +34,12 @@
     color: var(--st-chatu8-accent-color);
     font-weight: bold;
 }
+
+/* Sub-tab content container */
+.st-chatu8-sub-tab-content {
+    display: none;
+}
+
+.st-chatu8-sub-tab-content[style*="display: block"] {
+    display: block;
+}
