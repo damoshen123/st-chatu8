@@ -48,6 +48,7 @@
     align-items: center;
     gap: 8px;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 #st-chatu8-settings .st-chatu8-pagination button {
@@ -56,6 +57,47 @@
 
 #st-chatu8-settings .st-chatu8-pagination span {
     color: var(--st-chatu8-text-primary);
+}
+
+/* Page Jump Input Styles */
+#st-chatu8-settings .st-chatu8-page-jump-input {
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    border: 1px solid var(--SmartThemeBorderColor);
+    border-radius: 4px;
+    padding: 4px;
+    background-color: var(--st-chatu8-bg-tertiary); /* 确保背景颜色一致 */
+    color: var(--st-chatu8-text-secondary);
+    width: 60px; /* 确保宽度一致 */
+}
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    border: 1px solid var(--SmartThemeBorderColor);
+    border-radius: 4px;
+    padding: 4px;
+    background-color: var(--st-chatu8-bg-tertiary); /* Updated to match the main background color */
+    color: var(--SmartThemeEmColor);
+    width: 60px;
+}
+
+#st-chatu8-settings .st-chatu8-page-jump-input:focus {
+    outline: none;
+    border-color: var(--st-chatu8-accent-primary) !important;
+    box-shadow: 0 0 2px rgba(var(--st-chatu8-accent-primary-rgb, 0, 123, 255), 0.5);
+}
+
+#st-chatu8-settings .st-chatu8-page-jump-input:focus {
+    outline: none;
+    border-color: var(--st-chatu8-accent-primary) !important;
+    box-shadow: 0 0 0 2px rgba(var(--st-chatu8-accent-primary-rgb, 0, 123, 255), 0.25);
+}
+
+#st-chatu8-settings .st-chatu8-page-jump-input::-webkit-inner-spin-button,
+#st-chatu8-settings .st-chatu8-page-jump-input::-webkit-outer-spin-button {
+    opacity: 1;
+    height: 30px;
 }
 
 #st-chatu8-settings .st-chatu8-cache-info {
