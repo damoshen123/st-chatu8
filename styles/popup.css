@@ -1,0 +1,308 @@
+/* User Demand Popup Styles - Uses theme variables */
+
+/* Animation keyframes */
+@keyframes st-chatu8-popup-fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes st-chatu8-popup-scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes st-chatu8-popup-scaleInMobile {
+    from {
+        transform: translateX(-50%) scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes st-chatu8-popup-fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Popup Overlay */
+.st-chatu8-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: st-chatu8-popup-fadeIn 0.2s ease-out;
+}
+
+.st-chatu8-popup-overlay.closing {
+    animation: st-chatu8-popup-fadeOut 0.15s ease-out forwards;
+}
+
+/* Popup Bubble Container */
+.st-chatu8-popup-bubble {
+    background: var(--st-chatu8-bg-primary, linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%));
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.1));
+    border-radius: var(--st-chatu8-border-radius, 16px);
+    padding: 24px;
+    min-width: 400px;
+    max-width: 600px;
+    box-shadow: var(--st-chatu8-box-shadow, 0 20px 60px rgba(0, 0, 0, 0.4));
+    animation: st-chatu8-popup-scaleIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: center;
+    font-family: var(--st-chatu8-font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+}
+
+/* Mobile styles */
+.st-chatu8-popup-bubble.mobile {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 300px;
+    max-width: 90vw;
+    overflow-y: auto;
+    animation: st-chatu8-popup-scaleInMobile 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: top center;
+    z-index: 10001;
+}
+
+/* Popup Title */
+.st-chatu8-popup-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--st-chatu8-text-primary, #e0e0ff);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* Popup Hint */
+.st-chatu8-popup-hint {
+    font-size: 13px;
+    color: var(--st-chatu8-text-secondary, rgba(255, 255, 255, 0.6));
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+/* Popup Textarea */
+.st-chatu8-popup-textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 14px;
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+    border-radius: 10px;
+    background: var(--st-chatu8-bg-secondary, rgba(0, 0, 0, 0.3));
+    color: var(--st-chatu8-text-primary, #fff);
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.st-chatu8-popup-textarea:focus {
+    border-color: var(--st-chatu8-accent-primary, rgba(100, 150, 255, 0.5));
+    box-shadow: 0 0 15px rgba(100, 150, 255, 0.15);
+}
+
+/* Image Upload Section */
+.st-chatu8-popup-upload-section {
+    margin-top: 16px;
+    padding: 12px;
+    border: 1px dashed var(--st-chatu8-border-color, rgba(255, 255, 255, 0.2));
+    border-radius: 10px;
+    background: var(--st-chatu8-bg-tertiary, rgba(0, 0, 0, 0.2));
+}
+
+.st-chatu8-popup-upload-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.st-chatu8-popup-upload-label {
+    font-size: 13px;
+    color: var(--st-chatu8-text-secondary, rgba(255, 255, 255, 0.7));
+}
+
+/* Upload Button */
+.st-chatu8-popup-upload-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--st-chatu8-accent-primary, rgba(100, 150, 255, 0.4));
+    border-radius: 6px;
+    background: var(--st-chatu8-bg-tertiary, rgba(100, 150, 255, 0.1));
+    color: var(--st-chatu8-accent-primary, rgba(100, 150, 255, 0.9));
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.st-chatu8-popup-upload-btn:hover {
+    background: var(--st-chatu8-accent-secondary, rgba(100, 150, 255, 0.2));
+    border-color: var(--st-chatu8-accent-primary, rgba(100, 150, 255, 0.6));
+}
+
+/* Image Preview Container */
+.st-chatu8-popup-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 0;
+}
+
+.st-chatu8-popup-empty-hint {
+    font-size: 12px;
+    color: var(--st-chatu8-text-secondary, rgba(255, 255, 255, 0.4));
+    text-align: center;
+    width: 100%;
+    padding: 8px 0;
+}
+
+/* Image Item Container */
+.st-chatu8-popup-img-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.st-chatu8-popup-img-wrapper {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+}
+
+.st-chatu8-popup-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Delete Button on Image */
+.st-chatu8-popup-img-delete {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 18px;
+    height: 18px;
+    border: none;
+    border-radius: 50%;
+    background: var(--st-chatu8-danger-primary, rgba(255, 80, 80, 0.9));
+    color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.st-chatu8-popup-img-wrapper:hover .st-chatu8-popup-img-delete {
+    opacity: 1;
+}
+
+/* Image Name Input */
+.st-chatu8-popup-img-name {
+    width: 60px;
+    padding: 2px 4px;
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.2));
+    border-radius: 4px;
+    background: var(--st-chatu8-bg-secondary, rgba(0, 0, 0, 0.3));
+    color: var(--st-chatu8-text-primary, #fff);
+    font-size: 10px;
+    text-align: center;
+    outline: none;
+}
+
+.st-chatu8-popup-img-name:focus {
+    border-color: var(--st-chatu8-accent-primary, rgba(100, 150, 255, 0.5));
+}
+
+/* Image Count Label */
+.st-chatu8-popup-img-count {
+    font-size: 11px;
+    color: var(--st-chatu8-accent-primary, rgba(100, 150, 255, 0.8));
+    width: 100%;
+    text-align: right;
+    margin-top: 4px;
+}
+
+/* Button Container */
+.st-chatu8-popup-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+/* Cancel Button */
+.st-chatu8-popup-btn-cancel {
+    padding: 10px 28px;
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.2));
+    border-radius: 8px;
+    background: transparent;
+    color: var(--st-chatu8-text-secondary, rgba(255, 255, 255, 0.7));
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.st-chatu8-popup-btn-cancel:hover {
+    background: var(--st-chatu8-bg-tertiary, rgba(255, 255, 255, 0.1));
+    border-color: var(--st-chatu8-border-color, rgba(255, 255, 255, 0.3));
+}
+
+/* Confirm Button */
+.st-chatu8-popup-btn-confirm {
+    padding: 10px 28px;
+    border: none;
+    border-radius: 8px;
+    background: var(--st-chatu8-accent-primary, linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%));
+    color: var(--st-chatu8-text-highlight, #fff);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.st-chatu8-popup-btn-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
