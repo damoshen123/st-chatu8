@@ -13,11 +13,14 @@
         <div class="st-chatu8-grid-2">
             <div class="st-chatu8-field">
                 <label for="st-chatu8-banana-model-select">模型选择</label>
-                <select id="st-chatu8-banana-model-select" class="st-chatu8-select">
-                    <option value="gemini-2.5-flash-image">gemini-2.5-flash-image</option>
-                    <option value="imagen-4.0-generate-001">imagen-4.0-generate-001</option>
-                    <option value="imagen-4.0-ultra-generate-001">imagen-4.0-ultra-generate-001</option>
-                </select>
+                <div class="st-chatu8-profile-controls">
+                    <select id="st-chatu8-banana-model-select" class="st-chatu8-select">
+                        <option value="gemini-2.5-flash-image">gemini-2.5-flash-image</option>
+                        <option value="imagen-4.0-generate-001">imagen-4.0-generate-001</option>
+                        <option value="imagen-4.0-ultra-generate-001">imagen-4.0-ultra-generate-001</option>
+                    </select>
+                    <button class="st-chatu8-icon-btn" id="st-chatu8-banana-fetch-models" title="获取模型列表"><i class="fa-solid fa-rotate"></i></button>
+                </div>
             </div>
             <div class="st-chatu8-field">
                 <label for="st-chatu8-banana-aspect-ratio">长宽比</label>
@@ -29,6 +32,10 @@
                     <option value="3:4">3:4</option>
                 </select>
             </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="st-chatu8-banana-edit-preset">修图预设选择</label>
+            <select id="st-chatu8-banana-edit-preset" class="st-chatu8-select"></select>
         </div>
     </div>
 

@@ -5,6 +5,7 @@
             <label for="yusheid_comfyui">提示词预设</label>
             <div class="st-chatu8-profile-controls">
                 <select id="yusheid_comfyui" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_visual_select_comfyui" title="可视化选择"><i class="fa-solid fa-grip"></i></button>
                 <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_update_style_comfyui" title="保存"><i class="fa-solid fa-save"></i></button>
                 <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_save_style_comfyui" title="另存为"><i class="fa-solid fa-file-export"></i></button>
                 <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_export_current_comfyui" title="导出当前"><i class="fa-solid fa-upload"></i></button>
@@ -95,7 +96,10 @@
         <div class="st-chatu8-field-col">
             <label for="worker">工作流 (JSON)</label>
             <textarea id="worker" class="st-chatu8-textarea" rows="5"></textarea>
-            <button id="eidtwork" class="st-chatu8-btn" style="align-self: flex-end; margin-top: 10px;">简易修改</button>
+            <div style="display: flex; gap: 10px; align-self: flex-end; margin-top: 10px;">
+                <button id="eidtwork" class="st-chatu8-btn">简易修改</button>
+                <button id="visualize_workflow" class="st-chatu8-btn"><i class="fa-solid fa-diagram-project"></i> 可视化</button>
+            </div>
         </div>
     </div>
     <div class="st-chatu8-settings-section">

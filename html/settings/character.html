@@ -18,6 +18,8 @@
                 <label for="character_preset_id">当前预设</label>
                 <div class="st-chatu8-profile-controls">
                     <select id="character_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="character_visual_select" title="可视化选择"><i class="fa-solid fa-grip"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_new" title="新建"><i class="fa-solid fa-plus"></i></button>
                     <button class="st-chatu8-icon-btn" id="character_update" title="保存"><i class="fa-solid fa-save"></i></button>
                     <button class="st-chatu8-icon-btn" id="character_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
                     <button class="st-chatu8-icon-btn" id="character_export" title="导出"><i class="fa-solid fa-upload"></i></button>
@@ -25,6 +27,52 @@
                     <button class="st-chatu8-icon-btn" id="character_import" title="导入"><i class="fa-solid fa-download"></i></button>
                     <button class="st-chatu8-icon-btn danger" id="character_delete" title="删除"><i class="fa-solid fa-trash"></i></button>
                 </div>
+            </div>
+        </div>
+
+        <!-- 角色照片区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>角色照片</h3>
+            <div class="st-chatu8-field-col" style="display: flex; flex-direction: column; align-items: center;">
+                <div class="st-chatu8-character-photo-container" id="char_photo_container" style="display: flex; justify-content: center;">
+                    <img id="char_photo_preview" src="" style="display: none; max-width: 100%; max-height: 300px; border-radius: 8px; object-fit: contain;">
+                    <div class="st-chatu8-image-placeholder" id="char_photo_placeholder" style="width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; background: var(--SmartThemeBlurTintColor); border-radius: 8px;">
+                        <i class="fa-solid fa-image" style="font-size: 48px; opacity: 0.5;"></i>
+                    </div>
+                </div>
+                <input type="file" id="char_photo_upload_input" accept="image/*" style="display: none;">
+                <button class="st-chatu8-btn" id="char_photo_upload" style="margin-top: 10px;">
+                    <i class="fa-solid fa-upload"></i> 上传照片
+                </button>
+                <div class="st-chatu8-field" style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                    <label for="char_send_photo" class="st-chatu8-checkbox-label" style="margin: 0; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="char_send_photo" class="st-chatu8-checkbox">
+                        <span>发送图片</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="st-chatu8-field-col" style="margin-top: 10px;">
+                <label for="char_photo_prompt">提示词</label>
+                <textarea id="char_photo_prompt" class="st-chatu8-textarea" rows="3" placeholder="输入用于生成角色图片的提示词..."></textarea>
+                <div id="char_photo_prompt-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field" style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="st-chatu8-btn" id="char_photo_generate" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> 生成图片
+                </button>
+                <button class="st-chatu8-btn" id="char_photo_generate_prompt" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-lightbulb"></i> 生成图片提示词
+                </button>
+                <button class="st-chatu8-btn" id="char_photo_modify_character_prompt" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-pen-to-square"></i> 修改角色提示词
+                </button>
+                <button class="st-chatu8-btn" id="char_photo_character_data" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-database"></i> 角色数据
+                </button>
+                <button class="st-chatu8-btn" id="char_photo_prompt_translate" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-language"></i> 翻译
+                </button>
             </div>
         </div>
 
@@ -38,6 +86,11 @@
             <div class="st-chatu8-field-col">
                 <label for="char_nameEN">角色英文名称</label>
                 <input type="text" id="char_nameEN" class="st-chatu8-text-input" />
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="char_characterTraits">角色特征</label>
+                <textarea id="char_characterTraits" class="st-chatu8-textarea" rows="3"></textarea>
+                <div id="char_characterTraits-results" class="ch-autocomplete-results"></div>
             </div>
             <div class="st-chatu8-field-col">
                 <label for="char_facialFeatures">五官外貌</label>
@@ -91,8 +144,8 @@
             </div>
             
             <div class="st-chatu8-field" style="margin-top: 10px;">
-                <button class="st-chatu8-btn" id="char_replace_brackets" style="width: 100%;">
-                    <i class="fa-solid fa-exchange-alt"></i> 替换英文括号
+                <button class="st-chatu8-btn" id="char_translate" style="width: 100%;">
+                    <i class="fa-solid fa-language"></i> 翻译
                 </button>
             </div>
             
@@ -110,8 +163,8 @@
 
             <div class="st-chatu8-field" style="margin-top: 15px;">
                 <label for="char_outfit_selector">从服装预设中选择</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <select id="char_outfit_selector" class="st-chatu8-select" style="flex: 1;"></select>
+                <div style="display: flex; gap: 10px; align-items: center; min-width: 0; overflow: hidden; flex-wrap: wrap;">
+                    <select id="char_outfit_selector" class="st-chatu8-select" style="flex: 1; min-width: 0; max-width: 300px;"></select>
                     <button class="st-chatu8-icon-btn" id="char_outfit_refresh" title="刷新列表">
                         <i class="fa-solid fa-refresh"></i>
                     </button>
@@ -137,6 +190,8 @@
                 <label for="outfit_preset_id">当前预设</label>
                 <div class="st-chatu8-profile-controls">
                     <select id="outfit_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="outfit_visual_select" title="可视化选择"><i class="fa-solid fa-grip"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_new" title="新建"><i class="fa-solid fa-plus"></i></button>
                     <button class="st-chatu8-icon-btn" id="outfit_update" title="保存"><i class="fa-solid fa-save"></i></button>
                     <button class="st-chatu8-icon-btn" id="outfit_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
                     <button class="st-chatu8-icon-btn" id="outfit_export" title="导出"><i class="fa-solid fa-upload"></i></button>
@@ -147,9 +202,53 @@
             </div>
         </div>
 
+        <!-- 服装照片区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>服装照片</h3>
+            <div class="st-chatu8-field-col" style="display: flex; flex-direction: column; align-items: center;">
+                <div class="st-chatu8-character-photo-container" id="outfit_photo_container" style="display: flex; justify-content: center;">
+                    <img id="outfit_photo_preview" src="" style="display: none; max-width: 100%; max-height: 300px; border-radius: 8px; object-fit: contain;">
+                    <div class="st-chatu8-image-placeholder" id="outfit_photo_placeholder" style="width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; background: var(--SmartThemeBlurTintColor); border-radius: 8px;">
+                        <i class="fa-solid fa-shirt" style="font-size: 48px; opacity: 0.5;"></i>
+                    </div>
+                </div>
+                <input type="file" id="outfit_photo_upload_input" accept="image/*" style="display: none;">
+                <button class="st-chatu8-btn" id="outfit_photo_upload" style="margin-top: 10px;">
+                    <i class="fa-solid fa-upload"></i> 上传照片
+                </button>
+                <div class="st-chatu8-field" style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                    <label for="outfit_send_photo" class="st-chatu8-checkbox-label" style="margin: 0; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="outfit_send_photo" class="st-chatu8-checkbox">
+                        <span>发送图片</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="st-chatu8-field-col" style="margin-top: 10px;">
+                <label for="outfit_photo_prompt">提示词</label>
+                <textarea id="outfit_photo_prompt" class="st-chatu8-textarea" rows="3" placeholder="输入用于生成服装图片的提示词..."></textarea>
+                <div id="outfit_photo_prompt-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field" style="margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="st-chatu8-btn" id="outfit_photo_generate" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> 生成图片
+                </button>
+                <button class="st-chatu8-btn" id="outfit_photo_generate_prompt" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-lightbulb"></i> 生成图片提示词
+                </button>
+                <button class="st-chatu8-btn" id="outfit_photo_modify_prompt" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-pen-to-square"></i> 修改服装提示词
+                </button>
+                <button class="st-chatu8-btn" id="outfit_photo_prompt_translate" style="flex: 1; min-width: 120px;">
+                    <i class="fa-solid fa-language"></i> 翻译
+                </button>
+            </div>
+        </div>
+
         <!-- 服装参数区 -->
         <div class="st-chatu8-settings-section">
             <h3>服装详细参数</h3>
+
             <div class="st-chatu8-field-col">
                 <label for="outfit_nameCN">服装中文名称</label>
                 <input type="text" id="outfit_nameCN" class="st-chatu8-text-input" />
@@ -180,8 +279,8 @@
             </div>
             
             <div class="st-chatu8-field" style="margin-top: 10px;">
-                <button class="st-chatu8-btn" id="outfit_replace_brackets" style="width: 100%;">
-                    <i class="fa-solid fa-exchange-alt"></i> 替换英文括号
+                <button class="st-chatu8-btn" id="outfit_translate" style="width: 100%;">
+                    <i class="fa-solid fa-language"></i> 翻译
                 </button>
             </div>
         </div>
@@ -222,8 +321,8 @@
 
             <div class="st-chatu8-field" style="margin-top: 15px;">
                 <label for="character_enable_selector">从角色设定中选择</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <select id="character_enable_selector" class="st-chatu8-select" style="flex: 1;"></select>
+                <div style="display: flex; gap: 10px; align-items: center; min-width: 0; overflow: hidden; flex-wrap: wrap;">
+                    <select id="character_enable_selector" class="st-chatu8-select" style="flex: 1; min-width: 0; max-width: 300px;"></select>
                     <button class="st-chatu8-icon-btn" id="character_enable_refresh" title="刷新列表">
                         <i class="fa-solid fa-refresh"></i>
                     </button>
@@ -275,8 +374,8 @@
 
             <div class="st-chatu8-field" style="margin-top: 15px;">
                 <label for="outfit_enable_selector">从服装预设中选择</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <select id="outfit_enable_selector" class="st-chatu8-select" style="flex: 1;"></select>
+                <div style="display: flex; gap: 10px; align-items: center; min-width: 0; overflow: hidden; flex-wrap: wrap;">
+                    <select id="outfit_enable_selector" class="st-chatu8-select" style="flex: 1; min-width: 0; max-width: 300px;"></select>
                     <button class="st-chatu8-icon-btn" id="outfit_enable_refresh" title="刷新列表">
                         <i class="fa-solid fa-refresh"></i>
                     </button>
@@ -328,8 +427,8 @@
 
             <div class="st-chatu8-field" style="margin-top: 15px;">
                 <label for="character_common_selector">从角色设定中选择</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <select id="character_common_selector" class="st-chatu8-select" style="flex: 1;"></select>
+                <div style="display: flex; gap: 10px; align-items: center; min-width: 0; overflow: hidden; flex-wrap: wrap;">
+                    <select id="character_common_selector" class="st-chatu8-select" style="flex: 1; min-width: 0; max-width: 300px;"></select>
                     <button class="st-chatu8-icon-btn" id="character_common_refresh" title="刷新列表">
                         <i class="fa-solid fa-refresh"></i>
                     </button>

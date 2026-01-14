@@ -1,0 +1,125 @@
+<div id="ch-tab-regex">
+    <div class="st-chatu8-settings-section">
+        <h3>正则设置</h3>
+        <div class="st-chatu8-field">
+            <label for="ch-regex-profile-select">正则配置</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="ch-regex-profile-select" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="ch-new-regex-profile-button" title="新建"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-save-regex-profile-button" title="保存"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-save-as-regex-profile-button" title="另存为"><i class="fa-solid fa-floppy-disk"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-import-regex-profile-button" title="导入"><i class="fa-solid fa-file-import"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-export-regex-profile-button" title="导出"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="ch-delete-regex-profile-button" title="删除"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="ch-regex-before-after-editor">前后正则 (用于切掉前后文)</label>
+            <textarea id="ch-regex-before-after-editor" class="st-chatu8-textarea" rows="3" placeholder="输入正则表达式..."></textarea>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="ch-regex-text-editor">文字正则 (用于替换内容)</label>
+            <textarea id="ch-regex-text-editor" class="st-chatu8-textarea" rows="5" placeholder="输入正则表达式..."></textarea>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h4>正则预设编辑器</h4>
+        <div class="st-chatu8-field">
+            <div class="st-chatu8-profile-controls">
+                <button class="st-chatu8-btn" id="ch-add-regex-entry-button" title="新建正则条目">
+                    <i class="fa-solid fa-plus"></i> 新建
+                </button>
+                <button class="st-chatu8-btn" id="ch-import-regex-entry-button" title="导入正则条目">
+                    <i class="fa-solid fa-file-import"></i> 导入
+                </button>
+                <button class="st-chatu8-btn" id="ch-import-regex-entry-engine-button" title="从ST正则引擎导入">
+                    <i class="fa-solid fa-download"></i> 从ST引擎导入
+                </button>
+            </div>
+        </div>
+        <div id="ch-regex-entries-container" class="st-chatu8-preset-entries-container">
+            <!-- 正则条目将在这里动态渲染 -->
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h4>手势录制</h4>
+        <div class="st-chatu8-field">
+            <label for="ch-gesture-enabled">手势功能开关</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-gesture-enabled" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ch-gesture-1-button">手势一</label>
+            <button class="st-chatu8-btn" id="ch-gesture-1-button">录制手势一</button>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ch-gesture-2-button">手势二</label>
+            <button class="st-chatu8-btn" id="ch-gesture-2-button">录制手势二</button>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ch-image-gen-demand-enabled">生图需求弹窗</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-image-gen-demand-enabled" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="ch-default-char-demand">生成角色默认用户需求</label>
+            <textarea id="ch-default-char-demand" class="st-chatu8-textarea" rows="2" placeholder="当用户需求为空时使用此默认值..."></textarea>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="ch-default-image-demand">生成图片默认用户需求</label>
+            <textarea id="ch-default-image-demand" class="st-chatu8-textarea" rows="2" placeholder="当用户需求为空时使用此默认值..."></textarea>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ch-gesture-show-recognition">识别展示</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-gesture-show-recognition" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ch-gesture-show-trail">笔迹展示</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-gesture-show-trail" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ch-gesture-trail-color">笔迹颜色</label>
+            <input type="color" id="ch-gesture-trail-color" class="st-chatu8-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ch-gesture-match-threshold">匹配阈值</label>
+            <input type="range" id="ch-gesture-match-threshold" class="st-chatu8-slider-input" min="0" max="100" step="1">
+            <span id="ch-gesture-match-threshold-value" class="st-chatu8-slider-value"></span>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h4>测试工具</h4>
+        <div class="st-chatu8-field">
+            <label for="ch-regex-test-mode">测试模式</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-regex-test-mode" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="ch-regex-test-original-text">原文</label>
+            <textarea id="ch-regex-test-original-text" class="st-chatu8-textarea" rows="6"></textarea>
+        </div>
+        <div style="text-align: center; margin: 10px 0;">
+            <button class="st-chatu8-btn" id="ch-test-regex-button">
+                <i class="fa-solid fa-arrow-down"></i>
+                应用正则并测试
+                <i class="fa-solid fa-arrow-down"></i>
+            </button>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="ch-regex-test-result-text">正则后文本</label>
+            <textarea id="ch-regex-test-result-text" class="st-chatu8-textarea" rows="6" readonly></textarea>
+        </div>
+    </div>
+</div>
