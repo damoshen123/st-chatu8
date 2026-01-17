@@ -32,6 +32,13 @@
             </div>
         </div>
         <div class="st-chatu8-field">
+            <label for="collapseImage">折叠图片</label>
+            <div class="st-chatu8-toggle">
+                <input id="collapseImage" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
             <label for="zidongdianji">自动点击生成</label>
             <div class="st-chatu8-toggle">
                 <input id="zidongdianji" type="checkbox"/>
@@ -74,6 +81,13 @@
             </div>
         </div>
         <div class="st-chatu8-field">
+            <label for="autoLLMImageGen">自动LLM请求生图(非同层)</label>
+            <div class="st-chatu8-toggle">
+                <input id="autoLLMImageGen" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
             <label for="imageGenInterval">生图间隔(毫秒)</label>
             <input type="number" id="imageGenInterval" class="st-chatu8-text-input" min="100" step="100" placeholder="1000">
         </div>
@@ -100,7 +114,7 @@
     <div class="st-chatu8-settings-section">
         <h3>储存tag模式</h3>
         <div class="st-chatu8-field">
-            <label for="insertOriginalText">插入原文</label>
+            <label for="insertOriginalText">插入原文(非同层)</label>
             <div class="st-chatu8-toggle">
                 <input id="insertOriginalText" type="checkbox"/>
                 <span class="st-chatu8-slider"></span>
@@ -108,15 +122,15 @@
         </div>
     </div>
     <div class="st-chatu8-settings-section">
-        <h3>缓存管理</h3>
+        <h3>缓存管理(点击下方按钮清除)</h3>
         <div class="st-chatu8-field">
-            <label for="cache">缓存有效期</label>
+            <label for="cache">需要清除的缓存</label>
             <select id="cache" class="st-chatu8-select">
-                <option value="0">不缓存</option>
-                <option value="1">缓存一天</option>
-                <option value="7">缓存一星期</option>
-                <option value="30">缓存一个月</option>
-                <option value="365">缓存一年</option>
+                <option value="0">不再缓存</option>
+                <option value="1">点击清除一天前的</option>
+                <option value="7">点击清除一星期前的</option>
+                <option value="30">点击清除一个月前的</option>
+                <option value="365">点击清除一年前的</option>
             </select>
         </div>
         <div class="st-chatu8-field">

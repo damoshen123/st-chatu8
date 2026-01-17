@@ -1,0 +1,134 @@
+/* ===========================================
+   ST-Chatu8 图片折叠功能样式
+   =========================================== */
+
+/* 折叠包裹容器 */
+.st-chatu8-collapse-wrapper {
+    margin: 8px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.08) 0%, rgba(138, 180, 248, 0.05) 100%);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    transition: all 0.3s ease;
+}
+
+.st-chatu8-collapse-wrapper:hover {
+    border-color: rgba(74, 144, 226, 0.4);
+    box-shadow: 0 2px 12px rgba(74, 144, 226, 0.15);
+}
+
+/* 折叠标题栏/指示器 */
+.st-chatu8-collapse-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    user-select: none;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.15) 0%, rgba(74, 144, 226, 0.08) 100%);
+    transition: all 0.2s ease;
+    font-size: 14px;
+    color: #a8c8f0;
+}
+
+.st-chatu8-collapse-header:hover {
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.25) 0%, rgba(74, 144, 226, 0.15) 100%);
+    color: #c0dcff;
+}
+
+/* 折叠图标 */
+.st-chatu8-collapse-icon {
+    font-size: 16px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+    text-indent: 1px;
+}
+
+.st-chatu8-collapse-wrapper.collapsed .st-chatu8-collapse-icon {
+    transform: rotate(-90deg);
+}
+
+/* 折叠标题文字 */
+.st-chatu8-collapse-title {
+    flex: 1;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* 折叠状态标签 */
+.st-chatu8-collapse-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(74, 144, 226, 0.2);
+    color: #8ab4f8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.st-chatu8-collapse-wrapper.collapsed .st-chatu8-collapse-badge {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+/* 折叠内容区域 */
+.st-chatu8-collapse-content {
+    overflow: hidden;
+    max-height: 2000px;
+    opacity: 1;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease,
+        padding 0.3s ease;
+    padding: 0;
+}
+
+.st-chatu8-collapse-wrapper.collapsed .st-chatu8-collapse-content {
+    max-height: 0;
+    opacity: 0;
+    padding: 0;
+}
+
+/* 内容区域内部的图片容器 */
+.st-chatu8-collapse-content .st-chatu8-image-container {
+    margin: 0;
+    border-radius: 0 0 8px 8px;
+}
+
+/* 视频特殊样式 */
+.st-chatu8-collapse-wrapper[data-media-type="video"] .st-chatu8-collapse-header {
+    background: linear-gradient(135deg, rgba(156, 39, 176, 0.15) 0%, rgba(156, 39, 176, 0.08) 100%);
+}
+
+.st-chatu8-collapse-wrapper[data-media-type="video"]:hover {
+    border-color: rgba(156, 39, 176, 0.4);
+    box-shadow: 0 2px 12px rgba(156, 39, 176, 0.15);
+}
+
+.st-chatu8-collapse-wrapper[data-media-type="video"] .st-chatu8-collapse-badge {
+    background: rgba(156, 39, 176, 0.2);
+    color: #ce93d8;
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+    .st-chatu8-collapse-header {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .st-chatu8-collapse-icon {
+        font-size: 14px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .st-chatu8-collapse-badge {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+}
