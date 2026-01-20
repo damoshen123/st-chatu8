@@ -1,4 +1,30 @@
 <div id="ch-tab-log">
+    <!-- 调试模式 -->
+    <div class="st-chatu8-settings-section">
+        <h3>🔧 调试模式</h3>
+        <div class="st-chatu8-field">
+            <label>调试开关</label>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <label class="checkbox_label">
+                    <input id="ch-debug-mode-toggle" type="checkbox" />
+                    <span>启用详细调试日志</span>
+                </label>
+                <span id="ch-debug-status" style="color: #999; font-size: 12px;"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>调试工具</label>
+            <div>
+                <button id="ch-download-debug-log" class="st-chatu8-btn" disabled>下载调试日志</button>
+                <button id="ch-clear-debug-log" class="st-chatu8-btn danger" disabled>清空调试日志</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col" style="font-size: 12px; color: #888;">
+            <span>💡 调试模式记录详细的函数执行时间和分支逻辑，开关不持久化，关闭设置页面后需重新启用。</span>
+        </div>
+    </div>
+
+    <!-- 普通日志 -->
     <div class="st-chatu8-settings-section">
         <h3>日志</h3>
         <div class="st-chatu8-field">

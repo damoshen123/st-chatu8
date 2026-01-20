@@ -396,3 +396,32 @@
 #st-chatu8-settings .st-chatu8-entry-warning:hover {
     color: #fbbf24;
 }
+
+/* 危险正则警告图标 - 红色骷髅 */
+#st-chatu8-settings .st-chatu8-entry-danger-warning {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ef4444;
+    font-size: 0.9rem;
+    margin-left: 4px;
+    flex-shrink: 0;
+    cursor: help;
+    animation: danger-pulse 1.5s ease-in-out infinite;
+}
+
+#st-chatu8-settings .st-chatu8-entry-danger-warning:hover {
+    color: #f87171;
+}
+
+@keyframes danger-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
