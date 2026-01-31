@@ -410,6 +410,69 @@
     font-weight: bold;
 }
 
+/* --- 新条目样式 --- */
+/* 新条目背景色和边框 */
+#st-chatu8-tab-send_data .st-chatu8-entry-container .st-chatu8-list-item.new-entry {
+    background-color: #fff3cd !important;
+    border-left: 3px solid #ffc107 !important;
+}
+
+/* 新条目徽章 */
+.st-chatu8-new-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 6px;
+    background-color: #ffc107;
+    color: #000;
+    font-size: 0.75em;
+    font-weight: bold;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+
+/* --- 批量操作新条目按钮样式 --- */
+/* 新条目按钮容器 */
+.st-chatu8-new-entry-buttons {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+/* 新条目按钮基础样式 */
+.st-chatu8-new-entry-btn {
+    padding: 6px 12px;
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+/* 新条目按钮悬停状态 */
+.st-chatu8-new-entry-btn:hover {
+    background-color: #ffb300;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 新条目按钮激活状态 */
+.st-chatu8-new-entry-btn:active {
+    transform: translateY(0);
+}
+
+/* 新条目按钮禁用状态 */
+.st-chatu8-new-entry-btn:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
 /* --- 条目内容弹窗专用样式 - 使用主题变量 --- */
 /* 使用 workflow-viz 的基础结构，但简化为只显示内容 */
 .st-chatu8-entry-content-dialog {
