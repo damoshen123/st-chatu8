@@ -12,6 +12,8 @@
 @import url('./styles/preset-entries.css');
 @import url('./styles/popup.css');
 @import url('./styles/collapse.css');
+@import url('./styles/vibeGroupEditor.css');
+@import url('./styles/charRefGroupEditor.css');
 
 /* Sub-navigation styles */
 .st-chatu8-sub-nav {

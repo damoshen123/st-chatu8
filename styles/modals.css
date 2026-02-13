@@ -1713,3 +1713,124 @@
         font-size: 0.7rem;
     }
 }
+
+
+/* ==================== Vibe 生成器移动端响应式样式 ==================== */
+@media screen and (max-width: 768px) {
+
+    /* Vibe 生成器对话框 - 移动端全屏 */
+    .st-chatu8-vibe-generator-dialog {
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        /* 动态视口高度，排除浏览器地址栏 */
+        max-width: none !important;
+        border-radius: 0 !important;
+        max-height: none !important;
+    }
+
+    /* Vibe 生成器主体内容 - 启用滚动 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-workflow-viz-body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        /* iOS 平滑滚动 */
+        padding: 1rem !important;
+    }
+
+    /* Vibe 生成器内容容器 */
+    .st-chatu8-vibe-generator-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* 调整标题字体大小 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-workflow-viz-header h3 {
+        font-size: 1em;
+    }
+
+    /* 预设控制按钮 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-profile-controls {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-profile-controls select {
+        flex: 1 1 100%;
+        min-width: 100%;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-icon-btn {
+        padding: 10px 12px;
+        font-size: 1rem;
+    }
+
+    /* 图片预览容器 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-image-preview-container {
+        max-height: 250px;
+    }
+
+    /* 图片控制按钮 - 移动端堆叠 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-image-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-image-controls .st-chatu8-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    /* 范围滑块容器 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-range-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-range-slider,
+    .st-chatu8-vibe-generator-dialog .st-chatu8-range-input {
+        width: 100%;
+    }
+
+    /* 主要操作按钮 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog #vibe-submit-btn,
+    .st-chatu8-vibe-generator-dialog #vibe-download-btn {
+        padding: 14px 1rem !important;
+        font-size: 1.1rem !important;
+    }
+
+    /* 状态提示区域 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog #vibe-status {
+        font-size: 0.95rem;
+        padding: 12px;
+    }
+
+    /* 字段标签 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-field label {
+        font-size: 1rem;
+    }
+
+    /* 选择框 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-select {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+/* 小屏幕设备额外优化 (手机竖屏) */
+@media screen and (max-width: 480px) {
+    .st-chatu8-vibe-generator-dialog .st-chatu8-workflow-viz-body {
+        padding: 0.75rem !important;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-field {
+        margin-bottom: 1rem !important;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-icon-btn {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+}

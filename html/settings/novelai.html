@@ -278,34 +278,66 @@
         </div>
     </div>
     <div class="st-chatu8-settings-section" id="nai-char-ref-section">
-        <h3>角色参考图 (Character Reference 仅浏览器端)</h3>
+        <h3>角色参考图设置</h3>
         <div class="st-chatu8-field">
             <label for="nai3CharRef">启用角色参考</label>
-            <div class="st-chatu8-toggle">
+            <div class="st-chatu8-toggle" title="不建议使用，每多一张参考图片就多收费5点，每次生图收费一次！">
                 <input id="nai3CharRef" type="checkbox"/>
                 <span class="st-chatu8-slider"></span>
             </div>
         </div>
         <div class="st-chatu8-field">
-            <label for="nai3StylePerception">风格感知</label>
-            <div class="st-chatu8-toggle">
-                <input id="nai3StylePerception" type="checkbox"/>
-                <span class="st-chatu8-slider"></span>
+            <label>角色参考图管理</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-char-ref-upload-btn">
+                    <i class="fa-solid fa-upload"></i> 打开添加参考图
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    上传角色参考图片到库中
+                </small>
             </div>
         </div>
-        <div class="st-chatu8-field-col">
-            <label>图片预览</label>
-            <div id="novelai-char-ref-image-preview-container" class="st-chatu8-image-preview-container">
-                <div class="st-chatu8-image-placeholder">
-                    <i class="fa-solid fa-image"></i>
-                    <span>没有选择图片</span>
-                </div>
-                <img id="previewImage_nai_char_ref" src="" alt="角色参考图预览">
+        <div class="st-chatu8-field">
+            <label>角色组管理</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-char-ref-group-editor-btn" title="管理角色参考组预设">
+                    <i class="fa-solid fa-layer-group"></i> 角色组编辑
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    创建和管理最多包含 4 个角色参考的组合预设
+                </small>
             </div>
-            <div class="st-chatu8-image-controls">
-                <input type="file" id="imageInput_nai_char_ref" accept="image/*" style="display:none;">
-                <button type="button" class="st-chatu8-btn" id="novelai-select-char-ref-image-btn"><i class="fa-solid fa-upload"></i> 选择图片</button>
-                <button type="button" class="st-chatu8-btn danger" id="novelai-remove-char-ref-image-btn" style="display: none;"><i class="fa-solid fa-trash"></i> 移除图片</button>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>氛围转移设置</h3>
+        <div class="st-chatu8-field">
+            <label>Vibe 文件生成器</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-vibe-generator-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> 打开 Vibe 生成器
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    生成官方兼容的 .naiv4vibe 文件，可直接导入 NovelAI 官网使用
+                </small>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>Vibe 组管理</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-vibe-group-editor-btn" title="管理 Vibe 组预设">
+                    <i class="fa-solid fa-layer-group"></i> Vibe组编辑
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    创建和管理最多包含 4 个 Vibe 的组合预设
+                </small>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="enableVibeGroupTransfer">启用 Vibe 组氛围转移</label>
+            <div class="st-chatu8-toggle" title="使用 Vibe 组进行氛围转移，最多可同时使用 4 个 Vibe。启用后将自动禁用单个 Vibe 氛围转移。">
+                <input id="enableVibeGroupTransfer" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
         </div>
     </div>

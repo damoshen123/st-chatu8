@@ -1,0 +1,815 @@
+/* ==================== Vibe Group Editor Styles ==================== */
+
+/* Main Dialog Styling */
+.st-chatu8-vibe-group-editor-dialog {
+    max-width: 900px;
+    width: 90vw;
+}
+
+.st-chatu8-vibe-group-editor-dialog .st-chatu8-workflow-viz-body {
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: calc(90vh - 120px);
+}
+
+.st-chatu8-vibe-group-editor-content {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Vibe Slots Container - Grid Layout */
+.st-chatu8-vibe-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Ensure grid items don't overflow */
+.st-chatu8-vibe-slots>* {
+    min-width: 0;
+}
+
+/* Individual Vibe Slot Card */
+.st-chatu8-vibe-slot {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.st-chatu8-vibe-slot:hover {
+    border-color: rgba(74, 144, 226, 0.4);
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Vibe Slot Header */
+.st-chatu8-vibe-slot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.st-chatu8-vibe-slot-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--st-chatu8-text-primary, #f0f0f0);
+}
+
+.st-chatu8-vibe-slot-remove {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+}
+
+/* Vibe Slot Preview Image */
+.st-chatu8-vibe-slot-preview {
+    width: 100%;
+    height: 200px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.st-chatu8-vibe-slot-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.st-chatu8-vibe-slot-preview .placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.st-chatu8-vibe-slot-preview .placeholder i {
+    font-size: 3rem;
+}
+
+.st-chatu8-vibe-slot-preview .placeholder span {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Vibe Slot Error State */
+.st-chatu8-vibe-slot-preview .error {
+    color: rgba(244, 67, 54, 0.8);
+    font-size: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.st-chatu8-vibe-slot-preview .error i {
+    font-size: 2.5rem;
+}
+
+.st-chatu8-vibe-slot-preview .error span {
+    font-size: 0.85rem;
+    color: rgba(244, 67, 54, 0.9);
+}
+
+/* Strength Controls */
+.st-chatu8-vibe-slot .st-chatu8-field {
+    margin-bottom: 0;
+}
+
+.st-chatu8-vibe-slot .st-chatu8-field label {
+    font-size: 0.9rem;
+    color: var(--st-chatu8-text-secondary, #aaa);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.st-chatu8-vibe-slot .strength-value {
+    font-weight: 600;
+    color: var(--st-chatu8-accent-primary, #4a90e2);
+}
+
+.st-chatu8-vibe-slot .st-chatu8-range-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.st-chatu8-vibe-slot .st-chatu8-range-slider {
+    flex: 1;
+}
+
+.st-chatu8-vibe-slot .st-chatu8-range-input {
+    width: 80px;
+    flex-shrink: 0;
+}
+
+/* Add Vibe Button Styling */
+#vibe-group-add-vibe {
+    width: 100%;
+    padding: 1rem;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+#vibe-group-add-vibe:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#vibe-group-add-vibe:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+/* Status Message Area */
+#vibe-group-status {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+/* Empty State */
+.st-chatu8-vibe-slots:empty::before {
+    content: '暂无 Vibe';
+    display: block;
+    text-align: center;
+    padding: 3rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+    /* Span all columns in grid */
+}
+
+/* Group Preset Controls */
+.st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls select {
+    flex: 1;
+    min-width: 200px;
+}
+
+.st-chatu8-vibe-group-editor-dialog .st-chatu8-icon-btn {
+    padding: 10px;
+    font-size: 0.95rem;
+}
+
+/* ==================== Responsive Layout Rules ==================== */
+
+/* Tablet and smaller screens */
+@media screen and (max-width: 768px) {
+    .st-chatu8-vibe-group-editor-dialog {
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        max-width: none !important;
+        border-radius: 0 !important;
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-workflow-viz-body {
+        padding: 1rem;
+        max-height: calc(100vh - 100px);
+        max-height: calc(100dvh - 100px);
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-workflow-viz-header {
+        padding: 12px 16px;
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-workflow-viz-header h3 {
+        font-size: 1em;
+    }
+
+    /* Force single column grid on mobile */
+    .st-chatu8-vibe-slots {
+        grid-template-columns: 1fr;
+    }
+
+    /* Profile controls layout: select on first row, buttons on second and third rows */
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-rows: auto auto auto !important;
+        gap: 6px !important;
+        width: 100% !important;
+        flex-wrap: unset !important;
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls select {
+        grid-column: 1 / -1 !important;
+        grid-row: 1 !important;
+        width: 100% !important;
+        flex: none !important;
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls button {
+        min-width: 40px !important;
+        padding: 10px 4px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* First row of buttons (4 buttons) */
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(1) {
+        grid-row: 2 !important;
+        grid-column: 1 !important;
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(2) {
+        grid-row: 2 !important;
+        grid-column: 2 !important;
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(3) {
+        grid-row: 2 !important;
+        grid-column: 3 !important;
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(4) {
+        grid-row: 2 !important;
+        grid-column: 4 !important;
+    }
+
+    /* Second row of buttons (4 buttons) */
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(5) {
+        grid-row: 3 !important;
+        grid-column: 1 !important;
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(6) {
+        grid-row: 3 !important;
+        grid-column: 2 !important;
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(7) {
+        grid-row: 3 !important;
+        grid-column: 3 !important;
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(8) {
+        grid-row: 3 !important;
+        grid-column: 4 !important;
+    }
+
+    /* Vibe slot preview height adjustment */
+    .st-chatu8-vibe-slot-preview {
+        height: 180px;
+    }
+
+    /* Adjust add Vibe button */
+    #vibe-group-add-vibe {
+        padding: 14px 1rem;
+        font-size: 1rem;
+    }
+
+    /* Adjust strength controls for mobile */
+    .st-chatu8-vibe-slot .st-chatu8-range-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .st-chatu8-vibe-slot .st-chatu8-range-slider,
+    .st-chatu8-vibe-slot .st-chatu8-range-input {
+        width: 100%;
+    }
+
+    /* Status message */
+    #vibe-group-status {
+        font-size: 0.85rem;
+        padding: 0.8rem;
+    }
+}
+
+/* Tablet landscape and medium screens - 2 columns */
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    .st-chatu8-vibe-slots {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop and larger screens - 2 columns with larger minimum */
+@media screen and (min-width: 1201px) {
+    .st-chatu8-vibe-slots {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+}
+
+/* Small mobile screens */
+@media screen and (max-width: 480px) {
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-workflow-viz-body {
+        padding: 0.75rem;
+    }
+
+    .st-chatu8-vibe-slot {
+        padding: 0.8rem;
+    }
+
+    .st-chatu8-vibe-slot-preview {
+        height: 150px;
+    }
+
+    .st-chatu8-vibe-slot-title {
+        font-size: 0.95rem;
+    }
+
+    #vibe-group-add-vibe {
+        font-size: 0.95rem;
+        padding: 12px 0.8rem;
+    }
+
+    .st-chatu8-vibe-group-editor-dialog .st-chatu8-icon-btn {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    /* Vibe Visual Selector - Single column on very small mobile */
+    .st-chatu8-vibe-visual-selector-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    /* Small mobile pagination - tighter spacing */
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-pagination-container {
+        gap: 8px !important;
+        padding: 10px !important;
+    }
+
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-pagination-btn {
+        padding: 5px 10px !important;
+        font-size: 0.85em !important;
+    }
+
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-pagination-info {
+        font-size: 0.8em !important;
+    }
+
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-pagination-size-label {
+        font-size: 0.8em !important;
+    }
+
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-pagination-size {
+        font-size: 0.8em !important;
+        padding: 3px 6px !important;
+    }
+
+    /* Adjust toolbar for small screens */
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-workflow-viz-toolbar {
+        padding: 10px;
+    }
+
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-viz-search-container {
+        max-width: 100%;
+    }
+}
+
+/* ==================== Visual Vibe Selector Styles ==================== */
+
+/* Vibe Visual Selector Dialog */
+.st-chatu8-vibe-visual-selector-dialog {
+    max-width: 1200px;
+    width: 90vw;
+}
+
+/* Override flex layout for vibe visual selector body */
+.st-chatu8-vibe-visual-selector-dialog .st-chatu8-workflow-viz-body {
+    display: block;
+    padding: 0;
+    overflow-y: auto;
+}
+
+/* Vibe Visual Selector Grid - Base styles */
+.st-chatu8-vibe-visual-selector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    width: 100%;
+    min-height: 400px;
+}
+
+/* Vibe Card in Selector */
+.st-chatu8-vibe-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.8rem;
+    background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.st-chatu8-vibe-card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Vibe Card Thumbnail */
+.st-chatu8-vibe-card-thumbnail {
+    width: 100%;
+    height: 150px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.st-chatu8-vibe-card-thumbnail img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Vibe Card Placeholder */
+.st-chatu8-vibe-card-placeholder {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.st-chatu8-vibe-card-placeholder i {
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+.st-chatu8-vibe-card-placeholder div {
+    font-size: 0.7rem;
+}
+
+/* Vibe Card Error */
+.st-chatu8-vibe-card-error {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.st-chatu8-vibe-card-error i {
+    font-size: 2rem;
+    opacity: 0.5;
+    color: #f44336;
+}
+
+.st-chatu8-vibe-card-error div {
+    font-size: 0.7rem;
+}
+
+/* Vibe Card Info */
+.st-chatu8-vibe-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.st-chatu8-vibe-card-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.st-chatu8-vibe-card-model {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Reuse existing preset visualization styles but with specific overrides for Vibe selector */
+.st-chatu8-vibe-visual-selector-dialog .st-chatu8-preset-grid {
+    padding: 20px;
+}
+
+.st-chatu8-vibe-visual-selector-dialog .st-chatu8-preset-card {
+    cursor: pointer;
+}
+
+.st-chatu8-vibe-visual-selector-dialog .st-chatu8-preset-card:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+/* ==================== Theme Compatibility ==================== */
+
+/* Ensure compatibility with different theme presets */
+.st-chatu8-vibe-group-editor-dialog {
+    color: var(--st-chatu8-text-primary, #f0f0f0);
+}
+
+.st-chatu8-vibe-slot {
+    border-color: var(--st-chatu8-border-color, rgba(255, 255, 255, 0.1));
+    background: var(--st-chatu8-bg-secondary, rgba(0, 0, 0, 0.2));
+}
+
+.st-chatu8-vibe-slot:hover {
+    border-color: var(--st-chatu8-accent-primary, rgba(74, 144, 226, 0.4));
+}
+
+.st-chatu8-vibe-slot-preview {
+    background: var(--st-chatu8-bg-tertiary, rgba(0, 0, 0, 0.3));
+}
+
+/* ==================== Animation and Transitions ==================== */
+
+/* Fade in animation for slots */
+@keyframes st-chatu8-vibe-slot-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.st-chatu8-vibe-slot {
+    animation: st-chatu8-vibe-slot-fade-in 0.3s ease-out;
+}
+
+/* Loading state for preview images */
+.st-chatu8-vibe-slot-preview.loading {
+    position: relative;
+}
+
+.st-chatu8-vibe-slot-preview.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--st-chatu8-accent-primary, #4a90e2);
+    border-radius: 50%;
+    animation: st-chatu8-vibe-loading-spin 0.8s linear infinite;
+}
+
+@keyframes st-chatu8-vibe-loading-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==================== Accessibility Improvements ==================== */
+
+/* Focus states for keyboard navigation */
+.st-chatu8-vibe-slot-remove:focus {
+    outline: 2px solid var(--st-chatu8-accent-primary, #4a90e2);
+    outline-offset: 2px;
+}
+
+#vibe-group-add-vibe:focus {
+    outline: 2px solid var(--st-chatu8-accent-primary, #4a90e2);
+    outline-offset: 2px;
+}
+
+.st-chatu8-vibe-group-editor-dialog .st-chatu8-icon-btn:focus {
+    outline: 2px solid var(--st-chatu8-accent-primary, #4a90e2);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .st-chatu8-vibe-slot {
+        border-width: 2px;
+    }
+
+    .st-chatu8-vibe-slot-preview {
+        border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.3));
+    }
+}
+
+/* ==================== Pagination Container Base Styles ==================== */
+
+.st-chatu8-pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: rgba(30, 30, 46, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.st-chatu8-pagination-btn {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    color: #ccc;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.st-chatu8-pagination-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.st-chatu8-pagination-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #aaa;
+    font-size: 0.9em;
+}
+
+.st-chatu8-pagination-size-container {
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.st-chatu8-pagination-size-label {
+    color: #888;
+    font-size: 0.85em;
+}
+
+.st-chatu8-pagination-size {
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 0.85em;
+}
+
+/* ==================== Responsive Vibe Visual Selector ==================== */
+
+/* Mobile - Full screen dialog with smaller cards */
+@media screen and (max-width: 768px) {
+    .st-chatu8-vibe-visual-selector-dialog {
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        max-width: none !important;
+        border-radius: 0 !important;
+    }
+
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-workflow-viz-body {
+        max-height: calc(100vh - 200px);
+        max-height: calc(100dvh - 200px);
+        overflow-y: auto;
+    }
+
+    .st-chatu8-vibe-visual-selector-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        padding: 1rem;
+        padding-bottom: 4rem;
+        min-height: auto;
+    }
+
+    /* Mobile pagination layout - horizontal grid */
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-pagination-container {
+        display: grid !important;
+        grid-template-columns: auto 1fr auto !important;
+        grid-template-rows: auto auto !important;
+        gap: 10px !important;
+        padding: 10px 12px !important;
+        align-items: center !important;
+    }
+
+    /* First row: prev button */
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-pagination-btn.st-chatu8-pagination-prev {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+    }
+
+    /* First row: page info */
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-pagination-info {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        justify-content: center !important;
+        font-size: 0.85em !important;
+    }
+
+    /* First row: next button */
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-pagination-btn.st-chatu8-pagination-next {
+        grid-column: 3 !important;
+        grid-row: 1 !important;
+    }
+
+    /* Second row: page size selector spanning all columns */
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-pagination-size-container {
+        grid-column: 1 / -1 !important;
+        grid-row: 2 !important;
+        justify-content: center !important;
+        margin-left: 0 !important;
+    }
+}
+
+/* Tablet - Medium sized cards */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .st-chatu8-vibe-visual-selector-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+/* Desktop - Larger cards */
+@media screen and (min-width: 1025px) {
+    .st-chatu8-vibe-visual-selector-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .st-chatu8-vibe-slot {
+        animation: none;
+        transition: none;
+    }
+
+    .st-chatu8-vibe-slot:hover {
+        transform: none;
+    }
+
+    #vibe-group-add-vibe:not(:disabled):hover {
+        transform: none;
+    }
+
+    .st-chatu8-vibe-visual-selector-dialog .st-chatu8-preset-card:hover {
+        transform: none;
+    }
+
+    .st-chatu8-vibe-card:hover {
+        transform: none;
+    }
+}
