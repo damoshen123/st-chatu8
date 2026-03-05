@@ -5,7 +5,7 @@
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <h2 style="margin: 0;">智绘姬 <span id="ch-version-display" class="st-chatu8-version-tag"></span><span id="ch-title-update-notification" style="display: none; color: var(--st-chatu8-accent-color); font-weight: bold; font-size: 0.8em;"> (发现新版本, 请到“关于”中更新)</span></h2>
                     <div id="st-chatu8-ai-trigger" class="st-chatu8-ai-heart-icon" title="呼唤智绘姬 AI 助手">
-                        <i class="fa-solid fa-heart"></i>
+                        <img src="/scripts/extensions/third-party/st-chatu8/html/settings/智绘姬头像.png" alt="智绘姬" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;">
                     </div>
                 </div>
                 <span id="ch-settings-modal-close" class="st-chatu8-modal-close">&times;</span>
@@ -51,24 +51,35 @@
     <!-- 智绘姬 AI 助手对话框 (独立于设置面板外) -->
     <div id="st-chatu8-ai-dialog" class="st-chatu8-ai-dialog">
         <div class="st-chatu8-ai-dialog-header">
-            <h3><i class="fa-solid fa-robot"></i> 智绘姬 AI 助手 <span id="st-chatu8-ai-settings-btn" class="st-chatu8-ai-settings-icon" title="设置"><i class="fa-solid fa-gear"></i></span></h3>
+            <h3><i class="fa-solid fa-robot"></i> 智绘姬 AI 助手 
+                <span id="st-chatu8-ai-history-btn" class="st-chatu8-ai-settings-icon" title="聊天历史记录" style="margin-left: 10px;"><i class="fa-solid fa-clock-rotate-left"></i></span>
+                <span id="st-chatu8-ai-new-chat" class="st-chatu8-ai-settings-icon" title="新建聊天" style="margin-left: 5px;"><i class="fa-solid fa-broom"></i></span>
+                <span id="st-chatu8-ai-settings-btn" class="st-chatu8-ai-settings-icon" title="设置"><i class="fa-solid fa-gear"></i></span>
+            </h3>
             <span class="st-chatu8-ai-dialog-close" id="st-chatu8-ai-close"><i class="fa-solid fa-xmark"></i></span>
         </div>
         <div class="st-chatu8-ai-dialog-body" id="st-chatu8-ai-chat-body">
             <div class="st-chatu8-ai-msg system-msg">
-                <div class="msg-avatar"><i class="fa-solid fa-heart"></i></div>
+                <div class="msg-avatar"><img src="/scripts/extensions/third-party/st-chatu8/html/settings/智绘姬头像.png" alt="智绘姬" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"></div>
                 <div class="msg-content">你好呀！我是智绘姬 AI 助手，有什么可以帮到你？(UI原型版)</div>
             </div>
         </div>
         <div class="st-chatu8-ai-dialog-footer">
-            <textarea id="st-chatu8-ai-input" placeholder="输入... (Enter 发送)" rows="1"></textarea>
-            <button id="st-chatu8-ai-send" class="st-chatu8-ai-btn"><i class="fa-solid fa-paper-plane"></i></button>
+            <div id="st-chatu8-ai-image-preview" class="st-chatu8-ai-image-preview"></div>
+            <div class="st-chatu8-ai-input-container">
+                <button id="st-chatu8-ai-image-btn" class="st-chatu8-ai-btn st-chatu8-ai-image-btn" title="添加图片">
+                    <i class="fa-solid fa-image"></i>
+                </button>
+                <input type="file" id="st-chatu8-ai-image-input" accept="image/*" multiple style="display: none;">
+                <textarea id="st-chatu8-ai-input" placeholder="输入... (Enter 发送)" rows="1"></textarea>
+                <button id="st-chatu8-ai-send" class="st-chatu8-ai-btn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
         </div>
         
         <!-- 智绘姬设置面板 (默认隐藏) -->
         <div id="st-chatu8-ai-settings-panel" class="st-chatu8-ai-settings-panel">
             <div class="st-chatu8-ai-settings-header">
-                <h4>API 配置</h4>
+                <h4>API 配置 <small style="font-weight: normal; opacity: 0.7;">(自动保存)</small></h4>
                 <span class="st-chatu8-ai-settings-close" id="st-chatu8-ai-settings-close"><i class="fa-solid fa-xmark"></i></span>
             </div>
             <div class="st-chatu8-ai-settings-body">
@@ -84,12 +95,18 @@
                 <div class="st-chatu8-ai-setting-item">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
                         <label for="chatu8-ai-model" style="margin-bottom: 0;">模型名称</label>
-                        <button id="chatu8-ai-fetch-models" class="st-chatu8-ai-btn" style="width: auto; height: auto; border-radius: 4px; padding: 4px 10px; font-size: 0.85em; display: flex; align-items: center; gap: 5px;" title="获取模型列表"><i class="fa-solid fa-sync"></i> 获取可用模型</button>
+                        <button id="chatu8-ai-fetch-models" class="st-chatu8-ai-btn st-chatu8-ai-fetch-btn" title="获取模型列表"><i class="fa-solid fa-sync"></i> 获取可用模型</button>
                     </div>
-                    <select id="chatu8-ai-model-select" title="选择获取到的模型" style="width: 100%; margin-bottom: 5px; padding: 8px; border-radius: 4px; background: rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: inherit; font-family: inherit;">
+                    <select id="chatu8-ai-model-select" class="st-chatu8-ai-select" title="选择获取到的模型">
                         <option value="">(请先获取并选择模型)</option>
                     </select>
                     <input type="text" id="chatu8-ai-model" placeholder="支持上面自动选择或手动输入 (如: gpt-3.5-turbo)" style="width: 100%;">
+                </div>
+                <div class="st-chatu8-ai-setting-item">
+                    <label for="chatu8-ai-system-prompt">预设角色 (System Prompt)</label>
+                    <select id="chatu8-ai-system-prompt" class="st-chatu8-ai-select">
+                        <!-- 动态加载 -->
+                    </select>
                 </div>
                 <div class="st-chatu8-ai-setting-item checkbox">
                     <input type="checkbox" id="chatu8-ai-bypass-proxy">
@@ -99,7 +116,41 @@
                     <input type="checkbox" id="chatu8-ai-stream">
                     <label for="chatu8-ai-stream">流式输出 (Stream)</label>
                 </div>
-                <button id="st-chatu8-ai-save-settings" class="st-chatu8-ai-save-btn">保存配置</button>
+                <div class="st-chatu8-ai-setting-item">
+                    <label for="chatu8-ai-max-tokens" style="margin-top: 10px;">Max Tokens (最大返回字符)</label>
+                    <input type="number" id="chatu8-ai-max-tokens" placeholder="40000" min="1" step="1">
+                </div>
+                <div class="st-chatu8-ai-setting-item">
+                    <label for="chatu8-ai-temperature">Temperature (随机性, 0-2)</label>
+                    <input type="number" id="chatu8-ai-temperature" placeholder="0.8" min="0" max="2" step="0.01">
+                </div>
+                <div class="st-chatu8-ai-setting-item">
+                    <label for="chatu8-ai-top-p">Top P (采样阈值, 0-1)</label>
+                    <input type="number" id="chatu8-ai-top-p" placeholder="1.0" min="0" max="1" step="0.01">
+                </div>
+                <button id="st-chatu8-ai-save-settings" class="st-chatu8-ai-save-btn" style="margin-top: 20px;">关闭设置面板</button>
+            </div>
+        </div>
+
+        <!-- 智绘姬历史记录面板 (默认隐藏) -->
+        <div id="st-chatu8-ai-history-panel" class="st-chatu8-ai-settings-panel">
+            <div class="st-chatu8-ai-settings-header">
+                <h4>聊天记录</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <button id="st-chatu8-ai-select-all" class="st-chatu8-ai-btn st-chatu8-ai-fetch-btn" title="全选" style="padding: 5px 10px; font-size: 0.9em;">
+                        <i class="fa-solid fa-check-double"></i> 全选
+                    </button>
+                    <button id="st-chatu8-ai-deselect-all" class="st-chatu8-ai-btn st-chatu8-ai-fetch-btn" title="取消全选" style="padding: 5px 10px; font-size: 0.9em;">
+                        <i class="fa-solid fa-xmark"></i> 取消
+                    </button>
+                    <button id="st-chatu8-ai-export-chat" class="st-chatu8-ai-btn st-chatu8-ai-fetch-btn" title="导出选中的聊天记录" style="padding: 5px 10px; font-size: 0.9em;">
+                        <i class="fa-solid fa-download"></i> 导出
+                    </button>
+                    <span class="st-chatu8-ai-settings-close" id="st-chatu8-ai-history-close"><i class="fa-solid fa-xmark"></i></span>
+                </div>
+            </div>
+            <div class="st-chatu8-ai-settings-body" id="st-chatu8-ai-history-list" style="padding: 10px; gap: 8px;">
+                <!-- 动态填充聊天会话列表 -->
             </div>
         </div>
     </div>

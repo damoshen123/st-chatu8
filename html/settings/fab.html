@@ -9,32 +9,45 @@
             </div>
         </div>
         <div class="st-chatu8-field">
-            <label for="chatu8_fab_theme">主题预设</label>
-            <select id="chatu8_fab_theme" class="st-chatu8-select">
-                <!-- 选项将由JavaScript动态填充 -->
-            </select>
+            <label for="enable_chatu8_fab_video">启用视频形象</label>
+            <div class="st-chatu8-toggle">
+                <input id="enable_chatu8_fab_video" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
         </div>
-        <div class="st-chatu8-field">
-            <label for="chatu8_fab_bg_color">背景颜色</label>
-            <input type="color" id="chatu8_fab_bg_color" class="st-chatu8-color-picker">
-        </div>
-        <div class="st-chatu8-field">
-            <label for="chatu8_fab_icon_color">图标颜色</label>
-            <input type="color" id="chatu8_fab_icon_color" class="st-chatu8-color-picker">
-        </div>
-        <div class="st-chatu8-field">
-            <label for="chatu8_fab_opacity">不透明度</label>
-            <div class="st-chatu8-range-container">
-                <input type="range" id="chatu8_fab_opacity" class="st-chatu8-range-slider" min="0" max="1" step="0.1">
-                <input type="number" id="chatu8_fab_opacity_value" class="st-chatu8-range-input" min="0" max="1" step="0.1">
+        <div class="st-chatu8-field" id="fab-traditional-settings">
+            <div class="st-chatu8-field">
+                <label for="chatu8_fab_theme">主题预设</label>
+                <select id="chatu8_fab_theme" class="st-chatu8-select">
+                    <!-- 选项将由JavaScript动态填充 -->
+                </select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="chatu8_fab_bg_color">背景颜色</label>
+                <input type="color" id="chatu8_fab_bg_color" class="st-chatu8-color-picker">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="chatu8_fab_icon_color">图标颜色</label>
+                <input type="color" id="chatu8_fab_icon_color" class="st-chatu8-color-picker">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="chatu8_fab_opacity">不透明度</label>
+                <div class="st-chatu8-range-container">
+                    <input type="range" id="chatu8_fab_opacity" class="st-chatu8-range-slider" min="0" max="1" step="0.1">
+                    <input type="number" id="chatu8_fab_opacity_value" class="st-chatu8-range-input" min="0" max="1" step="0.1">
+                </div>
             </div>
         </div>
         <div class="st-chatu8-field">
             <label for="chatu8_fab_size">大小</label>
             <div class="st-chatu8-range-container">
-                <input type="range" id="chatu8_fab_size" class="st-chatu8-range-slider" min="30" max="100" step="1">
-                <input type="number" id="chatu8_fab_size_value" class="st-chatu8-range-input" min="30" max="100" step="1">
+                <input type="range" id="chatu8_fab_size" class="st-chatu8-range-slider" min="30" max="1000" step="1">
+                <input type="number" id="chatu8_fab_size_value" class="st-chatu8-range-input" min="30" max="1000" step="1">
             </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>位置控制</label>
+            <button id="chatu8_fab_reset_position" class="st-chatu8-btn">重置到屏幕中央</button>
         </div>
     </div>
 </div>
