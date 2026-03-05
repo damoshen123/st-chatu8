@@ -1176,3 +1176,89 @@
     transform: scale(1.02);
     box-shadow: 0 4px 12px color-mix(in srgb, var(--st-chatu8-accent-primary) 20%, transparent);
 }
+
+/* ==================== Execute Command Button Styles ==================== */
+
+/* 执行命令按钮容器 */
+.st-chatu8-ai-execute-command-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 8px 0;
+    padding: 12px 16px;
+    background: linear-gradient(135deg,
+            color-mix(in srgb, var(--st-chatu8-accent-primary) 10%, transparent),
+            color-mix(in srgb, var(--st-chatu8-accent-secondary) 5%, transparent));
+    border: 1px solid color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, var(--st-chatu8-border-color));
+    border-radius: 10px;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--st-chatu8-accent-primary) 10%, transparent);
+    max-width: 90%;
+    align-self: flex-start;
+}
+
+/* 执行按钮 */
+.st-chatu8-ai-execute-btn {
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--st-chatu8-accent-primary), var(--st-chatu8-accent-secondary));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 2px 6px color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, transparent);
+    white-space: nowrap;
+    min-width: 140px;
+}
+
+.st-chatu8-ai-execute-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, transparent);
+}
+
+.st-chatu8-ai-execute-btn:active {
+    transform: translateY(0);
+}
+
+/* 禁用状态 */
+.st-chatu8-ai-execute-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.st-chatu8-ai-execute-btn:disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 6px color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, transparent);
+}
+
+/* 加载状态 */
+.st-chatu8-ai-execute-btn.loading {
+    background: linear-gradient(135deg,
+            color-mix(in srgb, var(--st-chatu8-accent-primary) 70%, transparent),
+            color-mix(in srgb, var(--st-chatu8-accent-secondary) 70%, transparent));
+}
+
+/* 成功状态 */
+.st-chatu8-ai-execute-btn.success {
+    background: linear-gradient(135deg, #52c41a, #73d13d);
+}
+
+/* 错误状态 */
+.st-chatu8-ai-execute-btn.error {
+    background: linear-gradient(135deg, #ff4d4f, #ff7875);
+}
+
+/* 提示文本 */
+.st-chatu8-ai-execute-hint {
+    font-size: 12px;
+    color: var(--st-chatu8-text-secondary);
+    font-style: italic;
+    line-height: 1.4;
+}
