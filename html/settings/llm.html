@@ -149,6 +149,16 @@
         <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
             设置发送给 LLM 的历史对话层数。0 表示不发送历史。
         </p>
+        <div class="st-chatu8-field" style="margin-top: 16px;">
+            <label for="ch-tagthink_echo">Tagthink回显</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-tagthink_echo" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
+            开启后，在图片标签前显示 &lt;imgthink&gt; 中的思考内容（不含 regex 行）。
+        </p>
     </div>
 
     <div class="st-chatu8-settings-section">

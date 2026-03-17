@@ -55,6 +55,43 @@
         </div>
     </div>
 
+    <!-- 3. Banana 专属替换词设置 -->
+    <div class="st-chatu8-settings-section">
+        <h3>提示词替换规则</h3>
+        <p class="st-chatu8-help-text">Banana/Grok 专属的替换词设置，独立于其他生图后端。格式：<code>触发词=模式|替换内容</code></p>
+        <div class="st-chatu8-field">
+            <label for="st-chatu8-banana-prompt-replace-id">替换规则预设</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="st-chatu8-banana-prompt-replace-id" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="st-chatu8-banana-prompt-replace-save" title="保存"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="st-chatu8-banana-prompt-replace-save-as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st-chatu8-banana-prompt-replace-import" title="导入"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn" id="st-chatu8-banana-prompt-replace-export" title="导出当前"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="st-chatu8-banana-prompt-replace-delete" title="删除"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="st-chatu8-banana-prompt-replace-text">替换规则内容 <span class="st-chatu8-unsaved-warning" style="display:none; color: #ff9800; font-size: 12px;"><i class="fa-solid fa-circle-exclamation"></i> 未保存</span></label>
+            <textarea id="st-chatu8-banana-prompt-replace-text" class="st-chatu8-textarea" rows="6" placeholder="触发词1=前置前|插入词1&#10;触发词2=前置后|插入词2&#10;触发词3=替换|替换词3&#10;触发词4=后置前|插入词4&#10;触发词5=后置后|插入词5&#10;触发词6=最后置|插入词6"></textarea>
+        </div>
+        <div class="st-chatu8-banana-replace-help">
+            <details>
+                <summary><i class="fa-solid fa-circle-info"></i> 替换模式说明</summary>
+                <div class="st-chatu8-help-content">
+                    <ul>
+                        <li><strong>前置前</strong> - 在提示词最前面插入内容</li>
+                        <li><strong>前置后</strong> - 在前置固定词后插入内容</li>
+                        <li><strong>替换</strong> - 直接替换触发词（留空则删除）</li>
+                        <li><strong>替换分角色</strong> - 分角色模式下替换</li>
+                        <li><strong>后置前</strong> - 在后置固定词前插入内容</li>
+                        <li><strong>后置后</strong> - 在后置固定词后插入内容</li>
+                        <li><strong>最后置</strong> - 在提示词最后面插入内容</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </div>
+
     <!-- 2. 多轮对话 -->
     <div id="st-chatu8-banana-multimodal-section" class="st-chatu8-settings-section">
         <h3>多轮对话 (Gemini)</h3>

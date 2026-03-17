@@ -55,6 +55,9 @@
 /* 智绘姬AI助手悬浮对话框 - 毛玻璃风格 */
 .st-chatu8-ai-dialog {
     position: fixed;
+    /* 默认位置：移出视口外，避免隐藏状态下出现黑条 */
+    top: -9999px;
+    left: -9999px;
     width: 350px;
     height: 500px;
     max-height: calc(100vh - 100px);
