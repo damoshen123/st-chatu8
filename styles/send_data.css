@@ -340,6 +340,17 @@
     background: var(--st-chatu8-accent-secondary, rgba(255, 255, 255, 0.5));
 }
 
+/* --- 右侧复选框点击区域 --- */
+#st-chatu8-tab-send_data .st-chatu8-entry-container .st-chatu8-entry-checkbox {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 35px;
+    cursor: pointer;
+    z-index: 1;
+}
+
 /* --- 右侧复选框样式 (模拟) - 使用主题变量 --- */
 #st-chatu8-tab-send_data .st-chatu8-entry-container .st-chatu8-list-item {
     padding-left: 35px;

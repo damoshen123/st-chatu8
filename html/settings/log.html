@@ -1,4 +1,49 @@
 <div id="ch-tab-log">
+    <!-- 生图生涯 -->
+    <div class="st-chatu8-settings-section">
+        <h3>🎨 生图生涯</h3>
+
+        <!-- 汇总卡片 -->
+        <div id="ch-gen-summary" style="margin-bottom: 10px;">
+            <span style="color: #888;">加载中...</span>
+        </div>
+
+        <!-- 图例 -->
+        <div id="ch-gen-legend" style="margin-bottom: 6px;"></div>
+
+        <!-- 时间维度切换 -->
+        <div style="display: flex; gap: 4px; margin-bottom: 6px;">
+            <button class="ch-period-btn" data-period="day"
+                style="padding: 3px 10px; font-size: 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; background: rgba(255,255,255,0.06); color: #aaa;">日</button>
+            <button class="ch-period-btn" data-period="week"
+                style="padding: 3px 10px; font-size: 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; background: rgba(255,255,255,0.06); color: #aaa;">周</button>
+            <button class="ch-period-btn" data-period="month"
+                style="padding: 3px 10px; font-size: 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; background: rgba(255,255,255,0.06); color: #aaa;">月</button>
+            <button class="ch-period-btn" data-period="year"
+                style="padding: 3px 10px; font-size: 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; background: rgba(255,255,255,0.06); color: #aaa;">年</button>
+        </div>
+
+        <!-- 柱状图区域 -->
+        <div id="ch-gen-chart" style="min-height: 110px; margin-bottom: 10px;">
+            <div style="text-align:center; color:#888; padding:20px 0;">加载中...</div>
+        </div>
+
+        <!-- 按后端进度条 -->
+        <div id="ch-gen-backends" style="margin-bottom: 8px;"></div>
+
+        <!-- 操作按钮 -->
+        <div class="st-chatu8-field" style="margin-top: 4px;">
+            <label>操作</label>
+            <div>
+                <button id="ch-refresh-gen-stats" class="st-chatu8-btn">刷新统计</button>
+                <button id="ch-reset-gen-stats" class="st-chatu8-btn danger">重置统计</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field-col" style="font-size: 12px; color: #888;">
+            <span>💡 每次生图成功自动记录，永久保存，按 日/周/月/年 查看趋势。</span>
+        </div>
+    </div>
+
     <!-- 调试模式 -->
     <div class="st-chatu8-settings-section">
         <h3>🔧 调试模式</h3>

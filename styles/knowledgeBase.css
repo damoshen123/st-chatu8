@@ -641,6 +641,17 @@
     transform: scale(1.2);
 }
 
+/* ── 右栏：条目复选框点击区域 ── */
+#ch-sub-tab-kb-entries .st-chatu8-send-data-right .st-chatu8-entry-checkbox {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 34px;
+    cursor: pointer;
+    z-index: 1;
+}
+
 /* ── 右栏：条目 checkbox 伪元素 ── */
 #ch-sub-tab-kb-entries .st-chatu8-send-data-right .st-chatu8-list-item::before {
     content: '';
