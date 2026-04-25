@@ -298,15 +298,18 @@
     color: #f0f0f0;
     border-radius: 12px;
     padding: 16px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     z-index: 10001;
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 90vw;
     height: 90vh;
+    height: 90dvh;
     max-width: 1200px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
     position: relative;
+    min-height: 0;
 }
 
 .st-chatu8-preview-close {
@@ -352,7 +355,8 @@
 }
 
 .st-chatu8-preview-image-container {
-    flex-grow: 1;
+    flex: 1 1 0;
+    min-height: 0;
     position: relative;
     display: flex;
     justify-content: center;
@@ -396,45 +400,111 @@
 
 .st-chatu8-preview-actions {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    padding: 10px 0;
+    gap: 12px;
+    padding: 10px 8px;
     flex-shrink: 0;
-    /* Prevent shrinking */
+    flex-wrap: wrap;
 }
 
 .st-chatu8-preview-action-button {
-    border: 1px solid #555;
-    border-radius: 6px;
-    padding: 10px 20px;
-    font-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-size: 0.92em;
     font-weight: 500;
+    letter-spacing: 0.3px;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-    background-color: #4a90e2;
-    color: white;
-    width: 80%;
-    max-width: 250px;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.92) 0%, rgba(123, 97, 255, 0.92) 100%);
+    color: #fff;
+    width: auto;
+    min-width: 140px;
+    max-width: none;
     box-sizing: border-box;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.st-chatu8-preview-action-button i {
+    font-size: 0.95em;
+    opacity: 0.95;
 }
 
 .st-chatu8-preview-action-button:hover {
-    background-color: #357abd;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(74, 144, 226, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.22);
 }
 
 .st-chatu8-preview-action-button:active {
-    transform: scale(0.98);
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .st-chatu8-preview-action-button.danger {
-    background-color: #d9534f;
-    border-color: #d43f3a;
+    background: linear-gradient(135deg, rgba(229, 83, 83, 0.92) 0%, rgba(193, 48, 72, 0.92) 100%);
+    border-color: rgba(255, 255, 255, 0.12);
 }
 
 .st-chatu8-preview-action-button.danger:hover {
-    background-color: #c9302c;
-    border-color: #ac2925;
+    box-shadow: 0 6px 18px rgba(217, 83, 79, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* 移动端适配：全屏铺满 + 更紧凑的按钮栏，避免图片被按钮遮挡 */
+@media (max-width: 640px),
+(pointer: coarse) {
+    .st-chatu8-preview-dialog {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        max-width: none;
+        border-radius: 0;
+        padding: 10px;
+        padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+        gap: 6px;
+    }
+
+    .st-chatu8-preview-close {
+        top: 6px;
+        right: 10px;
+        font-size: 2rem;
+    }
+
+    .st-chatu8-preview-actions {
+        padding: 6px 4px;
+        gap: 8px;
+    }
+
+    .st-chatu8-preview-action-button {
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 10px 12px;
+        font-size: 0.88em;
+    }
+
+    /* 触屏设备：隐藏左右按钮，使用滑动手势切换（使用 !important 覆盖内联样式） */
+    .st-chatu8-preview-nav {
+        display: none !important;
+    }
+
+    /* 图片容器启用水平滑动手势的默认行为 */
+    .st-chatu8-preview-image-container {
+        touch-action: pan-y;
+    }
+
+    /* 计数器上移稍靠近顶边，避免遮挡图片 */
+    .st-chatu8-preview-counter {
+        top: 6px !important;
+    }
 }
 
 /* Workflow Visualization Styles */

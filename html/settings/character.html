@@ -348,6 +348,71 @@
                 <label>检测结果</label>
                 <div id="character_enable_check_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 200px; overflow-y: auto;"></div>
             </div>
+
+            <div class="st-chatu8-field-col" style="margin-top: 15px;">
+                <label for="character_enable_test_input">触发词测试</label>
+                <textarea id="character_enable_test_input" class="st-chatu8-textarea" rows="4" placeholder="输入任意支持的格式，下方展开查看示例"></textarea>
+                <details style="margin-top: 6px;">
+                    <summary style="cursor: pointer; color: var(--SmartThemeEmColor);">支持的输入格式（点击展开）</summary>
+                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 0.9em; line-height: 1.6;">
+                        <li><strong>旧格式角色标记：</strong><code>$角色名字-sfw-upperbody$</code>、<code>$角色名字-nsfw-upperbody-sfw-lowerbody$</code></li>
+                        <li><strong>JSON 角色标记：</strong><code>$&#123;"name":"角色名字","angle":"from front","upperBody":"sfw","lowerBody":"hidden"&#125;$</code></li>
+                        <li><strong>多角色（一段 tags 里多个 $...$）：</strong><code>$小红-sfw-upperbody$, standing, $小蓝-sfw-upperbody$, smiling</code></li>
+                        <li style="color: var(--SmartThemeEmColor);">调试用 · 仅识别名字：<code>角色名字</code>、<code>角色名字[当前]</code>（实际替换流程不认这种裸名字）</li>
+                    </ul>
+                    <div style="margin-top: 6px; font-size: 0.85em; color: var(--SmartThemeEmColor);">
+                        测试只做“名字匹配”：从输入中提取角色名字，再按启用列表检测是否命中，不会执行完整的替换流程。<br>
+                        正式解析要求 <code>$...$</code> 内必须是「名字 + 旧格式后缀」或 JSON 对象；<code>$角色名字$</code> 这种裸名字在实际替换时会被原样保留。<br>
+                        若输入里存在多段 <code>$...$</code>，会自动按多角色方式逐段识别，并以表格形式展示每段结果。
+                    </div>
+                </details>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="character_enable_test" style="width: 100%;">
+                    <i class="fa-solid fa-flask"></i> 测试角色名字匹配
+                </button>
+            </div>
+
+            <div id="character_enable_test_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>测试结果</label>
+                <div id="character_enable_test_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 240px; overflow-y: auto;"></div>
+            </div>
+
+            <hr style="margin: 20px 0; border-color: var(--SmartThemeBorderColor);">
+
+            <div class="st-chatu8-field-col">
+                <label for="character_list_test_input">{{角色启用列表}} 触发测试</label>
+                <textarea id="character_list_test_input" class="st-chatu8-textarea" rows="4" placeholder="粘贴一段触发文本（例如：用户需求 / 上下文 / 世界书触发内容），查看启用列表里哪些角色会被包含进去"></textarea>
+                <details style="margin-top: 6px;">
+                    <summary style="cursor: pointer; color: var(--SmartThemeEmColor);">{{角色启用列表}} 触发规则说明 & 与「角色触发」的区别（点击展开）</summary>
+                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 0.9em; line-height: 1.6;">
+                        <li><strong>触发来源：</strong>仅扫描当前「角色启用预设」里登记的角色，<u>不会</u>走通用列表，<u>不会</u>走全局预设兜底。</li>
+                        <li><strong>匹配方式：</strong>对每个启用角色的中文名 / 英文名做子串包含。</li>
+                        <li><strong>名字分割：</strong>名字支持用 <code>|</code> 分割多个别名，任意一个命中即视为触发。</li>
+                        <li><strong>大小写 / 空格：</strong>均已忽略（触发文本和名字都会去掉空白并转小写后比较）。</li>
+                        <li><strong>结果数量：</strong>一次可命中多个角色；所有命中角色都会被包含进 <code>{{角色启用列表}}</code> 文本。</li>
+                    </ul>
+                    <div style="margin-top: 8px; font-size: 0.85em; color: var(--SmartThemeEmColor);">
+                        与「角色触发（<code>$...$</code> 替换）」的差别：<br>
+                        &nbsp;&nbsp;• <strong>列表是否必须启用：</strong>列表触发 <u>必须</u>在启用列表里；角色触发启用列表只决定优先级，兜底会匹配所有预设。<br>
+                        &nbsp;&nbsp;• <strong>匹配算法：</strong>列表触发只做字符串包含；角色触发使用 <code>normalizeName</code> + 相似度评分。<br>
+                        &nbsp;&nbsp;• <strong>命中数量：</strong>列表触发可以命中多个；角色触发每个 <code>$...$</code> 片段只取一个最佳匹配。<br>
+                        &nbsp;&nbsp;• <strong>输入形态：</strong>列表触发接受任意自然文本；角色触发要求 <code>$...$</code> 内是旧格式后缀或 JSON 对象。
+                    </div>
+                </details>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="character_list_test" style="width: 100%;">
+                    <i class="fa-solid fa-list-check"></i> 测试 {{角色启用列表}} 触发
+                </button>
+            </div>
+
+            <div id="character_list_test_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>测试结果</label>
+                <div id="character_list_test_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 320px; overflow-y: auto;"></div>
+            </div>
         </div>
     </div>
 

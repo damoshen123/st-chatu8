@@ -32,7 +32,12 @@
         </div>
         <div class="st-chatu8-field-col">
             <label for="ch-llm_api_key">API Key</label>
-            <textarea id="ch-llm_api_key" class="st-chatu8-textarea" rows="3" placeholder="请输入你的 API Key"></textarea>
+            <div style="position: relative;">
+                <textarea id="ch-llm_api_key" class="st-chatu8-textarea" rows="3" placeholder="请输入你的 API Key" style="-webkit-text-security: disc;"></textarea>
+                <button type="button" id="ch-llm_api_key_toggle" title="显示/隐藏 API Key" style="position: absolute; top: 0.4em; right: 0.4em; background: none; border: none; cursor: pointer; color: inherit; opacity: 0.6; padding: 0; font-size: 1em; line-height: 1;">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </div>
         </div>
         <div class="st-chatu8-field">
             <label for="ch-llm_model_select">模型选择</label>
@@ -70,6 +75,16 @@
         </div>
         <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 4px;">
             开启后，合并相邻消息时会将 system 和 user 视为同类角色一并合并。
+        </p>
+        <div class="st-chatu8-field">
+            <label for="ch-llm_send_images">发送图片</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-llm_send_images" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 4px;">
+            开启后，请求会保留消息中的图片（多模态）；关闭后图片会被过滤，仅发送文本。默认关闭。请确认支持多模态，例如ds不支持
         </p>
     </div>
 
@@ -168,6 +183,16 @@
         </div>
         <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
             开启后，在图片标签前显示 &lt;imgthink&gt; 中的思考内容（不含 regex 行）。
+        </p>
+        <div class="st-chatu8-field" style="margin-top: 16px;">
+            <label for="ch-history_keep_image_tag">历史正文保留 &lt;image&gt; 标签</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-history_keep_image_tag" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
+            仅对「正文图片生成」请求生效：开启后，历史消息中的 &lt;image&gt;...&lt;/image&gt; 块会保留作为参考；当前正文仍按正则完整清理。
         </p>
         <div class="st-chatu8-field" style="margin-top: 16px;">
             <label for="ch-llm_retry_count">LLM 错误重试次数</label>
