@@ -1057,9 +1057,9 @@
 }
 
 .st-chatu8-workflow-viz-skip-status.not-skippable {
-    background-color: rgba(231, 76, 60, 0.15);
-    color: #e74c3c;
-    border: 1px solid rgba(231, 76, 60, 0.3);
+    background-color: rgba(149, 165, 166, 0.12);
+    color: #95a5a6;
+    border: 1px solid rgba(149, 165, 166, 0.25);
 }
 
 .st-chatu8-workflow-viz-skip-status.skipped {
