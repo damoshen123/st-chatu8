@@ -71,7 +71,14 @@
 
     <!-- 错误收集器 -->
     <div class="st-chatu8-settings-section">
-        <h3>🚨 错误记录</h3>
+        <h3>🚨 错误记录 <span style="font-size: 12px; color: #FFA726; font-weight: normal;">（全局监听 · 非本插件专属）</span></h3>
+        <div class="st-chatu8-field-col"
+            style="font-size: 12px; color: #FFB74D; background: rgba(255,167,38,0.08); border-left: 3px solid #FFA726; padding: 8px 10px; border-radius: 4px; margin-bottom: 8px; line-height: 1.6;">
+            <span>
+                ⚠️ <strong>注意：</strong>此处收集的是浏览器全局错误（包括 SillyTavern 主程序、其他插件、页面脚本等），
+                <strong>并不一定是本插件报错</strong>。如需排查本插件问题，请查看下方的 <strong>「日志」</strong> 部分。
+            </span>
+        </div>
         <div class="st-chatu8-field">
             <label>错误统计</label>
             <div id="ch-error-stats" style="font-size: 12px; color: #666; line-height: 1.6;">
@@ -87,13 +94,19 @@
             </div>
         </div>
         <div class="st-chatu8-field-col" style="font-size: 12px; color: #888;">
-            <span>💡 错误收集器自动记录插件运行时错误，不受普通日志清除影响，最多保存 500 条记录。</span>
+            <span>💡 自动记录浏览器运行时错误，不受普通日志清除影响，最多保存 500 条记录。多数错误与本插件无关，仅供参考。</span>
         </div>
     </div>
 
     <!-- 普通日志 -->
     <div class="st-chatu8-settings-section">
-        <h3>日志</h3>
+        <h3>📋 日志 <span style="font-size: 12px; color: #4FC3F7; font-weight: normal;">（← 排查本插件问题请看这里）</span></h3>
+        <div class="st-chatu8-field-col"
+            style="font-size: 12px; color: #81D4FA; background: rgba(79,195,247,0.08); border-left: 3px solid #4FC3F7; padding: 8px 10px; border-radius: 4px; margin-bottom: 8px; line-height: 1.6;">
+            <span>
+                ✅ <strong>这里才是本插件的运行日志。</strong>反馈问题时请导出此处的日志，而不是上方的「错误记录」。
+            </span>
+        </div>
         <div class="st-chatu8-field">
             <label>操作</label>
             <div>
