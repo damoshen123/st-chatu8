@@ -3,10 +3,10 @@
     "loading_order": 9,
     "requires": [],
     "optional": [],
-    "js": "qianfan_fix.js",
+    "js": "index.js",
     "css": "style.css",
     "author": "从前跟你一样",
-    "version": "2.6.8",
+    "version": "2.6.7",
     "homePage": "https://github.com/damoshen123/st-chatu8",
-    "updata": "v.2.6.8\n修复百度千帆 Coding Plan 请求地址不应自动追加 /v1 的问题\n"
+    "updata": "v.2.6.7\n新增对提示词和标签内中文标点（全角逗号、分号、冒号）的安全清洗，防止解析失败\n修复了预处理标签时正则匹配对象错误的Bug\n"
 }
