@@ -151,4 +151,5 @@
     };
 })();
 
+await import('./qianfan_extra_params_ui.js');
 await import('./index.js');
