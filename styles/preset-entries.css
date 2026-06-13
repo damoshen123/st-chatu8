@@ -425,3 +425,55 @@
         opacity: 0.6;
     }
 }
+/* ==================== 移动排序样式 ==================== */
+
+/* 移动按钮基础样式 */
+#st-chatu8-settings .st-chatu8-entry-move-btn {
+    color: var(--st-chatu8-text-secondary);
+    transition: all 0.2s ease;
+}
+
+#st-chatu8-settings .st-chatu8-entry-move-btn:hover {
+    color: var(--st-chatu8-accent-primary);
+    background: rgba(var(--st-chatu8-accent-primary-rgb, 74, 144, 226), 0.1);
+}
+
+/* 正在被移动的条目按钮状态 */
+#st-chatu8-settings .st-chatu8-entry-move-btn.active {
+    color: var(--st-chatu8-accent-primary);
+    background: rgba(var(--st-chatu8-accent-primary-rgb, 74, 144, 226), 0.2);
+    animation: move-active-pulse 1.5s infinite;
+}
+
+/* 移动模式下的目标按钮状态 (高亮) */
+#st-chatu8-settings .st-chatu8-preset-entries-container.move-mode .st-chatu8-preset-entry:not(.moving-source) .st-chatu8-entry-move-btn {
+    color: #10b981; /* 绿色提示作为目标 */
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px dashed #10b981;
+    animation: move-target-pulse 2s infinite;
+}
+
+#st-chatu8-settings .st-chatu8-preset-entries-container.move-mode .st-chatu8-preset-entry:not(.moving-source) .st-chatu8-entry-move-btn:hover {
+    background: rgba(16, 185, 129, 0.3);
+    border-style: solid;
+}
+
+/* 移动源条目的容器样式 */
+#st-chatu8-settings .st-chatu8-preset-entry.moving-source {
+    border-color: var(--st-chatu8-accent-primary);
+    box-shadow: 0 0 8px rgba(var(--st-chatu8-accent-primary-rgb, 74, 144, 226), 0.4);
+    z-index: 10;
+}
+
+@keyframes move-active-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes move-target-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
