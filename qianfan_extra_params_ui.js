@@ -1,260 +1,284 @@
 (function () {
-    if (globalThis.__stChatu8QianfanExtraParamsUi) return;
-    globalThis.__stChatu8QianfanExtraParamsUi = true;
+    if (globalThis.__stChatu8QianfanExtraParamsUiInstalled) return;
+    globalThis.__stChatu8QianfanExtraParamsUiInstalled = true;
 
-    const bodyKey = 'st_chatu8_llm_extra_body';
-    const headerKey = 'st_chatu8_llm_extra_headers';
-    const thinkingKey = 'st_chatu8_qianfan_default_thinking_param';
-    const panelId = 'st-chatu8-qianfan-extra-params-panel';
+    const service = globalThis.__stChatu8QianfanExtraParams;
+    if (!service) {
+        console.error('[st-chatu8] 千帆附加参数服务未初始化，跳过 UI。');
+        return;
+    }
 
-    function isObject(value) {
+    const PANEL_ID = 'st-chatu8-qianfan-extra-params-panel';
+    const PROFILE_CONTROL_IDS = new Set([
+        'ch-llm_profile_select',
+        'ch-new_llm_profile_button',
+        'ch-save_llm_profile_button',
+        'ch-rename_llm_profile_button',
+        'ch-delete_llm_profile_button',
+        'ch-import_llm_profile_button',
+    ]);
+
+    let panel = null;
+    let activeProfileKey = null;
+    let timer = null;
+
+    function isPlainObject(value) {
         return value !== null && typeof value === 'object' && !Array.isArray(value);
     }
 
-    function isEmpty(value) {
-        return !isObject(value) || Object.keys(value).length === 0;
-    }
-
-    function textOf(element) {
-        return (element?.textContent || '').replace(/\s+/g, ' ').trim();
-    }
-
-    function visible(element) {
-        if (!element || !element.isConnected) return false;
-        const style = globalThis.getComputedStyle(element);
-        return style.display !== 'none' && style.visibility !== 'hidden';
-    }
-
-    function parseJsonObject(value, label) {
-        const text = String(value || '').trim();
-        if (!text) return {};
+    function parseInput(text, label) {
+        const trimmed = String(text || '').trim();
+        if (!trimmed) return {};
 
         let parsed;
         try {
-            parsed = JSON.parse(text);
+            parsed = JSON.parse(trimmed);
         } catch (error) {
-            throw new Error(label + ' 不是合法 JSON：' + error.message);
+            throw new Error(`${label} 不是合法 JSON：${error.message}`);
         }
 
-        if (!isObject(parsed)) {
-            throw new Error(label + ' 必须是 JSON 对象，不能是数组、字符串或数字');
+        if (!isPlainObject(parsed)) {
+            throw new Error(`${label} 必须是 JSON 对象，不能是数组、字符串或数字。`);
         }
 
         return parsed;
     }
 
-    function prettyStoredJson(key) {
-        const raw = globalThis.localStorage?.getItem(key) || '';
-        if (!raw.trim()) return '';
-        try {
-            return JSON.stringify(parseJsonObject(raw, key), null, 2);
-        } catch (_) {
-            return raw;
-        }
+    function setStatus(text, isError = false) {
+        if (!panel) return;
+        const status = panel.querySelector('[data-role="status"]');
+        if (!status) return;
+        status.textContent = text;
+        status.style.color = isError
+            ? 'var(--st-chatu8-danger-primary, #d9534f)'
+            : 'var(--st-chatu8-text-secondary)';
     }
 
-    function defaultThinkingEnabled() {
-        const flag = globalThis.localStorage?.getItem(thinkingKey);
-        return !(flag === 'false' || flag === '0' || flag === 'off');
+    function textarea(rows, placeholder, role) {
+        const element = document.createElement('textarea');
+        element.className = 'st-chatu8-textarea';
+        element.rows = rows;
+        element.placeholder = placeholder;
+        element.spellcheck = false;
+        element.dataset.role = role;
+        element.style.width = '100%';
+        element.style.boxSizing = 'border-box';
+        element.style.resize = 'vertical';
+        element.style.fontFamily = 'ui-monospace, SFMono-Regular, Consolas, monospace';
+        return element;
     }
 
-    function getLlmContent(root) {
-        const candidates = Array.from(root.querySelectorAll('.st-chatu8-tab-content.active, .st-chatu8-sub-tab-content.active, .st-chatu8-sub-tab-content[style*="display: block"]'));
-        return candidates.find((element) => {
-            if (!visible(element)) return false;
-            const text = textOf(element).toLowerCase();
-            return text.includes('llm') || text.includes('模型参数') || text.includes('模型设置');
-        }) || null;
+    function field(labelText, input, helpText) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'st-chatu8-field-col';
+
+        const label = document.createElement('label');
+        label.textContent = labelText;
+
+        const help = document.createElement('p');
+        help.textContent = helpText;
+        help.style.fontSize = '12px';
+        help.style.color = 'var(--st-chatu8-text-secondary)';
+        help.style.margin = '4px 0 0';
+
+        wrapper.append(label, input, help);
+        return wrapper;
     }
 
-    function findInsertAfter(content) {
-        const markers = Array.from(content.querySelectorAll('h3, h4, h5, label, .st-chatu8-field, .st-chatu8-field-col, .st-chatu8-settings-section'));
-        const marker = markers.find((element) => {
-            if (!visible(element)) return false;
-            const text = textOf(element).toLowerCase();
-            return text.includes('模型参数') || text.includes('model parameters') || text.includes('model params');
-        });
-        return marker ? (marker.closest('.st-chatu8-settings-section') || marker.parentElement || marker) : null;
-    }
-
-    function makeTextarea(rows, placeholder) {
-        const textarea = document.createElement('textarea');
-        textarea.className = 'st-chatu8-text-input';
-        textarea.rows = rows;
-        textarea.spellcheck = false;
-        textarea.placeholder = placeholder;
-        textarea.style.width = '100%';
-        textarea.style.boxSizing = 'border-box';
-        textarea.style.fontFamily = 'ui-monospace, SFMono-Regular, Consolas, monospace';
-        textarea.style.resize = 'vertical';
-        return textarea;
-    }
-
-    function makeSmall(text) {
-        const small = document.createElement('small');
-        small.textContent = text;
-        small.style.color = 'var(--st-chatu8-text-secondary)';
-        return small;
-    }
-
-    function makeButton(text, danger) {
+    function makeButton(text, role, danger = false) {
         const button = document.createElement('button');
         button.type = 'button';
         button.className = danger ? 'st-chatu8-btn danger' : 'st-chatu8-btn';
         button.textContent = text;
+        button.dataset.role = role;
         return button;
     }
 
-    function setStatus(status, text, error) {
-        status.textContent = text;
-        status.style.color = error ? 'var(--st-chatu8-danger-primary)' : 'var(--st-chatu8-text-secondary)';
-    }
-
-    function makePanel() {
-        const panel = document.createElement('div');
-        panel.id = panelId;
-        panel.className = 'st-chatu8-settings-section';
-        panel.style.marginTop = '16px';
+    function createPanel() {
+        const container = document.createElement('div');
+        container.id = PANEL_ID;
+        container.className = 'st-chatu8-settings-section';
 
         const title = document.createElement('h4');
         title.textContent = 'LLM 附加参数';
-        title.style.marginTop = '0';
-        panel.appendChild(title);
 
-        const switchRow = document.createElement('div');
-        switchRow.className = 'st-chatu8-field';
-        switchRow.style.alignItems = 'flex-start';
-        const switchLabel = document.createElement('label');
-        switchLabel.textContent = '默认禁用 thinking';
-        switchLabel.style.paddingTop = '4px';
-        const toggle = document.createElement('label');
+        const profileNote = document.createElement('p');
+        profileNote.dataset.role = 'profile-note';
+        profileNote.style.fontSize = '12px';
+        profileNote.style.color = 'var(--st-chatu8-text-secondary)';
+        profileNote.style.marginTop = '0';
+
+        const toggleRow = document.createElement('div');
+        toggleRow.className = 'st-chatu8-field';
+        const toggleLabel = document.createElement('label');
+        toggleLabel.textContent = '默认禁用 thinking';
+        const toggle = document.createElement('div');
         toggle.className = 'st-chatu8-toggle';
-        toggle.title = '开启后自动附加 thinking.type = disabled';
-        const thinkingInput = document.createElement('input');
-        thinkingInput.type = 'checkbox';
-        thinkingInput.checked = defaultThinkingEnabled();
+        const toggleInput = document.createElement('input');
+        toggleInput.type = 'checkbox';
+        toggleInput.dataset.role = 'disable-thinking';
         const slider = document.createElement('span');
         slider.className = 'st-chatu8-slider';
-        toggle.append(thinkingInput, slider);
-        switchRow.append(switchLabel, toggle);
-        panel.appendChild(switchRow);
+        toggle.append(toggleInput, slider);
+        toggleRow.append(toggleLabel, toggle);
 
-        const bodyGroup = document.createElement('div');
-        bodyGroup.className = 'st-chatu8-field-col';
-        const bodyLabel = document.createElement('label');
-        bodyLabel.textContent = '附加 Body 参数 / custom_include_body';
-        const bodyInput = makeTextarea(8, '{\n  "max_completion_tokens": 65535\n}');
-        bodyInput.value = prettyStoredJson(bodyKey);
-        bodyGroup.append(bodyLabel, bodyInput, makeSmall('只填写 JSON 对象。保存后会合并到千帆 Coding Plan 请求的 custom_include_body 中。'));
-        panel.appendChild(bodyGroup);
-
-        const headerGroup = document.createElement('div');
-        headerGroup.className = 'st-chatu8-field-col';
-        const headerLabel = document.createElement('label');
-        headerLabel.textContent = '附加 Header 参数 / custom_include_headers';
-        const headerInput = makeTextarea(5, '{\n  "X-Example": "value"\n}');
-        headerInput.value = prettyStoredJson(headerKey);
-        headerGroup.append(headerLabel, headerInput, makeSmall('只填写 JSON 对象。通常没有特殊需求可以留空。'));
-        panel.appendChild(headerGroup);
+        const bodyInput = textarea(8, '{\n  "max_completion_tokens": 65535\n}', 'body');
+        const headersInput = textarea(5, '{\n  "X-Example": "value"\n}', 'headers');
 
         const actions = document.createElement('div');
         actions.style.display = 'flex';
         actions.style.gap = '8px';
         actions.style.alignItems = 'center';
         actions.style.flexWrap = 'wrap';
-        const saveButton = makeButton('保存附加参数');
-        const formatButton = makeButton('格式化 JSON');
-        const clearButton = makeButton('清空', true);
         const status = document.createElement('span');
+        status.dataset.role = 'status';
+        status.style.fontSize = '12px';
         status.style.color = 'var(--st-chatu8-text-secondary)';
-        actions.append(saveButton, formatButton, clearButton, status);
-        panel.appendChild(actions);
+        actions.append(
+            makeButton('保存当前档案参数', 'save'),
+            makeButton('格式化 JSON', 'format'),
+            makeButton('清空当前档案参数', 'clear', true),
+            status,
+        );
 
-        function save() {
-            try {
-                const body = parseJsonObject(bodyInput.value, '附加 Body 参数');
-                const headers = parseJsonObject(headerInput.value, '附加 Header 参数');
+        container.append(
+            title,
+            profileNote,
+            toggleRow,
+            field(
+                '附加 Body 参数 / custom_include_body',
+                bodyInput,
+                '按当前 LLM 配置档案分别保存，并与千帆 Coding Plan 请求中的 custom_include_body 合并。',
+            ),
+            field(
+                '附加 Header 参数 / custom_include_headers',
+                headersInput,
+                '按当前 LLM 配置档案分别保存。没有特殊需求时可以留空。',
+            ),
+            actions,
+        );
 
-                if (isEmpty(body)) {
-                    globalThis.localStorage?.removeItem(bodyKey);
-                    bodyInput.value = '';
-                } else {
-                    globalThis.localStorage?.setItem(bodyKey, JSON.stringify(body));
-                    bodyInput.value = JSON.stringify(body, null, 2);
+        container.addEventListener('click', (event) => {
+            const role = event.target?.closest('[data-role]')?.dataset.role;
+            if (!role) return;
+
+            const body = container.querySelector('[data-role="body"]');
+            const headers = container.querySelector('[data-role="headers"]');
+            const disableThinking = container.querySelector('[data-role="disable-thinking"]');
+
+            if (role === 'save') {
+                try {
+                    const config = service.setCurrentConfig({
+                        body: parseInput(body.value, '附加 Body 参数'),
+                        headers: parseInput(headers.value, '附加 Header 参数'),
+                        disableThinking: disableThinking.checked,
+                    });
+                    body.value = Object.keys(config.body).length ? JSON.stringify(config.body, null, 2) : '';
+                    headers.value = Object.keys(config.headers).length ? JSON.stringify(config.headers, null, 2) : '';
+                    setStatus('当前档案参数已保存');
+                } catch (error) {
+                    setStatus(error.message || String(error), true);
                 }
-
-                if (isEmpty(headers)) {
-                    globalThis.localStorage?.removeItem(headerKey);
-                    headerInput.value = '';
-                } else {
-                    globalThis.localStorage?.setItem(headerKey, JSON.stringify(headers));
-                    headerInput.value = JSON.stringify(headers, null, 2);
-                }
-
-                if (thinkingInput.checked) {
-                    globalThis.localStorage?.removeItem(thinkingKey);
-                } else {
-                    globalThis.localStorage?.setItem(thinkingKey, 'false');
-                }
-
-                setStatus(status, '已保存');
-            } catch (error) {
-                setStatus(status, error.message || String(error), true);
             }
-        }
 
-        saveButton.addEventListener('click', save);
-        formatButton.addEventListener('click', () => {
-            try {
-                const body = parseJsonObject(bodyInput.value, '附加 Body 参数');
-                const headers = parseJsonObject(headerInput.value, '附加 Header 参数');
-                bodyInput.value = isEmpty(body) ? '' : JSON.stringify(body, null, 2);
-                headerInput.value = isEmpty(headers) ? '' : JSON.stringify(headers, null, 2);
-                setStatus(status, 'JSON 格式化完成');
-            } catch (error) {
-                setStatus(status, error.message || String(error), true);
+            if (role === 'format') {
+                try {
+                    const bodyValue = parseInput(body.value, '附加 Body 参数');
+                    const headerValue = parseInput(headers.value, '附加 Header 参数');
+                    body.value = Object.keys(bodyValue).length ? JSON.stringify(bodyValue, null, 2) : '';
+                    headers.value = Object.keys(headerValue).length ? JSON.stringify(headerValue, null, 2) : '';
+                    setStatus('JSON 格式化完成');
+                } catch (error) {
+                    setStatus(error.message || String(error), true);
+                }
+            }
+
+            if (role === 'clear') {
+                service.clearCurrentConfig();
+                body.value = '';
+                headers.value = '';
+                disableThinking.checked = true;
+                setStatus('已清空当前档案参数，并恢复默认禁用 thinking');
             }
         });
-        clearButton.addEventListener('click', () => {
-            bodyInput.value = '';
-            headerInput.value = '';
-            thinkingInput.checked = true;
-            globalThis.localStorage?.removeItem(bodyKey);
-            globalThis.localStorage?.removeItem(headerKey);
-            globalThis.localStorage?.removeItem(thinkingKey);
-            setStatus(status, '已清空，并恢复默认禁用 thinking');
-        });
 
-        return panel;
+        return container;
     }
 
-    function inject() {
-        const root = document.querySelector('#st-chatu8-settings');
-        if (!root) return;
-        const content = getLlmContent(root);
-        if (!content) return;
+    function refresh(force = false) {
+        if (!panel?.isConnected) return;
 
-        const existing = document.getElementById(panelId);
-        if (existing && content.contains(existing)) return;
+        const descriptor = service.getProfileDescriptor();
+        if (!force && descriptor.key === activeProfileKey) return;
+        activeProfileKey = descriptor.key;
 
-        const panel = existing || makePanel();
-        const after = findInsertAfter(content);
-        if (after && after.parentElement) {
-            after.insertAdjacentElement('afterend', panel);
+        const config = service.getCurrentConfig();
+        const note = panel.querySelector('[data-role="profile-note"]');
+        const body = panel.querySelector('[data-role="body"]');
+        const headers = panel.querySelector('[data-role="headers"]');
+        const disableThinking = panel.querySelector('[data-role="disable-thinking"]');
+
+        note.textContent = `当前 LLM 配置档案：${descriptor.label}`;
+        body.value = Object.keys(config.body).length ? JSON.stringify(config.body, null, 2) : '';
+        headers.value = Object.keys(config.headers).length ? JSON.stringify(config.headers, null, 2) : '';
+        disableThinking.checked = config.disableThinking;
+        setStatus('');
+    }
+
+    function mount() {
+        const llmRoot = document.querySelector('#ch-tab-llm');
+        if (!llmRoot) return;
+
+        const existing = document.getElementById(PANEL_ID);
+        if (existing && llmRoot.contains(existing)) {
+            panel = existing;
+            refresh(false);
+            return;
+        }
+
+        panel = createPanel();
+        const modelHeading = Array.from(llmRoot.querySelectorAll('h4')).find(
+            (heading) => heading.textContent?.trim() === '模型参数',
+        );
+        const modelSection = modelHeading?.closest('.st-chatu8-settings-section');
+
+        if (modelSection?.parentElement) {
+            modelSection.insertAdjacentElement('afterend', panel);
         } else {
-            content.appendChild(panel);
+            llmRoot.appendChild(panel);
         }
+
+        activeProfileKey = null;
+        refresh(true);
     }
 
-    let timer = null;
-    function schedule() {
+    function schedule(delay = 80) {
         clearTimeout(timer);
-        timer = setTimeout(inject, 80);
+        timer = setTimeout(mount, delay);
     }
 
-    const observer = new MutationObserver(schedule);
-    observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style'] });
-    document.addEventListener('click', schedule, true);
-    document.addEventListener('DOMContentLoaded', schedule, { once: true });
-    schedule();
+    const observer = new MutationObserver(() => schedule());
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+
+    document.addEventListener('change', (event) => {
+        if (event.target?.id === 'ch-llm_profile_select') {
+            setTimeout(() => {
+                activeProfileKey = null;
+                refresh(true);
+            }, 0);
+        }
+    }, true);
+
+    document.addEventListener('click', (event) => {
+        const id = event.target?.closest('[id]')?.id;
+        if (PROFILE_CONTROL_IDS.has(id)) {
+            setTimeout(() => {
+                activeProfileKey = null;
+                schedule(250);
+            }, 250);
+        }
+    }, true);
+
+    document.addEventListener('DOMContentLoaded', () => schedule(0), { once: true });
+    schedule(0);
 })();
