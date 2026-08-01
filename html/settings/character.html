@@ -3,6 +3,7 @@
     <div class="st-chatu8-sub-nav">
         <a href="#" class="st-chatu8-sub-nav-link active" data-sub-tab="ch-sub-tab-character-settings">角色设定</a>
         <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-outfit-settings">服装管理</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-injection-templates">注入模板管理</a>
         <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-character-enable">角色启用管理</a>
         <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-outfit-enable">启用通用服装列表</a>
         <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-character-common">启用通用角色列表</a>
@@ -336,6 +337,108 @@
         </div>
     </div>
 
+    <!-- 注入模板管理子页面 -->
+    <div id="ch-sub-tab-injection-templates" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 模板方案预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>注入模板方案</h3>
+            <div class="st-chatu8-field">
+                <label for="injection_template_preset_id">当前方案</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="injection_template_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="injection_template_new" title="新建方案"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_update" title="保存方案"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_rename" title="重命名方案"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_reset" title="重置为默认"><i class="fa-solid fa-rotate-left"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="injection_template_delete" title="删除方案"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <label for="injection_template_quick_preset">快捷选择预设模板</label>
+                <select id="injection_template_quick_preset" class="st-chatu8-select">
+                    <option value="">-- 选择常用预设模板一键填充 --</option>
+                    <option value="default_chinese">默认详细中文格式</option>
+                    <option value="markdown">简洁 Markdown 格式</option>
+                    <option value="tags">纯 Tag 提炼模式</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 模板配置区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>{{角色启用列表}} 模板</h3>
+            <div class="st-chatu8-field-col">
+                <label for="template_character_enable_list">角色列表单条渲染模板</label>
+                <textarea id="template_character_enable_list" class="st-chatu8-textarea" rows="8" placeholder="配置 {{角色启用列表}} 宏展开时每个角色的拼接格式..."></textarea>
+                <details style="margin-top: 6px;">
+                    <summary style="cursor: pointer; color: var(--SmartThemeEmColor);">查看可用变量占位符（点击展开）</summary>
+                    <ul style="margin: 6px 0 0 0; padding-left: 20px; font-size: 0.85em; line-height: 1.6;">
+                        <li><code>{nameCN}</code> / <code>{中文名}</code>：角色中文名</li>
+                        <li><code>{nameEN}</code> / <code>{英文名}</code>：角色英文名</li>
+                        <li><code>{traits}</code> / <code>{角色特征}</code>：角色特征</li>
+                        <li><code>{facial}</code> / <code>{facialFeatures}</code>：五官外貌（正面）</li>
+                        <li><code>{facialBack}</code> / <code>{facialFeaturesBack}</code>：五官外貌（背面）</li>
+                        <li><code>{upperSFW}</code> / <code>{upperSFWBack}</code>：上半身SFW（正面 / 背面）</li>
+                        <li><code>{lowerSFW}</code> / <code>{lowerSFWBack}</code>：下半身SFW（正面 / 背面）</li>
+                        <li><code>{upperNSFW}</code> / <code>{upperNSFWBack}</code>：上半身NSFW（正面 / 背面）</li>
+                        <li><code>{lowerNSFW}</code> / <code>{lowerNSFWBack}</code>：下半身NSFW（正面 / 背面）</li>
+                        <li><code>{outfits}</code> / <code>{服装列表}</code>：内嵌服装列表文本块</li>
+                    </ul>
+                </details>
+            </div>
+        </div>
+
+        <div class="st-chatu8-settings-section">
+            <h3>角色内嵌服装项 模板</h3>
+            <div class="st-chatu8-field-col">
+                <label for="template_character_inner_outfit">角色属性中 {outfits} 单件服装渲染模板</label>
+                <textarea id="template_character_inner_outfit" class="st-chatu8-textarea" rows="5" placeholder="配置角色列表中 {outfits} 占位符渲染每件服装的缩进/格式..."></textarea>
+                <details style="margin-top: 6px;">
+                    <summary style="cursor: pointer; color: var(--SmartThemeEmColor);">可用变量：{nameCN}, {nameEN}, {upperBody}, {upperBodyBack}, {fullBody}, {fullBodyBack}</summary>
+                </details>
+            </div>
+        </div>
+
+        <div class="st-chatu8-settings-section">
+            <h3>{{通用角色启用列表}} 模板</h3>
+            <div class="st-chatu8-field-col">
+                <label for="template_common_character_list">通用角色列表单条渲染模板</label>
+                <textarea id="template_common_character_list" class="st-chatu8-textarea" rows="3" placeholder="配置 {{通用角色启用列表}} 宏展开时每个角色的拼接格式..."></textarea>
+                <details style="margin-top: 6px;">
+                    <summary style="cursor: pointer; color: var(--SmartThemeEmColor);">可用变量：{nameCN}, {nameEN}</summary>
+                </details>
+            </div>
+        </div>
+
+        <div class="st-chatu8-settings-section">
+            <h3>{{通用服装启用列表}} 模板</h3>
+            <div class="st-chatu8-field-col">
+                <label for="template_enable_outfit_list">通用服装列表单条渲染模板</label>
+                <textarea id="template_enable_outfit_list" class="st-chatu8-textarea" rows="5" placeholder="配置 {{通用服装启用列表}} 宏展开时每件服装的拼接格式..."></textarea>
+                <details style="margin-top: 6px;">
+                    <summary style="cursor: pointer; color: var(--SmartThemeEmColor);">可用变量：{nameCN}, {nameEN}, {upperBody}, {upperBodyBack}, {fullBody}, {fullBodyBack}</summary>
+                </details>
+            </div>
+        </div>
+
+        <!-- 实时预览区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>实时效果预览</h3>
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="injection_template_preview_btn" style="width: 100%;">
+                    <i class="fa-solid fa-eye"></i> 预览当前启用数据的渲染结果
+                </button>
+            </div>
+            <div id="injection_template_preview_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>预览输出结果</label>
+                <pre id="injection_template_preview_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 350px; overflow-y: auto; white-space: pre-wrap; font-family: monospace; font-size: 0.9em; margin: 0;"></pre>
+            </div>
+        </div>
+    </div>
+
     <!-- 角色启用管理子页面 -->
     <div id="ch-sub-tab-character-enable" class="st-chatu8-sub-tab-content" style="display: none;">
         <!-- 预设管理 -->
@@ -470,6 +573,86 @@
             <div id="character_list_test_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
                 <label>测试结果</label>
                 <div id="character_list_test_content" style="padding: 10px; background: var(--SmartThemeBlurTintColor); border-radius: 5px; max-height: 320px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注入模板管理子页面 -->
+    <div id="ch-sub-tab-injection-templates" class="st-chatu8-sub-tab-content" style="display: none;">
+        <!-- 预设管理 -->
+        <div class="st-chatu8-settings-section">
+            <h3>注入模板方案</h3>
+            <div class="st-chatu8-field">
+                <label for="injection_template_preset_id">当前方案</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="injection_template_preset_id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="injection_template_new" title="新建方案"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_update" title="保存方案"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_rename" title="重命名方案"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_export" title="导出方案"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_import" title="导入方案"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_reset" title="重置为默认"><i class="fa-solid fa-rotate-left"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="injection_template_delete" title="删除方案"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <label for="injection_template_quick_preset">快速加载模版</label>
+                <select id="injection_template_quick_preset" class="st-chatu8-select">
+                    <option value="">-- 选择快捷预设模板 --</option>
+                    <option value="standard">标准嵌入格式（全带分类前缀）</option>
+                    <option value="compact">紧凑微调格式（逗号简写）</option>
+                    <option value="danbooru">Danbooru 纯标签与权重格式</option>
+                    <option value="banana">Banana / Natural Language 自然语言描写格式</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 模板编辑区 -->
+        <div class="st-chatu8-settings-section">
+            <h3>注入宏模板配置</h3>
+
+            <div class="st-chatu8-field-col">
+                <label for="template_character_enable_list">【{{角色启用列表}}】生成模板</label>
+                <textarea id="template_character_enable_list" class="st-chatu8-textarea" rows="3" placeholder="{{character_name}}: {{inner_outfit}}"></textarea>
+                <div style="font-size: 0.85em; opacity: 0.8; margin-top: 4px;">
+                    可用变量：<code>{{character_name}}</code> (角色名), <code>{{inner_outfit}}</code> (展开后的内部角色服装/特征，对应下方的套用模板)
+                </div>
+            </div>
+
+            <div class="st-chatu8-field-col" style="margin-top: 15px;">
+                <label for="template_character_inner_outfit">【{{角色启用列表}}】角色内部特征展开模板</label>
+                <textarea id="template_character_inner_outfit" class="st-chatu8-textarea" rows="3" placeholder="{{character_features}}, {{facial}}, {{upper_body}}, {{lower_body}}"></textarea>
+                <div style="font-size: 0.85em; opacity: 0.8; margin-top: 4px;">
+                    可用变量：<code>{{character_features}}</code>, <code>{{facial}}</code>, <code>{{upper_body}}</code>, <code>{{lower_body}}</code>
+                </div>
+            </div>
+
+            <div class="st-chatu8-field-col" style="margin-top: 15px;">
+                <label for="template_common_character_list">【{{通用角色启用列表}}】生成模板</label>
+                <textarea id="template_common_character_list" class="st-chatu8-textarea" rows="3" placeholder="{{character_name}}: {{prompt}}"></textarea>
+                <div style="font-size: 0.85em; opacity: 0.8; margin-top: 4px;">
+                    可用变量：<code>{{character_name}}</code>, <code>{{prompt}}</code> (角色整合后的全量 Prompt 字符串)
+                </div>
+            </div>
+
+            <div class="st-chatu8-field-col" style="margin-top: 15px;">
+                <label for="template_enable_outfit_list">【{{通用服装启用列表}}】生成模板</label>
+                <textarea id="template_enable_outfit_list" class="st-chatu8-textarea" rows="3" placeholder="{{outfit_name}}: {{outfit_prompt}}"></textarea>
+                <div style="font-size: 0.85em; opacity: 0.8; margin-top: 4px;">
+                    可用变量：<code>{{outfit_name}}</code>, <code>{{outfit_prompt}}</code> (服装本身的 Prompt 描述)
+                </div>
+            </div>
+
+            <div class="st-chatu8-field" style="margin-top: 10px;">
+                <button class="st-chatu8-btn" id="injection_template_preview_btn" style="width: 100%;">
+                    <i class="fa-solid fa-eye"></i> 实时预览当前展开效果
+                </button>
+            </div>
+
+            <div id="injection_template_preview_result" class="st-chatu8-field-col" style="margin-top: 15px; display: none;">
+                <label>模板展开结果预览</label>
+                <textarea id="injection_template_preview_content" class="st-chatu8-textarea" rows="8" readonly style="font-family: monospace; background: var(--SmartThemeBlurTintColor);"></textarea>
             </div>
         </div>
     </div>
