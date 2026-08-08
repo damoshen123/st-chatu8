@@ -2122,6 +2122,7 @@ var init_config = __esm({
       jiuguanchucun: "false",
       vibeJiuguanchucun: "true",
       convertToJpegStorage: "false",
+      mediaInsertPosition: "default",
       jiuguanStorage: {},
       banana: {
         apiKey: "123456",
@@ -2403,6 +2404,22 @@ function blobToBase64(blob) {
     reader.onerror = reject;
     reader.readAsDataURL(blob);
   });
+}
+function detectBase64Mime(base64Data) {
+  try {
+    const binary = window.atob(base64Data.substring(0, 16));
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    if (bytes.length >= 8 && bytes[4] === 0x66 && bytes[5] === 0x74 && bytes[6] === 0x79 && bytes[7] === 0x70) {
+      return "video/mp4";
+    }
+    if (bytes.length >= 4 && bytes[0] === 0x1A && bytes[1] === 0x45 && bytes[2] === 0xDF && bytes[3] === 0xA3) {
+      return "video/webm";
+    }
+    return null;
+  } catch {
+    return null;
+  }
 }
 function generateUUID() {
   if (crypto && crypto.randomUUID) {
@@ -2966,7 +2983,22 @@ async function getItemImg(tag, index = null) {
       const response = await fetch(imageEntry.path);
       if (response.ok) {
         const blob = await response.blob();
-        const base64 = await blobToBase64(blob);
+        let base64 = await blobToBase64(blob);
+        if (isVideo) {
+          const storedFormat = imageEntry.format || "";
+          let correctedMimeType = "video/mp4";
+          if (storedFormat) {
+            if (storedFormat.includes("webm")) {
+              correctedMimeType = "video/webm";
+            } else if (storedFormat.includes("mp4") || storedFormat.includes("h264")) {
+              correctedMimeType = "video/mp4";
+            } else if (storedFormat.startsWith("video/")) {
+              correctedMimeType = storedFormat;
+            }
+          }
+          const base64Data = base64.split(",")[1] || base64;
+          base64 = `data:${correctedMimeType};base64,${base64Data}`;
+        }
         return [base64, change, finalIndex, isVideo, originalUrl];
       }
     } catch (error) {
@@ -2975,7 +3007,17 @@ async function getItemImg(tag, index = null) {
   } else if (imageEntry.source === "db" && imageEntry.uuid) {
     const imageData = await storeReadOnly(imageEntry.uuid);
     if (imageData && imageData.data) {
-      const mimeType = isVideo ? "video/mp4" : "image/png";
+      let mimeType = isVideo ? "video/mp4" : "image/png";
+      const storedFormat = imageEntry.format || "";
+      if (isVideo && storedFormat) {
+        if (storedFormat.includes("webm")) {
+          mimeType = "video/webm";
+        } else if (storedFormat.includes("mp4") || storedFormat.includes("h264")) {
+          mimeType = "video/mp4";
+        } else if (storedFormat.startsWith("video/")) {
+          mimeType = storedFormat;
+        }
+      }
       const mediaBase64 = `data:${mimeType};base64,` + arrayBufferToBase64(imageData.data);
       return [mediaBase64, change, finalIndex, isVideo, originalUrl];
     }
@@ -3073,6 +3115,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
         thumbnail_path: thumbnailPath,
         date: newDate,
         isVideo,
+        format: format || "",
         originalUrl: originalUrl || "",
         size: base64ByteLength(base64Data),
         thumbnail_size: thumbnailSize,
@@ -3135,6 +3178,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
       thumbnail_uuid: thumbnailUUID,
       date: newDate,
       isVideo,
+      format: format || "",
       originalUrl: originalUrl || "",
       size: imageBuffer.byteLength,
       thumbnail_size: thumbnailSize,
@@ -35545,19 +35589,70 @@ var init_generation = __esm({
             addLog(`\u56FE\u50CF\u751F\u6210\u5931\u8D25 (ID: ${requestId}): ${error}`);
             toastr.error(`\u751F\u6210\u5931\u8D25: ${error || "\u672A\u77E5\u9519\u8BEF"}`);
           }
+          const insertMode = extension_settings40[extensionName]?.mediaInsertPosition || "default";
           docs2.forEach((doc) => {
             const spans = doc.querySelectorAll(`span[data-request-id="${requestId}"]`);
             const buttons = doc.querySelectorAll(`button[data-request-id="${requestId}"]`);
-            if (success && spans.length > 0) {
-              addLog(`${isVideo ? "\u89C6\u9891" : "\u56FE\u50CF"}\u751F\u6210\u6210\u529F (ID: ${requestId}), targeting ${spans.length} element(s).`);
-              spans.forEach((span) => {
-                const associatedButton = span.previousElementSibling;
-                if (associatedButton && associatedButton.matches(`button[data-request-id="${requestId}"]`)) {
-                  createAndShowImage(span, imageData, "Generated Image", associatedButton, change, isVideo, originalUrl || "");
+            if (success && (spans.length > 0 || insertMode !== "default")) {
+              if (insertMode === "default") {
+                addLog(`${isVideo ? "\u89C6\u9891" : "\u56FE\u50CF"}\u751F\u6210\u6210\u529F (ID: ${requestId}), targeting ${spans.length} element(s).`);
+                spans.forEach((span) => {
+                  const associatedButton = span.previousElementSibling;
+                  if (associatedButton && associatedButton.matches(`button[data-request-id="${requestId}"]`)) {
+                    createAndShowImage(span, imageData, "Generated Image", associatedButton, change, isVideo, originalUrl || "");
+                  } else {
+                    createAndShowImage(span, imageData, "Generated Image", null, change, isVideo, originalUrl || "");
+                  }
+                });
+              } else {
+                const mediaType = isVideo ? "\u89C6\u9891" : "\u56FE\u50CF";
+                addLog(`${mediaType}\u751F\u6210\u6210\u529F (ID: ${requestId}), insertMode=${insertMode}`);
+                const targetEl = spans[0] || buttons[0];
+                if (targetEl) {
+                  const mesBlock = targetEl.closest(".mes");
+                  if (mesBlock) {
+                    mesBlock.querySelectorAll(`.st-chatu8-image-container[data-request-id]`).forEach((c) => {
+                      if (c.dataset.requestId !== requestId) {
+                        c.remove();
+                      }
+                    });
+                    const container = doc.createElement("div");
+                    container.className = "st-chatu8-image-container";
+                    container.dataset.requestId = requestId;
+                    if (insertMode === "streaming") {
+                      const mesText = mesBlock.querySelector(".mes_text");
+                      if (mesText) {
+                        if (mesText.nextSibling) {
+                          mesBlock.insertBefore(container, mesText.nextSibling);
+                        } else {
+                          mesBlock.appendChild(container);
+                        }
+                      } else {
+                        mesBlock.appendChild(container);
+                      }
+                    } else if (insertMode === "bottom") {
+                      mesBlock.appendChild(container);
+                    }
+                    const associatedButton = buttons[0];
+                    createAndShowImage(container, imageData, "Generated Image", associatedButton || null, change, isVideo, originalUrl || "");
+                    spans.forEach((s) => {
+                      s.style.display = "none";
+                    });
+                  } else {
+                    addLog(`\u672A\u627E\u5230 .mes \u7236\u5143\u7D20\uFF0C\u56DE\u9000\u5230\u9ED8\u8BA4\u63D2\u5165\u6A21\u5F0F`);
+                    spans.forEach((span) => {
+                      const associatedButton = span.previousElementSibling;
+                      if (associatedButton && associatedButton.matches(`button[data-request-id="${requestId}"]`)) {
+                        createAndShowImage(span, imageData, "Generated Image", associatedButton, change, isVideo, originalUrl || "");
+                      } else {
+                        createAndShowImage(span, imageData, "Generated Image", null, change, isVideo, originalUrl || "");
+                      }
+                    });
+                  }
                 } else {
-                  createAndShowImage(span, imageData, "Generated Image", null, change, isVideo, originalUrl || "");
+                  addLog(`\u672A\u627E\u5230\u76EE\u6807\u5143\u7D20 (ID: ${requestId}), \u8DF3\u8FC7\u63D2\u5165`);
                 }
-              });
+              }
             }
             buttons.forEach((b) => {
               b.removeAttribute("data-loading");
@@ -62520,8 +62615,9 @@ Scheduler: ${payload.scheduler}
         taskQueue.completeTask(taskId, false);
         throw new Error("Endpoint did not return image data.");
       }
-      const videoFormats = ["mp4", "webm", "gif", "avi", "mov"];
+      const videoFormats = ["mp4", "webm", "avi", "mov"];
       const isVideo = videoFormats.some((fmt) => format && format.toLowerCase().includes(fmt));
+      const isGif = format && format.toLowerCase().includes("gif");
       const mediaType = isVideo ? "\u89C6\u9891" : "\u56FE\u7247";
       addLog(`${mediaType} \u751F\u6210\u6210\u529F(jiuguan client)\u3002`);
       const mimePrefix = isVideo ? "video" : "image";
@@ -62531,9 +62627,9 @@ Scheduler: ${payload.scheduler}
           mimeType = "mp4";
         } else if (format.includes("webm")) {
           mimeType = "webm";
-        } else if (format.includes("gif")) {
-          mimeType = "gif";
         }
+      } else if (isGif) {
+        mimeType = "gif";
       }
       imageUrl = `data:${mimePrefix}/${mimeType};base64,${data}`;
       setTimeout(() => {
@@ -62550,6 +62646,8 @@ Scheduler: ${payload.scheduler}
       let finalFormat = format;
       if (isVideo) {
         finalFormat = `video/${mimeType}`;
+      } else if (isGif) {
+        finalFormat = "image/gif";
       }
       return { image: imageUrl, change: change_ || "", isVideo, format: finalFormat, genParams: _comfy_gen_params };
     } else {
@@ -62608,32 +62706,46 @@ Scheduler: ${payload.scheduler}
           }
           if (re.hasOwnProperty(id)) {
             let getImageInfoFromOutputs = function(outputs) {
+              const videoExtensions = [".mp4", ".webm", ".mov", ".avi", ".mkv", ".flv", ".wmv"];
+              let imageOnlyResult = null;
               for (const key in outputs) {
                 const value = outputs[key];
-                if (value.images && value.images.length > 0) {
+                if (value.gifs && value.gifs.length > 0) {
+                  const gif = value.gifs[0];
+                  const isVideoByFormat = gif.format && gif.format.startsWith("video/");
+                  const isVideoByExt = videoExtensions.some((ext) => gif.filename && gif.filename.toLowerCase().endsWith(ext));
+                  const isVideo2 = isVideoByFormat || isVideoByExt;
+                  return {
+                    filename: gif.filename,
+                    subfolder: gif.subfolder || "",
+                    isVideo: isVideo2,
+                    format: gif.format || (isVideo2 ? "video/mp4" : "image/gif")
+                  };
+                }
+                if (value.images && value.images.length > 0 && !imageOnlyResult) {
                   const outputImage = value.images.find((img) => img.type === "output");
                   if (outputImage) {
-                    return {
+                    const isVideoByExt = videoExtensions.some((ext) => outputImage.filename && outputImage.filename.toLowerCase().endsWith(ext));
+                    const isVideoByFormat = outputImage.format && outputImage.format.startsWith("video/");
+                    const isVideo = isVideoByExt || isVideoByFormat;
+                    if (isVideo) {
+                      return {
+                        filename: outputImage.filename,
+                        subfolder: outputImage.subfolder || "",
+                        isVideo: true,
+                        format: outputImage.format || "video/mp4"
+                      };
+                    }
+                    imageOnlyResult = {
                       filename: outputImage.filename,
                       subfolder: outputImage.subfolder || "",
                       isVideo: false,
                       format: "image"
                     };
                   }
-                  continue;
-                }
-                if (value.gifs && value.gifs.length > 0) {
-                  const gif = value.gifs[0];
-                  const isVideo2 = gif.format && gif.format.startsWith("video/");
-                  return {
-                    filename: gif.filename,
-                    subfolder: gif.subfolder || "",
-                    isVideo: isVideo2,
-                    format: gif.format || "image/gif"
-                  };
                 }
               }
-              return null;
+              return imageOnlyResult;
             };
             let imageInfo = getImageInfoFromOutputs(re[id]["outputs"]);
             if (!imageInfo) {
@@ -62996,9 +63108,14 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
       const result = await readOpenAIResponse(response);
       const content = result.choices?.[0]?.message?.content;
       if (typeof content === "string") {
-        const videoSrcMatch = content.match(/src="([^"]+\.mp4[^"]*)"/);
-        if (videoSrcMatch && videoSrcMatch[1]) {
-          const videoUrl = videoSrcMatch[1];
+        const videoSrcRegex = /src="([^"]+\.(?:mp4|webm|mov|avi)[^"]*)"/i;
+        const markdownVideoRegex = /!\[.*?\]\(((?:https?:\/\/)[^\s\)]+\.(?:mp4|webm|mov|avi)(?:\?[^\s\)]*)?)\)/i;
+        const plainVideoUrlRegex = /((?:https?:\/\/)[^\s"'<>]+\.(?:mp4|webm|mov|avi)(?:\?[^\s]*)?)/i;
+        const videoSrcMatch = content.match(videoSrcRegex);
+        const markdownVideoMatch = content.match(markdownVideoRegex);
+        const plainVideoMatch = content.match(plainVideoUrlRegex);
+        const videoUrl = videoSrcMatch?.[1] || markdownVideoMatch?.[1] || plainVideoMatch?.[1];
+        if (videoUrl) {
           addLog(`[Banana] Video URL extracted: ${videoUrl}`);
           try {
             const videoResponse = await fetch(videoUrl, { headers: getDirectHeaders() });
@@ -63006,24 +63123,25 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
               throw new Error(`Failed to fetch video: ${videoResponse.status}`);
             }
             const videoBlob = await videoResponse.blob();
+            const detectedFormat = videoBlob.type && videoBlob.type.startsWith("video/") ? videoBlob.type : "video/mp4";
             const videoDataUrl = await new Promise((resolve, reject) => {
               const reader = new FileReader();
               reader.onloadend = () => resolve(reader.result);
               reader.onerror = reject;
               reader.readAsDataURL(videoBlob);
             });
-            addLog(`[Banana] Video downloaded (${(videoBlob.size / 1024 / 1024).toFixed(2)} MB)`);
+            addLog(`[Banana] Video downloaded (${(videoBlob.size / 1024 / 1024).toFixed(2)} MB, ${detectedFormat})`);
             taskQueue.completeTask(taskId, true);
             currentTaskId2 = null;
             const changeClean = change.replaceAll("{\u89C6\u9891}", "");
-            return { image: videoDataUrl, change: changeClean || prompt2, isVideo: true, format: "video/mp4", originalUrl: videoUrl, genParams: _videoGenParams };
+            return { image: videoDataUrl, change: changeClean || prompt2, isVideo: true, format: detectedFormat, originalUrl: videoUrl, genParams: _videoGenParams };
           } catch (fetchError) {
             addLog(`[Banana] Failed to download video: ${fetchError.message}`);
             throw new Error(`\u89C6\u9891\u4E0B\u8F7D\u5931\u8D25: ${fetchError.message}`);
           }
         }
       }
-      throw new Error("Video response did not contain a valid MP4 URL");
+      throw new Error("Video response did not contain a valid video URL");
     } catch (error) {
       addLog(`[Banana] \u89C6\u9891\u6A21\u5F0F\u9519\u8BEF: ${error.message}`);
       if (error.name === "AbortError" || error.message === "\u4EFB\u52A1\u5DF2\u53D6\u6D88") {
@@ -63158,33 +63276,56 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
         throw new Error(`Grok \u54CD\u5E94\u7F3A\u5C11 data[0]\uFF0C\u539F\u59CB\u54CD\u5E94: ${JSON.stringify(grokResult).slice(0, 500)}`);
       }
       let imageUrl = "";
+      let isVideoContent = false;
+      let videoFormat = "image";
+      let videoOriginalUrl = "";
       if (item.b64_json) {
-        imageUrl = `data:image/png;base64,${item.b64_json}`;
-        addLog("[Banana] Grok \u6A21\u5F0F\uFF1A\u4ECE b64_json \u63D0\u53D6\u5230\u56FE\u7247");
+        const detectedMime = detectBase64Mime(item.b64_json);
+        if (detectedMime && detectedMime.startsWith("video/")) {
+          imageUrl = `data:${detectedMime};base64,${item.b64_json}`;
+          isVideoContent = true;
+          videoFormat = detectedMime;
+          addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u4ECE b64_json \u68C0\u6D4B\u5230\u89C6\u9891 (${detectedMime})`);
+        } else {
+          imageUrl = `data:image/png;base64,${item.b64_json}`;
+          addLog("[Banana] Grok \u6A21\u5F0F\uFF1A\u4ECE b64_json \u63D0\u53D6\u5230\u56FE\u7247");
+        }
       } else if (item.url) {
-        addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u4E0B\u8F7D\u56FE\u7247 URL ${item.url}`);
+        videoOriginalUrl = item.url;
+        addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u4E0B\u8F7D\u5A92\u4F53 URL ${item.url}`);
         const imgResp = await fetch(item.url, { headers: getDirectHeaders() });
         if (!imgResp.ok) {
-          throw new Error(`\u4E0B\u8F7D\u56FE\u7247\u5931\u8D25: ${imgResp.status}`);
+          throw new Error(`\u4E0B\u8F7D\u5931\u8D25: ${imgResp.status}`);
         }
         const blob = await imgResp.blob();
+        if (blob.type && blob.type.startsWith("video/")) {
+          isVideoContent = true;
+          videoFormat = blob.type;
+          addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u68C0\u6D4B\u5230\u89C6\u9891 (${blob.type}, ${(blob.size / 1024 / 1024).toFixed(2)} MB)`);
+        }
         imageUrl = await new Promise((resolve, reject) => {
           const reader = new FileReader();
           reader.onloadend = () => resolve(reader.result);
           reader.onerror = reject;
           reader.readAsDataURL(blob);
         });
+        if (imageUrl.startsWith("data:video/")) {
+          isVideoContent = true;
+          const mimeMatch = imageUrl.match(/^data:(video\/[^;]+);/);
+          if (mimeMatch) videoFormat = mimeMatch[1];
+          addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u786E\u8BA4\u4E3A\u89C6\u9891 (${videoFormat})`);
+        }
       }
       if (!imageUrl) {
-        throw new Error("Grok \u54CD\u5E94\u672A\u5305\u542B\u56FE\u7247\uFF08b64_json/url \u5747\u4E3A\u7A7A\uFF09");
+        throw new Error("Grok \u54CD\u5E94\u672A\u5305\u542B\u5A92\u4F53\uFF08b64_json/url \u5747\u4E3A\u7A7A\uFF09");
       }
-      if (String(extension_settings47[extensionName].convertToJpegStorage) === "true") {
+      if (!isVideoContent && String(extension_settings47[extensionName].convertToJpegStorage) === "true") {
         imageUrl = await convertImageToJpeg(imageUrl);
       }
-      addLog("[Banana] Grok \u6A21\u5F0F\uFF1A\u56FE\u7247\u751F\u6210\u6210\u529F");
+      addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A${isVideoContent ? "\u89C6\u9891" : "\u56FE\u7247"}\u751F\u6210\u6210\u529F`);
       taskQueue.completeTask(taskId, true);
       currentTaskId2 = null;
-      return { image: imageUrl, change: change_ || "", genParams: _banana_gen_params };
+      return { image: imageUrl, change: change_ || "", isVideo: isVideoContent, format: videoFormat, originalUrl: videoOriginalUrl, genParams: _banana_gen_params };
     } catch (error) {
       addLog(`[Banana] Grok \u6A21\u5F0F\u9519\u8BEF: ${error.message}`);
       console.error("[Banana] Grok mode error:", error);
@@ -63399,35 +63540,44 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
     if (change && change.includes("{\u89C6\u9891}")) {
       const content = result.choices?.[0]?.message?.content;
       if (typeof content === "string") {
-        const videoSrcMatch = content.match(/src="([^"]+\.mp4[^"]*)"/);
-        if (videoSrcMatch && videoSrcMatch[1]) {
-          const videoUrl = videoSrcMatch[1];
-          addLog(`[Banana] Video URL extracted: ${videoUrl}`);
+        const videoSrcRegex2 = /src="([^"]+\.(?:mp4|webm|mov|avi)[^"]*)"/i;
+        const markdownVideoRegex2 = /!\[.*?\]\(((?:https?:\/\/)[^\s\)]+\.(?:mp4|webm|mov|avi)(?:\?[^\s\)]*)?)\)/i;
+        const plainVideoUrlRegex2 = /((?:https?:\/\/)[^\s"'<>]+\.(?:mp4|webm|mov|avi)(?:\?[^\s]*)?)/i;
+        const videoSrcMatch2 = content.match(videoSrcRegex2);
+        const markdownVideoMatch2 = content.match(markdownVideoRegex2);
+        const plainVideoMatch2 = content.match(plainVideoUrlRegex2);
+        const videoUrl2 = videoSrcMatch2?.[1] || markdownVideoMatch2?.[1] || plainVideoMatch2?.[1];
+        if (videoUrl2) {
+          addLog(`[Banana] Video URL extracted: ${videoUrl2}`);
           try {
-            const videoResponse = await fetch(videoUrl, { headers: getDirectHeaders() });
-            if (!videoResponse.ok) {
-              throw new Error(`Failed to fetch video: ${videoResponse.status}`);
+            const videoResponse2 = await fetch(videoUrl2, { headers: getDirectHeaders() });
+            if (!videoResponse2.ok) {
+              throw new Error(`Failed to fetch video: ${videoResponse2.status}`);
             }
-            const videoBlob = await videoResponse.blob();
-            const videoDataUrl = await new Promise((resolve, reject) => {
+            const videoBlob2 = await videoResponse2.blob();
+            const detectedFormat2 = videoBlob2.type && videoBlob2.type.startsWith("video/") ? videoBlob2.type : "video/mp4";
+            const videoDataUrl2 = await new Promise((resolve, reject) => {
               const reader = new FileReader();
               reader.onloadend = () => resolve(reader.result);
               reader.onerror = reject;
-              reader.readAsDataURL(videoBlob);
+              reader.readAsDataURL(videoBlob2);
             });
-            addLog(`[Banana] Video downloaded (${(videoBlob.size / 1024 / 1024).toFixed(2)} MB)`);
+            addLog(`[Banana] Video downloaded (${(videoBlob2.size / 1024 / 1024).toFixed(2)} MB, ${detectedFormat2})`);
             taskQueue.completeTask(taskId, true);
             currentTaskId2 = null;
-            return { image: videoDataUrl, change: change_ || "", isVideo: true, format: "video/mp4", originalUrl: videoUrl, genParams: _banana_gen_params };
+            return { image: videoDataUrl2, change: change_ || "", isVideo: true, format: detectedFormat2, originalUrl: videoUrl2, genParams: _banana_gen_params };
           } catch (fetchError) {
             addLog(`[Banana] Failed to download video: ${fetchError.message}`);
             throw new Error(`\u89C6\u9891\u4E0B\u8F7D\u5931\u8D25: ${fetchError.message}`);
           }
         }
       }
-      throw new Error("Video response did not contain a valid MP4 URL");
+      throw new Error("Video response did not contain a valid video URL");
     }
     let imageUrl = "";
+    let isVideoContent = false;
+    let videoFormat = "image";
+    let videoOriginalUrl = "";
     const choices = result.choices;
     if (choices && choices.length > 0) {
       const content = choices[0].message?.content;
@@ -63437,6 +63587,13 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
         const firstImage = reasoningDetails.images[0];
         if (firstImage.type === "image_url" && firstImage.image_url) {
           imageUrl = typeof firstImage.image_url === "string" ? firstImage.image_url : firstImage.image_url.url;
+          const videoExtMatch2 = imageUrl && imageUrl.match(/\.(mp4|webm|mov|avi)(?:\?|$)/i);
+          if (videoExtMatch2) {
+            isVideoContent = true;
+            videoFormat = `video/${videoExtMatch2[1].toLowerCase()}`;
+            videoOriginalUrl = imageUrl.startsWith("data:") ? "" : imageUrl;
+            addLog(`[Banana] Detected video in reasoning_details (${videoFormat}).`);
+          }
           addLog("[Banana] Extracted image from reasoning_details.images array.");
         }
       }
@@ -63444,56 +63601,137 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
         for (const item of content) {
           if (item.type === "image_url" && item.image_url) {
             imageUrl = typeof item.image_url === "string" ? item.image_url : item.image_url.url;
+            const videoExtMatch = imageUrl && imageUrl.match(/\.(mp4|webm|mov|avi)(?:\?|$)/i);
+            if (videoExtMatch) {
+              isVideoContent = true;
+              videoFormat = `video/${videoExtMatch[1].toLowerCase()}`;
+              videoOriginalUrl = imageUrl.startsWith("data:") ? "" : imageUrl;
+              addLog(`[Banana] Detected video URL in image_url field (${videoFormat}).`);
+            }
             break;
           }
         }
       } else if (!imageUrl && typeof content === "string") {
-        const markdownImageRegex = /!\[.*?\]\(((?:https?:\/\/|data:image\/[^;]+;base64,)[^\s\)]+)\)/;
-        const match = content.match(markdownImageRegex);
-        if (match && match[1]) {
-          const mdImageData = match[1];
-          if (mdImageData.startsWith("data:image/")) {
+        const markdownMediaRegex = /!\[.*?\]\(((?:https?:\/\/|data:[a-z]+\/[^;]+;base64,)[^\s\)]+)\)/;
+        const videoSrcRegex = /src="([^"]+\.(?:mp4|webm|mov|avi)[^"]*)"/i;
+        const plainVideoUrlRegex = /((?:https?:\/\/)[^\s"'<>]+\.(?:mp4|webm|mov|avi)(?:\?[^\s]*)?)/i;
+        const markdownMatch = content.match(markdownMediaRegex);
+        const videoSrcMatch = content.match(videoSrcRegex);
+        const plainVideoMatch = content.match(plainVideoUrlRegex);
+        if (markdownMatch && markdownMatch[1]) {
+          const mdData = markdownMatch[1];
+          if (mdData.startsWith("data:video/")) {
+            addLog("[Banana] Detected Markdown embedded base64 video.");
+            imageUrl = mdData;
+            isVideoContent = true;
+            const mimeMatch = mdData.match(/^data:(video\/[^;]+);/);
+            videoFormat = mimeMatch ? mimeMatch[1] : "video/mp4";
+            addLog(`[Banana] Extracted base64 video from Markdown (${videoFormat}).`);
+          } else if (mdData.startsWith("data:image/")) {
             addLog("[Banana] Detected Markdown embedded base64 image.");
-            imageUrl = mdImageData;
+            imageUrl = mdData;
             addLog("[Banana] Successfully extracted base64 image from Markdown.");
           } else {
-            addLog("[Banana] Detected Markdown image URL, extracting...");
-            addLog(`[Banana] Markdown image URL: ${mdImageData}`);
+            addLog("[Banana] Detected Markdown media URL, extracting...");
+            addLog(`[Banana] Markdown media URL: ${mdData}`);
+            videoOriginalUrl = mdData;
             try {
-              const imageResponse = await fetch(mdImageData, { headers: getDirectHeaders() });
-              if (!imageResponse.ok) {
-                throw new Error(`Failed to fetch image: ${imageResponse.status}`);
+              const mediaResponse = await fetch(mdData, { headers: getDirectHeaders() });
+              if (!mediaResponse.ok) {
+                throw new Error(`Failed to fetch media: ${mediaResponse.status}`);
               }
-              const imageBlob = await imageResponse.blob();
+              const mediaBlob = await mediaResponse.blob();
+              if (mediaBlob.type && mediaBlob.type.startsWith("video/")) {
+                isVideoContent = true;
+                videoFormat = mediaBlob.type;
+                addLog(`[Banana] Detected video (${mediaBlob.type}, ${(mediaBlob.size / 1024 / 1024).toFixed(2)} MB)`);
+              }
               const base64Data = await new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.onloadend = () => resolve(reader.result);
                 reader.onerror = reject;
-                reader.readAsDataURL(imageBlob);
+                reader.readAsDataURL(mediaBlob);
               });
               imageUrl = base64Data;
-              if (String(extension_settings47[extensionName].convertToJpegStorage) === "true") {
+              if (imageUrl.startsWith("data:video/")) {
+                isVideoContent = true;
+                const mimeMatch = imageUrl.match(/^data:(video\/[^;]+);/);
+                if (mimeMatch) videoFormat = mimeMatch[1];
+                addLog(`[Banana] Confirmed video from data URL (${videoFormat}).`);
+              } else if (!isVideoContent && String(extension_settings47[extensionName].convertToJpegStorage) === "true") {
                 imageUrl = await convertImageToJpeg(imageUrl);
               }
-              addLog("[Banana] Successfully converted Markdown image to base64.");
+              addLog(`[Banana] Successfully converted Markdown media to base64.`);
             } catch (fetchError) {
-              addLog(`[Banana] Failed to fetch Markdown image: ${fetchError.message}`);
-              imageUrl = mdImageData;
+              addLog(`[Banana] Failed to fetch Markdown media: ${fetchError.message}`);
+              imageUrl = mdData;
               addLog("[Banana] Using direct URL as fallback.");
             }
           }
+        } else if (videoSrcMatch && videoSrcMatch[1]) {
+          const vUrl = videoSrcMatch[1];
+          addLog(`[Banana] Detected video URL in src attribute: ${vUrl}`);
+          videoOriginalUrl = vUrl;
+          try {
+            const videoResponse = await fetch(vUrl, { headers: getDirectHeaders() });
+            if (!videoResponse.ok) {
+              throw new Error(`Failed to fetch video: ${videoResponse.status}`);
+            }
+            const videoBlob = await videoResponse.blob();
+            isVideoContent = true;
+            videoFormat = videoBlob.type && videoBlob.type.startsWith("video/") ? videoBlob.type : "video/mp4";
+            addLog(`[Banana] Video downloaded (${(videoBlob.size / 1024 / 1024).toFixed(2)} MB, ${videoFormat})`);
+            imageUrl = await new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onloadend = () => resolve(reader.result);
+              reader.onerror = reject;
+              reader.readAsDataURL(videoBlob);
+            });
+          } catch (fetchError) {
+            addLog(`[Banana] Failed to fetch video: ${fetchError.message}`);
+            imageUrl = vUrl;
+            isVideoContent = true;
+            videoFormat = "video/mp4";
+            addLog("[Banana] Using direct video URL as fallback.");
+          }
+        } else if (plainVideoMatch && plainVideoMatch[1]) {
+          const vUrl = plainVideoMatch[1];
+          addLog(`[Banana] Detected plain video URL: ${vUrl}`);
+          videoOriginalUrl = vUrl;
+          try {
+            const videoResponse = await fetch(vUrl, { headers: getDirectHeaders() });
+            if (!videoResponse.ok) {
+              throw new Error(`Failed to fetch video: ${videoResponse.status}`);
+            }
+            const videoBlob = await videoResponse.blob();
+            isVideoContent = true;
+            videoFormat = videoBlob.type && videoBlob.type.startsWith("video/") ? videoBlob.type : "video/mp4";
+            addLog(`[Banana] Video downloaded (${(videoBlob.size / 1024 / 1024).toFixed(2)} MB, ${videoFormat})`);
+            imageUrl = await new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onloadend = () => resolve(reader.result);
+              reader.onerror = reject;
+              reader.readAsDataURL(videoBlob);
+            });
+          } catch (fetchError) {
+            addLog(`[Banana] Failed to fetch video: ${fetchError.message}`);
+            imageUrl = vUrl;
+            isVideoContent = true;
+            videoFormat = "video/mp4";
+            addLog("[Banana] Using direct video URL as fallback.");
+          }
         } else {
-          addLog("[Banana] Response contains text only, no image.");
+          addLog("[Banana] Response contains text only, no image or video.");
         }
       }
     }
     if (!imageUrl) {
-      throw new Error("API response did not contain image in OpenAI format");
+      throw new Error("API response did not contain image or video in OpenAI format");
     }
-    addLog("[Banana] Image generated successfully.");
+    addLog(`[Banana] ${isVideoContent ? "Video" : "Image"} generated successfully.`);
     taskQueue.completeTask(taskId, true);
     currentTaskId2 = null;
-    return { image: imageUrl, change: change_ || "", genParams: _banana_gen_params };
+    return { image: imageUrl, change: change_ || "", isVideo: isVideoContent, format: videoFormat, originalUrl: videoOriginalUrl, genParams: _banana_gen_params };
   } catch (error) {
     addLog(`[Banana] Fetch error: ${error.message}`);
     console.error("[Banana] Fetch error:", error);
@@ -69829,6 +70067,9 @@ async function handleExportLog() {
   settingsInfo += `- \u7F13\u5B58 Vibe \u5230\u9152\u9986: ${settings3.vibeJiuguanchucun ? "\u662F" : "\u5426"}
 `;
   settingsInfo += `- \u8F6CJPEG\u50A8\u5B58: ${settings3.convertToJpegStorage ? "\u662F" : "\u5426"}
+`;
+  const insertPositionLabels = { default: "\u9ED8\u8BA4\u6807\u7B7E\u4F4D\u7F6E", streaming: "\u751F\u6210\u540E\u7ACB\u523B\u63D2\u5165\u6700\u65B0\u6587\u5B57\u4F4D\u7F6E", bottom: "\u63D2\u5165\u697C\u5C42\u6700\u5E95\u90E8" };
+  settingsInfo += `- \u63D2\u5165\u4F4D\u7F6E: ${insertPositionLabels[settings3.mediaInsertPosition] || settings3.mediaInsertPosition || "\u9ED8\u8BA4"}
 
 `;
   settingsInfo += `3. \u4E3B\u8981\u5927\u6A21\u578B (LLM) \u8BBE\u7F6E
@@ -82772,6 +83013,20 @@ image### 1girl, solo, blue hair ###
 > \u{1F4A1} \u5982\u679C\u56FE\u7247\u5F88\u591A\u5BFC\u81F4\u7A7A\u95F4\u7D27\u5F20\uFF0C\u53EF\u4EE5\u5F00\u542F\u3002\u8FFD\u6C42\u753B\u8D28\u8BF7\u5173\u95ED\u3002`
   },
   helpTipsEnabled: "\u5F00\u542F\u540E\uFF0C\u8BBE\u7F6E\u9879\u65C1\u8FB9\u4F1A\u663E\u793A **?** \u5E2E\u52A9\u6C14\u6CE1\uFF08\u9ED8\u8BA4\u5F00\u542F\uFF09",
+  mediaInsertPosition: {
+    short: "\u63A7\u5236\u751F\u6210\u7684\u56FE\u7247/\u89C6\u9891\u63D2\u5165\u5230\u804A\u5929\u6D88\u606F\u4E2D\u7684\u4F4D\u7F6E",
+    long: `### \u751F\u6210\u5185\u5BB9\u63D2\u5165\u4F4D\u7F6E
+
+\u63A7\u5236\u751F\u6210\u7684\u56FE\u7247\u6216\u89C6\u9891\u63D2\u5165\u5230\u804A\u5929\u6D88\u606F\u4E2D\u7684\u4F4D\u7F6E\u3002
+
+| \u6A21\u5F0F | \u8BF4\u660E |
+|------|------|
+| \u9ED8\u8BA4\u6807\u7B7E\u4F4D\u7F6E | \u6309\u7167 AI \u751F\u6210\u7684 \`<image>\` \u6807\u7B7E\u4F4D\u7F6E\u63D2\u5165\uFF08\u539F\u59CB\u884C\u4E3A\uFF09 |
+| \u751F\u6210\u540E\u7ACB\u523B\u63D2\u5165\u6700\u65B0\u6587\u5B57\u4F4D\u7F6E | \u751F\u6210\u5B8C\u6210\u540E\u7ACB\u5373\u5728\u5F53\u524D\u6700\u65B0\u6587\u5B57\u540E\u8FFD\u52A0\uFF0C\u9002\u914D\u6D41\u5F0F\u751F\u6210\u573AI\u672C\u6587\u8FD8\u5728\u8F93\u51FA |
+| \u63D2\u5165\u697C\u5C42\u6700\u5E95\u90E8 | \u76F4\u63A5\u5728\u6D88\u606F\u6700\u5E95\u90E8\u8FFD\u52A0\u5A92\u4F53 |
+
+> \u{1F4A1} \u6D41\u5F0F\u6A21\u5F0F\u9002\u5408 AI \u8FB9\u5199\u8FB9\u751F\u56FE\u7684\u573A\u666F\uFF0C\u751F\u6210\u5B8C\u6210\u540E\u7ACB\u5373\u63D2\u5165\u5230\u5DF2\u6709\u6587\u5B57\u540E\u9762\uFF0C\u4E0D\u7B49\u5F85\u5168\u90E8\u6587\u5B57\u8F93\u51FA\u5B8C\u6210\u3002`
+  },
   randomYushe: "\u5F00\u542F\u540E\uFF0C\u6BCF\u6B21\u751F\u56FE\u65F6\u5C06\u4ECE\u6240\u6709\u63D0\u793A\u8BCD\u9884\u8BBE\u4E2D**\u968F\u673A\u9009\u62E9**\u4E00\u4E2A\u4F7F\u7528\uFF0C\u800C\u975E\u4F7F\u7528\u5F53\u524D\u56FA\u5B9A\u7684\u9884\u8BBE\u3002\u9002\u5408\u5E0C\u671B\u6BCF\u6B21\u751F\u56FE\u98CE\u683C\u591A\u53D8\u7684\u573A\u666F\u3002",
   // ===== Stable Diffusion 页（sd.html） =====
   yusheid: "\u63D0\u793A\u8BCD\u9884\u8BBE\u6863\u4F4D\uFF0C\u53EF\u4FDD\u5B58\u591A\u7EC4\u56FA\u5B9A\u6B63/\u8D1F\u9762\u8BCD\u7EC4\u5408\u5207\u6362\u4F7F\u7528",
@@ -83808,7 +84063,7 @@ async function initUI({ check_update: check_update2 }) {
       settings2.theme_id = "\u9ED8\u8BA4-\u767D\u5929";
     }
     applyTheme(settings2.themes[settings2.theme_id]);
-    const mainKeys = ["scriptEnabled", "helpTipsEnabled", "newlineFixEnabled", "mode", "client", "displayMode", "heavyFrontendMode", "insertOriginalText", "dbclike", "collapseImage", "zidongdianji", "zidongdianji2", "longPressToEdit", "clickToPreview", "startTag", "endTag", "cache", "sdUrl", "st_chatu8_sd_auth", "comfyuiUrl", "novelaiApi", "novelaisite", "novelaiOtherSite", "enableCloudQueue", "cloudQueueUrl", "cloudQueueGreeting", "showQueueGreeting", "novelaimode", "novelai_sampler", "Schedule", "nai3Scale", "cfg_rescale", "AI_use_coords", "sm", "dyn", "nai3Variety", "nai3Deceisp", "sd_cwidth", "sd_cheight", "sd_csteps", "sd_cseed", "sdCfgScale", "restoreFaces", "novelai_width", "novelai_height", "novelai_steps", "novelai_seed", "nai3VibeTransfer", "enableVibeGroupTransfer", "randomVibeGroup", "normalizeRefStrength", "InformationExtracted", "ReferenceStrength", "nai3CharRef", "nai3StylePerception", "comfyui_width", "comfyui_height", "comfyui_steps", "comfyui_seed", "cfg_comfyui", "worker", "ipa", "c_fenwei", "c_xijie", "c_quanzhong", "c_idquanzhong", "AQT_sd", "UCP_sd", "AQT_novelai", "UCP_novelai", "AQT_comfyui", "UCP_comfyui", "addFurryDataset", "sd_cupscale_factor", "sd_chires_fix", "sd_chires_steps", "sd_cdenoising_strength", "sd_cclip_skip", "sd_cadetailer", "worldBookEnabled", "ai_temperature", "ai_top_p", "ai_presence_penalty", "ai_frequency_penalty", "ai_stream", "ai_private", "ai_token", "vocabulary_search_startswith", "vocabulary_search_limit", "vocabulary_search_sort", "enablePregen", "autoLLMImageGen", "randomYushe", "aiAutonomousResolution", "imageAlignment", "imageSizeScale", "imageGenInterval", "translation_system_prompt", "ai_test_system", "ai_test_user", "ai_test_output", "jiuguanchucun", "vibeJiuguanchucun", "convertToJpegStorage", "weilin_lora_fix"];
+    const mainKeys = ["scriptEnabled", "helpTipsEnabled", "newlineFixEnabled", "mode", "client", "displayMode", "heavyFrontendMode", "insertOriginalText", "dbclike", "collapseImage", "zidongdianji", "zidongdianji2", "longPressToEdit", "clickToPreview", "startTag", "endTag", "cache", "sdUrl", "st_chatu8_sd_auth", "comfyuiUrl", "novelaiApi", "novelaisite", "novelaiOtherSite", "enableCloudQueue", "cloudQueueUrl", "cloudQueueGreeting", "showQueueGreeting", "novelaimode", "novelai_sampler", "Schedule", "nai3Scale", "cfg_rescale", "AI_use_coords", "sm", "dyn", "nai3Variety", "nai3Deceisp", "sd_cwidth", "sd_cheight", "sd_csteps", "sd_cseed", "sdCfgScale", "restoreFaces", "novelai_width", "novelai_height", "novelai_steps", "novelai_seed", "nai3VibeTransfer", "enableVibeGroupTransfer", "randomVibeGroup", "normalizeRefStrength", "InformationExtracted", "ReferenceStrength", "nai3CharRef", "nai3StylePerception", "comfyui_width", "comfyui_height", "comfyui_steps", "comfyui_seed", "cfg_comfyui", "worker", "ipa", "c_fenwei", "c_xijie", "c_quanzhong", "c_idquanzhong", "AQT_sd", "UCP_sd", "AQT_novelai", "UCP_novelai", "AQT_comfyui", "UCP_comfyui", "addFurryDataset", "sd_cupscale_factor", "sd_chires_fix", "sd_chires_steps", "sd_cdenoising_strength", "sd_cclip_skip", "sd_cadetailer", "worldBookEnabled", "ai_temperature", "ai_top_p", "ai_presence_penalty", "ai_frequency_penalty", "ai_stream", "ai_private", "ai_token", "vocabulary_search_startswith", "vocabulary_search_limit", "vocabulary_search_sort", "enablePregen", "autoLLMImageGen", "randomYushe", "aiAutonomousResolution", "imageAlignment", "imageSizeScale", "imageGenInterval", "translation_system_prompt", "ai_test_system", "ai_test_user", "ai_test_output", "jiuguanchucun", "vibeJiuguanchucun", "convertToJpegStorage", "mediaInsertPosition", "weilin_lora_fix"];
     mainKeys.forEach((key) => {
       const element = document.getElementById(key);
       if (element) {
