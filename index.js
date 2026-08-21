@@ -1846,6 +1846,8 @@ var init_config = __esm({
       historyKeepImageTag: false,
       // 仅对生图请求生效：历史消息中保留 <image> 标签原文作为参考（当前正文仍按正则清理）
       enablePregen: "false",
+      thinkTagFormat: "<think></think>",
+      // 流式预生成的思维链过滤格式：一行一组，形如 <think></think>，也可写「开始|结束」
       autoLLMImageGen: "false",
       // 自动LLM请求生图
       imageAlignment: "center",
@@ -2123,6 +2125,7 @@ var init_config = __esm({
       jiuguanchucun: "false",
       vibeJiuguanchucun: "true",
       convertToJpegStorage: "false",
+      mediaInsertPosition: "default",
       jiuguanStorage: {},
       banana: {
         apiKey: "123456",
@@ -2133,6 +2136,12 @@ var init_config = __esm({
         aspectRatio: "1:1",
         imageSize: "1024x1024",
         useGrokFormat: "false",
+        // \u56FE\u751F\u89C6\u9891\uFF1A\u4E00\u4E2A\u5DE5\u4F5C\u6D41\u91CC\u4E32\u4E86\u751F\u56FE\u4E0E\u751F\u89C6\u9891\u4E24\u6BB5\u65F6\uFF0C\u6B63\u6587\u4F1A\u7ED9\u51FA\u4E24\u6BB5\u63D0\u793A\u8BCD\u3002
+        // \u751F\u56FE\u6BB5\u6CBF\u7528\u5168\u5C40\u7684 startTag/endTag\uFF0C\u89C6\u9891\u6BB5\u7528\u4E0B\u9762\u8FD9\u5BF9\u6807\u8BB0\u5355\u72EC\u6807\u51FA\u3002
+        grokVideoPair: "false",
+        grokVideoStartTag: "video###",
+        grokVideoEndTag: "###",
+        grokVideoPromptKey: "image_prompt",
         conversationPresetId: "\u9ED8\u8BA4",
         editPresetId: "\u9ED8\u8BA4",
         videoPresetId: "\u9ED8\u8BA4",
@@ -2406,6 +2415,22 @@ function blobToBase64(blob) {
     reader.readAsDataURL(blob);
   });
 }
+function detectBase64Mime(base64Data) {
+  try {
+    const binary = window.atob(base64Data.substring(0, 16));
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    if (bytes.length >= 8 && bytes[4] === 0x66 && bytes[5] === 0x74 && bytes[6] === 0x79 && bytes[7] === 0x70) {
+      return "video/mp4";
+    }
+    if (bytes.length >= 4 && bytes[0] === 0x1A && bytes[1] === 0x45 && bytes[2] === 0xDF && bytes[3] === 0xA3) {
+      return "video/webm";
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
 function generateUUID() {
   if (crypto && crypto.randomUUID) {
     return crypto.randomUUID();
@@ -2484,7 +2509,8 @@ async function syncIndexToStorage(md5, globalIndex, sortedImages, skipStego = fa
     }
   }
   if (jiuguanStorageModified && !skipStego) {
-    await updateStegoImage();
+    // 后台写：索引同步位于生图链路的收尾处，不能让备份上传挡住给 UI 的完成通知。
+    scheduleStegoSync();
   }
   return correctedIndex;
 }
@@ -2968,7 +2994,22 @@ async function getItemImg(tag, index = null) {
       const response = await fetch(imageEntry.path);
       if (response.ok) {
         const blob = await response.blob();
-        const base64 = await blobToBase64(blob);
+        let base64 = await blobToBase64(blob);
+        if (isVideo) {
+          const storedFormat = imageEntry.format || "";
+          let correctedMimeType = "video/mp4";
+          if (storedFormat) {
+            if (storedFormat.includes("webm")) {
+              correctedMimeType = "video/webm";
+            } else if (storedFormat.includes("mp4") || storedFormat.includes("h264")) {
+              correctedMimeType = "video/mp4";
+            } else if (storedFormat.startsWith("video/")) {
+              correctedMimeType = storedFormat;
+            }
+          }
+          const base64Data = base64.split(",")[1] || base64;
+          base64 = `data:${correctedMimeType};base64,${base64Data}`;
+        }
         return [base64, change, finalIndex, isVideo, originalUrl];
       }
     } catch (error) {
@@ -2977,15 +3018,76 @@ async function getItemImg(tag, index = null) {
   } else if (imageEntry.source === "db" && imageEntry.uuid) {
     const imageData = await storeReadOnly(imageEntry.uuid);
     if (imageData && imageData.data) {
-      const mimeType = isVideo ? "video/mp4" : "image/png";
+      let mimeType = isVideo ? "video/mp4" : "image/png";
+      const storedFormat = imageEntry.format || "";
+      if (isVideo && storedFormat) {
+        if (storedFormat.includes("webm")) {
+          mimeType = "video/webm";
+        } else if (storedFormat.includes("mp4") || storedFormat.includes("h264")) {
+          mimeType = "video/mp4";
+        } else if (storedFormat.startsWith("video/")) {
+          mimeType = storedFormat;
+        }
+      }
       const mediaBase64 = `data:${mimeType};base64,` + arrayBufferToBase64(imageData.data);
       return [mediaBase64, change, finalIndex, isVideo, originalUrl];
     }
   }
   return [false, false, false, false, ""];
 }
+// 生图链路的分阶段打点：这条链路一旦在某个 await 上卡住，外部只能看到「按钮一直转圈」，
+// 无从判断卡在上传、缩略图、写库、索引同步还是备份。打点后日志能直接指出卡点。
+function makeStageLogger(scope) {
+  let last = Date.now();
+  return (stage) => {
+    const now = Date.now();
+    const cost = now - last;
+    last = now;
+    const line = `[DB] ${scope} → ${stage} (+${cost}ms)`;
+    console.log(line);
+    try {
+      addLog(line);
+    } catch (e) {
+    }
+  };
+}
+// 通知界面不能被持久化链路的挂起卡住。上游 setItemImg 要做上传 / 写 IndexedDB / 索引同步 /
+// 备份，其中任何一步永久挂起都会让 GENERATE_IMAGE_RESPONSE 永远发不出去 —— 表现为
+// 「生成早已完成、数据也在库里，按钮却一直转圈，只能刷新页面才看到」。
+// 超时只记日志、不抛错，底层 promise 继续在后台跑完（不取消），避免丢数据。
+async function persistWithDeadline(promise, label, ms = 2e4) {
+  let timeoutId = null;
+  const guard = new Promise((resolve) => {
+    timeoutId = setTimeout(() => {
+      const line = `[DB] ${label} 存库超过 ${ms}ms，先通知界面显示结果，存库继续在后台进行`;
+      console.warn(line);
+      try {
+        addLog(line);
+      } catch (e) {
+      }
+      resolve("__persist_timeout__");
+    }, ms);
+  });
+  // 后台失败也要留痕，否则「界面上有、库里没有」会变成下一个无声故障；
+  // 同时这个 catch 也避免超时后原 promise 变成 unhandledrejection。
+  promise.catch((error) => {
+    const line = `[DB] ${label} 存库失败: ${error?.message || error}`;
+    console.error(line, error);
+    try {
+      addLog(line);
+    } catch (e) {
+    }
+  });
+  try {
+    return await Promise.race([promise, guard]);
+  } finally {
+    if (timeoutId) clearTimeout(timeoutId);
+  }
+}
 async function setItemImg(tag, imgBase64, options = { format: "png" }) {
   const { change = "", characterName = "chatu8", filename, format, isVideo = false, originalUrl = "", genParams = null } = options;
+  const stage = makeStageLogger(`setItemImg(${isVideo ? "video" : "image"})`);
+  stage("开始");
   if (extension_settings[extensionName].jiuguanchucun === "true") {
     const md5 = CryptoJS.MD5(tag).toString();
     const uuid = generateUUID();
@@ -3026,6 +3128,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
       }
       const result = await response.json();
       const imagePath = result.path;
+      stage("媒体已上传酒馆");
       let thumbnailPath = null;
       let thumbnailSize = 0;
       try {
@@ -3064,6 +3167,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
       } catch (thumbnailError) {
         console.error("Failed to create or upload thumbnail:", thumbnailError);
       }
+      stage("缩略图处理完毕");
       if (!extension_settings[extensionName].jiuguanStorage) {
         extension_settings[extensionName].jiuguanStorage = {};
       }
@@ -3075,6 +3179,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
         thumbnail_path: thumbnailPath,
         date: newDate,
         isVideo,
+        format: format || "",
         originalUrl: originalUrl || "",
         size: base64ByteLength(base64Data),
         thumbnail_size: thumbnailSize,
@@ -3100,10 +3205,13 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
       }
       await syncIndexToStorage(md5, newIndex, merged.images, true);
       saveSettingsDebounced();
+      stage("索引同步完毕（此刻已可被 getItemImg 读到）");
       await new Promise((resolve) => setTimeout(resolve, 50));
       if (!window.imagesid) window.imagesid = {};
       window.imagesid[md5] = newDate;
-      await updateStegoImage();
+      // 后台写：备份上传不能挡住给 UI 的完成通知，否则数据明明已落地、按钮却一直转圈。
+      scheduleStegoSync();
+      stage("完成（隐写备份已转后台）");
       return imagePath;
     } catch (error) {
       console.error("Failed to upload image to server:", error);
@@ -3129,7 +3237,9 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
     } catch (error) {
       console.error("Failed to create or store thumbnail:", error);
     }
+    stage("缩略图处理完毕");
     await storeReadWrite({ id: uuid, data: imageBuffer });
+    stage(`媒体已写入 IndexedDB (${imageBuffer.byteLength} 字节)`);
     const metadata = await getMetadata();
     const entry = metadata[md5];
     const newImageEntry = {
@@ -3137,6 +3247,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
       thumbnail_uuid: thumbnailUUID,
       date: newDate,
       isVideo,
+      format: format || "",
       originalUrl: originalUrl || "",
       size: imageBuffer.byteLength,
       thumbnail_size: thumbnailSize,
@@ -3155,6 +3266,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
       };
     }
     await setMetadata(metadata);
+    stage("元数据已写入（此刻已可被 getItemImg 读到）");
     const merged = await getMergedAndSortedImages(md5);
     let newIndex = merged.images.findIndex((img) => img.uuid === uuid);
     if (newIndex === -1) {
@@ -3163,6 +3275,7 @@ async function setItemImg(tag, imgBase64, options = { format: "png" }) {
     await syncIndexToStorage(md5, newIndex, merged.images);
     if (!window.imagesid) window.imagesid = {};
     window.imagesid[md5] = newDate;
+    stage("完成");
     return "indexeddb_saved";
   }
 }
@@ -3232,6 +3345,12 @@ async function openDB() {
       console.error("[DB] \u6253\u5F00\u6570\u636E\u5E93\u5931\u8D25:", event.target.error);
       reject(event.target.error);
     };
+    // \u88AB\u5176\u5B83\u8FDE\u63A5\u963B\u585E\u65F6\u53EA\u4F1A\u89E6\u53D1 blocked\uFF0Csuccess/error \u90FD\u4E0D\u4F1A\u6765\u3002\u4E0D\u5904\u7406\u5C31\u662F\u6C38\u4E45\u6302\u8D77\uFF0C
+    // \u4F1A\u628A\u300C\u5148\u5B58\u5E93\u3001\u540E\u901A\u77E5 UI\u300D\u7684\u6574\u6761\u94FE\u8DEF\u9501\u6B7B\uFF08\u6309\u94AE\u6C38\u8FDC\u8F6C\u5708\uFF0C\u53EA\u80FD\u5237\u65B0\u9875\u9762\uFF09\u3002
+    request.onblocked = () => {
+      console.error("[DB] \u6253\u5F00\u6570\u636E\u5E93\u88AB\u963B\u585E\uFF08\u5176\u5B83\u6807\u7B7E\u9875\u6301\u6709\u65E7\u7248\u672C\u8FDE\u63A5\uFF09");
+      reject(new Error("IndexedDB \u6253\u5F00\u88AB\u963B\u585E\uFF0C\u8BF7\u5173\u95ED\u5176\u5B83 SillyTavern \u6807\u7B7E\u9875\u540E\u91CD\u8BD5"));
+    };
     request.onsuccess = (event) => {
       db = event.target.result;
       console.log(`[DB] \u6570\u636E\u5E93 '${dbName}' v${dbVersion} \u6253\u5F00\u6210\u529F\u3002`);
@@ -3239,15 +3358,39 @@ async function openDB() {
     };
   });
 }
+// IndexedDB 的 request 回调在「事务被中止」时根本不会触发 —— 配额压力、浏览器回收内存、
+// 连接被 versionchange 关闭都走 transaction.onabort。只监听 request 的话 Promise 永不 settle，
+// 会把 setItemImg 这条「先存库、后通知 UI」的链路锁死，表现为按钮永远转圈、必须刷新页面才看到结果。
+// 视频（几 MB ArrayBuffer + 每次全量重写元数据）正是最容易触发中止的场景。
+function awaitIdbRequest(transaction, request, label, timeoutMs = 3e4) {
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    let timeoutId = null;
+    const finish = (fn, arg) => {
+      if (settled) return;
+      settled = true;
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
+      fn(arg);
+    };
+    // 兜底超时：任何未预见的挂起都宁可报错，也不能无声无息卡死调用方。
+    timeoutId = setTimeout(() => {
+      finish(reject, new Error(`IndexedDB ${label} 超时（${timeoutMs}ms）`));
+    }, timeoutMs);
+    request.onsuccess = (event) => finish(resolve, event.target.result);
+    request.onerror = () => finish(reject, request.error || new Error(`IndexedDB ${label} 失败`));
+    transaction.onabort = () => finish(reject, transaction.error || new Error(`IndexedDB ${label} 事务被中止`));
+    transaction.onerror = () => finish(reject, transaction.error || new Error(`IndexedDB ${label} 事务出错`));
+  });
+}
 async function storeReadWrite(data) {
   const dbInstance = db || await openDB();
   const transaction = dbInstance.transaction([objectStoreName], "readwrite");
   const objectStore = transaction.objectStore(objectStoreName);
-  return new Promise((resolve, reject) => {
-    const request = objectStore.put(data);
-    request.onsuccess = () => resolve();
-    request.onerror = (event) => reject(event.target.error);
-  });
+  // 写入放宽到 60s：视频是几 MB 的 ArrayBuffer，慢设备上正常写入也可能耗时较久。
+  return awaitIdbRequest(transaction, objectStore.put(data), `写入 ${data?.id || ""}`.trim(), 6e4);
 }
 async function getManualTags() {
   const db2 = await openDB();
@@ -3298,21 +3441,13 @@ async function storeReadOnly(id) {
   const db2 = await openDB();
   const transaction = db2.transaction([objectStoreName], "readonly");
   const objectStore = transaction.objectStore(objectStoreName);
-  return new Promise((resolve, reject) => {
-    const request = objectStore.get(id);
-    request.onsuccess = (event) => resolve(event.target.result);
-    request.onerror = (event) => reject(event.target.error);
-  });
+  return awaitIdbRequest(transaction, objectStore.get(id), `读取 ${id || ""}`.trim());
 }
 async function storeDelete(id) {
   const dbInstance = db || await openDB();
   const transaction = dbInstance.transaction([objectStoreName], "readwrite");
   const objectStore = transaction.objectStore(objectStoreName);
-  return new Promise((resolve, reject) => {
-    const request = objectStore.delete(id);
-    request.onsuccess = () => resolve();
-    request.onerror = (event) => reject(event.target.error);
-  });
+  return awaitIdbRequest(transaction, objectStore.delete(id), `删除 ${id || ""}`.trim());
 }
 async function getMetadata() {
   const data = await storeReadOnly(metadataId);
@@ -4965,6 +5100,28 @@ async function createStegoImage() {
     console.error("[Stego] \u521B\u5EFA\u9690\u5199\u56FE\u7247\u5931\u8D25:", error);
     throw error;
   }
+}
+var stegoSyncState = { running: false, pending: false };
+// 隐写图只是 jiuguanStorage 的二级镜像（实测 0.4MB+ JSON，每次都要先 delete 再全量 upload）。
+// 以前在生图关键路径上同步 await 它，网络或酒馆服务端一慢就把 GENERATE_IMAGE_RESPONSE 一起拖住，
+// 表现为「生成其实早就完成，按钮却一直转圈，刷新后才看到结果」。改成后台串行执行：
+// 已在跑时只记一个「末位待办」，连续生成会自动合并成一次上传，不再重复搬同一份数据。
+function scheduleStegoSync() {
+  if (stegoSyncState.running) {
+    stegoSyncState.pending = true;
+    return;
+  }
+  stegoSyncState.running = true;
+  void (async () => {
+    try {
+      do {
+        stegoSyncState.pending = false;
+        await updateStegoImage();
+      } while (stegoSyncState.pending);
+    } finally {
+      stegoSyncState.running = false;
+    }
+  })();
 }
 async function updateStegoImage() {
   const stego = new ImageSteganography();
@@ -6950,6 +7107,49 @@ function extractIfCondition(rawValue) {
   const valuePart = head.substring(0, head.length - m[0].length).replace(/\s+$/, "");
   return { value: valuePart, condition };
 }
+// 「正则替换」/「正则替换分角色」模式的触发词整体当作正则处理：不按 | 拆分、不做转义。
+// 触发词可以写成裸正则（不能含 =），也可以写成 /pattern/flags 包裹形式，
+// 后者能安全表达含 = 的语法（先行断言 (?= / (?<= 等）。
+function parseRegexRuleTrigger(line) {
+  const trimmed = line.trim();
+  if (!trimmed.startsWith("/")) return null;
+  for (let i = 1; i < trimmed.length; i++) {
+    if (trimmed[i] === "\\") {
+      i++;
+      continue;
+    }
+    if (trimmed[i] !== "/") continue;
+    const rest = trimmed.substring(i + 1);
+    const m = rest.match(/^([gimsuy]*)=([\s\S]*)$/);
+    if (!m) return null;
+    return { pattern: trimmed.substring(1, i), flags: m[1], ruleContent: m[2] };
+  }
+  return null;
+}
+function compileTriggerRegex(pattern, flags, logPrefix = "") {
+  const finalFlags = flags && flags.includes("g") ? flags : `${flags || ""}g`;
+  try {
+    return new RegExp(pattern, finalFlags);
+  } catch (e) {
+    addLog(`${logPrefix}正则替换规则语法错误，已跳过: /${pattern}/${finalFlags} (${e.message})`);
+    return null;
+  }
+}
+function applyRegexReplaceRule({ pattern, flags, haystack, target, realValue, condition, conditionHaystack, logPrefix = "" }) {
+  const re = compileTriggerRegex(pattern, flags, logPrefix);
+  if (!re) return null;
+  re.lastIndex = 0;
+  if (!re.test(haystack)) return null;
+  const ifHaystack = typeof conditionHaystack === "string" && conditionHaystack.length > 0 ? conditionHaystack : haystack;
+  if (condition && !safeEvaluateIf(condition, ifHaystack, logPrefix)) {
+    addLog(`${logPrefix}@if 未通过，跳过正则规则: /${pattern}/ 条件="${condition}"`);
+    return null;
+  }
+  if (condition) addLog(`${logPrefix}@if 通过: /${pattern}/ 条件="${condition}"`);
+  re.lastIndex = 0;
+  addLog(`${logPrefix}Prompt 正则替换: /${pattern}/ -> "${realValue}"`);
+  return target.replace(re, realValue);
+}
 function evaluateCondition(expr, haystack) {
   const src = String(expr);
   const hay = String(haystack).toLowerCase();
@@ -7054,16 +7254,29 @@ ${rulesText}`);
   const rules = rulesText.split("\n");
   for (const line of rules) {
     if (line.trim() === "") continue;
-    const parts = line.split("=");
+    const literal = parseRegexRuleTrigger(line);
+    const parts = literal ? [literal.pattern, literal.ruleContent] : line.split("=");
     if (parts.length < 2) continue;
-    const trigger = parts[0].trim();
+    const trigger = literal ? literal.pattern : parts[0].trim();
     if (!trigger) continue;
-    const ruleContent = parts.slice(1).join("=");
+    const ruleContent = literal ? literal.ruleContent : parts.slice(1).join("=");
     if (!ruleContent.includes("|")) continue;
     const pipeIndex = ruleContent.indexOf("|");
     const type = ruleContent.substring(0, pipeIndex).trim();
     const value = ruleContent.substring(pipeIndex + 1).trim();
     const { value: realValue, condition } = extractIfCondition(value);
+    if (type === "\u6B63\u5219\u66FF\u6362") {
+      const replaced = applyRegexReplaceRule({
+        pattern: trigger,
+        flags: literal?.flags || "",
+        haystack: allPrompts,
+        target: modifiedPrompt,
+        realValue,
+        condition
+      });
+      if (replaced !== null) modifiedPrompt = replaced;
+      continue;
+    }
     const triggers = trigger.split("|").map((t) => t.trim()).filter(Boolean);
     for (const t of triggers) {
       if (allPrompts.toLowerCase().includes(t.toLowerCase())) {
@@ -7112,16 +7325,30 @@ ${rulesText}`);
   const rules = rulesText.split("\n");
   for (const line of rules) {
     if (line.trim() === "") continue;
-    const parts = line.split("=");
+    const literal = parseRegexRuleTrigger(line);
+    const parts = literal ? [literal.pattern, literal.ruleContent] : line.split("=");
     if (parts.length < 2) continue;
-    const trigger = parts[0].trim();
+    const trigger = literal ? literal.pattern : parts[0].trim();
     if (!trigger) continue;
-    const ruleContent = parts.slice(1).join("=");
+    const ruleContent = literal ? literal.ruleContent : parts.slice(1).join("=");
     if (!ruleContent.includes("|")) continue;
     const pipeIndex = ruleContent.indexOf("|");
     const type = ruleContent.substring(0, pipeIndex).trim();
     const value = ruleContent.substring(pipeIndex + 1).trim();
     const { value: realValue, condition } = extractIfCondition(value);
+    if (type === "正则替换") {
+      const replaced = applyRegexReplaceRule({
+        pattern: trigger,
+        flags: literal?.flags || "",
+        haystack: allPrompts,
+        target: modifiedPrompt,
+        realValue,
+        condition,
+        logPrefix: "[Banana] "
+      });
+      if (replaced !== null) modifiedPrompt = replaced;
+      continue;
+    }
     const triggers = trigger.split("|").map((t) => t.trim()).filter(Boolean);
     for (const t of triggers) {
       if (allPrompts.toLowerCase().includes(t.toLowerCase())) {
@@ -7163,16 +7390,31 @@ function prompt_replace_banana_for_character(originalPrompt, fullContext) {
   const rules = rulesText.split("\n");
   for (const line of rules) {
     if (line.trim() === "") continue;
-    const parts = line.split("=");
+    const literal = parseRegexRuleTrigger(line);
+    const parts = literal ? [literal.pattern, literal.ruleContent] : line.split("=");
     if (parts.length < 2) continue;
-    const trigger = parts[0].trim();
+    const trigger = literal ? literal.pattern : parts[0].trim();
     if (!trigger) continue;
-    const ruleContent = parts.slice(1).join("=");
+    const ruleContent = literal ? literal.ruleContent : parts.slice(1).join("=");
     if (!ruleContent.includes("|")) continue;
     const pipeIndex = ruleContent.indexOf("|");
     const type = ruleContent.substring(0, pipeIndex).trim();
     const value = ruleContent.substring(pipeIndex + 1);
     const { value: realValue, condition } = extractIfCondition(value);
+    if (type === "\u6B63\u5219\u66FF\u6362\u5206\u89D2\u8272" || type === "\u6B63\u5219\u66FF\u6362") {
+      const replaced = applyRegexReplaceRule({
+        pattern: trigger,
+        flags: literal?.flags || "",
+        haystack: modifiedPrompt,
+        target: modifiedPrompt,
+        realValue,
+        condition,
+        conditionHaystack: fullContext,
+        logPrefix: "[Banana] \u5206\u89D2\u8272 "
+      });
+      if (replaced !== null) modifiedPrompt = replaced;
+      continue;
+    }
     const triggers = trigger.split("|").map((t) => t.trim()).filter(Boolean);
     for (const t of triggers) {
       if ((type === "\u66FF\u6362\u5206\u89D2\u8272" || type === "\u66FF\u6362") && modifiedPrompt.toLowerCase().includes(t.toLowerCase())) {
@@ -7205,16 +7447,31 @@ ${rulesText}`);
   const rules = rulesText.split("\n");
   for (const line of rules) {
     if (line.trim() === "") continue;
-    const parts = line.split("=");
+    const literal = parseRegexRuleTrigger(line);
+    const parts = literal ? [literal.pattern, literal.ruleContent] : line.split("=");
     if (parts.length < 2) continue;
-    const trigger = parts[0].trim();
+    const trigger = literal ? literal.pattern : parts[0].trim();
     if (!trigger) continue;
-    const ruleContent = parts.slice(1).join("=");
+    const ruleContent = literal ? literal.ruleContent : parts.slice(1).join("=");
     if (!ruleContent.includes("|")) continue;
     const pipeIndex = ruleContent.indexOf("|");
     const type = ruleContent.substring(0, pipeIndex).trim();
     const value = ruleContent.substring(pipeIndex + 1);
     const { value: realValue, condition } = extractIfCondition(value);
+    if (type === "\u6B63\u5219\u66FF\u6362\u5206\u89D2\u8272" || type === "\u6B63\u5219\u66FF\u6362") {
+      const replaced = applyRegexReplaceRule({
+        pattern: trigger,
+        flags: literal?.flags || "",
+        haystack: modifiedPrompt,
+        target: modifiedPrompt,
+        realValue,
+        condition,
+        conditionHaystack: fullContext,
+        logPrefix: "\u5206\u89D2\u8272 "
+      });
+      if (replaced !== null) modifiedPrompt = replaced;
+      continue;
+    }
     const triggers = trigger.split("|").map((t) => t.trim()).filter(Boolean);
     for (const t of triggers) {
       if ((type === "\u66FF\u6362\u5206\u89D2\u8272" || type === "\u66FF\u6362") && modifiedPrompt.toLowerCase().includes(t.toLowerCase())) {
@@ -13356,9 +13613,13 @@ async function insertImagesIntoElement(rootElement, images) {
   existingContainers.forEach((container) => container.remove());
   const existingCollapseWrappers = rootElement.querySelectorAll(".st-chatu8-collapse-wrapper");
   existingCollapseWrappers.forEach((wrapper) => wrapper.remove());
+  // \u975E\u9ED8\u8BA4\u63D2\u5165\u4F4D\u7F6E\u65F6\u5A92\u4F53\u69FD\u4F4D\u6302\u5728 .mes \u4E0A\uFF0C\u4E0D\u5728 rootElement(=mes_text) \u91CC\uFF0C\u4E0A\u9762\u51E0\u884C\u626B\u4E0D\u5230\u5B83\u3002
+  // \u6F0F\u6389\u7684\u8BDD\u91CD\u65B0\u751F\u6210\u4E4B\u540E\u65E7\u5A92\u4F53\u4F1A\u4E00\u76F4\u6302\u5728\u697C\u5C42\u4E0A\uFF0C\u8FD8\u4F1A\u88AB\u53BB\u91CD\u903B\u8F91\u5F53\u6210\u300C\u8FD9\u6807\u7B7E\u5DF2\u7ECF\u6709\u5A92\u4F53\u4E86\u300D\u3002
+  const existingSlots = rootElement.closest?.(".mes")?.querySelectorAll(".st-chatu8-media-slot") || [];
+  existingSlots.forEach((slot) => slot.remove());
   debugLog("imageInserter.insertImagesIntoElement", "\u6E05\u7406\u65E7\u5143\u7D20\u5B8C\u6210", {
     \u6E05\u7406\u6309\u94AE\u6570: existingButtons.length,
-    \u6E05\u7406\u5BB9\u5668\u6570: existingContainers.length + existingSpans.length + existingCollapseWrappers.length
+    \u6E05\u7406\u5BB9\u5668\u6570: existingContainers.length + existingSpans.length + existingCollapseWrappers.length + existingSlots.length
   });
   console.log("[insertImagesIntoElement] Cleaned up existing image elements");
   const insertOriginalTextEnabled = String(extension_settings10[extensionName]?.insertOriginalText) === "true";
@@ -13673,6 +13934,7 @@ function getCleanLogicalText(el) {
     ".image-tag-button",
     ".st-chatu8-image-span",
     ".st-chatu8-image-container",
+    ".st-chatu8-media-slot",
     ".st-chatu8-collapse-wrapper"
   ];
   for (const selector of selectorsToRemove) {
@@ -14284,6 +14546,22 @@ async function deleteImagesForElement(el) {
     } catch (e) {
       console.warn("[imageInserter] Error removing elements with selector:", selector, e);
     }
+  }
+  // 非默认插入位置时媒体槽位挂在 .mes 上、不在 searchRoot(.mes_text) 里，上面的循环扫不到。
+  // 这里单独清理：只删掉已经没有对应 span 的孤儿槽位，locked 的 span 保留则其槽位一并保留。
+  try {
+    const slotScope = mesText?.closest(".mes") || (searchRoot.closest?.(".mes") ?? null);
+    if (slotScope) {
+      slotScope.querySelectorAll(".st-chatu8-media-slot[data-request-id]").forEach((slot) => {
+        const rid = slot.dataset.requestId;
+        if (!slotScope.querySelector(`.st-chatu8-image-span[data-request-id="${rid}"]`)) {
+          slot.remove();
+          removedCount++;
+        }
+      });
+    }
+  } catch (e) {
+    console.warn("[imageInserter] Error removing media slots:", e);
   }
   console.log("[imageInserter] Removed", removedCount, "image-related DOM elements, skipped", lockedCount, "locked");
   if (mesText) {
@@ -35307,6 +35585,175 @@ async function _dataUrlToBlob(dataUrl) {
 function setShowImagePreview(fn) {
   _showImagePreview = fn;
 }
+function getInsertMode() {
+  // mediaInsertPosition 正常取值 default/streaming/bottom（字符串）。历史版本或手动改配置
+  // 可能写成布尔 true，此前 `|| "default"` 会原样透传，导致 `insertMode !== "default"` 为真
+  // 却又匹配不到 streaming/bottom 分支，容器被创建在错误位置，表现为「设置失效、只显示在标签处」。
+  const raw = extension_settings40[extensionName]?.mediaInsertPosition;
+  return ["streaming", "bottom"].includes(raw) ? raw : "default";
+}
+function requestPlaceholderReprocess() {
+  try {
+    if (typeof debouncedProcessVisible === "function") {
+      debouncedProcessVisible();
+    }
+  } catch (e) {
+    console.warn("[st-chatu8] 触发占位符重扫失败:", e);
+  }
+}
+function hasRenderedMedia(anchorSpan, requestId) {
+  if (!anchorSpan) return false;
+  const MEDIA_SELECTOR = "img, video, .st-chatu8-video-notice";
+  if (anchorSpan.querySelector?.(MEDIA_SELECTOR)) return true;
+  const slot = anchorSpan.closest?.(".mes")?.querySelector(`.st-chatu8-media-slot[data-request-id="${requestId}"]`);
+  return Boolean(slot?.querySelector(MEDIA_SELECTOR));
+}
+function isLoadingButtonStale(button) {
+  if (!button?.hasAttribute?.("data-loading")) return false;
+  const link = button.dataset.link;
+  if (link && isGenerating(link)) {
+    // 仍标记为生成中，但超过兜底阈值就认定请求已经丢失（页面切换、监听器丢失等），
+    // 否则按钮会一直转圈到用户刷新为止。阈值大于 runninghub-proxy 的同步超时（900s）。
+    const since = Number(button.dataset.loadingSince || 0);
+    return since > 0 && Date.now() - since > LOADING_STALE_TIMEOUT_MS;
+  }
+  return true;
+}
+function resetLoadingButton(button) {
+  button.removeAttribute("data-loading");
+  delete button.dataset.loadingSince;
+  button.disabled = false;
+  button.textContent = "生成图片";
+  const link = button.dataset.link;
+  if (!link) return;
+  stopGenerating(link);
+  // 生成其实可能早已成功并写入数据库，只是通知那一步没跑完 —— 统一交给补渲染兜底，
+  // 它比原来「只看 button.nextElementSibling」更鲁棒（非默认插入位置时媒体不在 span 里）。
+  void hydrateMissingMedia();
+}
+function collectMediaDocuments() {
+  const docs = [document];
+  for (const frame of Array.from(document.querySelectorAll("iframe"))) {
+    try {
+      if (frame.contentDocument) docs.push(frame.contentDocument);
+    } catch (e) {
+    }
+  }
+  return docs;
+}
+function isRequestRendered(requestId) {
+  for (const doc of collectMediaDocuments()) {
+    for (const span of doc.querySelectorAll(`.st-chatu8-image-span[data-request-id="${requestId}"]`)) {
+      if (hasRenderedMedia(span, requestId)) return true;
+    }
+  }
+  return false;
+}
+// 「有按钮但没有媒体」这个状态以前完全无法自愈：findAndReplaceInElement 在 chatu8Processed
+// 且已有按钮时直接早退，getSavedImageMatches 见到楼层已有媒体容器就返回空，
+// createButtonAtPosition 遇到已存在的按钮也直接跳过 —— 三道守卫都不从数据库补渲染，
+// 于是结果明明已经存好了，界面上却只能靠刷新页面才出现。
+// 这里刻意绕开整条重扫链路，直接按锚点 span 去数据库取一次补上。
+async function hydrateMissingMedia() {
+  if (hydrateState.running) return 0;
+  hydrateState.running = true;
+  let filled = 0;
+  try {
+    const insertMode = getInsertMode();
+    for (const doc of collectMediaDocuments()) {
+      for (const span of Array.from(doc.querySelectorAll(".st-chatu8-image-span[data-request-id]"))) {
+        const requestId = span.dataset.requestId;
+        if (!requestId || hasRenderedMedia(span, requestId)) continue;
+        const prevEl = span.previousElementSibling;
+        const button = prevEl?.matches?.(`button.image-tag-button[data-request-id="${requestId}"]`) ? prevEl : doc.querySelector(`button.image-tag-button[data-request-id="${requestId}"]`);
+        const link = button?.dataset?.link;
+        if (!link) continue;
+        try {
+          const [imageUrl, change, , isVideo, originalUrl] = await getItemImg(link);
+          if (!imageUrl || hasRenderedMedia(span, requestId)) continue;
+          const target = resolveMediaContainer(doc, span, requestId, insertMode);
+          createAndShowImage(target, imageUrl, "Generated Image", button, change, isVideo, originalUrl || "");
+          filled++;
+          // 只复位「已经等了一会儿」的按钮：刚发起的生成不能被兜底逻辑提前判成完成。
+          const since = Number(button.dataset.loadingSince || 0);
+          if (!button.hasAttribute("data-loading") || since > 0 && Date.now() - since > HYDRATE_MIN_LOADING_AGE_MS) {
+            button.removeAttribute("data-loading");
+            delete button.dataset.loadingSince;
+            if (extension_settings40[extensionName].dbclike === "true") {
+              button.style.setProperty("display", "none", "important");
+            } else {
+              button.disabled = false;
+              button.textContent = "生成图片";
+            }
+          }
+        } catch (e) {
+          console.warn("[st-chatu8] 补渲染媒体失败:", e);
+        }
+      }
+    }
+    if (filled > 0) {
+      const line = `[st-chatu8] 已从数据库补渲染 ${filled} 个媒体（无需刷新页面）`;
+      console.log(line);
+      try {
+        addLog(line);
+      } catch (e) {
+      }
+    }
+  } finally {
+    hydrateState.running = false;
+  }
+  return filled;
+}
+function stopResultWatchdog(requestId) {
+  const timer = resultWatchdogs.get(requestId);
+  if (timer) {
+    clearInterval(timer);
+    resultWatchdogs.delete(requestId);
+  }
+}
+// 看门狗：完成通知一旦因任何原因丢失（存库链路挂起、监听器被换掉、DOM 被重建），
+// 结果也得自己出现，而不是让用户一直看着转圈直到刷新页面。
+// 它只从数据库补渲染、绝不中断正在跑的生成，所以对耗时很久的视频工作流是安全的。
+function startResultWatchdog(requestId) {
+  if (!requestId || resultWatchdogs.has(requestId)) return;
+  const startedAt = Date.now();
+  const tick = async () => {
+    if (isRequestRendered(requestId) || Date.now() - startedAt > LOADING_STALE_TIMEOUT_MS) {
+      stopResultWatchdog(requestId);
+      return;
+    }
+    await hydrateMissingMedia();
+    if (isRequestRendered(requestId)) {
+      stopResultWatchdog(requestId);
+    }
+  };
+  resultWatchdogs.set(requestId, setInterval(() => {
+    void tick();
+  }, RESULT_WATCHDOG_INTERVAL_MS));
+}
+function resolveMediaContainer(doc, anchorSpan, requestId, insertMode) {
+  if (!anchorSpan || !insertMode || insertMode === "default") return anchorSpan;
+  const mesBlock = anchorSpan.closest?.(".mes");
+  if (!mesBlock) return anchorSpan;
+  let container = mesBlock.querySelector(`.st-chatu8-media-slot[data-request-id="${requestId}"]`);
+  if (!container) {
+    container = doc.createElement("div");
+    container.className = "st-chatu8-media-slot";
+    container.dataset.requestId = requestId;
+    if (insertMode === "streaming") {
+      const mesText = mesBlock.querySelector(".mes_text");
+      if (mesText && mesText.nextSibling) {
+        mesBlock.insertBefore(container, mesText.nextSibling);
+      } else {
+        mesBlock.appendChild(container);
+      }
+    } else {
+      mesBlock.appendChild(container);
+    }
+  }
+  anchorSpan.style.display = "none";
+  return container;
+}
 function createAndShowImage(container, imageUrl, alt, button, change, isVideo = false, originalUrl = "") {
   const doc = container.ownerDocument;
   if (!doc) return;
@@ -35384,8 +35831,8 @@ function createAndShowImage(container, imageUrl, alt, button, change, isVideo = 
     media.src = imageUrl;
     media.alt = alt;
   }
-  if (change) {
-    button.dataset.change = change ? change : "";
+  if (change && button) {
+    button.dataset.change = change;
   }
   let clickTimer = null;
   let pressTimer = null;
@@ -35512,6 +35959,13 @@ function createAndShowImage(container, imageUrl, alt, button, change, isVideo = 
   }
 }
 var _showImagePreview, triggerGeneration;
+var pendingResponseHandlers = /* @__PURE__ */ new Map();
+var LOADING_STALE_TIMEOUT_MS = 20 * 60 * 1e3;
+var hydrateState = { running: false };
+var resultWatchdogs = /* @__PURE__ */ new Map();
+var RESULT_WATCHDOG_INTERVAL_MS = 30 * 1e3;
+// 补渲染兜底不能误伤刚发起的生成：只有转圈超过这个时长的按钮才允许被兜底复位。
+var HYDRATE_MIN_LOADING_AGE_MS = 20 * 1e3;
 var init_generation = __esm({
   "utils/iframe/generation.js"() {
     init_config();
@@ -35539,44 +35993,82 @@ var init_generation = __esm({
           if (responseData.id !== requestId) return;
           console.log("Image response:", responseData);
           eventSource18.removeListener(EventType.GENERATE_IMAGE_RESPONSE, imageResponseHandler);
+          pendingResponseHandlers.delete(requestId);
           addLog(`\u56FE\u50CF\u54CD\u5E94\u76D1\u542C\u5668\u5DF2\u9500\u6BC1 (ID: ${requestId})`);
           const { success, imageData, error, prompt: prompt2, change, isVideo, originalUrl } = responseData;
-          if (prompt2) stopGenerating(prompt2);
+          // \u515C\u5E95\u7528 link\uFF1A\u53D6\u6D88/\u5F02\u5E38\u8DEF\u5F84\u53EF\u80FD\u56DE\u4F20\u7A7A prompt\uFF0C\u82E5\u4E0D\u6E05\u7406\u4F1A\u8BA9 currentlyGenerating \u6C38\u4E45\u6B8B\u7559\uFF0C
+          // \u4E4B\u540E\u540C\u4E00\u6807\u7B7E\u7684\u6309\u94AE\u5168\u90E8\u5224\u5B9A\u4E3A\u300C\u751F\u6210\u4E2D\u300D\uFF0C\u53EA\u8F6C\u5708\u4E0D\u53D1\u8BF7\u6C42\u3002
+          stopGenerating(prompt2 || link);
           const docs2 = [document, ...Array.from(document.querySelectorAll("iframe")).map((f) => f.contentDocument).filter(Boolean)];
           if (!success) {
             addLog(`\u56FE\u50CF\u751F\u6210\u5931\u8D25 (ID: ${requestId}): ${error}`);
             toastr.error(`\u751F\u6210\u5931\u8D25: ${error || "\u672A\u77E5\u9519\u8BEF"}`);
           }
+          const insertMode = getInsertMode();
+          let inserted = false;
           docs2.forEach((doc) => {
             const spans = doc.querySelectorAll(`span[data-request-id="${requestId}"]`);
             const buttons = doc.querySelectorAll(`button[data-request-id="${requestId}"]`);
-            if (success && spans.length > 0) {
-              addLog(`${isVideo ? "\u89C6\u9891" : "\u56FE\u50CF"}\u751F\u6210\u6210\u529F (ID: ${requestId}), targeting ${spans.length} element(s).`);
-              spans.forEach((span) => {
-                const associatedButton = span.previousElementSibling;
-                if (associatedButton && associatedButton.matches(`button[data-request-id="${requestId}"]`)) {
-                  createAndShowImage(span, imageData, "Generated Image", associatedButton, change, isVideo, originalUrl || "");
+            try {
+              if (success && spans.length > 0) {
+                addLog(`${isVideo ? "视频" : "图像"}生成成功 (ID: ${requestId}), insertMode=${insertMode}, targeting ${spans.length} element(s).`);
+                spans.forEach((span) => {
+                  const prevEl = span.previousElementSibling;
+                  const associatedButton = prevEl && prevEl.matches(`button[data-request-id="${requestId}"]`) ? prevEl : buttons[0] || null;
+                  const target = resolveMediaContainer(doc, span, requestId, insertMode);
+                  createAndShowImage(target, imageData, "Generated Image", associatedButton, change, isVideo, originalUrl || "");
+                });
+                inserted = true;
+              } else if (success) {
+                addLog(`未找到目标元素 (ID: ${requestId})，稍后由重扫从数据库补渲染`);
+              }
+            } catch (e) {
+              console.error("[st-chatu8] 插入生成结果失败:", e);
+              addLog(`插入生成结果失败 (ID: ${requestId}): ${e?.message || e}`);
+            } finally {
+              // 必须放在 finally：上面任何异常都不能留下永久转圈的按钮，
+              // 否则 findAndReplaceInElement 的 loading 早退会把整个楼层锁死，只能刷新页面才显示。
+              buttons.forEach((b) => {
+                b.removeAttribute("data-loading");
+                delete b.dataset.loadingSince;
+                if (success && extension_settings40[extensionName].dbclike == "true") {
+                  b.style.setProperty("display", "none", "important");
                 } else {
-                  createAndShowImage(span, imageData, "Generated Image", null, change, isVideo, originalUrl || "");
+                  b.disabled = false;
+                  b.textContent = "生成图片";
                 }
               });
             }
-            buttons.forEach((b) => {
-              b.removeAttribute("data-loading");
-              if (success && extension_settings40[extensionName].dbclike == "true") {
-                b.style.setProperty("display", "none", "important");
-              } else {
-                b.disabled = false;
-                b.textContent = "\u751F\u6210\u56FE\u7247";
-              }
-            });
           });
+          if (success && inserted) {
+            // 正常路径已经把媒体放上去了，看门狗没必要再轮询。
+            stopResultWatchdog(requestId);
+          }
+          if (success && !inserted) {
+            // 响应到达时 DOM 里还没有目标元素（流式重渲染中途）。重扫在「按钮已存在」时会被
+            // 三道守卫挡掉，所以除了触发重扫，还要直接走一次补渲染。
+            requestPlaceholderReprocess();
+            void hydrateMissingMedia();
+          }
         };
-        eventSource18.on(EventType.GENERATE_IMAGE_RESPONSE, imageResponseHandler);
-        addLog(`\u56FE\u50CF\u54CD\u5E94\u76D1\u542C\u5668\u5DF2\u521B\u5EFA (ID: ${requestId})`);
+        if (!pendingResponseHandlers.has(requestId)) {
+          // 按 requestId 去重注册：既保证「请求进行中被重建的按钮」也能收到响应（否则永久转圈），
+          // 又不会因流式重渲染反复触发而注册出多个监听器导致媒体重复插入。
+          pendingResponseHandlers.set(requestId, imageResponseHandler);
+          eventSource18.on(EventType.GENERATE_IMAGE_RESPONSE, imageResponseHandler);
+          addLog(`图像响应监听器已创建 (ID: ${requestId})`);
+        }
+        if (alreadyGenerating) {
+          if (!button.dataset.loadingSince) {
+            button.dataset.loadingSince = String(Date.now());
+          }
+          // 请求已经在跑（按钮是被重建后重新挂上来的），同样需要兜底看门狗。
+          startResultWatchdog(requestId);
+        }
         if (!alreadyGenerating) {
           button.setAttribute("data-loading", "true");
-          button.textContent = "\u52A0\u8F7D\u4E2D...";
+          button.dataset.loadingSince = String(Date.now());
+          button.textContent = "加载中...";
           startGenerating(link);
           const buttonChange = button.dataset.change;
           let requestPrompt = link;
@@ -35605,6 +36097,8 @@ var init_generation = __esm({
             }
           }
           const requestData = { id: requestId, prompt: requestPrompt, width: finalWidth, height: finalHeight };
+          // 与 {视频} 手动模式无关：这是同一条正文里配对给出的第二段提示词，随请求一起下发。
+          if (button.dataset.pairedVideoPrompt) requestData.pairedVideoPrompt = button.dataset.pairedVideoPrompt;
           if (requestChange) {
             requestData.change = requestChange;
             if (requestChange.includes("{\u4FEE\u56FE}")) {
@@ -35620,13 +36114,17 @@ var init_generation = __esm({
           }
           eventSource18.emit(EventType.GENERATE_IMAGE_REQUEST, requestData);
           addLog(`\u53D1\u51FA\u56FE\u50CF\u751F\u6210\u8BF7\u6C42 (ID: ${requestData.id})`);
+          // \u7ED3\u679C\u6700\u7EC8\u4E00\u81F4\u7684\u515C\u5E95\uFF1A\u901A\u77E5\u4E22\u4E86\u4E5F\u80FD\u81EA\u5DF1\u628A\u5A92\u4F53\u8865\u4E0A\uFF0C\u4E0D\u5FC5\u5237\u65B0\u9875\u9762\u3002
+          startResultWatchdog(requestData.id);
         }
       };
       const docs = [document, ...Array.from(document.querySelectorAll("iframe")).map((f) => f.contentDocument).filter(Boolean)];
       let imageExistsInDom = false;
       for (const doc of docs) {
         const span = doc.querySelector(`span[data-request-id="${requestId}"]`);
-        if (span && span.querySelector("img, video, .st-chatu8-video-fallback")) {
+        // 非默认插入位置时媒体在 .mes 层的槽位里而不在 span 内，用 hasRenderedMedia 统一判断，
+        // 否则重复点击会被误判成「DOM 里还没有媒体」而走缓存渲染，丢掉重新生成的语义。
+        if (span && (hasRenderedMedia(span, requestId) || span.querySelector(".st-chatu8-video-fallback"))) {
           console.log("Media already exists in DOM. Triggering regeneration.");
           imageExistsInDom = true;
           break;
@@ -35635,6 +36133,9 @@ var init_generation = __esm({
       if (imageExistsInDom) {
         startGenerationProcess();
       } else {
+        // 缓存快路径现在经 resolveMediaContainer 插入，已能遵守 mediaInsertPosition，
+        // 因此非默认插入位置时不再需要绕开它去重新生成 —— 那会让每次重渲染都重跑一次
+        // 后端生成（视频动辄数分钟且产生费用），代价远大于收益。
         getItemImg(link).then(([imageUrl, dbChange, , isVideo, dbOriginalUrl]) => {
           if (imageUrl) {
             addLog(`Image for "${link}" already exists in DB. Skipping generation.`);
@@ -35643,8 +36144,10 @@ var init_generation = __esm({
               for (const span of spans) {
                 const associatedButton = span.previousElementSibling;
                 if (associatedButton && associatedButton.matches(`button[data-request-id="${requestId}"]`)) {
-                  createAndShowImage(span, imageUrl, "Generated Image", associatedButton, dbChange, isVideo, dbOriginalUrl || "");
+                  const target = resolveMediaContainer(doc, span, requestId, getInsertMode());
+                  createAndShowImage(target, imageUrl, "Generated Image", associatedButton, dbChange, isVideo, dbOriginalUrl || "");
                   associatedButton.removeAttribute("data-loading");
+                  delete associatedButton.dataset.loadingSince;
                   if (extension_settings40[extensionName].dbclike === "true") {
                     associatedButton.style.setProperty("display", "none", "important");
                   } else {
@@ -35694,13 +36197,27 @@ function extractPureTag(tag, startTag, endTag) {
   }
   return tag;
 }
+// requestId 的算法必须与 createButtonAtPosition 里那份完全一致，否则查不到标签自己的媒体。
+function tagRequestId(link) {
+  return generateStableId(String(link).replaceAll("《", "<").replaceAll("》", ">").replaceAll("\n", ""));
+}
+// 默认插入位置时媒体在锚点 span 里，非默认位置时在 .mes 层的槽位里，两处都要认。
+function isTagMediaRendered(guardScope, requestId) {
+  if (!guardScope || !requestId) return false;
+  const MEDIA_SELECTOR = "img, video, .st-chatu8-video-notice";
+  const span = guardScope.querySelector(`.st-chatu8-image-span[data-request-id="${requestId}"]`);
+  if (span?.querySelector(MEDIA_SELECTOR)) return true;
+  const slot = guardScope.querySelector(`.st-chatu8-media-slot[data-request-id="${requestId}"]`);
+  return Boolean(slot?.querySelector(MEDIA_SELECTOR));
+}
 async function getSavedImageMatches(logicalText, rootElement, logicalTextForMatchOverride, firstDivEndOffset = 0) {
   const result = [];
   try {
-    const existingImage = rootElement.querySelector(`.st-chatu8-image-container`);
-    if (existingImage) {
-      return result;
-    }
+    // 去重按标签算，不按楼层算。这里原本是「楼层里有任何媒体就整层放弃」，代价是同一楼层的
+    // 其余标签全部失效；swipe 后残留在 .mes 上的旧槽位更会把整条新回复挡死，表现为
+    // 「该楼层已经有视频了就不再发新的」。非默认插入位置时媒体挂在 .mes 上而不在 mes_text 里，
+    // 所以判断范围仍取 .mes，只是改成逐标签比对 requestId（见 isTagMediaRendered）。
+    const guardScope = rootElement.closest?.(".mes") || rootElement;
     const indexOfSearchStart = firstDivEndOffset > 0 ? firstDivEndOffset : 0;
     const logicalTextForMatch = removeThinkingTextOnly(logicalTextForMatchOverride || logicalText);
     if (rootElement?.classList?.contains("mes_text")) {
@@ -35731,7 +36248,7 @@ async function getSavedImageMatches(logicalText, rootElement, logicalTextForMatc
               const existingButton = rootElement.querySelector(
                 `button.image-tag-button[data-link="${CSS.escape(linkForQuery)}"], button.image-tag-button[data-image-tag="${CSS.escape(linkForQuery)}"]`
               );
-              if (!existingButton && !textHasTag) {
+              if (!existingButton && !textHasTag && !isTagMediaRendered(guardScope, tagRequestId(linkForQuery))) {
                 const matchResult = fuzzyMatchLine(logicalTextForMatch, img.regex, 0.5);
                 if (matchResult) {
                   let correctEndIndex = matchResult.endIndex;
@@ -35790,7 +36307,7 @@ async function getSavedImageMatches(logicalText, rootElement, logicalTextForMatc
               const existingButton = rootElement.querySelector(
                 `button.image-tag-button[data-link="${CSS.escape(linkForQuery)}"], button.image-tag-button[data-image-tag="${CSS.escape(linkForQuery)}"]`
               );
-              if (!existingButton && !textHasTag) {
+              if (!existingButton && !textHasTag && !isTagMediaRendered(guardScope, tagRequestId(linkForQuery))) {
                 const matchResult = fuzzyMatchLine(logicalTextForMatch, img.regex, 0.5);
                 if (matchResult) {
                   let correctEndIndex = matchResult.endIndex;
@@ -35843,7 +36360,7 @@ async function getSavedImageMatches(logicalText, rootElement, logicalTextForMatc
       const existingButton = rootElement.querySelector(
         `button.image-tag-button[data-link="${CSS.escape(linkForQuery)}"], button.image-tag-button[data-image-tag="${CSS.escape(linkForQuery)}"]`
       );
-      if (!existingButton && !textHasTag) {
+      if (!existingButton && !textHasTag && !isTagMediaRendered(guardScope, tagRequestId(linkForQuery))) {
         result.push({
           content: img.tag,
           insertPosition: img.endIndex
@@ -35980,7 +36497,8 @@ async function createButtonAtPosition(insertPosition, tag, nodeInfos, doc, rootE
   }
   const [imageUrl, change, , isVideo, originalUrl] = await getItemImg(link);
   if (imageUrl) {
-    createAndShowImage(imgSpan, imageUrl, imageAlt, button, change, isVideo, originalUrl);
+    const target = resolveMediaContainer(doc, imgSpan, requestId, getInsertMode());
+    createAndShowImage(target, imageUrl, imageAlt, button, change, isVideo, originalUrl);
     if (settings3.dbclike === "true") {
       button.style.setProperty("display", "none", "important");
     }
@@ -35992,8 +36510,60 @@ async function createButtonAtPosition(insertPosition, tag, nodeInfos, doc, rootE
     triggerGeneration(button);
   }
 }
+// 媒体槽位挂在 .mes 上而不在 mes_text 里，酒馆 swipe / 重新生成只重写 mes_text.innerHTML，
+// 槽位就连同上一条回复的媒体一起残留下来：既在楼层里显示着过期内容，又会被去重逻辑当成
+// 「这个标签已经有媒体了」。按 swipe_id 记账，换了回复就把槽位清干净并让本层重新处理一遍。
+function pruneStaleMediaSlots(rootElement) {
+  const mesBlock = rootElement?.closest?.(".mes");
+  if (!mesBlock) return;
+  const idStr = mesBlock.getAttribute("mesid");
+  if (idStr === null) return;
+  let swipeId = 0;
+  try {
+    const message = getContext14()?.chat?.[parseInt(idStr, 10)];
+    if (!message) return;
+    swipeId = message.swipe_id ?? 0;
+  } catch (e) {
+    return;
+  }
+  const marker = String(swipeId);
+  const seen = mesBlock.dataset.chatu8Swipe;
+  if (seen === marker) return;
+  // 首次见到这个楼层时不清理：那些槽位本来就属于当前这条回复（例如刚刷新完页面）。
+  if (seen !== void 0) {
+    const staleSlots = mesBlock.querySelectorAll(".st-chatu8-media-slot");
+    staleSlots.forEach((slot) => slot.remove());
+    if (staleSlots.length > 0) {
+      console.log(`[iframe] swipe 变化（${seen} → ${marker}），已清理 ${staleSlots.length} 个过期媒体槽位`);
+    }
+    // 楼层内容整个换了，之前的处理标记必须失效，否则 chatu8Processed 早退会挡住重新插按钮。
+    if (rootElement.dataset) {
+      delete rootElement.dataset.chatu8Processed;
+      delete rootElement.dataset.chatu8ContentLength;
+    }
+  }
+  mesBlock.dataset.chatu8Swipe = marker;
+}
 async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image") {
   if (!rootElement) {
+    return;
+  }
+  pruneStaleMediaSlots(rootElement);
+  // 先扫一遍转圈按钮：只有「真的还在生成中」的才阻塞本轮处理。
+  // 陈旧的转圈按钮（对应任务早已结束或超时）会被就地复位并尝试从数据库补渲染媒体，
+  // 否则一个卡死的 spinner 会永久锁死这个楼层，用户只能靠刷新页面才能看到结果。
+  const loadingButtons = rootElement.querySelectorAll('button.image-tag-button[data-loading="true"]');
+  let hasActiveLoading = false;
+  for (const loadingButton of loadingButtons) {
+    if (isLoadingButtonStale(loadingButton)) {
+      console.log("[iframe] Clearing stale loading button:", loadingButton.dataset.link?.substring(0, 50));
+      resetLoadingButton(loadingButton);
+    } else {
+      hasActiveLoading = true;
+    }
+  }
+  if (hasActiveLoading) {
+    console.log("[iframe] Element has loading button, skipping processing");
     return;
   }
   if (rootElement.dataset && rootElement.dataset.chatu8Processed === "true") {
@@ -36013,11 +36583,6 @@ async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image"
         delete rootElement.dataset.chatu8ContentLength;
       }
     }
-  }
-  const loadingButton = rootElement.querySelector('button.image-tag-button[data-loading="true"]');
-  if (loadingButton) {
-    console.log("[iframe] Element has loading button, skipping processing");
-    return;
   }
   const settings3 = extension_settings41[extensionName];
   if (!settings3.startTag || !settings3.endTag) {
@@ -36114,6 +36679,42 @@ async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image"
       // 标记为 pattern 匹配，需要替换原文本
     });
   }
+  // 图生视频：正文里与生图提示词并列的第二段。按出现顺序与生图段配对——一条消息里
+  // 通常只有一组；配不上的视频段不会凭空触发生成，只是跟着从正文里抹掉。
+  // 标记一律按「有值就用、没值回落默认」处理，不能要求设置里必须存着：
+  // 设置是浅合并（{ ...defaultSettings, ...已存设置 }），老用户的 banana 对象会整个盖掉默认值，
+  // 新增的键根本进不去。曾经在这里判空，结果开了开关也识别不到第二段。
+  const bananaPairSettings = settings3.banana || {};
+  const videoStartTag = String(bananaPairSettings.grokVideoStartTag || "").trim() || "video###";
+  const videoEndTag = String(bananaPairSettings.grokVideoEndTag || "").trim() || "###";
+  const videoPairEnabled = String(bananaPairSettings.grokVideoPair) === "true"
+    && String(bananaPairSettings.useGrokFormat) === "true";
+  if (String(bananaPairSettings.grokVideoPair) === "true" && String(bananaPairSettings.useGrokFormat) !== "true") {
+    console.warn("[st-chatu8] 已开启图生视频（两段提示词），但「Grok/newapi/openai格式」未开启，第二段提示词不会被识别。");
+  }
+  const videoMatches = [];
+  if (videoPairEnabled) {
+    const videoPattern = new RegExp(
+      `${escapeRegExp2(videoStartTag)}([\\s\\S]*?)${escapeRegExp2(videoEndTag)}`,
+      "g"
+    );
+    let videoMatch;
+    while ((videoMatch = videoPattern.exec(logicalText)) !== null) {
+      videoMatches.push({
+        fullMatch: videoMatch[0],
+        // 和生图段同一套全角还原：正文是当 HTML 渲染的，`<Picture 1>` 会被当成标签吃掉，
+        // 读 DOM 文本时那一段已经不见了。约定 LLM 写《Picture 1》，取出来再转回尖括号。
+        // 换行照旧保留——视频提示词常是多行运镜描述，而且它不参与 requestId 计算。
+        content: videoMatch[1].trim().replaceAll("《", "<").replaceAll("》", ">"),
+        startIndex: videoMatch.index,
+        endIndex: videoMatch.index + videoMatch[0].length,
+        isVideoPairTag: true
+      });
+    }
+    patternMatches.forEach((item, index) => {
+      item.pairedVideoPrompt = videoMatches[index]?.content || "";
+    });
+  }
   const savedMatches = await getSavedImageMatches(logicalText, rootElement, logicalTextExcludingFirstDiv, firstDivEndOffset > 0 ? firstDivEndOffset : 0);
   if (patternMatches.length === 0 && savedMatches.length === 0) return;
   const clickPromises = [];
@@ -36133,8 +36734,11 @@ async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image"
     );
     clickPromises.push(promise);
   }
-  for (let i = patternMatches.length - 1; i >= 0; i--) {
-    const matchInfo = patternMatches[i];
+  // 视频提示词段和生图段一起按出现顺序倒序处理：必须同一趟倒序，先删靠后的匹配，
+  // 前面那些匹配的文本偏移才不会被删动过的节点带偏。
+  const matchesToProcess = [...patternMatches, ...videoMatches].sort((a, b) => a.startIndex - b.startIndex);
+  for (let i = matchesToProcess.length - 1; i >= 0; i--) {
+    const matchInfo = matchesToProcess[i];
     const nodesToProcess = nodeInfos.filter(
       (info) => matchInfo.startIndex < info.end && matchInfo.endIndex > info.start
     );
@@ -36172,6 +36776,8 @@ async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image"
       continue;
     }
     range.deleteContents();
+    // \u89C6\u9891\u63D0\u793A\u8BCD\u6BB5\u6CA1\u6709\u81EA\u5DF1\u7684\u6309\u94AE\uFF1A\u5B83\u7684\u5185\u5BB9\u5DF2\u7ECF\u6302\u5728\u914D\u5BF9\u7684\u751F\u56FE\u6309\u94AE\u4E0A\uFF0C\u8FD9\u91CC\u53EA\u8D1F\u8D23\u628A\u5B83\u4ECE\u6B63\u6587\u91CC\u62B9\u6389\u3002
+    if (matchInfo.isVideoPairTag) continue;
     const link = matchInfo.content.trim().replaceAll("\u300A", "<").replaceAll("\u300B", ">").replaceAll("\n", "");
     const requestId = generateStableId(link);
     const tagInsertedMarker = `tag-inserted-${requestId}`;
@@ -36203,6 +36809,8 @@ async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image"
     button.dataset.link = link;
     button.dataset.requestId = requestId;
     button.dataset.imageTag = link;
+    // 配对的视频提示词随按钮一起存下来：重新生成、重渲染后再点都拿得到同一段。
+    if (matchInfo.pairedVideoPrompt) button.dataset.pairedVideoPrompt = matchInfo.pairedVideoPrompt;
     let pressTimer = null;
     let isLongPress2 = false;
     const longPressThreshold = 1200;
@@ -36247,7 +36855,8 @@ async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image"
     const promise = (async () => {
       const [imageUrl, change, , isVideo, originalUrl] = await getItemImg(link);
       if (imageUrl) {
-        createAndShowImage(imgSpan, imageUrl, imageAlt, button, change, isVideo, originalUrl);
+        const target = resolveMediaContainer(doc, imgSpan, requestId, getInsertMode());
+        createAndShowImage(target, imageUrl, imageAlt, button, change, isVideo, originalUrl);
         if (extension_settings41[extensionName].dbclike === "true") {
           button.style.setProperty("display", "none", "important");
         }
@@ -37489,7 +38098,9 @@ function shouldIgnoreIframeMutations(mutations) {
     if (changedNodes.length === 0) {
       return isPluginManagedNode(mutation.target);
     }
-    return changedNodes.every(isPluginManagedNode) && isPluginManagedNode(mutation.target);
+    // 只要变更的节点全都是插件自己插的，就可以忽略；不再要求 mutation.target 也受管 ——
+    // 非默认插入位置时媒体槽位是挂到 .mes 上的，target 永远不受管，会导致插件自己触发重扫。
+    return changedNodes.every(isPluginManagedNode);
   });
 }
 function cleanupDetachedIframeObservers() {
@@ -37631,7 +38242,7 @@ function initializeImageProcessing() {
   }
   initializeMainDocumentObserver();
 }
-var autoClickTimer, iframeObserverState, mainDocumentObserver, PLUGIN_MANAGED_SELECTOR, debouncedProcessVisible;
+var autoClickTimer, iframeObserverState, mainDocumentObserver, PLUGIN_MANAGED_SELECTOR, debouncedProcessVisible, debouncedHydrateMedia;
 var init_iframe = __esm({
   "utils/iframe/index.js"() {
     init_config();
@@ -37647,7 +38258,7 @@ var init_iframe = __esm({
     window.zidongdianji = false;
     iframeObserverState = /* @__PURE__ */ new Map();
     mainDocumentObserver = null;
-    PLUGIN_MANAGED_SELECTOR = ".image-tag-button, .st-chatu8-image-button, .st-chatu8-image-span, .st-chatu8-image-container, .st-chatu8-collapse-wrapper";
+    PLUGIN_MANAGED_SELECTOR = ".image-tag-button, .st-chatu8-image-button, .st-chatu8-image-span, .st-chatu8-image-container, .st-chatu8-media-slot, .st-chatu8-collapse-wrapper";
     setTriggerGeneration(triggerGeneration);
     setGorkTriggerGeneration(triggerGeneration);
     setShowImagePreview(showImagePreview);
@@ -37655,6 +38266,23 @@ var init_iframe = __esm({
       processMesTextElements();
       processIframes();
     }, 200);
+    // 主文档一直缺少重扫时机：mainDocumentObserver 只对 iframe 增删响应，也没有滚动监听，
+    // 所以酒馆重建 .mes_text（新消息、编辑、swipe、切换聊天）之后没有任何东西会把媒体补回来。
+    // 这里挂上补渲染（轻量，只在数据库里确实有数据时才动 DOM），不做全量重扫。
+    debouncedHydrateMedia = debounce(() => {
+      void hydrateMissingMedia();
+    }, 300);
+    for (const evt of [
+      event_types4.CHARACTER_MESSAGE_RENDERED,
+      event_types4.USER_MESSAGE_RENDERED,
+      event_types4.MESSAGE_UPDATED,
+      event_types4.MESSAGE_SWIPED,
+      event_types4.CHAT_CHANGED
+    ]) {
+      if (evt) {
+        eventSource21.on(evt, () => debouncedHydrateMedia());
+      }
+    }
     eventSource21.on(event_types4.GENERATION_ENDED, async (data) => {
       window.zidongdianji = true;
       if (autoClickTimer) {
@@ -45261,6 +45889,7 @@ var init_mainSettingsModule = __esm({
 - clickToPreview: \u5E03\u5C14\u5B57\u7B26\u4E32 "true"/"false", \u5355\u51FB\u56FE\u7247\u9884\u89C8
 - newlineFixEnabled: \u5E03\u5C14\u5B57\u7B26\u4E32 "true"/"false", \u6362\u884C\u4FEE\u590D
 - enablePregen: \u5E03\u5C14\u5B57\u7B26\u4E32 "true"/"false", \u6D41\u5F0F\u9884\u751F\u6210
+- thinkTagFormat: \u5B57\u7B26\u4E32, \u601D\u7EF4\u94FE\u683C\u5F0F\uFF08\u6D41\u5F0F\u9884\u751F\u6210\u8FC7\u6EE4\u7528\uFF0C\u4E00\u884C\u4E00\u7EC4\uFF0C\u5982 <think></think>\uFF0C\u4E5F\u53EF\u5199\u300C\u5F00\u59CB|\u7ED3\u675F\u300D\uFF0C\u7559\u7A7A\u4E0D\u8FC7\u6EE4\uFF09
 - autoLLMImageGen: \u5E03\u5C14\u5B57\u7B26\u4E32 "true"/"false", \u81EA\u52A8LLM\u8BF7\u6C42\u751F\u56FE
 - imageGenInterval: \u6570\u5B57, \u751F\u56FE\u95F4\u9694\u65F6\u95F4\uFF08\u6BEB\u79D2\uFF09
 - randomYushe: \u5E03\u5C14\u5B57\u7B26\u4E32 "true"/"false", \u968F\u673A\u63D0\u793A\u8BCD\u9884\u8BBE\uFF08\u6BCF\u6B21\u751F\u56FE\u968F\u673A\u9009\u62E9\u9884\u8BBE\uFF09
@@ -45294,6 +45923,7 @@ var init_mainSettingsModule = __esm({
 - clickToPreview\uFF08\u5355\u51FB\u56FE\u7247\u9884\u89C8\uFF09\uFF1A\u5F00\u542F\u540E\u5355\u51FB\u56FE\u7247\u4E0A\u534A\u90E8\u5206\uFF0C\u4F1A\u5F39\u51FA\u5927\u56FE\u9884\u89C8\uFF0C\u8FD8\u53EF\u4EE5\u5207\u6362\u67E5\u770B\u5176\u4ED6\u56FE\u7247\u3002
 - newlineFixEnabled\uFF08\u6362\u884C\u4FEE\u590D\uFF09\uFF1A\u4FEE\u590D\u67D0\u4E9B\u60C5\u51B5\u4E0B\u6587\u672C\u6807\u8BB0"###"\u4F1A\u5355\u72EC\u5F00\u4E00\u884C\u7684\u5F02\u5E38\u95EE\u9898\u3002
 - enablePregen\uFF08\u6D41\u5F0F\u9884\u751F\u6210\uFF09\uFF1A\u5728\u6D41\u5F0F\u63A5\u6536\u6D88\u606F\u7684\u8FC7\u7A0B\u4E2D\uFF0C\u63D0\u524D\u5F00\u59CB\u751F\u6210\u56FE\u7247\uFF0C\u51CF\u5C11\u7B49\u5F85\u65F6\u95F4\u3002\uFF08\u4EC5\u4E16\u754C\u4E66\u6A21\u5F0F\u652F\u6301\uFF09
+- thinkTagFormat\uFF08\u601D\u7EF4\u94FE\u683C\u5F0F\uFF09\uFF1A\u6D41\u5F0F\u9884\u751F\u6210\u8BFB\u7684\u662F\u539F\u59CB\u6D41\u5F0F\u6587\u672C\uFF0C\u601D\u8003\u8FC7\u7A0B\u91CC\u7684\u751F\u56FE\u6807\u7B7E\u4E5F\u4F1A\u88AB\u6D3E\u53D1\u51FA\u53BB\u4F46\u6700\u7EC8\u4E0D\u4F1A\u7559\u5728\u6B63\u6587\uFF0C\u767D\u82B1\u989D\u5EA6\u3002\u586B\u4E0A\u601D\u7EF4\u94FE\u6807\u7B7E\u683C\u5F0F\uFF08\u4E00\u884C\u4E00\u7EC4\uFF0C\u5982 <think></think>\uFF09\u5373\u53EF\u6574\u5757\u5254\u9664\uFF1B\u7559\u7A7A\u4E0D\u8FC7\u6EE4\u3002
 - autoLLMImageGen\uFF08\u81EA\u52A8LLM\u8BF7\u6C42\u751F\u56FE\uFF09\uFF1A\u5F00\u542F\u540E\u5F53\u975E\u540C\u5C42\u6D88\u606F\u5339\u914D\u5230\u89E6\u53D1\u6807\u8BB0\u65F6\uFF0C\u81EA\u52A8\u8C03\u7528 LLM \u5C06\u6587\u672C\u53D1\u9001\u7ED9ai\u5E76\u751F\u6210\u56FE\u7247\u63D0\u793A\u8BCD\u3002
 - randomYushe\uFF08\u968F\u673A\u63D0\u793A\u8BCD\u9884\u8BBE\uFF09\uFF1A\u5F00\u542F\u540E\u6BCF\u6B21\u751F\u56FE\u65F6\u4ECE\u6240\u6709\u63D0\u793A\u8BCD\u9884\u8BBE\u4E2D\u968F\u673A\u9009\u62E9\u4E00\u4E2A\u4F7F\u7528\uFF0C\u800C\u975E\u4F7F\u7528\u5F53\u524D\u56FA\u5B9A\u7684\u9884\u8BBE\u3002\u9002\u5408\u5E0C\u671B\u6BCF\u6B21\u751F\u56FE\u98CE\u683C\u591A\u53D8\u7684\u573A\u666F\u3002
 - aiAutonomousResolution\uFF08AI\u81EA\u4E3B\u5206\u8FA8\u7387\uFF09\uFF1A\u5F00\u542F\u540E\uFF0C\u5F53\u751F\u56FE\u811A\u672C\u4ECE\u63D0\u793A\u8BCD\u4E2D\u63D0\u53D6\u5230\u5C3A\u5BF8\uFF08\u5982 832x1216\uFF09\u65F6\uFF0C\u5C06\u81EA\u52A8\u4F7F\u7528\u8BE5\u5C3A\u5BF8\u8986\u76D6\u56FA\u5B9A\u5206\u8FA8\u7387\u8BBE\u7F6E\u3002\u5173\u95ED\u65F6\u4E0D\u518D\u8986\u76D6\uFF0C\u4F46\u4ECD\u4F1A\u4ECE\u63D0\u793A\u8BCD\u4E2D\u5220\u9664\u8BE5\u5C3A\u5BF8\u6807\u8BB0\u3002\u9ED8\u8BA4\u5F00\u542F\u3002
@@ -51778,6 +52408,7 @@ var init_configDescriptions = __esm({
       endTag: "\u56FE\u7247\u89E6\u53D1\u65F6\u7684\u7ED3\u675F\u6807\u8BC6\u7B26\uFF0C\u5982 '###'",
       insertOriginalText: "\u662F\u5426\u5728\u751F\u6210\u7684\u56FE\u7247\u540E\u4FDD\u7559\u63D2\u5165\u539F\u59CB\u5185\u5BB9 (\u5E03\u5C14\u5B57\u7B26\u4E32)",
       enablePregen: "\u662F\u5426\u542F\u7528\u667A\u80FD\u9884\u751F\u6210\u673A\u5236\u4EE5\u52A0\u5FEB\u54CD\u5E94\uFF0C\u5728ai\u6D41\u5F0F\u8FD4\u56DE\u7684\u9014\u4E2D\u6355\u83B7\u751F\u56FE\u5173\u952E\u8BCD\u7ACB\u5373\u9884\u751F\u6210\u56FE\u7247\uFF0C\u52A0\u5FEB\u751F\u56FE\u8FDB\u5EA6\uFF0C\u4EC5\u652F\u6301\u9152\u9986\u5168\u5C40\u4E16\u754C\u4E66\u7684\u6A21\u5F0F (\u5E03\u5C14\u5B57\u7B26\u4E32)",
+      thinkTagFormat: "\u601D\u7EF4\u94FE\u683C\u5F0F\uFF0C\u6D41\u5F0F\u9884\u751F\u6210\u636E\u6B64\u5254\u9664\u601D\u8003\u5185\u5BB9\u91CC\u7684\u751F\u56FE\u6807\u7B7E\uFF0C\u4E00\u884C\u4E00\u7EC4\u5982 <think></think>\uFF0C\u4E5F\u53EF\u5199\u300C\u5F00\u59CB|\u7ED3\u675F\u300D\uFF0C\u7559\u7A7A\u4E0D\u8FC7\u6EE4 (\u5B57\u7B26\u4E32)",
       // 核心生成参数 - 尺寸和步数
       sd_csteps: "Stable Diffusion (SD) \u751F\u6210\u6B65\u6570",
       sd_cwidth: "Stable Diffusion (SD) \u751F\u6210\u5BBD\u5EA6",
@@ -62522,8 +63153,9 @@ Scheduler: ${payload.scheduler}
         taskQueue.completeTask(taskId, false);
         throw new Error("Endpoint did not return image data.");
       }
-      const videoFormats = ["mp4", "webm", "gif", "avi", "mov"];
+      const videoFormats = ["mp4", "webm", "avi", "mov"];
       const isVideo = videoFormats.some((fmt) => format && format.toLowerCase().includes(fmt));
+      const isGif = format && format.toLowerCase().includes("gif");
       const mediaType = isVideo ? "\u89C6\u9891" : "\u56FE\u7247";
       addLog(`${mediaType} \u751F\u6210\u6210\u529F(jiuguan client)\u3002`);
       const mimePrefix = isVideo ? "video" : "image";
@@ -62533,9 +63165,9 @@ Scheduler: ${payload.scheduler}
           mimeType = "mp4";
         } else if (format.includes("webm")) {
           mimeType = "webm";
-        } else if (format.includes("gif")) {
-          mimeType = "gif";
         }
+      } else if (isGif) {
+        mimeType = "gif";
       }
       imageUrl = `data:${mimePrefix}/${mimeType};base64,${data}`;
       setTimeout(() => {
@@ -62552,6 +63184,8 @@ Scheduler: ${payload.scheduler}
       let finalFormat = format;
       if (isVideo) {
         finalFormat = `video/${mimeType}`;
+      } else if (isGif) {
+        finalFormat = "image/gif";
       }
       return { image: imageUrl, change: change_ || "", isVideo, format: finalFormat, genParams: _comfy_gen_params };
     } else {
@@ -62610,32 +63244,46 @@ Scheduler: ${payload.scheduler}
           }
           if (re.hasOwnProperty(id)) {
             let getImageInfoFromOutputs = function(outputs) {
+              const videoExtensions = [".mp4", ".webm", ".mov", ".avi", ".mkv", ".flv", ".wmv"];
+              let imageOnlyResult = null;
               for (const key in outputs) {
                 const value = outputs[key];
-                if (value.images && value.images.length > 0) {
+                if (value.gifs && value.gifs.length > 0) {
+                  const gif = value.gifs[0];
+                  const isVideoByFormat = gif.format && gif.format.startsWith("video/");
+                  const isVideoByExt = videoExtensions.some((ext) => gif.filename && gif.filename.toLowerCase().endsWith(ext));
+                  const isVideo2 = isVideoByFormat || isVideoByExt;
+                  return {
+                    filename: gif.filename,
+                    subfolder: gif.subfolder || "",
+                    isVideo: isVideo2,
+                    format: gif.format || (isVideo2 ? "video/mp4" : "image/gif")
+                  };
+                }
+                if (value.images && value.images.length > 0 && !imageOnlyResult) {
                   const outputImage = value.images.find((img) => img.type === "output");
                   if (outputImage) {
-                    return {
+                    const isVideoByExt = videoExtensions.some((ext) => outputImage.filename && outputImage.filename.toLowerCase().endsWith(ext));
+                    const isVideoByFormat = outputImage.format && outputImage.format.startsWith("video/");
+                    const isVideo = isVideoByExt || isVideoByFormat;
+                    if (isVideo) {
+                      return {
+                        filename: outputImage.filename,
+                        subfolder: outputImage.subfolder || "",
+                        isVideo: true,
+                        format: outputImage.format || "video/mp4"
+                      };
+                    }
+                    imageOnlyResult = {
                       filename: outputImage.filename,
                       subfolder: outputImage.subfolder || "",
                       isVideo: false,
                       format: "image"
                     };
                   }
-                  continue;
-                }
-                if (value.gifs && value.gifs.length > 0) {
-                  const gif = value.gifs[0];
-                  const isVideo2 = gif.format && gif.format.startsWith("video/");
-                  return {
-                    filename: gif.filename,
-                    subfolder: gif.subfolder || "",
-                    isVideo: isVideo2,
-                    format: gif.format || "image/gif"
-                  };
                 }
               }
-              return null;
+              return imageOnlyResult;
             };
             let imageInfo = getImageInfoFromOutputs(re[id]["outputs"]);
             if (!imageInfo) {
@@ -62733,7 +63381,7 @@ async function comfyuigenerate(requestData) {
   try {
     const { image: imageUrl, change: returnedChange, isVideo, format, genParams } = await generateComfyUIImage({ prompt: prompt2, width, height, change, extraNegativePrompt });
     if (extension_settings46[extensionName].cache != "0") {
-      await setItemImg(prompt2, imageUrl, { change: returnedChange, isVideo, format, genParams });
+      await persistWithDeadline(setItemImg(prompt2, imageUrl, { change: returnedChange, isVideo, format, genParams }), "comfyui");
       addLog(`${isVideo ? "\u89C6\u9891" : "\u56FE\u50CF"}\u5DF2\u5B58\u5165\u6570\u636E\u5E93 for prompt: ${prompt2}`);
     } else {
       addLog(`\u7F13\u5B58\u8BBE\u7F6E\u4E3A\u4E0D\u5B58\u5165\u6570\u636E\u5E93`);
@@ -62895,7 +63543,7 @@ async function readOpenAIResponse(response) {
     usage: usage || void 0
   };
 }
-async function generateBananaImage({ prompt: prompt2, width, height, change, retouchPrompt, retouchImage, videoPrompt, videoImage }) {
+async function generateBananaImage({ prompt: prompt2, width, height, change, retouchPrompt, retouchImage, videoPrompt, videoImage, pairedVideoPrompt }) {
   clearLog();
   const taskId = taskQueue.addTask({
     name: (prompt2 || "").substring(0, 30) + (prompt2 && prompt2.length > 30 ? "..." : ""),
@@ -62998,9 +63646,14 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
       const result = await readOpenAIResponse(response);
       const content = result.choices?.[0]?.message?.content;
       if (typeof content === "string") {
-        const videoSrcMatch = content.match(/src="([^"]+\.mp4[^"]*)"/);
-        if (videoSrcMatch && videoSrcMatch[1]) {
-          const videoUrl = videoSrcMatch[1];
+        const videoSrcRegex = /src="([^"]+\.(?:mp4|webm|mov|avi)[^"]*)"/i;
+        const markdownVideoRegex = /!\[.*?\]\(((?:https?:\/\/)[^\s\)]+\.(?:mp4|webm|mov|avi)(?:\?[^\s\)]*)?)\)/i;
+        const plainVideoUrlRegex = /((?:https?:\/\/)[^\s"'<>]+\.(?:mp4|webm|mov|avi)(?:\?[^\s]*)?)/i;
+        const videoSrcMatch = content.match(videoSrcRegex);
+        const markdownVideoMatch = content.match(markdownVideoRegex);
+        const plainVideoMatch = content.match(plainVideoUrlRegex);
+        const videoUrl = videoSrcMatch?.[1] || markdownVideoMatch?.[1] || plainVideoMatch?.[1];
+        if (videoUrl) {
           addLog(`[Banana] Video URL extracted: ${videoUrl}`);
           try {
             const videoResponse = await fetch(videoUrl, { headers: getDirectHeaders() });
@@ -63008,24 +63661,25 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
               throw new Error(`Failed to fetch video: ${videoResponse.status}`);
             }
             const videoBlob = await videoResponse.blob();
+            const detectedFormat = videoBlob.type && videoBlob.type.startsWith("video/") ? videoBlob.type : "video/mp4";
             const videoDataUrl = await new Promise((resolve, reject) => {
               const reader = new FileReader();
               reader.onloadend = () => resolve(reader.result);
               reader.onerror = reject;
               reader.readAsDataURL(videoBlob);
             });
-            addLog(`[Banana] Video downloaded (${(videoBlob.size / 1024 / 1024).toFixed(2)} MB)`);
+            addLog(`[Banana] Video downloaded (${(videoBlob.size / 1024 / 1024).toFixed(2)} MB, ${detectedFormat})`);
             taskQueue.completeTask(taskId, true);
             currentTaskId2 = null;
             const changeClean = change.replaceAll("{\u89C6\u9891}", "");
-            return { image: videoDataUrl, change: changeClean || prompt2, isVideo: true, format: "video/mp4", originalUrl: videoUrl, genParams: _videoGenParams };
+            return { image: videoDataUrl, change: changeClean || prompt2, isVideo: true, format: detectedFormat, originalUrl: videoUrl, genParams: _videoGenParams };
           } catch (fetchError) {
             addLog(`[Banana] Failed to download video: ${fetchError.message}`);
             throw new Error(`\u89C6\u9891\u4E0B\u8F7D\u5931\u8D25: ${fetchError.message}`);
           }
         }
       }
-      throw new Error("Video response did not contain a valid MP4 URL");
+      throw new Error("Video response did not contain a valid video URL");
     } catch (error) {
       addLog(`[Banana] \u89C6\u9891\u6A21\u5F0F\u9519\u8BEF: ${error.message}`);
       if (error.name === "AbortError" || error.message === "\u4EFB\u52A1\u5DF2\u53D6\u6D88") {
@@ -63138,6 +63792,17 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
       size: imageSize,
       response_format: "b64_json"
     };
+    // 图生视频：工作流里串了生图与生视频两段，两段提示词得各走各的入口。
+    // 主 prompt 交给视频段——后端把它写进工作流的主提示词节点；生图段改走自定义参数，
+    // 参数名就是后端管理界面里给那个多行文本参数起的名字。只有真的配到第二段时才带 custom，
+    // 其余情况请求体和以前一模一样，换回别的 OpenAI 兼容后端不受影响。
+    const pairedPromptKey = String(bananaSettings.grokVideoPromptKey || "image_prompt").trim();
+    const usePairedVideo = String(bananaSettings.grokVideoPair) === "true" && !!pairedVideoPrompt && !!pairedPromptKey;
+    if (usePairedVideo) {
+      grokPayload.prompt = pairedVideoPrompt;
+      grokPayload.custom = { [pairedPromptKey]: grokFinalPrompt };
+      addLog(`[Banana] 图生视频：视频提示词走 prompt，生图提示词走 custom.${pairedPromptKey}`);
+    }
     const grokRequestUrl = grokDirectUrl;
     const grokRequestHeaders = getDirectHeaders("application/json", `Bearer ${apiKey}`);
     addLog(`[Banana] Grok \u6A21\u5F0F\u53D1\u9001\u8BF7\u6C42\u5230: ${grokRequestUrl}`);
@@ -63160,33 +63825,64 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
         throw new Error(`Grok \u54CD\u5E94\u7F3A\u5C11 data[0]\uFF0C\u539F\u59CB\u54CD\u5E94: ${JSON.stringify(grokResult).slice(0, 500)}`);
       }
       let imageUrl = "";
+      let isVideoContent = false;
+      let videoFormat = "image";
+      let videoOriginalUrl = "";
       if (item.b64_json) {
-        imageUrl = `data:image/png;base64,${item.b64_json}`;
-        addLog("[Banana] Grok \u6A21\u5F0F\uFF1A\u4ECE b64_json \u63D0\u53D6\u5230\u56FE\u7247");
+        // 服务端（如 runninghub-proxy）会在 mime_type 里明确回传 video/mp4，优先采信；
+        // 只有缺失时才回落到魔术字节嗅探（它只认 ftyp/EBML，遇到 styp 或前置 free box 的 mp4 会误判成图片）。
+        const declaredMime = typeof item.mime_type === "string" ? item.mime_type : "";
+        const sniffedMime = detectBase64Mime(item.b64_json);
+        const detectedMime = declaredMime.startsWith("video/") ? declaredMime : sniffedMime || declaredMime;
+        if (detectedMime && detectedMime.startsWith("video/")) {
+          imageUrl = `data:${detectedMime};base64,${item.b64_json}`;
+          isVideoContent = true;
+          videoFormat = detectedMime;
+          // \u670D\u52A1\u7AEF\u56DE\u4F20 b64_json \u7684\u540C\u65F6\u4E5F\u7ED9\u4E86 url\uFF0C\u91C7\u96C6\u4E0B\u6765\u5F53\u64AD\u653E\u5907\u7528\u6E90\uFF1A\u89C6\u9891 data URL \u52A8\u8F84\u51E0 MB\uFF0C
+          // blob \u64AD\u653E\u5931\u8D25\u65F6\u53EF\u4EE5\u76F4\u63A5\u56DE\u9000\u5230 HTTP \u76F4\u94FE\uFF0C\u800C\u4E0D\u662F\u53EA\u80FD\u5F39\u300C\u65E0\u6CD5\u64AD\u653E\u300D\u3002
+          videoOriginalUrl = typeof item.url === "string" ? item.url : "";
+          addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u4ECE b64_json \u68C0\u6D4B\u5230\u89C6\u9891 (${detectedMime})`);
+        } else {
+          const imageMime = detectedMime.startsWith("image/") ? detectedMime : "image/png";
+          imageUrl = `data:${imageMime};base64,${item.b64_json}`;
+          addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u4ECE b64_json \u63D0\u53D6\u5230\u56FE\u7247 (${imageMime})`);
+        }
       } else if (item.url) {
-        addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u4E0B\u8F7D\u56FE\u7247 URL ${item.url}`);
+        videoOriginalUrl = item.url;
+        addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u4E0B\u8F7D\u5A92\u4F53 URL ${item.url}`);
         const imgResp = await fetch(item.url, { headers: getDirectHeaders() });
         if (!imgResp.ok) {
-          throw new Error(`\u4E0B\u8F7D\u56FE\u7247\u5931\u8D25: ${imgResp.status}`);
+          throw new Error(`\u4E0B\u8F7D\u5931\u8D25: ${imgResp.status}`);
         }
         const blob = await imgResp.blob();
+        if (blob.type && blob.type.startsWith("video/")) {
+          isVideoContent = true;
+          videoFormat = blob.type;
+          addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u68C0\u6D4B\u5230\u89C6\u9891 (${blob.type}, ${(blob.size / 1024 / 1024).toFixed(2)} MB)`);
+        }
         imageUrl = await new Promise((resolve, reject) => {
           const reader = new FileReader();
           reader.onloadend = () => resolve(reader.result);
           reader.onerror = reject;
           reader.readAsDataURL(blob);
         });
+        if (imageUrl.startsWith("data:video/")) {
+          isVideoContent = true;
+          const mimeMatch = imageUrl.match(/^data:(video\/[^;]+);/);
+          if (mimeMatch) videoFormat = mimeMatch[1];
+          addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A\u786E\u8BA4\u4E3A\u89C6\u9891 (${videoFormat})`);
+        }
       }
       if (!imageUrl) {
-        throw new Error("Grok \u54CD\u5E94\u672A\u5305\u542B\u56FE\u7247\uFF08b64_json/url \u5747\u4E3A\u7A7A\uFF09");
+        throw new Error("Grok \u54CD\u5E94\u672A\u5305\u542B\u5A92\u4F53\uFF08b64_json/url \u5747\u4E3A\u7A7A\uFF09");
       }
-      if (String(extension_settings47[extensionName].convertToJpegStorage) === "true") {
+      if (!isVideoContent && String(extension_settings47[extensionName].convertToJpegStorage) === "true") {
         imageUrl = await convertImageToJpeg(imageUrl);
       }
-      addLog("[Banana] Grok \u6A21\u5F0F\uFF1A\u56FE\u7247\u751F\u6210\u6210\u529F");
+      addLog(`[Banana] Grok \u6A21\u5F0F\uFF1A${isVideoContent ? "\u89C6\u9891" : "\u56FE\u7247"}\u751F\u6210\u6210\u529F`);
       taskQueue.completeTask(taskId, true);
       currentTaskId2 = null;
-      return { image: imageUrl, change: change_ || "", genParams: _banana_gen_params };
+      return { image: imageUrl, change: change_ || "", isVideo: isVideoContent, format: videoFormat, originalUrl: videoOriginalUrl, genParams: _banana_gen_params };
     } catch (error) {
       addLog(`[Banana] Grok \u6A21\u5F0F\u9519\u8BEF: ${error.message}`);
       console.error("[Banana] Grok mode error:", error);
@@ -63401,35 +64097,44 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
     if (change && change.includes("{\u89C6\u9891}")) {
       const content = result.choices?.[0]?.message?.content;
       if (typeof content === "string") {
-        const videoSrcMatch = content.match(/src="([^"]+\.mp4[^"]*)"/);
-        if (videoSrcMatch && videoSrcMatch[1]) {
-          const videoUrl = videoSrcMatch[1];
-          addLog(`[Banana] Video URL extracted: ${videoUrl}`);
+        const videoSrcRegex2 = /src="([^"]+\.(?:mp4|webm|mov|avi)[^"]*)"/i;
+        const markdownVideoRegex2 = /!\[.*?\]\(((?:https?:\/\/)[^\s\)]+\.(?:mp4|webm|mov|avi)(?:\?[^\s\)]*)?)\)/i;
+        const plainVideoUrlRegex2 = /((?:https?:\/\/)[^\s"'<>]+\.(?:mp4|webm|mov|avi)(?:\?[^\s]*)?)/i;
+        const videoSrcMatch2 = content.match(videoSrcRegex2);
+        const markdownVideoMatch2 = content.match(markdownVideoRegex2);
+        const plainVideoMatch2 = content.match(plainVideoUrlRegex2);
+        const videoUrl2 = videoSrcMatch2?.[1] || markdownVideoMatch2?.[1] || plainVideoMatch2?.[1];
+        if (videoUrl2) {
+          addLog(`[Banana] Video URL extracted: ${videoUrl2}`);
           try {
-            const videoResponse = await fetch(videoUrl, { headers: getDirectHeaders() });
-            if (!videoResponse.ok) {
-              throw new Error(`Failed to fetch video: ${videoResponse.status}`);
+            const videoResponse2 = await fetch(videoUrl2, { headers: getDirectHeaders() });
+            if (!videoResponse2.ok) {
+              throw new Error(`Failed to fetch video: ${videoResponse2.status}`);
             }
-            const videoBlob = await videoResponse.blob();
-            const videoDataUrl = await new Promise((resolve, reject) => {
+            const videoBlob2 = await videoResponse2.blob();
+            const detectedFormat2 = videoBlob2.type && videoBlob2.type.startsWith("video/") ? videoBlob2.type : "video/mp4";
+            const videoDataUrl2 = await new Promise((resolve, reject) => {
               const reader = new FileReader();
               reader.onloadend = () => resolve(reader.result);
               reader.onerror = reject;
-              reader.readAsDataURL(videoBlob);
+              reader.readAsDataURL(videoBlob2);
             });
-            addLog(`[Banana] Video downloaded (${(videoBlob.size / 1024 / 1024).toFixed(2)} MB)`);
+            addLog(`[Banana] Video downloaded (${(videoBlob2.size / 1024 / 1024).toFixed(2)} MB, ${detectedFormat2})`);
             taskQueue.completeTask(taskId, true);
             currentTaskId2 = null;
-            return { image: videoDataUrl, change: change_ || "", isVideo: true, format: "video/mp4", originalUrl: videoUrl, genParams: _banana_gen_params };
+            return { image: videoDataUrl2, change: change_ || "", isVideo: true, format: detectedFormat2, originalUrl: videoUrl2, genParams: _banana_gen_params };
           } catch (fetchError) {
             addLog(`[Banana] Failed to download video: ${fetchError.message}`);
             throw new Error(`\u89C6\u9891\u4E0B\u8F7D\u5931\u8D25: ${fetchError.message}`);
           }
         }
       }
-      throw new Error("Video response did not contain a valid MP4 URL");
+      throw new Error("Video response did not contain a valid video URL");
     }
     let imageUrl = "";
+    let isVideoContent = false;
+    let videoFormat = "image";
+    let videoOriginalUrl = "";
     const choices = result.choices;
     if (choices && choices.length > 0) {
       const content = choices[0].message?.content;
@@ -63439,6 +64144,13 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
         const firstImage = reasoningDetails.images[0];
         if (firstImage.type === "image_url" && firstImage.image_url) {
           imageUrl = typeof firstImage.image_url === "string" ? firstImage.image_url : firstImage.image_url.url;
+          const videoExtMatch2 = imageUrl && imageUrl.match(/\.(mp4|webm|mov|avi)(?:\?|$)/i);
+          if (videoExtMatch2) {
+            isVideoContent = true;
+            videoFormat = `video/${videoExtMatch2[1].toLowerCase()}`;
+            videoOriginalUrl = imageUrl.startsWith("data:") ? "" : imageUrl;
+            addLog(`[Banana] Detected video in reasoning_details (${videoFormat}).`);
+          }
           addLog("[Banana] Extracted image from reasoning_details.images array.");
         }
       }
@@ -63446,56 +64158,137 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
         for (const item of content) {
           if (item.type === "image_url" && item.image_url) {
             imageUrl = typeof item.image_url === "string" ? item.image_url : item.image_url.url;
+            const videoExtMatch = imageUrl && imageUrl.match(/\.(mp4|webm|mov|avi)(?:\?|$)/i);
+            if (videoExtMatch) {
+              isVideoContent = true;
+              videoFormat = `video/${videoExtMatch[1].toLowerCase()}`;
+              videoOriginalUrl = imageUrl.startsWith("data:") ? "" : imageUrl;
+              addLog(`[Banana] Detected video URL in image_url field (${videoFormat}).`);
+            }
             break;
           }
         }
       } else if (!imageUrl && typeof content === "string") {
-        const markdownImageRegex = /!\[.*?\]\(((?:https?:\/\/|data:image\/[^;]+;base64,)[^\s\)]+)\)/;
-        const match = content.match(markdownImageRegex);
-        if (match && match[1]) {
-          const mdImageData = match[1];
-          if (mdImageData.startsWith("data:image/")) {
+        const markdownMediaRegex = /!\[.*?\]\(((?:https?:\/\/|data:[a-z]+\/[^;]+;base64,)[^\s\)]+)\)/;
+        const videoSrcRegex = /src="([^"]+\.(?:mp4|webm|mov|avi)[^"]*)"/i;
+        const plainVideoUrlRegex = /((?:https?:\/\/)[^\s"'<>]+\.(?:mp4|webm|mov|avi)(?:\?[^\s]*)?)/i;
+        const markdownMatch = content.match(markdownMediaRegex);
+        const videoSrcMatch = content.match(videoSrcRegex);
+        const plainVideoMatch = content.match(plainVideoUrlRegex);
+        if (markdownMatch && markdownMatch[1]) {
+          const mdData = markdownMatch[1];
+          if (mdData.startsWith("data:video/")) {
+            addLog("[Banana] Detected Markdown embedded base64 video.");
+            imageUrl = mdData;
+            isVideoContent = true;
+            const mimeMatch = mdData.match(/^data:(video\/[^;]+);/);
+            videoFormat = mimeMatch ? mimeMatch[1] : "video/mp4";
+            addLog(`[Banana] Extracted base64 video from Markdown (${videoFormat}).`);
+          } else if (mdData.startsWith("data:image/")) {
             addLog("[Banana] Detected Markdown embedded base64 image.");
-            imageUrl = mdImageData;
+            imageUrl = mdData;
             addLog("[Banana] Successfully extracted base64 image from Markdown.");
           } else {
-            addLog("[Banana] Detected Markdown image URL, extracting...");
-            addLog(`[Banana] Markdown image URL: ${mdImageData}`);
+            addLog("[Banana] Detected Markdown media URL, extracting...");
+            addLog(`[Banana] Markdown media URL: ${mdData}`);
+            videoOriginalUrl = mdData;
             try {
-              const imageResponse = await fetch(mdImageData, { headers: getDirectHeaders() });
-              if (!imageResponse.ok) {
-                throw new Error(`Failed to fetch image: ${imageResponse.status}`);
+              const mediaResponse = await fetch(mdData, { headers: getDirectHeaders() });
+              if (!mediaResponse.ok) {
+                throw new Error(`Failed to fetch media: ${mediaResponse.status}`);
               }
-              const imageBlob = await imageResponse.blob();
+              const mediaBlob = await mediaResponse.blob();
+              if (mediaBlob.type && mediaBlob.type.startsWith("video/")) {
+                isVideoContent = true;
+                videoFormat = mediaBlob.type;
+                addLog(`[Banana] Detected video (${mediaBlob.type}, ${(mediaBlob.size / 1024 / 1024).toFixed(2)} MB)`);
+              }
               const base64Data = await new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.onloadend = () => resolve(reader.result);
                 reader.onerror = reject;
-                reader.readAsDataURL(imageBlob);
+                reader.readAsDataURL(mediaBlob);
               });
               imageUrl = base64Data;
-              if (String(extension_settings47[extensionName].convertToJpegStorage) === "true") {
+              if (imageUrl.startsWith("data:video/")) {
+                isVideoContent = true;
+                const mimeMatch = imageUrl.match(/^data:(video\/[^;]+);/);
+                if (mimeMatch) videoFormat = mimeMatch[1];
+                addLog(`[Banana] Confirmed video from data URL (${videoFormat}).`);
+              } else if (!isVideoContent && String(extension_settings47[extensionName].convertToJpegStorage) === "true") {
                 imageUrl = await convertImageToJpeg(imageUrl);
               }
-              addLog("[Banana] Successfully converted Markdown image to base64.");
+              addLog(`[Banana] Successfully converted Markdown media to base64.`);
             } catch (fetchError) {
-              addLog(`[Banana] Failed to fetch Markdown image: ${fetchError.message}`);
-              imageUrl = mdImageData;
+              addLog(`[Banana] Failed to fetch Markdown media: ${fetchError.message}`);
+              imageUrl = mdData;
               addLog("[Banana] Using direct URL as fallback.");
             }
           }
+        } else if (videoSrcMatch && videoSrcMatch[1]) {
+          const vUrl = videoSrcMatch[1];
+          addLog(`[Banana] Detected video URL in src attribute: ${vUrl}`);
+          videoOriginalUrl = vUrl;
+          try {
+            const videoResponse = await fetch(vUrl, { headers: getDirectHeaders() });
+            if (!videoResponse.ok) {
+              throw new Error(`Failed to fetch video: ${videoResponse.status}`);
+            }
+            const videoBlob = await videoResponse.blob();
+            isVideoContent = true;
+            videoFormat = videoBlob.type && videoBlob.type.startsWith("video/") ? videoBlob.type : "video/mp4";
+            addLog(`[Banana] Video downloaded (${(videoBlob.size / 1024 / 1024).toFixed(2)} MB, ${videoFormat})`);
+            imageUrl = await new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onloadend = () => resolve(reader.result);
+              reader.onerror = reject;
+              reader.readAsDataURL(videoBlob);
+            });
+          } catch (fetchError) {
+            addLog(`[Banana] Failed to fetch video: ${fetchError.message}`);
+            imageUrl = vUrl;
+            isVideoContent = true;
+            videoFormat = "video/mp4";
+            addLog("[Banana] Using direct video URL as fallback.");
+          }
+        } else if (plainVideoMatch && plainVideoMatch[1]) {
+          const vUrl = plainVideoMatch[1];
+          addLog(`[Banana] Detected plain video URL: ${vUrl}`);
+          videoOriginalUrl = vUrl;
+          try {
+            const videoResponse = await fetch(vUrl, { headers: getDirectHeaders() });
+            if (!videoResponse.ok) {
+              throw new Error(`Failed to fetch video: ${videoResponse.status}`);
+            }
+            const videoBlob = await videoResponse.blob();
+            isVideoContent = true;
+            videoFormat = videoBlob.type && videoBlob.type.startsWith("video/") ? videoBlob.type : "video/mp4";
+            addLog(`[Banana] Video downloaded (${(videoBlob.size / 1024 / 1024).toFixed(2)} MB, ${videoFormat})`);
+            imageUrl = await new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onloadend = () => resolve(reader.result);
+              reader.onerror = reject;
+              reader.readAsDataURL(videoBlob);
+            });
+          } catch (fetchError) {
+            addLog(`[Banana] Failed to fetch video: ${fetchError.message}`);
+            imageUrl = vUrl;
+            isVideoContent = true;
+            videoFormat = "video/mp4";
+            addLog("[Banana] Using direct video URL as fallback.");
+          }
         } else {
-          addLog("[Banana] Response contains text only, no image.");
+          addLog("[Banana] Response contains text only, no image or video.");
         }
       }
     }
     if (!imageUrl) {
-      throw new Error("API response did not contain image in OpenAI format");
+      throw new Error("API response did not contain image or video in OpenAI format");
     }
-    addLog("[Banana] Image generated successfully.");
+    addLog(`[Banana] ${isVideoContent ? "Video" : "Image"} generated successfully.`);
     taskQueue.completeTask(taskId, true);
     currentTaskId2 = null;
-    return { image: imageUrl, change: change_ || "", genParams: _banana_gen_params };
+    return { image: imageUrl, change: change_ || "", isVideo: isVideoContent, format: videoFormat, originalUrl: videoOriginalUrl, genParams: _banana_gen_params };
   } catch (error) {
     addLog(`[Banana] Fetch error: ${error.message}`);
     console.error("[Banana] Fetch error:", error);
@@ -63510,7 +64303,7 @@ async function generateBananaImage({ prompt: prompt2, width, height, change, ret
 }
 async function bananaGenerate(requestData) {
   clearLog();
-  let { id, prompt: prompt2, width, height, change, retouchPrompt, retouchImage, videoPrompt, videoImage } = requestData;
+  let { id, prompt: prompt2, width, height, change, retouchPrompt, retouchImage, videoPrompt, videoImage, pairedVideoPrompt } = requestData;
   currentRequestId = id;
   currentPrompt = prompt2;
   addLog(`[Banana] Received image generation request (ID: ${id})`);
@@ -63536,7 +64329,7 @@ async function bananaGenerate(requestData) {
       const { image: imageUrl, change: returnedChange, isVideo, format, genParams } = await generateComfyUIImage({ prompt: prompt2, width, height, change, extraNegativePrompt: void 0 });
       const cleanedChange = returnedChange.replaceAll("{ComfyUI\u5C40\u90E8\u91CD\u7ED8}", "");
       if (extension_settings47[extensionName].cache != "0") {
-        await setItemImg(prompt2, imageUrl, { change: cleanedChange, genParams });
+        await persistWithDeadline(setItemImg(prompt2, imageUrl, { change: cleanedChange, genParams }), "banana");
         addLog(`\u56FE\u50CF\u5DF2\u5B58\u5165\u6570\u636E\u5E93 for prompt: ${prompt2}`);
       } else {
         addLog(`\u7F13\u5B58\u8BBE\u7F6E\u4E3A\u4E0D\u5B58\u5165\u6570\u636E\u5E93`);
@@ -63568,9 +64361,9 @@ async function bananaGenerate(requestData) {
     return;
   }
   try {
-    const { image: imageUrl, change: returnedChange, isVideo, format, originalUrl, genParams } = await generateBananaImage({ prompt: prompt2, width, height, change, retouchPrompt, retouchImage, videoPrompt, videoImage });
+    const { image: imageUrl, change: returnedChange, isVideo, format, originalUrl, genParams } = await generateBananaImage({ prompt: prompt2, width, height, change, retouchPrompt, retouchImage, videoPrompt, videoImage, pairedVideoPrompt });
     if (extension_settings47[extensionName].cache != "0") {
-      await setItemImg(prompt2, imageUrl, { change: change_, isVideo: isVideo || false, format: format || "image", originalUrl: originalUrl || "", genParams });
+      await persistWithDeadline(setItemImg(prompt2, imageUrl, { change: change_, isVideo: isVideo || false, format: format || "image", originalUrl: originalUrl || "", genParams }), "banana");
       addLog(`\u56FE\u50CF\u5DF2\u5B58\u5165\u6570\u636E\u5E93 for prompt: ${prompt2}`);
       if (extension_settings47[extensionName].banana.cishu) {
         extension_settings47[extensionName].banana.cishu = extension_settings47[extensionName].banana.cishu + 1;
@@ -63593,16 +64386,6 @@ async function bananaGenerate(requestData) {
       format: format || "image",
       originalUrl: originalUrl || ""
     });
-    eventSource24.emit("generate-image-response", {
-      id,
-      success: true,
-      imageData: imageUrl,
-      prompt: prompt2,
-      change: change_,
-      isVideo: isVideo || false,
-      format: format || "image",
-      originalUrl: originalUrl || ""
-    });
     addLog(`[Banana] Emitted success response for ID: ${id}`);
   } catch (error) {
     const errorMessage = `[Banana] Generation failed for ID ${id}: ${error.message}`;
@@ -63610,12 +64393,6 @@ async function bananaGenerate(requestData) {
     console.error(errorMessage);
     recordImageGeneration("banana", false);
     eventSource24.emit(EventType.GENERATE_IMAGE_RESPONSE, {
-      id,
-      success: false,
-      error: error.message,
-      prompt: prompt2
-    });
-    eventSource24.emit("generate-image-response", {
       id,
       success: false,
       error: error.message,
@@ -63631,12 +64408,6 @@ function handleCancelBananaTask(data) {
     addLog(`[Banana] \u53D6\u6D88\u5F53\u524D\u4EFB\u52A1\uFF0C\u53D1\u9001\u5931\u8D25\u54CD\u5E94 (ID: ${currentRequestId})`);
     recordImageGeneration("banana", false);
     eventSource24.emit(EventType.GENERATE_IMAGE_RESPONSE, {
-      id: currentRequestId,
-      success: false,
-      error: "\u4EFB\u52A1\u5DF2\u53D6\u6D88",
-      prompt: currentPrompt || ""
-    });
-    eventSource24.emit("generate-image-response", {
       id: currentRequestId,
       success: false,
       error: "\u4EFB\u52A1\u5DF2\u53D6\u6D88",
@@ -64062,7 +64833,7 @@ async function sdGenerate(requestData) {
       const { image: imageUrl, change: returnedChange, isVideo, format, genParams } = await generateComfyUIImage({ prompt: prompt2, width, height, change, extraNegativePrompt });
       const cleanedChange = returnedChange.replaceAll("{ComfyUI\u5C40\u90E8\u91CD\u7ED8}", "");
       if (extension_settings48[extensionName].cache != "0") {
-        await setItemImg(prompt2, imageUrl, { change: cleanedChange, genParams });
+        await persistWithDeadline(setItemImg(prompt2, imageUrl, { change: cleanedChange, genParams }), "sd");
         addLog(`\u56FE\u50CF\u5DF2\u5B58\u5165\u6570\u636E\u5E93 for prompt: ${prompt2}`);
       } else {
         addLog(`\u7F13\u5B58\u8BBE\u7F6E\u4E3A\u4E0D\u5B58\u5165\u6570\u636E\u5E93`);
@@ -64096,7 +64867,7 @@ async function sdGenerate(requestData) {
   try {
     const { image: imageUrl, change: returnedChange, genParams } = await generateSDImage({ prompt: prompt2, width, height, change, extraNegativePrompt });
     if (extension_settings48[extensionName].cache != "0") {
-      await setItemImg(prompt2, imageUrl, { change: returnedChange, genParams });
+      await persistWithDeadline(setItemImg(prompt2, imageUrl, { change: returnedChange, genParams }), "sd");
       addLog(`\u56FE\u50CF\u5DF2\u5B58\u5165\u6570\u636E\u5E93 for prompt: ${prompt2}`);
     } else {
       addLog(`\u7F13\u5B58\u8BBE\u7F6E\u4E3A\u4E0D\u5B58\u5165\u6570\u636E\u5E93`);
@@ -68694,7 +69465,7 @@ async function novelaigenerate(requestData) {
       const cleanedChange = returnedChange.replaceAll("{ComfyUI\u5C40\u90E8\u91CD\u7ED8}", "");
       try {
         if (extension_settings52[extensionName].cache != "0") {
-          await setItemImg(prompt2, imageUrl, { change: cleanedChange, isVideo, format, genParams });
+          await persistWithDeadline(setItemImg(prompt2, imageUrl, { change: cleanedChange, isVideo, format, genParams }), "novelai");
           addLog(`\u56FE\u50CF\u5DF2\u5B58\u5165\u6570\u636E\u5E93 for prompt: ${prompt2}`);
         } else {
           addLog(`\u7F13\u5B58\u8BBE\u7F6E\u4E3A\u4E0D\u5B58\u5165\u6570\u636E\u5E93`);
@@ -68726,7 +69497,7 @@ async function novelaigenerate(requestData) {
       const cleanedChange = returnedChange.replaceAll("{NovelAI\u5C40\u90E8\u91CD\u7ED8}", "");
       try {
         if (extension_settings52[extensionName].cache != "0") {
-          await setItemImg(prompt2, imageUrl, { change: cleanedChange, genParams });
+          await persistWithDeadline(setItemImg(prompt2, imageUrl, { change: cleanedChange, genParams }), "novelai");
           addLog(`\u56FE\u50CF\u5DF2\u5B58\u5165\u6570\u636E\u5E93 for prompt: ${prompt2}`);
         } else {
           addLog(`\u7F13\u5B58\u8BBE\u7F6E\u4E3A\u4E0D\u5B58\u5165\u6570\u636E\u5E93`);
@@ -68778,7 +69549,7 @@ async function novelaigenerate(requestData) {
     const { image: imageUrl, change: returnedChange, genParams } = await generateNovelAIImage({ prompt: prompt2, width, height, change, extraNegativePrompt });
     try {
       if (extension_settings52[extensionName].cache != "0") {
-        await setItemImg(prompt2, imageUrl, { change: returnedChange, genParams });
+        await persistWithDeadline(setItemImg(prompt2, imageUrl, { change: returnedChange, genParams }), "novelai");
         addLog(`\u56FE\u50CF\u5DF2\u5B58\u5165\u6570\u636E\u5E93 for prompt: ${prompt2}`);
       } else {
         addLog(`\u7F13\u5B58\u8BBE\u7F6E\u4E3A\u4E0D\u5B58\u5165\u6570\u636E\u5E93`);
@@ -69837,6 +70608,8 @@ async function handleExportLog() {
 `;
   settingsInfo += `- \u542F\u7528\u6D41\u5F0F\u9884\u751F\u6210: ${settings3.enablePregen ? "\u662F" : "\u5426"}
 `;
+  settingsInfo += `- \u601D\u7EF4\u94FE\u683C\u5F0F: ${settings3.thinkTagFormat || "\uFF08\u672A\u8BBE\u7F6E\uFF0C\u4E0D\u8FC7\u6EE4\uFF09"}
+`;
   settingsInfo += `- \u81EA\u52A8LLM\u8BF7\u6C42\u751F\u56FE(\u975E\u540C\u5C42): ${settings3.autoLLMImageGen ? "\u662F" : "\u5426"}
 `;
   settingsInfo += `- \u968F\u673A\u63D0\u793A\u8BCD\u9884\u8BBE: ${settings3.randomYushe ? "\u662F" : "\u5426"}
@@ -69862,6 +70635,9 @@ async function handleExportLog() {
   settingsInfo += `- \u7F13\u5B58 Vibe \u5230\u9152\u9986: ${settings3.vibeJiuguanchucun ? "\u662F" : "\u5426"}
 `;
   settingsInfo += `- \u8F6CJPEG\u50A8\u5B58: ${settings3.convertToJpegStorage ? "\u662F" : "\u5426"}
+`;
+  const insertPositionLabels = { default: "\u9ED8\u8BA4\u6807\u7B7E\u4F4D\u7F6E", streaming: "\u751F\u6210\u540E\u7ACB\u523B\u63D2\u5165\u6700\u65B0\u6587\u5B57\u4F4D\u7F6E", bottom: "\u63D2\u5165\u697C\u5C42\u6700\u5E95\u90E8" };
+  settingsInfo += `- \u63D2\u5165\u4F4D\u7F6E: ${insertPositionLabels[settings3.mediaInsertPosition] || settings3.mediaInsertPosition || "\u9ED8\u8BA4"}
 
 `;
   settingsInfo += `3. \u4E3B\u8981\u5927\u6A21\u578B (LLM) \u8BBE\u7F6E
@@ -76810,6 +77586,10 @@ function initBananaUI(settingsModal) {
   const imageSizeSelect = document.getElementById("st-chatu8-banana-image-size-select");
   const imageSizeInput = document.getElementById("st-chatu8-banana-image-size-input");
   const useGrokFormatCheckbox = document.getElementById("st-chatu8-banana-use-grok-format");
+  const videoPairCheckbox = document.getElementById("st-chatu8-banana-video-pair");
+  const videoPairStartInput = document.getElementById("st-chatu8-banana-video-pair-start");
+  const videoPairEndInput = document.getElementById("st-chatu8-banana-video-pair-end");
+  const videoPairKeyInput = document.getElementById("st-chatu8-banana-video-pair-key");
   const editPresetSelect = document.getElementById("st-chatu8-banana-edit-preset");
   const videoModelSelect = document.getElementById("st-chatu8-banana-video-model-select");
   const videoPresetSelect = document.getElementById("st-chatu8-banana-video-preset");
@@ -77231,6 +78011,31 @@ function initBananaUI(settingsModal) {
       saveSettingsDebounced46();
     });
   }
+  if (videoPairCheckbox) {
+    videoPairCheckbox.addEventListener("change", () => {
+      getBananaSettings().grokVideoPair = videoPairCheckbox.checked ? "true" : "false";
+      saveSettingsDebounced46();
+    });
+  }
+  // 标记留空会让正则退化成匹配一切，这里一律回落到默认值，不把空串存进设置。
+  if (videoPairStartInput) {
+    videoPairStartInput.addEventListener("input", () => {
+      getBananaSettings().grokVideoStartTag = videoPairStartInput.value.trim() || "video###";
+      saveSettingsDebounced46();
+    });
+  }
+  if (videoPairEndInput) {
+    videoPairEndInput.addEventListener("input", () => {
+      getBananaSettings().grokVideoEndTag = videoPairEndInput.value.trim() || "###";
+      saveSettingsDebounced46();
+    });
+  }
+  if (videoPairKeyInput) {
+    videoPairKeyInput.addEventListener("input", () => {
+      getBananaSettings().grokVideoPromptKey = videoPairKeyInput.value.trim() || "image_prompt";
+      saveSettingsDebounced46();
+    });
+  }
   if (editPresetSelect) {
     editPresetSelect.addEventListener("change", () => {
       getBananaSettings().editPresetId = editPresetSelect.value;
@@ -77410,6 +78215,18 @@ function initBananaUI(settingsModal) {
   }
   if (useGrokFormatCheckbox) {
     useGrokFormatCheckbox.checked = String(bananaSettings.useGrokFormat) === "true";
+  }
+  if (videoPairCheckbox) {
+    videoPairCheckbox.checked = String(bananaSettings.grokVideoPair) === "true";
+  }
+  if (videoPairStartInput) {
+    videoPairStartInput.value = bananaSettings.grokVideoStartTag || "video###";
+  }
+  if (videoPairEndInput) {
+    videoPairEndInput.value = bananaSettings.grokVideoEndTag || "###";
+  }
+  if (videoPairKeyInput) {
+    videoPairKeyInput.value = bananaSettings.grokVideoPromptKey || "image_prompt";
   }
   const savedVideoModel = bananaSettings.videoModel || "";
   if (videoModelSelect && savedVideoModel) {
@@ -82732,6 +83549,23 @@ var SettingsHelpText = {
 - \u4EC5\u652F\u6301**\u9152\u9986\u5168\u5C40\u4E16\u754C\u4E66**\u7684\u89E6\u53D1\u6A21\u5F0F
 - \u9700\u8981\u540E\u7AEF\u54CD\u5E94\u8DB3\u591F\u5FEB\u624D\u80FD\u4F53\u73B0\u4F18\u52BF`
   },
+  thinkTagFormat: {
+    short: "\u6D41\u5F0F\u9884\u751F\u6210\u65F6\uFF0C\u628A\u601D\u7EF4\u94FE\u91CC\u7684\u751F\u56FE\u6807\u7B7E\u6392\u9664\u6389\uFF0C\u907F\u514D\u767D\u70E7\u989D\u5EA6",
+    long: `### \u601D\u7EF4\u94FE\u683C\u5F0F
+
+**\u6D41\u5F0F\u9884\u751F\u6210**\u8BFB\u7684\u662F\u539F\u59CB\u6D41\u5F0F\u6587\u672C\uFF0C\u6A21\u578B\u601D\u8003\u8FC7\u7A0B\u91CC\u51FA\u73B0\u7684\u751F\u56FE\u6807\u7B7E\u4E5F\u4F1A\u88AB\u5F53\u771F\u6D3E\u53D1\u51FA\u53BB\uFF0C
+\u4F46\u8FD9\u4E9B\u6807\u7B7E\u6700\u7EC8\u5E76\u4E0D\u4F1A\u7559\u5728\u6B63\u6587\u91CC\u2014\u2014\u56FE\u767D\u751F\u6210\u4E86\uFF0C\u989D\u5EA6\u4E5F\u767D\u82B1\u4E86\u3002
+
+\u8FD9\u91CC\u586B\u601D\u7EF4\u94FE\u7684\u6807\u7B7E\u683C\u5F0F\uFF0C\u9884\u751F\u6210\u4F1A\u5148\u628A\u5B83\u4EEC\u6574\u5757\u5254\u9664\u518D\u627E\u751F\u56FE\u6807\u7B7E\uFF1A
+
+- **\u4E00\u884C\u4E00\u7EC4**\uFF0C\u53EF\u4EE5\u586B\u591A\u7EC4\uFF08\u4E0D\u540C\u6A21\u578B\u683C\u5F0F\u4E0D\u540C\uFF09
+- \u5F62\u5982 \`<think></think>\`\u3001\`<thinking></thinking>\`
+- \u975E XML \u683C\u5F0F\u53EF\u4EE5\u5199\u6210\u300C\u5F00\u59CB|\u7ED3\u675F\u300D\uFF0C\u4F8B\u5982 \`[\u601D\u8003]|[/\u601D\u8003]\`
+
+\u7559\u7A7A\u5219\u4E0D\u8FC7\u6EE4\u3002**\u5C1A\u672A\u95ED\u5408**\u7684\u601D\u7EF4\u94FE\uFF08\u8FD8\u5728\u601D\u8003\u4E2D\uFF09\u4E5F\u4F1A\u88AB\u6574\u6BB5\u4E22\u5F03\u3002
+
+> \u53EA\u5F71\u54CD\u6D41\u5F0F\u9884\u751F\u6210\uFF0C\u4E0D\u6539\u53D8\u6B63\u6587\u6E32\u67D3\u3002`
+  },
   autoLLMImageGen: {
     short: "\u975E\u540C\u5C42\u6A21\u5F0F\u4E0B\uFF0C\u81EA\u52A8\u8BF7\u6C42 LLM \u751F\u6210\u56FE\u7247\u63D0\u793A\u8BCD",
     long: `### \u81EA\u52A8 LLM \u8BF7\u6C42\u751F\u56FE\uFF08\u975E\u540C\u5C42\uFF09
@@ -82831,6 +83665,20 @@ image### 1girl, solo, blue hair ###
 > \u{1F4A1} \u5982\u679C\u56FE\u7247\u5F88\u591A\u5BFC\u81F4\u7A7A\u95F4\u7D27\u5F20\uFF0C\u53EF\u4EE5\u5F00\u542F\u3002\u8FFD\u6C42\u753B\u8D28\u8BF7\u5173\u95ED\u3002`
   },
   helpTipsEnabled: "\u5F00\u542F\u540E\uFF0C\u8BBE\u7F6E\u9879\u65C1\u8FB9\u4F1A\u663E\u793A **?** \u5E2E\u52A9\u6C14\u6CE1\uFF08\u9ED8\u8BA4\u5F00\u542F\uFF09",
+  mediaInsertPosition: {
+    short: "\u63A7\u5236\u751F\u6210\u7684\u56FE\u7247/\u89C6\u9891\u63D2\u5165\u5230\u804A\u5929\u6D88\u606F\u4E2D\u7684\u4F4D\u7F6E",
+    long: `### \u751F\u6210\u5185\u5BB9\u63D2\u5165\u4F4D\u7F6E
+
+\u63A7\u5236\u751F\u6210\u7684\u56FE\u7247\u6216\u89C6\u9891\u63D2\u5165\u5230\u804A\u5929\u6D88\u606F\u4E2D\u7684\u4F4D\u7F6E\u3002
+
+| \u6A21\u5F0F | \u8BF4\u660E |
+|------|------|
+| \u9ED8\u8BA4\u6807\u7B7E\u4F4D\u7F6E | \u6309\u7167 AI \u751F\u6210\u7684 \`<image>\` \u6807\u7B7E\u4F4D\u7F6E\u63D2\u5165\uFF08\u539F\u59CB\u884C\u4E3A\uFF09 |
+| \u751F\u6210\u540E\u7ACB\u523B\u63D2\u5165\u6700\u65B0\u6587\u5B57\u4F4D\u7F6E | \u751F\u6210\u5B8C\u6210\u540E\u7ACB\u5373\u5728\u5F53\u524D\u6700\u65B0\u6587\u5B57\u540E\u8FFD\u52A0\uFF0C\u9002\u914D\u6D41\u5F0F\u751F\u6210\u573AI\u672C\u6587\u8FD8\u5728\u8F93\u51FA |
+| \u63D2\u5165\u697C\u5C42\u6700\u5E95\u90E8 | \u76F4\u63A5\u5728\u6D88\u606F\u6700\u5E95\u90E8\u8FFD\u52A0\u5A92\u4F53 |
+
+> \u{1F4A1} \u6D41\u5F0F\u6A21\u5F0F\u9002\u5408 AI \u8FB9\u5199\u8FB9\u751F\u56FE\u7684\u573A\u666F\uFF0C\u751F\u6210\u5B8C\u6210\u540E\u7ACB\u5373\u63D2\u5165\u5230\u5DF2\u6709\u6587\u5B57\u540E\u9762\uFF0C\u4E0D\u7B49\u5F85\u5168\u90E8\u6587\u5B57\u8F93\u51FA\u5B8C\u6210\u3002`
+  },
   randomYushe: "\u5F00\u542F\u540E\uFF0C\u6BCF\u6B21\u751F\u56FE\u65F6\u5C06\u4ECE\u6240\u6709\u63D0\u793A\u8BCD\u9884\u8BBE\u4E2D**\u968F\u673A\u9009\u62E9**\u4E00\u4E2A\u4F7F\u7528\uFF0C\u800C\u975E\u4F7F\u7528\u5F53\u524D\u56FA\u5B9A\u7684\u9884\u8BBE\u3002\u9002\u5408\u5E0C\u671B\u6BCF\u6B21\u751F\u56FE\u98CE\u683C\u591A\u53D8\u7684\u573A\u666F\u3002",
   // ===== Stable Diffusion 页（sd.html） =====
   yusheid: "\u63D0\u793A\u8BCD\u9884\u8BBE\u6863\u4F4D\uFF0C\u53EF\u4FDD\u5B58\u591A\u7EC4\u56FA\u5B9A\u6B63/\u8D1F\u9762\u8BCD\u7EC4\u5408\u5207\u6362\u4F7F\u7528",
@@ -83867,7 +84715,7 @@ async function initUI({ check_update: check_update2 }) {
       settings2.theme_id = "\u9ED8\u8BA4-\u767D\u5929";
     }
     applyTheme(settings2.themes[settings2.theme_id]);
-    const mainKeys = ["scriptEnabled", "helpTipsEnabled", "newlineFixEnabled", "mode", "client", "displayMode", "heavyFrontendMode", "insertOriginalText", "dbclike", "collapseImage", "zidongdianji", "zidongdianji2", "longPressToEdit", "clickToPreview", "startTag", "endTag", "cache", "sdUrl", "st_chatu8_sd_auth", "comfyuiUrl", "novelaiApi", "novelaisite", "novelaiOtherSite", "enableCloudQueue", "cloudQueueUrl", "cloudQueueGreeting", "showQueueGreeting", "novelaimode", "novelai_sampler", "Schedule", "nai3Scale", "cfg_rescale", "AI_use_coords", "sm", "dyn", "nai3Variety", "nai3Deceisp", "sd_cwidth", "sd_cheight", "sd_csteps", "sd_cseed", "sdCfgScale", "restoreFaces", "novelai_width", "novelai_height", "novelai_steps", "novelai_seed", "nai3VibeTransfer", "enableVibeGroupTransfer", "randomVibeGroup", "normalizeRefStrength", "InformationExtracted", "ReferenceStrength", "nai3CharRef", "nai3StylePerception", "comfyui_width", "comfyui_height", "comfyui_steps", "comfyui_seed", "cfg_comfyui", "worker", "ipa", "c_fenwei", "c_xijie", "c_quanzhong", "c_idquanzhong", "AQT_sd", "UCP_sd", "AQT_novelai", "UCP_novelai", "AQT_comfyui", "UCP_comfyui", "addFurryDataset", "sd_cupscale_factor", "sd_chires_fix", "sd_chires_steps", "sd_cdenoising_strength", "sd_cclip_skip", "sd_cadetailer", "worldBookEnabled", "ai_temperature", "ai_top_p", "ai_presence_penalty", "ai_frequency_penalty", "ai_stream", "ai_private", "ai_token", "vocabulary_search_startswith", "vocabulary_search_limit", "vocabulary_search_sort", "enablePregen", "autoLLMImageGen", "randomYushe", "aiAutonomousResolution", "imageAlignment", "imageSizeScale", "imageGenInterval", "translation_system_prompt", "ai_test_system", "ai_test_user", "ai_test_output", "jiuguanchucun", "vibeJiuguanchucun", "convertToJpegStorage", "weilin_lora_fix"];
+    const mainKeys = ["scriptEnabled", "helpTipsEnabled", "newlineFixEnabled", "mode", "client", "displayMode", "heavyFrontendMode", "insertOriginalText", "dbclike", "collapseImage", "zidongdianji", "zidongdianji2", "longPressToEdit", "clickToPreview", "startTag", "endTag", "cache", "sdUrl", "st_chatu8_sd_auth", "comfyuiUrl", "novelaiApi", "novelaisite", "novelaiOtherSite", "enableCloudQueue", "cloudQueueUrl", "cloudQueueGreeting", "showQueueGreeting", "novelaimode", "novelai_sampler", "Schedule", "nai3Scale", "cfg_rescale", "AI_use_coords", "sm", "dyn", "nai3Variety", "nai3Deceisp", "sd_cwidth", "sd_cheight", "sd_csteps", "sd_cseed", "sdCfgScale", "restoreFaces", "novelai_width", "novelai_height", "novelai_steps", "novelai_seed", "nai3VibeTransfer", "enableVibeGroupTransfer", "randomVibeGroup", "normalizeRefStrength", "InformationExtracted", "ReferenceStrength", "nai3CharRef", "nai3StylePerception", "comfyui_width", "comfyui_height", "comfyui_steps", "comfyui_seed", "cfg_comfyui", "worker", "ipa", "c_fenwei", "c_xijie", "c_quanzhong", "c_idquanzhong", "AQT_sd", "UCP_sd", "AQT_novelai", "UCP_novelai", "AQT_comfyui", "UCP_comfyui", "addFurryDataset", "sd_cupscale_factor", "sd_chires_fix", "sd_chires_steps", "sd_cdenoising_strength", "sd_cclip_skip", "sd_cadetailer", "worldBookEnabled", "ai_temperature", "ai_top_p", "ai_presence_penalty", "ai_frequency_penalty", "ai_stream", "ai_private", "ai_token", "vocabulary_search_startswith", "vocabulary_search_limit", "vocabulary_search_sort", "enablePregen", "thinkTagFormat", "autoLLMImageGen", "randomYushe", "aiAutonomousResolution", "imageAlignment", "imageSizeScale", "imageGenInterval", "translation_system_prompt", "ai_test_system", "ai_test_user", "ai_test_output", "jiuguanchucun", "vibeJiuguanchucun", "convertToJpegStorage", "mediaInsertPosition", "weilin_lora_fix"];
     mainKeys.forEach((key) => {
       const element = document.getElementById(key);
       if (element) {
@@ -85094,6 +85942,7 @@ init_config();
 init_config();
 init_utils();
 init_generation_status();
+init_database();
 
 
 function generateStableId3(str) {
@@ -85105,91 +85954,85 @@ function generateStableId3(str) {
   }
   return "chatu8-id-" + Math.abs(hash).toString(36);
 }
-var pregenQueue = /* @__PURE__ */ new Map();
-var isProcessing = false;
-var TaskStatus2 = {
-  QUEUED: "queued",
-  PROCESSING: "processing",
-  COMPLETED: "completed",
-  FAILED: "failed",
-  CANCELLED: "cancelled"
-};
-async function triggerButtonForTask(task) {
-  const { prompt: prompt2 } = task;
-  return new Promise((resolve, reject) => {
-    if (isGenerating(prompt2)) {
-      addLog(`[Pregen] Image generation is already in progress, skipping: ${prompt2}`);
-      task.status = TaskStatus2.COMPLETED;
-      return resolve();
-    }
-    const requestId = generateStableId3(prompt2);
-    startGenerating(prompt2);
-    const imageResponseHandler = (responseData) => {
-      if (responseData.id !== requestId) return;
-      eventSource38.removeListener(EventType.GENERATE_IMAGE_RESPONSE, imageResponseHandler);
-      addLog(`[Pregen] Response listener removed for ID: ${requestId}`);
-      const { success, error, prompt: responsePrompt } = responseData;
-      if (responsePrompt) {
-        stopGenerating(responsePrompt);
-      }
-      if (success) {
-        addLog(`[Pregen] Image generated successfully for: ${responsePrompt}`);
-        task.status = TaskStatus2.COMPLETED;
-        resolve();
-      } else {
-        addLog(`[Pregen] Image generation failed for: ${responsePrompt}. Error: ${error}`);
-        task.status = TaskStatus2.FAILED;
-        reject(new Error(error || "Unknown generation error"));
-      }
-    };
-    eventSource38.on(EventType.GENERATE_IMAGE_RESPONSE, imageResponseHandler);
-    addLog(`[Pregen] Response listener created for ID: ${requestId}`);
-    const requestData = { id: requestId, prompt: prompt2 };
-    eventSource38.emit(EventType.GENERATE_IMAGE_REQUEST, requestData);
-    addLog(`[Pregen] Emitted image generation request for ID: ${requestId}`);
-  });
-}
-async function processQueue() {
-  if (isProcessing) return;
-  const nextTask = Array.from(pregenQueue.values()).find((task) => task.status === TaskStatus2.QUEUED);
-  if (!nextTask) {
-    isProcessing = false;
+var PREGEN_RESPONSE_TIMEOUT_MS = 20 * 60 * 1e3;
+var pregenDispatched = /* @__PURE__ */ new Set();
+async function dispatchPregenTask(prompt2, pairedVideoPrompt = "") {
+  if (isGenerating(prompt2)) {
+    addLog(`[Pregen] 该标签已在生成中，跳过: ${prompt2}`);
     return;
   }
-  isProcessing = true;
-  nextTask.status = TaskStatus2.PROCESSING;
-  addLog(`[Pregen] \u5F00\u59CB\u5904\u7406\u4EFB\u52A1: ${nextTask.prompt}`);
+  // 预生成是直接向后端发请求，绕过了 triggerGeneration 里的图库快路径，
+  // 不自己查一次就会把历史上出过图的标签全部重烧一遍（费时且烧额度）。
   try {
-    await triggerButtonForTask(nextTask);
+    const [cachedUrl] = await getItemImg(prompt2);
+    if (cachedUrl) {
+      addLog(`[Pregen] 图库已有成品，跳过: ${prompt2}`);
+      return;
+    }
   } catch (error) {
-    console.error(`[Pregen] \u5904\u7406\u4EFB\u52A1\u5931\u8D25 ${nextTask.prompt}:`, error);
-    nextTask.status = TaskStatus2.FAILED;
-  } finally {
-    isProcessing = false;
-    setTimeout(processQueue, 100);
+    addLog(`[Pregen] 查询图库失败，按未缓存处理: ${error?.message || error}`);
   }
+  if (isGenerating(prompt2)) {
+    addLog(`[Pregen] 查库期间主流程已抢先发起，跳过: ${prompt2}`);
+    return;
+  }
+  const requestId = generateStableId3(prompt2);
+  startGenerating(prompt2);
+  let settled = false;
+  let staleTimer = null;
+  const imageResponseHandler = (responseData) => {
+    if (responseData.id !== requestId) return;
+    settled = true;
+    clearTimeout(staleTimer);
+    eventSource38.removeListener(EventType.GENERATE_IMAGE_RESPONSE, imageResponseHandler);
+    const { success, error, prompt: responsePrompt } = responseData;
+    // 兜底用 prompt2：取消/异常路径可能回传空 prompt，不清理会让 currentlyGenerating 永久残留，
+    // 之后同一标签的按钮只转圈不发请求。
+    stopGenerating(responsePrompt || prompt2);
+    if (success) {
+      addLog(`[Pregen] 预生成完成: ${responsePrompt || prompt2}`);
+    } else {
+      addLog(`[Pregen] 预生成失败: ${responsePrompt || prompt2}，错误: ${error}`);
+    }
+  };
+  eventSource38.on(EventType.GENERATE_IMAGE_RESPONSE, imageResponseHandler);
+  // 后端若从未回响应（例如出图监听器没挂上），生成锁会永久残留，同一标签之后再也发不出请求，
+  // 这里按和陈旧转圈按钮同一口径超时放行。
+  staleTimer = setTimeout(() => {
+    if (settled) return;
+    settled = true;
+    eventSource38.removeListener(EventType.GENERATE_IMAGE_RESPONSE, imageResponseHandler);
+    stopGenerating(prompt2);
+    pregenDispatched.delete(prompt2);
+    addLog(`[Pregen] 等待响应超时，已释放该标签的生成锁: ${prompt2}`);
+  }, PREGEN_RESPONSE_TIMEOUT_MS);
+  // requestId 仍只由生图段算出，与主流程的按钮保持同一个 key；视频段只是随行参数。
+  eventSource38.emit(EventType.GENERATE_IMAGE_REQUEST, pairedVideoPrompt
+    ? { id: requestId, prompt: prompt2, pairedVideoPrompt }
+    : { id: requestId, prompt: prompt2 });
+  addLog(`[Pregen] 已派发预生成请求 (ID: ${requestId}): ${prompt2}`);
 }
 function add(prompts) {
   if (!Array.isArray(prompts)) return;
-  let addedNew = false;
-  prompts.forEach((prompt2) => {
-    if (!pregenQueue.has(prompt2)) {
-      pregenQueue.set(prompt2, {
-        prompt: prompt2,
-        status: TaskStatus2.QUEUED
-      });
-      addedNew = true;
-      addLog(`[Pregen] \u6DFB\u52A0\u5230\u961F\u5217: ${prompt2}`);
-    }
+  prompts.forEach((item) => {
+    // 开了图生视频时 parsePrompts 给的是 { prompt, pairedVideoPrompt }，其余情况仍是字符串。
+    const prompt2 = typeof item === "string" ? item : item?.prompt;
+    const pairedVideoPrompt = typeof item === "string" ? "" : item?.pairedVideoPrompt || "";
+    if (!prompt2) return;
+    // 只做去重，不等上一张出完：等完成再发下一个，第二个标签轮到时流式早已结束、
+    // 主流程也已经接管，会被 isGenerating 判为「已在生成」而永远发不出去。
+    if (pregenDispatched.has(prompt2)) return;
+    // 先登记再异步派发：查图库有 await，不同步占位会被后续流式分片重复派发同一标签。
+    pregenDispatched.add(prompt2);
+    dispatchPregenTask(prompt2, pairedVideoPrompt).catch((error) => {
+      pregenDispatched.delete(prompt2);
+      console.error(`[Pregen] 派发失败 ${prompt2}:`, error);
+    });
   });
-  if (addedNew) {
-    processQueue();
-  }
 }
 function clear() {
-  pregenQueue.clear();
-  isProcessing = false;
-  addLog("[Pregen] \u961F\u5217\u5DF2\u6E05\u7A7A\u3002");
+  pregenDispatched.clear();
+  addLog("[Pregen] 预生成登记表已清空。");
 }
 var pregenManager = {
   add,
@@ -85197,23 +86040,92 @@ var pregenManager = {
 };
 
 // utils/settings/stream_generate.js
+function escapeRegExpForPregen(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+function getThinkTagPairs() {
+  const raw = extension_settings101[extensionName]?.thinkTagFormat;
+  if (typeof raw !== "string" || !raw.trim()) return [];
+  const pairs = [];
+  raw.split(/[\r\n]+/).forEach((line) => {
+    const item = line.trim();
+    if (!item) return;
+    let start = "";
+    let end = "";
+    if (item.includes("|")) {
+      const parts = item.split("|");
+      start = (parts[0] || "").trim();
+      end = (parts[1] || "").trim();
+    } else {
+      // <think></think> 这种「开始标签紧跟结束标签」的写法：按结尾的 </xxx> 切开
+      const xmlPair = item.match(/^(.*?)(<\/[^<>]*>)$/);
+      if (xmlPair) {
+        start = xmlPair[1].trim();
+        end = xmlPair[2].trim();
+      }
+    }
+    if (start && end) {
+      pairs.push({ start, end });
+    } else {
+      addLog(`[Pregen] 思维链格式无法解析，已跳过该行: ${item}`);
+    }
+  });
+  return pairs;
+}
+function stripThinkingForPregen(text) {
+  const pairs = getThinkTagPairs();
+  if (!pairs.length) return text;
+  let result = text;
+  for (const { start, end } of pairs) {
+    const s = escapeRegExpForPregen(start);
+    const e = escapeRegExpForPregen(end);
+    // 已闭合的思维链整块去掉
+    result = result.replace(new RegExp(`${s}[\\s\\S]*?${e}`, "gi"), "");
+    // 只回传了结束标记（开始标记被上游吃掉）时，开头到结束标记之间都是思考内容
+    result = result.replace(new RegExp(`^[\\s\\S]*?${e}`, "i"), "");
+    // 还没闭合说明「正在思考中」，尾巴整段丢弃：否则思维链里的标签会被抢先派发出去，
+    // 而它最终并不会出现在正文里，等于白烧一次额度。
+    result = result.replace(new RegExp(`${s}[\\s\\S]*$`, "i"), "");
+  }
+  return result;
+}
 function parsePrompts(text) {
   const settings3 = extension_settings101[extensionName];
   if (!settings3.startTag || !settings3.endTag) return [];
-  const escapeRegExp2 = (string) => {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  };
+  const escapeRegExp2 = escapeRegExpForPregen;
+  const visibleText = stripThinkingForPregen(text);
   const start = escapeRegExp2(settings3.startTag);
   const end = escapeRegExp2(settings3.endTag);
   const pattern = new RegExp(`${start}([\\s\\S]*?)${end}`, "g");
-  const matches = [...text.matchAll(pattern)];
-  return matches.map((match) => {
-    let content = match[1].trim().replaceAll("\n", "");
-    content = content.replace(/，/g, ",").replace(/；/g, ";").replace(/：/g, ":");
-    return content;
+  const matches = [...visibleText.matchAll(pattern)];
+  const prompts = matches.map((match) => {
+    // 必须和 createButtonAtPosition 里 link 的算法逐字一致：requestId 和图库 key 都由它算出，
+    // 差一个字符就会变成「预生成存一份、按钮再重新生成一份」，既白等也白烧一次额度。
+    // 所以这里不能再自作主张把全角标点转半角——主流程并不转。
+    return match[1].trim().replaceAll("《", "<").replaceAll("》", ">").replaceAll("\n", "");
   });
+  // 标记同样按「有值就用、没值回落默认」处理，理由见 findAndReplaceInElement 里的说明：
+  // 设置是浅合并，老用户的 banana 对象里没有这几个新键。
+  const banana = settings3.banana || {};
+  const videoPairEnabled = String(banana.grokVideoPair) === "true" && String(banana.useGrokFormat) === "true";
+  if (!videoPairEnabled) return prompts;
+  // 图生视频：生图段往往比视频段先闭合，此刻派发出去就等于把视频提示词丢了。
+  // 因此只派发已经配到视频段的标签，其余的留给后续分片；直到流式结束都没配上的，
+  // 由正文渲染后的主流程接管——最差不过是少一次预生成加速，不会静默少一段提示词。
+  const videoPattern = new RegExp(
+    `${escapeRegExp2(String(banana.grokVideoStartTag || "").trim() || "video###")}([\\s\\S]*?)${escapeRegExp2(String(banana.grokVideoEndTag || "").trim() || "###")}`,
+    "g"
+  );
+  // 与主流程逐字一致的全角还原：预生成读的是流式原文（尖括号还在），主流程读的是 DOM 文本
+  // （尖括号已被当成标签吃掉）。两边都按《》约定还原，才不会一条链路带着 <Picture 1>、
+  // 另一条丢掉它，同一个标签生成出两种视频提示词。
+  const videoPrompts = [...visibleText.matchAll(videoPattern)]
+    .map((match) => match[1].trim().replaceAll("《", "<").replaceAll("》", ">"));
+  return prompts
+    .map((prompt2, index) => ({ prompt: prompt2, pairedVideoPrompt: videoPrompts[index] || "" }))
+    .filter((item) => item.pairedVideoPrompt);
 }
-eventSource39.on(event_types7.generation_started, () => {
+eventSource39.on(event_types7.GENERATION_STARTED, () => {
   if (String(extension_settings101[extensionName].enablePregen) !== "true") return;
   pregenManager.clear();
 });
@@ -85739,6 +86651,12 @@ async function main() {
   ];
   cssFiles.forEach(loadCSS);
   const mergedSettings = { ...JSON.parse(JSON.stringify(defaultSettings)), ...extension_settings102[extensionName] };
+  // 上面是浅合并：已存在的子对象会整个盖掉默认值，之后新增的默认键对老用户永远不生效
+  // （表现为设置面板显示着默认值、实际读到 undefined）。banana 里都是标量配置，逐键补齐是安全的。
+  mergedSettings.banana = {
+    ...JSON.parse(JSON.stringify(defaultSettings.banana)),
+    ...(extension_settings102[extensionName]?.banana || {})
+  };
   if (mergedSettings.chatu8_fab_video_paths) {
     let pathsChanged = false;
     if (mergedSettings.chatu8_fab_video_paths.idle && mergedSettings.chatu8_fab_video_paths.idle.includes(".mp4")) {

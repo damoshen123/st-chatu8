@@ -88,6 +88,11 @@
             </div>
         </div>
         <div class="st-chatu8-field">
+            <label for="thinkTagFormat">思维链格式</label>
+            <input type="text" id="thinkTagFormat" class="st-chatu8-text-input"
+                placeholder="&lt;think&gt;&lt;/think&gt;">
+        </div>
+        <div class="st-chatu8-field">
             <label for="autoLLMImageGen">自动LLM请求生图(非同层)</label>
             <div class="st-chatu8-toggle">
                 <input id="autoLLMImageGen" type="checkbox" />
@@ -150,6 +155,17 @@
                 <input id="insertOriginalText" type="checkbox" />
                 <span class="st-chatu8-slider"></span>
             </div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>生成内容插入位置</h3>
+        <div class="st-chatu8-field">
+            <label for="mediaInsertPosition">图片/视频插入位置</label>
+            <select id="mediaInsertPosition" class="st-chatu8-select">
+                <option value="default">默认标签位置</option>
+                <option value="streaming">生成后立刻插入最新文字位置(适配流式生成)</option>
+                <option value="bottom">插入楼层最底部</option>
+            </select>
         </div>
     </div>
     <div class="st-chatu8-settings-section">

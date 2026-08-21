@@ -75,6 +75,49 @@
                 <span class="st-chatu8-slider"></span>
             </label>
         </div>
+        <div class="st-chatu8-field">
+            <label for="st-chatu8-banana-video-pair">图生视频（两段提示词）</label>
+            <label class="st-chatu8-toggle" for="st-chatu8-banana-video-pair"
+                title="仅在 Grok/newapi/openai 格式下生效。开启后除生图提示词外，再识别正文里配对给出的视频提示词，一次请求把两段一起发给后端。">
+                <input id="st-chatu8-banana-video-pair" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </label>
+        </div>
+        <div class="st-chatu8-grid-2">
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-video-pair-start">视频提示词开始标记</label>
+                <input type="text" id="st-chatu8-banana-video-pair-start" class="st-chatu8-text-input"
+                    placeholder="video###" title="留空则用默认值 video###">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-video-pair-end">视频提示词结束标记</label>
+                <input type="text" id="st-chatu8-banana-video-pair-end" class="st-chatu8-text-input"
+                    placeholder="###" title="留空则用默认值 ###">
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="st-chatu8-banana-video-pair-key">生图提示词参数名</label>
+            <input type="text" id="st-chatu8-banana-video-pair-key" class="st-chatu8-text-input"
+                placeholder="image_prompt" title="后端工作流里承接生图提示词的那个参数名，随请求以 custom.<参数名> 发送">
+        </div>
+        <div class="st-chatu8-banana-replace-help">
+            <details>
+                <summary><i class="fa-solid fa-circle-info"></i> 图生视频（两段提示词）说明</summary>
+                <div class="st-chatu8-help-content">
+                    <ul>
+                        <li>适用于后端<strong>一个工作流内部串了生图与生视频两段</strong>、需要分别给提示词的场景。</li>
+                        <li>正文里两段配对给出，生图段沿用主设置里的标记，视频段用上面这对标记：
+                            <br><code>image###海边旅馆午后，女主…###</code>
+                            <br><code>video###镜头缓慢推近，人物轻微晃动…###</code>
+                        </li>
+                        <li>发送时<strong>视频提示词占用 <code>prompt</code></strong>（写进后端工作流的主提示词节点），
+                            生图提示词走 <code>custom.&lt;参数名&gt;</code>。参数名要和后端管理界面里那个多行文本参数一致。</li>
+                        <li>只有真的配到第二段时才带 <code>custom</code>；没配到就退回单段生图，请求体与关闭时完全相同。</li>
+                        <li>视频段会连同标记一起从聊天正文里抹掉，不会显示出来。</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
         <div class="st-chatu8-banana-replace-help">
             <details>
                 <summary><i class="fa-solid fa-circle-info"></i> Grok 原生格式说明</summary>
@@ -103,7 +146,9 @@
     <!-- 3. Banana 专属替换词设置 -->
     <div class="st-chatu8-settings-section">
         <h3>提示词替换规则</h3>
-        <p class="st-chatu8-help-text">Banana/Grok 专属的替换词设置，独立于其他生图后端。格式：<code>触发词=模式|替换内容</code></p>
+        <p class="st-chatu8-help-text">Banana/Grok 专属的替换词设置，独立于其他生图后端。格式：<code>触发词=模式|替换内容</code>，触发词可用 <code>|</code> 写多个（按长度从长到短排列，避免短词先命中把长词切坏）。<br>
+            需要正则时把模式写成 <code>正则替换</code>，此时触发词整体当正则解析（不按 <code>|</code> 拆分、不转义）：<code>年轻[^男]*男[人性子]?=正则替换|man</code>。<br>
+            若正则本身含 <code>=</code>（如 <code>(?=</code>、<code>(?&lt;=</code>），用 <code>/正则/标志</code> 包裹：<code>/(?&lt;=a)b/gi=正则替换|man</code>。</p>
         <div class="st-chatu8-field">
             <label for="st-chatu8-banana-prompt-replace-id">替换规则预设</label>
             <div class="st-chatu8-profile-controls">
