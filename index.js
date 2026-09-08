@@ -35545,15 +35545,55 @@ function isGenerating(prompt2) {
   return currentlyGenerating.has(prompt2);
 }
 function startGenerating(prompt2) {
+  if (currentlyGenerating.has(prompt2)) return;
   currentlyGenerating.add(prompt2);
+  const key = normalizeTagKey(prompt2);
+  generatingByNormalizedKey.set(key, (generatingByNormalizedKey.get(key) || 0) + 1);
 }
 function stopGenerating(prompt2) {
-  currentlyGenerating.delete(prompt2);
+  if (!currentlyGenerating.delete(prompt2)) return;
+  const key = normalizeTagKey(prompt2);
+  const remain = (generatingByNormalizedKey.get(key) || 0) - 1;
+  if (remain > 0) generatingByNormalizedKey.set(key, remain);
+  else generatingByNormalizedKey.delete(key);
 }
-var currentlyGenerating;
+// 「等价」= 归一化后相同。流式预生成读的是模型原文，按钮读的是酒馆渲染后的楼层 DOM 文本，
+// 中间隔着 Markdown（*强调* 掉星号）、宏替换（{{char}} 变名字）、尖括号被当 HTML 标签吞掉、
+// 行尾空白被裁……同一个标签在两条链路里算出的字符串常差几个符号。逐字比对会把它们当成两个标签，
+// 结果是预生成存一份、按钮再生成一份：既拿不到预生成的结果，又重复扣费。按等价比才对得上。
+function isGeneratingEquivalent(prompt2) {
+  return (generatingByNormalizedKey.get(normalizeTagKey(prompt2)) || 0) > 0;
+}
+function normalizeTagKey(text) {
+  const raw = String(text ?? "");
+  // 同一字符串必须永远归一化成同一个 key：substituteParams 里 {{random}}/{{roll}} 这类宏每次结果不同，
+  // 不记忆的话 start/stop 会落到两个不同的 key 上，计数永远减不回去，之后同一标签的预生成会被永远跳过。
+  const cached = normalizedKeyCache.get(raw);
+  if (cached !== void 0) return cached;
+  const result = computeNormalizedTagKey(raw);
+  if (normalizedKeyCache.size >= 500) normalizedKeyCache.delete(normalizedKeyCache.keys().next().value);
+  normalizedKeyCache.set(raw, result);
+  return result;
+}
+function computeNormalizedTagKey(text) {
+  let s = text;
+  try {
+    // 宏在 DOM 里已被替换成名字，原文里还是 {{char}}；用酒馆自己的替换函数把原文也替掉再比。
+    if (typeof stScript.substituteParams === "function") s = String(stScript.substituteParams(s) ?? s);
+  } catch (e) {
+  }
+  return s.replaceAll("\u300A", "<").replaceAll("\u300B", ">")
+    // 尖括号段：浏览器会把 <Picture 1> 之类整个当成 HTML 标签吞掉（只有 < 后紧跟字母、/、!、? 才算标签）。
+    .replace(/<[A-Za-z\/!?][^<>]*>/g, "")
+    // 空白与 Markdown 语法字符：强调、删除线、代码、标题、引用、表格、转义。
+    .replace(/[\s*_~`#>|\\]/g, "");
+}
+var currentlyGenerating, generatingByNormalizedKey, normalizedKeyCache;
 var init_generation_status = __esm({
   "utils/generation_status.js"() {
     currentlyGenerating = /* @__PURE__ */ new Set();
+    generatingByNormalizedKey = /* @__PURE__ */ new Map();
+    normalizedKeyCache = /* @__PURE__ */ new Map();
   }
 });
 
@@ -36135,7 +36175,8 @@ var init_generation = __esm({
         // 缓存快路径现在经 resolveMediaContainer 插入，已能遵守 mediaInsertPosition，
         // 因此非默认插入位置时不再需要绕开它去重新生成 —— 那会让每次重渲染都重跑一次
         // 后端生成（视频动辄数分钟且产生费用），代价远大于收益。
-        getItemImg(link).then(([imageUrl, dbChange, , isVideo, dbOriginalUrl]) => {
+        // 与建按钮时同一道认领：按钮建得比预生成早、或流式中途被重建过时，这里是最后一次对齐机会。
+        adoptPregen(link).catch(() => null).then(() => getItemImg(link)).then(([imageUrl, dbChange, , isVideo, dbOriginalUrl]) => {
           if (imageUrl) {
             addLog(`Image for "${link}" already exists in DB. Skipping generation.`);
             for (const doc of docs) {
@@ -36780,6 +36821,13 @@ async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image"
     range.insertNode(imgSpan);
     range.insertNode(button);
     const promise = (async () => {
+      // 先看有没有正在（或刚刚）预生成的等价标签：有就认领，后面 isGenerating(link) 为真会自动挂监听，
+      // 图库里已有成品的会先复制到自己的 key 下，下面查库直接命中。认领失败不影响原流程。
+      try {
+        await adoptPregen(link);
+      } catch (error) {
+        console.warn("[iframe] 认领预生成失败，按原流程处理:", error);
+      }
       const [imageUrl, change, , isVideo, originalUrl] = await getItemImg(link);
       if (imageUrl) {
         const target = resolveMediaContainer(doc, imgSpan, requestId, getInsertMode());
@@ -36818,8 +36866,8 @@ async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image"
   }
 }
 // 把楼层 DOM 摊平成「逻辑文本」：按钮的 link、requestId、图库 key 全部由这段文本算出。
-// 流式预生成也必须经由这同一个函数取文本（见 stream_generate.js 的 renderLogicalTextLikeChat），
-// 两条链路各算各的就会「预生成存一份、按钮再重新生成一份」。改这里的过滤规则时两边同时生效。
+// 流式预生成读的是模型原文，与这里读出的文本常差几个 Markdown/宏/尖括号字符，
+// 两边的对齐靠 pregen_manager.js 的 adoptPregen 按归一化 key 认领，不在这里做。
 function collectLogicalText(rootElement) {
   const doc = rootElement.ownerDocument || rootElement;
   const firstDirectDiv = rootElement.querySelector(":scope > div");
@@ -85903,8 +85951,99 @@ function generateStableId3(str) {
 }
 var PREGEN_RESPONSE_TIMEOUT_MS = 20 * 60 * 1e3;
 var pregenDispatched = /* @__PURE__ */ new Set();
+/*
+ * 预生成认领表。预生成用的 key 来自模型原文，按钮用的 key 来自渲染后的 DOM 文本，两者常差几个
+ * Markdown/宏/尖括号字符（见 generation_status.js 的 normalizeTagKey）。按钮建好或被点击时，若自己的
+ * link 没在生成、却与某个正在预生成的标签等价，就登记为它的「认领人」并把自己也标成生成中；
+ * 预生成出结果时，按每个认领人的 key 各存一份、各发一次响应，按钮那边的监听器就能照常渲染，
+ * 之后刷新页面也能按按钮自己的 key 从图库补回来。预生成已经完成的，则直接把图库里那份复制到
+ * 按钮的 key 下（recentPregenResults 只记「等价 key → 图库里的名字」，不占媒体内存）。
+ */
+var pregenByNormalizedKey = /* @__PURE__ */ new Map();
+var pregenAdopters = /* @__PURE__ */ new Map();
+var recentPregenResults = /* @__PURE__ */ new Map();
+function registerPregen(prompt2) {
+  pregenByNormalizedKey.set(normalizeTagKey(prompt2), prompt2);
+}
+function unregisterPregen(prompt2) {
+  const key = normalizeTagKey(prompt2);
+  if (pregenByNormalizedKey.get(key) === prompt2) pregenByNormalizedKey.delete(key);
+}
+function takePregenAdopters(prompt2) {
+  const set = pregenAdopters.get(prompt2);
+  pregenAdopters.delete(prompt2);
+  return set ? Array.from(set) : [];
+}
+async function adoptPregen(link) {
+  if (!link || isGenerating(link)) return null;
+  const key = normalizeTagKey(link);
+  const inflight = pregenByNormalizedKey.get(key);
+  if (inflight && inflight !== link) {
+    if (!pregenAdopters.has(inflight)) pregenAdopters.set(inflight, /* @__PURE__ */ new Set());
+    pregenAdopters.get(inflight).add(link);
+    startGenerating(link);
+    addLog(`[Pregen] 按钮认领了正在预生成的等价标签: ${link.substring(0, 50)}`);
+    return inflight;
+  }
+  const finished = recentPregenResults.get(key);
+  if (finished && finished !== link && String(extension_settings100[extensionName]?.cache) !== "0") {
+    try {
+      // 已经复制过（或按钮自己生成过）就别再复制：开了「缓存到酒馆」时每次复制都是一次上传。
+      const [existing] = await getItemImg(link);
+      if (existing) return null;
+      const [imageUrl, change, , isVideo, originalUrl] = await getItemImg(finished);
+      if (imageUrl) {
+        const mime = typeof imageUrl === "string" ? imageUrl.match(/^data:([^;,]+)/)?.[1] : "";
+        await persistWithDeadline(setItemImg(link, imageUrl, {
+          change: change === finished ? link : change || "",
+          isVideo: Boolean(isVideo),
+          format: isVideo ? mime || "video/mp4" : mime || "image",
+          originalUrl: originalUrl || ""
+        }), "pregen-adopt");
+        addLog(`[Pregen] 已把预生成成品复制到按钮的 key 下: ${link.substring(0, 50)}`);
+        return finished;
+      }
+    } catch (error) {
+      addLog(`[Pregen] 复制预生成成品失败，按钮将自行生成: ${error?.message || error}`);
+    }
+  }
+  return null;
+}
+async function fanOutPregenResult(prompt2, responseData) {
+  if (responseData?.success) {
+    recentPregenResults.set(normalizeTagKey(prompt2), prompt2);
+    while (recentPregenResults.size > 100) recentPregenResults.delete(recentPregenResults.keys().next().value);
+  }
+  for (const link of takePregenAdopters(prompt2)) {
+    const id = generateStableId3(link);
+    if (responseData?.success && responseData.imageData && String(extension_settings100[extensionName]?.cache) !== "0") {
+      try {
+        await persistWithDeadline(setItemImg(link, responseData.imageData, {
+          change: responseData.change === prompt2 ? link : responseData.change || "",
+          isVideo: Boolean(responseData.isVideo),
+          format: responseData.format || "image",
+          originalUrl: responseData.originalUrl || ""
+        }), "pregen-adopt");
+      } catch (error) {
+        addLog(`[Pregen] 认领按钮的存库失败 (ID: ${id}): ${error?.message || error}`);
+      }
+    }
+    eventSource38.emit(EventType.GENERATE_IMAGE_RESPONSE, { ...responseData, id, prompt: link, adoptedFrom: prompt2 });
+    // 按钮的监听器收到响应会自己解锁；但若按钮恰好正在重建、监听器还没挂上，这把锁就没人放了，
+    // 之后同一标签的按钮会一直转圈。这里兜底放掉（图库里已经有成品，补渲染能自己捞回来）。
+    stopGenerating(link);
+    addLog(`[Pregen] 预生成结果已转交认领按钮 (ID: ${id})`);
+  }
+}
+function releasePregenAdopters(prompt2, reason) {
+  for (const link of takePregenAdopters(prompt2)) {
+    stopGenerating(link);
+    eventSource38.emit(EventType.GENERATE_IMAGE_RESPONSE, { id: generateStableId3(link), success: false, error: reason, prompt: link, adoptedFrom: prompt2 });
+  }
+}
 async function dispatchPregenTask(prompt2, pairedVideoPrompt = "") {
-  if (isGenerating(prompt2)) {
+  // 按等价判断：按钮那边已经在跑同一个标签（key 差几个符号）时也不能再发一份。
+  if (isGeneratingEquivalent(prompt2)) {
     addLog(`[Pregen] 该标签已在生成中，跳过: ${prompt2}`);
     return;
   }
@@ -85919,12 +86058,13 @@ async function dispatchPregenTask(prompt2, pairedVideoPrompt = "") {
   } catch (error) {
     addLog(`[Pregen] 查询图库失败，按未缓存处理: ${error?.message || error}`);
   }
-  if (isGenerating(prompt2)) {
+  if (isGeneratingEquivalent(prompt2)) {
     addLog(`[Pregen] 查库期间主流程已抢先发起，跳过: ${prompt2}`);
     return;
   }
   const requestId = generateStableId3(prompt2);
   startGenerating(prompt2);
+  registerPregen(prompt2);
   let settled = false;
   let staleTimer = null;
   const imageResponseHandler = (responseData) => {
@@ -85936,6 +86076,11 @@ async function dispatchPregenTask(prompt2, pairedVideoPrompt = "") {
     // 兜底用 prompt2：取消/异常路径可能回传空 prompt，不清理会让 currentlyGenerating 永久残留，
     // 之后同一标签的按钮只转圈不发请求。
     stopGenerating(responsePrompt || prompt2);
+    unregisterPregen(prompt2);
+    // 认领人的 key 与 prompt2 不同，必须按它们各自的 key 再发一次，按钮的监听器才收得到。
+    fanOutPregenResult(prompt2, responseData).catch((error) => {
+      console.error("[Pregen] 转交预生成结果失败:", error);
+    });
     if (success) {
       addLog(`[Pregen] 预生成完成: ${responsePrompt || prompt2}`);
     } else {
@@ -85950,6 +86095,8 @@ async function dispatchPregenTask(prompt2, pairedVideoPrompt = "") {
     settled = true;
     eventSource38.removeListener(EventType.GENERATE_IMAGE_RESPONSE, imageResponseHandler);
     stopGenerating(prompt2);
+    unregisterPregen(prompt2);
+    releasePregenAdopters(prompt2, "预生成等待响应超时");
     pregenDispatched.delete(prompt2);
     addLog(`[Pregen] 等待响应超时，已释放该标签的生成锁: ${prompt2}`);
   }, PREGEN_RESPONSE_TIMEOUT_MS);
@@ -86036,38 +86183,6 @@ function stripThinkingForPregen(text) {
   }
   return result;
 }
-/*
- * 预生成读的是模型原始流式文本，按钮读的是酒馆渲染后的楼层 DOM 文本，中间隔着酒馆的
- * cleanUpMessage（AI 输出正则脚本、去行尾空白、裁停止串）和 messageFormatting（宏替换、显示正则、
- * Markdown→HTML）：`*强调*` 的星号没了、`<...>` 被当 HTML 标签吞掉、{{char}} 被换成名字……
- * 视频提示词多是多行自然语言，随手一个符号就让两边的 link 不同，于是 requestId 与图库 key 都对不上：
- * 预生成的结果没有任何按钮认领（表现为「开了流式预生成却拿不到视频」），按钮只好再发一次几乎一样的请求
- * （表现为「勾了自动点击就重复发送、双倍扣费」）。
- * 这里不再在原文上匹配，而是先用酒馆自己的这两个函数把原文渲染成 HTML，再经与按钮完全相同的
- * collectLogicalText 摊平成文本，最后才套标签正则——两条链路的 link 按构造逐字一致。
- * 任何一步不可用（老版本酒馆没导出、渲染抛错）都回落到原文匹配，等于旧行为，不会更糟。
- */
-function renderLogicalTextLikeChat(rawText) {
-  const formatting = stScript.messageFormatting;
-  if (typeof formatting !== "function" || typeof DOMParser === "undefined") return null;
-  const chatArray = Array.isArray(stScript.chat) ? stScript.chat : [];
-  const messageId = chatArray.length - 1;
-  const message = messageId >= 0 ? chatArray[messageId] : null;
-  let text = rawText;
-  if (typeof stScript.cleanUpMessage === "function") {
-    // 与 StreamingProcessor.onProgressStreaming 同参：流式中途不裁未完成的句子。
-    text = stScript.cleanUpMessage({ getMessage: rawText, isImpersonate: false, isContinue: false, displayIncompleteSentences: true });
-  }
-  const html = formatting(text, message?.name ?? "", Boolean(message?.is_system), Boolean(message?.is_user), messageId, {}, false);
-  // DOMParser 产出的是惰性文档：不加载图片、不执行脚本，渲染出来的 <img>/<script> 不会有副作用。
-  const parsed = new DOMParser().parseFromString(String(html ?? ""), "text/html");
-  return collectLogicalText(parsed.body).logicalText;
-}
-var pregenRenderWarned = false;
-var pregenScanCache = { signature: null, prompts: [] };
-function resetPregenScanCache() {
-  pregenScanCache = { signature: null, prompts: [] };
-}
 function parsePrompts(text) {
   const settings3 = extension_settings101[extensionName];
   if (!settings3.startTag || !settings3.endTag) return [];
@@ -86076,56 +86191,37 @@ function parsePrompts(text) {
   const start = escapeRegExp2(settings3.startTag);
   const end = escapeRegExp2(settings3.endTag);
   const pattern = new RegExp(`${start}([\\s\\S]*?)${end}`, "g");
-  // 标记同样按「有值就用、没值回落默认」处理，理由见 findAndReplaceInElement 里的说明：
-  // 设置是浅合并，老用户的 banana 对象里没有这几个新键。
-  const banana = settings3.banana || {};
-  const videoPairEnabled = String(banana.grokVideoPair) === "true" && String(banana.useGrokFormat) === "true";
-  const videoPattern = videoPairEnabled ? new RegExp(
-    `${escapeRegExp2(String(banana.grokVideoStartTag || "").trim() || "video###")}([\\s\\S]*?)${escapeRegExp2(String(banana.grokVideoEndTag || "").trim() || "###")}`,
-    "g"
-  ) : null;
-  // 每个流式分片都会进来一次，而渲染整条消息不便宜：先在原文上看闭合的标签集合有没有变化，
-  // 没变就直接复用上次的结果（pregenManager.add 本身幂等）。
-  const rawTagMatches = [...visibleText.matchAll(pattern)].map((match) => match[0]);
-  if (rawTagMatches.length === 0) return [];
-  const rawVideoMatches = videoPattern ? [...visibleText.matchAll(videoPattern)].map((match) => match[0]) : [];
-  const signature = JSON.stringify([rawTagMatches, rawVideoMatches]);
-  if (signature === pregenScanCache.signature) return pregenScanCache.prompts;
-  let scanText = null;
-  try {
-    scanText = renderLogicalTextLikeChat(visibleText);
-  } catch (error) {
-    if (!pregenRenderWarned) {
-      pregenRenderWarned = true;
-      console.warn("[st-chatu8] 预生成按酒馆渲染取文本失败，回落到原文匹配（key 可能与按钮不一致）:", error);
-    }
-  }
-  if (typeof scanText !== "string") scanText = visibleText;
-  const matches = [...scanText.matchAll(pattern)];
+  const matches = [...visibleText.matchAll(pattern)];
   const prompts = matches.map((match) => {
     // 必须和 createButtonAtPosition 里 link 的算法逐字一致：requestId 和图库 key 都由它算出，
     // 差一个字符就会变成「预生成存一份、按钮再重新生成一份」，既白等也白烧一次额度。
     // 所以这里不能再自作主张把全角标点转半角——主流程并不转。
+    // 但流式原文与楼层 DOM 文本之间还隔着 Markdown、宏替换、尖括号吞字，逐字一致做不到；
+    // 差几个符号的情况由按钮侧的 adoptPregen 按归一化 key 认领（见 pregen_manager.js）。
     return match[1].trim().replaceAll("《", "<").replaceAll("》", ">").replaceAll("\n", "");
   });
-  let result = prompts;
-  if (videoPattern) {
-    // 图生视频：生图段往往比视频段先闭合，此刻派发出去就等于把视频提示词丢了。
-    // 因此只派发已经配到视频段的标签，其余的留给后续分片；直到流式结束都没配上的，
-    // 由正文渲染后的主流程接管——最差不过是少一次预生成加速，不会静默少一段提示词。
-    // 与主流程逐字一致的全角还原：两边都按《》约定还原，才不会一条链路带着 <Picture 1>、
-    // 另一条丢掉它，同一个标签生成出两种视频提示词。
-    const videoPrompts = [...scanText.matchAll(videoPattern)]
-      .map((match) => match[1].trim().replaceAll("《", "<").replaceAll("》", ">"));
-    result = prompts
-      .map((prompt2, index) => ({ prompt: prompt2, pairedVideoPrompt: videoPrompts[index] || "" }))
-      .filter((item) => item.pairedVideoPrompt);
-  }
-  pregenScanCache = { signature, prompts: result };
-  return result;
+  // 标记同样按「有值就用、没值回落默认」处理，理由见 findAndReplaceInElement 里的说明：
+  // 设置是浅合并，老用户的 banana 对象里没有这几个新键。
+  const banana = settings3.banana || {};
+  const videoPairEnabled = String(banana.grokVideoPair) === "true" && String(banana.useGrokFormat) === "true";
+  if (!videoPairEnabled) return prompts;
+  // 图生视频：生图段往往比视频段先闭合，此刻派发出去就等于把视频提示词丢了。
+  // 因此只派发已经配到视频段的标签，其余的留给后续分片；直到流式结束都没配上的，
+  // 由正文渲染后的主流程接管——最差不过是少一次预生成加速，不会静默少一段提示词。
+  const videoPattern = new RegExp(
+    `${escapeRegExp2(String(banana.grokVideoStartTag || "").trim() || "video###")}([\\s\\S]*?)${escapeRegExp2(String(banana.grokVideoEndTag || "").trim() || "###")}`,
+    "g"
+  );
+  // 与主流程逐字一致的全角还原：预生成读的是流式原文（尖括号还在），主流程读的是 DOM 文本
+  // （尖括号已被当成标签吃掉）。两边都按《》约定还原，才不会一条链路带着 <Picture 1>、
+  // 另一条丢掉它，同一个标签生成出两种视频提示词。
+  const videoPrompts = [...visibleText.matchAll(videoPattern)]
+    .map((match) => match[1].trim().replaceAll("《", "<").replaceAll("》", ">"));
+  return prompts
+    .map((prompt2, index) => ({ prompt: prompt2, pairedVideoPrompt: videoPrompts[index] || "" }))
+    .filter((item) => item.pairedVideoPrompt);
 }
 eventSource39.on(event_types7.GENERATION_STARTED, () => {
-  resetPregenScanCache();
   if (String(extension_settings101[extensionName].enablePregen) !== "true") return;
   pregenManager.clear();
 });
