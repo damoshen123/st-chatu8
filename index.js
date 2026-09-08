@@ -217,6 +217,7 @@ import { extension_settings as extension_settings98 } from "../../../extensions.
 import { getContext as getContext21 } from "../../../st-context.js";
 import { extension_settings as extension_settings101 } from "../../../extensions.js";
 import { eventSource as eventSource39, event_types as event_types7 } from "../../../../script.js";
+import * as stScript from "../../../../script.js";
 import { extension_settings as extension_settings100 } from "../../../extensions.js";
 import { eventSource as eventSource38 } from "../../../../script.js";
 
@@ -36592,79 +36593,7 @@ async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image"
     return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   };
   const pattern = new RegExp(`${escapeRegExp2(settings3.startTag)}([\\s\\S]*?)${escapeRegExp2(settings3.endTag)}`, "g");
-  const doc = rootElement.ownerDocument || rootElement;
-  const firstDirectDiv = rootElement.querySelector(":scope > div");
-  if (firstDirectDiv) {
-  }
-  let firstDivStartOffset = -1;
-  let firstDivEndOffset = -1;
-  const nodeInfos = [];
-  let logicalText = "";
-  const CODE_RELATED_TAGS = /* @__PURE__ */ new Set([
-    "SCRIPT",
-    "STYLE",
-    "BUTTON",
-    "PRE",
-    "CODE",
-    // 代码块
-    "TEXTAREA",
-    // 输入框
-    "KBD",
-    "SAMP",
-    "VAR"
-    // 键盘输入、示例输出、变量
-  ]);
-  const CODE_CLASS_PATTERNS = ["hljs", "highlight", "prism", "language-", "CodeMirror", "ace_"];
-  const walker = doc.createTreeWalker(rootElement, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, {
-    acceptNode: function(node) {
-      const parent = node.parentElement;
-      const parentTag = parent?.tagName;
-      if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== "BR") {
-        return NodeFilter.FILTER_SKIP;
-      }
-      if (CODE_RELATED_TAGS.has(parentTag)) {
-        return NodeFilter.FILTER_REJECT;
-      }
-      if (parent?.classList.contains("image-tag-button") || parent?.classList.contains("st-chatu8-image-span")) {
-        return NodeFilter.FILTER_REJECT;
-      }
-      if (parent?.className && typeof parent.className === "string") {
-        for (const pattern2 of CODE_CLASS_PATTERNS) {
-          if (parent.className.includes(pattern2)) {
-            return NodeFilter.FILTER_REJECT;
-          }
-        }
-      }
-      return NodeFilter.FILTER_ACCEPT;
-    }
-  });
-  let n;
-  while (n = walker.nextNode()) {
-    const start = logicalText.length;
-    let text = "";
-    if (n.nodeType === Node.TEXT_NODE) {
-      text = n.textContent;
-    } else if (n.tagName === "BR") {
-      text = "\n";
-    }
-    if (firstDirectDiv && text.length > 0) {
-      const isInFirstDiv = n === firstDirectDiv || firstDirectDiv.contains(n);
-      if (isInFirstDiv) {
-        if (firstDivStartOffset === -1) {
-          firstDivStartOffset = start;
-        }
-        firstDivEndOffset = start + text.length;
-      }
-    }
-    logicalText += text;
-    nodeInfos.push({ node: n, start, end: logicalText.length });
-  }
-  let logicalTextExcludingFirstDiv = logicalText;
-  if (firstDirectDiv && firstDivStartOffset !== -1 && firstDivEndOffset > firstDivStartOffset) {
-    const beforeDiv = logicalText.substring(0, firstDivStartOffset);
-    const afterDiv = logicalText.substring(firstDivEndOffset);
-    logicalTextExcludingFirstDiv = beforeDiv + afterDiv;
-  }
+  const { doc, nodeInfos, logicalText, logicalTextExcludingFirstDiv, firstDivEndOffset } = collectLogicalText(rootElement);
   const patternMatches = [];
   let match;
   while ((match = pattern.exec(logicalText)) !== null) {
@@ -36887,6 +36816,83 @@ async function findAndReplaceInElement(rootElement, imageAlt = "Generated Image"
     rootElement.dataset.chatu8Processed = "true";
     rootElement.dataset.chatu8ContentLength = String(rootElement.textContent?.length || 0);
   }
+}
+// 把楼层 DOM 摊平成「逻辑文本」：按钮的 link、requestId、图库 key 全部由这段文本算出。
+// 流式预生成也必须经由这同一个函数取文本（见 stream_generate.js 的 renderLogicalTextLikeChat），
+// 两条链路各算各的就会「预生成存一份、按钮再重新生成一份」。改这里的过滤规则时两边同时生效。
+function collectLogicalText(rootElement) {
+  const doc = rootElement.ownerDocument || rootElement;
+  const firstDirectDiv = rootElement.querySelector(":scope > div");
+  let firstDivStartOffset = -1;
+  let firstDivEndOffset = -1;
+  const nodeInfos = [];
+  let logicalText = "";
+  const CODE_RELATED_TAGS = /* @__PURE__ */ new Set([
+    "SCRIPT",
+    "STYLE",
+    "BUTTON",
+    "PRE",
+    "CODE",
+    // 代码块
+    "TEXTAREA",
+    // 输入框
+    "KBD",
+    "SAMP",
+    "VAR"
+    // 键盘输入、示例输出、变量
+  ]);
+  const CODE_CLASS_PATTERNS = ["hljs", "highlight", "prism", "language-", "CodeMirror", "ace_"];
+  const walker = doc.createTreeWalker(rootElement, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT, {
+    acceptNode: function(node) {
+      const parent = node.parentElement;
+      const parentTag = parent?.tagName;
+      if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== "BR") {
+        return NodeFilter.FILTER_SKIP;
+      }
+      if (CODE_RELATED_TAGS.has(parentTag)) {
+        return NodeFilter.FILTER_REJECT;
+      }
+      if (parent?.classList.contains("image-tag-button") || parent?.classList.contains("st-chatu8-image-span")) {
+        return NodeFilter.FILTER_REJECT;
+      }
+      if (parent?.className && typeof parent.className === "string") {
+        for (const pattern2 of CODE_CLASS_PATTERNS) {
+          if (parent.className.includes(pattern2)) {
+            return NodeFilter.FILTER_REJECT;
+          }
+        }
+      }
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  let n;
+  while (n = walker.nextNode()) {
+    const start = logicalText.length;
+    let text = "";
+    if (n.nodeType === Node.TEXT_NODE) {
+      text = n.textContent;
+    } else if (n.tagName === "BR") {
+      text = "\n";
+    }
+    if (firstDirectDiv && text.length > 0) {
+      const isInFirstDiv = n === firstDirectDiv || firstDirectDiv.contains(n);
+      if (isInFirstDiv) {
+        if (firstDivStartOffset === -1) {
+          firstDivStartOffset = start;
+        }
+        firstDivEndOffset = start + text.length;
+      }
+    }
+    logicalText += text;
+    nodeInfos.push({ node: n, start, end: logicalText.length });
+  }
+  let logicalTextExcludingFirstDiv = logicalText;
+  if (firstDirectDiv && firstDivStartOffset !== -1 && firstDivEndOffset > firstDivStartOffset) {
+    const beforeDiv = logicalText.substring(0, firstDivStartOffset);
+    const afterDiv = logicalText.substring(firstDivEndOffset);
+    logicalTextExcludingFirstDiv = beforeDiv + afterDiv;
+  }
+  return { doc, nodeInfos, logicalText, logicalTextExcludingFirstDiv, firstDivEndOffset };
 }
 var init_placeholder = __esm({
   "utils/iframe/placeholder.js"() {
@@ -86030,6 +86036,38 @@ function stripThinkingForPregen(text) {
   }
   return result;
 }
+/*
+ * 预生成读的是模型原始流式文本，按钮读的是酒馆渲染后的楼层 DOM 文本，中间隔着酒馆的
+ * cleanUpMessage（AI 输出正则脚本、去行尾空白、裁停止串）和 messageFormatting（宏替换、显示正则、
+ * Markdown→HTML）：`*强调*` 的星号没了、`<...>` 被当 HTML 标签吞掉、{{char}} 被换成名字……
+ * 视频提示词多是多行自然语言，随手一个符号就让两边的 link 不同，于是 requestId 与图库 key 都对不上：
+ * 预生成的结果没有任何按钮认领（表现为「开了流式预生成却拿不到视频」），按钮只好再发一次几乎一样的请求
+ * （表现为「勾了自动点击就重复发送、双倍扣费」）。
+ * 这里不再在原文上匹配，而是先用酒馆自己的这两个函数把原文渲染成 HTML，再经与按钮完全相同的
+ * collectLogicalText 摊平成文本，最后才套标签正则——两条链路的 link 按构造逐字一致。
+ * 任何一步不可用（老版本酒馆没导出、渲染抛错）都回落到原文匹配，等于旧行为，不会更糟。
+ */
+function renderLogicalTextLikeChat(rawText) {
+  const formatting = stScript.messageFormatting;
+  if (typeof formatting !== "function" || typeof DOMParser === "undefined") return null;
+  const chatArray = Array.isArray(stScript.chat) ? stScript.chat : [];
+  const messageId = chatArray.length - 1;
+  const message = messageId >= 0 ? chatArray[messageId] : null;
+  let text = rawText;
+  if (typeof stScript.cleanUpMessage === "function") {
+    // 与 StreamingProcessor.onProgressStreaming 同参：流式中途不裁未完成的句子。
+    text = stScript.cleanUpMessage({ getMessage: rawText, isImpersonate: false, isContinue: false, displayIncompleteSentences: true });
+  }
+  const html = formatting(text, message?.name ?? "", Boolean(message?.is_system), Boolean(message?.is_user), messageId, {}, false);
+  // DOMParser 产出的是惰性文档：不加载图片、不执行脚本，渲染出来的 <img>/<script> 不会有副作用。
+  const parsed = new DOMParser().parseFromString(String(html ?? ""), "text/html");
+  return collectLogicalText(parsed.body).logicalText;
+}
+var pregenRenderWarned = false;
+var pregenScanCache = { signature: null, prompts: [] };
+function resetPregenScanCache() {
+  pregenScanCache = { signature: null, prompts: [] };
+}
 function parsePrompts(text) {
   const settings3 = extension_settings101[extensionName];
   if (!settings3.startTag || !settings3.endTag) return [];
@@ -86038,35 +86076,56 @@ function parsePrompts(text) {
   const start = escapeRegExp2(settings3.startTag);
   const end = escapeRegExp2(settings3.endTag);
   const pattern = new RegExp(`${start}([\\s\\S]*?)${end}`, "g");
-  const matches = [...visibleText.matchAll(pattern)];
+  // 标记同样按「有值就用、没值回落默认」处理，理由见 findAndReplaceInElement 里的说明：
+  // 设置是浅合并，老用户的 banana 对象里没有这几个新键。
+  const banana = settings3.banana || {};
+  const videoPairEnabled = String(banana.grokVideoPair) === "true" && String(banana.useGrokFormat) === "true";
+  const videoPattern = videoPairEnabled ? new RegExp(
+    `${escapeRegExp2(String(banana.grokVideoStartTag || "").trim() || "video###")}([\\s\\S]*?)${escapeRegExp2(String(banana.grokVideoEndTag || "").trim() || "###")}`,
+    "g"
+  ) : null;
+  // 每个流式分片都会进来一次，而渲染整条消息不便宜：先在原文上看闭合的标签集合有没有变化，
+  // 没变就直接复用上次的结果（pregenManager.add 本身幂等）。
+  const rawTagMatches = [...visibleText.matchAll(pattern)].map((match) => match[0]);
+  if (rawTagMatches.length === 0) return [];
+  const rawVideoMatches = videoPattern ? [...visibleText.matchAll(videoPattern)].map((match) => match[0]) : [];
+  const signature = JSON.stringify([rawTagMatches, rawVideoMatches]);
+  if (signature === pregenScanCache.signature) return pregenScanCache.prompts;
+  let scanText = null;
+  try {
+    scanText = renderLogicalTextLikeChat(visibleText);
+  } catch (error) {
+    if (!pregenRenderWarned) {
+      pregenRenderWarned = true;
+      console.warn("[st-chatu8] 预生成按酒馆渲染取文本失败，回落到原文匹配（key 可能与按钮不一致）:", error);
+    }
+  }
+  if (typeof scanText !== "string") scanText = visibleText;
+  const matches = [...scanText.matchAll(pattern)];
   const prompts = matches.map((match) => {
     // 必须和 createButtonAtPosition 里 link 的算法逐字一致：requestId 和图库 key 都由它算出，
     // 差一个字符就会变成「预生成存一份、按钮再重新生成一份」，既白等也白烧一次额度。
     // 所以这里不能再自作主张把全角标点转半角——主流程并不转。
     return match[1].trim().replaceAll("《", "<").replaceAll("》", ">").replaceAll("\n", "");
   });
-  // 标记同样按「有值就用、没值回落默认」处理，理由见 findAndReplaceInElement 里的说明：
-  // 设置是浅合并，老用户的 banana 对象里没有这几个新键。
-  const banana = settings3.banana || {};
-  const videoPairEnabled = String(banana.grokVideoPair) === "true" && String(banana.useGrokFormat) === "true";
-  if (!videoPairEnabled) return prompts;
-  // 图生视频：生图段往往比视频段先闭合，此刻派发出去就等于把视频提示词丢了。
-  // 因此只派发已经配到视频段的标签，其余的留给后续分片；直到流式结束都没配上的，
-  // 由正文渲染后的主流程接管——最差不过是少一次预生成加速，不会静默少一段提示词。
-  const videoPattern = new RegExp(
-    `${escapeRegExp2(String(banana.grokVideoStartTag || "").trim() || "video###")}([\\s\\S]*?)${escapeRegExp2(String(banana.grokVideoEndTag || "").trim() || "###")}`,
-    "g"
-  );
-  // 与主流程逐字一致的全角还原：预生成读的是流式原文（尖括号还在），主流程读的是 DOM 文本
-  // （尖括号已被当成标签吃掉）。两边都按《》约定还原，才不会一条链路带着 <Picture 1>、
-  // 另一条丢掉它，同一个标签生成出两种视频提示词。
-  const videoPrompts = [...visibleText.matchAll(videoPattern)]
-    .map((match) => match[1].trim().replaceAll("《", "<").replaceAll("》", ">"));
-  return prompts
-    .map((prompt2, index) => ({ prompt: prompt2, pairedVideoPrompt: videoPrompts[index] || "" }))
-    .filter((item) => item.pairedVideoPrompt);
+  let result = prompts;
+  if (videoPattern) {
+    // 图生视频：生图段往往比视频段先闭合，此刻派发出去就等于把视频提示词丢了。
+    // 因此只派发已经配到视频段的标签，其余的留给后续分片；直到流式结束都没配上的，
+    // 由正文渲染后的主流程接管——最差不过是少一次预生成加速，不会静默少一段提示词。
+    // 与主流程逐字一致的全角还原：两边都按《》约定还原，才不会一条链路带着 <Picture 1>、
+    // 另一条丢掉它，同一个标签生成出两种视频提示词。
+    const videoPrompts = [...scanText.matchAll(videoPattern)]
+      .map((match) => match[1].trim().replaceAll("《", "<").replaceAll("》", ">"));
+    result = prompts
+      .map((prompt2, index) => ({ prompt: prompt2, pairedVideoPrompt: videoPrompts[index] || "" }))
+      .filter((item) => item.pairedVideoPrompt);
+  }
+  pregenScanCache = { signature, prompts: result };
+  return result;
 }
 eventSource39.on(event_types7.GENERATION_STARTED, () => {
+  resetPregenScanCache();
   if (String(extension_settings101[extensionName].enablePregen) !== "true") return;
   pregenManager.clear();
 });
