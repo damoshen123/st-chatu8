@@ -19,7 +19,10 @@ function buildHarness({ cache = '1', timeoutMs = 20 * 60 * 1000 } = {}) {
   const code = [
     'var extensionName = "st-chatu8";',
     `var extension_settings100 = { [extensionName]: { cache: ${JSON.stringify(cache)} } };`,
-    'var stScript = { substituteParams: (s) => String(s).replaceAll("{{char}}", "Alice") };',
+    'var stScript = { substituteParams: (s) => String(s).replaceAll("{{char}}", "Alice"), chat: [{ mes: "", is_user: true }, { mes: "", swipe_id: 0 }] };',
+    'var getContext = () => ({ chatId: "chat-A" });',
+    'var extension_settings101 = { [extensionName]: { startTag: "image###", endTag: "###", thinkTagFormat: "", banana: {} } };',
+    'function findMesTextFromElement() { return null; }',
     'var logs = []; function addLog(m) { logs.push(String(m)); }',
     'var EventType = { GENERATE_IMAGE_REQUEST: "req", GENERATE_IMAGE_RESPONSE: "res" };',
     `var eventSource38 = {
@@ -35,6 +38,7 @@ function buildHarness({ cache = '1', timeoutMs = 20 * 60 * 1000 } = {}) {
     'var pregenDispatched = new Set();',
     'var currentlyGenerating = new Set(); var generatingByNormalizedKey = new Map(); var normalizedKeyCache = new Map();',
     'var pregenByNormalizedKey = new Map(); var pregenAdopters = new Map(); var recentPregenResults = new Map();',
+    'var pregenByCorrelation = new Map(); var recentPregenByCorrelation = new Map(); var pregenGeneration = { type: "", continueBase: 0 };',
     extract('async function persistWithDeadline('),
     extract('function generateStableId3(str) {'),
     extract('function isGenerating(prompt2) {'),
@@ -43,14 +47,26 @@ function buildHarness({ cache = '1', timeoutMs = 20 * 60 * 1000 } = {}) {
     extract('function isGeneratingEquivalent(prompt2) {'),
     extract('function normalizeTagKey(text) {'),
     extract('function computeNormalizedTagKey(text) {'),
-    extract('function registerPregen(prompt2) {'),
-    extract('function unregisterPregen(prompt2) {'),
+    extract('function makePregenCorrelationKey(identity, ordinal) {'),
+    extract('function safeCurrentChatId() {'),
+    extract('function resolvePregenCorrelationBase() {'),
+    extract('function looseTagText(text) {'),
+    extract('function bigramDice(a, b) {'),
+    extract('function looselySameTag(a, b) {'),
+    extract('function registerPregen(prompt2, correlationKey = "") {'),
+    extract('function unregisterPregen(prompt2, correlationKey = "") {'),
+    extract('function escapeRegExpForPregen(string) {'),
+    extract('function getThinkTagPairs() {'),
+    extract('function stripThinkingForPregen(text) {'),
+    extract('function parsePrompts(text) {'),
+    extract('function countClosedTags(text) {'),
+    extract('function add(prompts, correlationBase = null) {'),
     extract('function takePregenAdopters(prompt2) {'),
-    extract('async function adoptPregen(link) {'),
-    extract('async function fanOutPregenResult(prompt2, responseData) {'),
+    extract('async function adoptPregen(link, correlationKey = "") {'),
+    extract('async function fanOutPregenResult(prompt2, responseData, correlationKey = "") {'),
     extract('function releasePregenAdopters(prompt2, reason) {'),
-    extract('async function dispatchPregenTask(prompt2, pairedVideoPrompt = "") {'),
-    'return { stScript, normalizeTagKey, isGenerating, startGenerating, stopGenerating, isGeneratingEquivalent, adoptPregen, dispatchPregenTask, generateStableId3, eventSource38, db, setCalls, logs, recentPregenResults, pregenAdopters };',
+    extract('async function dispatchPregenTask(prompt2, pairedVideoPrompt = "", correlationKey = "") {'),
+    'return { stScript, extension_settings101, normalizeTagKey, isGenerating, startGenerating, stopGenerating, isGeneratingEquivalent, adoptPregen, dispatchPregenTask, generateStableId3, eventSource38, db, setCalls, logs, recentPregenResults, pregenAdopters, makePregenCorrelationKey, resolvePregenCorrelationBase, looselySameTag, parsePrompts, countClosedTags, add, pregenGeneration, setGeneration: (g) => { pregenGeneration = g; }, pregenByCorrelation };',
   ].join('\n');
   return new Function(code)();
 }
@@ -184,6 +200,91 @@ const OTHER = 'wide angle, second shot';
   await dispatch; await tick(); await tick();
   const forwarded = h.eventSource38.emitted.find((e) => e.name === 'res' && e.data.prompt === DOM);
   check('cache=0：不写图库但仍转交结果', !!forwarded && h.setCalls.length === 0);
+}
+
+// 9. 编号：parsePrompts 给序号（配对模式过滤前的），续写按已有标签数加基数
+{
+  const h = buildHarness();
+  const items = h.parsePrompts('a image###one###b image###two### c image###three###');
+  check('parsePrompts 按出现顺序给序号', items.map((i) => i.ordinal).join(',') === '0,1,2' && items[2].prompt === 'three', JSON.stringify(items));
+  h.extension_settings101['st-chatu8'].banana = { grokVideoPair: 'true', useGrokFormat: 'true' };
+  // 配对是按出现顺序第 i 个生图段配第 i 个视频段；第二个视频段还没闭合时，第二个标签留给后续分片。
+  const paired = h.parsePrompts('image###one###\nvideo###v1###\nimage###two###\nvideo###v2');
+  check('配对模式：只派发已配到视频段的，且保留原序号', paired.length === 1 && paired[0].ordinal === 0 && paired[0].prompt === 'one' && paired[0].pairedVideoPrompt === 'v1', JSON.stringify(paired));
+  const pairedAll = h.parsePrompts('image###one###\nvideo###v1###\nimage###two###\nvideo###v2###');
+  check('配对模式：两段都闭合后序号仍是 0,1', pairedAll.length === 2 && pairedAll[1].ordinal === 1 && pairedAll[1].pairedVideoPrompt === 'v2', JSON.stringify(pairedAll));
+  h.extension_settings101['st-chatu8'].banana = {};
+  check('countClosedTags 数已有正文里的闭合标签（续写基数）', h.countClosedTags('image###a### text image###b###') === 2);
+}
+
+// 10. 编号：预生成派发时请求带 requestKey，同编号不重复派发
+{
+  const h = buildHarness();
+  const base = h.resolvePregenCorrelationBase();
+  check('流式目标楼层身份可解析（chat 最后一条、swipe 0）', !!base && base.mesId === 1 && base.swipeId === 0 && base.chatId === 'chat-A', JSON.stringify(base));
+  h.add([{ prompt: RAW, ordinal: 0 }], base);
+  await tick(); await tick(); await tick();
+  const req = h.eventSource38.emitted.find((e) => e.name === 'req');
+  const expectKey = h.makePregenCorrelationKey(base, 0);
+  check('派发的请求带上编号 requestKey', !!req && req.data.requestKey === expectKey, JSON.stringify(req && req.data.requestKey));
+  h.add([{ prompt: RAW + ' x', ordinal: 0 }], base);
+  await tick(); await tick();
+  check('同一编号（流式分片里同一标签的文本还在变）不会再派发', h.eventSource38.emitted.filter((e) => e.name === 'req').length === 1);
+  h.eventSource38.emit('res', { id: h.generateStableId3(RAW), success: true, imageData: 'x', prompt: RAW });
+}
+
+// 11. 编号认领：文本差异超出归一化范围（正则脚本改了词）也能按编号认领；编号对上但文本不相干则不认
+{
+  const h = buildHarness();
+  const base = h.resolvePregenCorrelationBase();
+  const key = h.makePregenCorrelationKey(base, 2);
+  const dispatch = h.dispatchPregenTask('camera slowly pushes in on her face, soft window light, she smiles', '', key);
+  await tick(); await tick();
+  const adoptedSimilar = await h.adoptPregen('camera slowly pushes in on her face, soft window light, she grins', key);
+  check('编号相同、文本小改动 → 按编号认领', adoptedSimilar !== null && h.isGenerating('camera slowly pushes in on her face, soft window light, she grins'));
+  const adoptedUnrelated = await h.adoptPregen('completely different shot of a dragon over the mountains at night', key);
+  check('编号相同、文本不相干（标签数量错位）→ 不认领', adoptedUnrelated === null && !h.isGenerating('completely different shot of a dragon over the mountains at night'), h.logs.at(-1));
+  h.eventSource38.emit('res', { id: h.generateStableId3('camera slowly pushes in on her face, soft window light, she smiles'), success: true, imageData: 'x', prompt: 'camera slowly pushes in on her face, soft window light, she smiles' });
+  await dispatch; await tick(); await tick();
+  check('认领人收到转交并解锁', !h.isGenerating('camera slowly pushes in on her face, soft window light, she grins') && h.db.has('camera slowly pushes in on her face, soft window light, she grins'));
+}
+
+// 12. 「换行修复」把全角标点改成半角：归一化 key 现在相等；宽松比对也相等
+{
+  const h = buildHarness();
+  const raw = '1girl，smile；blue eyes：close-up';
+  const fixed = '1girl,smile;blue eyes:close-up';
+  check('全角标点折半角后归一化 key 相等', h.normalizeTagKey(raw) === h.normalizeTagKey(fixed));
+  check('宽松比对：Markdown 与标点差异都视为同一标签', h.looselySameTag('*1girl*, smile', '1girl, smile') && !h.looselySameTag('1girl, smile', 'a dragon flying over snowy mountains'));
+}
+
+// 13. 预生成已完成 → 迟到的按钮按编号拿到复制成品
+{
+  const h = buildHarness();
+  const base = h.resolvePregenCorrelationBase();
+  const key = h.makePregenCorrelationKey(base, 0);
+  const dispatch = h.dispatchPregenTask(RAW, '', key);
+  await tick(); await tick();
+  h.db.set(RAW, { imageUrl: 'data:video/mp4;base64,DDDD', change: RAW, isVideo: true, originalUrl: '' });
+  h.eventSource38.emit('res', { id: h.generateStableId3(RAW), success: true, imageData: 'data:video/mp4;base64,DDDD', prompt: RAW, change: RAW, isVideo: true, format: 'video/mp4' });
+  await dispatch; await tick(); await tick();
+  const adopted = await h.adoptPregen('slow dolly-in on Alice, she whispers come here camera follows, cinematic lighting', key);
+  check('按编号复制已完成的成品到按钮 key', adopted === RAW && h.db.has('slow dolly-in on Alice, she whispers come here camera follows, cinematic lighting'));
+}
+
+// 14. 假人/quiet 不给编号；续写带基数
+{
+  const h = buildHarness();
+  h.setGeneration({ type: 'impersonate', continueBase: 0 });
+  check('impersonate 不给编号', h.resolvePregenCorrelationBase() === null);
+  h.setGeneration({ type: 'continue', continueBase: 2 });
+  const base = h.resolvePregenCorrelationBase();
+  check('续写：基数随身份返回', !!base && base.offset === 2);
+  h.add([{ prompt: 'new tag after continue', ordinal: 0 }], base);
+  await tick(); await tick(); await tick();
+  const req = h.eventSource38.emitted.find((e) => e.name === 'req');
+  check('续写：编号 = 序号 + 基数', !!req && req.data.requestKey === h.makePregenCorrelationKey(base, 2), JSON.stringify(req && req.data.requestKey));
+  h.eventSource38.emit('res', { id: h.generateStableId3('new tag after continue'), success: false, error: 'x', prompt: 'new tag after continue' });
 }
 
 const failed = results.filter((r) => !r.ok).length;
