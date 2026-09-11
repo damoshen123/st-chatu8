@@ -45954,7 +45954,7 @@ var init_mainSettingsModule = __esm({
 - longPressToEdit: \u5E03\u5C14\u5B57\u7B26\u4E32 "true"/"false", \u957F\u6309\u56FE\u7247\u4FEE\u6539tag(\u6253\u5F00\u66F4\u591A\u529F\u80FD\u5FC5\u987B)
 - clickToPreview: \u5E03\u5C14\u5B57\u7B26\u4E32 "true"/"false", \u5355\u51FB\u56FE\u7247\u9884\u89C8
 - newlineFixEnabled: \u5E03\u5C14\u5B57\u7B26\u4E32 "true"/"false", \u6362\u884C\u4FEE\u590D
-- enablePregen: \u5E03\u5C14\u5B57\u7B26\u4E32 "true"/"false", \u6D41\u5F0F\u9884\u751F\u6210
+- enablePregen: \u5E03\u5C14\u5B57\u7B26\u4E32 "true"/"false", \u9884\u751F\u6210\uFF08\u6D41\u5F0F\u9014\u4E2D/\u975E\u6D41\u5F0F\u5230\u8FBE\u65F6\u63D0\u524D\u6D3E\u53D1\u751F\u56FE\uFF09
 - thinkTagFormat: \u5B57\u7B26\u4E32, \u601D\u7EF4\u94FE\u683C\u5F0F\uFF08\u6D41\u5F0F\u9884\u751F\u6210\u8FC7\u6EE4\u7528\uFF0C\u4E00\u884C\u4E00\u7EC4\uFF0C\u5982 <think></think>\uFF0C\u4E5F\u53EF\u5199\u300C\u5F00\u59CB|\u7ED3\u675F\u300D\uFF0C\u7559\u7A7A\u4E0D\u8FC7\u6EE4\uFF09
 - autoLLMImageGen: \u5E03\u5C14\u5B57\u7B26\u4E32 "true"/"false", \u81EA\u52A8LLM\u8BF7\u6C42\u751F\u56FE
 - imageGenInterval: \u6570\u5B57, \u751F\u56FE\u95F4\u9694\u65F6\u95F4\uFF08\u6BEB\u79D2\uFF09
@@ -45988,7 +45988,7 @@ var init_mainSettingsModule = __esm({
 - longPressToEdit\uFF08\u957F\u6309\u56FE\u7247\u4FEE\u6539tag\uFF09\uFF1A\u5F00\u542F\u540E\u957F\u6309\u5DF2\u751F\u6210\u7684\u56FE\u7247\u53EF\u4EE5\u5C55\u5F00\u7F16\u8F91\u6846\uFF0C\u4F7F\u7528\u66F4\u591A\u7F16\u8F91\u529F\u80FD\u3002
 - clickToPreview\uFF08\u5355\u51FB\u56FE\u7247\u9884\u89C8\uFF09\uFF1A\u5F00\u542F\u540E\u5355\u51FB\u56FE\u7247\u4E0A\u534A\u90E8\u5206\uFF0C\u4F1A\u5F39\u51FA\u5927\u56FE\u9884\u89C8\uFF0C\u8FD8\u53EF\u4EE5\u5207\u6362\u67E5\u770B\u5176\u4ED6\u56FE\u7247\u3002
 - newlineFixEnabled\uFF08\u6362\u884C\u4FEE\u590D\uFF09\uFF1A\u4FEE\u590D\u67D0\u4E9B\u60C5\u51B5\u4E0B\u6587\u672C\u6807\u8BB0"###"\u4F1A\u5355\u72EC\u5F00\u4E00\u884C\u7684\u5F02\u5E38\u95EE\u9898\u3002
-- enablePregen\uFF08\u6D41\u5F0F\u9884\u751F\u6210\uFF09\uFF1A\u5728\u6D41\u5F0F\u63A5\u6536\u6D88\u606F\u7684\u8FC7\u7A0B\u4E2D\uFF0C\u63D0\u524D\u5F00\u59CB\u751F\u6210\u56FE\u7247\uFF0C\u51CF\u5C11\u7B49\u5F85\u65F6\u95F4\u3002\uFF08\u4EC5\u4E16\u754C\u4E66\u6A21\u5F0F\u652F\u6301\uFF09
+- enablePregen\uFF08\u9884\u751F\u6210\uFF09\uFF1A\u6D41\u5F0F\u65F6\u5728\u63A5\u6536\u9014\u4E2D\u3001\u975E\u6D41\u5F0F\u65F6\u5728\u56DE\u590D\u5230\u8FBE\u7684\u4E00\u523B\u5C31\u63D0\u524D\u5F00\u59CB\u751F\u6210\u56FE\u7247\uFF0C\u4E0D\u7B49\u6309\u94AE\u5EFA\u597D\uFF0C\u51CF\u5C11\u7B49\u5F85\u65F6\u95F4\u3002\uFF08\u4EC5\u4E16\u754C\u4E66\u6A21\u5F0F\u652F\u6301\uFF09
 - thinkTagFormat\uFF08\u601D\u7EF4\u94FE\u683C\u5F0F\uFF09\uFF1A\u6D41\u5F0F\u9884\u751F\u6210\u8BFB\u7684\u662F\u539F\u59CB\u6D41\u5F0F\u6587\u672C\uFF0C\u601D\u8003\u8FC7\u7A0B\u91CC\u7684\u751F\u56FE\u6807\u7B7E\u4E5F\u4F1A\u88AB\u6D3E\u53D1\u51FA\u53BB\u4F46\u6700\u7EC8\u4E0D\u4F1A\u7559\u5728\u6B63\u6587\uFF0C\u767D\u82B1\u989D\u5EA6\u3002\u586B\u4E0A\u601D\u7EF4\u94FE\u6807\u7B7E\u683C\u5F0F\uFF08\u4E00\u884C\u4E00\u7EC4\uFF0C\u5982 <think></think>\uFF09\u5373\u53EF\u6574\u5757\u5254\u9664\uFF1B\u7559\u7A7A\u4E0D\u8FC7\u6EE4\u3002
 - autoLLMImageGen\uFF08\u81EA\u52A8LLM\u8BF7\u6C42\u751F\u56FE\uFF09\uFF1A\u5F00\u542F\u540E\u5F53\u975E\u540C\u5C42\u6D88\u606F\u5339\u914D\u5230\u89E6\u53D1\u6807\u8BB0\u65F6\uFF0C\u81EA\u52A8\u8C03\u7528 LLM \u5C06\u6587\u672C\u53D1\u9001\u7ED9ai\u5E76\u751F\u6210\u56FE\u7247\u63D0\u793A\u8BCD\u3002
 - randomYushe\uFF08\u968F\u673A\u63D0\u793A\u8BCD\u9884\u8BBE\uFF09\uFF1A\u5F00\u542F\u540E\u6BCF\u6B21\u751F\u56FE\u65F6\u4ECE\u6240\u6709\u63D0\u793A\u8BCD\u9884\u8BBE\u4E2D\u968F\u673A\u9009\u62E9\u4E00\u4E2A\u4F7F\u7528\uFF0C\u800C\u975E\u4F7F\u7528\u5F53\u524D\u56FA\u5B9A\u7684\u9884\u8BBE\u3002\u9002\u5408\u5E0C\u671B\u6BCF\u6B21\u751F\u56FE\u98CE\u683C\u591A\u53D8\u7684\u573A\u666F\u3002
@@ -46041,7 +46041,7 @@ var init_mainSettingsModule = __esm({
 - \u56FE\u7247\u5360\u7528\u7A7A\u95F4\u592A\u5927\uFF1A\u5F00\u542F convertToJpegStorage \u53EF\u8282\u7701\u7EA670%\u7A7A\u95F4\uFF0C\u4F46\u4F1A\u6709\u753B\u8D28\u635F\u5931\u3002\u4E5F\u53EF\u4EE5\u5B9A\u671F\u4F7F\u7528\u7F13\u5B58\u6E05\u9664\u529F\u80FD\u3002
 - \u7F13\u5B58\u56FE\u7247\u4E22\u5931\uFF1A\u5982\u679C\u4F7F\u7528 "browser" \u5BA2\u6237\u7AEF\uFF0C\u56FE\u7247\u7F13\u5B58\u5728\u6D4F\u89C8\u5668\u672C\u5730\uFF0C\u6E05\u9664\u6D4F\u89C8\u5668\u6570\u636E\u4F1A\u5BFC\u81F4\u4E22\u5931\u3002\u5EFA\u8BAE\u5F00\u542F jiuguanchucun \u6301\u4E45\u5316\u5230\u9152\u9986\u670D\u52A1\u5668\u3002
 - Vibe \u6362\u8BBE\u5907\u4E0D\u53EF\u7528\uFF1A\u5F00\u542F vibeJiuguanchucun\uFF0C\u5E76\u70B9\u51FB\u201C\u8FC1\u79FB Vibe \u5230\u9152\u9986\u201D\u8FC1\u79FB\u5DF2\u6709 Vibe\u3002
-- \u6D41\u5F0F\u9884\u751F\u6210(enablePregen)\u4E0D\u751F\u6548\uFF1A\u9700\u8981\u804A\u5929\u6A21\u5F0F\u672C\u8EAB\u652F\u6301\u6D41\u5F0F\u8F93\u51FA\uFF0C\u4E14\u540E\u7AEF\u54CD\u5E94\u901F\u5EA6\u8DB3\u591F\u5FEB\u624D\u80FD\u4F53\u73B0\u9884\u751F\u6210\u7684\u4F18\u52BF\u3002
+- \u9884\u751F\u6210(enablePregen)\u4E0D\u751F\u6548\uFF1A\u975E\u6D41\u5F0F\u4E5F\u4F1A\u5728\u56DE\u590D\u5230\u8FBE\u65F6\u6D3E\u53D1\uFF1B\u53EA\u6709\u540E\u7AEF\u54CD\u5E94\u901F\u5EA6\u8DB3\u591F\u5FEB\u624D\u80FD\u4F53\u73B0\u9884\u751F\u6210\u7684\u4F18\u52BF\u3002
 - autoLLMImageGen \u65E0\u6548\uFF1A\u9700\u8981\u786E\u4FDD LLM \u914D\u7F6E\uFF08LLM\u9875\u9762\u7684 api_url\u3001api_key\u3001model\uFF09\u5DF2\u6B63\u786E\u586B\u5199\uFF0C\u4E14\u975E\u540C\u5C42\u6A21\u5F0F\u4E0B\u624D\u751F\u6548\u3002
 `.trim()
     };
@@ -52473,7 +52473,7 @@ var init_configDescriptions = __esm({
       startTag: "\u56FE\u7247\u89E6\u53D1\u65F6\u7684\u8D77\u59CB\u6807\u8BC6\u7B26\uFF0C\u5982 'image###'",
       endTag: "\u56FE\u7247\u89E6\u53D1\u65F6\u7684\u7ED3\u675F\u6807\u8BC6\u7B26\uFF0C\u5982 '###'",
       insertOriginalText: "\u662F\u5426\u5728\u751F\u6210\u7684\u56FE\u7247\u540E\u4FDD\u7559\u63D2\u5165\u539F\u59CB\u5185\u5BB9 (\u5E03\u5C14\u5B57\u7B26\u4E32)",
-      enablePregen: "\u662F\u5426\u542F\u7528\u667A\u80FD\u9884\u751F\u6210\u673A\u5236\u4EE5\u52A0\u5FEB\u54CD\u5E94\uFF0C\u5728ai\u6D41\u5F0F\u8FD4\u56DE\u7684\u9014\u4E2D\u6355\u83B7\u751F\u56FE\u5173\u952E\u8BCD\u7ACB\u5373\u9884\u751F\u6210\u56FE\u7247\uFF0C\u52A0\u5FEB\u751F\u56FE\u8FDB\u5EA6\uFF0C\u4EC5\u652F\u6301\u9152\u9986\u5168\u5C40\u4E16\u754C\u4E66\u7684\u6A21\u5F0F (\u5E03\u5C14\u5B57\u7B26\u4E32)",
+      enablePregen: "\u662F\u5426\u542F\u7528\u9884\u751F\u6210\u4EE5\u52A0\u5FEB\u54CD\u5E94\uFF1A\u6D41\u5F0F\u8FD4\u56DE\u9014\u4E2D\u6355\u83B7\u5230\u751F\u56FE\u5173\u952E\u8BCD\u7ACB\u5373\u9884\u751F\u6210\uFF0C\u975E\u6D41\u5F0F\u5219\u5728\u56DE\u590D\u5230\u8FBE\u65F6\u7ACB\u5373\u6D3E\u53D1\uFF0C\u4EC5\u652F\u6301\u9152\u9986\u5168\u5C40\u4E16\u754C\u4E66\u7684\u6A21\u5F0F (\u5E03\u5C14\u5B57\u7B26\u4E32)",
       thinkTagFormat: "\u601D\u7EF4\u94FE\u683C\u5F0F\uFF0C\u6D41\u5F0F\u9884\u751F\u6210\u636E\u6B64\u5254\u9664\u601D\u8003\u5185\u5BB9\u91CC\u7684\u751F\u56FE\u6807\u7B7E\uFF0C\u4E00\u884C\u4E00\u7EC4\u5982 <think></think>\uFF0C\u4E5F\u53EF\u5199\u300C\u5F00\u59CB|\u7ED3\u675F\u300D\uFF0C\u7559\u7A7A\u4E0D\u8FC7\u6EE4 (\u5B57\u7B26\u4E32)",
       // 核心生成参数 - 尺寸和步数
       sd_csteps: "Stable Diffusion (SD) \u751F\u6210\u6B65\u6570",
@@ -52664,7 +52664,7 @@ var init_configDescriptions = __esm({
 - \u652F\u6301\u591A\u79CD\u8BF7\u6C42\u7C7B\u578B: \u6B63\u6587\u56FE\u7247\u751F\u6210\u3001\u89D2\u8272\u8BBE\u8BA1\u3001\u670D\u88C5\u5C55\u793A\u3001\u7FFB\u8BD1\u3001Tag\u4FEE\u6539
 
 \u3010\u8BBE\u7F6E\u9762\u677F\u6807\u7B7E\u9875 \u2192 \u5173\u952E\u63A7\u4EF6\u6620\u5C04\u3011
-- \u4E3B\u8981\u8BBE\u7F6E(main): scriptEnabled(\u5F00\u5173), mode(\u540E\u7AEF\u9009\u62E9), startTag/endTag(\u89E6\u53D1\u6807\u8BB0), imageAlignment(\u56FE\u7247\u5BF9\u9F50), autoLLMImageGen(\u81EA\u52A8LLM\u751F\u56FE), enablePregen(\u6D41\u5F0F\u9884\u751F\u6210)
+- \u4E3B\u8981\u8BBE\u7F6E(main): scriptEnabled(\u5F00\u5173), mode(\u540E\u7AEF\u9009\u62E9), startTag/endTag(\u89E6\u53D1\u6807\u8BB0), imageAlignment(\u56FE\u7247\u5BF9\u9F50), autoLLMImageGen(\u81EA\u52A8LLM\u751F\u56FE), enablePregen(\u9884\u751F\u6210)
 - SD(sd): sdUrl(API\u5730\u5740), testSd\u6309\u94AE(\u8FDE\u63A5), sd_cchatu_8_model(\u6A21\u578B), sd_cchatu_8_samplerName(\u91C7\u6837\u5668), sd_cwidth/cheight/csteps/cseed(\u5C3A\u5BF8\u6B65\u6570\u79CD\u5B50), sdCfgScale(CFG)
 - NovelAI(novelai): novelaiApi(API Key), novelaimode(\u6A21\u578B\u7248\u672C), novelai_sampler(\u91C7\u6837\u5668), Schedule(\u566A\u70B9\u8868), nai3Scale(\u5F15\u5BFC\u6BD4\u4F8B), novelai_width/height/steps/seed, nai3VibeTransfer(Vibe\u53C2\u8003)
 - ComfyUI(comfyui): comfyuiUrl(API\u5730\u5740), testComfyui\u6309\u94AE(\u8FDE\u63A5), MODEL_NAME(\u6A21\u578B), comfyuisamplerName(\u91C7\u6837\u5668), comfyui_vae(VAE), workerid(\u5DE5\u4F5C\u6D41\u9884\u8BBE), comfyui_width/height/steps/seed, cfg_comfyui(CFG)
@@ -83550,11 +83550,12 @@ var SettingsHelpText = {
   clickToPreview: "**\u5355\u51FB**\u56FE\u7247\u4E0A\u534A\u90E8\u5206\u5F39\u51FA\u5927\u56FE\u9884\u89C8\uFF0C\u53EF\u5DE6\u53F3\u5207\u6362\u67E5\u770B\u5176\u4ED6\u56FE\u7247",
   newlineFixEnabled: "\u4FEE\u590D\u67D0\u4E9B\u60C5\u51B5\u4E0B `###` \u7ED3\u675F\u6807\u8BB0\u4F1A\u5355\u72EC\u5360\u4E00\u884C\u7684\u663E\u793A\u5F02\u5E38",
   enablePregen: {
-    short: "\u6D41\u5F0F\u8FD4\u56DE\u8FC7\u7A0B\u4E2D\u63D0\u524D\u5F00\u59CB\u751F\u56FE\uFF0C\u52A0\u5FEB\u6574\u4F53\u901F\u5EA6\uFF08\u4EC5\u4E16\u754C\u4E66\u6A21\u5F0F\uFF09",
-    long: `### \u6D41\u5F0F\u9884\u751F\u6210
+    short: "\u56DE\u590D\u8FD8\u5728\u6D41\u5F0F\u8FD4\u56DE\u3001\u6216\u975E\u6D41\u5F0F\u521A\u5230\u8FBE\u65F6\u5C31\u63D0\u524D\u5F00\u59CB\u751F\u56FE\uFF0C\u52A0\u5FEB\u6574\u4F53\u901F\u5EA6\uFF08\u4EC5\u4E16\u754C\u4E66\u6A21\u5F0F\uFF09",
+    long: `### \u9884\u751F\u6210
 
 \u5728 AI **\u6D41\u5F0F\u8F93\u51FA**\u7684\u8FC7\u7A0B\u4E2D\uFF0C\u4E00\u65E6\u68C0\u6D4B\u5230\u751F\u56FE\u5173\u952E\u8BCD\u5C31**\u7ACB\u5373\u5F00\u59CB\u751F\u6210\u56FE\u7247**\uFF0C
-\u800C\u4E0D\u662F\u7B49\u6574\u6761\u6D88\u606F\u8F93\u51FA\u5B8C\u6BD5\u540E\u518D\u751F\u6210\u3002
+\u800C\u4E0D\u662F\u7B49\u6574\u6761\u6D88\u606F\u8F93\u51FA\u5B8C\u6BD5\u540E\u518D\u751F\u6210\u3002\u975E\u6D41\u5F0F\u6CA1\u6709\u4E2D\u9014\u6587\u672C\uFF0C\u5219\u5728\u56DE\u590D\u5230\u8FBE\u7684\u4E00\u523B\u5C31\u6D3E\u53D1\uFF0C
+\u4E0D\u7B49\u6B63\u6587\u6E32\u67D3\u3001\u6309\u94AE\u5EFA\u597D\u3002
 
 **\u6536\u76CA**\uFF1A\u53EF\u8282\u7701\u6570\u79D2\u5230\u5341\u6570\u79D2\u7684\u7B49\u5F85\u65F6\u95F4\u3002
 
@@ -85988,7 +85989,7 @@ var recentPregenResults = /* @__PURE__ */ new Map();
  */
 var pregenByCorrelation = /* @__PURE__ */ new Map();
 var recentPregenByCorrelation = /* @__PURE__ */ new Map();
-var pregenGeneration = { type: "", continueBase: 0 };
+var pregenGeneration = { type: "", continueBase: 0, active: false };
 function makePregenCorrelationKey(identity, ordinal) {
   if (!identity || !Number.isInteger(ordinal) || ordinal < 0) return "";
   return `${generateStableId3(String(identity.chatId ?? ""))}:${identity.mesId}:${identity.swipeId ?? 0}:${ordinal}`;
@@ -86354,15 +86355,50 @@ function countClosedTags(text) {
   const pattern = new RegExp(`${escapeRegExpForPregen(settings3.startTag)}([\\s\\S]*?)${escapeRegExpForPregen(settings3.endTag)}`, "g");
   return [...stripThinkingForPregen(text).matchAll(pattern)].length;
 }
-eventSource39.on(event_types7.GENERATION_STARTED, (type) => {
+// 酒馆一次生成的生命周期：GENERATION_STARTED → （流式才有的）STREAM_TOKEN_RECEIVED… → MESSAGE_RECEIVED
+// → GENERATION_ENDED（或被用户中止：GENERATION_STOPPED）。dryRun 是酒馆算 token 的预演，不产生楼层，
+// 也不能让它把正在进行的真实生成的状态（续写基数、登记表）冲掉。
+function onPregenGenerationStarted(type, _params, dryRun) {
+  if (dryRun) return;
   const chatArray = Array.isArray(stScript.chat) ? stScript.chat : [];
   pregenGeneration = {
     type: typeof type === "string" ? type : "",
-    continueBase: type === "continue" ? countClosedTags(chatArray[chatArray.length - 1]?.mes) : 0
+    continueBase: type === "continue" ? countClosedTags(chatArray[chatArray.length - 1]?.mes) : 0,
+    active: true
   };
   if (String(extension_settings101[extensionName].enablePregen) !== "true") return;
   pregenManager.clear();
-});
+}
+function onPregenGenerationFinished() {
+  pregenGeneration.active = false;
+}
+// 非流式：酒馆不发 STREAM_TOKEN_RECEIVED，整条正文在 MESSAGE_RECEIVED 才一次性到达，此前预生成对它完全不动，
+// 表现为「非流式生成的标签不会发送」。这里按同一套编号（楼层身份 + 正文里第几个标签）派发，
+// 主流程稍后建按钮时照常按编号认领。派发逻辑本身按编号去重，所以流式下即便也走到这里也不会发第二份。
+// MESSAGE_RECEIVED 还会被开新聊天的问候语（first_message）、/sendas 等非生成路径触发，
+// 那些不是模型刚写出来的标签，靠 active 只接酒馆生成产生的楼层。
+function pregenFromReceivedMessage(id, type) {
+  if (String(extension_settings101[extensionName].enablePregen) !== "true") return;
+  if (!pregenGeneration.active) return;
+  if (pregenGeneration.type === "impersonate" || pregenGeneration.type === "quiet") return;
+  if (type === "first_message") return;
+  const mesId = Number(id);
+  const chatArray = Array.isArray(stScript.chat) ? stScript.chat : [];
+  const message = Number.isInteger(mesId) && mesId >= 0 ? chatArray[mesId] : null;
+  if (!message || message.is_user || typeof message.mes !== "string" || !message.mes) return;
+  let prompts = parsePrompts(message.mes);
+  // 续写时正文是「旧 + 新」：旧标签早有按钮/成品，只派发序号在续写基数之后的那些。
+  // 序号在整条正文里数，已经是绝对序号，编号不再加基数（流式那条链路读的是新增片段，才需要加）。
+  if (pregenGeneration.type === "continue") {
+    const base = pregenGeneration.continueBase || 0;
+    prompts = prompts.filter((item) => item.ordinal >= base);
+  }
+  if (!prompts.length) return;
+  pregenManager.add(prompts, { chatId: safeCurrentChatId(), mesId, swipeId: message.swipe_id ?? 0, offset: 0 });
+}
+eventSource39.on(event_types7.GENERATION_STARTED, onPregenGenerationStarted);
+eventSource39.on(event_types7.GENERATION_ENDED, onPregenGenerationFinished);
+eventSource39.on(event_types7.GENERATION_STOPPED, onPregenGenerationFinished);
 eventSource39.on(event_types7.STREAM_TOKEN_RECEIVED, (text) => {
   if (String(extension_settings101[extensionName].enablePregen) !== "true" || !text) return;
   const prompts = parsePrompts(text);
@@ -86370,6 +86406,7 @@ eventSource39.on(event_types7.STREAM_TOKEN_RECEIVED, (text) => {
     pregenManager.add(prompts, resolvePregenCorrelationBase());
   }
 });
+eventSource39.on(event_types7.MESSAGE_RECEIVED, pregenFromReceivedMessage);
 
 // index.js
 init_errorCollector();
