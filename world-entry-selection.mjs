@@ -1,10 +1,10 @@
 /**
  * Added by Codex for yunx738 on 2026-09-13.
- * Keep ACU worldbook selections stable when generated entries are recreated.
+ * Keep ACU selections stable across rebuilds using generator identifiers, not table names.
  * Distributed under the repository's Aladdin Free Public License; see LICENSE.
  */
 
-const acuComment = /^(?:ACU-\[[^\]]+\]-)?(?:TavernDB-ACU-|重要人物条目|总结条目)/;
+const acuComment = /^(?:ACU-\[[^\]]+\]-|TavernDB-ACU-).+/;
 const owns = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 
 function stableComment(entry) {
