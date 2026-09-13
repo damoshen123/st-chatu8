@@ -2,6 +2,7 @@
  * ====================================================
  * st-chatu8 (智绘姬) - SillyTavern 文生图扩展
  * Copyright (C) 从前跟你一样 (github.com/damoshen123)
+ * 修改：Codex（为 yunx738），2026-09-13；修复 ACU 条目重建后的开关与绑定错位。
  *
  * 【授权声明】
  * 本程序依据 Aladdin Free Public License (AFPL) 第 9 版授权，
@@ -16,6 +17,7 @@
  * 尊重原创，从你我做起。
  * ====================================================
  */
+import { prepareWorldEntries, getWorldEntrySelectionKey, migrateWorldEntryConfig } from "./world-entry-selection.mjs";
 import { extension_settings } from "../../../extensions.js";
 import { saveSettingsDebounced } from "../../../../script.js";
 import { extension_settings as extension_settings2 } from "../../../extensions.js";
@@ -17208,13 +17210,26 @@ async function getglobalSelectWorld() {
   const world = world_info.globalSelect;
   return world;
 }
+var worldEntrySelectionKeys = new Map();
 async function getWorldEntries(world_name) {
   if (world_name) {
     try {
       let char_WorldInfo = await getContext2().loadWorldInfo(world_name);
       if (char_WorldInfo && char_WorldInfo.entries) {
         console.log("char_WorldInfo", char_WorldInfo);
-        return char_WorldInfo.entries;
+        const entries = prepareWorldEntries(char_WorldInfo.entries);
+        const keys = new Map(Object.values(entries)
+          .filter((entry) => entry?.uid != null)
+          .map((entry) => [String(entry.uid), getWorldEntrySelectionKey(entry)]));
+        worldEntrySelectionKeys.set(world_name, keys);
+        const settings3 = extension_settings11[extensionName] || {};
+        let changed = migrateWorldEntryConfig(settings3.worldBookConfig, world_name, keys, [
+          worldEntrySelections?.[world_name],
+          worldEntryBindings?.[world_name]
+        ]);
+        changed = migrateWorldEntryConfig(settings3.knowledgeBaseConfig, world_name, keys) || changed;
+        if (changed) saveSettingsDebounced();
+        return entries;
       }
     } catch (e) {
       console.error(e);
@@ -17402,9 +17417,10 @@ function processVariablePlaceholders(content) {
   return result;
 }
 async function processSingleWorldBookStructured(entries, entrySettings, triggerText) {
+  entries = prepareWorldEntries(entries);
   const enabledEntries = entries.filter((entry) => {
     if (entry.disable) return false;
-    const entryKey = entry.uid;
+    const entryKey = getWorldEntrySelectionKey(entry);
     const setting = entrySettings[entryKey];
     if (setting === "force") {
       return true;
@@ -17413,7 +17429,7 @@ async function processSingleWorldBookStructured(entries, entrySettings, triggerT
   });
   const forceEnabledUids = /* @__PURE__ */ new Set();
   for (const entry of enabledEntries) {
-    const setting = entrySettings[entry.uid];
+    const setting = entrySettings[getWorldEntrySelectionKey(entry)];
     if (setting === "force") {
       forceEnabledUids.add(entry.uid);
     }
@@ -17452,6 +17468,7 @@ async function processSingleWorldBookStructured(entries, entrySettings, triggerT
   const result = {
     entries: triggeredEntries.map((entry) => ({
       uid: entry.uid !== void 0 && entry.uid !== null ? entry.uid : "",
+      selectionKey: getWorldEntrySelectionKey(entry),
       comment: entry.comment || "\u672A\u547D\u540D\u6761\u76EE",
       content: entry.content || "",
       // ★ 新增：保留原始条目的其他重要字段
@@ -52959,6 +52976,7 @@ function saveWorldBookConfig() {
   recalculateEffectiveWorldBooks();
 }
 function toggleWorldEntryState(worldName, entryUid, newState = null) {
+  entryUid = worldEntrySelectionKeys.get(worldName)?.get(String(entryUid)) ?? entryUid;
   if (!worldEntrySelections[worldName]) {
     worldEntrySelections[worldName] = {};
   }
@@ -52976,6 +52994,7 @@ function toggleWorldEntryState(worldName, entryUid, newState = null) {
   return worldEntrySelections[worldName][entryUid];
 }
 function getWorldEntryState(worldName, entryUid) {
+  entryUid = worldEntrySelectionKeys.get(worldName)?.get(String(entryUid)) ?? entryUid;
   const wBound = worldBookBindings[worldName];
   if (wBound && wBound !== currentCharWorldName) return false;
   const eBound = worldEntryBindings[worldName]?.[entryUid];
@@ -53016,7 +53035,7 @@ function initSendData(settingsModal) {
           worldEntrySelections[currentCharWorldName] = {};
           const entriesArray = Array.isArray(charWorldEntries) ? charWorldEntries : Object.values(charWorldEntries);
           entriesArray.forEach((entry) => {
-            const entryKey = entry.uid;
+            const entryKey = getWorldEntrySelectionKey(entry);
             if (entryKey !== void 0 && entryKey !== null) {
               worldEntrySelections[currentCharWorldName][entryKey] = false;
             }
@@ -53169,7 +53188,7 @@ function initSendData(settingsModal) {
         return;
       }
       filteredEntries.forEach((entry) => {
-        const entryKey = entry.uid;
+        const entryKey = getWorldEntrySelectionKey(entry);
         const displayName = entry.comment || `\u6761\u76EE ${entryKey}`;
         const isConstant = entry.constant === true;
         const entryItem = $("<div></div>").addClass("st-chatu8-list-item").data("entryKey", entryKey).data("entryContent", entry.content || "");
@@ -53398,7 +53417,7 @@ function initSendData(settingsModal) {
       return String(key).toLowerCase().includes(searchTerm) || String(comment).toLowerCase().includes(searchTerm);
     });
     filteredEntries.forEach((entry) => {
-      const entryKey = entry.uid;
+      const entryKey = getWorldEntrySelectionKey(entry);
       if (entryKey !== void 0 && entryKey !== null) {
         worldEntrySelections[activeWorld][entryKey] = true;
       }
@@ -53422,7 +53441,7 @@ function initSendData(settingsModal) {
       return String(key).toLowerCase().includes(searchTerm) || String(comment).toLowerCase().includes(searchTerm);
     });
     filteredEntries.forEach((entry) => {
-      const entryKey = entry.uid;
+      const entryKey = getWorldEntrySelectionKey(entry);
       if (entryKey !== void 0 && entryKey !== null) {
         worldEntrySelections[activeWorld][entryKey] = false;
       }
@@ -53442,7 +53461,7 @@ function initSendData(settingsModal) {
       const entriesArray = Array.isArray(entries) ? entries : Object.values(entries);
       let count = 0;
       entriesArray.forEach((entry) => {
-        const entryKey = entry.uid;
+        const entryKey = getWorldEntrySelectionKey(entry);
         if (entryKey !== void 0 && entryKey !== null && isNewEntry(activeWorld, entryKey)) {
           worldEntrySelections[activeWorld][entryKey] = true;
           count++;
@@ -53472,7 +53491,7 @@ function initSendData(settingsModal) {
       const entriesArray = Array.isArray(entries) ? entries : Object.values(entries);
       let count = 0;
       entriesArray.forEach((entry) => {
-        const entryKey = entry.uid;
+        const entryKey = getWorldEntrySelectionKey(entry);
         if (entryKey !== void 0 && entryKey !== null && isNewEntry(activeWorld, entryKey)) {
           worldEntrySelections[activeWorld][entryKey] = false;
           count++;
@@ -53842,7 +53861,7 @@ function displayTestResult(container, worldBooksData, contextElements) {
                             ` : ""}
                         </div>
                         <div style="display: flex; align-items: center; gap: 4px;">
-                            <button class="test-wb-entry-disable-btn" data-world-name="${worldName}" data-entry-uid="${entry.uid || ""}" style="
+                            <button class="test-wb-entry-disable-btn" data-world-name="${worldName}" data-entry-uid="${encodeURIComponent(getWorldEntrySelectionKey(entry) ?? "")}" style="
                                 padding: 2px 8px;
                                 background: rgba(255, 152, 0, 0.15);
                                 border: 1px solid rgba(255, 152, 0, 0.3);
@@ -54003,8 +54022,8 @@ function displayTestResult(container, worldBooksData, contextElements) {
   $(container).on("click", ".test-wb-entry-disable-btn", async function(e) {
     e.stopPropagation();
     const worldName = $(this).data("world-name");
-    const entryUid = $(this).data("entry-uid");
-    if (!worldName || entryUid === void 0 || entryUid === null) {
+    const entryUid = decodeURIComponent($(this).attr("data-entry-uid") ?? "");
+    if (!worldName || entryUid === "") {
       console.warn("[send_data] \u5207\u6362\u6761\u76EE\u72B6\u6001\u5931\u8D25\uFF1A\u7F3A\u5C11\u5FC5\u8981\u53C2\u6570", { worldName, entryUid });
       return;
     }
@@ -54273,7 +54292,7 @@ ${msg.text}`);
           const entryPreview = entryContent.substring(0, previewLength);
           const hasMore = entryContent.length > previewLength;
           entriesHtml += `
-                        <div class="wb-entry-item" data-world-name="${worldName}" data-entry-uid="${entry.uid || ""}" style="
+                        <div class="wb-entry-item" data-world-name="${worldName}" data-entry-uid="${encodeURIComponent(getWorldEntrySelectionKey(entry) ?? "")}" style="
                             margin-bottom: 8px;
                             padding: 8px 10px;
                             background: rgba(66, 165, 245, 0.05);
@@ -54295,7 +54314,7 @@ ${msg.text}`);
                                     <span>${entryName}</span>
                                 </div>
                                 <div style="display: flex; align-items: center; gap: 4px;">
-                                    <button class="wb-entry-disable-btn" data-world-name="${worldName}" data-entry-uid="${entry.uid || ""}" style="
+                                    <button class="wb-entry-disable-btn" data-world-name="${worldName}" data-entry-uid="${encodeURIComponent(getWorldEntrySelectionKey(entry) ?? "")}" style="
                                         padding: 2px 8px;
                                         background: rgba(255, 152, 0, 0.15);
                                         border: 1px solid rgba(255, 152, 0, 0.3);
@@ -54695,8 +54714,8 @@ ${msg.text}`);
   $("#st-chatu8-floor-content").on("click", ".wb-entry-disable-btn", async function(e) {
     e.stopPropagation();
     const worldName = $(this).data("world-name");
-    const entryUid = $(this).data("entry-uid");
-    if (!worldName || entryUid === void 0 || entryUid === null) {
+    const entryUid = decodeURIComponent($(this).attr("data-entry-uid") ?? "");
+    if (!worldName || entryUid === "") {
       console.warn("[FloorMessage] \u7981\u7528\u6761\u76EE\u5931\u8D25\uFF1A\u7F3A\u5C11\u5FC5\u8981\u53C2\u6570", { worldName, entryUid });
       return;
     }
@@ -55721,7 +55740,7 @@ async function buildKnowledgeBasePromptContent(lastUserText = "") {
     let processEntries = entries;
     if (skipConstant) {
       processEntries = entries.map((e) => {
-        const setting = entrySettings[e.uid];
+        const setting = entrySettings[getWorldEntrySelectionKey(e)];
         if (e.constant === true && setting !== "force") {
           return { ...e, constant: false };
         }
@@ -55758,7 +55777,7 @@ async function listOnDemandKnowledgeBases() {
     } catch (err) {
     }
     const enabledEntries = entries.filter((e) => {
-      const state3 = entrySettings[e.uid];
+      const state3 = entrySettings[getWorldEntrySelectionKey(e)];
       return state3 === true || state3 === "force";
     });
     let section = `\u{1F4DA} ${worldName}\uFF08${enabledEntries.length} \u4E2A\u5DF2\u542F\u7528\u6761\u76EE\uFF09`;
@@ -55790,7 +55809,7 @@ async function readKnowledgeBase(worldName) {
     return `\u8BFB\u53D6\u4E16\u754C\u4E66\u300C${worldName}\u300D\u5931\u8D25\uFF1A${err.message}`;
   }
   const enabledEntries = entries.filter((e) => {
-    const state3 = entrySettings[e.uid];
+    const state3 = entrySettings[getWorldEntrySelectionKey(e)];
     return state3 === true || state3 === "force";
   });
   if (enabledEntries.length === 0) return `\u4E16\u754C\u4E66\u300C${worldName}\u300D\u4E2D\u6CA1\u6709\u5DF2\u542F\u7528\u7684\u6761\u76EE\u3002`;
@@ -55844,7 +55863,7 @@ async function searchKnowledge(keyword) {
       continue;
     }
     const enabledEntries = entries.filter((e) => {
-      const state3 = entrySettings[e.uid];
+      const state3 = entrySettings[getWorldEntrySelectionKey(e)];
       return state3 === true || state3 === "force";
     });
     const matched = enabledEntries.filter((e) => {
@@ -55900,7 +55919,7 @@ async function testKnowledgeBaseTrigger(triggerText = "") {
     let processEntries = entries;
     if (skipConstant) {
       processEntries = entries.map((e) => {
-        const setting = entrySettings[e.uid];
+        const setting = entrySettings[getWorldEntrySelectionKey(e)];
         if (e.constant === true && setting !== "force") {
           return { ...e, constant: false };
         }
@@ -102598,7 +102617,7 @@ function initKBWorldBookUI(settingsModal) {
         return;
       }
       filteredEntries.forEach((entry) => {
-        const entryKey = entry.uid;
+        const entryKey = getWorldEntrySelectionKey(entry);
         const displayName = entry.comment || `\u6761\u76EE ${entryKey}`;
         const isConstant = entry.constant === true;
         const entryItem = $("<div></div>").addClass("st-chatu8-list-item").data("entryKey", entryKey).data("entryContent", entry.content || "");
@@ -102764,7 +102783,7 @@ function initKBWorldBookUI(settingsModal) {
       return comment.includes(searchTerm) || keys.includes(searchTerm);
     });
     filteredEntries.forEach((entry) => {
-      const entryKey = entry.uid;
+      const entryKey = getWorldEntrySelectionKey(entry);
       if (entryKey !== void 0 && entryKey !== null) {
         config.worldEntrySelections[kbActiveWorld][entryKey] = true;
       }
@@ -102789,7 +102808,7 @@ function initKBWorldBookUI(settingsModal) {
       return comment.includes(searchTerm) || keys.includes(searchTerm);
     });
     filteredEntries.forEach((entry) => {
-      const entryKey = entry.uid;
+      const entryKey = getWorldEntrySelectionKey(entry);
       if (entryKey !== void 0 && entryKey !== null) {
         config.worldEntrySelections[kbActiveWorld][entryKey] = false;
       }
@@ -103070,7 +103089,7 @@ function displayKBTestResult(container, knowledgeBaseData, triggerText) {
                             ` : ""}
                         </div>
                         <div style="display: flex; align-items: center; gap: 4px;">
-                            <button class="test-kb-entry-disable-btn" data-world-name="${worldName}" data-entry-uid="${entry.uid || ""}" style="
+                            <button class="test-kb-entry-disable-btn" data-world-name="${worldName}" data-entry-uid="${encodeURIComponent(getWorldEntrySelectionKey(entry) ?? "")}" style="
                                 padding: 2px 8px;
                                 background: rgba(255, 152, 0, 0.15);
                                 border: 1px solid rgba(255, 152, 0, 0.3);
@@ -103231,8 +103250,8 @@ function displayKBTestResult(container, knowledgeBaseData, triggerText) {
   $(container).on("click", ".test-kb-entry-disable-btn", async function(e) {
     e.stopPropagation();
     const worldName = $(this).data("world-name");
-    const entryUid = $(this).data("entry-uid");
-    if (!worldName || entryUid === void 0 || entryUid === null) {
+    const entryUid = decodeURIComponent($(this).attr("data-entry-uid") ?? "");
+    if (!worldName || entryUid === "") {
       console.warn("[KnowledgeBase] \u5207\u6362\u6761\u76EE\u72B6\u6001\u5931\u8D25\uFF1A\u7F3A\u5C11\u5FC5\u8981\u53C2\u6570", { worldName, entryUid });
       return;
     }
