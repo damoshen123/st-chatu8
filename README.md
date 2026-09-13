@@ -108,8 +108,6 @@
 
 首次升级需刷新世界书并核对选择。该规则要求名称唯一且稳定；改名、重名，或名称仍相同但对应内容主体已变更时，需要重新核对。没有生成标识的条目仍按 UID 处理。
 
-回归测试：`node --test tests/world-entry-selection.test.mjs`。
-
 ## 帮助与支持
 
 -   [飞书文档](https://gxcgf4l6b2y.feishu.cn/docx/XDo7dLpvhov6AexuLu3c8mpynSC?from=from_copylink)
