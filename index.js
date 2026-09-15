@@ -19183,9 +19183,21 @@ function countImageParts(messages) {
   }
   return count;
 }
+function messageHasPayload(message) {
+  if (message?.role === "tool" || message?.role === "function") return true;
+  if (message?.tool_calls?.length || message?.function_call != null) return true;
+  const content = message?.content;
+  if (typeof content === "string") return content.trim().length > 0;
+  if (!Array.isArray(content)) return true;
+  return content.some((part) => part?.type !== "text" || typeof part.text !== "string" || part.text.trim().length > 0);
+}
+function dropKnownEmptyMessages(messages) {
+  if (!Array.isArray(messages)) return messages;
+  return messages.filter(messageHasPayload);
+}
 function stripImagesFromMessages(messages) {
   if (!Array.isArray(messages)) return messages;
-  return messages.map((msg) => {
+  return dropKnownEmptyMessages(messages.map((msg) => {
     if (!msg || !Array.isArray(msg.content)) return msg;
     const filtered = msg.content.filter((part) => part && part.type !== "image_url");
     if (filtered.length === 1 && filtered[0].type === "text") {
@@ -19195,7 +19207,7 @@ function stripImagesFromMessages(messages) {
       return { ...msg, content: "" };
     }
     return { ...msg, content: filtered };
-  });
+  }));
 }
 async function processImagesInMessages(messages) {
   if (!Array.isArray(messages)) return messages;
@@ -72826,7 +72838,7 @@ function mergeAdjacentMessages2(messages) {
     if (isAStr && isBStr) return a + "\n\n" + b;
     return [...toArray(a), ...toArray(b)];
   };
-  const converted = messages.map((msg) => ({
+  const converted = dropKnownEmptyMessages(messages).map((msg) => ({
     ...msg,
     role: msg.role === "system" ? "user" : msg.role
   }));
