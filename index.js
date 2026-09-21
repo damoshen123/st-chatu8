@@ -8427,7 +8427,13 @@ function ensureLogStateContainer() {
 }
 function cleanupExpiredSessionMeta(indexData, now = getNow()) {
   const cutoff = now - LOG_RETENTION_MS;
-  indexData.sessions = (indexData.sessions || []).filter((session) => (session.updatedAt || session.createdAt || 0) >= cutoff);
+  const activeId = indexData.activeSessionId || "";
+  indexData.sessions = (indexData.sessions || []).filter((session) => {
+    if (session.id === activeId) return true;
+    const isNotExpired = (session.updatedAt || session.createdAt || 0) >= cutoff;
+    const hasEntries = (session.entryCount || 0) > 0;
+    return isNotExpired && hasEntries;
+  });
   if (indexData.sessions.length > MAX_PERSISTED_LOG_SESSIONS) {
     indexData.sessions = indexData.sessions.sort((a, b) => (b.updatedAt || b.createdAt || 0) - (a.updatedAt || a.createdAt || 0)).slice(0, MAX_PERSISTED_LOG_SESSIONS);
   }
@@ -8465,13 +8471,30 @@ function queueLogPersistence(task) {
   return logWriteQueue;
 }
 function schedulePersist() {
+  const now = Date.now();
+  if (_persistFirstRequestTime === 0) {
+    _persistFirstRequestTime = now;
+  }
+  const elapsedSinceFirst = now - _persistFirstRequestTime;
+  if (elapsedSinceFirst >= LOG_PERSIST_MAX_WAIT_MS) {
+    if (_persistDebounceTimer !== null) {
+      clearTimeout(_persistDebounceTimer);
+      _persistDebounceTimer = null;
+    }
+    _persistFirstRequestTime = 0;
+    queueLogPersistence(() => persistActiveLogSession());
+    return;
+  }
   if (_persistDebounceTimer !== null) {
     clearTimeout(_persistDebounceTimer);
   }
+  const remainingToMax = Math.max(50, LOG_PERSIST_MAX_WAIT_MS - elapsedSinceFirst);
+  const delay2 = Math.min(LOG_PERSIST_DEBOUNCE_MS, remainingToMax);
   _persistDebounceTimer = setTimeout(() => {
     _persistDebounceTimer = null;
+    _persistFirstRequestTime = 0;
     queueLogPersistence(() => persistActiveLogSession());
-  }, LOG_PERSIST_DEBOUNCE_MS);
+  }, delay2);
 }
 async function removeExpiredLogSessions(indexData, previousSessions = null) {
   if (_expiredLogCleanupRunning || _expiredLogCleanupBudgetRemaining <= 0) return;
@@ -8546,12 +8569,14 @@ async function initializeLogPersistence() {
   if (!logPersistenceStatePromise) {
     logPersistenceStatePromise = (async () => {
       const storedIndex = await getLogIndex();
+      const rawStoredSessions = storedIndex && Array.isArray(storedIndex.sessions) ? [...storedIndex.sessions] : [];
       const merged = cleanupExpiredSessionMeta(storedIndex && typeof storedIndex === "object" ? {
         version: storedIndex.version || 1,
         activeSessionId: storedIndex.activeSessionId || "",
-        sessions: Array.isArray(storedIndex.sessions) ? storedIndex.sessions : []
+        sessions: rawStoredSessions
       } : getDefaultLogIndex());
       extension_settings3[extensionName].logState = merged;
+      await removeExpiredLogSessions(merged, rawStoredSessions);
       if (merged.activeSessionId) {
         const activeData = await getLogSessionData(merged.activeSessionId);
         extension_settings3[extensionName].log = activeData?.content || extension_settings3[extensionName].log || "";
@@ -8651,7 +8676,7 @@ async function exportLogsWithHistory() {
   lines.push("\u{1F4CB} st-chatu8 \u65E5\u5FD7\u5BFC\u51FA");
   lines.push(`\u751F\u6210\u65F6\u95F4: ${formatLogSessionTimestamp(getNow())}`);
   lines.push(`\u5305\u542B\u65E5\u5FD7\u4F1A\u8BDD: ${validSessions.length}`);
-  lines.push("\u8303\u56F4: \u5F53\u524D\u4F1A\u8BDD + \u6700\u8FD1 24 \u5C0F\u65F6\u5386\u53F2\u4F1A\u8BDD");
+  lines.push("\u8303\u56F4: \u5F53\u524D\u4F1A\u8BDD + \u6700\u8FD1 12 \u5C0F\u65F6\u5386\u53F2\u4F1A\u8BDD\uFF08\u6700\u591A\u4FDD\u7559 10 \u4E2A\u6709\u6548\u4F1A\u8BDD\uFF09");
   lines.push("========================================");
   lines.push("");
   validSessions.forEach((session, index) => {
@@ -9527,8 +9552,8 @@ function _flushLogDomUpdate() {
   _logDomLastUpdate = Date.now();
   const logTextarea = document.getElementById("ch-log-textarea");
   if (!logTextarea) return;
-  const MAX_LOG_LENGTH = 1e5;
-  const TRIM_TARGET_LENGTH = 8e4;
+  const MAX_LOG_LENGTH = 45e3;
+  const TRIM_TARGET_LENGTH = 38e3;
   let displayLog = getLog();
   if (!_logInitialized && _pendingLogBuffer.length > 0) {
     displayLog = (displayLog || "") + _pendingLogBuffer.join("");
@@ -9585,11 +9610,19 @@ function addLog(message) {
     extension_settings3[extensionName].log = "";
   }
   extension_settings3[extensionName].log += logEntry;
+  if (extension_settings3[extensionName].log.length > MAX_LOG_STORE_CHARS) {
+    let trimmed = extension_settings3[extensionName].log.substring(extension_settings3[extensionName].log.length - LOG_ROLLING_TRIM_TARGET);
+    const newlineIdx = trimmed.indexOf("\n");
+    if (newlineIdx !== -1) {
+      trimmed = trimmed.substring(newlineIdx + 1);
+    }
+    extension_settings3[extensionName].log = "\uFF08...\u65E9\u671F\u65E5\u5FD7\u5DF2\u81EA\u52A8\u6EDA\u52A8\u622A\u65AD\uFF0C\u4FDD\u7559\u6700\u65B0\u8BE6\u7EC6\u8BCA\u65AD\u8BB0\u5F55...\uFF09\n" + trimmed;
+  }
   const state3 = ensureLogStateContainer();
   if (state3.activeSessionId) {
     updateSessionMeta(state3.activeSessionId, (session) => {
       session.updatedAt = getNow();
-      session.entryCount = (session.entryCount || 0) + 1;
+      session.entryCount = extension_settings3[extensionName].log.split("\n").filter(Boolean).length;
     });
   }
   scheduleLogDomUpdate();
@@ -9597,9 +9630,10 @@ function addLog(message) {
 }
 function clearLog() {
   const oldLog = extension_settings3[extensionName].log || "";
+  const hasContent = oldLog.trim() !== "";
   const state3 = _logInitialized ? ensureLogStateContainer() : null;
   const oldSessionId = state3?.activeSessionId || null;
-  if (_logInitialized && state3) {
+  if (_logInitialized && state3 && hasContent) {
     const nextMeta = createSessionMeta();
     state3.activeSessionId = nextMeta.id;
     state3.sessions.push(nextMeta);
@@ -9613,9 +9647,9 @@ function clearLog() {
   if (logTextarea) {
     logTextarea.value = "";
   }
-  queueLogPersistence(async () => {
-    await initializeLogPersistence();
-    if (oldSessionId && oldLog) {
+  if (hasContent && oldSessionId) {
+    queueLogPersistence(async () => {
+      await initializeLogPersistence();
       const curState = ensureLogStateContainer();
       const oldMeta = (curState.sessions || []).find((s) => s.id === oldSessionId);
       if (oldMeta) {
@@ -9627,9 +9661,9 @@ function clearLog() {
           content: oldLog
         });
       }
-    }
-    await persistLogIndex();
-  });
+      await persistLogIndex();
+    });
+  }
 }
 function clearAllLogs() {
   const state3 = _logInitialized ? ensureLogStateContainer() : null;
@@ -9998,7 +10032,7 @@ function normalizePromptTag(tag) {
   if (!tag || typeof tag !== "string") return "";
   return tag.trim().replaceAll("\r", "").replaceAll("\n", "").replaceAll("\u300A", "<").replaceAll("\u300B", ">").replace(/，/g, ",").replace(/；/g, ";").replace(/：/g, ":");
 }
-var REFERENCE_PIXEL_COUNT, SIGMA_MAGIC_NUMBER, SIGMA_MAGIC_NUMBER_V4_5, LOG_RETENTION_MS, MAX_PERSISTED_LOG_SESSIONS, logPersistenceStatePromise, logWriteQueue, _logInitialized, _pendingLogBuffer, _persistDebounceTimer, LOG_PERSIST_DEBOUNCE_MS, _expiredLogCleanupRunning, _expiredLogCleanupBudgetRemaining, SerialLockManager, serialLock, _logDomUpdateTimer, _logDomLastUpdate;
+var REFERENCE_PIXEL_COUNT, SIGMA_MAGIC_NUMBER, SIGMA_MAGIC_NUMBER_V4_5, LOG_RETENTION_MS, MAX_PERSISTED_LOG_SESSIONS, MAX_LOG_STORE_CHARS, LOG_ROLLING_TRIM_TARGET, logPersistenceStatePromise, logWriteQueue, _logInitialized, _pendingLogBuffer, _persistDebounceTimer, LOG_PERSIST_DEBOUNCE_MS, LOG_PERSIST_MAX_WAIT_MS, _persistFirstRequestTime, _expiredLogCleanupRunning, _expiredLogCleanupBudgetRemaining, SerialLockManager, serialLock, _logDomUpdateTimer, _logDomLastUpdate;
 var init_utils = __esm({
   "utils/utils.js"() {
     init_config();
@@ -10008,14 +10042,18 @@ var init_utils = __esm({
     REFERENCE_PIXEL_COUNT = 1011712;
     SIGMA_MAGIC_NUMBER = 19;
     SIGMA_MAGIC_NUMBER_V4_5 = 58;
-    LOG_RETENTION_MS = 24 * 60 * 60 * 1e3;
-    MAX_PERSISTED_LOG_SESSIONS = 30;
+    LOG_RETENTION_MS = 12 * 60 * 60 * 1e3;
+    MAX_PERSISTED_LOG_SESSIONS = 10;
+    MAX_LOG_STORE_CHARS = 5e4;
+    LOG_ROLLING_TRIM_TARGET = 42e3;
     logPersistenceStatePromise = null;
     logWriteQueue = Promise.resolve();
     _logInitialized = false;
     _pendingLogBuffer = [];
     _persistDebounceTimer = null;
     LOG_PERSIST_DEBOUNCE_MS = 5e3;
+    LOG_PERSIST_MAX_WAIT_MS = 15e3;
+    _persistFirstRequestTime = 0;
     _expiredLogCleanupRunning = false;
     _expiredLogCleanupBudgetRemaining = 2e3;
     SerialLockManager = class {
@@ -41670,6 +41708,24 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
     canvasHeight2 = parseInt(settings3.novelai_height || 1216, 10);
   }
   const aspectRatio = `${canvasWidth2} / ${canvasHeight2}`;
+  const win = doc.defaultView || window.top || window;
+  const isMobile3 = isMobileDeviceDialog();
+  let topBound = 10;
+  let bottomBound = win.innerHeight - 10;
+  if (isMobile3) {
+    const topSettingsHolder = doc.querySelector("#top-settings-holder");
+    if (topSettingsHolder) {
+      const rect = topSettingsHolder.getBoundingClientRect();
+      topBound = Math.max(10, Math.min(rect.bottom + 10, win.innerHeight * 0.5));
+    }
+    const sendForm = doc.querySelector("#send_form");
+    if (sendForm) {
+      const rect = sendForm.getBoundingClientRect();
+      bottomBound = Math.max(topBound + 200, Math.min(rect.top - 10, win.innerHeight - 10));
+    }
+  }
+  const availableHeight = Math.max(200, bottomBound - topBound);
+  const maxCanvasVh = isMobile3 ? 38 : 52;
   if (!doc.getElementById("st-chatu8-position-editor-style")) {
     const styleEl = doc.createElement("style");
     styleEl.id = "st-chatu8-position-editor-style";
@@ -41691,27 +41747,39 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
         -webkit-backdrop-filter: blur(8px);
         z-index: 99999;
         display: flex;
-        align-items: center;
+        align-items: ${isMobile3 ? "flex-start" : "center"};
         justify-content: center;
-        padding: 16px;
+        padding: ${isMobile3 ? "0" : "16px"};
         box-sizing: border-box;
         animation: stChatU8FadeIn 0.2s ease-out;
     `;
   const dialog = doc.createElement("div");
-  dialog.className = "st-chatu8-position-modal-dialog";
+  dialog.className = "st-chatu8-position-modal-dialog" + (isMobile3 ? " mobile" : "");
   dialog.style.cssText = `
         background: #111526;
         border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 14px;
         width: 100%;
-        max-width: 540px;
+        max-width: ${isMobile3 ? "min(92vw, 540px)" : "540px"};
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
         display: flex;
         flex-direction: column;
         overflow: hidden;
         color: #e2e8f0;
         font-family: system-ui, -apple-system, sans-serif;
+        box-sizing: border-box;
     `;
+  if (isMobile3) {
+    dialog.style.position = "fixed";
+    dialog.style.top = `${topBound}px`;
+    dialog.style.left = "50%";
+    dialog.style.transform = "translateX(-50%)";
+    dialog.style.maxHeight = `${availableHeight}px`;
+    dialog.style.margin = "0";
+  } else {
+    dialog.style.maxHeight = "85vh";
+    dialog.style.maxHeight = "85dvh";
+  }
   const header = doc.createElement("div");
   header.style.cssText = `
         padding: 14px 18px;
@@ -41720,6 +41788,7 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
         justify-content: space-between;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         background: rgba(255, 255, 255, 0.02);
+        flex-shrink: 0;
     `;
   const headerTitleWrapper = doc.createElement("div");
   headerTitleWrapper.style.cssText = "display: flex; align-items: center; gap: 8px;";
@@ -41756,19 +41825,23 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
   header.appendChild(closeBtn);
   const body = doc.createElement("div");
   body.style.cssText = `
-        padding: 16px;
+        padding: ${isMobile3 ? "12px" : "16px"};
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 14px;
         box-sizing: border-box;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     `;
   const canvasWrapper = doc.createElement("div");
   canvasWrapper.style.cssText = `
         position: relative;
-        width: min(100%, calc(52vh * (${canvasWidth2} / ${canvasHeight2})));
+        width: min(100%, calc(${maxCanvasVh}vh * (${canvasWidth2} / ${canvasHeight2})));
         max-width: 100%;
-        max-height: 52vh;
+        max-height: ${maxCanvasVh}vh;
         aspect-ratio: ${canvasWidth2} / ${canvasHeight2};
         margin: 0 auto;
         background: #080b16;
@@ -41839,7 +41912,8 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
         if (bgImg.naturalWidth && bgImg.naturalHeight) {
           const nw = bgImg.naturalWidth;
           const nh = bgImg.naturalHeight;
-          canvasWrapper.style.width = `min(100%, calc(52vh * (${nw} / ${nh})))`;
+          canvasWrapper.style.width = `min(100%, calc(${maxCanvasVh}vh * (${nw} / ${nh})))`;
+          canvasWrapper.style.maxHeight = `${maxCanvasVh}vh`;
           canvasWrapper.style.aspectRatio = `${nw} / ${nh}`;
           if (resBadge) {
             resBadge.textContent = `${nw}\xD7${nh}`;
@@ -41902,8 +41976,8 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
             transition: all 0.2s ease;
         `;
     card.innerHTML = `
-            <span style="font-weight: 600; color: ${theme.border};">${theme.name}</span>
-            <span class="coord-display" style="font-family: monospace; color: #f1f5f9;">{${coord.x.toFixed(3)}, ${coord.y.toFixed(3)}}</span>
+            <span style="font-weight: 600; color: ${theme.border}; white-space: nowrap;">${theme.name}</span>
+            <span class="coord-display" style="font-family: monospace; color: #f1f5f9; white-space: nowrap; font-variant-numeric: tabular-nums;">{${coord.x.toFixed(3)}, ${coord.y.toFixed(3)}}</span>
         `;
     cardsContainer.appendChild(card);
     cardElements[charId] = card;
@@ -41961,12 +42035,15 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
   body.appendChild(cardsContainer);
   const footer = doc.createElement("div");
   footer.style.cssText = `
-        padding: 12px 18px;
+        padding: ${isMobile3 ? "10px 14px" : "12px 18px"};
         display: flex;
         align-items: center;
         justify-content: space-between;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
         background: rgba(255, 255, 255, 0.02);
+        flex-shrink: 0;
+        gap: 8px;
+        flex-wrap: wrap;
     `;
   const resetBtn = doc.createElement("button");
   resetBtn.type = "button";
@@ -42059,12 +42136,40 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
   dialog.appendChild(body);
   dialog.appendChild(footer);
   overlay2.appendChild(dialog);
+  let resizeRafId = null;
+  const updateLayoutBounds = () => {
+    if (!isMobile3 || !dialog || !overlay2.parentNode) return;
+    let curTopBound = 10;
+    let curBottomBound = win.innerHeight - 10;
+    const topSettings = doc.querySelector("#top-settings-holder");
+    if (topSettings) {
+      const rect = topSettings.getBoundingClientRect();
+      curTopBound = Math.max(10, Math.min(rect.bottom + 10, win.innerHeight * 0.5));
+    }
+    const sendEl = doc.querySelector("#send_form");
+    if (sendEl) {
+      const rect = sendEl.getBoundingClientRect();
+      curBottomBound = Math.max(curTopBound + 200, Math.min(rect.top - 10, win.innerHeight - 10));
+    }
+    const curAvailHeight = Math.max(200, curBottomBound - curTopBound);
+    dialog.style.top = `${curTopBound}px`;
+    dialog.style.maxHeight = `${curAvailHeight}px`;
+  };
+  const handleResize = () => {
+    if (resizeRafId) cancelAnimationFrame(resizeRafId);
+    resizeRafId = requestAnimationFrame(() => {
+      updateLayoutBounds();
+    });
+  };
+  win.addEventListener("resize", handleResize);
   const handleKeyDown = (e) => {
     if (e.key === "Escape") closeModal();
   };
   doc.addEventListener("keydown", handleKeyDown);
   const closeModal = () => {
     doc.removeEventListener("keydown", handleKeyDown);
+    win.removeEventListener("resize", handleResize);
+    if (resizeRafId) cancelAnimationFrame(resizeRafId);
     if (overlay2.parentNode) {
       overlay2.parentNode.removeChild(overlay2);
     }
@@ -42105,6 +42210,9 @@ async function openPositionEditorDialog({ input, button, doc = document, onApply
     closeModal();
   };
   doc.body.appendChild(overlay2);
+  if (!isMobile3) {
+    clampPopupToViewport(dialog, win);
+  }
 }
 var CHARACTER_THEMES;
 var init_positionEditor = __esm({
@@ -85822,8 +85930,8 @@ function updateLogView() {
   const logTextarea = document.getElementById("ch-log-textarea");
   if (logTextarea) {
     let displayLog = getLog();
-    const MAX_LOG_LENGTH = 1e5;
-    const TRIM_TARGET_LENGTH = 8e4;
+    const MAX_LOG_LENGTH = 45e3;
+    const TRIM_TARGET_LENGTH = 38e3;
     if (displayLog.length > MAX_LOG_LENGTH) {
       let trimmedVal = displayLog.substring(displayLog.length - TRIM_TARGET_LENGTH);
       const newlineIdx = trimmedVal.indexOf("\n");
@@ -86628,7 +86736,7 @@ async function handleDownloadErrors() {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  toastr.success("\u8BCA\u65AD\u5305\u5DF2\u4E0B\u8F7D\uFF08\u5305\u542B\u9519\u8BEF\u8BB0\u5F55\u548C\u6700\u8FD1 24 \u5C0F\u65F6\u65E5\u5FD7\uFF09");
+  toastr.success("\u8BCA\u65AD\u5305\u5DF2\u4E0B\u8F7D\uFF08\u5305\u542B\u9519\u8BEF\u8BB0\u5F55\u548C\u6700\u8FD1 12 \u5C0F\u65F6\u65E5\u5FD7\uFF09");
 }
 function handleClearErrors() {
   stylishConfirm("\u786E\u5B9A\u8981\u6E05\u7A7A\u6240\u6709\u9519\u8BEF\u8BB0\u5F55\u5417\uFF1F").then((confirmed) => {
