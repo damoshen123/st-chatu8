@@ -234,6 +234,13 @@
             </div>
             <div id="runninghub_key_status_container" style="margin-top: 10px; display: none;"></div>
             <div id="runninghub_key_consumption_container" style="margin-top: 10px;"></div>
+            <div class="st-chatu8-setting-item" style="margin-top: 10px; display: flex; align-items: center; justify-content: space-between;">
+                <div class="st-chatu8-setting-label">
+                    <label for="st_chatu8_runninghub_global_concurrency_limit" style="font-size: 12px; font-weight: 600;">RunningHub 全局并发上限:</label>
+                    <span class="st-chatu8-setting-hint" style="display: block; font-size: 11px; opacity: 0.75;">限制同时调用的最大在途任务总数，留空或 0 表示不设上限</span>
+                </div>
+                <input type="number" id="st_chatu8_runninghub_global_concurrency_limit" min="0" max="99" class="st-chatu8-text-input" placeholder="0 (不限)" style="width: 90px; text-align: center;" />
+            </div>
         </div>
         <div class="st-chatu8-field" style="margin-top: 14px;">
             <label for="runninghub_instance_type" style="display: flex; align-items: center; gap: 6px;">
