@@ -16,11 +16,6 @@
 @import url('./styles/charRefGroupEditor.css');
 @import url('./styles/knowledgeBase.css');
 @import url('./styles/help-tip.css');
-@import url('./styles/video_assets.css');
-@import url('./styles/video_assets_merger.css');
-@import url('./styles/video_frame_extractor.css');
-@import url('./styles/video_asset_gen.css');
-@import url('./styles/presetBox.css');
 
 /* Sub-navigation styles */
 .st-chatu8-sub-nav {

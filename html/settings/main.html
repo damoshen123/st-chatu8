@@ -1,7 +1,6 @@
 <div id="ch-tab-main">
-    <!-- 1. 核心设置 -->
     <div class="st-chatu8-settings-section">
-        <h3><i class="fa-solid fa-sliders"></i> 核心设置</h3>
+        <h3>主要设置</h3>
         <div class="st-chatu8-field">
             <label for="scriptEnabled">启用插件</label>
             <div class="st-chatu8-toggle">
@@ -17,19 +16,11 @@
             </div>
         </div>
         <div class="st-chatu8-field">
-            <label for="disablePluginToast">插件提示关闭</label>
-            <div class="st-chatu8-toggle">
-                <input id="disablePluginToast" type="checkbox" />
-                <span class="st-chatu8-slider"></span>
-            </div>
-        </div>
-        <div class="st-chatu8-field">
             <label for="mode">模式</label>
             <select id="mode" class="st-chatu8-select">
                 <option value="sd">SD</option>
                 <option value="novelai">NovelAI</option>
                 <option value="comfyui">ComfyUI</option>
-                <option value="runninghub">RunningHub</option>
                 <option value="banana">Banana/Grok</option>
             </select>
         </div>
@@ -41,32 +32,16 @@
             </select>
         </div>
         <div class="st-chatu8-field">
-            <label for="videoChannel">视频渠道选择</label>
-            <select id="videoChannel" class="st-chatu8-select">
-                <option value="none">无</option>
-                <option value="comfyui">ComfyUI</option>
-                <option value="runninghub">RunningHub</option>
-            </select>
-        </div>
-    </div>
-    <!-- 2. 自动化与生成控制 -->
-    <div class="st-chatu8-settings-section">
-        <h3><i class="fa-solid fa-bolt"></i> 自动化与生成控制</h3>
-        <div class="st-chatu8-field">
-            <label for="imageGenInterval">生图间隔时间（毫秒）</label>
-            <input type="number" id="imageGenInterval" class="st-chatu8-text-input" min="0" step="100" placeholder="0">
-        </div>
-        <div class="st-chatu8-field">
-            <label for="enablePregen">启用流式预生成</label>
+            <label for="dbclike">隐藏按钮（双击图片触发）</label>
             <div class="st-chatu8-toggle">
-                <input id="enablePregen" type="checkbox" />
+                <input id="dbclike" type="checkbox" />
                 <span class="st-chatu8-slider"></span>
             </div>
         </div>
         <div class="st-chatu8-field">
-            <label for="autoLLMImageGen">自动LLM请求生图(非同层)</label>
+            <label for="collapseImage">折叠图片</label>
             <div class="st-chatu8-toggle">
-                <input id="autoLLMImageGen" type="checkbox" />
+                <input id="collapseImage" type="checkbox" />
                 <span class="st-chatu8-slider"></span>
             </div>
         </div>
@@ -85,9 +60,37 @@
             </div>
         </div>
         <div class="st-chatu8-field">
-            <label for="aiAutonomousResolution">AI自主分辨率</label>
+            <label for="longPressToEdit">长按图片修改tag</label>
             <div class="st-chatu8-toggle">
-                <input id="aiAutonomousResolution" type="checkbox" />
+                <input id="longPressToEdit" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="clickToPreview">单击图片预览</label>
+            <div class="st-chatu8-toggle">
+                <input id="clickToPreview" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="newlineFixEnabled">换行修复</label>
+            <div class="st-chatu8-toggle">
+                <input id="newlineFixEnabled" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="enablePregen">启用流式预生成</label>
+            <div class="st-chatu8-toggle">
+                <input id="enablePregen" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="autoLLMImageGen">自动LLM请求生图(非同层)</label>
+            <div class="st-chatu8-toggle">
+                <input id="autoLLMImageGen" type="checkbox" />
                 <span class="st-chatu8-slider"></span>
             </div>
         </div>
@@ -99,17 +102,17 @@
             </div>
         </div>
         <div class="st-chatu8-field">
-            <label for="newlineFixEnabled">换行修复</label>
+            <label for="aiAutonomousResolution">AI自主分辨率</label>
             <div class="st-chatu8-toggle">
-                <input id="newlineFixEnabled" type="checkbox" />
+                <input id="aiAutonomousResolution" type="checkbox" />
                 <span class="st-chatu8-slider"></span>
             </div>
         </div>
-    </div>
+        <div class="st-chatu8-field">
+            <label for="imageGenInterval">生图间隔时间（毫秒）</label>
+            <input type="number" id="imageGenInterval" class="st-chatu8-text-input" min="0" step="100" placeholder="0">
+        </div>
 
-    <!-- 3. 图片交互与显示 -->
-    <div class="st-chatu8-settings-section">
-        <h3><i class="fa-solid fa-image"></i> 图片交互与显示</h3>
         <div class="st-chatu8-field">
             <label for="imageAlignment">图片对齐方式</label>
             <select id="imageAlignment" class="st-chatu8-select">
@@ -127,38 +130,9 @@
                 <option value="25">1/4 大小（25%）</option>
             </select>
         </div>
-        <div class="st-chatu8-field">
-            <label for="collapseImage">折叠图片</label>
-            <div class="st-chatu8-toggle">
-                <input id="collapseImage" type="checkbox" />
-                <span class="st-chatu8-slider"></span>
-            </div>
-        </div>
-        <div class="st-chatu8-field">
-            <label for="clickToPreview">单击图片预览</label>
-            <div class="st-chatu8-toggle">
-                <input id="clickToPreview" type="checkbox" />
-                <span class="st-chatu8-slider"></span>
-            </div>
-        </div>
-        <div class="st-chatu8-field">
-            <label for="longPressToEdit">长按图片修改tag</label>
-            <div class="st-chatu8-toggle">
-                <input id="longPressToEdit" type="checkbox" />
-                <span class="st-chatu8-slider"></span>
-            </div>
-        </div>
-        <div class="st-chatu8-field">
-            <label for="dbclike">隐藏按钮（双击图片触发）</label>
-            <div class="st-chatu8-toggle">
-                <input id="dbclike" type="checkbox" />
-                <span class="st-chatu8-slider"></span>
-            </div>
-        </div>
     </div>
-    <!-- 4. 提示词标记与储存 -->
     <div class="st-chatu8-settings-section">
-        <h3><i class="fa-solid fa-tags"></i> 提示词标记与储存</h3>
+        <h3>标记</h3>
         <div class="st-chatu8-field">
             <label for="startTag">开始标记</label>
             <input type="text" id="startTag" class="st-chatu8-text-input">
@@ -167,6 +141,9 @@
             <label for="endTag">结束标记</label>
             <input type="text" id="endTag" class="st-chatu8-text-input">
         </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>储存tag模式</h3>
         <div class="st-chatu8-field">
             <label for="insertOriginalText">插入原文(非同层)</label>
             <div class="st-chatu8-toggle">
@@ -175,9 +152,8 @@
             </div>
         </div>
     </div>
-    <!-- 5. 存储与缓存管理 -->
     <div class="st-chatu8-settings-section">
-        <h3><i class="fa-solid fa-database"></i> 存储与缓存管理</h3>
+        <h3>缓存管理(点击下方按钮清除)</h3>
         <div class="st-chatu8-field">
             <label for="cache">需要清除的缓存</label>
             <select id="cache" class="st-chatu8-select">

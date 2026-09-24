@@ -90,225 +90,33 @@
 
     <div class="st-chatu8-settings-section">
         <!-- OpenAI 模型参数 -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <h4 style="margin: 0;">模型参数</h4>
-            <span style="font-size: 12px; color: var(--st-chatu8-text-secondary);">可单独开启/关闭每个参数（关闭后请求不携带该字段）</span>
-        </div>
+        <h4>模型参数</h4>
         <div class="st-chatu8-grid">
-            <div class="st-chatu8-field" id="ch-llm_temperature_field">
-                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                    <label for="ch-llm_enable_temperature" style="display: flex; align-items: center; gap: 6px; cursor: pointer; margin: 0;">
-                        <input type="checkbox" id="ch-llm_enable_temperature" checked style="cursor: pointer;" />
-                        <span>Temperature</span>
-                    </label>
-                </div>
-                <div class="st-chatu8-range-container" id="ch-llm_temperature_container">
+            <div class="st-chatu8-field">
+                <label for="ch-llm_temperature">Temperature</label>
+                <div class="st-chatu8-range-container">
                     <input class="st-chatu8-range-slider" type="range" id="ch-llm_temperature" min="0" max="2"
                         step="0.01" value="0.7">
                     <input class="st-chatu8-range-input" type="number" id="ch-llm_temperature_value"
                         data-for="ch-llm_temperature" min="0" max="2" step="0.01" value="0.7">
                 </div>
             </div>
-            <div class="st-chatu8-field" id="ch-llm_top_p_field">
-                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                    <label for="ch-llm_enable_top_p" style="display: flex; align-items: center; gap: 6px; cursor: pointer; margin: 0;">
-                        <input type="checkbox" id="ch-llm_enable_top_p" checked style="cursor: pointer;" />
-                        <span>Top P</span>
-                    </label>
-                </div>
-                <div class="st-chatu8-range-container" id="ch-llm_top_p_container">
+            <div class="st-chatu8-field">
+                <label for="ch-llm_top_p">Top P</label>
+                <div class="st-chatu8-range-container">
                     <input class="st-chatu8-range-slider" type="range" id="ch-llm_top_p" min="0" max="1" step="0.01"
                         value="1">
                     <input class="st-chatu8-range-input" type="number" id="ch-llm_top_p_value" data-for="ch-llm_top_p"
                         min="0" max="1" step="0.01" value="1">
                 </div>
             </div>
-            <div class="st-chatu8-field" id="ch-llm_max_tokens_field">
-                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-                    <label for="ch-llm_enable_max_tokens" style="display: flex; align-items: center; gap: 6px; cursor: pointer; margin: 0;">
-                        <input type="checkbox" id="ch-llm_enable_max_tokens" checked style="cursor: pointer;" />
-                        <span>Max Tokens</span>
-                    </label>
-                </div>
-                <div class="st-chatu8-range-container" id="ch-llm_max_tokens_container">
+            <div class="st-chatu8-field">
+                <label for="ch-llm_max_tokens">Max Tokens</label>
+                <div class="st-chatu8-range-container">
                     <input class="st-chatu8-range-slider" type="range" id="ch-llm_max_tokens" min="1" max="30000"
                         step="1" value="512">
                     <input class="st-chatu8-range-input" type="number" id="ch-llm_max_tokens_value"
                         data-for="ch-llm_max_tokens" min="1" max="30000" step="1" value="512">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 自定义请求标头与附加参数 -->
-    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="llm_custom_headers_body">
-        <div class="st-chatu8-section-header">
-            <h4 class="st-chatu8-section-title"><i class="fa-solid fa-sliders"></i> 自定义标头与附加参数 (当前 API 专属)</h4>
-            <span class="st-chatu8-section-toggle">
-                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
-            </span>
-        </div>
-        <div class="st-chatu8-section-body">
-            <!-- 自定义请求标头 (Custom Headers) -->
-            <div class="st-chatu8-field">
-                <label for="ch-llm_enable_custom_headers">启用自定义请求标头 (Custom Headers)</label>
-                <div class="st-chatu8-toggle">
-                    <input id="ch-llm_enable_custom_headers" type="checkbox" />
-                    <span class="st-chatu8-slider"></span>
-                </div>
-            </div>
-            <div class="st-chatu8-field-col" id="ch-llm_custom_headers_container">
-                <label for="ch-llm_custom_headers">请求标头内容 <span style="font-size: 12px; color: var(--st-chatu8-text-secondary); font-weight: normal;">(每行一个 Key: Value，或 JSON 对象)</span></label>
-                <textarea id="ch-llm_custom_headers" class="st-chatu8-textarea" rows="3"
-                    placeholder="例如：&#10;HTTP-Referer: https://example.com&#10;X-Title: SillyTavern&#10;oc-auth: your_token"></textarea>
-                <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 4px;">
-                    直连或酒馆代理转发均可生效，自动注入 HTTP 请求头（专用于解决 oc 等中转商风控安全标头需求）。
-                </p>
-            </div>
-
-            <!-- 附加请求体参数 (Extra Body) -->
-            <div class="st-chatu8-field" style="margin-top: 12px;">
-                <label for="ch-llm_enable_custom_body_params">启用附加请求参数 (Extra Body)</label>
-                <div class="st-chatu8-toggle">
-                    <input id="ch-llm_enable_custom_body_params" type="checkbox" />
-                    <span class="st-chatu8-slider"></span>
-                </div>
-            </div>
-            <div class="st-chatu8-field-col" id="ch-llm_custom_body_params_container">
-                <label for="ch-llm_custom_body_params">附加参数内容 <span style="font-size: 12px; color: var(--st-chatu8-text-secondary); font-weight: normal;">(标准 JSON 对象格式)</span></label>
-                <textarea id="ch-llm_custom_body_params" class="st-chatu8-textarea" rows="3"
-                    placeholder='例如：&#10;{&#10;  "route": "go"&#10;}'></textarea>
-                <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 4px;">
-                    发送请求时将该 JSON 对象的字段合并到请求体顶层。
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- 模块 1: 启用自定义 Tool 工具配置 (CUSTOM_TOOL_ENABLED) -->
-    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="llm_custom_tool">
-        <div class="st-chatu8-section-header">
-            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-                <h4 class="st-chatu8-section-title" style="margin: 0;"><i class="fa-solid fa-wrench"></i> 自定义 Tool 工具配置</h4>
-                <div style="display: flex; gap: 6px;">
-                    <button type="button" class="st-chatu8-btn" id="ch-export_tool_config_btn">
-                        <i class="fa-solid fa-file-export"></i> 导出 Tool 配置
-                    </button>
-                    <button type="button" class="st-chatu8-btn" id="ch-import_tool_config_btn">
-                        <i class="fa-solid fa-file-import"></i> 导入 Tool 配置
-                    </button>
-                    <input type="file" id="ch-tool_config_file_input" accept=".json" style="display: none;" />
-                </div>
-            </div>
-            <span class="st-chatu8-section-toggle">
-                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
-            </span>
-        </div>
-
-        <div class="st-chatu8-section-body">
-            <div class="st-chatu8-field">
-                <label for="ch-custom_tool_enabled">启用自定义 Tool 工具配置 (CUSTOM_TOOL_ENABLED)</label>
-                <div class="st-chatu8-toggle">
-                    <input id="ch-custom_tool_enabled" type="checkbox" />
-                    <span class="st-chatu8-slider"></span>
-                </div>
-            </div>
-
-            <div id="ch-custom_tool_details">
-                <div class="st-chatu8-field">
-                    <label for="ch-tool_name_mode">工具命名方式 (Tool Name Mode)</label>
-                    <select id="ch-tool_name_mode" class="st-chatu8-select">
-                        <option value="dynamic" selected>动态随机生成 (推荐，前缀 + 随机值防缓存)</option>
-                        <option value="fixed">固定工具名称</option>
-                    </select>
-                </div>
-
-                <div class="st-chatu8-field" id="ch-tool_fixed_name_row" style="display: none;">
-                    <label for="ch-tool_fixed_name">固定工具名</label>
-                    <input type="text" id="ch-tool_fixed_name" class="st-chatu8-text-input" placeholder="例如: agw_emit_data" value="" />
-                </div>
-
-                <div class="st-chatu8-field-col">
-                    <label for="ch-tool_desc">工具用途描述 (引导模型何时调用该工具)</label>
-                    <textarea id="ch-tool_desc" class="st-chatu8-textarea" rows="2" placeholder="must使用这个工具来进行内容思考和正文回复">must使用这个工具来进行内容思考和正文回复</textarea>
-                </div>
-
-                <!-- 工具参数字段列表 -->
-                <div class="st-chatu8-field-col" style="margin-top: 10px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                        <label style="margin: 0;">工具参数字段列表 (模型调用后依序提取并组装为正文)</label>
-                        <button type="button" class="st-chatu8-btn" id="ch-add_tool_field_btn">
-                            <i class="fa-solid fa-plus"></i> 添加参数字段
-                        </button>
-                    </div>
-
-                    <!-- 字段表格头部 -->
-                    <div style="display: grid; grid-template-columns: 1fr 1.2fr 1fr 36px; gap: 8px; font-size: 12px; opacity: 0.8; margin-bottom: 4px; padding: 0 4px;">
-                        <div>字段名 (Key)</div>
-                        <div>字段描述 (Description)</div>
-                        <div>包裹标签 (如 thinking)</div>
-                        <div style="text-align: center;">操作</div>
-                    </div>
-
-                    <!-- 字段列表容器 -->
-                    <div id="ch-tool-fields-container" style="display: flex; flex-direction: column; gap: 6px;">
-                        <!-- JS 动态渲染各字段行 -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 模块 2: 发送前末尾自定义多 Role 消息 (Tail Messages) 配置 -->
-    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="llm_tail_messages">
-        <div class="st-chatu8-section-header">
-            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-                <h4 class="st-chatu8-section-title" style="margin: 0;"><i class="fa-regular fa-comment-dots"></i> 发送前末尾自定义多 Role 消息 (Tail Messages) 配置</h4>
-                <div style="display: flex; gap: 6px;">
-                    <button type="button" class="st-chatu8-btn" id="ch-export_tail_config_btn">
-                        <i class="fa-solid fa-file-export"></i> 导出 Tail 配置
-                    </button>
-                    <button type="button" class="st-chatu8-btn" id="ch-import_tail_config_btn">
-                        <i class="fa-solid fa-file-import"></i> 导入 Tail 配置
-                    </button>
-                    <input type="file" id="ch-tail_config_file_input" accept=".json" style="display: none;" />
-                </div>
-            </div>
-            <span class="st-chatu8-section-toggle">
-                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
-            </span>
-        </div>
-
-        <div class="st-chatu8-section-body">
-            <div class="st-chatu8-field">
-                <label for="ch-custom_tail_messages_enabled">启用末尾多 Role 消息自定义追加 (CUSTOM_TAIL_MESSAGES_ENABLED)</label>
-                <div class="st-chatu8-toggle">
-                    <input id="ch-custom_tail_messages_enabled" type="checkbox" />
-                    <span class="st-chatu8-slider"></span>
-                </div>
-            </div>
-
-            <!-- 尾部消息子区域 -->
-            <div id="ch-custom_tail_details">
-                <div class="st-chatu8-field-col">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                        <label style="margin: 0;">末尾消息列表 <span style="font-size: 11px; opacity: 0.7;">(按顺序追加到 messages 末尾，支持 %TOOL_NAME% 变量)</span></label>
-                        <button type="button" class="st-chatu8-btn" id="ch-add_tail_msg_btn">
-                            <i class="fa-solid fa-plus"></i> 添加末尾消息
-                        </button>
-                    </div>
-
-                    <!-- 消息列表头部 -->
-                    <div style="display: grid; grid-template-columns: 100px 1fr 36px; gap: 8px; font-size: 12px; opacity: 0.8; margin-bottom: 4px; padding: 0 4px;">
-                        <div>角色 (Role)</div>
-                        <div>消息内容 (Content, 支持 %TOOL_NAME%)</div>
-                        <div style="text-align: center;">操作</div>
-                    </div>
-
-                    <!-- 消息列表容器 -->
-                    <div id="ch-tail-messages-container" style="display: flex; flex-direction: column; gap: 6px;">
-                        <!-- JS 动态渲染各消息行 -->
-                    </div>
                 </div>
             </div>
         </div>
@@ -321,24 +129,22 @@
             <label for="ch-test_context_select">上下文预设</label>
             <div class="st-chatu8-profile-controls">
                 <select id="ch-test_context_select" class="st-chatu8-select"></select>
-                <div class="st-chatu8-preset-box-wrapper">
-                    <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作选项">
-                        <i class="fa-solid fa-cube"></i>
-                    </button>
-                    <div class="st-chatu8-preset-box-dropdown">
-                        <div class="st-chatu8-preset-box-title">上下文预设选项</div>
-                        <div class="st-chatu8-preset-box-grid">
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-new_test_context_button" title="新建"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-save_test_context_button" title="保存"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-save_as_test_context_button" title="另存为"><i class="fa-solid fa-copy"></i><span>另存为</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-rename_test_context_button" title="修改名称"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-import_test_context_button" title="导入"><i class="fa-solid fa-file-import"></i><span>导入</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-export_test_context_button" title="导出"><i class="fa-solid fa-file-export"></i><span>导出</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-export_all_test_context_button" title="导出全部"><i class="fa-solid fa-file-zipper"></i><span>导出全部</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item danger" id="ch-delete_test_context_button" title="删除"><i class="fa-solid fa-trash"></i><span>删除</span></button>
-                        </div>
-                    </div>
-                </div>
+                <button class="st-chatu8-icon-btn" id="ch-new_test_context_button" title="新建"><i
+                        class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-save_test_context_button" title="保存"><i
+                        class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-save_as_test_context_button" title="另存为"><i
+                        class="fa-solid fa-copy"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-rename_test_context_button" title="修改名称"><i
+                        class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-import_test_context_button" title="导入"><i
+                        class="fa-solid fa-file-import"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-export_test_context_button" title="导出"><i
+                        class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-export_all_test_context_button" title="导出全部"><i
+                        class="fa-solid fa-file-zipper"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="ch-delete_test_context_button" title="删除"><i
+                        class="fa-solid fa-trash"></i></button>
             </div>
         </div>
 
@@ -400,7 +206,7 @@
             </div>
         </div>
         <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
-            当 LLM 返回空响应、429 等网络错误或标签格式解析失败时，自动重试的次数（每次间隔 1.5~2 秒）。0 表示不重试。
+            当 LLM 返回空响应或 429 等错误时，自动重试的次数（每次间隔 2 秒）。0 表示不重试。
         </p>
     </div>
 
@@ -416,24 +222,11 @@
             <label for="ch-llm_request_type_profile_select">请求类型档案</label>
             <div class="st-chatu8-profile-controls">
                 <select id="ch-llm_request_type_profile_select" class="st-chatu8-select"></select>
-                <div class="st-chatu8-preset-box-wrapper">
-                    <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作选项">
-                        <i class="fa-solid fa-cube"></i>
-                    </button>
-                    <div class="st-chatu8-preset-box-dropdown">
-                        <div class="st-chatu8-preset-box-title">请求类型档案选项</div>
-                        <div class="st-chatu8-preset-box-grid">
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-load_llm_request_type_profile_button" title="读取"><i class="fa-solid fa-folder-open"></i><span>读取</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-new_llm_request_type_profile_button" title="新建"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-save_llm_request_type_profile_button" title="保存当前"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-rename_llm_request_type_profile_button" title="重命名"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-import_llm_request_type_profile_button" title="导入"><i class="fa-solid fa-file-import"></i><span>导入</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-export_llm_request_type_profile_button" title="导出"><i class="fa-solid fa-file-export"></i><span>导出</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item" id="ch-export_all_llm_request_type_profile_button" title="导出全部方案"><i class="fa-solid fa-file-zipper"></i><span>导出全部</span></button>
-                            <button type="button" class="st-chatu8-preset-box-item danger" id="ch-delete_llm_request_type_profile_button" title="删除"><i class="fa-solid fa-trash"></i><span>删除</span></button>
-                        </div>
-                    </div>
-                </div>
+                <button class="st-chatu8-icon-btn" id="ch-load_llm_request_type_profile_button" title="读取"><i class="fa-solid fa-folder-open"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-new_llm_request_type_profile_button" title="新建"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-save_llm_request_type_profile_button" title="保存当前"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-rename_llm_request_type_profile_button" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="ch-delete_llm_request_type_profile_button" title="删除"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
 
@@ -617,56 +410,6 @@
                     <div class="st-chatu8-request-card-select-item">
                         <label for="ch-llm_summary_context_select">上下文预设</label>
                         <select id="ch-llm_summary_context_select" class="st-chatu8-select"></select>
-                    </div>
-                </div>
-            </div>
-            <!-- 视材准备 -->
-            <div class="st-chatu8-request-card">
-                <div class="st-chatu8-request-card-header">
-                    <i class="fa-solid fa-film"></i> 视材准备
-                </div>
-                <div class="st-chatu8-request-card-selects">
-                    <div class="st-chatu8-request-card-select-item">
-                        <label for="ch-llm_visual_mat_prep_api_select">API 配置</label>
-                        <select id="ch-llm_visual_mat_prep_api_select" class="st-chatu8-select"></select>
-                    </div>
-                    <div class="st-chatu8-request-card-select-item">
-                        <label for="ch-llm_visual_mat_prep_context_select">上下文预设</label>
-                        <select id="ch-llm_visual_mat_prep_context_select" class="st-chatu8-select"></select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 图生视频 -->
-            <div class="st-chatu8-request-card">
-                <div class="st-chatu8-request-card-header">
-                    <i class="fa-solid fa-video"></i> 图生视频
-                </div>
-                <div class="st-chatu8-request-card-selects">
-                    <div class="st-chatu8-request-card-select-item">
-                        <label for="ch-llm_video_gen_api_select">API 配置</label>
-                        <select id="ch-llm_video_gen_api_select" class="st-chatu8-select"></select>
-                    </div>
-                    <div class="st-chatu8-request-card-select-item">
-                        <label for="ch-llm_video_gen_context_select">上下文预设</label>
-                        <select id="ch-llm_video_gen_context_select" class="st-chatu8-select"></select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 视频资产生成 -->
-            <div class="st-chatu8-request-card">
-                <div class="st-chatu8-request-card-header">
-                    <i class="fa-solid fa-photo-film"></i> 视频资产生成
-                </div>
-                <div class="st-chatu8-request-card-selects">
-                    <div class="st-chatu8-request-card-select-item">
-                        <label for="ch-llm_video_asset_gen_api_select">API 配置</label>
-                        <select id="ch-llm_video_asset_gen_api_select" class="st-chatu8-select"></select>
-                    </div>
-                    <div class="st-chatu8-request-card-select-item">
-                        <label for="ch-llm_video_asset_gen_context_select">上下文预设</label>
-                        <select id="ch-llm_video_asset_gen_context_select" class="st-chatu8-select"></select>
                     </div>
                 </div>
             </div>

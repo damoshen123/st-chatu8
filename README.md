@@ -100,14 +100,6 @@
 ---
 享受在 SillyTavern 中自由创作的乐趣吧！
 
-## ACU 条目重建兼容
-
-由 Codex 协助 yunx738 修改，2026-09-13；沿用 [Aladdin Free Public License](LICENSE)。
-
-对于带 `ACU-[聊天标识]-` 或 `TavernDB-ACU-` 标识的生成条目，在同一世界书内按完整名称保存选择和角色绑定，避免重建时 UID 复用导致错位。识别规则不依赖表名或栏目名。
-
-首次升级需刷新世界书并核对选择。该规则要求名称唯一且稳定；改名、重名，或名称仍相同但对应内容主体已变更时，需要重新核对。没有生成标识的条目仍按 UID 处理。
-
 ## 帮助与支持
 
 -   [飞书文档](https://gxcgf4l6b2y.feishu.cn/docx/XDo7dLpvhov6AexuLu3c8mpynSC?from=from_copylink)

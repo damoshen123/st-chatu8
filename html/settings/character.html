@@ -19,41 +19,15 @@
                 <label for="character_preset_id">当前预设</label>
                 <div class="st-chatu8-profile-controls">
                     <select id="character_preset_id" class="st-chatu8-select"></select>
-                    <div class="st-chatu8-preset-box-wrapper">
-                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作收纳盒">
-                            <i class="fa-solid fa-table-cells"></i>
-                        </button>
-                        <div class="st-chatu8-preset-box-dropdown">
-                            <div class="st-chatu8-preset-box-header">
-                                <span class="st-chatu8-preset-box-title"><i class="fa-solid fa-box-archive"></i> 角色预设操作</span>
-                                <button type="button" class="st-chatu8-preset-box-close" title="关闭">&times;</button>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">预设管理</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item" id="character_visual_select" title="可视化选择"><i class="fa-solid fa-grip"></i><span>可视化</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="character_new" title="新建预设"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="character_update" title="保存修改"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="character_save_as" title="另存为新预设"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="character_rename" title="重命名预设"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                                </div>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">导入与导出</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item" id="character_export" title="导出当前预设"><i class="fa-solid fa-upload"></i><span>导出当前</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="character_export_all" title="导出全部预设"><i class="fa-solid fa-cloud-upload-alt"></i><span>导出全部</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="character_import" title="导入预设文件"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                                </div>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">危险操作</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item danger" id="character_delete" title="删除预设"><i class="fa-solid fa-trash"></i><span>删除预设</span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="st-chatu8-icon-btn" id="character_visual_select" title="可视化选择"><i class="fa-solid fa-grip"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_new" title="新建"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_update" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_rename" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="character_delete" title="删除"><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
         </div>
@@ -72,34 +46,11 @@
                 <button class="st-chatu8-btn" id="char_photo_upload" style="margin-top: 10px;">
                     <i class="fa-solid fa-upload"></i> 上传照片
                 </button>
-                <button type="button" class="st-chatu8-icon-btn" id="char_extra_media_toggle" title="展开说明及音频设置" style="margin-top: 10px; width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px;">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-                <div id="char_extra_media_container" style="display: none; width: 100%; max-width: 420px; flex-direction: column; align-items: center;">
-                    <div class="st-chatu8-field-col" style="width: 100%; margin-top: 10px;">
-                        <label for="char_photo_description">当前图片说明</label>
-                        <textarea id="char_photo_description" class="st-chatu8-textarea" rows="2" placeholder="输入当前图片的说明"></textarea>
-                    </div>
-                    <div class="st-chatu8-field" style="margin-top: 10px; display: flex; align-items: center; gap: 10px; width: 100%;">
-                        <label for="char_send_photo" class="st-chatu8-checkbox-label" style="margin: 0; display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="checkbox" id="char_send_photo" class="st-chatu8-checkbox">
-                            <span>发送图片</span>
-                        </label>
-                    </div>
-                    <div class="st-chatu8-field-col" style="width: 100%; margin-top: 14px;">
-                        <label for="char_audio_upload">角色音频</label>
-                        <input type="file" id="char_audio_upload_input" accept="audio/*" style="display: none;">
-                        <button class="st-chatu8-btn" id="char_audio_upload" type="button">
-                            <i class="fa-solid fa-volume-high"></i> 上传音频
-                        </button>
-                        <audio id="char_audio_preview" controls style="display: none; width: 100%; margin-top: 8px;"></audio>
-                        <label for="char_audio_description" style="margin-top: 8px;">当前音频说明</label>
-                        <textarea id="char_audio_description" class="st-chatu8-textarea" rows="2" placeholder="输入当前音频的说明"></textarea>
-                        <label for="char_send_audio" class="st-chatu8-checkbox-label" style="margin-top: 8px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="checkbox" id="char_send_audio" class="st-chatu8-checkbox">
-                            <span>发送音频</span>
-                        </label>
-                    </div>
+                <div class="st-chatu8-field" style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                    <label for="char_send_photo" class="st-chatu8-checkbox-label" style="margin: 0; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="char_send_photo" class="st-chatu8-checkbox">
+                        <span>发送图片</span>
+                    </label>
                 </div>
             </div>
 
@@ -273,25 +224,15 @@
                 <label for="outfit_preset_id">当前预设</label>
                 <div class="st-chatu8-profile-controls">
                     <select id="outfit_preset_id" class="st-chatu8-select"></select>
-                    <div class="st-chatu8-preset-box-wrapper">
-                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作选项">
-                            <i class="fa-solid fa-cube"></i>
-                        </button>
-                        <div class="st-chatu8-preset-box-dropdown">
-                            <div class="st-chatu8-preset-box-title">服装预设选项</div>
-                            <div class="st-chatu8-preset-box-grid">
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_visual_select" title="可视化选择"><i class="fa-solid fa-grip"></i><span>可视化选择</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_new" title="新建"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_update" title="保存"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_save_as" title="另存为"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_rename" title="重命名"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_export" title="导出"><i class="fa-solid fa-upload"></i><span>导出</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i><span>导出全部</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_import" title="导入"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item danger" id="outfit_delete" title="删除"><i class="fa-solid fa-trash"></i><span>删除</span></button>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="st-chatu8-icon-btn" id="outfit_visual_select" title="可视化选择"><i class="fa-solid fa-grip"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_new" title="新建"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_update" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_rename" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="outfit_delete" title="删除"><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
         </div>
@@ -405,24 +346,14 @@
                 <label for="character_enable_preset_id">当前预设</label>
                 <div class="st-chatu8-profile-controls">
                     <select id="character_enable_preset_id" class="st-chatu8-select"></select>
-                    <div class="st-chatu8-preset-box-wrapper">
-                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作选项">
-                            <i class="fa-solid fa-cube"></i>
-                        </button>
-                        <div class="st-chatu8-preset-box-dropdown">
-                            <div class="st-chatu8-preset-box-title">角色启动预设选项</div>
-                            <div class="st-chatu8-preset-box-grid">
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_enable_new" title="新建"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_enable_update" title="保存"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_enable_save_as" title="另存为"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_enable_rename" title="重命名"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_enable_export" title="导出"><i class="fa-solid fa-upload"></i><span>导出</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_enable_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i><span>导出全部</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_enable_import" title="导入"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item danger" id="character_enable_delete" title="删除"><i class="fa-solid fa-trash"></i><span>删除</span></button>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="st-chatu8-icon-btn" id="character_enable_new" title="新建"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_update" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_rename" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_enable_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="character_enable_delete" title="删除"><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
             <div class="st-chatu8-field-col" style="margin-top: 10px;">
@@ -553,24 +484,14 @@
                 <label for="outfit_enable_preset_id">当前预设</label>
                 <div class="st-chatu8-profile-controls">
                     <select id="outfit_enable_preset_id" class="st-chatu8-select"></select>
-                    <div class="st-chatu8-preset-box-wrapper">
-                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作选项">
-                            <i class="fa-solid fa-cube"></i>
-                        </button>
-                        <div class="st-chatu8-preset-box-dropdown">
-                            <div class="st-chatu8-preset-box-title">通用服装列表预设选项</div>
-                            <div class="st-chatu8-preset-box-grid">
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_enable_new" title="新建"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_enable_update" title="保存"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_enable_save_as" title="另存为"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_enable_rename" title="重命名"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_enable_export" title="导出"><i class="fa-solid fa-upload"></i><span>导出</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_enable_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i><span>导出全部</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="outfit_enable_import" title="导入"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item danger" id="outfit_enable_delete" title="删除"><i class="fa-solid fa-trash"></i><span>删除</span></button>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_new" title="新建"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_update" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_rename" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="outfit_enable_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="outfit_enable_delete" title="删除"><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
         </div>
@@ -618,24 +539,14 @@
                 <label for="character_common_preset_id">当前预设</label>
                 <div class="st-chatu8-profile-controls">
                     <select id="character_common_preset_id" class="st-chatu8-select"></select>
-                    <div class="st-chatu8-preset-box-wrapper">
-                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作选项">
-                            <i class="fa-solid fa-cube"></i>
-                        </button>
-                        <div class="st-chatu8-preset-box-dropdown">
-                            <div class="st-chatu8-preset-box-title">通用角色列表预设选项</div>
-                            <div class="st-chatu8-preset-box-grid">
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_common_new" title="新建"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_common_update" title="保存"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_common_save_as" title="另存为"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_common_rename" title="重命名"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_common_export" title="导出"><i class="fa-solid fa-upload"></i><span>导出</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_common_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i><span>导出全部</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="character_common_import" title="导入"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item danger" id="character_common_delete" title="删除"><i class="fa-solid fa-trash"></i><span>删除</span></button>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="st-chatu8-icon-btn" id="character_common_new" title="新建"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_update" title="保存"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_rename" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_export" title="导出"><i class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_export_all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i></button>
+                    <button class="st-chatu8-icon-btn" id="character_common_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="character_common_delete" title="删除"><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
         </div>
@@ -737,25 +648,12 @@
                 <label for="injection_template_preset_id">当前方案</label>
                 <div class="st-chatu8-profile-controls">
                     <select id="injection_template_preset_id" class="st-chatu8-select"></select>
-                    <div class="st-chatu8-preset-box-wrapper">
-                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作选项">
-                            <i class="fa-solid fa-cube"></i>
-                        </button>
-                        <div class="st-chatu8-preset-box-dropdown">
-                            <div class="st-chatu8-preset-box-title">模板方案选项</div>
-                            <div class="st-chatu8-preset-box-grid">
-                                <button type="button" class="st-chatu8-preset-box-item" id="injection_template_new" title="新建方案"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="injection_template_update" title="保存方案"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="injection_template_save_as" title="另存为"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="injection_template_rename" title="重命名方案"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="injection_template_export" title="导出当前方案"><i class="fa-solid fa-upload"></i><span>导出</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="injection_template_export_all" title="导出全部方案"><i class="fa-solid fa-cloud-upload-alt"></i><span>导出全部</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="injection_template_import" title="导入方案"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="injection_template_reset" title="恢复默认内容"><i class="fa-solid fa-rotate-left"></i><span>重置默认</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item danger" id="injection_template_delete" title="删除方案"><i class="fa-solid fa-trash"></i><span>删除</span></button>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="st-chatu8-icon-btn" id="injection_template_new" title="新建方案"><i class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_update" title="保存方案"><i class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_save_as" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_rename" title="重命名方案"><i class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="injection_template_reset" title="恢复默认内容"><i class="fa-solid fa-rotate-left"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="injection_template_delete" title="删除方案"><i class="fa-solid fa-trash"></i></button>
                 </div>
                 <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
                     「默认方案」「Tavern XML 格式」「Markdown 极简卡片」为系统预置，不可重命名或删除。模板中用 {变量名} 作为占位符，整行占位符全空时该行会被自动剔除。
@@ -822,10 +720,6 @@
                     <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{lowerNSFWBack}">{lowerNSFWBack}　下半身NSFW（背面）</button>
                     <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{negative}">{negative}　负向提示词</button>
                     <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{outfits}">{outfits}　专属服装展开点</button>
-                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{imageId}">{imageId}　图片ID</button>
-                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{imageDesc}">{imageDesc}　图片说明</button>
-                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{audioId}">{audioId}　音频ID</button>
-                    <button type="button" class="st-chatu8-btn st-chatu8-var-btn" data-var="{audioDesc}">{audioDesc}　音频说明</button>
                 </div>
 
                 <div id="var-panel-outfit" class="var-panel" style="display: none; flex-direction: column; gap: 6px; overflow-y: auto; max-height: 520px;">

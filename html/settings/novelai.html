@@ -1,127 +1,62 @@
 <div id="ch-tab-novelai">
-    <div class="ch-prompts-section st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="fixed_prompts_novelai">
-        <div class="st-chatu8-section-header">
-            <h3 class="st-chatu8-section-title">固定提示词</h3>
-            <span class="st-chatu8-section-toggle">
-                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
-            </span>
-        </div>
-        <div class="st-chatu8-section-body">
-            <div class="st-chatu8-field">
-                <label for="yusheid_novelai">提示词预设</label>
-                <div class="st-chatu8-profile-controls">
-                    <select id="yusheid_novelai" class="st-chatu8-select"></select>
-                    <div class="st-chatu8-preset-box-wrapper">
-                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作收纳盒">
-                            <i class="fa-solid fa-table-cells"></i>
-                        </button>
-                        <div class="st-chatu8-preset-box-dropdown">
-                            <div class="st-chatu8-preset-box-header">
-                                <span class="st-chatu8-preset-box-title"><i class="fa-solid fa-box-archive"></i> 提示词预设操作</span>
-                                <button type="button" class="st-chatu8-preset-box-close" title="关闭">&times;</button>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">预设管理</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_visual_select_novelai" title="可视化选择"><i class="fa-solid fa-grip"></i><span>可视化</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_new_novelai" title="新建预设"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_update_style_novelai" title="保存修改"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_save_style_novelai" title="另存为新预设"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_rename_novelai" title="重命名预设"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                                </div>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">导入与导出</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_export_current_novelai" title="导出当前预设"><i class="fa-solid fa-upload"></i><span>导出当前</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_export_all_novelai" title="导出全部预设"><i class="fa-solid fa-file-export"></i><span>导出全部</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_import_novelai" title="导入预设文件"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                                </div>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">危险操作</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item danger" id="st_chatu8_tishici_delete_style_novelai" title="删除预设"><i class="fa-solid fa-trash"></i><span>删除预设</span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="st-chatu8-field-col">
-                <label for="fixedPrompt_novelai">固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
-                <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_novelai" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
-                <textarea id="fixedPrompt_novelai" class="st-chatu8-textarea" rows="4"></textarea>
-                <div id="novelai_fixedPrompt_tokens" class="st-chatu8-token-display">当前占用: 0 | 总占用: 0 / 512</div>
-                <div id="fixedPrompt_novelai-results" class="ch-autocomplete-results"></div>
-            </div>
-            <div class="st-chatu8-field-col">
-                <label for="fixedPrompt_end_novelai">后置固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
-                <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_end_novelai" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
-                <textarea id="fixedPrompt_end_novelai" class="st-chatu8-textarea" rows="4"></textarea>
-                <div id="novelai_fixedPrompt_end_tokens" class="st-chatu8-token-display">当前占用: 0 | 总占用: 0 / 512</div>
-                <div id="fixedPrompt_end_novelai-results" class="ch-autocomplete-results"></div>
-            </div>
-            <div class="st-chatu8-field-col">
-                <label for="negativePrompt_novelai">固定负面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
-                <textarea id="negativePrompt_novelai" class="st-chatu8-textarea" rows="4"></textarea>
-                <div id="novelai_negativePrompt_tokens" class="st-chatu8-token-display">当前占用: 0 / 512</div>
-                <div id="negativePrompt_novelai-results" class="ch-autocomplete-results"></div>
+    <div class="ch-prompts-section st-chatu8-settings-section">
+        <h3>固定提示词</h3>
+        <div class="st-chatu8-field">
+            <label for="yusheid_novelai">提示词预设</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="yusheid_novelai" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_visual_select_novelai" title="可视化选择"><i class="fa-solid fa-grip"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_new_novelai" title="新建"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_update_style_novelai" title="保存"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_save_style_novelai" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_rename_novelai" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_export_current_novelai" title="导出当前"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_export_all_novelai" title="导出全部"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_import_novelai" title="导入"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="st_chatu8_tishici_delete_style_novelai" title="删除"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
+        <div class="st-chatu8-field-col">
+            <label for="fixedPrompt_novelai">固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_novelai" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+            <textarea id="fixedPrompt_novelai" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="novelai_fixedPrompt_tokens" class="st-chatu8-token-display">当前占用: 0 | 总占用: 0 / 512</div>
+            <div id="fixedPrompt_novelai-results" class="ch-autocomplete-results"></div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="fixedPrompt_end_novelai">后置固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_end_novelai" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+            <textarea id="fixedPrompt_end_novelai" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="novelai_fixedPrompt_end_tokens" class="st-chatu8-token-display">当前占用: 0 | 总占用: 0 / 512</div>
+            <div id="fixedPrompt_end_novelai-results" class="ch-autocomplete-results"></div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="negativePrompt_novelai">固定负面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <textarea id="negativePrompt_novelai" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="novelai_negativePrompt_tokens" class="st-chatu8-token-display">当前占用: 0 / 512</div>
+            <div id="negativePrompt_novelai-results" class="ch-autocomplete-results"></div>
+        </div>
+
     </div>
-    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="prompt_replace_novelai"> 
-        <div class="st-chatu8-section-header">
-            <h3 class="st-chatu8-section-title">提示词替换</h3>
-            <span class="st-chatu8-section-toggle">
-                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
-            </span>
+    <div class="st-chatu8-settings-section"> 
+        <h3>提示词替换</h3>
+        <div class="st-chatu8-field">
+            <label for="prompt_replace_id_novelai">提示词替换</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="prompt_replace_id_novelai" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_new_novelai" title="新建"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_update_style_novelai" title="保存"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_save_style_novelai" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_rename_novelai" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_export_current_novelai" title="导出当前"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_export_all_novelai" title="导出全部"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_import_novelai" title="导入"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="prompt_replace_delete_style_novelai" title="删除"><i class="fa-solid fa-trash"></i></button>
+            </div>
         </div>
-        <div class="st-chatu8-section-body">
-            <div class="st-chatu8-field">
-                <label for="prompt_replace_id_novelai">提示词替换</label>
-                <div class="st-chatu8-profile-controls">
-                    <select id="prompt_replace_id_novelai" class="st-chatu8-select"></select>
-                    <div class="st-chatu8-preset-box-wrapper">
-                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作收纳盒">
-                            <i class="fa-solid fa-table-cells"></i>
-                        </button>
-                        <div class="st-chatu8-preset-box-dropdown">
-                            <div class="st-chatu8-preset-box-header">
-                                <span class="st-chatu8-preset-box-title"><i class="fa-solid fa-box-archive"></i> 替换预设操作</span>
-                                <button type="button" class="st-chatu8-preset-box-close" title="关闭">&times;</button>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">预设管理</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_new_novelai" title="新建预设"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_update_style_novelai" title="保存修改"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_save_style_novelai" title="另存为新预设"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_rename_novelai" title="重命名预设"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                                </div>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">导入与导出</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_export_current_novelai" title="导出当前预设"><i class="fa-solid fa-upload"></i><span>导出当前</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_export_all_novelai" title="导出全部预设"><i class="fa-solid fa-file-export"></i><span>导出全部</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_import_novelai" title="导入预设文件"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                                </div>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">危险操作</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item danger" id="prompt_replace_delete_style_novelai" title="删除预设"><i class="fa-solid fa-trash"></i><span>删除预设</span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="st-chatu8-field-col">
-                <label for="prompt_replace_text_novelai">替换规则 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
-                <textarea id="prompt_replace_text_novelai" class="st-chatu8-textarea" rows="4"></textarea>
-            </div>
+        <div class="st-chatu8-field-col">
+            <label for="prompt_replace_text_novelai">替换规则 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <textarea id="prompt_replace_text_novelai" class="st-chatu8-textarea" rows="4"></textarea>
         </div>
     </div>
         <div class="st-chatu8-settings-section"> 
@@ -168,133 +103,122 @@
     </div>
     <div class="st-chatu8-settings-section">
         <h3>NovelAI 设置</h3>
-            <div class="st-chatu8-field-col">
-                <label for="novelaiApi">NovelAI API</label>
-                <div style="position: relative; display: flex; align-items: center;">
-                    <input type="password" id="novelaiApi" class="st-chatu8-text-input" style="padding-right: 2.2em;">
-                    <button type="button" id="novelaiApiToggle" title="显示/隐藏 API Key" style="position: absolute; right: 0.4em; background: none; border: none; cursor: pointer; color: inherit; opacity: 0.6; padding: 0; font-size: 1em; line-height: 1;">
-                        <i class="fa-solid fa-eye"></i>
-                    </button>
-                </div>
+        <div class="st-chatu8-field-col">
+            <label for="novelaiApi">NovelAI API</label>
+            <div style="position: relative; display: flex; align-items: center;">
+                <input type="password" id="novelaiApi" class="st-chatu8-text-input" style="padding-right: 2.2em;">
+                <button type="button" id="novelaiApiToggle" title="显示/隐藏 API Key" style="position: absolute; right: 0.4em; background: none; border: none; cursor: pointer; color: inherit; opacity: 0.6; padding: 0; font-size: 1em; line-height: 1;">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
             </div>
-            <div class="st-chatu8-field">
-                <label for="novelaisite">站点</label>
-                <select id="novelaisite" class="st-chatu8-select">
-                    <option>官网</option>
-                    <option>其他站点</option>
-                </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="novelaisite">站点</label>
+            <select id="novelaisite" class="st-chatu8-select">
+                <option>官网</option>
+                <option>其他站点</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field" id="novelai-other-site-field">
+            <label for="novelaiOtherSite">其他novelai站点</label>
+            <input type="text" id="novelaiOtherSite" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="enableCloudQueue">启用云端队列</label>
+            <div class="st-chatu8-toggle">
+                <input id="enableCloudQueue" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
-            <div class="st-chatu8-field" id="novelai-other-site-field">
-                <label for="novelaiOtherSite">其他novelai站点</label>
-                <input type="text" id="novelaiOtherSite" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field" id="cloud-queue-url-field">
+            <label for="cloudQueueUrl">队列服务地址</label>
+            <input type="text" id="cloudQueueUrl" class="st-chatu8-text-input" placeholder="https://xxx.hf.space">
+        </div>
+        <div class="st-chatu8-field" id="cloud-queue-greeting-field">
+            <label for="cloudQueueGreeting">排队个性语 (15字)</label>
+            <input type="text" id="cloudQueueGreeting" class="st-chatu8-text-input" placeholder="正在生成中~" maxlength="15">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="showQueueGreeting">显示他人个性语</label>
+            <div class="st-chatu8-toggle">
+                <input id="showQueueGreeting" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
-            <div class="st-chatu8-field">
-                <label for="enableCloudQueue">启用云端队列</label>
-                <div class="st-chatu8-toggle">
-                    <input id="enableCloudQueue" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="novelaimode">模型</label>
+            <select id="novelaimode" class="st-chatu8-select">
+                <option>nai-diffusion-3</option>
+                <option>nai-diffusion-4-full</option>
+                <option>nai-diffusion-4-curated-preview</option>
+                <option>nai-diffusion-4-5-curated</option>
+                <option>nai-diffusion-4-5-full</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="novelai_sampler">采样方法</label>
+            <select id="novelai_sampler" class="st-chatu8-select">
+                <option value="k_euler">Euler</option>
+                <option value="ddim_v3">DDIM</option>
+                <option value="k_dpmpp_2s_ancestral"> DPM++ 2S Ancestral</option>
+                <option value="k_dpmpp_2m">DPM++ 2M</option>
+                <option value="k_euler_ancestral"> Euler Ancestral</option>
+                <option value="k_dpmpp_2m_sde">DPM++ 2M SDE</option>
+                <option value="k_dpmpp_sde">DPM++ SDE</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="Schedule">噪点表</label>
+            <select id="Schedule" class="st-chatu8-select">
+                <option>native</option>
+                <option>exponential</option>
+                <option>polyexponential</option>
+                <option>karras</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="nai3Scale">Prompt Guidance</label>
+            <input type="number" id="nai3Scale" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="cfg_rescale">Prompt Guidance Rescale</label>
+            <input type="number" id="cfg_rescale" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="AI_use_coords">AI 默认角色位置</label>
+            <div class="st-chatu8-toggle">
+                <input id="AI_use_coords" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
-            <div class="st-chatu8-field" id="cloud-queue-url-field">
-                <label for="cloudQueueUrl">队列服务地址</label>
-                <input type="text" id="cloudQueueUrl" class="st-chatu8-text-input" placeholder="https://xxx.hf.space">
+        </div>
+        <div class="st-chatu8-field" id="st-chatu8-nai3-sm-field">
+            <label for="sm">SMEA</label>
+            <div class="st-chatu8-toggle">
+                <input id="sm" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
-            <div class="st-chatu8-field" id="cloud-queue-greeting-field">
-                <label for="cloudQueueGreeting">排队个性语 (15字)</label>
-                <input type="text" id="cloudQueueGreeting" class="st-chatu8-text-input" placeholder="正在生成中~" maxlength="15">
+        </div>
+        <div class="st-chatu8-field" id="st-chatu8-nai3-dyn-field">
+            <label for="dyn">SMEA DYN</label>
+            <div class="st-chatu8-toggle">
+                <input id="dyn" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
-            <div class="st-chatu8-field">
-                <label for="showQueueGreeting">显示他人个性语</label>
-                <div class="st-chatu8-toggle">
-                    <input id="showQueueGreeting" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="nai3Variety">多样性 (Variety)</label>
+            <div class="st-chatu8-toggle">
+                <input id="nai3Variety" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
-            <div class="st-chatu8-field">
-                <label for="novelaimode">模型</label>
-                <div style="display: flex; flex-direction: column; width: 100%; max-width: 420px; gap: 6px;">
-                    <select id="novelaimode" class="st-chatu8-select">
-                        <option>nai-diffusion-3</option>
-                        <option>nai-diffusion-4-full</option>
-                        <option>nai-diffusion-4-curated-preview</option>
-                        <option>nai-diffusion-4-5-curated</option>
-                        <option>nai-diffusion-4-5-full</option>
-                        <option>nai-diffusion-5-curated</option>
-                        <option>nai-diffusion-5-full</option>
-                    </select>
-                    <button type="button" class="st-chatu8-btn" id="st_chatu8_reset_model_default" title="将当前所选模型的全部生成参数重置为官网出厂默认值">
-                        <i class="fa-solid fa-rotate-left"></i> 重置当前模型为官网默认
-                    </button>
-                </div>
+        </div>
+        <div class="st-chatu8-field" id="st-chatu8-nai3-deceisp-field">
+            <label for="nai3Deceisp">减少伪影 (Decrisp)</label>
+            <div class="st-chatu8-toggle">
+                <input id="nai3Deceisp" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
-            <div class="st-chatu8-field" id="novelai_straight_alpha_container" style="display: none;">
-                <label for="novelai_straight_alpha">透明图片开关 (straight_alpha)</label>
-                <input type="checkbox" id="novelai_straight_alpha" class="st-chatu8-checkbox" />
-            </div>
-            <div class="st-chatu8-field">
-                <label for="novelai_sampler">采样方法</label>
-                <select id="novelai_sampler" class="st-chatu8-select">
-                    <option value="k_euler">Euler</option>
-                    <option value="ddim_v3">DDIM</option>
-                    <option value="k_dpmpp_2s_ancestral"> DPM++ 2S Ancestral</option>
-                    <option value="k_dpmpp_2m">DPM++ 2M</option>
-                    <option value="k_euler_ancestral"> Euler Ancestral</option>
-                    <option value="k_dpmpp_2m_sde">DPM++ 2M SDE</option>
-                    <option value="k_dpmpp_sde">DPM++ SDE</option>
-                </select>
-            </div>
-            <div class="st-chatu8-field">
-                <label for="Schedule">噪点表</label>
-                <select id="Schedule" class="st-chatu8-select">
-                    <option>native</option>
-                    <option>exponential</option>
-                    <option>polyexponential</option>
-                    <option>karras</option>
-                </select>
-            </div>
-            <div class="st-chatu8-field">
-                <label for="nai3Scale">Prompt Guidance</label>
-                <input type="number" id="nai3Scale" class="st-chatu8-text-input">
-            </div>
-            <div class="st-chatu8-field">
-                <label for="cfg_rescale">Prompt Guidance Rescale</label>
-                <input type="number" id="cfg_rescale" class="st-chatu8-text-input">
-            </div>
-            <div class="st-chatu8-field">
-                <label for="AI_use_coords">AI 默认角色位置</label>
-                <div class="st-chatu8-toggle">
-                    <input id="AI_use_coords" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
-            </div>
-            <div class="st-chatu8-field" id="st-chatu8-nai3-sm-field">
-                <label for="sm">SMEA</label>
-                <div class="st-chatu8-toggle">
-                    <input id="sm" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
-            </div>
-            <div class="st-chatu8-field" id="st-chatu8-nai3-dyn-field">
-                <label for="dyn">SMEA DYN</label>
-                <div class="st-chatu8-toggle">
-                    <input id="dyn" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
-            </div>
-            <div class="st-chatu8-field">
-                <label for="nai3Variety">多样性 (Variety)</label>
-                <div class="st-chatu8-toggle">
-                    <input id="nai3Variety" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
-            </div>
-            <div class="st-chatu8-field" id="st-chatu8-nai3-deceisp-field">
-                <label for="nai3Deceisp">减少伪影 (Decrisp)</label>
-                <div class="st-chatu8-toggle">
-                    <input id="nai3Deceisp" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
-            </div>
+        </div>
     </div>
     <div class="st-chatu8-settings-section">
         <h4>生成参数</h4>
@@ -331,119 +255,119 @@
     </div>
     <div class="st-chatu8-settings-section" id="nai-vibe-transfer-section">
         <h3>氛围参考图 (Vibe Transfer)</h3>
-            <div class="st-chatu8-field">
-                <label for="nai3VibeTransfer">启用氛围参考</label>
-                <div class="st-chatu8-toggle">
-                    <input id="nai3VibeTransfer" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
+        <div class="st-chatu8-field">
+            <label for="nai3VibeTransfer">启用氛围参考</label>
+            <div class="st-chatu8-toggle">
+                <input id="nai3VibeTransfer" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
-            <div class="st-chatu8-field-col">
-                <label>图片预览</label>
-                <div id="novelai-image-preview-container" class="st-chatu8-image-preview-container">
-                    <div class="st-chatu8-image-placeholder">
-                        <i class="fa-solid fa-image"></i>
-                        <span>没有选择图片</span>
-                    </div>
-                    <img id="previewImage_novelai" src="" alt="参考图预览">
+        </div>
+        <div class="st-chatu8-field-col">
+            <label>图片预览</label>
+            <div id="novelai-image-preview-container" class="st-chatu8-image-preview-container">
+                <div class="st-chatu8-image-placeholder">
+                    <i class="fa-solid fa-image"></i>
+                    <span>没有选择图片</span>
                 </div>
-                <div class="st-chatu8-image-controls">
-                    <input type="file" id="imageInput_novelai" accept="image/*" style="display:none;">
-                    <button type="button" class="st-chatu8-btn" id="novelai-select-image-btn"><i class="fa-solid fa-upload"></i> 选择图片</button>
-                    <button type="button" class="st-chatu8-btn danger" id="novelai-remove-image-btn" style="display: none;"><i class="fa-solid fa-trash"></i> 移除图片</button>
-                </div>
+                <img id="previewImage_novelai" src="" alt="参考图预览">
             </div>
-            <div class="st-chatu8-field">
-                <label for="InformationExtracted">氛围提取信息</label>
-                <div class="st-chatu8-range-container">
-                    <input type="range" id="InformationExtracted_range" class="st-chatu8-range-slider" min="0" max="1" step="0.01">
-                    <input type="number" id="InformationExtracted" class="st-chatu8-range-input" min="0" max="1" step="0.01">
-                </div>
+            <div class="st-chatu8-image-controls">
+                <input type="file" id="imageInput_novelai" accept="image/*" style="display:none;">
+                <button type="button" class="st-chatu8-btn" id="novelai-select-image-btn"><i class="fa-solid fa-upload"></i> 选择图片</button>
+                <button type="button" class="st-chatu8-btn danger" id="novelai-remove-image-btn" style="display: none;"><i class="fa-solid fa-trash"></i> 移除图片</button>
             </div>
-            <div class="st-chatu8-field">
-                <label for="ReferenceStrength">氛围强度</label>
-                <div class="st-chatu8-range-container">
-                    <input type="range" id="ReferenceStrength_range" class="st-chatu8-range-slider" min="0" max="1" step="0.01">
-                    <input type="number" id="ReferenceStrength" class="st-chatu8-range-input" min="0" max="1" step="0.01">
-                </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="InformationExtracted">氛围提取信息</label>
+            <div class="st-chatu8-range-container">
+                <input type="range" id="InformationExtracted_range" class="st-chatu8-range-slider" min="0" max="1" step="0.01">
+                <input type="number" id="InformationExtracted" class="st-chatu8-range-input" min="0" max="1" step="0.01">
             </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ReferenceStrength">氛围强度</label>
+            <div class="st-chatu8-range-container">
+                <input type="range" id="ReferenceStrength_range" class="st-chatu8-range-slider" min="0" max="1" step="0.01">
+                <input type="number" id="ReferenceStrength" class="st-chatu8-range-input" min="0" max="1" step="0.01">
+            </div>
+        </div>
     </div>
     <div class="st-chatu8-settings-section" id="nai-char-ref-section">
         <h3>角色参考图设置</h3>
-            <div class="st-chatu8-field">
-                <label for="nai3CharRef">启用角色参考</label>
-                <div class="st-chatu8-toggle" title="不建议使用，每多一张参考图片就多收费5点，每次生图收费一次！">
-                    <input id="nai3CharRef" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
+        <div class="st-chatu8-field">
+            <label for="nai3CharRef">启用角色参考</label>
+            <div class="st-chatu8-toggle" title="不建议使用，每多一张参考图片就多收费5点，每次生图收费一次！">
+                <input id="nai3CharRef" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
-            <div class="st-chatu8-field">
-                <label>角色参考图管理</label>
-                <div style="max-width: 420px; flex-grow: 1;">
-                    <button type="button" class="st-chatu8-btn" id="novelai-char-ref-upload-btn">
-                        <i class="fa-solid fa-upload"></i> 打开添加参考图
-                    </button>
-                    <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
-                        上传角色参考图片到库中
-                    </small>
-                </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>角色参考图管理</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-char-ref-upload-btn">
+                    <i class="fa-solid fa-upload"></i> 打开添加参考图
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    上传角色参考图片到库中
+                </small>
             </div>
-            <div class="st-chatu8-field">
-                <label>角色组管理</label>
-                <div style="max-width: 420px; flex-grow: 1;">
-                    <button type="button" class="st-chatu8-btn" id="novelai-char-ref-group-editor-btn" title="管理角色参考组预设">
-                        <i class="fa-solid fa-layer-group"></i> 角色组编辑
-                    </button>
-                    <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
-                        创建和管理最多包含 4 个角色参考的组合预设
-                    </small>
-                </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>角色组管理</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-char-ref-group-editor-btn" title="管理角色参考组预设">
+                    <i class="fa-solid fa-layer-group"></i> 角色组编辑
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    创建和管理最多包含 4 个角色参考的组合预设
+                </small>
             </div>
+        </div>
     </div>
-    <div class="st-chatu8-settings-section" id="nai-vibe-group-section">
+    <div class="st-chatu8-settings-section">
         <h3>氛围转移设置</h3>
-            <div class="st-chatu8-field">
-                <label>Vibe 文件生成器</label>
-                <div style="max-width: 420px; flex-grow: 1;">
-                    <button type="button" class="st-chatu8-btn" id="novelai-vibe-generator-btn">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> 打开 Vibe 生成器
-                    </button>
-                    <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
-                        生成官方兼容的 .naiv4vibe 文件，可直接导入 NovelAI 官网使用
-                    </small>
-                </div>
+        <div class="st-chatu8-field">
+            <label>Vibe 文件生成器</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-vibe-generator-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> 打开 Vibe 生成器
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    生成官方兼容的 .naiv4vibe 文件，可直接导入 NovelAI 官网使用
+                </small>
             </div>
-            <div class="st-chatu8-field">
-                <label>Vibe 组管理</label>
-                <div style="max-width: 420px; flex-grow: 1;">
-                    <button type="button" class="st-chatu8-btn" id="novelai-vibe-group-editor-btn" title="管理 Vibe 组预设">
-                        <i class="fa-solid fa-layer-group"></i> Vibe组编辑
-                    </button>
-                    <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
-                        创建和管理最多包含 4 个 Vibe 的组合预设
-                    </small>
-                </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>Vibe 组管理</label>
+            <div style="max-width: 420px; flex-grow: 1;">
+                <button type="button" class="st-chatu8-btn" id="novelai-vibe-group-editor-btn" title="管理 Vibe 组预设">
+                    <i class="fa-solid fa-layer-group"></i> Vibe组编辑
+                </button>
+                <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                    创建和管理最多包含 4 个 Vibe 的组合预设
+                </small>
             </div>
-            <div class="st-chatu8-field">
-                <label for="enableVibeGroupTransfer">启用 Vibe 组氛围转移</label>
-                <div class="st-chatu8-toggle" title="使用 Vibe 组进行氛围转移，最多可同时使用 4 个 Vibe。启用后将自动禁用单个 Vibe 氛围转移。">
-                    <input id="enableVibeGroupTransfer" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="enableVibeGroupTransfer">启用 Vibe 组氛围转移</label>
+            <div class="st-chatu8-toggle" title="使用 Vibe 组进行氛围转移，最多可同时使用 4 个 Vibe。启用后将自动禁用单个 Vibe 氛围转移。">
+                <input id="enableVibeGroupTransfer" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
-            <div class="st-chatu8-field">
-                <label for="randomVibeGroup">随机 Vibe 组</label>
-                <div class="st-chatu8-toggle" title="每次生图时从所有非空的 Vibe 组中随机选择一个使用，而非使用当前固定的组。需要先启用 Vibe 组氛围转移。">
-                    <input id="randomVibeGroup" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="randomVibeGroup">随机 Vibe 组</label>
+            <div class="st-chatu8-toggle" title="每次生图时从所有非空的 Vibe 组中随机选择一个使用，而非使用当前固定的组。需要先启用 Vibe 组氛围转移。">
+                <input id="randomVibeGroup" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
-            <div class="st-chatu8-field">
-                <label for="normalizeRefStrength">Normalize Reference Strength Values</label>
-                <div class="st-chatu8-toggle" title="归一化参考强度值。启用后，Vibe 组中各 Vibe 的强度值将被自动归一化，使其总和为 1.0。">
-                    <input id="normalizeRefStrength" type="checkbox"/>
-                    <span class="st-chatu8-slider"></span>
-                </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="normalizeRefStrength">Normalize Reference Strength Values</label>
+            <div class="st-chatu8-toggle" title="归一化参考强度值。启用后，Vibe 组中各 Vibe 的强度值将被自动归一化，使其总和为 1.0。">
+                <input id="normalizeRefStrength" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
             </div>
+        </div>
     </div>
 </div>

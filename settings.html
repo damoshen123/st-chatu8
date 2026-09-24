@@ -25,11 +25,6 @@
                         <a href="#" class="st-chatu8-nav-link" data-tab="sd">SD</a>
                         <a href="#" class="st-chatu8-nav-link" data-tab="novelai">NovelAI</a>
                         <a href="#" class="st-chatu8-nav-link" data-tab="comfyui">ComfyUI</a>
-                        <a href="#" class="st-chatu8-nav-link" data-tab="comfyui_video">ComfyUI视频</a>
-                        <a href="#" class="st-chatu8-nav-link" data-tab="runninghub">RunningHub</a>
-                        <a href="#" class="st-chatu8-nav-link" data-tab="runninghub_video">RunningHub视频</a>
-                        <a href="#" class="st-chatu8-nav-link" data-tab="video_assets">视频资产</a>
-                        <a href="#" class="st-chatu8-nav-link" data-tab="video_asset_gen">视频资产生成</a>
                         <a href="#" class="st-chatu8-nav-link" data-tab="banana">Banana /grok</a>
                         <a href="#" class="st-chatu8-nav-link" data-tab="llm">LLM</a>
                         <a href="#" class="st-chatu8-nav-link" data-tab="vocabulary">词库</a>
@@ -50,10 +45,6 @@
                 <div class="st-chatu8-content">
                     <!-- Tab content will be loaded here dynamically -->
                 </div>
-                
-                <!-- 智能滚动按钮 (现代化独立浮动) -->
-                <button id="ch-scroll-top" class="st-chatu8-scroll-btn" title="回到顶部"><i class="fa-solid fa-arrow-up"></i></button>
-                <button id="ch-scroll-bottom" class="st-chatu8-scroll-btn" title="到底部"><i class="fa-solid fa-arrow-down"></i></button>
             </div>
         </div>
     </div>
@@ -139,10 +130,6 @@
                     <div class="st-chatu8-ai-setting-item checkbox">
                         <input type="checkbox" id="chatu8-ai-send-images" checked>
                         <label for="chatu8-ai-send-images">发送图片 (关闭后不会将图片发送给模型，适用于不支持多模态的模型)</label>
-                    </div>
-                    <div class="st-chatu8-ai-setting-item checkbox">
-                        <input type="checkbox" id="chatu8-ai-use-tool-call" checked>
-                        <label for="chatu8-ai-use-tool-call">使用 Tool Call 形式 (启用后附加 LLM 页面配置的自定义 Tool 与 Tail Messages 改造)</label>
                     </div>
                     <div class="st-chatu8-ai-setting-item checkbox" style="display: none;">
                         <input type="checkbox" id="chatu8-ai-stream">

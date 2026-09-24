@@ -87,7 +87,7 @@
     }
     
     #st-chatu8-settings .st-chatu8-profile-controls {
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
     }
 }
 

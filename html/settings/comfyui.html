@@ -1,140 +1,76 @@
 <div id="ch-tab-comfyui">
-    <div class="ch-prompts-section st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="fixed_prompts_comfyui">
-        <div class="st-chatu8-section-header">
-            <h3 class="st-chatu8-section-title">固定提示词</h3>
-            <span class="st-chatu8-section-toggle">
-                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
-            </span>
-        </div>
-        <div class="st-chatu8-section-body">
-            <div class="st-chatu8-field">
-                <label for="yusheid_comfyui">提示词预设</label>
-                <div class="st-chatu8-profile-controls">
-                    <select id="yusheid_comfyui" class="st-chatu8-select"></select>
-                    <div class="st-chatu8-preset-box-wrapper">
-                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作收纳盒">
-                            <i class="fa-solid fa-table-cells"></i>
-                        </button>
-                        <div class="st-chatu8-preset-box-dropdown">
-                            <div class="st-chatu8-preset-box-header">
-                                <span class="st-chatu8-preset-box-title"><i class="fa-solid fa-box-archive"></i> 提示词预设操作</span>
-                                <button type="button" class="st-chatu8-preset-box-close" title="关闭">&times;</button>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">预设管理</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_visual_select_comfyui" title="可视化选择"><i class="fa-solid fa-grip"></i><span>可视化</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_new_comfyui" title="新建预设"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_update_style_comfyui" title="保存修改"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_save_style_comfyui" title="另存为新预设"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_rename_comfyui" title="重命名预设"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                                </div>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">导入与导出</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_export_current_comfyui" title="导出当前预设"><i class="fa-solid fa-upload"></i><span>导出当前</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_export_all_comfyui" title="导出全部预设"><i class="fa-solid fa-file-export"></i><span>导出全部</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_import_comfyui" title="导入预设文件"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                                </div>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">危险操作</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item danger" id="st_chatu8_tishici_delete_style_comfyui" title="删除预设"><i class="fa-solid fa-trash"></i><span>删除预设</span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="st-chatu8-field-col">
-                <label for="fixedPrompt_comfyui">固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
-                <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_comfyui" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
-                <textarea id="fixedPrompt_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
-                <div id="fixedPrompt_comfyui-results" class="ch-autocomplete-results"></div>
-            </div>
-            <div class="st-chatu8-field-col">
-                <label for="fixedPrompt_end_comfyui">后置固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
-                <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_end_comfyui" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
-                <textarea id="fixedPrompt_end_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
-                <div id="fixedPrompt_end_comfyui-results" class="ch-autocomplete-results"></div>
-            </div>
-            <div class="st-chatu8-field-col">
-                <label for="negativePrompt_comfyui">固定负面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
-                <textarea id="negativePrompt_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
-                <div id="negativePrompt_comfyui-results" class="ch-autocomplete-results"></div>
-            </div>
-            
-            <h3>LORA</h3>
-            <div class="st-chatu8-field">
-                <label for="ComfyuiLORA">添加 LORA</label>
-                <div class="st-chatu8-profile-controls">
-                    <select id="ComfyuiLORA" class="st-chatu8-select"></select>
-                    <button class="st-chatu8-icon-btn" id="ComfyuiaddLORA" title="添加"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            </div>
-            <div class="st-chatu8-field">
-                <label for="weilin_lora_fix">新版weilin节点的lora报错修复(自动添加触发词强度1)</label>
-                <select id="weilin_lora_fix" class="st-chatu8-select">
-                    <option value="true">启用</option>
-                    <option value="false">禁用</option>
-                </select>
+    <div class="ch-prompts-section st-chatu8-settings-section">
+        <h3>固定提示词</h3>
+        <div class="st-chatu8-field">
+            <label for="yusheid_comfyui">提示词预设</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="yusheid_comfyui" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_visual_select_comfyui" title="可视化选择"><i class="fa-solid fa-grip"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_new_comfyui" title="新建"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_update_style_comfyui" title="保存"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_save_style_comfyui" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_rename_comfyui" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_export_current_comfyui" title="导出当前"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_export_all_comfyui" title="导出全部"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st_chatu8_tishici_import_comfyui" title="导入"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="st_chatu8_tishici_delete_style_comfyui" title="删除"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
+        <div class="st-chatu8-field-col">
+            <label for="fixedPrompt_comfyui">固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_comfyui" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+            <textarea id="fixedPrompt_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="fixedPrompt_comfyui-results" class="ch-autocomplete-results"></div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="fixedPrompt_end_comfyui">后置固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_end_comfyui" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+            <textarea id="fixedPrompt_end_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="fixedPrompt_end_comfyui-results" class="ch-autocomplete-results"></div>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="negativePrompt_comfyui">固定负面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <textarea id="negativePrompt_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
+            <div id="negativePrompt_comfyui-results" class="ch-autocomplete-results"></div>
+        </div>
+        
+        <h3>LORA</h3>
+        <div class="st-chatu8-field">
+            <label for="ComfyuiLORA">添加 LORA</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="ComfyuiLORA" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="ComfyuiaddLORA" title="添加"><i class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="weilin_lora_fix">新版weilin节点的lora报错修复(自动添加触发词强度1)</label>
+            <select id="weilin_lora_fix" class="st-chatu8-select">
+                <option value="true">启用</option>
+                <option value="false">禁用</option>
+            </select>
+        </div>
+        
     </div>
-    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="prompt_replace_comfyui">
-        <div class="st-chatu8-section-header">
-            <h3 class="st-chatu8-section-title">提示词替换</h3>
-            <span class="st-chatu8-section-toggle">
-                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
-            </span>
+    <div class="st-chatu8-settings-section">
+        <h3>提示词替换</h3>
+
+        <div class="st-chatu8-field">
+            <label for="prompt_replace_id_comfyui">提示词替换</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="prompt_replace_id_comfyui" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_new_comfyui" title="新建"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_update_style_comfyui" title="保存"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_save_style_comfyui" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_rename_comfyui" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_export_current_comfyui" title="导出当前"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_export_all_comfyui" title="导出全部"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="prompt_replace_import_comfyui" title="导入"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="prompt_replace_delete_style_comfyui" title="删除"><i class="fa-solid fa-trash"></i></button>
+            </div>
         </div>
-        <div class="st-chatu8-section-body">
-            <div class="st-chatu8-field">
-                <label for="prompt_replace_id_comfyui">提示词替换</label>
-                <div class="st-chatu8-profile-controls">
-                    <select id="prompt_replace_id_comfyui" class="st-chatu8-select"></select>
-                    <div class="st-chatu8-preset-box-wrapper">
-                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作收纳盒">
-                            <i class="fa-solid fa-table-cells"></i>
-                        </button>
-                        <div class="st-chatu8-preset-box-dropdown">
-                            <div class="st-chatu8-preset-box-header">
-                                <span class="st-chatu8-preset-box-title"><i class="fa-solid fa-box-archive"></i> 替换预设操作</span>
-                                <button type="button" class="st-chatu8-preset-box-close" title="关闭">&times;</button>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">预设管理</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_new_comfyui" title="新建预设"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_update_style_comfyui" title="保存修改"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_save_style_comfyui" title="另存为新预设"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_rename_comfyui" title="重命名预设"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                                </div>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">导入与导出</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_export_current_comfyui" title="导出当前预设"><i class="fa-solid fa-upload"></i><span>导出当前</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_export_all_comfyui" title="导出全部预设"><i class="fa-solid fa-file-export"></i><span>导出全部</span></button>
-                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_import_comfyui" title="导入预设文件"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                                </div>
-                            </div>
-                            <div class="st-chatu8-preset-box-group">
-                                <span class="st-chatu8-preset-box-group-label">危险操作</span>
-                                <div class="st-chatu8-preset-box-grid">
-                                    <button type="button" class="st-chatu8-preset-box-item danger" id="prompt_replace_delete_style_comfyui" title="删除预设"><i class="fa-solid fa-trash"></i><span>删除预设</span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="st-chatu8-field-col">
-                <label for="prompt_replace_text_comfyui">替换规则 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
-                <textarea id="prompt_replace_text_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
-            </div>
+        <div class="st-chatu8-field-col">
+            <label for="prompt_replace_text_comfyui">替换规则 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+            <textarea id="prompt_replace_text_comfyui" class="st-chatu8-textarea" rows="4"></textarea>
         </div>
     </div>
     <div class="st-chatu8-settings-section"> 
@@ -181,40 +117,14 @@
             <label for="workerid">工作流预设</label>
             <div class="st-chatu8-profile-controls">
                 <select id="workerid" class="st-chatu8-select"></select>
-                <div class="st-chatu8-preset-box-wrapper">
-                    <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作收纳盒">
-                        <i class="fa-solid fa-table-cells"></i>
-                    </button>
-                    <div class="st-chatu8-preset-box-dropdown">
-                        <div class="st-chatu8-preset-box-header">
-                            <span class="st-chatu8-preset-box-title"><i class="fa-solid fa-box-archive"></i> 工作流操作</span>
-                            <button type="button" class="st-chatu8-preset-box-close" title="关闭">&times;</button>
-                        </div>
-                        <div class="st-chatu8-preset-box-group">
-                            <span class="st-chatu8-preset-box-group-label">预设管理</span>
-                            <div class="st-chatu8-preset-box-grid">
-                                <button type="button" class="st-chatu8-preset-box-item" id="worker_new" title="新建预设"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="worker_update_style" title="保存修改"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="worker_save_style" title="另存为新预设"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="worker_rename" title="重命名预设"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                            </div>
-                        </div>
-                        <div class="st-chatu8-preset-box-group">
-                            <span class="st-chatu8-preset-box-group-label">导入与导出</span>
-                            <div class="st-chatu8-preset-box-grid">
-                                <button type="button" class="st-chatu8-preset-box-item" id="worker_export_current" title="导出当前预设"><i class="fa-solid fa-upload"></i><span>导出当前</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="worker_export_all" title="导出全部预设"><i class="fa-solid fa-file-export"></i><span>导出全部</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="worker_import" title="导入预设文件"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                            </div>
-                        </div>
-                        <div class="st-chatu8-preset-box-group">
-                            <span class="st-chatu8-preset-box-group-label">危险操作</span>
-                            <div class="st-chatu8-preset-box-grid">
-                                <button type="button" class="st-chatu8-preset-box-item danger" id="worker_delete_style" title="删除预设"><i class="fa-solid fa-trash"></i><span>删除预设</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button class="st-chatu8-icon-btn" id="worker_new" title="新建"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_update_style" title="保存"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_save_style" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_rename" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_export_current" title="导出当前"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_export_all" title="导出全部"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="worker_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="worker_delete_style" title="删除"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
         <div class="st-chatu8-field-col">
@@ -232,40 +142,14 @@
             <label for="editWorkerid">修图工作流预设</label>
             <div class="st-chatu8-profile-controls">
                 <select id="editWorkerid" class="st-chatu8-select"></select>
-                <div class="st-chatu8-preset-box-wrapper">
-                    <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作收纳盒">
-                        <i class="fa-solid fa-table-cells"></i>
-                    </button>
-                    <div class="st-chatu8-preset-box-dropdown">
-                        <div class="st-chatu8-preset-box-header">
-                            <span class="st-chatu8-preset-box-title"><i class="fa-solid fa-box-archive"></i> 修图预设操作</span>
-                            <button type="button" class="st-chatu8-preset-box-close" title="关闭">&times;</button>
-                        </div>
-                        <div class="st-chatu8-preset-box-group">
-                            <span class="st-chatu8-preset-box-group-label">预设管理</span>
-                            <div class="st-chatu8-preset-box-grid">
-                                <button type="button" class="st-chatu8-preset-box-item" id="edit_worker_new" title="新建预设"><i class="fa-solid fa-plus"></i><span>新建</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="edit_worker_update_style" title="保存修改"><i class="fa-solid fa-save"></i><span>保存</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="edit_worker_save_style" title="另存为新预设"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="edit_worker_rename" title="重命名预设"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
-                            </div>
-                        </div>
-                        <div class="st-chatu8-preset-box-group">
-                            <span class="st-chatu8-preset-box-group-label">导入与导出</span>
-                            <div class="st-chatu8-preset-box-grid">
-                                <button type="button" class="st-chatu8-preset-box-item" id="edit_worker_export_current" title="导出当前预设"><i class="fa-solid fa-upload"></i><span>导出当前</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="edit_worker_export_all" title="导出全部预设"><i class="fa-solid fa-file-export"></i><span>导出全部</span></button>
-                                <button type="button" class="st-chatu8-preset-box-item" id="edit_worker_import" title="导入预设文件"><i class="fa-solid fa-download"></i><span>导入</span></button>
-                            </div>
-                        </div>
-                        <div class="st-chatu8-preset-box-group">
-                            <span class="st-chatu8-preset-box-group-label">危险操作</span>
-                            <div class="st-chatu8-preset-box-grid">
-                                <button type="button" class="st-chatu8-preset-box-item danger" id="edit_worker_delete_style" title="删除预设"><i class="fa-solid fa-trash"></i><span>删除预设</span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button class="st-chatu8-icon-btn" id="edit_worker_new" title="新建"><i class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_update_style" title="保存"><i class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_save_style" title="另存为"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_rename" title="重命名"><i class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_export_current" title="导出当前"><i class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_export_all" title="导出全部"><i class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="edit_worker_import" title="导入"><i class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="edit_worker_delete_style" title="删除"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>
         <div class="st-chatu8-field-col">

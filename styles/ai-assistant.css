@@ -146,9 +146,6 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
-    will-change: scroll-position;
 }
 
 /* 隐藏滚动条增强美观 */
@@ -166,7 +163,6 @@
     gap: 10px;
     max-width: 90%;
     position: relative;
-    contain: layout style;
 }
 
 .st-chatu8-ai-msg.system-msg {
@@ -1786,40 +1782,30 @@
     position: absolute;
     bottom: 80px;
     right: 20px;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: var(--st-chatu8-accent-primary);
     color: var(--st-chatu8-text-highlight, white);
     border: none;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     z-index: 100;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(12px) scale(0.85);
-    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    will-change: opacity, transform;
-}
-
-.st-chatu8-ai-scroll-to-bottom.visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0) scale(1);
+    font-size: 18px;
 }
 
 .st-chatu8-ai-scroll-to-bottom:hover {
-    transform: translateY(-2px) scale(1.08);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
     background: var(--st-chatu8-accent-secondary);
 }
 
 .st-chatu8-ai-scroll-to-bottom:active {
-    transform: translateY(0) scale(0.95);
+    transform: scale(0.95);
 }
 
 /* 未读消息徽章 */
