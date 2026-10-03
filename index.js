@@ -1,4 +1,7 @@
 /**
+ * Modified by YXQBYJQ with Codex assistance, 2026-10-04:
+ * Preserve NovelAI API errors during endpoint fallback and add regression tests.
+ * This modified file remains covered by the Aladdin Free Public License (LICENSE).
  * ====================================================
  * st-chatu8 (智绘姬) - SillyTavern 文生图扩展
  * Copyright (C) 从前跟你一样 (github.com/damoshen123)
@@ -83605,6 +83608,11 @@ async function postNovelAIWithFallback({
       } catch (e) {
         lastErrorText = "";
       }
+      // Only a possible path/method mismatch should try another endpoint.
+      // Preserve quota, authentication, validation and upstream errors.
+      if (response.status !== 404 && response.status !== 405) {
+        break;
+      }
       if (!isLast) {
         addLog(`${logPrefix} \u7AEF\u70B9 ${currentUrl} \u8FD4\u56DE HTTP ${response.status}\uFF0C\u56DE\u9000\u5C1D\u8BD5\u5019\u9009\u7AEF\u70B9: ${nextUrl}`);
         continue;
@@ -83641,6 +83649,21 @@ async function postNovelAIWithFallback({
       default:
         addLog(`${logPrefix} [API \u9519\u8BEF] ${lastResponse.status}: ${lastErrorText}`);
     }
+    // Preserve the server's reason across common JSON error envelopes.
+    let apiMessage = lastErrorText;
+    try {
+      const errorJson = JSON.parse(lastErrorText);
+      const message = [errorJson?.error?.message, errorJson?.message, errorJson?.detail].find(
+        (value) => typeof value === "string" && value.trim()
+      );
+      if (message) {
+        apiMessage = message;
+      }
+    } catch {
+      // Non-JSON responses keep their original text.
+    }
+    userFriendlyError = `\u8BF7\u6C42\u5931\u8D25 (HTTP ${lastResponse.status}): ${apiMessage.trim() || userFriendlyError}`;
+    addLog(`${logPrefix} \u6700\u7EC8\u9519\u8BEF: ${userFriendlyError}`);
     throw new Error(userFriendlyError);
   }
   if (lastError) {
