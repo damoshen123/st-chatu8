@@ -2454,6 +2454,10 @@ var init_config = __esm({
       yusheid_comfyui: "\u9ED8\u8BA4",
       yusheid_runninghub: "\u9ED8\u8BA4",
       randomYushe: "false",
+      randomYusheGroupId: "",
+      randomYusheBatchStable: "false",
+      imageImportExcludePositive: "nsfw, 1girl, 1boy, hetero, simple background, white background",
+      imageImportExcludeNegative: "",
       aiAutonomousResolution: true,
       // AI自主分辨率：开启后，从提示词中提取到的尺寸会覆盖设置中的分辨率参数
       videoChannel: "comfyui",
@@ -9201,6 +9205,28 @@ function isPluginToastDisabled() {
   const settings3 = extension_settings3?.[extensionName];
   return settings3?.disablePluginToast === "true" || settings3?.disablePluginToast === true;
 }
+let stChatu8YusheBatch = null;
+const YUSHE_BATCH_TTL = 10 * 60 * 1000;
+function pickRandomYushePreset(settings3) {
+  const yushe = settings3.yushe;
+  if (!yushe || typeof yushe !== "object") return "";
+  let keys = Object.keys(yushe);
+  const groupId = settings3.randomYusheGroupId;
+  if (groupId) {
+    const groups = settings3.presetGroups?.["yushe"];
+    if (Array.isArray(groups)) {
+      const group = groups.find((g) => g.id === groupId);
+      if (group && Array.isArray(group.members)) {
+        const memberKeys = group.members.filter((m) => yushe[m]);
+        if (memberKeys.length > 0) keys = memberKeys;
+      }
+    }
+  }
+  if (keys.length === 0) {
+    keys = Object.keys(yushe);
+  }
+  return keys[Math.floor(Math.random() * keys.length)];
+}
 function getRandomYusheId(modeKey) {
   const settings3 = extension_settings3[extensionName];
   if (settings3.randomYushe !== "true") {
@@ -9214,7 +9240,22 @@ function getRandomYusheId(modeKey) {
   if (keys.length === 0) {
     return settings3[modeKey];
   }
-  const randomKey = keys[Math.floor(Math.random() * keys.length)];
+  if (settings3.randomYusheBatchStable === "true") {
+    const now = Date.now();
+    if (stChatu8YusheBatch && stChatu8YusheBatch.presetId && yushe[stChatu8YusheBatch.presetId] && now - stChatu8YusheBatch.ts < YUSHE_BATCH_TTL) {
+      const cachedKey = stChatu8YusheBatch.presetId;
+      addLog(`[\u968F\u673A\u9884\u8BBE\u00B7\u6279\u6B21\u5185\u7A33\u5B9A] \u590D\u7528\u672C\u6B21\u6279\u6B21\u9884\u8BBE: "${cachedKey}" (\u539F\u9884\u8BBE: "${settings3[modeKey]}")`);
+      return cachedKey;
+    }
+    const randomKey = pickRandomYushePreset(settings3) || settings3[modeKey];
+    stChatu8YusheBatch = { presetId: randomKey, ts: now };
+    addLog(`[\u968F\u673A\u9884\u8BBE\u00B7\u6279\u6B21\u5185\u7A33\u5B9A] \u672C\u6B21\u6279\u6B21\u9884\u8BBE\u5DF2\u786E\u5B9A: "${randomKey}" (\u539F\u9884\u8BBE: "${settings3[modeKey]}")`);
+    if (!isPluginToastDisabled()) {
+      toastr.info(`\u968F\u673A\u9009\u4E2D\u9884\u8BBE: "${randomKey}"`, "\u968F\u673A\u63D0\u793A\u8BCD\u9884\u8BBE");
+    }
+    return randomKey;
+  }
+  const randomKey = pickRandomYushePreset(settings3) || settings3[modeKey];
   addLog(`[\u968F\u673A\u9884\u8BBE] \u4ECE ${keys.length} \u4E2A\u9884\u8BBE\u4E2D\u968F\u673A\u9009\u4E2D: "${randomKey}" (\u539F\u9884\u8BBE: "${settings3[modeKey]}")`);
   if (!isPluginToastDisabled()) {
     toastr.info(`\u968F\u673A\u9009\u4E2D\u9884\u8BBE: "${randomKey}"`, "\u968F\u673A\u63D0\u793A\u8BCD\u9884\u8BBE");
@@ -12272,6 +12313,25 @@ function applySettingsPanelMobileLayout() {
     });
   }
 }
+function populateRandomYusheGroupOptions() {
+  const select = document.getElementById("randomYusheGroupId");
+  if (!select) return;
+  const settings3 = extension_settings4[extensionName];
+  const groups = Array.isArray(settings3.presetGroups?.["yushe"]) ? settings3.presetGroups["yushe"] : [];
+  const current = settings3.randomYusheGroupId || "";
+  select.innerHTML = "";
+  const allOption = document.createElement("option");
+  allOption.value = "";
+  allOption.textContent = "\u5168\u90E8\u9884\u8BBE";
+  select.appendChild(allOption);
+  for (const g of groups) {
+    const opt = document.createElement("option");
+    opt.value = g.id;
+    opt.textContent = g.name;
+    select.appendChild(opt);
+  }
+  select.value = groups.some((g) => g.id === current) ? current : "";
+}
 function showSettingsPanel() {
   const settings3 = extension_settings4[extensionName];
   const panel = $("#ch-settings-modal");
@@ -12280,6 +12340,7 @@ function showSettingsPanel() {
     return;
   }
   logJSZipStatus();
+  populateRandomYusheGroupOptions();
   const lastTab = settings3.lastTab || "main";
   const lastTabLink = panel.find(`.st-chatu8-nav-link[data-tab="${lastTab}"]`);
   const lastTabHidden = lastTabLink.length && lastTabLink[0].style.display === "none";
@@ -40317,6 +40378,10 @@ async function processImageLikeRequest(el, gestureId, requestType, title, llmFun
     \u529F\u80FD\u8BF4\u660E: `\u5904\u7406\u624B\u52BF\u8BC6\u522B\u540E\u7684${title}\u8BF7\u6C42`,
     \u89E6\u53D1\u6765\u6E90: options?.source || "manual"
   });
+  if (extension_settings40[extensionName]?.randomYusheBatchStable === "true") {
+    stChatu8YusheBatch = null;
+    addLog("[promptReq] \u65B0\u7684 LLM \u8BF7\u6C42\u5DF2\u5F00\u59CB\uFF0C\u5DF2\u91CD\u7F6E\u968F\u673A\u9884\u8BBE\u6279\u6B21\u7F13\u5B58\uFF0C\u672C\u6B21\u6279\u6B21\u5C06\u4F7F\u7528\u65B0\u7684\u968F\u673A\u9884\u8BBE\u3002");
+  }
   let isDemandEnabled = false;
   let defaultDemand = "";
   let popupOptions = {
@@ -89851,6 +89916,23 @@ function initPromptSettings(settingsModal, settings3) {
     settingsModal.find(`#st_chatu8_tishici_export_current${suffix}`).on("click", () => st_chatu8_tishici_export_current(mode, settings3));
     settingsModal.find(`#st_chatu8_tishici_export_all${suffix}`).on("click", () => st_chatu8_tishici_export_all(settings3));
     settingsModal.find(`#st_chatu8_tishici_import${suffix}`).on("click", () => st_chatu8_tishici_import(settings3));
+    settingsModal.find(`#st_chatu8_yushe_import_image${suffix}`).on("click", () => st_chatu8_yushe_import_from_image(mode, settings3));
+    settingsModal.find(`#st_chatu8_yushe_import_image_clean${suffix}`).on("click", () => st_chatu8_yushe_import_from_image(mode, settings3, {
+      positiveExclude: settings3.imageImportExcludePositive,
+      negativeExclude: settings3.imageImportExcludeNegative
+    }));
+    if (settings3.imageImportExcludePositive === void 0) settings3.imageImportExcludePositive = DEFAULT_IMAGE_IMPORT_EXCLUDE_POSITIVE;
+    if (settings3.imageImportExcludeNegative === void 0) settings3.imageImportExcludeNegative = "";
+    settingsModal.find(`#imageImportExcludePositive${suffix}`).val(settings3.imageImportExcludePositive).on("input", function() {
+      settings3.imageImportExcludePositive = $(this).val();
+      saveSettingsDebounced41();
+      syncImageImportExcludeInputs("imageImportExcludePositive", suffix, settings3.imageImportExcludePositive);
+    });
+    settingsModal.find(`#imageImportExcludeNegative${suffix}`).val(settings3.imageImportExcludeNegative).on("input", function() {
+      settings3.imageImportExcludeNegative = $(this).val();
+      saveSettingsDebounced41();
+      syncImageImportExcludeInputs("imageImportExcludeNegative", suffix, settings3.imageImportExcludeNegative);
+    });
     settingsModal.find(`#st_chatu8_tishici_visual_select${suffix}`).on("click", () => {
       showPresetVisualSelector(mode, settings3, (presetName) => {
         const selectElement = document.getElementById("yusheid" + suffix);
@@ -90177,6 +90259,159 @@ async function st_chatu8_tishici_export_all(settings3) {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+}
+const DEFAULT_IMAGE_IMPORT_EXCLUDE_POSITIVE = "nsfw, 1girl, 1boy, hetero, simple background, white background";
+function filterChatu8ImportTags(text, excludeList) {
+  const excludes = new Set(
+    String(excludeList || "").split(/[\uFF0C,\n]/).map((s) => s.trim().toLowerCase()).filter(Boolean)
+  );
+  if (excludes.size === 0) return String(text || "");
+  return String(text || "").split(",").map((s) => s.trim()).filter((s) => s && !excludes.has(s.toLowerCase())).join(", ");
+}
+function syncImageImportExcludeInputs(key, sourceSuffix, value) {
+  generationTabs2.forEach((m) => {
+    const s = getSuffix(m);
+    if (s === sourceSuffix) return;
+    const el = document.getElementById(`${key}${s}`);
+    if (el) el.value = value;
+  });
+}
+function parseChatu8NovelAIPngMetadata(arrayBuffer) {
+  try {
+    const bytes = new Uint8Array(arrayBuffer);
+    if (bytes.length < 8) return null;
+    const sig = [137, 80, 78, 71, 13, 10, 26, 10];
+    for (let i = 0; i < 8; i++) {
+      if (bytes[i] !== sig[i]) return null;
+    }
+    const latin1 = new TextDecoder("latin1");
+    const utf8 = new TextDecoder("utf-8");
+    const texts = {};
+    let off = 8;
+    while (off + 12 <= bytes.length) {
+      const len = bytes[off] << 24 | bytes[off + 1] << 16 | bytes[off + 2] << 8 | bytes[off + 3];
+      const type = String.fromCharCode(bytes[off + 4], bytes[off + 5], bytes[off + 6], bytes[off + 7]);
+      const dataStart = off + 8;
+      const dataEnd = dataStart + len;
+      if (dataEnd > bytes.length) break;
+      const data = bytes.subarray(dataStart, dataEnd);
+      if (type === "tEXt") {
+        const sep = data.indexOf(0);
+        if (sep !== -1) {
+          const kw = latin1.decode(data.subarray(0, sep));
+          texts[kw] = latin1.decode(data.subarray(sep + 1));
+        }
+      } else if (type === "iTXt") {
+        const kwEnd = data.indexOf(0);
+        if (kwEnd !== -1) {
+          const kw = utf8.decode(data.subarray(0, kwEnd));
+          let p = kwEnd + 1;
+          const compFlag = data[p];
+          p += 2;
+          p = data.indexOf(0, p) + 1;
+          p = data.indexOf(0, p) + 1;
+          if (compFlag === 0) {
+            texts[kw] = utf8.decode(data.subarray(p));
+          }
+        }
+      }
+      off = dataEnd + 4;
+      if (type === "IEND") break;
+    }
+    let meta = null;
+    const comment = texts["Comment"];
+    if (comment) {
+      try {
+        meta = JSON.parse(comment);
+      } catch (e) {
+        meta = null;
+      }
+    }
+    let prompt = "";
+    let negative = "";
+    if (meta && typeof meta === "object") {
+      prompt = meta.prompt || meta.v4_prompt?.caption?.base_caption || "";
+      negative = meta.uc || meta.v4_negative_prompt?.caption?.base_caption || meta.negative_prompt || "";
+    }
+    if (!prompt) {
+      prompt = texts["Description"] || "";
+    }
+    if (!prompt && !negative) return null;
+    return { prompt: String(prompt), negative: String(negative) };
+  } catch (e) {
+    console.error("[Prompt] parse PNG metadata failed:", e);
+    return null;
+  }
+}
+function st_chatu8_yushe_import_from_image(mode, settings3, options = {}) {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = "image/png,image/*,.png";
+  input.multiple = true;
+  input.onchange = async (e) => {
+    const files = e.target.files ? Array.from(e.target.files) : [];
+    if (!files.length) return;
+    let successCount = 0;
+    let failCount = 0;
+    let lastName = "";
+    for (const file of files) {
+      try {
+        const arrayBuffer = await file.arrayBuffer();
+        const parsed = parseChatu8NovelAIPngMetadata(arrayBuffer);
+        if (!parsed || (!parsed.prompt && !parsed.negative)) {
+          failCount++;
+          continue;
+        }
+        const finalPrompt = options.positiveExclude ? filterChatu8ImportTags(parsed.prompt, options.positiveExclude) : parsed.prompt || "";
+        const finalNegative = options.negativeExclude ? filterChatu8ImportTags(parsed.negative, options.negativeExclude) : parsed.negative || "";
+        const rawName = (file.name || "").replace(/\.[^.]+$/, "").trim() || "\u56FE\u7247\u9884\u8BBE";
+        let presetName = rawName;
+        let counter = 1;
+        while (settings3.yushe[presetName]) {
+          presetName = `${rawName}(${counter++})`;
+        }
+        let previewImageId = "";
+        try {
+          const dataUrl = await blobToBase642(file);
+          previewImageId = await saveConfigImage(dataUrl, {
+            format: file.type && file.type.split("/")[1] || "png",
+            filename: `preset_${presetName}_preview`
+          });
+        } catch (imgErr) {
+          console.error("[Prompt] save preview image failed:", imgErr);
+        }
+        settings3.yushe[presetName] = {
+          fixedPrompt: finalPrompt,
+          fixedPrompt_end: "",
+          negativePrompt: finalNegative,
+          previewImageId
+        };
+        lastName = presetName;
+        successCount++;
+      } catch (err) {
+        console.error("[Prompt] import from image failed:", err);
+        failCount++;
+      }
+    }
+    if (successCount > 0) {
+      const suffix = getSuffix(mode);
+      const yusheIdKey = `yusheid${mode === "sd" ? "_sd" : suffix}`;
+      settings3[yusheIdKey] = lastName;
+      saveSettingsDebounced41();
+      if (typeof window.loadSilterTavernChatu8Settings === "function") {
+        window.loadSilterTavernChatu8Settings();
+      }
+      if (failCount > 0) {
+        toastr.warning(`\u5DF2\u4ECE\u56FE\u7247\u5BFC\u5165 ${successCount} \u4E2A\u9884\u8BBE\uFF0C${failCount} \u4E2A\u5931\u8D25\uFF08\u7F3A\u5C11\u5143\u6570\u636E\u6216\u8BFB\u53D6\u9519\u8BEF\uFF09\u3002`, "\u56FE\u7247\u5BFC\u5165\u5B8C\u6210");
+      } else {
+        toastr.success(`\u5DF2\u4ECE\u56FE\u7247\u5BFC\u5165\u5E76\u65B0\u5EFA ${successCount} \u4E2A\u9884\u8BBE\uFF0C\u5E76\u9009\u4E2D\u300C${lastName}\u300D\u3002`, "\u56FE\u7247\u5BFC\u5165\u6210\u529F");
+      }
+    } else {
+      toastr.error("\u672A\u80FD\u4ECE\u6240\u9009\u56FE\u7247\u4E2D\u89E3\u6790\u51FA NovelAI \u63D0\u793A\u8BCD\u5143\u6570\u636E\uFF08\u9700\u5E26 Comment \u5143\u6570\u636E\u7684 NovelAI \u56FE\u7247\uFF09\u3002", "\u56FE\u7247\u5BFC\u5165\u5931\u8D25");
+    }
+    e.target.value = "";
+  };
+  input.click();
 }
 function st_chatu8_tishici_import(settings3) {
   const input = document.createElement("input");
@@ -112409,7 +112644,7 @@ async function initUI({ check_update: check_update2 }) {
       settings2.theme_id = "\u9ED8\u8BA4-\u767D\u5929";
     }
     applyTheme(settings2.themes[settings2.theme_id]);
-    const mainKeys = ["scriptEnabled", "helpTipsEnabled", "disablePluginToast", "newlineFixEnabled", "mode", "client", "displayMode", "heavyFrontendMode", "insertOriginalText", "dbclike", "collapseImage", "zidongdianji", "zidongdianji2", "longPressToEdit", "clickToPreview", "startTag", "endTag", "cache", "sdUrl", "st_chatu8_sd_auth", "comfyuiUrl", "comfyui_max_concurrency", "comfyui_timeout", "novelaiApi", "novelaisite", "novelaiOtherSite", "enableCloudQueue", "cloudQueueUrl", "cloudQueueGreeting", "showQueueGreeting", "novelaimode", "novelai_v5_effort", "novelai_sampler", "Schedule", "nai3Scale", "cfg_rescale", "AI_use_coords", "sm", "dyn", "nai3Variety", "nai3Deceisp", "sd_cwidth", "sd_cheight", "sd_csteps", "sd_cseed", "sdCfgScale", "restoreFaces", "novelai_width", "novelai_height", "novelai_steps", "novelai_seed", "nai3VibeTransfer", "enableVibeGroupTransfer", "randomVibeGroup", "normalizeRefStrength", "InformationExtracted", "ReferenceStrength", "nai3CharRef", "nai3StylePerception", "comfyui_width", "comfyui_height", "comfyui_steps", "comfyui_seed", "cfg_comfyui", "worker", "ipa", "c_fenwei", "c_xijie", "c_quanzhong", "c_idquanzhong", "AQT_sd", "UCP_sd", "AQT_novelai", "UCP_novelai", "AQT_comfyui", "UCP_comfyui", "addFurryDataset", "sd_cupscale_factor", "sd_chires_fix", "sd_chires_steps", "sd_cdenoising_strength", "sd_cclip_skip", "sd_cadetailer", "worldBookEnabled", "ai_temperature", "ai_top_p", "ai_presence_penalty", "ai_frequency_penalty", "ai_stream", "ai_private", "ai_token", "vocabulary_search_startswith", "vocabulary_search_limit", "vocabulary_search_sort", "enablePregen", "autoLLMImageGen", "randomYushe", "aiAutonomousResolution", "videoChannel", "imageAlignment", "imageSizeScale", "imageGenInterval", "translation_system_prompt", "ai_test_system", "ai_test_user", "ai_test_output", "jiuguanchucun", "vibeJiuguanchucun", "convertToJpegStorage", "weilin_lora_fix"];
+    const mainKeys = ["scriptEnabled", "helpTipsEnabled", "disablePluginToast", "newlineFixEnabled", "mode", "client", "displayMode", "heavyFrontendMode", "insertOriginalText", "dbclike", "collapseImage", "zidongdianji", "zidongdianji2", "longPressToEdit", "clickToPreview", "startTag", "endTag", "cache", "sdUrl", "st_chatu8_sd_auth", "comfyuiUrl", "comfyui_max_concurrency", "comfyui_timeout", "novelaiApi", "novelaisite", "novelaiOtherSite", "enableCloudQueue", "cloudQueueUrl", "cloudQueueGreeting", "showQueueGreeting", "novelaimode", "novelai_v5_effort", "novelai_sampler", "Schedule", "nai3Scale", "cfg_rescale", "AI_use_coords", "sm", "dyn", "nai3Variety", "nai3Deceisp", "sd_cwidth", "sd_cheight", "sd_csteps", "sd_cseed", "sdCfgScale", "restoreFaces", "novelai_width", "novelai_height", "novelai_steps", "novelai_seed", "nai3VibeTransfer", "enableVibeGroupTransfer", "randomVibeGroup", "normalizeRefStrength", "InformationExtracted", "ReferenceStrength", "nai3CharRef", "nai3StylePerception", "comfyui_width", "comfyui_height", "comfyui_steps", "comfyui_seed", "cfg_comfyui", "worker", "ipa", "c_fenwei", "c_xijie", "c_quanzhong", "c_idquanzhong", "AQT_sd", "UCP_sd", "AQT_novelai", "UCP_novelai", "AQT_comfyui", "UCP_comfyui", "addFurryDataset", "sd_cupscale_factor", "sd_chires_fix", "sd_chires_steps", "sd_cdenoising_strength", "sd_cclip_skip", "sd_cadetailer", "worldBookEnabled", "ai_temperature", "ai_top_p", "ai_presence_penalty", "ai_frequency_penalty", "ai_stream", "ai_private", "ai_token", "vocabulary_search_startswith", "vocabulary_search_limit", "vocabulary_search_sort", "enablePregen", "autoLLMImageGen", "randomYushe", "randomYusheGroupId", "randomYusheBatchStable", "aiAutonomousResolution", "videoChannel", "imageAlignment", "imageSizeScale", "imageGenInterval", "translation_system_prompt", "ai_test_system", "ai_test_user", "ai_test_output", "jiuguanchucun", "vibeJiuguanchucun", "convertToJpegStorage", "weilin_lora_fix"];
     mainKeys.forEach((key) => {
       const element = document.getElementById(key);
       if (element) {
@@ -112423,6 +112658,16 @@ async function initUI({ check_update: check_update2 }) {
     if (settings2.comfyui_max_concurrency) {
       comfyuiConcurrencyLock.setMaxConcurrency(settings2.comfyui_max_concurrency);
     }
+    const randomYusheEnabled = String(settings2.randomYushe) === "true";
+    const randomYusheGroupField = document.getElementById("randomYusheGroupField");
+    const randomYusheBatchStableField = document.getElementById("randomYusheBatchStableField");
+    if (randomYusheGroupField) {
+      randomYusheGroupField.style.display = randomYusheEnabled ? "" : "none";
+    }
+    if (randomYusheBatchStableField) {
+      randomYusheBatchStableField.style.display = randomYusheEnabled ? "" : "none";
+    }
+    populateRandomYusheGroupOptions();
     if (settings2.novelaimode) {
       loadModelConfigIntoUI(settings2.novelaimode);
     }
@@ -113083,7 +113328,7 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.find("#novelai_size").on("change", () => size_change("novelai"));
   settingsModal.find("#comfyui_size").on("change", () => size_change("comfyui"));
   const allIDs = Object.keys(defaultSettings);
-  const ignoreIDs = ["yushe", "yusheid", "fixedPrompt", "fixedPrompt_end", "negativePrompt", "workers", "workerid", "worker", "themes", "theme_id", "prompt_replace", "prompt_replace_id", "prompt_replace_text", "UCP", "AQT", "nai3CharRef", "worldBookList", "worldBookList_id", "worldbook_content", "insertOriginalText", "convertToJpegStorage", "randomYushe", "randomVibeGroup", "enablePregen", "zidongdianji", "zidongdianji2"];
+  const ignoreIDs = ["yushe", "yusheid", "fixedPrompt", "fixedPrompt_end", "negativePrompt", "workers", "workerid", "worker", "themes", "theme_id", "prompt_replace", "prompt_replace_id", "prompt_replace_text", "UCP", "AQT", "nai3CharRef", "worldBookList", "worldBookList_id", "worldbook_content", "insertOriginalText", "convertToJpegStorage", "randomYushe", "randomYusheGroupId", "randomYusheBatchStable", "randomVibeGroup", "enablePregen", "zidongdianji", "zidongdianji2"];
   $("#InformationExtracted, #InformationExtracted_range").on("input", (event) => {
     const value = $(event.target).val();
     $("#InformationExtracted").val(value);
@@ -113259,6 +113504,10 @@ async function initUI({ check_update: check_update2 }) {
     const isEnabled = $(this).prop("checked");
     settings2.randomYushe = isEnabled.toString();
     saveSettingsDebounced71();
+    const randomYusheGroupField = document.getElementById("randomYusheGroupField");
+    const randomYusheBatchStableField = document.getElementById("randomYusheBatchStableField");
+    if (randomYusheGroupField) randomYusheGroupField.style.display = isEnabled ? "" : "none";
+    if (randomYusheBatchStableField) randomYusheBatchStableField.style.display = isEnabled ? "" : "none";
     if (isEnabled) {
       const yusheKeys = Object.keys(settings2.yushe || {});
       toastr.info(`\u5F53\u524D\u5171\u6709 ${yusheKeys.length} \u4E2A\u63D0\u793A\u8BCD\u9884\u8BBE\uFF0C\u6BCF\u6B21\u751F\u56FE\u5C06\u968F\u673A\u9009\u62E9`, "\u968F\u673A\u9884\u8BBE\u5DF2\u542F\u7528");
@@ -113266,6 +113515,18 @@ async function initUI({ check_update: check_update2 }) {
     } else {
       addLog("[\u968F\u673A\u9884\u8BBE] \u5DF2\u5173\u95ED\uFF0C\u5C06\u4F7F\u7528\u56FA\u5B9A\u9884\u8BBE");
     }
+  });
+  settingsModal.find("#randomYusheGroupId").on("change", function() {
+    settings2.randomYusheGroupId = $(this).val() || "";
+    saveSettingsDebounced71();
+    const groupName = settings2.randomYusheGroupId ? (settings2.presetGroups?.["yushe"] || []).find((g) => g.id === settings2.randomYusheGroupId)?.name || "\u672A\u77E5\u5206\u7EC4" : "\u5168\u90E8\u9884\u8BBE";
+    addLog(`[\u968F\u673A\u9884\u8BBE] \u968F\u673A\u8303\u56F4\u5DF2\u8BBE\u4E3A: ${groupName}`);
+  });
+  settingsModal.find("#randomYusheBatchStable").on("change", function() {
+    const isEnabled = $(this).prop("checked");
+    settings2.randomYusheBatchStable = isEnabled.toString();
+    saveSettingsDebounced71();
+    addLog(`[\u968F\u673A\u9884\u8BBE] \u540C\u4E00LLM\u8BF7\u6C42\u5185\u4FDD\u6301\u540C\u4E00\u968F\u673A\u9884\u8BBE\u5DF2${isEnabled ? "\u542F\u7528" : "\u5173\u95ED"}`);
   });
   settingsModal.find("#enablePregen").on("change", function() {
     const isEnabled = $(this).prop("checked");
