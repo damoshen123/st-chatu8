@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/settings/taskManager.js
-import { eventSource } from "../../../../../../script.js";
+import { eventSource } from "../../../../../../../script.js";
 import { extension_settings } from "../../../../../../extensions.js";
 import { extensionName } from "../config.js";
 import { cancelSerialLock, resetSerialLock } from "../utils.js";

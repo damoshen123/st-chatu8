@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/novelai_ui.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { saveSettingsDebounced } from "../../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../../script.js";
 import { extensionName } from "../config.js";
 import { clearNovelAIUrlCache } from "../novelai.js";
 import { NOVELAI_MODEL_PARAM_KEYS, OFFICIAL_NOVELAI_MODEL_DEFAULTS, __set_lastSelectedNovelaiModel, lastSelectedNovelaiModel } from "./vibeTransferGenerator.js";

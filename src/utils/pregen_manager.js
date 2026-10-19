@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/pregen_manager.js
-import { eventSource } from "../../../../../script.js";
+import { eventSource } from "../../../../../../script.js";
 import { extension_settings } from "../../../../../extensions.js";
 import { EventType, extensionName } from "./config.js";
 import { addLog, normalizePromptTag } from "./utils.js";

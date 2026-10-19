@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/wordReplacement.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { saveSettingsDebounced } from "../../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../../script.js";
 import { extensionName } from "../config.js";
 import { stylInput } from "../ui_common.js";
 import { __set_wrAiEditor, __set_wrProfileSelect, __set_wrTextEditor, wrAiEditor, wrProfileSelect, wrTextEditor } from "../imageInserter.js";

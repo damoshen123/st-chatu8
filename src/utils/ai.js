@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/ai.js
-import { eventSource } from "../../../../../script.js";
+import { eventSource } from "../../../../../../script.js";
 import { eventNames } from "./config.js";
 import { addLog } from "./utils.js";
 import { mergeAdjacentMessages } from "./promptProcessor.js";

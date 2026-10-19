@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/regex.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { eventSource, saveSettingsDebounced } from "../../../../../../script.js";
+import { eventSource, saveSettingsDebounced } from "../../../../../../../script.js";
 import { eventNames, extensionName } from "../config.js";
 import { addLog, clearLog } from "../utils.js";
 import { stylInput } from "../ui_common.js";

@@ -1,7 +1,7 @@
 // 还原自打包产物 — 原始模块: utils/assistant/assistantFloorMessage.js
 import { extension_settings } from "../../../../../../extensions.js";
 import { getContext } from "../../../../../../st-context.js";
-import { eventSource } from "../../../../../../script.js";
+import { eventSource } from "../../../../../../../script.js";
 import { eventNames, extensionName } from "../config.js";
 import { isMobileDevice } from "../utils.js";
 import { getWorldEntrySelectionKey } from "../worldEntrySelection.js";

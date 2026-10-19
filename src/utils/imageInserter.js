@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/imageInserter.js
 import { extension_settings } from "../../../../../extensions.js";
-import { chat, eventSource, event_types, messageFormatting, saveChatConditional } from "../../../../../script.js";
+import { chat, eventSource, event_types, messageFormatting, saveChatConditional } from "../../../../../../script.js";
 import { getContext } from "../../../../../st-context.js";
 import { extensionName } from "./config.js";
 import { debugBranch, debugContent, debugElement, debugLog, debugTimer } from "./debugLogger.js";

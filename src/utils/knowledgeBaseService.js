@@ -1,7 +1,7 @@
 // 还原自打包产物 — 原始模块: utils/knowledgeBaseService.js
 import { world_info } from "../../../../../world-info.js";
 import { extension_settings } from "../../../../../extensions.js";
-import { saveSettingsDebounced } from "../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../script.js";
 import { extensionName } from "./config.js";
 import { getWorldEntries } from "./chatDataUtils.js";
 import { getWorldEntrySelectionKey } from "./worldEntrySelection.js";
@@ -16,7 +16,7 @@ async function refreshWorldBookCache(worldName) {
       console.log(`[KnowledgeBase] \u5DF2\u5237\u65B0\u4E16\u754C\u4E66\u7F13\u5B58: ${worldName}`);
       return;
     }
-    const { getContext: getContext24 } = await import("../../../st-context.js");
+    const { getContext: getContext24 } = await import("../../../../../st-context.js");
     await getContext24().loadWorldInfo(worldName);
     console.log(`[KnowledgeBase] \u5DF2\u901A\u8FC7 loadWorldInfo \u5237\u65B0: ${worldName}`);
   } catch (err) {

@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/runninghubWorker.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { saveSettingsDebounced } from "../../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../../script.js";
 import { extensionName } from "../config.js";
 import { stylInput } from "../ui_common.js";
 import { RUNNINGHUB_PLACEHOLDER_MAP } from "./runninghubui.js";

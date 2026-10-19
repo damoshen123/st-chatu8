@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/comfyui.js
 import { extension_settings } from "../../../../../extensions.js";
-import { eventSource } from "../../../../../script.js";
+import { eventSource } from "../../../../../../script.js";
 import { EventType, extensionName } from "./config.js";
 import { acquireComfyUILock, addLog, cancelComfyUILock, clearLog, comfyuiConcurrencyLock, configDatabase_exports, convertImageToJpeg, deduplicateTags, fixMp4Faststart, fumian, generateRandomSeed, getRandomYusheId, getRequestHeaders, getSortedCharacterIds, isPluginEnabled, isPluginToastDisabled, parsePromptStringWithCoordinates, prompt_replace, prompt_replace_for_character, releaseComfyUILock, sleep, stripChineseAnnotations, zhengmian } from "./utils.js";
 import { TaskStatus, TaskType, taskQueue } from "./taskQueue.js";

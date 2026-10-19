@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/ui_common.js
-import { saveSettingsDebounced } from "../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../script.js";
 import { extension_settings } from "../../../../../extensions.js";
 import { defaultSettings, extensionName } from "./config.js";
 import { getConfigImage } from "./configDatabase.js";

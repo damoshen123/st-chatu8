@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/outfitImagePromptGen.js
-import { eventSource, saveSettingsDebounced } from "../../../../../script.js";
+import { eventSource, saveSettingsDebounced } from "../../../../../../script.js";
 import { extension_settings } from "../../../../../extensions.js";
 import { eventNames, extensionName } from "./config.js";
 import { processVariablePlaceholdersInMessages } from "./promptProcessor.js";

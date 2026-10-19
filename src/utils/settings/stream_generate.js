@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/stream_generate.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { eventSource, event_types } from "../../../../../../script.js";
+import { eventSource, event_types } from "../../../../../../../script.js";
 import { extensionName } from "../config.js";
 import { normalizePromptTag } from "../utils.js";
 import { genEndedEvent, genStartedEvent, genStoppedEvent } from "../../../index.js";

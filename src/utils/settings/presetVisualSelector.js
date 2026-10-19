@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/settings/presetVisualSelector.js
-import { saveSettingsDebounced } from "../../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../../script.js";
 import { deleteConfigImage, getConfigImage, saveConfigImage } from "../configDatabase.js";
 import { getSuffix } from "../ui_common.js";
 import { createBulkSelectControls } from "./bulkSelectControls.js";

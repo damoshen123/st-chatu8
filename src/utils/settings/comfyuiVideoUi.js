@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/comfyuiVideoUi.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { eventSource, saveSettingsDebounced } from "../../../../../../script.js";
+import { eventSource, saveSettingsDebounced } from "../../../../../../../script.js";
 import { defaultSettings, extensionName } from "../config.js";
 import { prepareImageForUpload, processUploadedImageToBlob, removeThinkingTags } from "../utils.js";
 import { stylInput, stylishConfirm } from "../ui_common.js";

@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/banana.js
 import { extension_settings } from "../../../../../extensions.js";
-import { eventSource } from "../../../../../script.js";
+import { eventSource } from "../../../../../../script.js";
 import { EventType, extensionName } from "./config.js";
 import { addLog, clearLog, convertImageToJpeg, getRequestHeaders, getSortedCharacterIds, isPluginEnabled, isPluginToastDisabled, parsePromptStringWithCoordinates, prompt_replace_banana, prompt_replace_banana_for_character, stripChineseAnnotations } from "./utils.js";
 import { getConfigImage } from "./configDatabase.js";

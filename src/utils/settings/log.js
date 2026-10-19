@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/settings/log.js
-import { saveSettingsDebounced } from "../../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../../script.js";
 import { extensionFolderPath } from "../config.js";
 import { clearAllLogs, exportLogsWithHistory, getLog, initializeLogPersistence } from "../utils.js";
 import { stylishConfirm } from "../ui_common.js";
@@ -94,7 +94,7 @@ async function handleExportLog() {
     alert("\u65E5\u5FD7\u4E3A\u7A7A\u3002");
     return;
   }
-  const { extension_settings: extension_settings117 } = await import("../../../extensions.js");
+  const { extension_settings: extension_settings117 } = await import("../../../../../../extensions.js");
   const settings3 = extension_settings117["st-chatu8"] || {};
   let settingsInfo = "========== st-chatu8 \u63D2\u4EF6\u8BBE\u7F6E\u4FE1\u606F ==========\n";
   const extensionVersion = await getLocalExtensionVersion();

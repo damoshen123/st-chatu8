@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/llmRequest.js
-import { eventSource } from "../../../../../script.js";
+import { eventSource } from "../../../../../../script.js";
 import { eventNames } from "./config.js";
 import { debugBranch, debugLog, debugTimer } from "./debugLogger.js";
 

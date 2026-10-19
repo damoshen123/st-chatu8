@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: index.js
-import { event_types, saveSettingsDebounced } from "../../../script.js";
+import { event_types, saveSettingsDebounced } from "../../../../script.js";
 import { extensionTypes, extension_settings } from "../../../extensions.js";
 import { migrateToolAndTailConfigIfOldDefault } from "./src/utils/settings/defaultToolCallConfig.js";
 import { defaultSettings, extensionFolderPath, extensionName } from "./src/utils/config.js";

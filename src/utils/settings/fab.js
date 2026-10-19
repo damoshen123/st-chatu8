@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/fab.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { saveSettingsDebounced } from "../../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../../script.js";
 import { extensionName } from "../config.js";
 import { applyFabSettings, getGlobalVideoController, getGlobalVideoPlayer, showSettingsPanel } from "../ui_common.js";
 import { evaluateActiveState, initFabBubble, updateBubbleDirection } from "./fabBubble.js";

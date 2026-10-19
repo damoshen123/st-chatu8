@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/characterPromptModify.js
-import { eventSource, saveSettingsDebounced } from "../../../../../script.js";
+import { eventSource, saveSettingsDebounced } from "../../../../../../script.js";
 import { extension_settings } from "../../../../../extensions.js";
 import { getContext } from "../../../../../st-context.js";
 import { eventNames, extensionName } from "./config.js";

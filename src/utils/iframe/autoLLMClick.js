@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/iframe/autoLLMClick.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { eventSource, event_types } from "../../../../../../script.js";
+import { eventSource, event_types } from "../../../../../../../script.js";
 import { getContext } from "../../../../../../st-context.js";
 import { extensionName } from "../config.js";
 import { debugBranch, debugContent, debugElement, debugLog, debugMilestone, debugStartSession, debugTimer } from "../debugLogger.js";
@@ -182,7 +182,7 @@ eventSource.on(event_types.GENERATION_ENDED, async (data) => {
           insertTextSwitch.checked = true;
         }
         try {
-          const { saveSettingsDebounced: saveSettingsDebounced73 } = await import("../../../../script.js");
+          const { saveSettingsDebounced: saveSettingsDebounced73 } = await import("../../../../../../../script.js");
           saveSettingsDebounced73();
         } catch (e) {
           console.warn("[st-chatu8] Failed to save settings:", e);

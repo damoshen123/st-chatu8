@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/newline_fix.js
-import { chat, eventSource, event_types, messageFormatting, saveChatConditional, saveSettingsDebounced } from "../../../../../script.js";
+import { chat, eventSource, event_types, messageFormatting, saveChatConditional, saveSettingsDebounced } from "../../../../../../script.js";
 import { extension_settings } from "../../../../../extensions.js";
 import { getContext } from "../../../../../st-context.js";
 import { extensionName } from "./config.js";

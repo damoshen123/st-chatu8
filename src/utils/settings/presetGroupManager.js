@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/settings/presetGroupManager.js
-import { saveSettingsDebounced } from "../../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../../script.js";
 import { showToast, stylInput, stylishConfirm } from "../ui_common.js";
 
 var UNGROUPED;

@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/settings/theme.js
-import { saveSettingsDebounced } from "../../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../../script.js";
 import { extension_settings } from "../../../../../../extensions.js";
 import { defaultThemes, extensionName } from "../config.js";
 import { applyGenerateButtonStyle } from "./buttonstyle.js";

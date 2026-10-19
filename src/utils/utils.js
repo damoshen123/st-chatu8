@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/utils.js
-import { eventSource, substituteParams } from "../../../../../script.js";
+import { eventSource, substituteParams } from "../../../../../../script.js";
 import { extension_settings } from "../../../../../extensions.js";
 import { extensionName } from "./config.js";
 import { deleteLogSessionData, getLogIndex, getLogSessionData, saveLogIndex, saveLogSessionData } from "./configDatabase.js";
@@ -1500,7 +1500,7 @@ function getRequestHeaders(token2) {
 async function countTokens(messages, model) {
   try {
     if (!model) {
-      const { extension_settings: es } = await import("../../../extensions.js");
+      const { extension_settings: es } = await import("../../../../../extensions.js");
       const settings3 = es?.["st-chatu8"];
       const profileName = settings3?.current_llm_profile || "\u9ED8\u8BA4";
       model = settings3?.llm_profiles?.[profileName]?.model || "gpt-4";

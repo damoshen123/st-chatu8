@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/settings/fabBubble.js
-import { eventSource } from "../../../../../../script.js";
+import { eventSource } from "../../../../../../../script.js";
 import { EventType } from "../config.js";
 import { getGlobalVideoPlayer } from "../ui_common.js";
 import { TaskStatus, TaskType, taskQueue } from "../taskQueue.js";

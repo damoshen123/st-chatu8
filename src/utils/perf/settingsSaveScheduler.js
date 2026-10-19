@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/perf/settingsSaveScheduler.js
-import { saveSettingsDebounced } from "../../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../../script.js";
 import { getPerfState, isPerfFeatureEnabled } from "./perfConfig.js";
 
 var _dirtyKind, _inFlightPromise, _isDirty, _lastStartedAt, _stats, getBurstGuardMs, isMergeEnabled;

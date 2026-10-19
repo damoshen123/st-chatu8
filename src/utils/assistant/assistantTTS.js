@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/assistant/assistantTTS.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { eventSource } from "../../../../../../script.js";
+import { eventSource } from "../../../../../../../script.js";
 import { eventNames, extensionName } from "../config.js";
 import { activeChat, setTtsActiveMessageIndex, setTtsButtonState, setTtsCollectingBlobUrls, setTtsCollectingTotalSegments, setTtsCurrentRequestId, ttsActiveMessageIndex, ttsAudioCache, ttsButtonState, ttsCollectingBlobUrls, ttsCollectingTotalSegments } from "./assistantContext.js";
 import { getEdgeVoiceStyles } from "../tts.js";

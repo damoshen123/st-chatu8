@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/ui.js
-import { saveSettingsDebounced } from "../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../script.js";
 import { extension_settings } from "../../../../../extensions.js";
 import { getContext } from "../../../../../st-context.js";
 import { editwk } from "./settings/workers.js";
@@ -1469,7 +1469,7 @@ async function initUI({ check_update: check_update2 }) {
       }
       if (needsSave) {
         await regexEngine.saveScriptsByType(globalScripts, regexEngine.SCRIPT_TYPES.GLOBAL);
-        const { saveSettingsDebounced: stSaveSettings } = await import("../../../../../script.js");
+        const { saveSettingsDebounced: stSaveSettings } = await import("../../../../../../script.js");
         stSaveSettings();
         let countdown = 6;
         const toastId = `chatu8-refresh-${Date.now()}`;

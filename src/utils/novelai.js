@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/novelai.js
 import { extension_settings } from "../../../../../extensions.js";
-import { eventSource, saveSettingsDebounced } from "../../../../../script.js";
+import { eventSource, saveSettingsDebounced } from "../../../../../../script.js";
 import { EventType, extensionName } from "./config.js";
 import { acquireSerialLock, addLog, calculateSkipCfgAboveSigma, clearLog, convertImageToJpeg, deduplicateTags, fumian, generateRandomSeed, getRandomVibeGroupId, getRandomYusheId, getRequestHeaders, getSortedCharacterIds, isPluginEnabled, isPluginToastDisabled, parsePromptStringWithCoordinates, processReferenceImage, prompt_replace, prompt_replace_for_character, releaseSerialLock, sleep, stripChineseAnnotations, zhengmian } from "./utils.js";
 import { getConfigImage } from "./configDatabase.js";

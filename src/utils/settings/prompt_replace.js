@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/prompt_replace.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { saveSettingsDebounced } from "../../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../../script.js";
 import { extensionName } from "../config.js";
 import { getSuffix, stylInput, stylishConfirm } from "../ui_common.js";
 import { generationTabs } from "./log.js";

@@ -1187,7 +1187,7 @@ async function processImageLikeRequest(el, gestureId, requestType, title, llmFun
     const autoClickEnabled = String(extension_settings[extensionName]?.zidongdianji) === "true";
     if (autoClickEnabled) {
       const { taskQueue: taskQueue2, TaskType: TaskType2, TaskStatus: TaskStatus2 } = await import("./taskQueue.js");
-      const { eventSource: eventSource49 } = await import("../../../../script.js");
+      const { eventSource: eventSource49 } = await import("../../../../../../script.js");
       const { activateAutoClickWindow: activateAutoClickWindow2, deactivateAutoClickWindow: deactivateAutoClickWindow2 } = await import("./iframe/index.js");
       const autoClickTaskId = taskQueue2.addTask({
         name: `\u81EA\u52A8\u6279\u91CF\u751F\u6210 (${images.length} \u9879)`,

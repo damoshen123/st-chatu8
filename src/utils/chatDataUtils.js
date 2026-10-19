@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/chatDataUtils.js
 import { getContext } from "../../../../../st-context.js";
-import { eventSource, saveChatConditional, saveSettingsDebounced } from "../../../../../script.js";
+import { eventSource, saveChatConditional, saveSettingsDebounced } from "../../../../../../script.js";
 import { world_info, world_names } from "../../../../../world-info.js";
 import { extension_settings } from "../../../../../extensions.js";
 import { eventNames, extensionName } from "./config.js";

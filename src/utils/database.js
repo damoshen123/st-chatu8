@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/database.js
 import { extension_settings } from "../../../../../extensions.js";
-import { saveSettingsDebounced } from "../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../script.js";
 import { getPerfState, isPerfFeatureEnabled } from "./perf/perfConfig.js";
 import { arrayBufferToBase64, base64ByteLength, base64ToArrayBuffer } from "./perf/base64Utils.js";
 import { extensionName } from "./config.js";

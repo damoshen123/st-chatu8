@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/runninghub.js
 import { extension_settings } from "../../../../../extensions.js";
-import { eventSource } from "../../../../../script.js";
+import { eventSource } from "../../../../../../script.js";
 import { EventType, extensionName } from "./config.js";
 import { addLog, clearLog, convertImageToJpeg, deduplicateTags, fixMp4Faststart, fumian, getRandomYusheId, getSortedCharacterIds, isPluginEnabled, isPluginToastDisabled, parsePromptStringWithCoordinates, prompt_replace, prompt_replace_for_character, sleep, stripChineseAnnotations, zhengmian } from "./utils.js";
 import { TaskStatus, TaskType, taskQueue } from "./taskQueue.js";

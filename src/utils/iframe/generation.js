@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/iframe/generation.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { eventSource } from "../../../../../../script.js";
+import { eventSource } from "../../../../../../../script.js";
 import { EventType, extensionName } from "../config.js";
 import { addLog, addSmoothShakeEffect, fixMp4Faststart, isPluginToastDisabled, normalizePromptTag, safeDataUrlToBlob } from "../utils.js";
 import { isGenerating, startGenerating, stopGenerating } from "../generation_status.js";

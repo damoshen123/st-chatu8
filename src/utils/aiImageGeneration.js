@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/aiImageGeneration.js
-import { eventSource } from "../../../../../script.js";
+import { eventSource } from "../../../../../../script.js";
 import { EventType } from "./config.js";
 
 var imageGenerationIdCounter, imageGenerationQueue;

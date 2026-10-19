@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/videoAssetGenUi.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { eventSource, saveSettingsDebounced } from "../../../../../../script.js";
+import { eventSource, saveSettingsDebounced } from "../../../../../../../script.js";
 import { getContext } from "../../../../../../st-context.js";
 import { EventType, eventNames, extensionName } from "../config.js";
 import { saveConfigImage } from "../configDatabase.js";

@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/runninghubVideo.js
 import { extension_settings } from "../../../../../extensions.js";
-import { eventSource, saveSettingsDebounced } from "../../../../../script.js";
+import { eventSource, saveSettingsDebounced } from "../../../../../../script.js";
 import { runninghubDefaultJson } from "./settings/workers.js";
 import { extensionName } from "./config.js";
 import { addLog, clearLog, fixMp4Faststart, isPluginToastDisabled, prepareImageForUpload, sleep, stripChineseAnnotations } from "./utils.js";

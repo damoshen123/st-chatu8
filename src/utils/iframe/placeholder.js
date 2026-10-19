@@ -1,7 +1,7 @@
 // 还原自打包产物 — 原始模块: utils/iframe/placeholder.js
 import { extension_settings } from "../../../../../../extensions.js";
 import { getContext } from "../../../../../../st-context.js";
-import { eventSource, saveChatConditional } from "../../../../../../script.js";
+import { eventSource, saveChatConditional } from "../../../../../../../script.js";
 import { extensionName } from "../config.js";
 import { normalizePromptTag, sleep } from "../utils.js";
 import { isGenerating } from "../generation_status.js";

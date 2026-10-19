@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/llmUi.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { eventSource, saveSettingsDebounced } from "../../../../../../script.js";
+import { eventSource, saveSettingsDebounced } from "../../../../../../../script.js";
 import { defaultTailMessagesConfig, defaultToolCallConfig } from "./defaultToolCallConfig.js";
 import { LLMRequestTypes, eventNames, extensionName } from "../config.js";
 import { getRequestHeaders } from "../utils.js";

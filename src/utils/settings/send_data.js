@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/send_data.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { eventSource, event_types, saveMetadata, saveSettingsDebounced } from "../../../../../../script.js";
+import { eventSource, event_types, saveMetadata, saveSettingsDebounced } from "../../../../../../../script.js";
 import { getContext } from "../../../../../../st-context.js";
 import { extensionName } from "../config.js";
 import { getWorldEntries, getcharWorld, getrWorlds } from "../chatDataUtils.js";

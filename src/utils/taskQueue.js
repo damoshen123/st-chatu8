@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/taskQueue.js
-import { eventSource } from "../../../../../script.js";
+import { eventSource } from "../../../../../../script.js";
 
 var TaskQueue, TaskStatus, TaskType, taskQueue;
 

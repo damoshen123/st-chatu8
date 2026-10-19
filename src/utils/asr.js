@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/asr.js
 import { extension_settings } from "../../../../../extensions.js";
-import { eventSource, saveSettingsDebounced } from "../../../../../script.js";
+import { eventSource, saveSettingsDebounced } from "../../../../../../script.js";
 import { defaultSettings, eventNames, extensionName } from "./config.js";
 import { isAiGenerating } from "./assistant/assistantContext.js";
 import { getTTSState } from "./tts.js";

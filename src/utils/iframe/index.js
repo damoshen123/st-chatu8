@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/iframe/index.js
-import { eventSource, event_types } from "../../../../../../script.js";
+import { eventSource, event_types } from "../../../../../../../script.js";
 import { extension_settings } from "../../../../../../extensions.js";
 import { extensionName } from "../config.js";
 import { applyGenerateButtonStyle } from "../settings/buttonstyle.js";

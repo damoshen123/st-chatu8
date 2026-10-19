@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/sd.js
 import { extension_settings } from "../../../../../extensions.js";
-import { eventSource, saveSettingsDebounced } from "../../../../../script.js";
+import { eventSource, saveSettingsDebounced } from "../../../../../../script.js";
 import { EventType, extensionName } from "./config.js";
 import { acquireSerialLock, addLog, clearLog, convertImageToJpeg, deduplicateTags, deepMerge, fumian, getRandomYusheId, getRequestHeaders, getSDMode, getSortedCharacterIds, getsdAuth, isPluginEnabled, isPluginToastDisabled, parsePromptStringWithCoordinates, prompt_replace, prompt_replace_for_character, releaseSerialLock, setSDMode, stripChineseAnnotations, zhengmian } from "./utils.js";
 import { TaskStatus, TaskType, taskQueue } from "./taskQueue.js";

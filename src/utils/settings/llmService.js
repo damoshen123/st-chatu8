@@ -1,5 +1,5 @@
 // 还原自打包产物 — 原始模块: utils/settings/llmService.js
-import { eventSource } from "../../../../../../script.js";
+import { eventSource } from "../../../../../../../script.js";
 import { extension_settings } from "../../../../../../extensions.js";
 import { LLMRequestTypes, eventNames, extensionName } from "../config.js";
 import { addLog, getRequestHeaders, prepareImageForUpload } from "../utils.js";

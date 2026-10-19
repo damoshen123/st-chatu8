@@ -1,6 +1,6 @@
 // 还原自打包产物 — 原始模块: utils/settings/profile.js
 import { extension_settings } from "../../../../../../extensions.js";
-import { saveSettingsDebounced } from "../../../../../../script.js";
+import { saveSettingsDebounced } from "../../../../../../../script.js";
 import { defaultSettings, extensionName } from "../config.js";
 import { stylishConfirm } from "../ui_common.js";
 import { COMFYUI_PROFILE_KEYS, NOVELAI_PROFILE_KEYS, RUNNINGHUB_PROFILE_KEYS } from "../ui.js";
