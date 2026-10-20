@@ -1,7 +1,7 @@
 # SillyTavern 文生图 (st-chatu8)
 
 **作者:** 从前跟你一样
-**版本:** 1.0.0
+**版本:** 3.1.7-r1 (modular fork)
 
 这是一个为 [SillyTavern](https://github.com/SillyTavern/SillyTavern) 设计的第三方扩展，它将强大的文生图功能无缝集成到您的聊天体验中。通过简单的标记，您可以在对话中直接调用 Stable Diffusion、NovelAI 或 ComfyUI，将文字描述变为生动的图像。
 
@@ -30,10 +30,27 @@
 
 1.  在 SillyTavern 的扩展菜单中，从以下 URL 安装插件：
     ```
-    https://github.com/damoshen123/st-chatu8
+    https://github.com/smallmj/st-chatu8-fix
     ```
 2.  重启 SillyTavern。
-3.  在扩展菜单中启用 "st-chatu8"。
+3.  在扩展菜单中启用 "st-chatu8-fix"。
+
+> ⚠️ 与原版 `st-chatu8` 共用同一套设置键与 DOM id，**两者不可同时启用**。
+
+## 🔀 本 fork 的改动（模块化重构）
+
+原项目自 v2.6.8 起把全部 JS 合并成单个 5.1MB 的 esbuild bundle。本 fork 将其完整还原为可维护的模块化源码，功能与上游 v3.1.7 一致：
+
+- **206 个 ES modules**（`src/**`，按原始模块结构镜像），入口 `index.js` 仅 29KB
+- **修复 ST 1.19 加载失败**：主脚本 `script.js` 位于站点根（需 4 层 `../`），原 bundle 3/4 层混用导致 `加载失败：[object Event]`
+- mangled 导入别名去混淆、esbuild 惰性初始化还原为标准 ESM import、跨模块可变状态 setter 化
+- 静态验证（acorn 0 未解析引用 / esbuild 全图 0 错误）+ Node 模拟加载 + SillyTavern 实机 E2E 生图测试通过（见 [TEST-PLAN.md](TEST-PLAN.md)）
+- 分析细节见 [REFACTORING.md](REFACTORING.md) 与 [REA-ANALYSIS.md](REA-ANALYSIS.md)
+
+### 开发
+
+- 代码改动直接编辑 `src/**`，`index.js` 只保留入口逻辑
+- 无构建步骤：SillyTavern 原生加载 ES modules
 
 ## 📖 使用方法
 
