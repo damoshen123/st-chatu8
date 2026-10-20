@@ -63,7 +63,12 @@
                         <i class="fa-solid fa-plug-circle-bolt"></i>
                         连接并获取模型
                     </button>
+                    <button class="st-chatu8-btn" id="ch-llm_query_caps_button" title="查询服务端能力（模型、上下文长度、模板能力）">
+                        <i class="fa-solid fa-circle-info"></i>
+                        查询服务端能力
+                    </button>
                 </div>
+                <p id="ch-llm_caps_result" style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 4px; white-space: pre-wrap; display: none;"></p>
             </div>
         </div>
 
@@ -207,6 +212,22 @@
                     <input class="st-chatu8-range-input" type="number" id="ch-llm_max_tokens_value"
                         data-for="ch-llm_max_tokens" min="1" max="30000" step="1" value="512">
                 </div>
+            </div>
+            <div class="st-chatu8-field" id="ch-llm_reasoning_effort_field">
+                <label for="ch-llm_reasoning_effort">思考等级 (Reasoning Effort)</label>
+                <select id="ch-llm_reasoning_effort" class="st-chatu8-select">
+                    <option value="">跟随服务端默认（不发送该字段）</option>
+                    <option value="none">off（关闭思考）</option>
+                    <option value="low">low</option>
+                    <option value="medium">medium</option>
+                    <option value="high">high</option>
+                    <option value="xhigh">xhigh</option>
+                    <option value="max">max</option>
+                </select>
+                <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 4px;">
+                    以 reasoning_effort 字段随请求发送，OpenAI 兼容服务端按各自档位映射（Strata: high/max→xhigh，off/none→关闭思考；未知档位返回 400 并提示合法档位）。
+                    注意：酒馆代理路径会丢弃该字段，需开启「不通过酒馆代理」直连才能生效。Vertex 渠道不支持。
+                </p>
             </div>
         </div>
     </div>

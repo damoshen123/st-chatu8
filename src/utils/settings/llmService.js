@@ -499,6 +499,7 @@ function getEffectiveConfigForRequestType(requestType) {
     enable_top_p: apiProfile.enable_top_p ?? true,
     max_tokens: apiProfile.max_tokens ?? 512,
     enable_max_tokens: apiProfile.enable_max_tokens ?? true,
+    reasoning_effort: typeof apiProfile.reasoning_effort === "string" ? apiProfile.reasoning_effort.trim() : "",
     stream: apiProfile.stream ?? false,
     bypass_proxy: apiProfile.bypass_proxy ?? false,
     send_images: apiProfile.send_images ?? false,
@@ -695,6 +696,11 @@ async function executeTypedLLMRequest(data, requestType, responseEventName, upda
     }
     if (config.enable_max_tokens !== false) {
       baseRequestBody.max_tokens = max_tokens;
+    }
+    // 思考等级：选中档位时随请求发送（空 = 跟随服务端默认）。仅 OpenAI 兼容直连路径真正生效；
+    // 酒馆代理路径 /api/backends/chat-completions/generate 会丢弃该字段。
+    if (config.reasoning_effort && !isVertexChannel) {
+      baseRequestBody.reasoning_effort = config.reasoning_effort;
     }
     if (config.enable_custom_body_params && config.custom_body_params) {
       const extraBody = parseCustomBody(config.custom_body_params);
@@ -1101,6 +1107,10 @@ async function executeDefaultLLMRequest(data, profileData, updateResultUI = null
     }
     if (profileData.enable_max_tokens !== false) {
       baseRequestBody.max_tokens = max_tokens;
+    }
+    // 思考等级：同上，仅 OpenAI 兼容直连路径真正生效。
+    if (profileData.reasoning_effort && !isVertexChannel) {
+      baseRequestBody.reasoning_effort = profileData.reasoning_effort;
     }
     if (profileData.enable_custom_body_params && profileData.custom_body_params) {
       const extraBody = parseCustomBody(profileData.custom_body_params);

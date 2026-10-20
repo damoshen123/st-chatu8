@@ -8,7 +8,7 @@ import { parseBoolean } from "./toolCallService.js";
 import { buildVertexEndpoint, convertOpenAIToVertexGemini, convertVertexToOpenAIResponse, getVertexAccessToken } from "./vertexService.js";
 import { buildPromptForRequestType, buildProxyIncludeHeaders, executeDefaultLLMRequest, executeTypedLLMRequest, extractApiErrorMessage, formatPromptForDisplay, getLLMRequestController, parseCustomBody, parseCustomHeaders, setLLMRequestController } from "./llmService.js";
 
-var SCROLL_SPEED, SCROLL_THRESHOLD, VIRTUAL_BUFFER, VIRTUAL_ITEM_HEIGHT, activeMoveSourceEntry, addTailMsgBtn, addToolFieldBtn, aiAssistantApiSelect, aiAssistantContextSelect, apiKeyInput, apiUrlInput, bypassProxyToggle, channelOpenAiBtn, channelVertexBtn, charDesignApiSelect, charDesignContextSelect, charDisplayApiSelect, charDisplayContextSelect, charModifyApiSelect, charModifyContextSelect, combinedPromptTextarea, currentChannelType, currentEditingEntry, currentVertexCredentials, customBodyParamsContainer, customBodyParamsTextarea, customHeadersContainer, customHeadersTextarea, customTailDetailsArea, customTailEnabledCheckbox, customToolDetailsArea, customToolEnabledCheckbox, deleteRequestTypeProfileBtn, dragScrollInterval, draggedEntry, enableCustomBodyParamsToggle, enableCustomHeadersToggle, enableMaxTokensCheckbox, enableTemperatureCheckbox, enableTopPCheckbox, entryIdCounter, exportAllRequestTypeProfilesBtn, exportRequestTypeProfileBtn, exportTailConfigBtn, exportToolConfigBtn, fetchModelsButton, historyDepthSlider, historyDepthValue, imageGenApiSelect, imageGenContextSelect, importRequestTypeProfileBtn, importTailConfigBtn, importToolConfigBtn, lastRenderedRange, loadRequestTypeProfileBtn, maxTokensContainer, maxTokensSlider, maxTokensValue, mergeSystemUserToggle, modelInput, modelSelect, newRequestTypeProfileBtn, openaiConfigContainer, personaGenApiSelect, personaGenContextSelect, presetEntriesContainer, profileSelect, renameRequestTypeProfileBtn, requestTypeProfileSelect, resultTextarea, retryCountSlider, retryCountValue, saveRequestTypeProfileBtn, sendImagesToggle, streamToggle, summaryApiSelect, summaryContextSelect, tagModifyApiSelect, tagModifyContextSelect, tailConfigFileInput, tailMessagesContainer, temperatureContainer, temperatureSlider, temperatureValue, testButton, testContextSelect, toolConfigFileInput, toolDescTextarea, toolFieldsContainer, toolFixedNameInput, toolFixedNameRow, toolNameModeSelect, topPContainer, topPSlider, topPValue, translationApiSelect, translationContextSelect, userPersonaGenApiSelect, userPersonaGenContextSelect, vertexClearBtn, vertexClientEmailText, vertexConfigContainer, vertexCredInfo, vertexFileInput, vertexImportBtn, vertexLocationInput, vertexLocationSelect, vertexModelInput, vertexModelSelect, vertexProjectIdText, vertexStatusText, videoAssetGenApiSelect, videoAssetGenContextSelect, videoGenApiSelect, videoGenContextSelect, virtualEntriesData, virtualScrollContainer, virtualScrollEnabled, virtualScrollSpacer, visualMatPrepApiSelect, visualMatPrepContextSelect;
+var SCROLL_SPEED, SCROLL_THRESHOLD, VIRTUAL_BUFFER, VIRTUAL_ITEM_HEIGHT, activeMoveSourceEntry, addTailMsgBtn, addToolFieldBtn, aiAssistantApiSelect, aiAssistantContextSelect, apiKeyInput, apiUrlInput, bypassProxyToggle, channelOpenAiBtn, channelVertexBtn, charDesignApiSelect, charDesignContextSelect, charDisplayApiSelect, charDisplayContextSelect, charModifyApiSelect, charModifyContextSelect, combinedPromptTextarea, currentChannelType, currentEditingEntry, currentVertexCredentials, customBodyParamsContainer, customBodyParamsTextarea, customHeadersContainer, customHeadersTextarea, customTailDetailsArea, customTailEnabledCheckbox, customToolDetailsArea, customToolEnabledCheckbox, deleteRequestTypeProfileBtn, dragScrollInterval, draggedEntry, enableCustomBodyParamsToggle, enableCustomHeadersToggle, enableMaxTokensCheckbox, enableTemperatureCheckbox, enableTopPCheckbox, entryIdCounter, exportAllRequestTypeProfilesBtn, exportRequestTypeProfileBtn, exportTailConfigBtn, exportToolConfigBtn, fetchModelsButton, historyDepthSlider, historyDepthValue, imageGenApiSelect, imageGenContextSelect, importRequestTypeProfileBtn, importTailConfigBtn, importToolConfigBtn, lastRenderedRange, loadRequestTypeProfileBtn, maxTokensContainer, maxTokensSlider, maxTokensValue, mergeSystemUserToggle, modelInput, modelSelect, newRequestTypeProfileBtn, openaiConfigContainer, personaGenApiSelect, personaGenContextSelect, presetEntriesContainer, profileSelect, renameRequestTypeProfileBtn, requestTypeProfileSelect, resultTextarea, retryCountSlider, retryCountValue, saveRequestTypeProfileBtn, sendImagesToggle, streamToggle, summaryApiSelect, summaryContextSelect, tagModifyApiSelect, tagModifyContextSelect, tailConfigFileInput, tailMessagesContainer, temperatureContainer, temperatureSlider, temperatureValue, testButton, testContextSelect, toolConfigFileInput, toolDescTextarea, toolFieldsContainer, toolFixedNameInput, toolFixedNameRow, toolNameModeSelect, topPContainer, topPSlider, topPValue, translationApiSelect, translationContextSelect, userPersonaGenApiSelect, userPersonaGenContextSelect, vertexClearBtn, vertexClientEmailText, vertexConfigContainer, vertexCredInfo, vertexFileInput, vertexImportBtn, vertexLocationInput, vertexLocationSelect, vertexModelInput, vertexModelSelect, vertexProjectIdText, vertexStatusText, reasoningEffortSelect, queryCapsButton, capsResultSpan, videoAssetGenApiSelect, videoAssetGenContextSelect, videoGenApiSelect, videoGenContextSelect, virtualEntriesData, virtualScrollContainer, virtualScrollEnabled, virtualScrollSpacer, visualMatPrepApiSelect, visualMatPrepContextSelect;
 
 currentChannelType = "openai";
 
@@ -891,6 +891,9 @@ function onProfileSelectChange() {
       enableMaxTokensCheckbox.prop("checked", enableMaxTokens);
     }
     updateModelParamControlsState();
+    if (reasoningEffortSelect && reasoningEffortSelect.length > 0) {
+      reasoningEffortSelect.val(typeof profile.reasoning_effort === "string" ? profile.reasoning_effort.trim() : "");
+    }
     const stream = profile.stream ?? false;
     streamToggle.prop("checked", stream);
     const bypassProxy = profile.bypass_proxy ?? false;
@@ -1179,6 +1182,7 @@ function collectProfileDataFromUI() {
     enable_top_p: enableTopPCheckbox && enableTopPCheckbox.length > 0 ? !!enableTopPCheckbox.prop("checked") : true,
     max_tokens: parseInt(maxTokensSlider.val(), 10),
     enable_max_tokens: enableMaxTokensCheckbox && enableMaxTokensCheckbox.length > 0 ? !!enableMaxTokensCheckbox.prop("checked") : true,
+    reasoning_effort: (reasoningEffortSelect && reasoningEffortSelect.length > 0 ? reasoningEffortSelect.val() || "" : "").trim(),
     stream: streamToggle.prop("checked"),
     bypass_proxy: bypassProxyToggle.prop("checked"),
     merge_system_user: mergeSystemUserToggle.prop("checked"),
@@ -1303,6 +1307,7 @@ function onNewProfileClick() {
     enable_top_p: true,
     max_tokens: 3e4,
     enable_max_tokens: true,
+    reasoning_effort: "",
     stream: false,
     bypass_proxy: false,
     merge_system_user: false,
@@ -1638,6 +1643,62 @@ function onImportTestContextClick() {
   input.click();
 }
 
+async function onQueryCapsClick() {
+  const baseUrl = (apiUrlInput.val() || "").trim();
+  const apiKey = (apiKeyInput.val() || "").trim();
+  if (!baseUrl || !apiKey) {
+    toastr.warning("\u8BF7\u5148\u586B\u5199 API Base URL \u548C API Key\u3002");
+    return;
+  }
+  const root = baseUrl.replace(/\/v1\/?$/, "").replace(/\/$/, "");
+  const originalButtonText = queryCapsButton.html();
+  queryCapsButton.html('<i class="fa-solid fa-spinner fa-spin"></i> \u67E5\u8BE2\u4E2D...');
+  queryCapsButton.prop("disabled", true);
+  const lines = [];
+  try {
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` };
+    const [modelsRes, propsRes] = await Promise.all([
+      fetch(root + "/v1/models", { headers }),
+      fetch(root + "/props", { headers })
+    ]);
+    if (modelsRes.ok) {
+      const modelsData = await modelsRes.json();
+      const models = Array.isArray(modelsData?.data) ? modelsData.data : Array.isArray(modelsData) ? modelsData : [];
+      const ids = models.map((m) => m?.id || m?.name).filter(Boolean);
+      lines.push(`\u6A21\u578B (${ids.length}): ${ids.join(", ") || "\u65E0"}`);
+      const first = models[0];
+      if (first?.meta?.n_ctx) lines.push(`\u4E0A\u4E0B\u6587\u957F\u5EA6: ${first.meta.n_ctx}`);
+      if (first?.architecture?.input_modalities) lines.push(`\u8F93\u5165\u6A21\u6001: ${first.architecture.input_modalities.join(", ")}`);
+    } else {
+      lines.push(`/v1/models \u67E5\u8BE2\u5931\u8D25: HTTP ${modelsRes.status}`);
+    }
+    if (propsRes.ok) {
+      const props = await propsRes.json();
+      if (props.default_generation_settings?.n_ctx) lines.push(`\u4E0A\u4E0B\u6587\u957F\u5EA6: ${props.default_generation_settings.n_ctx}`);
+      if (props.model_alias) lines.push(`\u6A21\u578B\u522B\u540D: ${props.model_alias}`);
+      if (props.build_info) lines.push(`\u670D\u52A1\u7AEF: ${typeof props.build_info === "string" ? props.build_info : JSON.stringify(props.build_info)}`);
+      const caps = props.chat_template_caps;
+      if (caps) {
+        const capNames = Object.entries(caps).filter(([, v]) => v === true).map(([k]) => k).join(", ");
+        lines.push(`\u6A21\u677F\u80FD\u529B: ${capNames || "\u65E0"}`);
+      }
+    } else {
+      lines.push(`/props \u67E5\u8BE2\u5931\u8D25: HTTP ${propsRes.status}\uFF08\u975E Strata \u7C7B\u670D\u52A1\u7AEF\u53EF\u80FD\u4E0D\u652F\u6301\uFF0C\u5C5E\u6B63\u5E38\u73B0\u8C61\uFF09`);
+    }
+    lines.push(`\u601D\u8003\u7B49\u7EA7\u6863\u4F4D: off / low / medium / high / xhigh / max\uFF08Strata \u670D\u52A1\u7AEF\u672A\u63D0\u4F9B\u6863\u4F4D\u67E5\u8BE2\u63A5\u53E3\uFF0C\u4E0A\u8FF0\u4E3A OpenAI \u517C\u5BB9\u4E8B\u5B9E\u6807\u51C6\uFF1B\u672A\u77E5\u6863\u4F4D\u4F1A\u88AB\u62D2\u7EDD\u5E76\u8FD4\u56DE\u5408\u6CD5\u6863\u4F4D\u6E05\u5355\uFF09`);
+    toastr.success("\u670D\u52A1\u7AEF\u80FD\u529B\u67E5\u8BE2\u5B8C\u6210\u3002");
+  } catch (error) {
+    lines.unshift(`\u67E5\u8BE2\u5931\u8D25: ${error.message}`);
+    toastr.error(`\u67E5\u8BE2\u5931\u8D25: ${error.message}`);
+  } finally {
+    if (capsResultSpan && capsResultSpan.length > 0) {
+      capsResultSpan.text(lines.join("\n")).show();
+    }
+    queryCapsButton.html(originalButtonText);
+    queryCapsButton.prop("disabled", false);
+  }
+}
+
 async function onFetchModelsClick() {
   if (currentChannelType === "vertex") {
     const defaultVertexModels = [
@@ -1839,6 +1900,10 @@ ${err.message}`);
     }
     if (currentData.enable_max_tokens !== false) {
       body.max_tokens = max_tokens;
+    }
+    const effort = (currentData.reasoning_effort || "").trim();
+    if (effort) {
+      body.reasoning_effort = effort;
     }
     if (currentData.enable_custom_body_params && currentData.custom_body_params) {
       const extraBody = parseCustomBody(currentData.custom_body_params);
@@ -2713,6 +2778,9 @@ function cacheDOMElements() {
   maxTokensValue = $("#ch-llm_max_tokens_value");
   enableMaxTokensCheckbox = $("#ch-llm_enable_max_tokens");
   maxTokensContainer = $("#ch-llm_max_tokens_container");
+  reasoningEffortSelect = $("#ch-llm_reasoning_effort");
+  queryCapsButton = $("#ch-llm_query_caps_button");
+  capsResultSpan = $("#ch-llm_caps_result");
   enableCustomHeadersToggle = $("#ch-llm_enable_custom_headers");
   customHeadersContainer = $("#ch-llm_custom_headers_container");
   customHeadersTextarea = $("#ch-llm_custom_headers");
@@ -2965,6 +3033,12 @@ function bindUIEvents() {
       updateModelParamControlsState();
       triggerProfileAutoSave(true);
     });
+  }
+  if (reasoningEffortSelect) {
+    reasoningEffortSelect.on("change", () => triggerProfileAutoSave(true));
+  }
+  if (queryCapsButton) {
+    queryCapsButton.on("click", onQueryCapsClick);
   }
   if (enableCustomHeadersToggle) {
     enableCustomHeadersToggle.on("change", () => triggerProfileAutoSave(true));
