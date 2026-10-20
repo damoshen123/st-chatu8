@@ -1645,16 +1645,17 @@ function onImportTestContextClick() {
 
 async function onQueryCapsClick() {
   const baseUrl = (apiUrlInput.val() || "").trim();
-  const apiKey = (apiKeyInput.val() || "").trim();
-  if (!baseUrl || !apiKey) {
-    toastr.warning("\u8BF7\u5148\u586B\u5199 API Base URL \u548C API Key\u3002");
+  if (!baseUrl) {
+    toastr.warning("\u8BF7\u5148\u586B\u5199 API Base URL\u3002");
     return;
   }
+  const apiKey = (apiKeyInput.val() || "").trim();
   const root = baseUrl.replace(/\/v1\/?$/, "").replace(/\/$/, "");
   const originalButtonText = queryCapsButton.html();
   queryCapsButton.html('<i class="fa-solid fa-spinner fa-spin"></i> \u67E5\u8BE2\u4E2D...');
   queryCapsButton.prop("disabled", true);
   const lines = [];
+  lines.push(`\u601D\u8003\u7B49\u7EA7\u6863\u4F4D: off / low / medium / high / xhigh / max\uFF08Strata \u670D\u52A1\u7AEF\u672A\u63D0\u4F9B\u6863\u4F4D\u67E5\u8BE2\u63A5\u53E3\uFF0C\u4E0A\u8FF0\u4E3A OpenAI \u517C\u5BB9\u4E8B\u5B9E\u6807\u51C6\uFF1B\u672A\u77E5\u6863\u4F4D\u4F1A\u88AB\u62D2\u7EDD\u5E76\u8FD4\u56DE\u5408\u6CD5\u6863\u4F4D\u6E05\u5355\uFF09`);
   try {
     const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` };
     const [modelsRes, propsRes] = await Promise.all([
@@ -1685,7 +1686,6 @@ async function onQueryCapsClick() {
     } else {
       lines.push(`/props \u67E5\u8BE2\u5931\u8D25: HTTP ${propsRes.status}\uFF08\u975E Strata \u7C7B\u670D\u52A1\u7AEF\u53EF\u80FD\u4E0D\u652F\u6301\uFF0C\u5C5E\u6B63\u5E38\u73B0\u8C61\uFF09`);
     }
-    lines.push(`\u601D\u8003\u7B49\u7EA7\u6863\u4F4D: off / low / medium / high / xhigh / max\uFF08Strata \u670D\u52A1\u7AEF\u672A\u63D0\u4F9B\u6863\u4F4D\u67E5\u8BE2\u63A5\u53E3\uFF0C\u4E0A\u8FF0\u4E3A OpenAI \u517C\u5BB9\u4E8B\u5B9E\u6807\u51C6\uFF1B\u672A\u77E5\u6863\u4F4D\u4F1A\u88AB\u62D2\u7EDD\u5E76\u8FD4\u56DE\u5408\u6CD5\u6863\u4F4D\u6E05\u5355\uFF09`);
     toastr.success("\u670D\u52A1\u7AEF\u80FD\u529B\u67E5\u8BE2\u5B8C\u6210\u3002");
   } catch (error) {
     lines.unshift(`\u67E5\u8BE2\u5931\u8D25: ${error.message}`);
