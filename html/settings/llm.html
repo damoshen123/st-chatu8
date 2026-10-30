@@ -1,0 +1,784 @@
+<div id="ch-tab-llm">
+    <div class="st-chatu8-settings-section">
+        <h3>大模型设置</h3>
+        <!-- 预设管理 -->
+        <div class="st-chatu8-field">
+            <label for="ch-llm_profile_select">LLM 配置</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="ch-llm_profile_select" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="ch-new_llm_profile_button" title="新建"><i
+                        class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-save_llm_profile_button" title="保存"><i
+                        class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-rename_llm_profile_button" title="修改名称"><i
+                        class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-import_llm_profile_button" title="导入"><i
+                        class="fa-solid fa-file-import"></i></button>
+                <button class="st-chatu8-icon-btn" id="ch-export_llm_profile_button" title="导出"><i
+                        class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="ch-delete_llm_profile_button" title="删除"><i
+                        class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="st-chatu8-settings-section">
+        <!-- 渠道切换与标题 -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h4 style="margin: 0;">API 配置</h4>
+            <div class="st-chatu8-channel-toggle-group" style="display: inline-flex; background: rgba(128, 128, 128, 0.12); padding: 3px; border-radius: 8px; gap: 4px;">
+                <button type="button" class="st-chatu8-btn active" id="ch-llm_channel_openai_btn" style="padding: 4px 14px; font-size: 13px; border-radius: 6px; cursor: pointer;">
+                    <i class="fa-solid fa-bolt"></i> OpenAI 渠道
+                </button>
+                <button type="button" class="st-chatu8-btn" id="ch-llm_channel_vertex_btn" style="padding: 4px 14px; font-size: 13px; border-radius: 6px; cursor: pointer; opacity: 0.7;">
+                    <i class="fa-brands fa-google"></i> Vertex 渠道
+                </button>
+            </div>
+        </div>
+
+        <!-- OpenAI 专属配置容器 -->
+        <div id="ch-llm_openai_config_container">
+            <div class="st-chatu8-field-col">
+                <label for="ch-llm_api_url">API Base URL <span style="font-size: 12px; color: var(--st-chatu8-text-secondary); font-weight: normal;">(请自行添加 /v1 等版本后缀)</span></label>
+                <textarea id="ch-llm_api_url" class="st-chatu8-textarea" rows="2"
+                    placeholder="例如: https://api.openai.com/v1"></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-llm_api_key">API Key</label>
+                <div style="position: relative;">
+                    <textarea id="ch-llm_api_key" class="st-chatu8-textarea" rows="3" placeholder="请输入你的 API Key" style="-webkit-text-security: disc;"></textarea>
+                    <button type="button" id="ch-llm_api_key_toggle" title="显示/隐藏 API Key" style="position: absolute; top: 0.4em; right: 0.4em; background: none; border: none; cursor: pointer; color: inherit; opacity: 0.6; padding: 0; font-size: 1em; line-height: 1;">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="ch-llm_model_select">模型选择</label>
+                <div class="st-chatu8-profile-controls" style="flex-wrap: wrap; gap: 8px;">
+                    <select id="ch-llm_model_select" class="st-chatu8-select" style="flex: 0 0 auto; min-width: 150px;"></select>
+                    <input type="text" id="ch-llm_model_input" class="st-chatu8-text-input" 
+                        placeholder="选择或输入模型名称" 
+                        style="flex: 1; min-width: 200px;" />
+                    <button class="st-chatu8-btn" id="ch-llm_fetch_models_button" title="获取模型列表">
+                        <i class="fa-solid fa-plug-circle-bolt"></i>
+                        连接并获取模型
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vertex 专属配置容器 -->
+        <div id="ch-llm_vertex_config_container" style="display: none;">
+            <div class="st-chatu8-field-col">
+                <label>GCP 服务账号凭证 (Service Account JSON)</label>
+                <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                    <input type="file" id="ch-llm_vertex_file_input" accept=".json" style="display: none;" />
+                    <button type="button" class="st-chatu8-btn" id="ch-llm_vertex_import_btn">
+                        <i class="fa-solid fa-file-import"></i> 导入 JSON 凭据文件
+                    </button>
+                    <button type="button" class="st-chatu8-btn danger" id="ch-llm_vertex_clear_btn" style="display: none;">
+                        <i class="fa-solid fa-trash"></i> 清除凭据
+                    </button>
+                    <span id="ch-llm_vertex_status_text" style="font-size: 13px; color: var(--st-chatu8-text-secondary);">尚未导入凭据文件</span>
+                </div>
+                <div id="ch-llm_vertex_cred_info" style="margin-top: 8px; padding: 8px 12px; border-radius: 6px; background: rgba(128,128,128,0.08); font-size: 12px; display: none;">
+                    <div><strong>项目 ID:</strong> <span id="ch-llm_vertex_project_id_text">-</span></div>
+                    <div style="margin-top: 4px;"><strong>客户端邮箱:</strong> <span id="ch-llm_vertex_client_email_text">-</span></div>
+                </div>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="ch-llm_vertex_location_select">部署地区 (Location)</label>
+                <div class="st-chatu8-profile-controls" style="flex-wrap: wrap; gap: 8px;">
+                    <select id="ch-llm_vertex_location_select" class="st-chatu8-select" style="flex: 0 0 auto; min-width: 150px;">
+                        <option value="us-central1">us-central1 (爱荷华·推荐)</option>
+                        <option value="us-east4">us-east4 (北弗吉尼亚)</option>
+                        <option value="asia-east1">asia-east1 (台湾)</option>
+                        <option value="europe-west1">europe-west1 (比利时)</option>
+                        <option value="global">global (全球端点)</option>
+                        <option value="custom">自定义区域...</option>
+                    </select>
+                    <input type="text" id="ch-llm_vertex_location_input" class="st-chatu8-text-input" 
+                        placeholder="输入区域代码，例如 us-central1" 
+                        value="us-central1"
+                        style="flex: 1; min-width: 180px;" />
+                </div>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="ch-llm_vertex_model_select">Vertex 模型选择</label>
+                <div class="st-chatu8-profile-controls" style="flex-wrap: wrap; gap: 8px;">
+                    <select id="ch-llm_vertex_model_select" class="st-chatu8-select" style="flex: 0 0 auto; min-width: 150px;">
+                        <option value="gemini-4-argon">gemini-4-argon</option>
+                        <option value="gemini-3.8-flash">gemini-3.8-flash</option>
+                        <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+                        <option value="gemini-2.5-pro">gemini-2.5-pro</option>
+                        <option value="gemini-2.0-flash">gemini-2.0-flash</option>
+                        <option value="gemini-1.5-pro">gemini-1.5-pro</option>
+                        <option value="gemini-1.5-flash">gemini-1.5-flash</option>
+                        <option value="custom">自定义模型名称...</option>
+                    </select>
+                    <input type="text" id="ch-llm_vertex_model_input" class="st-chatu8-text-input" 
+                        placeholder="选择或输入 Vertex 模型名称" 
+                        value="gemini-2.5-flash"
+                        style="flex: 1; min-width: 200px;" />
+                </div>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ch-llm_stream">流式生成</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-llm_stream" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ch-llm_bypass_proxy">不通过酒馆代理</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-llm_bypass_proxy" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="ch-llm_merge_system_user">合并 System 和 User</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-llm_merge_system_user" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 4px;">
+            开启后，合并相邻消息时会将 system 和 user 视为同类角色一并合并。
+        </p>
+        <div class="st-chatu8-field">
+            <label for="ch-llm_send_images">发送图片</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-llm_send_images" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 4px;">
+            开启后，请求会保留消息中的图片（多模态）；关闭后图片会被过滤，仅发送文本。默认关闭。请确认支持多模态，例如ds不支持
+        </p>
+    </div>
+
+    <div class="st-chatu8-settings-section st-chatu8-collapsible-section" data-section-id="llm_model_params">
+        <div class="st-chatu8-section-header">
+            <h4 class="st-chatu8-section-title"><i class="fa-solid fa-sliders"></i> 模型参数</h4>
+            <span class="st-chatu8-section-toggle">
+                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
+            </span>
+        </div>
+        <div class="st-chatu8-section-body">
+            <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin: 0 0 8px;">可单独开启/关闭每个参数（关闭后请求不携带该字段）</p>
+        <div class="st-chatu8-grid">
+            <div class="st-chatu8-field" id="ch-llm_temperature_field">
+                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                    <label for="ch-llm_enable_temperature" style="display: flex; align-items: center; gap: 6px; cursor: pointer; margin: 0;">
+                        <input type="checkbox" id="ch-llm_enable_temperature" checked style="cursor: pointer;" />
+                        <span>Temperature</span>
+                    </label>
+                </div>
+                <div class="st-chatu8-range-container" id="ch-llm_temperature_container">
+                    <input class="st-chatu8-range-slider" type="range" id="ch-llm_temperature" min="0" max="2"
+                        step="0.01" value="0.7">
+                    <input class="st-chatu8-range-input" type="number" id="ch-llm_temperature_value"
+                        data-for="ch-llm_temperature" min="0" max="2" step="0.01" value="0.7">
+                </div>
+            </div>
+            <div class="st-chatu8-field" id="ch-llm_top_p_field">
+                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                    <label for="ch-llm_enable_top_p" style="display: flex; align-items: center; gap: 6px; cursor: pointer; margin: 0;">
+                        <input type="checkbox" id="ch-llm_enable_top_p" checked style="cursor: pointer;" />
+                        <span>Top P</span>
+                    </label>
+                </div>
+                <div class="st-chatu8-range-container" id="ch-llm_top_p_container">
+                    <input class="st-chatu8-range-slider" type="range" id="ch-llm_top_p" min="0" max="1" step="0.01"
+                        value="1">
+                    <input class="st-chatu8-range-input" type="number" id="ch-llm_top_p_value" data-for="ch-llm_top_p"
+                        min="0" max="1" step="0.01" value="1">
+                </div>
+            </div>
+            <div class="st-chatu8-field" id="ch-llm_max_tokens_field">
+                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                    <label for="ch-llm_enable_max_tokens" style="display: flex; align-items: center; gap: 6px; cursor: pointer; margin: 0;">
+                        <input type="checkbox" id="ch-llm_enable_max_tokens" checked style="cursor: pointer;" />
+                        <span>Max Tokens</span>
+                    </label>
+                </div>
+                <div class="st-chatu8-range-container" id="ch-llm_max_tokens_container">
+                    <input class="st-chatu8-range-slider" type="range" id="ch-llm_max_tokens" min="1" max="30000"
+                        step="1" value="512">
+                    <input class="st-chatu8-range-input" type="number" id="ch-llm_max_tokens_value"
+                        data-for="ch-llm_max_tokens" min="1" max="30000" step="1" value="512">
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- 自定义请求标头与附加参数 -->
+    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="llm_custom_headers_body">
+        <div class="st-chatu8-section-header">
+            <h4 class="st-chatu8-section-title"><i class="fa-solid fa-sliders"></i> 自定义标头与附加参数 (当前 API 专属)</h4>
+            <span class="st-chatu8-section-toggle">
+                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
+            </span>
+        </div>
+        <div class="st-chatu8-section-body">
+            <!-- 自定义请求标头 (Custom Headers) -->
+            <div class="st-chatu8-field">
+                <label for="ch-llm_enable_custom_headers">启用自定义请求标头 (Custom Headers)</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-llm_enable_custom_headers" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <div class="st-chatu8-field-col" id="ch-llm_custom_headers_container">
+                <label for="ch-llm_custom_headers">请求标头内容 <span style="font-size: 12px; color: var(--st-chatu8-text-secondary); font-weight: normal;">(每行一个 Key: Value，或 JSON 对象)</span></label>
+                <textarea id="ch-llm_custom_headers" class="st-chatu8-textarea" rows="3"
+                    placeholder="例如：&#10;HTTP-Referer: https://example.com&#10;X-Title: SillyTavern&#10;oc-auth: your_token"></textarea>
+                <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 4px;">
+                    直连或酒馆代理转发均可生效，自动注入 HTTP 请求头（专用于解决 oc 等中转商风控安全标头需求）。
+                </p>
+            </div>
+
+            <!-- 附加请求体参数 (Extra Body) -->
+            <div class="st-chatu8-field" style="margin-top: 12px;">
+                <label for="ch-llm_enable_custom_body_params">启用附加请求参数 (Extra Body)</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-llm_enable_custom_body_params" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <div class="st-chatu8-field-col" id="ch-llm_custom_body_params_container">
+                <label for="ch-llm_custom_body_params">附加参数内容 <span style="font-size: 12px; color: var(--st-chatu8-text-secondary); font-weight: normal;">(标准 JSON 对象格式)</span></label>
+                <textarea id="ch-llm_custom_body_params" class="st-chatu8-textarea" rows="3"
+                    placeholder='例如：&#10;{&#10;  "route": "go"&#10;}'></textarea>
+                <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 4px;">
+                    发送请求时将该 JSON 对象的字段合并到请求体顶层。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模块 1: 启用自定义 Tool 工具配置 (CUSTOM_TOOL_ENABLED) -->
+    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="llm_custom_tool">
+        <div class="st-chatu8-section-header">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <h4 class="st-chatu8-section-title" style="margin: 0;"><i class="fa-solid fa-wrench"></i> 自定义 Tool 工具配置</h4>
+                <div style="display: flex; gap: 6px;">
+                    <button type="button" class="st-chatu8-btn" id="ch-export_tool_config_btn">
+                        <i class="fa-solid fa-file-export"></i> 导出 Tool 配置
+                    </button>
+                    <button type="button" class="st-chatu8-btn" id="ch-import_tool_config_btn">
+                        <i class="fa-solid fa-file-import"></i> 导入 Tool 配置
+                    </button>
+                    <input type="file" id="ch-tool_config_file_input" accept=".json" style="display: none;" />
+                </div>
+            </div>
+            <span class="st-chatu8-section-toggle">
+                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
+            </span>
+        </div>
+
+        <div class="st-chatu8-section-body">
+            <div class="st-chatu8-field">
+                <label for="ch-custom_tool_enabled">启用自定义 Tool 工具配置 (CUSTOM_TOOL_ENABLED)</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-custom_tool_enabled" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+
+            <div id="ch-custom_tool_details">
+                <div class="st-chatu8-field">
+                    <label for="ch-tool_name_mode">工具命名方式 (Tool Name Mode)</label>
+                    <select id="ch-tool_name_mode" class="st-chatu8-select">
+                        <option value="dynamic" selected>动态随机生成 (推荐，前缀 + 随机值防缓存)</option>
+                        <option value="fixed">固定工具名称</option>
+                    </select>
+                </div>
+
+                <div class="st-chatu8-field" id="ch-tool_fixed_name_row" style="display: none;">
+                    <label for="ch-tool_fixed_name">固定工具名</label>
+                    <input type="text" id="ch-tool_fixed_name" class="st-chatu8-text-input" placeholder="例如: agw_emit_data" value="" />
+                </div>
+
+                <div class="st-chatu8-field-col">
+                    <label for="ch-tool_desc">工具用途描述 (引导模型何时调用该工具)</label>
+                    <textarea id="ch-tool_desc" class="st-chatu8-textarea" rows="2" placeholder="must使用这个工具来进行内容思考和正文回复">must使用这个工具来进行内容思考和正文回复</textarea>
+                </div>
+
+                <!-- 工具参数字段列表 -->
+                <div class="st-chatu8-field-col" style="margin-top: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <label style="margin: 0;">工具参数字段列表 (模型调用后依序提取并组装为正文)</label>
+                        <button type="button" class="st-chatu8-btn" id="ch-add_tool_field_btn">
+                            <i class="fa-solid fa-plus"></i> 添加参数字段
+                        </button>
+                    </div>
+
+                    <!-- 字段表格头部 -->
+                    <div style="display: grid; grid-template-columns: 1fr 1.2fr 1fr 36px; gap: 8px; font-size: 12px; opacity: 0.8; margin-bottom: 4px; padding: 0 4px;">
+                        <div>字段名 (Key)</div>
+                        <div>字段描述 (Description)</div>
+                        <div>包裹标签 (如 thinking)</div>
+                        <div style="text-align: center;">操作</div>
+                    </div>
+
+                    <!-- 字段列表容器 -->
+                    <div id="ch-tool-fields-container" style="display: flex; flex-direction: column; gap: 6px;">
+                        <!-- JS 动态渲染各字段行 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模块 2: 发送前末尾自定义多 Role 消息 (Tail Messages) 配置 -->
+    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="llm_tail_messages">
+        <div class="st-chatu8-section-header">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <h4 class="st-chatu8-section-title" style="margin: 0;"><i class="fa-regular fa-comment-dots"></i> 发送前末尾自定义多 Role 消息 (Tail Messages) 配置</h4>
+                <div style="display: flex; gap: 6px;">
+                    <button type="button" class="st-chatu8-btn" id="ch-export_tail_config_btn">
+                        <i class="fa-solid fa-file-export"></i> 导出 Tail 配置
+                    </button>
+                    <button type="button" class="st-chatu8-btn" id="ch-import_tail_config_btn">
+                        <i class="fa-solid fa-file-import"></i> 导入 Tail 配置
+                    </button>
+                    <input type="file" id="ch-tail_config_file_input" accept=".json" style="display: none;" />
+                </div>
+            </div>
+            <span class="st-chatu8-section-toggle">
+                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
+            </span>
+        </div>
+
+        <div class="st-chatu8-section-body">
+            <div class="st-chatu8-field">
+                <label for="ch-custom_tail_messages_enabled">启用末尾多 Role 消息自定义追加 (CUSTOM_TAIL_MESSAGES_ENABLED)</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-custom_tail_messages_enabled" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+
+            <!-- 尾部消息子区域 -->
+            <div id="ch-custom_tail_details">
+                <div class="st-chatu8-field-col">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <label style="margin: 0;">末尾消息列表 <span style="font-size: 11px; opacity: 0.7;">(按顺序追加到 messages 末尾，支持 %TOOL_NAME% 变量)</span></label>
+                        <button type="button" class="st-chatu8-btn" id="ch-add_tail_msg_btn">
+                            <i class="fa-solid fa-plus"></i> 添加末尾消息
+                        </button>
+                    </div>
+
+                    <!-- 消息列表头部 -->
+                    <div style="display: grid; grid-template-columns: 100px 1fr 36px; gap: 8px; font-size: 12px; opacity: 0.8; margin-bottom: 4px; padding: 0 4px;">
+                        <div>角色 (Role)</div>
+                        <div>消息内容 (Content, 支持 %TOOL_NAME%)</div>
+                        <div style="text-align: center;">操作</div>
+                    </div>
+
+                    <!-- 消息列表容器 -->
+                    <div id="ch-tail-messages-container" style="display: flex; flex-direction: column; gap: 6px;">
+                        <!-- JS 动态渲染各消息行 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="st-chatu8-settings-section st-chatu8-collapsible-section" data-section-id="llm_ctx_config">
+        <div class="st-chatu8-section-header">
+            <h4 class="st-chatu8-section-title"><i class="fa-solid fa-layer-group"></i> 上下文配置</h4>
+            <span class="st-chatu8-section-toggle">
+                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
+            </span>
+        </div>
+        <div class="st-chatu8-section-body">
+        <div class="st-chatu8-field">
+            <label for="ch-test_context_select">上下文预设</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="ch-test_context_select" class="st-chatu8-select"></select>
+                <div class="st-chatu8-preset-box-wrapper">
+                    <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作选项">
+                        <i class="fa-solid fa-cube"></i>
+                    </button>
+                    <div class="st-chatu8-preset-box-dropdown">
+                        <div class="st-chatu8-preset-box-title">上下文预设选项</div>
+                        <div class="st-chatu8-preset-box-grid">
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-new_test_context_button" title="新建"><i class="fa-solid fa-plus"></i><span>新建</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-save_test_context_button" title="保存"><i class="fa-solid fa-save"></i><span>保存</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-save_as_test_context_button" title="另存为"><i class="fa-solid fa-copy"></i><span>另存为</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-rename_test_context_button" title="修改名称"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-import_test_context_button" title="导入"><i class="fa-solid fa-file-import"></i><span>导入</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-export_test_context_button" title="导出"><i class="fa-solid fa-file-export"></i><span>导出</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-export_all_test_context_button" title="导出全部"><i class="fa-solid fa-file-zipper"></i><span>导出全部</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item danger" id="ch-delete_test_context_button" title="删除"><i class="fa-solid fa-trash"></i><span>删除</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 添加条目按钮 -->
+        <div class="st-chatu8-add-entry-area">
+            <button class="st-chatu8-btn st-chatu8-add-entry-btn" id="ch-add_preset_entry_button">
+                <i class="fa-solid fa-plus"></i> 添加条目
+            </button>
+        </div>
+
+        <!-- 条目列表容器 - 可滚动 -->
+        <div id="ch-preset-entries-container" class="st-chatu8-preset-entries-container">
+            <!-- 条目将由 JS 动态生成 -->
+        </div>
+        </div>
+    </div>
+
+    <div class="st-chatu8-settings-section st-chatu8-collapsible-section" data-section-id="llm_ctx_history">
+        <div class="st-chatu8-section-header">
+            <h4 class="st-chatu8-section-title"><i class="fa-solid fa-clock-rotate-left"></i> 上下文历史</h4>
+            <span class="st-chatu8-section-toggle">
+                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
+            </span>
+        </div>
+        <div class="st-chatu8-section-body">
+        <div class="st-chatu8-field">
+            <label for="ch-llm_history_depth">发送历史层数</label>
+            <div class="st-chatu8-range-container">
+                <input class="st-chatu8-range-slider" type="range" id="ch-llm_history_depth" min="0" max="20"
+                    step="1" value="2">
+                <input class="st-chatu8-range-input" type="number" id="ch-llm_history_depth_value"
+                    data-for="ch-llm_history_depth" min="0" max="20" step="1" value="2">
+            </div>
+        </div>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
+            设置发送给 LLM 的历史对话层数。0 表示不发送历史。
+        </p>
+        <div class="st-chatu8-field" style="margin-top: 16px;">
+            <label for="ch-tagthink_echo">Tagthink回显</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-tagthink_echo" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
+            开启后，在图片标签前显示 &lt;imgthink&gt; 中的思考内容（不含 regex 行）。
+        </p>
+        <div class="st-chatu8-field" style="margin-top: 16px;">
+            <label for="ch-history_keep_image_tag">历史正文保留 &lt;image&gt; 标签</label>
+            <div class="st-chatu8-toggle">
+                <input id="ch-history_keep_image_tag" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
+            仅对「正文图片生成」请求生效：开启后，历史消息中的 &lt;image&gt;...&lt;/image&gt; 块会保留作为参考；当前正文仍按正则完整清理。
+        </p>
+        <div class="st-chatu8-field" style="margin-top: 16px;">
+            <label for="ch-llm_retry_count">LLM 错误重试次数</label>
+            <div class="st-chatu8-range-container">
+                <input class="st-chatu8-range-slider" type="range" id="ch-llm_retry_count" min="0" max="5"
+                    step="1" value="0">
+                <input class="st-chatu8-range-input" type="number" id="ch-llm_retry_count_value"
+                    data-for="ch-llm_retry_count" min="0" max="5" step="1" value="0">
+            </div>
+        </div>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
+            当 LLM 返回空响应、429 等网络错误或标签格式解析失败时，自动重试的次数（每次间隔 1.5~2 秒）。0 表示不重试。
+        </p>
+        </div>
+    </div>
+
+    <div class="st-chatu8-settings-section">
+        <!-- 请求类型配置 -->
+        <h4>请求类型配置</h4>
+        <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-bottom: 12px;">
+            为三种请求类型分别选择要使用的 API 配置和上下文预设。
+        </p>
+
+        <!-- 请求类型档案配置 -->
+        <div class="st-chatu8-field">
+            <label for="ch-llm_request_type_profile_select">请求类型档案</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="ch-llm_request_type_profile_select" class="st-chatu8-select"></select>
+                <div class="st-chatu8-preset-box-wrapper">
+                    <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作选项">
+                        <i class="fa-solid fa-cube"></i>
+                    </button>
+                    <div class="st-chatu8-preset-box-dropdown">
+                        <div class="st-chatu8-preset-box-title">请求类型档案选项</div>
+                        <div class="st-chatu8-preset-box-grid">
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-load_llm_request_type_profile_button" title="读取"><i class="fa-solid fa-folder-open"></i><span>读取</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-new_llm_request_type_profile_button" title="新建"><i class="fa-solid fa-plus"></i><span>新建</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-save_llm_request_type_profile_button" title="保存当前"><i class="fa-solid fa-save"></i><span>保存</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-rename_llm_request_type_profile_button" title="重命名"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-import_llm_request_type_profile_button" title="导入"><i class="fa-solid fa-file-import"></i><span>导入</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-export_llm_request_type_profile_button" title="导出"><i class="fa-solid fa-file-export"></i><span>导出</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item" id="ch-export_all_llm_request_type_profile_button" title="导出全部方案"><i class="fa-solid fa-file-zipper"></i><span>导出全部</span></button>
+                            <button type="button" class="st-chatu8-preset-box-item danger" id="ch-delete_llm_request_type_profile_button" title="删除"><i class="fa-solid fa-trash"></i><span>删除</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 请求类型卡片网格 -->
+        <div class="st-chatu8-request-cards-grid">
+            <!-- 正文图片生成 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-image"></i> 正文图片生成
+                </div>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_image_gen_api_select">API 配置</label>
+                        <select id="ch-llm_image_gen_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_image_gen_context_select">上下文预设</label>
+                        <select id="ch-llm_image_gen_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 角色/服装设计 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-palette"></i> 角色/服装设计
+                </div>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_design_api_select">API 配置</label>
+                        <select id="ch-llm_char_design_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_design_context_select">上下文预设</label>
+                        <select id="ch-llm_char_design_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 角色/服装展示 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-user"></i> 角色/服装展示
+                </div>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_display_api_select">API 配置</label>
+                        <select id="ch-llm_char_display_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_display_context_select">上下文预设</label>
+                        <select id="ch-llm_char_display_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 角色/服装修改 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-pen-to-square"></i> 角色/服装修改
+                </div>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_modify_api_select">API 配置</label>
+                        <select id="ch-llm_char_modify_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_char_modify_context_select">上下文预设</label>
+                        <select id="ch-llm_char_modify_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 翻译 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-language"></i> 翻译
+                </div>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_translation_api_select">API 配置</label>
+                        <select id="ch-llm_translation_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_translation_context_select">上下文预设</label>
+                        <select id="ch-llm_translation_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tag修改 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-tags"></i> Tag修改
+                </div>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_tag_modify_api_select">API 配置</label>
+                        <select id="ch-llm_tag_modify_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_tag_modify_context_select">上下文预设</label>
+                        <select id="ch-llm_tag_modify_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 智绘姬助手 -->
+            <div class="st-chatu8-request-card st-chatu8-request-card--accent-pink">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-robot"></i> 智绘姬助手
+                </div>
+                <p class="st-chatu8-request-card-desc">
+                    在智绘姬面板开启「使用 LLM 界面 API 配置」时将使用此处配置的 API 预设（支持 Vertex 渠道）；选择「自定义 (LLM预设)」时将使用此处配置的上下文预设。
+                </p>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_ai_assistant_api_select">API 配置</label>
+                        <select id="ch-llm_ai_assistant_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_ai_assistant_context_select">上下文预设</label>
+                        <select id="ch-llm_ai_assistant_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 角色人设生成 -->
+            <div class="st-chatu8-request-card st-chatu8-request-card--accent-purple">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-id-card"></i> 角色人设生成
+                </div>
+                <p class="st-chatu8-request-card-desc">
+                    通过 LLM 自动生成角色人设数据（含穿越设定），结果将填充到人设管理界面的各字段中。
+                </p>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_persona_gen_api_select">API 配置</label>
+                        <select id="ch-llm_persona_gen_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_persona_gen_context_select">上下文预设</label>
+                        <select id="ch-llm_persona_gen_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User 人设生成 -->
+            <div class="st-chatu8-request-card st-chatu8-request-card--accent-blue">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-user"></i> User 人设生成
+                </div>
+                <p class="st-chatu8-request-card-desc">
+                    通过 LLM 自动生成 User 人设数据（无穿越设定），适用于玩家角色设定。
+                </p>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_user_persona_gen_api_select">API 配置</label>
+                        <select id="ch-llm_user_persona_gen_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_user_persona_gen_context_select">上下文预设</label>
+                        <select id="ch-llm_user_persona_gen_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 聊天总结 -->
+            <div class="st-chatu8-request-card st-chatu8-request-card--accent-teal">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-layer-group"></i> 聊天总结
+                </div>
+                <p class="st-chatu8-request-card-desc">
+                    用于生成聊天记录总结的 LLM 配置和上下文预设。总结以角色第一人称日记形式书写。
+                </p>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_summary_api_select">API 配置</label>
+                        <select id="ch-llm_summary_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_summary_context_select">上下文预设</label>
+                        <select id="ch-llm_summary_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+            <!-- 视材准备 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-film"></i> 视材准备
+                </div>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_visual_mat_prep_api_select">API 配置</label>
+                        <select id="ch-llm_visual_mat_prep_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_visual_mat_prep_context_select">上下文预设</label>
+                        <select id="ch-llm_visual_mat_prep_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 图生视频 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-video"></i> 图生视频
+                </div>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_video_gen_api_select">API 配置</label>
+                        <select id="ch-llm_video_gen_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_video_gen_context_select">上下文预设</label>
+                        <select id="ch-llm_video_gen_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 视频资产生成 -->
+            <div class="st-chatu8-request-card">
+                <div class="st-chatu8-request-card-header">
+                    <i class="fa-solid fa-photo-film"></i> 视频资产生成
+                </div>
+                <div class="st-chatu8-request-card-selects">
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_video_asset_gen_api_select">API 配置</label>
+                        <select id="ch-llm_video_asset_gen_api_select" class="st-chatu8-select"></select>
+                    </div>
+                    <div class="st-chatu8-request-card-select-item">
+                        <label for="ch-llm_video_asset_gen_context_select">上下文预设</label>
+                        <select id="ch-llm_video_asset_gen_context_select" class="st-chatu8-select"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="st-chatu8-settings-section">
+        <!-- 测试工具 -->
+        <h4>测试工具</h4>
+        <!-- 测试按钮和结果 -->
+        <div style="text-align: center; margin: 20px 0;">
+            <button class="st-chatu8-btn" id="ch-llm_test_button">
+                <i class="fa-solid fa-paper-plane"></i>
+                发送测试请求
+            </button>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="ch-llm_combined_prompt">组合提示词</label>
+            <textarea id="ch-llm_combined_prompt" class="st-chatu8-textarea" rows="4" readonly
+                placeholder="这里是根据上下文和外部请求组合的最终提示词..."></textarea>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="ch-llm_test_result">AI 回复</label>
+            <textarea id="ch-llm_test_result" class="st-chatu8-textarea" rows="8" readonly
+                placeholder="点击上方按钮后,AI 的回复将显示在这里..."></textarea>
+        </div>
+    </div>
+</div>

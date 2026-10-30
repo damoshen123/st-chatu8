@@ -1,0 +1,341 @@
+/* Responsive Design */
+@media (max-width: 768px) {
+    #st-chatu8-settings .st-chatu8-modal-content {
+        width: 95vw;
+        max-width: 95vw; /* Override desktop max-width */
+        height: 90vh;
+    }
+
+    #st-chatu8-settings .st-chatu8-settings-layout {
+        flex-direction: column;
+    }
+
+    #st-chatu8-settings .st-chatu8-sidebar {
+        width: 100%;
+        height: auto;
+        flex-shrink: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--st-chatu8-border-color);
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    #st-chatu8-settings .st-chatu8-sidebar-header {
+        margin-bottom: 8px;
+    }
+
+    #st-chatu8-settings .st-chatu8-sidebar-header-buttons {
+        grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+        gap: 4px;
+    }
+
+    #st-chatu8-settings .st-chatu8-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* For Firefox */
+        padding-bottom: 8px;
+    }
+
+    #st-chatu8-settings .st-chatu8-nav::-webkit-scrollbar {
+        display: none; /* For Chrome, Safari, Opera */
+    }
+
+    #st-chatu8-settings .st-chatu8-nav-link {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+    }
+
+    #st-chatu8-settings .st-chatu8-sidebar-footer {
+        display: none;
+    }
+
+    #st-chatu8-settings .st-chatu8-content {
+        padding: 16px;
+        flex-grow: 1;
+    }
+
+    #st-chatu8-settings .st-chatu8-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    #st-chatu8-settings .st-chatu8-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    #st-chatu8-settings .st-chatu8-field > .st-chatu8-select,
+    #st-chatu8-settings .st-chatu8-field > .st-chatu8-text-input,
+    #st-chatu8-settings .st-chatu8-field > .st-chatu8-input-group,
+    #st-chatu8-settings .st-chatu8-field > .st-chatu8-profile-controls {
+        width: 100%;
+        max-width: none; /* Override desktop max-width */
+    }
+    
+    #st-chatu8-settings .st-chatu8-field .st-chatu8-range-container {
+        width: 100%;
+    }
+
+    #st-chatu8-settings .st-chatu8-range-container {
+        width: 100%;
+        max-width: none;
+    }
+    
+    #st-chatu8-settings .st-chatu8-profile-controls {
+        flex-wrap: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    #st-chatu8-settings .st-chatu8-modal-header {
+        padding: 12px 16px;
+    }
+    #st-chatu8-settings .st-chatu8-modal-header h2 {
+        font-size: 1.2rem;
+    }
+    #st-chatu8-settings .st-chatu8-modal-close {
+        font-size: 1.5rem;
+    }
+    #st-chatu8-settings .st-chatu8-content {
+        padding: 12px;
+    }
+    #st-chatu8-settings .st-chatu8-tab-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 16px;
+    }
+    #st-chatu8-settings .st-chatu8-btn, #st-chatu8-settings .st-chatu8-icon-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    #st-chatu8-settings .st-chatu8-cache-controls {
+        gap: 8px;
+    }
+    #st-chatu8-settings .audio-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    #st-chatu8-settings .audio-item-actions {
+        justify-content: flex-end;
+        padding-top: 8px;
+    }
+    #st-chatu8-settings .audio-item-details {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+/* ==========================================================================
+   日志与生图生涯统计界面的响应式设计
+   ========================================================================== */
+
+.ch-gen-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ch-stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6px 4px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+}
+
+.ch-stat-card-val {
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.ch-stat-card-unit {
+    font-size: 11px;
+    margin-left: 2px;
+    opacity: 0.85;
+}
+
+.ch-stat-card-lbl {
+    font-size: 11px;
+    opacity: 0.65;
+    margin-top: 3px;
+    white-space: nowrap;
+}
+
+.ch-period-selector {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.ch-period-btn {
+    padding: 4px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.06);
+    color: inherit;
+    transition: all 0.2s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ch-gen-legend-container {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.ch-gen-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.ch-chart-container {
+    width: 100%;
+    min-height: 140px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ch-backend-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ch-backend-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+}
+
+.ch-backend-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.ch-backend-title {
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.ch-backend-bar-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(128, 128, 128, 0.15);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.ch-backend-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.ch-backend-value {
+    text-align: right;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+/* 移动端专属适配 */
+@media (max-width: 768px) {
+    .ch-gen-summary-grid {
+        grid-template-columns: repeat(auto-fit, minmax(68px, 1fr));
+        gap: 6px;
+        padding: 8px 6px;
+    }
+
+    .ch-stat-card {
+        padding: 6px 2px;
+    }
+
+    .ch-stat-card-val {
+        font-size: 17px;
+    }
+
+    .ch-stat-card-lbl {
+        font-size: 11px;
+    }
+
+    .ch-period-selector {
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+
+    .ch-period-btn {
+        padding: 6px 14px;
+        font-size: 13px;
+        min-height: 36px;
+        flex: 1;
+        text-align: center;
+    }
+
+    .ch-gen-legend-container {
+        gap: 8px 12px;
+        font-size: 12px;
+    }
+
+    .ch-chart-container {
+        min-height: 180px;
+    }
+
+    .ch-backend-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+        padding: 6px 8px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 6px;
+    }
+
+    .ch-backend-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .ch-backend-title {
+        width: auto;
+        font-size: 13px;
+    }
+
+    .ch-backend-value {
+        width: auto;
+        font-size: 13px;
+    }
+
+    .ch-backend-bar-container {
+        width: 100%;
+        height: 8px;
+    }
+}

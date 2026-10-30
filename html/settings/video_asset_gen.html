@@ -1,0 +1,314 @@
+<div id="ch-tab-video_asset_gen">
+    <!-- 1. 用户需求输入区域 -->
+    <div class="vag-section-card">
+        <div class="vag-section-header">
+            <h4 class="vag-section-title">
+                <i class="fa-solid fa-pen-nib"></i> 用户需求与资料输入
+            </h4>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span id="vag-demand-count" class="vag-badge">0 字</span>
+                <button type="button" class="st-chatu8-btn st-chatu8-btn-sm danger" id="vag-btn-reset-all" title="清空需求、附件与提示词">
+                    <i class="fa-solid fa-rotate-left"></i> 重置全部
+                </button>
+                <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-clear-demand" title="清空需求内容">
+                    <i class="fa-solid fa-xmark"></i> 清空
+                </button>
+            </div>
+        </div>
+        <div class="vag-demand-wrap">
+            <textarea id="vag-demand-input" class="vag-textarea" rows="2" placeholder="输入图片/视频资产生成需求或场景描述（如：银发蓝瞳少女、废土霓虹、电影级光影、4K大师作...）"></textarea>
+        </div>
+    </div>
+
+    <!-- 1.5 参考世界书设定区域 (多选双栏布局，参考 send_data) -->
+    <div class="vag-section-card vag-card-collapsed" id="vag-worldbook-card">
+        <div class="vag-section-header">
+            <h4 class="vag-section-title">
+                <i class="fa-solid fa-book-atlas"></i> 参考世界书设定
+                <span id="vag-worldbook-badge" class="vag-badge" style="margin-left: 4px;">已启用 0 本世界书</span>
+            </h4>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-refresh-worlds" title="重新获取可用世界书列表">
+                    <i class="fa-solid fa-rotate"></i> 刷新世界书
+                </button>
+                <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-toggle-worldbook-collapse" title="收起/展开世界书面板">
+                    <i class="fa-solid fa-chevron-down" id="vag-worldbook-collapse-icon"></i> <span id="vag-worldbook-collapse-text">展开</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 移动端专属双栏切换 Tab -->
+        <div class="vag-wb-mobile-tabs" id="vag-wb-mobile-tabs" style="display: none;">
+            <button type="button" class="vag-wb-mobile-tab active" id="vag-mobile-tab-worlds">
+                <i class="fa-solid fa-book"></i> 世界书 <span class="vag-mobile-tab-count" id="vag-mobile-tab-worlds-count">0</span>
+            </button>
+            <button type="button" class="vag-wb-mobile-tab" id="vag-mobile-tab-entries">
+                <i class="fa-solid fa-list-check"></i> 条目明细 <span class="vag-mobile-tab-count" id="vag-mobile-tab-entries-count">0</span>
+            </button>
+        </div>
+
+        <div class="vag-worldbook-dual-layout" id="vag-worldbook-dual-layout" style="display: none;">
+            <!-- 左栏：世界书列表 -->
+            <div class="vag-wb-column vag-wb-left-column" id="vag-wb-left-col">
+                <div class="vag-wb-column-header">
+                    <div class="vag-wb-header-title">
+                        <i class="fa-solid fa-book"></i> 📚 世界书
+                    </div>
+                    <div class="vag-wb-search-wrap">
+                        <input type="text" id="vag-world-search-input" class="st-chatu8-text-input vag-wb-search-input" placeholder="搜索世界书...">
+                    </div>
+                    <!-- 快捷筛选状态栏 -->
+                    <div class="vag-wb-filter-pills" id="vag-world-filter-pills">
+                        <button type="button" class="vag-filter-pill active" data-filter="all">全部</button>
+                        <button type="button" class="vag-filter-pill" data-filter="enabled">仅已启用</button>
+                    </div>
+                    <div class="vag-wb-action-btns">
+                        <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-select-all-worlds" title="启用所有世界书">全选世界书</button>
+                        <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-deselect-all-worlds" title="停用所有世界书">取消全选</button>
+                    </div>
+                </div>
+                <div id="vag-world-list-container" class="vag-wb-scroll-list">
+                    <div class="vag-entry-empty-state">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        <div>正在加载世界书列表...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右栏：条目开关 -->
+            <div class="vag-wb-column vag-wb-right-column" id="vag-wb-right-col">
+                <div class="vag-wb-column-header">
+                    <div class="vag-wb-header-title" id="vag-active-world-title">
+                        <i class="fa-solid fa-list-check"></i> 📝 条目开关 <span style="font-size: 11px; opacity: 0.6; font-weight: normal;">(请选择左侧世界书)</span>
+                    </div>
+                    <div class="vag-wb-search-wrap">
+                        <input type="text" id="vag-entry-search-input" class="st-chatu8-text-input vag-wb-search-input" placeholder="搜索当前世界书条目...">
+                    </div>
+                    <!-- 快捷筛选状态栏 -->
+                    <div class="vag-wb-filter-pills" id="vag-entry-filter-pills">
+                        <button type="button" class="vag-filter-pill active" data-filter="all">全部</button>
+                        <button type="button" class="vag-filter-pill" data-filter="checked">仅已勾选</button>
+                        <button type="button" class="vag-filter-pill" data-filter="constant">仅常开</button>
+                    </div>
+                    <div class="vag-wb-action-btns">
+                        <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-select-all-entries" title="勾选当前世界书全部条目">全选条目</button>
+                        <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-deselect-all-entries" title="清空当前世界书条目勾选">取消全选</button>
+                        <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-toggle-constant-entries" title="仅勾选常开条目">仅常开</button>
+                    </div>
+                </div>
+                <div id="vag-entry-list-container" class="vag-wb-scroll-list">
+                    <div class="vag-entry-empty-state">
+                        <i class="fa-regular fa-hand-pointer"></i>
+                        <div>请在左侧点击一个世界书查看条目</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.6 正文信息区域 -->
+    <div class="vag-section-card" id="vag-body-text-card">
+        <div class="vag-section-header">
+            <h4 class="vag-section-title">
+                <i class="fa-solid fa-file-lines"></i> 正文信息
+                <span id="vag-body-text-count" class="vag-badge" style="margin-left: 4px;">0 字</span>
+            </h4>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <div class="vag-depth-control" style="display: flex; align-items: center; gap: 6px;">
+                    <label for="vag-floor-depth" style="font-size: 12px; color: var(--st-chatu8-text-secondary, #aaa); white-space: nowrap;">获取楼层深度:</label>
+                    <input type="number" id="vag-floor-depth" class="st-chatu8-text-input" min="1" max="50" value="1" step="1" style="width: 60px; padding: 3px 6px; text-align: center;" title="设置收集酒馆楼层时的向前回溯深度(1-50层)">
+                </div>
+                <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-collect-latest" title="根据上方设定的深度，从最新酒馆聊天记录中收集正文并全覆盖">
+                    <i class="fa-solid fa-arrows-rotate"></i> 收集最新
+                </button>
+                <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-copy-body-text" title="复制正文内容">
+                    <i class="fa-solid fa-copy"></i> 复制
+                </button>
+                <button type="button" class="st-chatu8-btn st-chatu8-btn-sm danger" id="vag-btn-clear-body-text" title="清空正文内容">
+                    <i class="fa-solid fa-trash"></i> 清空
+                </button>
+            </div>
+        </div>
+        <div class="vag-body-text-wrap" style="margin-top: 4px;">
+            <textarea id="vag-body-text-input" class="vag-textarea" rows="4" placeholder="在此展示或编辑正文信息。在聊天窗口双击消息并点击【正文收集】即可自动填入并全覆盖，也可以在此直接手动编辑或粘贴..."></textarea>
+        </div>
+    </div>
+
+    <!-- 2. 附件选择与管理区域（支持为附件添加简介） -->
+    <div class="vag-section-card">
+        <div class="vag-section-header">
+            <h4 class="vag-section-title">
+                <i class="fa-solid fa-paperclip"></i> 参考附件素材
+                <span id="vag-attachment-count" class="vag-badge" style="margin-left: 4px;">0 个附件</span>
+            </h4>
+            <div class="vag-attachment-toolbar">
+                <button type="button" class="st-chatu8-btn primary" id="vag-btn-pick-asset" title="从现有视频资产库中选取素材">
+                    <i class="fa-solid fa-photo-film"></i> 从视频资产选取
+                </button>
+                <button type="button" class="st-chatu8-btn" id="vag-btn-upload-file" title="从电脑本地选择图片上传">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> 本地上传图片
+                </button>
+                <input type="file" id="vag-file-input" accept="image/*" multiple style="display: none;">
+                <button type="button" class="st-chatu8-btn danger" id="vag-btn-clear-attachments" title="清空全部已添加的附件">
+                    <i class="fa-solid fa-trash-can"></i> 清空素材
+                </button>
+            </div>
+        </div>
+
+        <!-- 附件列表或空提示 -->
+        <div id="vag-attachments-container" class="vag-attachments-container">
+            <div id="vag-attachments-empty" class="vag-attachments-empty">
+                <i class="fa-regular fa-images"></i>
+                <div>暂未添加参考附件素材</div>
+                <div style="font-size: 11px; opacity: 0.7;">点击上方按钮从【视频资产】库选取或上传本地图片，亦可在此页面直接按 Ctrl+V 粘贴截图</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 生成提示词操作控制栏 -->
+    <div class="vag-control-card">
+        <div class="vag-generate-btn-group">
+            <button type="button" id="vag-generate-btn" class="vag-btn-primary-gradient">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> 生成提示词
+            </button>
+            <button type="button" id="vag-cancel-btn" class="st-chatu8-btn danger" style="display: none;">
+                <i class="fa-solid fa-stop"></i> 停止生成
+            </button>
+        </div>
+        <div id="vag-status-bar" class="vag-status-bar">
+            <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+            <span id="vag-status-text">就绪（点击「生成提示词」让 AI 依据需求与附件提炼生图 Prompt）</span>
+        </div>
+    </div>
+
+    <!-- 4. 返回的提示词编辑输入框 & 生图功能调用区 -->
+    <div class="vag-section-card">
+        <div class="vag-section-header">
+            <h4 class="vag-section-title">
+                <i class="fa-solid fa-code"></i> AI 生成的提示词 (可在此二次编辑)
+            </h4>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="st-chatu8-btn" id="vag-btn-copy-reply" title="复制提示词内容到剪贴板">
+                    <i class="fa-solid fa-copy"></i> 复制提示词
+                </button>
+                <button type="button" class="st-chatu8-btn" id="vag-btn-clear-reply" title="清空提示词框中的文本">
+                    <i class="fa-solid fa-eraser"></i> 清空
+                </button>
+                <button type="button" class="st-chatu8-btn primary" id="vag-btn-save-as-asset" title="将当前提示词文本保存为新的视频资产条目">
+                    <i class="fa-solid fa-folder-plus"></i> 存为新资产
+                </button>
+                <button type="button" class="st-chatu8-btn" id="vag-btn-send-to-test" title="将当前提示词填入 ComfyUI 或 RunningHub 视频测试提示词框">
+                    <i class="fa-solid fa-paper-plane"></i> 填入视频测试框
+                </button>
+            </div>
+        </div>
+        <div class="vag-reply-wrap">
+            <textarea id="vag-reply-output" class="vag-reply-textarea" rows="7" placeholder="AI 根据需求与参考附件生成的生图提示词 (Prompt) 将在此显示。&#10;&#10;您可以直接在此修改、补充英文 Tag 或自然语言提示词，然后点击下方「生成图片」直接渲染！"></textarea>
+        </div>
+
+        <!-- 提示词下方的「生成图片」操作栏 -->
+        <div class="vag-image-action-bar">
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <button type="button" id="vag-generate-image-btn" class="vag-btn-generate-image">
+                    <i class="fa-solid fa-image"></i> 生成图片 (调用插件生图)
+                </button>
+                <button type="button" id="vag-cancel-image-btn" class="st-chatu8-btn danger" style="display: none;">
+                    <i class="fa-solid fa-stop"></i> 取消生图
+                </button>
+            </div>
+            <div id="vag-image-status-bar" class="vag-status-bar">
+                <i class="fa-solid fa-circle-info" style="color: #60a5fa;"></i>
+                <span id="vag-image-status-text">就绪 (点击按钮调用插件当前生图引擎渲染图片资产)</span>
+            </div>
+        </div>
+
+        <!-- 图生图参考图附件区域（仅支持 OpenAI / Grok 渠道） -->
+        <div class="vag-img2img-card" id="vag-img2img-card">
+            <div class="vag-img2img-header">
+                <div class="vag-img2img-title">
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--st-chatu8-accent-primary, #6366f1);"></i>
+                    <span>图生图参考图</span>
+                    <span id="vag-img2img-badge" class="vag-badge">纯文生图</span>
+                    <span class="vag-badge" style="background: rgba(99, 102, 241, 0.15); color: var(--st-chatu8-accent-primary, #818cf8); font-size: 10.5px;">仅支持 OpenAI 渠道</span>
+                </div>
+                <div class="vag-img2img-actions">
+                    <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-upload-img2img" title="上传本地图片作为图生图参考图">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> 本地上传
+                    </button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-pick-img2img" title="从现有视频资产库中选取参考图">
+                        <i class="fa-solid fa-photo-film"></i> 资产库选取
+                    </button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-btn-sm danger" id="vag-btn-clear-img2img" style="display: none;" title="清空参考图，切回文生图">
+                        <i class="fa-solid fa-trash-can"></i> 清空
+                    </button>
+                    <input type="file" id="vag-img2img-file-input" accept="image/*" style="display: none;">
+                </div>
+            </div>
+
+            <!-- 空状态：提示添加参考图 -->
+            <div id="vag-img2img-empty" class="vag-img2img-empty-box">
+                <div class="vag-img2img-empty-content">
+                    <i class="fa-regular fa-image" style="font-size: 20px; opacity: 0.6;"></i>
+                    <span style="font-size: 12px; opacity: 0.85;">暂未添加参考图 (默认文生图)。可点击上方按钮添加，或在此处直接按 <code>Ctrl+V</code> 粘贴截图</span>
+                </div>
+            </div>
+
+            <!-- 已添加状态：参考图预览卡片 -->
+            <div id="vag-img2img-preview-wrap" class="vag-img2img-preview-wrap" style="display: none;">
+                <div class="vag-img2img-thumb-box" id="vag-img2img-thumb-box" title="点击放大预览">
+                    <img id="vag-img2img-thumb" src="" alt="图生图参考图" class="vag-img2img-thumb-img">
+                    <div class="vag-img2img-thumb-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="vag-img2img-meta">
+                    <div class="vag-img2img-meta-title" id="vag-img2img-name">参考图.png</div>
+                    <div class="vag-img2img-meta-desc">
+                        <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+                        <span>已启用图生图：生成时将携带此图提交至 OpenAI /v1/images/edits 接口</span>
+                    </div>
+                </div>
+                <div class="vag-img2img-item-actions">
+                    <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-change-img2img" title="更换参考图">
+                        <i class="fa-solid fa-rotate"></i> 更换
+                    </button>
+                    <button type="button" class="st-chatu8-btn st-chatu8-btn-sm danger" id="vag-btn-remove-img2img" title="移除参考图">
+                        <i class="fa-solid fa-xmark"></i> 移除
+                    </button>
+                </div>
+            </div>
+
+            <!-- 非 OpenAI 渠道友好提示 -->
+            <div id="vag-img2img-channel-hint" class="vag-img2img-channel-hint" style="display: none;">
+                <i class="fa-solid fa-circle-exclamation" style="color: #f59e0b;"></i>
+                <span>当前插件生图渠道非 OpenAI (Banana)，图生图参考图仅在 OpenAI / Grok 渠道下生效。</span>
+            </div>
+        </div>
+
+        <!-- 生图结果展示卡片 (生图成功后展示) -->
+        <div id="vag-image-result-card" class="vag-image-result-card" style="display: none;">
+            <div class="vag-image-result-thumb-wrap" id="vag-result-thumb-wrap" title="点击放大查看原图">
+                <img id="vag-generated-image" class="vag-image-result-thumb" src="" alt="生成的图片资产">
+                <div class="vag-image-result-badge"><i class="fa-solid fa-check"></i> 生成成功</div>
+            </div>
+            <div class="vag-image-result-info">
+                <div class="vag-image-result-header">
+                    <span class="vag-image-result-title"><i class="fa-solid fa-photo-film"></i> 生成的图片资产</span>
+                    <span id="vag-image-asset-status" class="vag-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">已自动存入「视频资产」</span>
+                </div>
+                <div class="vag-image-result-desc" id="vag-image-result-prompt-preview"></div>
+                <div class="vag-image-result-actions">
+                    <button type="button" class="st-chatu8-btn st-chatu8-btn-sm" id="vag-btn-view-large-image"><i class="fa-solid fa-magnifying-glass-plus"></i> 查看大图</button>
+                    <a id="vag-btn-download-image" class="st-chatu8-btn st-chatu8-btn-sm" download="generated_asset.png" href="#" style="text-decoration: none;"><i class="fa-solid fa-download"></i> 下载图片</a>
+                    <button type="button" class="st-chatu8-btn primary st-chatu8-btn-sm" id="vag-btn-re-save-asset"><i class="fa-solid fa-folder-plus"></i> 存为新资产条目</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 附件与生成大图预览轻量弹窗 -->
+    <div id="vag-preview-modal" class="vag-preview-modal">
+        <div class="vag-preview-content">
+            <span id="vag-preview-close" class="vag-preview-close">&times;</span>
+            <img id="vag-preview-img" class="vag-preview-img" src="" alt="预览大图">
+        </div>
+    </div>
+</div>

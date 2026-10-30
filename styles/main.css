@@ -1,0 +1,1487 @@
+#st-chatu8-settings {
+    /* Non-color variables that are not part of the theme presets */
+    --st-chatu8-border-radius: 8px;
+    --st-chatu8-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --st-chatu8-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    /* Color variables are now set dynamically via inline styles */
+}
+
+/* Modal Backdrop and Content */
+#st-chatu8-settings .st-chatu8-modal-backdrop {
+    position: fixed;
+    z-index: 1050;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: grid;
+    place-items: center;
+    font-family: var(--st-chatu8-font-family);
+}
+
+#st-chatu8-settings .st-chatu8-modal-content {
+    background-color: var(--st-chatu8-bg-primary);
+    color: var(--st-chatu8-text-primary);
+    border-radius: var(--st-chatu8-border-radius);
+    box-shadow: var(--st-chatu8-box-shadow);
+    width: 90vw;
+    max-width: 1200px;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#st-chatu8-settings .st-chatu8-modal-content:focus {
+    outline: none;
+}
+
+#st-chatu8-settings .st-chatu8-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+}
+
+#st-chatu8-settings .st-chatu8-modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#st-chatu8-settings .st-chatu8-modal-close {
+    font-size: 2rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#st-chatu8-settings .st-chatu8-modal-close:hover {
+    color: var(--st-chatu8-accent-primary);
+}
+
+/* Main Layout: Sidebar + Content */
+#st-chatu8-settings .st-chatu8-settings-layout {
+    display: flex;
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+/* Sidebar */
+#st-chatu8-settings .st-chatu8-sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    background-color: var(--st-chatu8-bg-secondary);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--st-chatu8-border-color);
+}
+
+#st-chatu8-settings .st-chatu8-sidebar-header {
+    margin-bottom: 16px;
+}
+
+#st-chatu8-settings .st-chatu8-sidebar-header-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+#st-chatu8-settings .st-chatu8-sidebar-btn {
+    background: var(--st-chatu8-bg-tertiary);
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-secondary);
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+#st-chatu8-settings .st-chatu8-sidebar-btn:hover {
+    background: var(--st-chatu8-accent-secondary);
+    color: var(--st-chatu8-text-highlight, white);
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+#st-chatu8-settings .st-chatu8-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+#st-chatu8-settings .st-chatu8-nav-link {
+    color: var(--st-chatu8-text-secondary);
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 0.95rem;
+}
+
+#st-chatu8-settings .st-chatu8-nav-link:hover {
+    background-color: var(--st-chatu8-bg-tertiary);
+    color: var(--st-chatu8-text-primary);
+}
+
+#st-chatu8-settings .st-chatu8-nav-link.active {
+    background-color: var(--st-chatu8-accent-primary);
+    color: var(--st-chatu8-text-highlight, white);
+    font-weight: 500;
+}
+
+#st-chatu8-settings .st-chatu8-sidebar-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--st-chatu8-border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#st-chatu8-settings .st-chatu8-sidebar-link {
+    color: var(--st-chatu8-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+#st-chatu8-settings .st-chatu8-sidebar-link:hover {
+    color: var(--st-chatu8-accent-primary);
+}
+
+/* Content Area */
+#st-chatu8-settings .st-chatu8-content {
+    flex-grow: 1;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+#st-chatu8-settings .st-chatu8-tab-content {
+    display: none;
+}
+
+#st-chatu8-settings .st-chatu8-tab-content.active {
+    display: block;
+    animation: st-chatu8-fadeIn 0.3s ease-in-out;
+}
+
+@keyframes st-chatu8-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes st-chatu8-pulse-warning {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.25);
+        opacity: 1;
+    }
+}
+
+#st-chatu8-settings .st-chatu8-tab-content h3 {
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--st-chatu8-text-primary);
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+    padding-bottom: 10px;
+}
+
+#st-chatu8-settings .st-chatu8-settings-section {
+    background-color: var(--st-chatu8-bg-secondary);
+    padding: 16px;
+    border-radius: var(--st-chatu8-border-radius);
+    margin-bottom: 24px;
+}
+
+#st-chatu8-settings .st-chatu8-settings-section:last-child {
+    margin-bottom: 0;
+}
+
+/* 可折叠大模块卡片通用样式 */
+#st-chatu8-settings .st-chatu8-collapsible-section {
+    transition: margin-bottom 0.2s ease, padding 0.2s ease;
+}
+
+#st-chatu8-settings .st-chatu8-collapsible-section .st-chatu8-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    transition: opacity 0.2s ease;
+}
+
+#st-chatu8-settings .st-chatu8-collapsible-section .st-chatu8-section-header:hover {
+    opacity: 0.85;
+}
+
+#st-chatu8-settings .st-chatu8-collapsible-section .st-chatu8-section-header h3,
+#st-chatu8-settings .st-chatu8-collapsible-section .st-chatu8-section-header h4,
+#st-chatu8-settings .st-chatu8-collapsible-section .st-chatu8-section-header .st-chatu8-section-title {
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+    font-size: 1.25rem;
+    color: var(--st-chatu8-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#st-chatu8-settings .st-chatu8-collapsible-section .st-chatu8-section-header h4.st-chatu8-section-title {
+    font-size: 1.15rem;
+}
+
+#st-chatu8-settings .st-chatu8-collapsible-section .st-chatu8-section-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    color: var(--st-chatu8-text-secondary);
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+#st-chatu8-settings .st-chatu8-collapsible-section .st-chatu8-section-header:hover .st-chatu8-section-toggle {
+    color: var(--st-chatu8-accent-color, #a855f7);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+#st-chatu8-settings .st-chatu8-collapsible-section .st-chatu8-section-toggle-icon {
+    font-size: 1.1rem;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 折叠状态 */
+#st-chatu8-settings .st-chatu8-collapsible-section.is-collapsed .st-chatu8-section-toggle-icon {
+    transform: rotate(-90deg);
+}
+
+#st-chatu8-settings .st-chatu8-collapsible-section.is-collapsed .st-chatu8-section-header {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#st-chatu8-settings .st-chatu8-collapsible-section.is-collapsed .st-chatu8-section-body {
+    display: none;
+}
+
+#st-chatu8-settings .st-chatu8-tab-content h4 {
+    font-size: 1.1rem;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    color: var(--st-chatu8-text-secondary);
+}
+
+#st-chatu8-settings .st-chatu8-hr {
+    border: none;
+    border-top: 1px solid var(--st-chatu8-border-color);
+    margin: 24px 0;
+}
+
+/* Styles for generated image button and container */
+.st-chatu8-image-button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+}
+
+.st-chatu8-image-button:hover {
+    background-color: #357abd;
+}
+
+.st-chatu8-image-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   预设可视化选择器样式 (Premium & Cool Version)
+   ============================================ */
+
+/* 自定义对话框样式覆写 */
+#st-chatu8-settings .st-chatu8-preset-viz-dialog-wrapper {
+    background-color: #20202e;
+    /* 稍微调亮背景 */
+    box-shadow: 0 0 50px rgba(74, 144, 226, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#st-chatu8-settings .st-chatu8-preset-viz-dialog-wrapper .st-chatu8-workflow-viz-header {
+    background-color: rgba(30, 30, 46, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#st-chatu8-settings .st-chatu8-preset-viz-dialog-wrapper .st-chatu8-workflow-viz-toolbar {
+    background-color: rgba(30, 30, 46, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #a0a0b0;
+}
+
+/* 预设网格容器 - 放在 workflow-viz-container 中 */
+#st-chatu8-settings .st-chatu8-preset-grid {
+    column-count: 4;
+    /* 默认4列 */
+    column-gap: 24px;
+    padding: 30px;
+    perspective: 1000px;
+    /* 增加透视感 */
+}
+
+@media (max-width: 1400px) {
+    #st-chatu8-settings .st-chatu8-preset-grid {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 900px) {
+    #st-chatu8-settings .st-chatu8-preset-grid {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    #st-chatu8-settings .st-chatu8-preset-grid {
+        column-count: 1;
+    }
+}
+
+/* 预设卡片 */
+#st-chatu8-settings .st-chatu8-preset-card {
+    position: relative;
+    background-color: #252538;
+    /* 稍亮的卡片背景 */
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    display: inline-block;
+    /* 瀑布流布局必需 */
+    width: 100%;
+    /* 瀑布流布局必需 */
+    margin-bottom: 24px;
+    /* 卡片垂直间距 */
+    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    break-inside: avoid;
+    /* 防止卡片被列断开 */
+
+    /* 初始出现动画 */
+    animation: st-chatu8-card-pop-in 0.5s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+@keyframes st-chatu8-card-pop-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* 为每个卡片添加交错动画延迟 */
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(6) {
+    animation-delay: 0.35s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:nth-child(n+7) {
+    animation-delay: 0.4s;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.6);
+    border-color: rgba(74, 144, 226, 0.6);
+    z-index: 10;
+}
+
+
+
+#st-chatu8-settings .st-chatu8-preset-card.selected {
+    box-shadow: 0 0 0 3px #4a90e2, 0 15px 30px -10px rgba(74, 144, 226, 0.3);
+    transform: scale(1.02);
+    z-index: 20;
+    background-color: rgba(74, 144, 226, 0.05);
+}
+
+/* 选中标记 */
+#st-chatu8-settings .st-chatu8-preset-card.selected::before {
+    content: '✔';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #4a90e2;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    z-index: 5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: st-chatu8-check-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes st-chatu8-check-pop {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/* 卡片图片区域 */
+#st-chatu8-settings .st-chatu8-preset-card-image {
+    position: relative;
+    /* 改为相对定位，由图片撑开高度 */
+    width: 100%;
+    height: auto;
+    /* 高度自适应 */
+    min-height: 150px;
+    /* 最小高度 */
+    background-color: #2e2e42;
+    /* 稍亮 */
+    display: block;
+    /* 改为块级 */
+    overflow: hidden;
+    z-index: 1;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* 消除底部间隙 */
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:hover .st-chatu8-preset-card-image img {
+    transform: scale(1.1);
+}
+
+/* 占位符 */
+#st-chatu8-settings .st-chatu8-preset-card-placeholder {
+    color: #666;
+    font-size: 4rem;
+    opacity: 0.2;
+    transform: rotate(-10deg);
+    transition: all 0.5s ease;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:hover .st-chatu8-preset-card-placeholder {
+    opacity: 0.4;
+    transform: rotate(0deg) scale(1.1);
+    color: var(--st-chatu8-accent-primary);
+}
+
+/* 卡片操作按钮 - 仅在悬停或管理模式下显示 */
+#st-chatu8-settings .st-chatu8-preset-card-actions {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    /* 默认情况下不可点击，防止误触 */
+}
+
+/* 只有在管理模式下，操作按钮才可见且可点击 */
+#st-chatu8-settings .st-chatu8-preset-viz-dialog-wrapper.st-chatu8-mode-manage .st-chatu8-preset-card-actions {
+    opacity: 1;
+    transform: translateY(0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 6px;
+    border-radius: 8px;
+    pointer-events: auto;
+}
+
+/* PC端保持悬停显示逻辑 (可选，如果希望PC上也必须开管理模式则删除此段) */
+/* 为了保持"纯净"体验，建议PC端也统一遵循管理模式，或者仅保留微妙的悬停提示 */
+/* 搜索框样式 */
+#st-chatu8-settings .st-chatu8-viz-search-container input:focus {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: var(--st-chatu8-accent-primary) !important;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+#st-chatu8-settings .st-chatu8-viz-search-container input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#st-chatu8-settings .st-chatu8-viz-search-container i {
+    transition: color 0.3s;
+}
+
+#st-chatu8-settings .st-chatu8-viz-search-container input:focus+i,
+#st-chatu8-settings .st-chatu8-viz-search-container:focus-within i {
+    color: var(--st-chatu8-accent-primary) !important;
+}
+
+/* 如果用户仍希望PC端悬停能看到上传按钮，可以保留下面这段，但加上 .st-chatu8-mode-manage 前缀以强制统一? */
+/* 目前策略：完全由右上角开关控制，实现最纯净的浏览体验 */
+
+#st-chatu8-settings .st-chatu8-preset-action-btn {
+    background-color: rgba(30, 30, 46, 0.8);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+#st-chatu8-settings .st-chatu8-preset-action-btn:hover {
+    background-color: var(--st-chatu8-accent-primary);
+    transform: scale(1.1);
+    border-color: transparent;
+}
+
+#st-chatu8-settings .st-chatu8-preset-action-btn.danger:hover {
+    background-color: var(--st-chatu8-danger-primary);
+}
+
+/* 卡片名称 */
+#st-chatu8-settings .st-chatu8-preset-card-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #eee;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    z-index: 3;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: transparent;
+}
+
+#st-chatu8-settings .st-chatu8-preset-card:hover .st-chatu8-preset-card-name {
+    transform: translateY(-3px);
+    color: white;
+}
+
+/* 批量删除模式样式 */
+.st-chatu8-preset-card.selected-for-delete {
+    box-shadow: 0 0 0 3px #d9534f, 0 15px 30px -10px rgba(217, 83, 79, 0.3) !important;
+    transform: scale(0.95);
+    opacity: 0.9;
+    border-color: #d9534f;
+}
+
+/* 删除选中标记 - 覆盖普通选中标记 */
+.st-chatu8-preset-card.selected-for-delete::before {
+    content: '🗑' !important;
+    background: #d9534f !important;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    z-index: 25 !important;
+    /* Higher than normal selected */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: st-chatu8-check-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 批量删除模式下隐藏标准操作按钮 */
+.st-chatu8-mode-bulk-delete .st-chatu8-preset-card-actions {
+    display: none !important;
+}
+
+/* 批量删除模式下鼠标样式 */
+.st-chatu8-mode-bulk-delete .st-chatu8-preset-card {
+    cursor: alias;
+    /* Indicating selection */
+}
+
+/* 全选 / 反选 / 清空控件（胶囊样式，与工具栏其他胶囊按钮一致） */
+.st-chatu8-bulk-select-btn:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.st-chatu8-bulk-select-btn[style*="not-allowed"]:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ============================================
+   任务管理器样式
+   ============================================ */
+
+/* 任务统计信息 */
+#st-chatu8-settings .st-chatu8-task-stats {
+    font-size: 0.85rem;
+    color: var(--st-chatu8-text-secondary);
+    background: var(--st-chatu8-bg-tertiary);
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+/* 任务列表容器 */
+#st-chatu8-settings .st-chatu8-task-list {
+    max-height: 300px;
+    overflow-y: auto;
+    background: var(--st-chatu8-bg-tertiary);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+/* 空列表提示 */
+#st-chatu8-settings .st-chatu8-task-empty {
+    text-align: center;
+    padding: 24px;
+    color: var(--st-chatu8-text-secondary);
+    font-style: italic;
+}
+
+/* 单个任务项 */
+#st-chatu8-settings .st-chatu8-task-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--st-chatu8-bg-secondary);
+    border-radius: 6px;
+    margin-bottom: 6px;
+    transition: all 0.2s;
+    gap: 10px;
+}
+
+#st-chatu8-settings .st-chatu8-task-item:last-child {
+    margin-bottom: 0;
+}
+
+#st-chatu8-settings .st-chatu8-task-item:hover {
+    background: var(--st-chatu8-bg-primary);
+}
+
+/* 任务状态图标 */
+#st-chatu8-settings .st-chatu8-task-item .task-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+}
+
+/* 任务信息 */
+#st-chatu8-settings .st-chatu8-task-item .task-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+#st-chatu8-settings .st-chatu8-task-item .task-name {
+    font-size: 0.9rem;
+    color: var(--st-chatu8-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#st-chatu8-settings .st-chatu8-task-item .task-meta {
+    font-size: 0.75rem;
+    color: var(--st-chatu8-text-secondary);
+}
+
+/* 取消按钮 */
+#st-chatu8-settings .st-chatu8-task-item .task-cancel-btn {
+    background: transparent;
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-secondary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+#st-chatu8-settings .st-chatu8-task-item .task-cancel-btn:hover {
+    background: var(--st-chatu8-danger-primary, #d9534f);
+    border-color: var(--st-chatu8-danger-primary, #d9534f);
+    color: white;
+}
+
+/* 运行中任务的动画 */
+#st-chatu8-settings .st-chatu8-task-item[data-status="running"] .task-icon {
+    animation: st-chatu8-task-spin 1s linear infinite;
+}
+
+@keyframes st-chatu8-task-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================================
+   预设分组管理
+
+   注意：浮动面板用 position: fixed 挂在 viz-backdrop 下（viz-dialog
+   有 overflow: hidden 会裁切），所以这里的选择器不加
+   #st-chatu8-settings 前缀，避免宿主回退到 body 时样式失效。
+   主题有亮色也有暗色，配色一律走 dropdown-list-bg / dropdown-text
+   这一对变量，hover 用中性灰，保证两种色系下都能看清。
+   ============================================================ */
+
+/* ---- 工具栏上的触发器（与其他胶囊按钮同款）---- */
+.st-chatu8-group-dropdown-trigger {
+    cursor: pointer;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.9em;
+    user-select: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s;
+}
+
+.st-chatu8-group-dropdown-trigger:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.st-chatu8-group-dropdown-trigger.active {
+    background: var(--st-chatu8-accent-primary, #4a9eff);
+    color: white;
+}
+
+.st-chatu8-group-dropdown-label {
+    max-width: 10em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.st-chatu8-group-dropdown-count {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 0 7px;
+    font-size: 0.85em;
+    line-height: 1.6;
+    min-width: 1.4em;
+    text-align: center;
+}
+
+.st-chatu8-group-dropdown-arrow {
+    font-size: 0.75em;
+    opacity: 0.7;
+    transition: transform 0.25s;
+}
+
+.st-chatu8-group-dropdown-trigger.open .st-chatu8-group-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* ---- 浮动面板（下拉 / 标签多选 共用视觉）---- */
+.st-chatu8-group-dropdown-panel,
+.st-chatu8-group-tag-panel {
+    position: fixed;
+    z-index: 10002;
+    min-width: 220px;
+    max-width: 320px;
+    max-height: 340px;
+    overflow-y: auto;
+    padding: 6px;
+    background: var(--st-chatu8-dropdown-list-bg, #233554);
+    color: var(--st-chatu8-dropdown-text, #e0e1dd);
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+    animation: st-chatu8-group-panel-in 0.18s ease;
+}
+
+@keyframes st-chatu8-group-panel-in {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 面板内搜索框 */
+.st-chatu8-group-dropdown-search {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 6px;
+    padding: 7px 10px;
+    background: rgba(0, 0, 0, 0.18);
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+    border-radius: 8px;
+    color: inherit;
+    outline: none;
+    font-size: 0.9em;
+}
+
+.st-chatu8-group-dropdown-search:focus {
+    border-color: var(--st-chatu8-accent-primary, #4a9eff);
+}
+
+/* ---- 下拉面板里的行 ---- */
+.st-chatu8-group-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background 0.18s;
+}
+
+.st-chatu8-group-dropdown-item:hover {
+    background: rgba(128, 128, 128, 0.22);
+}
+
+.st-chatu8-group-dropdown-item.active {
+    background: var(--st-chatu8-accent-primary, #4a9eff);
+    color: white;
+}
+
+.st-chatu8-group-dropdown-check {
+    width: 1em;
+    flex-shrink: 0;
+    font-size: 0.85em;
+}
+
+.st-chatu8-group-dropdown-name {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.st-chatu8-group-dropdown-item .st-chatu8-group-dropdown-count {
+    flex-shrink: 0;
+    opacity: 0.85;
+}
+
+.st-chatu8-group-dropdown-divider {
+    height: 1px;
+    margin: 6px 4px;
+    background: var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+}
+
+/* 「管理分组…」入口 */
+.st-chatu8-group-dropdown-item.manage {
+    color: var(--st-chatu8-accent-primary, #4a9eff);
+    font-weight: 600;
+}
+
+.st-chatu8-group-dropdown-item.manage:hover {
+    background: rgba(128, 128, 128, 0.22);
+}
+
+.st-chatu8-group-dropdown-empty {
+    padding: 14px 10px;
+    text-align: center;
+    font-size: 0.85em;
+    opacity: 0.6;
+}
+
+.st-chatu8-group-dropdown-list,
+.st-chatu8-group-tag-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---- 卡片上的 🏷 多选面板 ---- */
+.st-chatu8-group-tag-header {
+    padding: 6px 10px 8px;
+    font-size: 0.85em;
+    font-weight: 600;
+    opacity: 0.75;
+    border-bottom: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.st-chatu8-group-tag-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background 0.18s;
+}
+
+.st-chatu8-group-tag-row:hover {
+    background: rgba(128, 128, 128, 0.22);
+}
+
+.st-chatu8-group-tag-row input[type="checkbox"] {
+    cursor: pointer;
+    flex-shrink: 0;
+    margin: 0;
+    accent-color: var(--st-chatu8-accent-primary, #4a9eff);
+}
+
+.st-chatu8-group-tag-name {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ---- 工具栏上的独立「分组」按钮 ---- */
+.st-chatu8-group-manage-trigger {
+    cursor: pointer;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.9em;
+    user-select: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s;
+}
+
+.st-chatu8-group-manage-trigger:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ---- 分组管理面板（外壳复用 .st-chatu8-confirm-box）----
+   modals.css 把 `.st-chatu8-confirm-box` 限死 450px，而它在 index.js 的
+   cssFiles 里排在 main.css 之后。所以这里必须同时叠上 confirm-box 类
+   （id + 两个类）才能盖过去，只写单个类会被后加载的规则压掉。 */
+#st-chatu8-settings .st-chatu8-confirm-box.st-chatu8-group-manage-box,
+.st-chatu8-confirm-box.st-chatu8-group-manage-box {
+    max-width: 820px;
+    width: min(820px, calc(100vw - 32px));
+}
+
+/* 双栏：左边分组列表定宽，右边成员列表吃掉剩余空间 */
+.st-chatu8-group-panes {
+    display: flex;
+    gap: 14px;
+    align-items: stretch;
+    text-align: left;
+}
+
+.st-chatu8-group-pane-left,
+.st-chatu8-group-pane-right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    /* 两栏等高，各自内部滚动 */
+    max-height: 52vh;
+}
+
+.st-chatu8-group-pane-left {
+    flex: 0 0 auto;
+    width: 46%;
+}
+
+.st-chatu8-group-pane-right {
+    flex: 1 1 auto;
+    padding-left: 14px;
+    border-left: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+}
+
+.st-chatu8-group-pane-title {
+    font-size: 0.85em;
+    font-weight: 600;
+    opacity: 0.75;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* 右栏未选中分组时的占位提示 */
+.st-chatu8-group-pane-hint {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 10px;
+    font-size: 0.85em;
+    opacity: 0.5;
+    text-align: center;
+}
+
+.st-chatu8-group-pane-hint i {
+    font-size: 1.6em;
+}
+
+/* 右栏成员清单 */
+.st-chatu8-group-member-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 120px;
+}
+
+.st-chatu8-group-member-footer {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+    font-size: 0.82em;
+}
+
+.st-chatu8-group-member-stat {
+    margin-right: auto;
+    opacity: 0.7;
+}
+
+.st-chatu8-group-member-action {
+    padding: 4px 10px;
+    background: rgba(128, 128, 128, 0.2);
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+    border-radius: 8px;
+    color: inherit;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.2s;
+}
+
+.st-chatu8-group-member-action:hover {
+    background: var(--st-chatu8-accent-primary, #4a9eff);
+    border-color: var(--st-chatu8-accent-primary, #4a9eff);
+    color: white;
+}
+
+.st-chatu8-group-manage-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.st-chatu8-group-create-btn {
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.st-chatu8-group-manage-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    background: rgba(128, 128, 128, 0.12);
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.12));
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.st-chatu8-group-manage-row:hover {
+    background: rgba(128, 128, 128, 0.22);
+}
+
+/* 正在右栏编辑的那个分组 */
+.st-chatu8-group-manage-row.active {
+    border-color: var(--st-chatu8-accent-primary, #4a9eff);
+    box-shadow: inset 3px 0 0 var(--st-chatu8-accent-primary, #4a9eff);
+}
+
+.st-chatu8-group-manage-name {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.st-chatu8-group-manage-row .st-chatu8-group-dropdown-count {
+    flex-shrink: 0;
+    background: rgba(128, 128, 128, 0.3);
+}
+
+.st-chatu8-group-manage-btn {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(128, 128, 128, 0.2);
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+    border-radius: 8px;
+    color: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.st-chatu8-group-manage-btn:hover:not(:disabled) {
+    background: var(--st-chatu8-accent-primary, #4a9eff);
+    border-color: var(--st-chatu8-accent-primary, #4a9eff);
+    color: white;
+}
+
+.st-chatu8-group-manage-btn.danger:hover:not(:disabled) {
+    background: var(--st-chatu8-danger-primary, #d9534f);
+    border-color: var(--st-chatu8-danger-primary, #d9534f);
+    color: white;
+}
+
+/* 排序箭头到边界后置灰 */
+.st-chatu8-group-manage-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* ---- 窄屏适配：面板不要溢出屏幕 ---- */
+@media (max-width: 600px) {
+
+    .st-chatu8-group-dropdown-panel,
+    .st-chatu8-group-tag-panel {
+        max-width: calc(100vw - 24px);
+        min-width: 0;
+    }
+
+    .st-chatu8-group-dropdown-label {
+        max-width: 6em;
+    }
+
+    /* 双栏塞不进窄屏，改成上下堆叠 */
+    .st-chatu8-group-panes {
+        flex-direction: column;
+    }
+
+    .st-chatu8-group-pane-left,
+    .st-chatu8-group-pane-right {
+        width: auto;
+        max-height: none;
+    }
+
+    .st-chatu8-group-pane-left {
+        max-height: 30vh;
+    }
+
+    .st-chatu8-group-pane-right {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 10px;
+        border-top: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15));
+    }
+
+    .st-chatu8-group-member-list {
+        max-height: 28vh;
+    }
+
+    /* 一行挤四个操作按钮太紧，缩一号 */
+    .st-chatu8-group-manage-btn {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* 工具栏右侧按钮组的换行。
+   toolbar 自身在 modals.css 的 768px 断点里已经 flex-wrap，
+   但内层这个 group 是内联 `display:flex` 没带 wrap，
+   加上「分组」按钮后是四个胶囊，窄屏会挤出容器。 */
+@media (max-width: 768px) {
+    #st-chatu8-settings .st-chatu8-preset-viz-dialog-wrapper .st-chatu8-workflow-viz-toolbar>div {
+        flex-wrap: wrap;
+    }
+}
+
+/* ---- 智能滚动按钮 (现代化玻璃质感) ---- */
+.st-chatu8-scroll-btn {
+    position: absolute;
+    right: 30px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(128, 128, 128, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--st-chatu8-text-color, #fff);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.2s ease, background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 100;
+}
+
+.st-chatu8-scroll-btn.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.st-chatu8-scroll-btn:hover {
+    background: rgba(128, 128, 128, 0.4);
+    transform: scale(1.1);
+}
+
+#ch-scroll-top {
+    top: 40px;
+}
+
+#ch-scroll-bottom {
+    bottom: 40px;
+}
+
+/* 适配手机端滚动按钮位置 */
+@media (max-width: 768px) {
+    #ch-scroll-top {
+        top: 85px; /* 栏目下方一点，避免遮挡顶部导航 */
+        right: 15px;
+    }
+    #ch-scroll-bottom {
+        bottom: 20px;
+        right: 15px;
+    }
+    .st-chatu8-scroll-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+}
+
+/* 图片与音频控制卡片拖拽排序与交换样式 */
+.st-chatu8-card-draggable {
+    cursor: grab;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.st-chatu8-card-draggable:active {
+    cursor: grabbing;
+}
+.st-chatu8-card-draggable input,
+.st-chatu8-card-draggable textarea,
+.st-chatu8-card-draggable select,
+.st-chatu8-card-draggable button,
+.st-chatu8-card-draggable audio {
+    cursor: auto;
+}
+.st-chatu8-card-dragging {
+    opacity: 0.45 !important;
+    border: 2px dashed #60a5fa !important;
+    transform: scale(0.98);
+}
+.st-chatu8-card-drag-over {
+    border: 2px dashed #3b82f6 !important;
+    background: rgba(59, 130, 246, 0.12) !important;
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* 卡片头部操作栏（交换按钮与开启下拉框）同一平面对齐样式 */
+.st-chatu8-media-header-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 26px;
+}
+
+.st-chatu8-media-header-controls button.st-chatu8-swap-btn,
+.st-chatu8-media-header-controls select.st-chatu8-ctrl-select {
+    height: 26px !important;
+    min-height: 26px !important;
+    max-height: 26px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    font-size: 11px !important;
+    line-height: 24px !important;
+    border-radius: 6px !important;
+    vertical-align: middle !important;
+    border: 1px solid var(--st-chatu8-border-color, rgba(255, 255, 255, 0.15)) !important;
+    background: var(--st-chatu8-bg-tertiary, rgba(255, 255, 255, 0.06)) !important;
+    color: var(--st-chatu8-text-primary, inherit) !important;
+    transition: all 0.2s ease;
+}
+
+.st-chatu8-media-header-controls button.st-chatu8-swap-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 8px !important;
+    gap: 4px !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+}
+
+.st-chatu8-media-header-controls button.st-chatu8-swap-btn:hover {
+    background: var(--st-chatu8-accent-secondary, rgba(255, 255, 255, 0.12)) !important;
+    border-color: var(--st-chatu8-accent-primary, #60a5fa) !important;
+}
+
+.st-chatu8-media-header-controls select.st-chatu8-ctrl-select {
+    display: inline-flex !important;
+    align-items: center !important;
+    width: auto !important;
+    min-width: unset !important;
+    padding: 0 8px !important;
+    cursor: pointer !important;
+    outline: none !important;
+}
+
+.st-chatu8-media-header-controls select.st-chatu8-ctrl-select:hover,
+.st-chatu8-media-header-controls select.st-chatu8-ctrl-select:focus {
+    border-color: var(--st-chatu8-accent-primary, #60a5fa) !important;
+}
+
+.st-chatu8-media-header-controls button.st-chatu8-swap-btn.is-active {
+    background: #f59e0b !important;
+    color: #ffffff !important;
+    border-color: #d97706 !important;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.5) !important;
+}
+
+/* 图片/音频素材停用时的轻透遮罩 */
+.st-chatu8-media-preview-box {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.st-chatu8-media-mute-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    pointer-events: none;
+    z-index: 5;
+    transition: opacity 0.2s ease;
+}
+
+.st-chatu8-mute-badge {
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    padding: 4px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #f1f5f9;
+    font-size: 11px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.st-chatu8-preview-muted {
+    filter: grayscale(40%) opacity(0.85) !important;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+}

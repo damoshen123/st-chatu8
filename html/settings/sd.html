@@ -1,0 +1,272 @@
+<div id="ch-tab-sd">
+    <div class="ch-prompts-section st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="fixed_prompts_sd">
+        <div class="st-chatu8-section-header">
+            <h3 class="st-chatu8-section-title">固定提示词</h3>
+            <span class="st-chatu8-section-toggle">
+                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
+            </span>
+        </div>
+        <div class="st-chatu8-section-body">
+            <div class="st-chatu8-field">
+                <label for="yusheid">提示词预设</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="yusheid" class="st-chatu8-select"></select>
+                    <div class="st-chatu8-preset-box-wrapper">
+                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作收纳盒">
+                            <i class="fa-solid fa-table-cells"></i>
+                        </button>
+                        <div class="st-chatu8-preset-box-dropdown">
+                            <div class="st-chatu8-preset-box-header">
+                                <span class="st-chatu8-preset-box-title"><i class="fa-solid fa-box-archive"></i> 提示词预设操作</span>
+                                <button type="button" class="st-chatu8-preset-box-close" title="关闭">&times;</button>
+                            </div>
+                            <div class="st-chatu8-preset-box-group">
+                                <span class="st-chatu8-preset-box-group-label">预设管理</span>
+                                <div class="st-chatu8-preset-box-grid">
+                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_visual_select" title="可视化选择"><i class="fa-solid fa-grip"></i><span>可视化</span></button>
+                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_new" title="新建预设"><i class="fa-solid fa-plus"></i><span>新建</span></button>
+                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_update_style" title="保存修改"><i class="fa-solid fa-save"></i><span>保存</span></button>
+                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_save_style" title="另存为新预设"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
+                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_rename" title="重命名预设"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
+                                </div>
+                            </div>
+                            <div class="st-chatu8-preset-box-group">
+                                <span class="st-chatu8-preset-box-group-label">导入与导出</span>
+                                <div class="st-chatu8-preset-box-grid">
+                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_export_current" title="导出当前预设"><i class="fa-solid fa-upload"></i><span>导出当前</span></button>
+                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_export_all" title="导出全部预设"><i class="fa-solid fa-file-export"></i><span>导出全部</span></button>
+                                    <button type="button" class="st-chatu8-preset-box-item" id="st_chatu8_tishici_import" title="导入预设文件"><i class="fa-solid fa-download"></i><span>导入</span></button>
+                                </div>
+                            </div>
+                            <div class="st-chatu8-preset-box-group">
+                                <span class="st-chatu8-preset-box-group-label">危险操作</span>
+                                <div class="st-chatu8-preset-box-grid">
+                                    <button type="button" class="st-chatu8-preset-box-item danger" id="st_chatu8_tishici_delete_style" title="删除预设"><i class="fa-solid fa-trash"></i><span>删除预设</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="fixedPrompt">固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+                <button class="st-chatu8-icon-btn" id="translate_fixedPrompt" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+                <textarea id="fixedPrompt" class="st-chatu8-textarea" rows="4"></textarea>
+                <div id="fixedPrompt-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="fixedPrompt_end">后置固定正面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+                <button class="st-chatu8-icon-btn" id="translate_fixedPrompt_end" title="翻译" style="align-self: flex-end; margin: 4px 0;"><i class="fa-solid fa-language"></i></button>
+                <textarea id="fixedPrompt_end" class="st-chatu8-textarea" rows="4"></textarea>
+                <div id="fixedPrompt_end-results" class="ch-autocomplete-results"></div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="negativePrompt">固定负面提示词 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+                <textarea id="negativePrompt" class="st-chatu8-textarea" rows="4"></textarea>
+                <div id="negativePrompt-results" class="ch-autocomplete-results"></div>
+            </div>
+            <h3>LORA</h3>
+            <div class="st-chatu8-field">
+                <label for="sd_cchatu_8_lora">添加 LORA</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="sd_cchatu_8_lora" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="sd_add_lora" title="添加"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="prompt_replace_sd"> 
+        <div class="st-chatu8-section-header">
+            <h3 class="st-chatu8-section-title">提示词替换</h3>
+            <span class="st-chatu8-section-toggle">
+                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
+            </span>
+        </div>
+        <div class="st-chatu8-section-body">
+            <div class="st-chatu8-field">
+                <label for="prompt_replace_id">提示词替换</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="prompt_replace_id" class="st-chatu8-select"></select>
+                    <div class="st-chatu8-preset-box-wrapper">
+                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作收纳盒">
+                            <i class="fa-solid fa-table-cells"></i>
+                        </button>
+                        <div class="st-chatu8-preset-box-dropdown">
+                            <div class="st-chatu8-preset-box-header">
+                                <span class="st-chatu8-preset-box-title"><i class="fa-solid fa-box-archive"></i> 替换预设操作</span>
+                                <button type="button" class="st-chatu8-preset-box-close" title="关闭">&times;</button>
+                            </div>
+                            <div class="st-chatu8-preset-box-group">
+                                <span class="st-chatu8-preset-box-group-label">预设管理</span>
+                                <div class="st-chatu8-preset-box-grid">
+                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_new" title="新建预设"><i class="fa-solid fa-plus"></i><span>新建</span></button>
+                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_update_style" title="保存修改"><i class="fa-solid fa-save"></i><span>保存</span></button>
+                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_save_style" title="另存为新预设"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
+                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_rename" title="重命名预设"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
+                                </div>
+                            </div>
+                            <div class="st-chatu8-preset-box-group">
+                                <span class="st-chatu8-preset-box-group-label">导入与导出</span>
+                                <div class="st-chatu8-preset-box-grid">
+                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_export_current" title="导出当前预设"><i class="fa-solid fa-upload"></i><span>导出当前</span></button>
+                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_export_all" title="导出全部预设"><i class="fa-solid fa-file-export"></i><span>导出全部</span></button>
+                                    <button type="button" class="st-chatu8-preset-box-item" id="prompt_replace_import" title="导入预设文件"><i class="fa-solid fa-download"></i><span>导入</span></button>
+                                </div>
+                            </div>
+                            <div class="st-chatu8-preset-box-group">
+                                <span class="st-chatu8-preset-box-group-label">危险操作</span>
+                                <div class="st-chatu8-preset-box-grid">
+                                    <button type="button" class="st-chatu8-preset-box-item danger" id="prompt_replace_delete_style" title="删除预设"><i class="fa-solid fa-trash"></i><span>删除预设</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="prompt_replace_text">替换规则 <span class="st-chatu8-unsaved-warning" title="设置尚未保存" style="display: none;"><i class="fa-solid fa-triangle-exclamation"></i></span></label>
+                <textarea id="prompt_replace_text" class="st-chatu8-textarea" rows="4"></textarea>
+            </div>
+        </div>
+    </div>
+        <div class="st-chatu8-settings-section"> 
+        <div class="st-chatu8-field">
+            <label for="AQT_sd">正面质量预设</label>
+            <select id="AQT_sd" class="st-chatu8-select">
+                <option value="best quality, amazing quality, very aesthetic, absurdres">启用</option>
+                <option value="">禁用</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="UCP_sd">负面质量预设</label>
+            <select id="UCP_sd" class="st-chatu8-select">
+<option value="">无</option>
+<option value="bad proportions, out of focus, username, text, bad anatomy, lowres, worstquality, watermark, cropped, bad body, deformed, mutated, disfigured, poorly drawn face, malformed hands, extra arms, extra limb, missing limb, too many fingers, extra legs, bad feet, missing fingers, fused fingers, acnes, floating limbs, disconnected limbs, long neck, long body, mutation, ugly, blurry, low quality, sketches, normal quality, monochrome, grayscale, signature, logo, jpeg artifacts, unfinished, displeasing, chromatic aberration, extra digits, artistic error, scan, abstract, photo, realism, screencap">作者预设</option>
+<option value="negativeXL_D, negativeXL, source_furry, extra limbs, deformations, long fingers, fused fingers, inaccurate_anatomy, bad proportions, poorly drawn hands, bad hands, extra_fingers, extra_hand, extra_arm, distorted fingers, ugly hands, creepy hands, six fingers, malformed fingers, long_fingers, interlocked fingers:1.2, ugly, deformed, uneven, asymmetrical, unnatural, missing fingers, extra digit, fewer digits, opaque eyes, small eyes, ugly eyes, blurred eyes, bad face, (bad anatomy, ugly face:1.2), (worst quality, low quality, not detailed, low resolution:1.2), motion_blur, blur, blur_censor, blurry, simple_background, text, error, cropped, normal quality, jpeg artifacts, watermark, logo, signature, username, artist name">作者预set 2</option>
+            </select>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>Stable Diffusion 设置</h3>
+        <div class="st-chatu8-field">
+            <label for="sdUrl">API 地址</label>
+            <div class="st-chatu8-input-group">
+                <i class="fa-solid fa-exclamation-triangle st-chatu8-url-warning-icon" title="无效的URL格式"></i>
+                <input type="text" id="sdUrl" class="st-chatu8-text-input" placeholder="http://127.0.0.1:7860">
+                <button id="testSd" class="st-chatu8-btn">连接刷新数据</button>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="st_chatu8_sd_auth">身份验证</label>
+            <input type="text" id="st_chatu8_sd_auth" class="st-chatu8-text-input" placeholder="例： 用户名:密码">
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>模型与采样设置</h3>
+        <div class="st-chatu8-field">
+            <label for="sd_cchatu_8_model">模型</label>
+            <select id="sd_cchatu_8_model" class="st-chatu8-select"></select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="sd_cchatu_8_vae">VAE</label>
+            <select id="sd_cchatu_8_vae" class="st-chatu8-select"></select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="sd_cchatu_8_samplerName">采样方法</label>
+            <select id="sd_cchatu_8_samplerName" class="st-chatu8-select"></select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="sd_cchatu_8_scheduler">调度器</label>
+            <select id="sd_cchatu_8_scheduler" class="st-chatu8-select"></select>
+        </div>
+    </div>
+        
+    <div class="st-chatu8-settings-section">
+        <h3>生成参数</h3>
+        <div class="st-chatu8-grid">
+            <div class="st-chatu8-field">
+                <label for="sd_csize">预设尺寸</label>
+                <select id="sd_csize" class="st-chatu8-select">
+                    <option value="512x512">512x512 (1:1, 图标)</option>
+                    <option value="640x640">640x640 (1:1, 图标)</option>
+                    <option value="512x768">512x768 (2:3, 垂直)</option>
+                    <option value="768x512">768x512 (3:2, 水平)</option>
+                    <option value="1024x1024">1024x1024 (1:1, SDXL)</option>
+                    <option value="1216x832">1216x832 (19:13, 超高清)</option>
+                    <option value="832x1216">832x1216 (13:19, 超高清)</option>
+                </select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="sd_cwidth">宽度</label>
+                <input type="number" id="sd_cwidth" class="st-chatu8-text-input">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="sd_cheight">高度</label>
+                <input type="number" id="sd_cheight" class="st-chatu8-text-input">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="sd_csteps">采样步数</label>
+                <input type="number" id="sd_csteps" class="st-chatu8-text-input">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="sdCfgScale">CFG缩放</label>
+                <input type="number" id="sdCfgScale" class="st-chatu8-text-input">
+            </div>
+
+            <div class="st-chatu8-field">
+                <label for="sd_cclip_skip">片段跳过</label>
+                <input type="number" id="sd_cclip_skip" class="st-chatu8-text-input">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="sd_cseed">种子 (seed)</label>
+                <input type="number" id="sd_cseed" class="st-chatu8-text-input" value="-1">
+            </div>
+        </div>
+    </div>
+    <div class="st-chatu8-settings-section">
+        <h3>放大修复</h3>
+        <div class="st-chatu8-field">
+            <label for="sd_chires_fix">高清修复</label>
+            <div class="st-chatu8-toggle">
+                <input id="sd_chires_fix" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="sd_chires_steps">高清修复步数</label>
+            <input type="number" id="sd_chires_steps" class="st-chatu8-text-input">
+        </div>    
+        <div class="st-chatu8-field">
+            <label for="sd_cchatu_8_upscaler">图像扩大器</label>
+            <select id="sd_cchatu_8_upscaler" class="st-chatu8-select"></select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="sd_cupscale_factor">扩大倍数</label>
+            <input type="number" id="sd_cupscale_factor" class="st-chatu8-text-input">
+        </div>
+        
+        <div class="st-chatu8-field">
+            <label for="sd_cdenoising_strength">去噪强度</label>
+            <input type="number" id="sd_cdenoising_strength" class="st-chatu8-text-input" step="0.1">
+        </div>
+    </div>
+
+    <div class="st-chatu8-settings-section">
+        <h3>面部修复与 ADetailer</h3>
+        <div class="st-chatu8-field">
+            <label for="restoreFaces">面部修复</label>
+            <div class="st-chatu8-toggle">
+                <input id="restoreFaces" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="sd_cadetailer">使用ADetailer（脸部）</label>
+            <div class="st-chatu8-toggle">
+                <input id="sd_cadetailer" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div> 
+    </div>
+            
+            </div>

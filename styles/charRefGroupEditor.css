@@ -1,0 +1,313 @@
+/* Character Reference Group Editor Styles */
+
+/* Main Dialog Styling */
+.st-chatu8-char-ref-group-editor-dialog {
+    max-width: 900px;
+    width: 90vw;
+}
+
+.st-chatu8-char-ref-group-editor-dialog .st-chatu8-workflow-viz-body {
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: calc(90vh - 120px);
+}
+
+.st-chatu8-char-ref-group-editor-content {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Character Reference Slots Container - Grid Layout */
+.st-chatu8-char-ref-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Ensure grid items don't overflow */
+.st-chatu8-char-ref-slots>* {
+    min-width: 0;
+}
+
+/* Individual Character Reference Slot Card */
+.st-chatu8-char-ref-slot {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.st-chatu8-char-ref-slot:hover {
+    border-color: rgba(74, 144, 226, 0.4);
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Add Reference Button Styling */
+#char-ref-group-add-ref {
+    width: 100%;
+    padding: 1rem;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+#char-ref-group-add-ref:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#char-ref-group-add-ref:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+/* Status Message Area */
+#char-ref-group-status {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+/* Empty State */
+.st-chatu8-char-ref-slots:empty::before {
+    content: '暂无角色参考';
+    display: block;
+    text-align: center;
+    padding: 3rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+}
+
+/* Group Preset Controls */
+.st-chatu8-char-ref-group-editor-dialog .st-chatu8-profile-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.st-chatu8-char-ref-group-editor-dialog .st-chatu8-profile-controls select {
+    flex: 1;
+    min-width: 200px;
+}
+
+.st-chatu8-char-ref-group-editor-dialog .st-chatu8-icon-btn {
+    padding: 10px;
+    font-size: 0.95rem;
+}
+
+/* Fix card height - prevent stretching */
+.st-chatu8-vibe-visual-selector-grid .st-chatu8-vibe-card {
+    align-self: start;
+    height: fit-content;
+}
+
+/* Ensure consistent card sizing */
+.st-chatu8-vibe-card-thumbnail {
+    flex-shrink: 0;
+}
+
+/* ==================== Responsive Layout Rules ==================== */
+
+/* Tablet and smaller screens */
+@media screen and (max-width: 768px) {
+    .st-chatu8-char-ref-group-editor-dialog {
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        max-width: none !important;
+        border-radius: 0 !important;
+    }
+
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-workflow-viz-body {
+        padding: 1rem;
+        max-height: calc(100vh - 100px);
+        max-height: calc(100dvh - 100px);
+    }
+
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-workflow-viz-header {
+        padding: 12px 16px;
+    }
+
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-workflow-viz-header h3 {
+        font-size: 1em;
+    }
+
+    /* Force single column grid on mobile */
+    .st-chatu8-char-ref-slots {
+        grid-template-columns: 1fr;
+    }
+
+    /* Profile controls layout: select on first row, buttons on second and third rows */
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-profile-controls {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-rows: auto auto !important;
+        gap: 6px !important;
+        width: 100% !important;
+        flex-wrap: unset !important;
+    }
+
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-profile-controls select {
+        grid-column: 1 / -1 !important;
+        grid-row: 1 !important;
+        width: 100% !important;
+        flex: none !important;
+    }
+
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-profile-controls button {
+        min-width: 40px !important;
+        padding: 10px 4px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* First row of buttons (4 buttons) */
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(1) {
+        grid-row: 2 !important;
+        grid-column: 1 !important;
+    }
+
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(2) {
+        grid-row: 2 !important;
+        grid-column: 2 !important;
+    }
+
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(3) {
+        grid-row: 2 !important;
+        grid-column: 3 !important;
+    }
+
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-profile-controls button:nth-of-type(4) {
+        grid-row: 2 !important;
+        grid-column: 4 !important;
+    }
+
+    /* Adjust add reference button */
+    #char-ref-group-add-ref {
+        padding: 14px 1rem;
+        font-size: 1rem;
+    }
+
+    /* Status message */
+    #char-ref-group-status {
+        font-size: 0.85rem;
+        padding: 0.8rem;
+    }
+}
+
+/* Tablet landscape and medium screens - 2 columns */
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    .st-chatu8-char-ref-slots {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop and larger screens - 2 columns with larger minimum */
+@media screen and (min-width: 1201px) {
+    .st-chatu8-char-ref-slots {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+}
+
+/* Small mobile screens */
+@media screen and (max-width: 480px) {
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-workflow-viz-body {
+        padding: 0.75rem;
+    }
+
+    .st-chatu8-char-ref-slot {
+        padding: 0.8rem;
+    }
+
+    #char-ref-group-add-ref {
+        font-size: 0.95rem;
+        padding: 12px 0.8rem;
+    }
+
+    .st-chatu8-char-ref-group-editor-dialog .st-chatu8-icon-btn {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ==================== Theme Compatibility ==================== */
+
+/* Ensure compatibility with different theme presets */
+.st-chatu8-char-ref-group-editor-dialog {
+    color: var(--st-chatu8-text-primary, #f0f0f0);
+}
+
+.st-chatu8-char-ref-slot {
+    border-color: var(--st-chatu8-border-color, rgba(255, 255, 255, 0.1));
+    background: var(--st-chatu8-bg-secondary, rgba(0, 0, 0, 0.2));
+}
+
+.st-chatu8-char-ref-slot:hover {
+    border-color: var(--st-chatu8-accent-primary, rgba(74, 144, 226, 0.4));
+}
+
+/* ==================== Animation and Transitions ==================== */
+
+/* Fade in animation for slots */
+@keyframes st-chatu8-char-ref-slot-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.st-chatu8-char-ref-slot {
+    animation: st-chatu8-char-ref-slot-fade-in 0.3s ease-out;
+}
+
+/* ==================== Accessibility Improvements ==================== */
+
+/* Focus states for keyboard navigation */
+#char-ref-group-add-ref:focus {
+    outline: 2px solid var(--st-chatu8-accent-primary, #4a90e2);
+    outline-offset: 2px;
+}
+
+.st-chatu8-char-ref-group-editor-dialog .st-chatu8-icon-btn:focus {
+    outline: 2px solid var(--st-chatu8-accent-primary, #4a90e2);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .st-chatu8-char-ref-slot {
+        border-width: 2px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .st-chatu8-char-ref-slot {
+        animation: none;
+        transition: none;
+    }
+
+    .st-chatu8-char-ref-slot:hover {
+        transform: none;
+    }
+
+    #char-ref-group-add-ref:not(:disabled):hover {
+        transform: none;
+    }
+}

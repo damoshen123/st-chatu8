@@ -1,0 +1,83 @@
+@import url('./styles/main.css');
+@import url('./styles/forms.css');
+@import url('./styles/modals.css');
+@import url('./styles/cache.css');
+@import url('./styles/image_cache.css');
+@import url('./styles/fab.css');
+@import url('./styles/about.css');
+@import url('./styles/responsive.css');
+@import url('./styles/vocabulary.css');
+@import url('./styles/banana.css');
+@import url('./styles/send_data.css');
+@import url('./styles/preset-entries.css');
+@import url('./styles/popup.css');
+@import url('./styles/collapse.css');
+@import url('./styles/vibeGroupEditor.css');
+@import url('./styles/charRefGroupEditor.css');
+@import url('./styles/knowledgeBase.css');
+@import url('./styles/help-tip.css');
+@import url('./styles/video_assets.css');
+@import url('./styles/video_assets_merger.css');
+@import url('./styles/video_frame_extractor.css');
+@import url('./styles/video_asset_gen.css');
+@import url('./styles/presetBox.css');
+@import url('./dna.css');
+
+/* Sub-navigation styles */
+.st-chatu8-sub-nav {
+    display: flex;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+    margin-bottom: 20px;
+}
+
+.st-chatu8-sub-nav-link {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    /* Overlap with parent border */
+    color: var(--st-chatu8-text-color);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.st-chatu8-sub-nav-link:hover {
+    background-color: var(--st-chatu8-hover-bg-color);
+}
+
+.st-chatu8-sub-nav-link.active {
+    border-bottom-color: var(--st-chatu8-accent-color);
+    color: var(--st-chatu8-accent-color);
+    font-weight: bold;
+}
+
+/* Sub-tab content container */
+.st-chatu8-sub-tab-content {
+    display: none;
+}
+
+.st-chatu8-sub-tab-content[style*="display: block"] {
+    display: block;
+}
+
+/* User 人设生成 - 类型选择器样式 */
+.ch-persona-gen-type-selector {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ch-persona-gen-type-selector label {
+    font-weight: 500;
+    color: var(--st-chatu8-text-primary);
+}
+
+/* 统一控制 token 占用的样式 */
+.st-chatu8-token-display {
+    font-size: 0.85em;
+    color: inherit;
+    margin-top: 4px;
+    opacity: 0.8;
+    font-weight: 600;
+}

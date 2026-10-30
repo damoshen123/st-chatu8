@@ -1,0 +1,2245 @@
+/* Confirmation Modal Styles */
+#st-chatu8-settings .st-chatu8-confirm-backdrop,
+.st-chatu8-confirm-backdrop {
+    position: absolute;
+    /* Changed from fixed to absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: grid;
+    place-items: center;
+    z-index: 1100;
+    /* Higher than modal */
+    font-family: var(--st-chatu8-font-family);
+}
+
+#st-chatu8-settings .st-chatu8-confirm-box,
+.st-chatu8-confirm-box {
+    background-color: var(--st-chatu8-bg-primary);
+    color: var(--st-chatu8-text-primary);
+    padding: 24px;
+    border-radius: var(--st-chatu8-border-radius);
+    box-shadow: var(--st-chatu8-box-shadow);
+    width: 90vw;
+    max-width: 480px;
+    max-height: 85vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: hidden;
+}
+
+#st-chatu8-settings .st-chatu8-confirm-message,
+.st-chatu8-confirm-message {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding-right: 4px;
+    box-sizing: border-box;
+}
+
+#st-chatu8-settings .st-chatu8-confirm-buttons,
+.st-chatu8-confirm-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+    flex-shrink: 0;
+}
+
+/* Ensure the input inside the confirm box is also styled */
+#st-chatu8-settings .st-chatu8-confirm-box .st-chatu8-text-input,
+.st-chatu8-confirm-box .st-chatu8-text-input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Styles for the image tag edit dialog */
+.st-chatu8-edit-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: grid;
+    place-items: center;
+    z-index: 10000;
+    font-family: var(--st-chatu8-font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+}
+
+.st-chatu8-edit-dialog {
+    background-color: var(--st-chatu8-bg-primary, #2c2c2c);
+    color: var(--st-chatu8-text-primary, #f0f0f0);
+    border: 1px solid var(--st-chatu8-border-color, #444);
+    border-radius: 12px;
+    padding: 20px;
+    z-index: 10001;
+    /* Ensure it's on top of the backdrop */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 600px;
+    max-width: 90vw;
+    max-height: 85vh;
+    /* 限制最大高度为85vh，防止内容溢出影响其他页面元素 */
+    overflow: hidden;
+    /* 使用 hidden 防止溢出，内部元素使用自己的滚动 */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    /* No position/transform needed as backdrop handles centering */
+}
+
+.st-chatu8-edit-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-align: center;
+    color: var(--st-chatu8-text-primary, #e0e0e0);
+}
+
+.st-chatu8-edit-input {
+    width: 100%;
+    min-height: 200px;
+    max-height: 50vh;
+    /* 限制最大高度，防止输入框过大 */
+    background-color: var(--st-chatu8-input-bg, #3a3a3a);
+    color: var(--st-chatu8-input-text, #f0f0f0);
+    border: 1px solid var(--st-chatu8-input-border, #555);
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-family: var(--st-chatu8-font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+    line-height: 1.5;
+    letter-spacing: normal;
+    word-spacing: normal;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    resize: vertical;
+    overflow-y: auto;
+    /* 启用垂直滚动 */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.st-chatu8-edit-input:focus {
+    outline: none;
+    border-color: var(--st-chatu8-accent-primary, #4a90e2);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
+}
+
+.st-chatu8-highlight-match {
+    background-color: rgba(46, 204, 113, 0.25);
+    border-radius: 4px;
+    padding: 2px 0;
+    box-shadow: 0 0 0 1px rgba(46, 204, 113, 0.4);
+}
+
+.st-chatu8-highlight-error {
+    background-color: rgba(231, 76, 60, 0.25);
+    border-radius: 4px;
+    padding: 2px 0;
+    box-shadow: 0 0 0 1px rgba(231, 76, 60, 0.4);
+}
+
+.st-chatu8-edit-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.st-chatu8-edit-button {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.st-chatu8-edit-button:active {
+    transform: scale(0.98);
+}
+
+.st-chatu8-edit-button.send {
+    background-color: var(--st-chatu8-accent-primary, #4a90e2);
+    color: var(--st-chatu8-text-highlight, white);
+}
+
+.st-chatu8-edit-button.send:hover {
+    background-color: var(--st-chatu8-accent-secondary, #357abd);
+}
+
+.st-chatu8-edit-button.cancel {
+    background-color: var(--st-chatu8-bg-secondary, #555);
+    color: var(--st-chatu8-text-primary, #f0f0f0);
+}
+
+.st-chatu8-edit-button.cancel:hover {
+    background-color: var(--st-chatu8-bg-tertiary, #666);
+}
+
+/* ComfyUI Inpaint Dialog Specific Styles */
+
+/* Editor container */
+.st-chatu8-inpaint-editor-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Toolbar styles */
+.st-chatu8-inpaint-toolbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.st-chatu8-tool-btn {
+    padding: 8px 12px;
+    border: 1px solid var(--st-chatu8-border-color, #444);
+    border-radius: 6px;
+    background: var(--st-chatu8-bg-secondary, #2a2a4a);
+    color: var(--st-chatu8-text-primary, #fff);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9em;
+}
+
+.st-chatu8-tool-btn:hover {
+    background: var(--st-chatu8-accent-secondary, #3a3a5a);
+}
+
+.st-chatu8-tool-btn.active {
+    background: var(--st-chatu8-accent-primary, #4a4a8a);
+    border-color: var(--st-chatu8-accent-primary, #6a6aaa);
+}
+
+.st-chatu8-inpaint-brush-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-secondary, #ccc);
+}
+
+.st-chatu8-inpaint-brush-slider {
+    width: 100px;
+}
+
+/* Prompt section styles */
+.st-chatu8-inpaint-prompt-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.st-chatu8-inpaint-prompt-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+}
+
+.st-chatu8-inpaint-prompt-group label {
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-secondary, #ccc);
+}
+
+.st-chatu8-inpaint-denoise-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.st-chatu8-inpaint-denoise-label {
+    flex-shrink: 0;
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-secondary, #ccc);
+}
+
+.st-chatu8-inpaint-denoise-slider {
+    flex: 1;
+    min-width: 100px;
+}
+
+.st-chatu8-inpaint-denoise-value {
+    min-width: 40px;
+    text-align: right;
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-primary, #fff);
+}
+
+/* Autocomplete styles for inpaint dialog */
+.st-chatu8-edit-backdrop .ch-autocomplete-results {
+    display: none;
+    position: absolute;
+    background-color: var(--st-chatu8-dropdown-list-bg, #2a2a4a);
+    border: 1px solid var(--st-chatu8-border-color, #444);
+    border-radius: 6px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 100%;
+}
+
+.st-chatu8-edit-backdrop .ch-autocomplete-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: var(--st-chatu8-dropdown-text, #fff);
+    font-size: 0.9em;
+}
+
+.st-chatu8-edit-backdrop .ch-autocomplete-item:hover {
+    background-color: var(--st-chatu8-accent-secondary, #3a3a5a);
+    color: var(--st-chatu8-text-highlight, #fff);
+}
+
+/* Image Preview Modal */
+.st-chatu8-preview-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: grid;
+    place-items: center;
+    z-index: 10000;
+    font-family: var(--st-chatu8-font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+}
+
+.st-chatu8-preview-dialog {
+    background-color: #2c2c2c;
+    color: #f0f0f0;
+    border-radius: 12px;
+    padding: 16px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90vw;
+    height: 90vh;
+    height: 90dvh;
+    max-width: 1200px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    position: relative;
+    min-height: 0;
+}
+
+.st-chatu8-preview-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 10;
+}
+
+.st-chatu8-preview-close:hover {
+    color: white;
+}
+
+.st-chatu8-preview-thumbnail-container {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    overflow-x: auto;
+    background-color: #222;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.st-chatu8-preview-thumbnail {
+    height: 80px;
+    width: auto;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.st-chatu8-preview-thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.st-chatu8-preview-thumbnail.active {
+    border-color: #4a90e2;
+}
+
+.st-chatu8-preview-image-container {
+    flex: 1 1 0;
+    min-height: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.st-chatu8-preview-large-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.st-chatu8-preview-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(34, 34, 34, 0.3);
+    color: white;
+    font-size: 1.5rem;
+    padding: 15px 10px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.st-chatu8-preview-nav:hover {
+    background-color: rgba(34, 34, 34, 0.6);
+}
+
+.st-chatu8-preview-nav.prev {
+    left: 15px;
+}
+
+.st-chatu8-preview-nav.next {
+    right: 15px;
+}
+
+.st-chatu8-preview-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 8px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.st-chatu8-preview-action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-size: 0.92em;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.92) 0%, rgba(123, 97, 255, 0.92) 100%);
+    color: #fff;
+    width: auto;
+    min-width: 140px;
+    max-width: none;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.st-chatu8-preview-action-button i {
+    font-size: 0.95em;
+    opacity: 0.95;
+}
+
+.st-chatu8-preview-action-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(74, 144, 226, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.st-chatu8-preview-action-button:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.st-chatu8-preview-action-button.danger {
+    background: linear-gradient(135deg, rgba(229, 83, 83, 0.92) 0%, rgba(193, 48, 72, 0.92) 100%);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.st-chatu8-preview-action-button.danger:hover {
+    box-shadow: 0 6px 18px rgba(217, 83, 79, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* ===== 生成参数面板 ===== */
+.st-chatu8-params-panel {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 8px 8px;
+    padding: 12px 14px;
+    max-height: 42vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+    background: rgba(20, 20, 28, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
+}
+
+.st-chatu8-params-panel.visible {
+    display: flex;
+}
+
+.st-chatu8-params-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.st-chatu8-params-title {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.3px;
+}
+
+.st-chatu8-params-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    font-size: 0.82em;
+    border-radius: 999px;
+    cursor: pointer;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.85) 0%, rgba(123, 97, 255, 0.85) 100%);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+}
+
+.st-chatu8-params-copy:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+}
+
+.st-chatu8-params-copy:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.st-chatu8-params-header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* 关闭按钮：圆形图标按钮，与复制按钮同高 */
+.st-chatu8-params-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    font-size: 0.9em;
+    border-radius: 50%;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    transition: background 0.15s ease, color 0.15s ease;
+    flex-shrink: 0;
+}
+
+.st-chatu8-params-close:hover {
+    background: rgba(255, 95, 95, 0.2);
+    border-color: rgba(255, 95, 95, 0.4);
+    color: #fff;
+}
+
+.st-chatu8-params-close:active {
+    transform: scale(0.92);
+}
+
+.st-chatu8-params-row {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    font-size: 0.86em;
+    line-height: 1.5;
+}
+
+/* 长文本（提示词）改为上下排列，避免横向挤压 */
+.st-chatu8-params-row.long {
+    flex-direction: column;
+    gap: 3px;
+}
+
+.st-chatu8-params-label {
+    color: rgba(255, 255, 255, 0.55);
+    flex-shrink: 0;
+    min-width: 96px;
+}
+
+.st-chatu8-params-value {
+    color: #fff;
+    word-break: break-word;
+    white-space: pre-wrap;
+    user-select: text;
+}
+
+.st-chatu8-params-row.long .st-chatu8-params-value {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    padding: 6px 8px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.96em;
+}
+
+/* 随机命中标记：提示用户这个值与设置里的当前值可能不同 */
+.st-chatu8-params-random {
+    margin-left: 6px;
+    padding: 1px 7px;
+    font-size: 0.82em;
+    border-radius: 999px;
+    color: #ffd479;
+    background: rgba(255, 190, 80, 0.15);
+    border: 1px solid rgba(255, 190, 80, 0.35);
+    white-space: nowrap;
+}
+
+.st-chatu8-params-empty {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.86em;
+    text-align: center;
+    padding: 8px 0;
+    line-height: 1.6;
+}
+
+/* 移动端适配：全屏铺满 + 更紧凑的按钮栏，避免图片被按钮遮挡 */
+@media (max-width: 640px),
+(pointer: coarse) {
+    .st-chatu8-preview-dialog {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        max-width: none;
+        border-radius: 0;
+        padding: 10px;
+        padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+        gap: 6px;
+    }
+
+    .st-chatu8-preview-close {
+        top: 6px;
+        right: 10px;
+        font-size: 2rem;
+    }
+
+    .st-chatu8-preview-actions {
+        padding: 6px 4px;
+        gap: 8px;
+    }
+
+    /* 三个按钮并排在窄屏会挤，内边距与字号都收紧 */
+    .st-chatu8-preview-action-button {
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 10px 6px;
+        font-size: 0.82em;
+    }
+
+    /* 触屏设备：隐藏左右按钮，使用滑动手势切换（使用 !important 覆盖内联样式） */
+    .st-chatu8-preview-nav {
+        display: none !important;
+    }
+
+    /* 图片容器启用水平滑动手势的默认行为 */
+    .st-chatu8-preview-image-container {
+        touch-action: pan-y;
+    }
+
+    /* 计数器上移稍靠近顶边，避免遮挡图片 */
+    .st-chatu8-preview-counter {
+        top: 6px !important;
+    }
+
+    .st-chatu8-params-panel {
+        margin: 0 4px 6px;
+        padding: 10px;
+        max-height: 38vh;
+    }
+
+    .st-chatu8-params-label {
+        min-width: 78px;
+    }
+
+    /* 窄屏 header 会挤，复制按钮收紧内边距 */
+    .st-chatu8-params-copy {
+        padding: 5px 10px;
+        font-size: 0.78em;
+    }
+}
+
+/* Workflow Visualization Styles */
+.st-chatu8-workflow-viz-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    /* 动态视口高度，排除浏览器UI */
+    background-color: rgba(0, 0, 0, 0.85);
+    display: grid;
+    place-items: center;
+    z-index: 10000;
+    font-family: var(--st-chatu8-font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+}
+
+.st-chatu8-workflow-viz-dialog {
+    background-color: #1a1a2e;
+    color: #f0f0f0;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 0;
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    width: 95vw;
+    height: 90vh;
+    max-width: 1400px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.st-chatu8-workflow-viz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background-color: #252542;
+    border-bottom: 1px solid #333;
+}
+
+.st-chatu8-workflow-viz-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #e0e0e0;
+}
+
+.st-chatu8-workflow-viz-close {
+    font-size: 2rem;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.st-chatu8-workflow-viz-close:hover {
+    color: #fff;
+}
+
+.st-chatu8-workflow-viz-toolbar {
+    display: flex;
+    gap: 10px;
+    padding: 12px 20px;
+    background-color: #20203a;
+    border-bottom: 1px solid #333;
+    align-items: center;
+}
+
+.st-chatu8-workflow-viz-toolbar .st-chatu8-btn {
+    padding: 8px 14px;
+    font-size: 0.9em;
+    background-color: #3a3a5e;
+    border: 1px solid #555;
+    color: #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.st-chatu8-workflow-viz-toolbar .st-chatu8-btn:hover {
+    background-color: #4a4a7e;
+    border-color: #4a90e2;
+    color: #fff;
+}
+
+.st-chatu8-workflow-viz-stats {
+    margin-left: auto;
+    color: #888;
+    font-size: 0.9em;
+}
+
+/* 主体布局 - 左右分栏 */
+.st-chatu8-workflow-viz-body {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+.st-chatu8-workflow-viz-container {
+    flex: 1;
+    overflow: auto;
+    background-color: #0d0d1a;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    cursor: grab;
+}
+
+.st-chatu8-workflow-viz-container:active {
+    cursor: grabbing;
+}
+
+.st-chatu8-workflow-viz-svg-wrapper {
+    position: relative;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.st-chatu8-workflow-viz-svg {
+    display: block;
+    transition: transform 0.15s ease-out;
+}
+
+.st-chatu8-workflow-viz-node {
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.st-chatu8-workflow-viz-node:hover {
+    filter: brightness(1.2);
+}
+
+.st-chatu8-workflow-viz-node:hover rect {
+    stroke-width: 3;
+}
+
+.st-chatu8-workflow-viz-node.selected rect {
+    stroke-width: 4;
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+.st-chatu8-workflow-viz-connection {
+    transition: stroke 0.2s, stroke-width 0.2s;
+}
+
+.st-chatu8-workflow-viz-connection:hover {
+    stroke: #4a90e2;
+    stroke-width: 3;
+}
+
+/* 属性面板样式 */
+.st-chatu8-workflow-viz-properties {
+    width: 320px;
+    min-width: 280px;
+    background-color: #1a1a2e;
+    border-left: 1px solid #333;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.st-chatu8-workflow-viz-properties-placeholder {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #555;
+    gap: 10px;
+}
+
+.st-chatu8-workflow-viz-properties-placeholder i {
+    font-size: 3rem;
+}
+
+.st-chatu8-workflow-viz-properties-placeholder p {
+    margin: 0;
+    font-size: 0.95em;
+}
+
+.st-chatu8-workflow-viz-properties-header {
+    padding: 12px 16px;
+    background-color: #252542;
+    border-bottom: 1px solid #333;
+}
+
+.st-chatu8-workflow-viz-properties-header h4 {
+    margin: 0 0 4px 0;
+    font-size: 1em;
+    color: #4a90e2;
+}
+
+.st-chatu8-workflow-viz-properties-header .node-id {
+    font-size: 0.85em;
+    color: #888;
+}
+
+.st-chatu8-workflow-viz-properties-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.st-chatu8-workflow-viz-property-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.st-chatu8-workflow-viz-property-group label {
+    font-size: 0.85em;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.st-chatu8-workflow-viz-property-group label .connection-badge {
+    background-color: #4a90e2;
+    color: white;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 0.75em;
+}
+
+.st-chatu8-workflow-viz-property-group input[type="text"],
+.st-chatu8-workflow-viz-property-group input[type="number"],
+.st-chatu8-workflow-viz-property-group textarea,
+.st-chatu8-workflow-viz-property-group select {
+    width: 100%;
+    background-color: #2a2a3e;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 8px 10px;
+    color: #f0f0f0;
+    font-size: 0.9em;
+    box-sizing: border-box;
+}
+
+.st-chatu8-workflow-viz-property-group input:focus,
+.st-chatu8-workflow-viz-property-group textarea:focus,
+.st-chatu8-workflow-viz-property-group select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.st-chatu8-workflow-viz-property-group textarea {
+    min-height: 60px;
+    resize: vertical;
+}
+
+.st-chatu8-workflow-viz-property-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+.st-chatu8-workflow-viz-property-group .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.st-chatu8-workflow-viz-property-group .connection-display {
+    background-color: #333;
+    border: 1px dashed #555;
+    border-radius: 6px;
+    padding: 8px 10px;
+    color: #888;
+    font-size: 0.85em;
+    font-style: italic;
+}
+
+/* 移动端响应式样式 - 工作流可视化 */
+@media screen and (max-width: 768px) {
+    .st-chatu8-workflow-viz-dialog {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        /* 动态视口高度，排除浏览器地址栏/操作栏 */
+        max-width: none;
+        border-radius: 0;
+    }
+
+    .st-chatu8-workflow-viz-header {
+        padding-top: max(16px, calc(12px + env(safe-area-inset-top, 0px)));
+        padding-top: max(16px, calc(12px + constant(safe-area-inset-top, 0px)));
+        padding-right: max(16px, calc(16px + env(safe-area-inset-right, 0px)));
+        padding-bottom: 12px;
+        padding-left: max(16px, calc(16px + env(safe-area-inset-left, 0px)));
+        box-sizing: border-box;
+        min-height: 54px;
+    }
+
+    .st-chatu8-workflow-viz-header h3 {
+        font-size: 1.1em;
+        line-height: 1.3;
+    }
+
+    .st-chatu8-workflow-viz-close {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.2rem;
+        line-height: 1;
+        border-radius: 50%;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+        z-index: 10;
+    }
+
+    .st-chatu8-workflow-viz-close:active {
+        background-color: rgba(255, 255, 255, 0.15);
+        color: #fff;
+    }
+
+    .st-chatu8-workflow-viz-toolbar {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 12px;
+    }
+
+    .st-chatu8-workflow-viz-toolbar .st-chatu8-btn {
+        padding: 6px 10px;
+        font-size: 0.85em;
+    }
+
+    .st-chatu8-workflow-viz-stats {
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+        margin-top: 4px;
+    }
+
+    /* 主体改为纵向布局 */
+    .st-chatu8-workflow-viz-body {
+        flex-direction: column;
+        position: relative;
+        padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        box-sizing: border-box;
+    }
+
+    /* 图表容器占满全部可用空间 */
+    .st-chatu8-workflow-viz-container {
+        flex: 1;
+        min-height: 0;
+    }
+
+    /* 属性面板改为全屏覆盖式 */
+    .st-chatu8-workflow-viz-properties {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        min-width: unset;
+        max-height: none;
+        border-left: none;
+        border-radius: 0;
+        z-index: 100;
+        display: none;
+        flex-direction: column;
+        background-color: #1a1a2e;
+    }
+
+    /* 显示状态 */
+    .st-chatu8-workflow-viz-properties.visible {
+        display: flex;
+    }
+
+    /* 移动端属性面板关闭按钮 */
+    .st-chatu8-workflow-viz-properties-close-mobile {
+        position: absolute;
+        top: 10px;
+        right: 16px;
+        font-size: 1.8rem;
+        color: #888;
+        cursor: pointer;
+        z-index: 10;
+        padding: 5px;
+    }
+
+    .st-chatu8-workflow-viz-properties-close-mobile:hover {
+        color: #fff;
+    }
+
+    .st-chatu8-workflow-viz-properties-placeholder {
+        padding: 8px 0;
+        gap: 6px;
+    }
+
+    .st-chatu8-workflow-viz-properties-placeholder i {
+        font-size: 1.5rem;
+    }
+
+    .st-chatu8-workflow-viz-properties-placeholder p {
+        font-size: 0.85em;
+    }
+
+    .st-chatu8-workflow-viz-properties-header {
+        padding: 8px 12px;
+    }
+
+    .st-chatu8-workflow-viz-properties-content {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    /* 节点尺寸在移动端可能需要保持小一些 */
+    .st-chatu8-workflow-viz-node text {
+        font-size: 0.9em;
+    }
+}
+
+/* 占位符选择功能样式 */
+.st-chatu8-workflow-viz-input-wrapper {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+}
+
+.st-chatu8-workflow-viz-input-wrapper input,
+.st-chatu8-workflow-viz-input-wrapper textarea,
+.st-chatu8-workflow-viz-input-wrapper select {
+    flex: 1;
+    min-width: 0;
+}
+
+.st-chatu8-placeholder-btn {
+    flex-shrink: 0;
+    width: 32px;
+    height: auto;
+    min-height: 32px;
+    background-color: #3a3a5e;
+    border: 1px solid #555;
+    border-radius: 6px;
+    color: #aaa;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.st-chatu8-placeholder-btn:hover {
+    background-color: #4a4a7e;
+    color: #fff;
+    border-color: #4a90e2;
+}
+
+.st-chatu8-placeholder-menu {
+    background-color: #2a2a3e;
+    border: 1px solid #444;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 100000;
+    min-width: 200px;
+}
+
+.st-chatu8-placeholder-menu-item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+    transition: background-color 0.15s;
+}
+
+.st-chatu8-placeholder-menu-item:last-child {
+    border-bottom: none;
+}
+
+.st-chatu8-placeholder-menu-item:hover {
+    background-color: #3a3a5e;
+}
+
+.st-chatu8-placeholder-menu-item.recommended {
+    background-color: rgba(74, 144, 226, 0.15);
+    border-left: 3px solid #4a90e2;
+}
+
+.st-chatu8-placeholder-menu-item.recommended:hover {
+    background-color: rgba(74, 144, 226, 0.25);
+}
+
+.st-chatu8-placeholder-menu-item .placeholder-code {
+    font-family: monospace;
+    font-size: 0.95em;
+    color: #4a90e2;
+    font-weight: 600;
+}
+
+.st-chatu8-placeholder-menu-item .placeholder-label {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 2px;
+}
+
+/* 清除占位符选项样式 */
+.st-chatu8-placeholder-menu-item.st-chatu8-placeholder-clear {
+    border-top: 2px solid #444;
+    margin-top: 4px;
+    padding-top: 12px;
+}
+
+.st-chatu8-placeholder-menu-item.st-chatu8-placeholder-clear:hover {
+    background-color: rgba(231, 76, 60, 0.15);
+}
+
+/* 节点跳过功能样式 */
+.st-chatu8-workflow-viz-skip-section {
+    padding: 12px 16px;
+    background-color: #1e1e38;
+    border-bottom: 1px solid #333;
+}
+
+.st-chatu8-workflow-viz-skip-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.st-chatu8-workflow-viz-skip-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+.st-chatu8-workflow-viz-skip-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #f39c12;
+}
+
+.st-chatu8-workflow-viz-skip-label input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.st-chatu8-workflow-viz-skip-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85em;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.st-chatu8-workflow-viz-skip-status i {
+    font-size: 0.9em;
+}
+
+.st-chatu8-workflow-viz-skip-status.can-skip {
+    background-color: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.st-chatu8-workflow-viz-skip-status.can-skip.type-match {
+    background-color: rgba(155, 89, 182, 0.15);
+    color: #9b59b6;
+    border: 1px solid rgba(155, 89, 182, 0.3);
+}
+
+.st-chatu8-workflow-viz-skip-status.not-skippable {
+    background-color: rgba(149, 165, 166, 0.12);
+    color: #95a5a6;
+    border: 1px solid rgba(149, 165, 166, 0.25);
+}
+
+.st-chatu8-workflow-viz-skip-status.skipped {
+    background-color: rgba(243, 156, 18, 0.15);
+    color: #f39c12;
+    border: 1px solid rgba(243, 156, 18, 0.3);
+}
+
+/* 被跳过节点的视觉样式 */
+.st-chatu8-workflow-viz-node.skipped {
+    opacity: 0.6;
+}
+
+.st-chatu8-workflow-viz-node.skipped text {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* ==================== 条目编辑弹窗样式 ==================== */
+
+/* 弹窗遮罩 */
+.st-chatu8-entry-edit-modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10100;
+    justify-content: center;
+    align-items: center;
+}
+
+.st-chatu8-entry-edit-modal-backdrop[style*="block"] {
+    display: flex !important;
+}
+
+/* 弹窗容器 */
+.st-chatu8-entry-edit-modal {
+    background-color: var(--st-chatu8-bg-primary, #2c2c2c);
+    color: var(--st-chatu8-text-primary, #f0f0f0);
+    border: 1px solid var(--st-chatu8-border-color, #444);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* 弹窗头部 */
+.st-chatu8-entry-edit-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background-color: var(--st-chatu8-bg-secondary, #252542);
+    border-bottom: 1px solid var(--st-chatu8-border-color, #333);
+}
+
+.st-chatu8-entry-edit-modal-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--st-chatu8-text-primary, #e0e0e0);
+}
+
+.st-chatu8-entry-edit-modal-close {
+    font-size: 1.8rem;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+    padding: 0 4px;
+}
+
+.st-chatu8-entry-edit-modal-close:hover {
+    color: #fff;
+}
+
+/* 弹窗主体 */
+.st-chatu8-entry-edit-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 弹窗字段 */
+.st-chatu8-modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.st-chatu8-modal-field label {
+    font-size: 0.9rem;
+    color: var(--st-chatu8-text-secondary, #aaa);
+    font-weight: 500;
+}
+
+.st-chatu8-modal-field .st-chatu8-text-input,
+.st-chatu8-modal-field .st-chatu8-select,
+.st-chatu8-modal-field .st-chatu8-textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 字段行 - 水平排列 */
+.st-chatu8-modal-field-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.st-chatu8-modal-field-row .st-chatu8-modal-field {
+    flex: 1;
+    min-width: 120px;
+}
+
+/* 开关字段 */
+.st-chatu8-modal-toggle-field {
+    flex: 0 0 auto !important;
+    min-width: auto !important;
+    align-items: center;
+}
+
+.st-chatu8-modal-toggle-field .st-chatu8-toggle {
+    margin-top: 4px;
+}
+
+/* 弹窗底部 */
+.st-chatu8-entry-edit-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 20px;
+    background-color: var(--st-chatu8-bg-secondary, #252542);
+    border-top: 1px solid var(--st-chatu8-border-color, #333);
+}
+
+/* 弹窗内的输入框样式 - 继承设置界面样式 */
+.st-chatu8-entry-edit-modal .st-chatu8-text-input,
+.st-chatu8-entry-edit-modal .st-chatu8-textarea {
+    width: 100%;
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-primary);
+    border-radius: 6px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.st-chatu8-entry-edit-modal .st-chatu8-text-input:focus,
+.st-chatu8-entry-edit-modal .st-chatu8-textarea:focus {
+    outline: none;
+    border-color: var(--st-chatu8-accent-primary);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.15);
+}
+
+.st-chatu8-entry-edit-modal .st-chatu8-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* 弹窗内的下拉框样式 */
+.st-chatu8-entry-edit-modal .st-chatu8-select {
+    background: var(--st-chatu8-dropdown-bg, var(--st-chatu8-bg-tertiary));
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-dropdown-text, var(--st-chatu8-text-primary));
+    border-radius: 6px;
+    padding: 8px 12px;
+    width: 100%;
+}
+
+.st-chatu8-entry-edit-modal .st-chatu8-select:focus {
+    outline: none;
+    border-color: var(--st-chatu8-accent-primary);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* 弹窗内的开关样式 */
+.st-chatu8-entry-edit-modal .st-chatu8-toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.st-chatu8-entry-edit-modal .st-chatu8-toggle input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 1;
+    margin: 0;
+}
+
+.st-chatu8-entry-edit-modal .st-chatu8-toggle .st-chatu8-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--st-chatu8-bg-tertiary);
+    transition: background-color 0.3s ease;
+    border-radius: 28px;
+}
+
+.st-chatu8-entry-edit-modal .st-chatu8-toggle .st-chatu8-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+}
+
+.st-chatu8-entry-edit-modal .st-chatu8-toggle input:checked+.st-chatu8-slider {
+    background-color: var(--st-chatu8-accent-primary);
+}
+
+.st-chatu8-entry-edit-modal .st-chatu8-toggle input:checked+.st-chatu8-slider:before {
+    transform: translateX(22px);
+}
+
+/* 弹窗按钮样式 - 继承设置界面样式 */
+.st-chatu8-entry-edit-modal .st-chatu8-btn {
+    background-color: var(--st-chatu8-bg-tertiary);
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-primary);
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+
+.st-chatu8-entry-edit-modal .st-chatu8-btn:hover {
+    background-color: var(--st-chatu8-accent-secondary);
+    border-color: var(--st-chatu8-accent-primary);
+    color: var(--st-chatu8-text-highlight, white);
+}
+
+/* 主要按钮样式 */
+.st-chatu8-entry-edit-modal .st-chatu8-btn-primary {
+    background-color: var(--st-chatu8-accent-primary);
+    border-color: var(--st-chatu8-accent-primary);
+    color: white;
+}
+
+.st-chatu8-entry-edit-modal .st-chatu8-btn-primary:hover {
+    background-color: var(--st-chatu8-accent-secondary);
+    border-color: var(--st-chatu8-accent-secondary);
+}
+
+/* 响应式适配 - 移动端全屏模式 */
+@media screen and (max-width: 768px) {
+
+    /* 遮罩层全屏 */
+    .st-chatu8-entry-edit-modal-backdrop {
+        background-color: rgba(0, 0, 0, 0.95);
+        align-items: stretch;
+    }
+
+    /* 弹窗改为全屏 */
+    .st-chatu8-entry-edit-modal {
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        max-width: none !important;
+        max-height: none !important;
+        border-radius: 0 !important;
+        border: none !important;
+        margin: 0 !important;
+    }
+
+    /* 头部样式调整 */
+    .st-chatu8-entry-edit-modal-header {
+        padding: 12px 16px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        flex-shrink: 0;
+    }
+
+    .st-chatu8-entry-edit-modal-header h4 {
+        font-size: 1rem;
+    }
+
+    .st-chatu8-entry-edit-modal-close {
+        font-size: 2rem;
+        padding: 0 8px;
+    }
+
+    /* 主体内容区域 */
+    .st-chatu8-entry-edit-modal-body {
+        flex: 1;
+        padding: 16px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* 字段行改为纵向排列 */
+    .st-chatu8-modal-field-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .st-chatu8-modal-field-row .st-chatu8-modal-field {
+        min-width: 100%;
+    }
+
+    /* 开关字段在移动端也占满宽度 */
+    .st-chatu8-modal-toggle-field {
+        flex-direction: row !important;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* 底部按钮区域 */
+    .st-chatu8-entry-edit-modal-footer {
+        padding: 12px 16px;
+        position: sticky;
+        bottom: 0;
+        z-index: 10;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+
+    .st-chatu8-entry-edit-modal-footer .st-chatu8-btn {
+        flex: 1;
+        padding: 12px 16px;
+        font-size: 1rem;
+    }
+
+    /* 输入框和文本域增大触摸区域 */
+    .st-chatu8-entry-edit-modal .st-chatu8-text-input,
+    .st-chatu8-entry-edit-modal .st-chatu8-select {
+        padding: 12px;
+        font-size: 16px;
+        /* 防止 iOS 自动缩放 */
+    }
+
+    .st-chatu8-entry-edit-modal .st-chatu8-textarea {
+        min-height: 150px;
+        font-size: 16px;
+        /* 防止 iOS 自动缩放 */
+    }
+
+    /* 开关控件增大 */
+    .st-chatu8-entry-edit-modal .st-chatu8-toggle {
+        width: 56px;
+        height: 32px;
+    }
+
+    .st-chatu8-entry-edit-modal .st-chatu8-toggle .st-chatu8-slider:before {
+        height: 24px;
+        width: 24px;
+    }
+
+    .st-chatu8-entry-edit-modal .st-chatu8-toggle input:checked+.st-chatu8-slider:before {
+        transform: translateX(24px);
+    }
+}
+
+
+/* ==================== 导入选择弹窗样式 ==================== */
+
+/* 工具栏 */
+.st-chatu8-import-toolbar {
+    display: flex;
+    gap: 10px;
+    flex-direction: row !important;
+}
+
+/* 列表容器 */
+.st-chatu8-import-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* 类型分组 */
+.st-chatu8-import-type-group {
+    margin-bottom: 16px;
+}
+
+.st-chatu8-import-type-group:last-child {
+    margin-bottom: 0;
+}
+
+/* 类型标题 */
+.st-chatu8-import-type-header {
+    margin: 0 0 10px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--st-chatu8-border-color, #444);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--st-chatu8-accent-primary, #4a90e2);
+}
+
+.st-chatu8-import-count {
+    font-weight: normal;
+    color: var(--st-chatu8-text-secondary, #888);
+    font-size: 0.9rem;
+}
+
+/* 条目项 */
+.st-chatu8-import-item {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--st-chatu8-border-color, #333);
+}
+
+.st-chatu8-import-item:last-child {
+    border-bottom: none;
+}
+
+/* 条目标签 */
+.st-chatu8-import-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+}
+
+/* 复选框 */
+.st-chatu8-import-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--st-chatu8-accent-primary, #4a90e2);
+}
+
+/* 条目名称 */
+.st-chatu8-import-name {
+    flex: 1;
+    font-size: 0.95rem;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    .st-chatu8-import-list {
+        max-height: none;
+    }
+
+    .st-chatu8-import-checkbox {
+        width: 22px;
+        height: 22px;
+    }
+
+    .st-chatu8-import-item {
+        padding: 12px 0;
+    }
+
+    .st-chatu8-import-name {
+        font-size: 1rem;
+    }
+}
+
+
+/* ==================== 通用弹出框样式 ==================== */
+
+/* 弹出框模态框 */
+#st-chatu8-settings .st-chatu8-popup-modal,
+.st-chatu8-popup-modal {
+    max-width: 550px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#st-chatu8-settings .st-chatu8-popup-modal-large,
+.st-chatu8-popup-modal-large {
+    max-width: 700px;
+}
+
+/* 弹出框标题 */
+#st-chatu8-settings .st-chatu8-popup-title,
+.st-chatu8-popup-title {
+    margin: 0 0 16px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-primary);
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+/* 弹出框描述 */
+#st-chatu8-settings .st-chatu8-popup-description,
+.st-chatu8-popup-description {
+    margin: 0 0 12px 0;
+    color: var(--st-chatu8-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* 弹出框内容区域 */
+#st-chatu8-settings .st-chatu8-popup-content,
+.st-chatu8-popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 代码风格文本框 */
+#st-chatu8-settings .st-chatu8-popup-code-textarea,
+.st-chatu8-popup-code-textarea {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+}
+
+/* 主要按钮样式 */
+#st-chatu8-settings .st-chatu8-btn-primary,
+.st-chatu8-btn-primary {
+    background: var(--st-chatu8-accent-primary);
+    border-color: var(--st-chatu8-accent-primary);
+    color: var(--st-chatu8-text-highlight, white);
+}
+
+#st-chatu8-settings .st-chatu8-btn-primary:hover,
+.st-chatu8-btn-primary:hover {
+    background: var(--st-chatu8-accent-secondary);
+    border-color: var(--st-chatu8-accent-secondary);
+}
+
+/* 成功按钮样式 */
+#st-chatu8-settings .st-chatu8-btn-success,
+.st-chatu8-btn-success {
+    background: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+#st-chatu8-settings .st-chatu8-btn-success:hover,
+.st-chatu8-btn-success:hover {
+    background: #218838;
+    border-color: #1e7e34;
+}
+
+/* ==================== 图片上传区域样式 ==================== */
+
+/* 上传区域容器 */
+#st-chatu8-settings .st-chatu8-popup-upload-section,
+.st-chatu8-popup-upload-section {
+    margin: 16px 0;
+    padding: 14px;
+    border: 1px dashed var(--st-chatu8-border-color);
+    border-radius: var(--st-chatu8-border-radius, 8px);
+    background: var(--st-chatu8-bg-secondary);
+}
+
+/* 上传头部 */
+#st-chatu8-settings .st-chatu8-popup-upload-header,
+.st-chatu8-popup-upload-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+/* 上传标签 */
+#st-chatu8-settings .st-chatu8-popup-upload-label,
+.st-chatu8-popup-upload-label {
+    font-size: 0.9rem;
+    color: var(--st-chatu8-text-secondary);
+}
+
+/* 上传按钮 */
+#st-chatu8-settings .st-chatu8-popup-upload-btn,
+.st-chatu8-popup-upload-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+/* 图片预览容器 */
+#st-chatu8-settings .st-chatu8-popup-image-preview,
+.st-chatu8-popup-image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 0;
+}
+
+/* 空提示 */
+#st-chatu8-settings .st-chatu8-popup-empty-hint,
+.st-chatu8-popup-empty-hint {
+    font-size: 0.85rem;
+    color: var(--st-chatu8-text-secondary);
+    opacity: 0.6;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+}
+
+/* 图片项容器 */
+#st-chatu8-settings .st-chatu8-popup-image-item,
+.st-chatu8-popup-image-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 图片包装器 */
+#st-chatu8-settings .st-chatu8-popup-image-wrapper,
+.st-chatu8-popup-image-wrapper {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--st-chatu8-border-color);
+    background: var(--st-chatu8-bg-tertiary);
+}
+
+#st-chatu8-settings .st-chatu8-popup-image-wrapper img,
+.st-chatu8-popup-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 图片删除按钮 */
+#st-chatu8-settings .st-chatu8-popup-image-delete,
+.st-chatu8-popup-image-delete {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    background: var(--st-chatu8-danger-primary);
+    color: var(--st-chatu8-danger-text, white);
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+#st-chatu8-settings .st-chatu8-popup-image-delete:hover,
+.st-chatu8-popup-image-delete:hover {
+    background: var(--st-chatu8-danger-secondary);
+}
+
+/* 图片名称输入框 */
+#st-chatu8-settings .st-chatu8-popup-image-name,
+.st-chatu8-popup-image-name {
+    width: 64px;
+    padding: 4px 6px;
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 4px;
+    background: var(--st-chatu8-bg-tertiary);
+    color: var(--st-chatu8-text-primary);
+    font-size: 0.75rem;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#st-chatu8-settings .st-chatu8-popup-image-name:focus,
+.st-chatu8-popup-image-name:focus {
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+/* 图片计数 */
+#st-chatu8-settings .st-chatu8-popup-image-count,
+.st-chatu8-popup-image-count {
+    font-size: 0.8rem;
+    color: var(--st-chatu8-accent-primary);
+    width: 100%;
+    text-align: right;
+    margin-top: 6px;
+}
+
+/* ==================== 移动端响应式 ==================== */
+@media screen and (max-width: 768px) {
+
+    #st-chatu8-settings .st-chatu8-popup-modal,
+    .st-chatu8-popup-modal {
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        max-width: none !important;
+        max-height: none !important;
+        border-radius: 0 !important;
+    }
+
+    #st-chatu8-settings .st-chatu8-popup-upload-header,
+    .st-chatu8-popup-upload-header {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    #st-chatu8-settings .st-chatu8-popup-image-wrapper,
+    .st-chatu8-popup-image-wrapper {
+        width: 56px;
+        height: 56px;
+    }
+
+    #st-chatu8-settings .st-chatu8-popup-image-name,
+    .st-chatu8-popup-image-name {
+        width: 56px;
+        font-size: 0.7rem;
+    }
+}
+
+
+/* ==================== Vibe 生成器移动端响应式样式 ==================== */
+@media screen and (max-width: 768px) {
+
+    /* Vibe 生成器对话框 - 移动端全屏 */
+    .st-chatu8-vibe-generator-dialog {
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        /* 动态视口高度，排除浏览器地址栏 */
+        max-width: none !important;
+        border-radius: 0 !important;
+        max-height: none !important;
+    }
+
+    /* Vibe 生成器主体内容 - 启用滚动 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-workflow-viz-body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        /* iOS 平滑滚动 */
+        padding: 1rem !important;
+    }
+
+    /* Vibe 生成器内容容器 */
+    .st-chatu8-vibe-generator-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* 调整标题字体大小 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-workflow-viz-header h3 {
+        font-size: 1em;
+    }
+
+    /* 预设控制按钮 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-profile-controls {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-profile-controls select {
+        flex: 1 1 100%;
+        min-width: 100%;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-icon-btn {
+        padding: 10px 12px;
+        font-size: 1rem;
+    }
+
+    /* 图片预览容器 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-image-preview-container {
+        max-height: 250px;
+    }
+
+    /* 图片控制按钮 - 移动端堆叠 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-image-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-image-controls .st-chatu8-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    /* 范围滑块容器 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-range-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-range-slider,
+    .st-chatu8-vibe-generator-dialog .st-chatu8-range-input {
+        width: 100%;
+    }
+
+    /* 主要操作按钮 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog #vibe-submit-btn,
+    .st-chatu8-vibe-generator-dialog #vibe-download-btn {
+        padding: 14px 1rem !important;
+        font-size: 1.1rem !important;
+    }
+
+    /* 状态提示区域 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog #vibe-status {
+        font-size: 0.95rem;
+        padding: 12px;
+    }
+
+    /* 字段标签 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-field label {
+        font-size: 1rem;
+    }
+
+    /* 选择框 - 移动端优化 */
+    .st-chatu8-vibe-generator-dialog .st-chatu8-select {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+/* 小屏幕设备额外优化 (手机竖屏) */
+@media screen and (max-width: 480px) {
+    .st-chatu8-vibe-generator-dialog .st-chatu8-workflow-viz-body {
+        padding: 0.75rem !important;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-field {
+        margin-bottom: 1rem !important;
+    }
+
+    .st-chatu8-vibe-generator-dialog .st-chatu8-icon-btn {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ==================== 配置存储清理弹窗 ==================== */
+.st-chatu8-cfgclean-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.st-chatu8-cfgclean-item .st-chatu8-import-name {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+}
+
+.st-chatu8-cfgclean-thumb {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--st-chatu8-border-color, #333);
+    background-color: var(--st-chatu8-bg-tertiary, #2a2a2a);
+    cursor: pointer;
+}
+
+.st-chatu8-cfgclean-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.st-chatu8-cfgclean-thumb-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: var(--st-chatu8-text-secondary, #888);
+    cursor: default;
+}
+
+.st-chatu8-cfgclean-size {
+    margin-left: 8px;
+    font-size: 0.8rem;
+    color: var(--st-chatu8-text-secondary, #888);
+}
+
+.st-chatu8-cfgclean-badge {
+    margin-left: 8px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    background: rgba(243, 156, 18, 0.15);
+    color: #f39c12;
+    border: 1px solid rgba(243, 156, 18, 0.3);
+}
+
+.st-chatu8-cfgclean-section-title {
+    margin: 18px 0 8px;
+    font-weight: 600;
+    color: var(--st-chatu8-accent-primary, #6aa6ff);
+    border-bottom: 1px solid var(--st-chatu8-border-color, #333);
+    padding-bottom: 4px;
+}
+
+.st-chatu8-cfgclean-progress {
+    margin-top: 12px;
+}
+
+.st-chatu8-cfgclean-progress-track {
+    width: 100%;
+    height: 18px;
+    border-radius: 9px;
+    overflow: hidden;
+    background-color: var(--st-chatu8-bg-tertiary, #2a2a2a);
+}
+
+.st-chatu8-cfgclean-progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 9px;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    transition: width 0.2s ease;
+}
+
+.st-chatu8-cfgclean-progress-text {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--st-chatu8-text-secondary, #888);
+}
+
+.st-chatu8-cfgclean-empty {
+    padding: 12px 0;
+    color: var(--st-chatu8-text-secondary, #888);
+    font-size: 0.9rem;
+}
+
+/* 删除进行中按钮需要有明确的禁用观感 */
+.st-chatu8-cfgclean-modal .st-chatu8-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
