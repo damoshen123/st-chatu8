@@ -2711,6 +2711,7 @@ var init_config = __esm({
       nai3Deceisp: "true",
       nai3Variety: "true",
       Schedule: "karras",
+      novelai_v5_schedule: "none",
       MODEL_NAME: "\u8FDE\u63A5\u540E\u9009\u62E9",
       c_fenwei: "0.8",
       c_xijie: "0.8",
@@ -3170,6 +3171,7 @@ var init_config = __esm({
           novelai_straight_alpha: false,
           novelai_sampler: "k_euler",
           Schedule: "karras",
+          novelai_v5_schedule: "none",
           nai3Scale: "10",
           cfg_rescale: "0.18",
           AI_use_coords: "true",
@@ -84912,7 +84914,14 @@ function cleanNovelAIPayload(payload, modelVersion) {
     delete cleanedPayload.reference_image_multiple;
     delete cleanedPayload.reference_information_extracted_multiple;
     delete cleanedPayload.skip_cfg_above_sigma;
-    delete cleanedPayload.noise_schedule;
+    const v5Schedule = extension_settings62[extensionName]?.novelai_v5_schedule;
+    if (!v5Schedule || v5Schedule === "none") {
+      delete cleanedPayload.noise_schedule;
+      addLog("[PayloadClean] NAI5 \u566A\u70B9\u8868\u8BBE\u4E3A\u4E0D\u53D1\u9001 (\u9ED8\u8BA4)\uFF0C\u5DF2\u6E05\u7406 noise_schedule");
+    } else {
+      cleanedPayload.noise_schedule = v5Schedule;
+      addLog(`[PayloadClean] NAI5 \u566A\u70B9\u8868\u5DF2\u8BBE\u7F6E\u4E3A\u81EA\u5B9A\u4E49: ${v5Schedule}`);
+    }
     if (Array.isArray(cleanedPayload.reference_strength_multiple) && cleanedPayload.reference_strength_multiple.length === 0) {
       delete cleanedPayload.reference_strength_multiple;
     }
@@ -84928,7 +84937,7 @@ function cleanNovelAIPayload(payload, modelVersion) {
       cleanedPayload.sampler = "k_euler_ancestral";
       addLog("[PayloadClean] \u5DF2\u9488\u5BF9 NAI5 Medium \u6863\u4F4D\u6E05\u7406 cfg_rescale \u5E76\u9501\u5B9A\u6B65\u6570 14\u3001\u91C7\u6837\u5668 Euler Ancestral");
     }
-    addLog("[PayloadClean] \u5DF2\u9488\u5BF9 NAI5 \u6A21\u578B\u6E05\u7406\u7279\u5B9A\u4E0D\u652F\u6301\u7684\u53C2\u6570 (\u5305\u542B noise_schedule)");
+    addLog("[PayloadClean] \u5DF2\u9488\u5BF9 NAI5 \u6A21\u578B\u6E05\u7406\u7279\u5B9A\u4E0D\u652F\u6301\u7684\u53C2\u6570");
   }
   return cleanedPayload;
 }
@@ -86041,6 +86050,9 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
         tavernAIPayload.tag_hint_qt = preset_data.tag_hint_qt;
         tavernAIPayload.straight_alpha = preset_data.straight_alpha;
         tavernAIPayload.use_new_shared_trial = true;
+        if (!preset_data.noise_schedule) {
+          delete tavernAIPayload.scheduler;
+        }
       }
       addLog(`\u6700\u7EC8\u751F\u56FE\u53C2\u6570 (payload): ${JSON.stringify(tavernAIPayload, null, 2)}`);
       const result = await fetch("/api/novelai/generate-image", { method: "POST", headers: getRequestHeaders(window.token), body: JSON.stringify(tavernAIPayload), signal: abortController.signal });
@@ -86286,6 +86298,16 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
         }
       }
     };
+    if (inpaintModel.includes("nai-diffusion-5")) {
+      const v5Schedule = extension_settings62[extensionName]?.novelai_v5_schedule;
+      if (!v5Schedule || v5Schedule === "none") {
+        delete payload.parameters.noise_schedule;
+        addLog("[NovelAI Inpaint] NAI5 \u566A\u70B9\u8868\u8BBE\u4E3A\u4E0D\u53D1\u9001 (\u9ED8\u8BA4)\uFF0C\u5DF2\u6E05\u7406 noise_schedule");
+      } else {
+        payload.parameters.noise_schedule = v5Schedule;
+        addLog(`[NovelAI Inpaint] NAI5 \u566A\u70B9\u8868\u5DF2\u8BBE\u7F6E\u4E3A\u81EA\u5B9A\u4E49: ${v5Schedule}`);
+      }
+    }
     addLog(`[NovelAI Inpaint] \u8BF7\u6C42\u53C2\u6570\u5DF2\u6784\u5EFA\u5B8C\u6210`);
     _inpaint_gen_params = buildGenParams("NovelAI \u5C40\u90E8\u91CD\u7ED8", {
       model: payload.model,
@@ -92078,6 +92100,7 @@ var OFFICIAL_NOVELAI_MODEL_DEFAULTS = {
   "nai-diffusion-5-full": {
     novelai_sampler: "k_euler_ancestral",
     Schedule: "karras",
+    novelai_v5_schedule: "none",
     nai3Scale: 7,
     cfg_rescale: 0,
     novelai_steps: 23,
@@ -92098,6 +92121,7 @@ var OFFICIAL_NOVELAI_MODEL_DEFAULTS = {
   "nai-diffusion-5-curated": {
     novelai_sampler: "k_euler_ancestral",
     Schedule: "karras",
+    novelai_v5_schedule: "none",
     nai3Scale: 7,
     cfg_rescale: 0,
     novelai_steps: 23,
@@ -92213,6 +92237,7 @@ var OFFICIAL_NOVELAI_MODEL_DEFAULTS = {
 var NOVELAI_MODEL_PARAM_KEYS = [
   "novelai_sampler",
   "Schedule",
+  "novelai_v5_schedule",
   "nai3Scale",
   "cfg_rescale",
   "novelai_steps",
@@ -92300,8 +92325,7 @@ function loadModelConfigIntoUI(modelName) {
       settings3.novelai_size = currentDim;
     }
   }
-  updateNovelaiReferenceSectionsVisibility(modelName);
-  updateNovelaiEffortUIState(modelName);
+  updateNovelaiModelUIState(modelName);
 }
 function updateNovelaiEffortUIState(targetModel = null) {
   const novelaiModeSelect = document.getElementById("novelaimode");
@@ -92394,22 +92418,30 @@ function resetCurrentModelToOfficialDefault() {
     toastr.success(`\u5DF2\u5C06\u6A21\u578B\u3010${currentModel}\u3011\u7684\u5168\u90E8\u53C2\u6570\u91CD\u7F6E\u4E3A\u5B98\u7F51\u9ED8\u8BA4\u503C`, "NovelAI \u53C2\u6570\u91CD\u7F6E");
   }
 }
-function updateNai3OptionsVisibility() {
+function updateNovelaiModelUIState(targetModel = null) {
+  const settings3 = extension_settings75[extensionName] || {};
   const novelaiModeSelect = document.getElementById("novelaimode");
+  const selectedModel = targetModel || (novelaiModeSelect ? novelaiModeSelect.value : null) || settings3.novelaimode || "nai-diffusion-4-5-full";
+  if (!selectedModel) return;
+  const isNai3 = selectedModel === "nai-diffusion-3";
+  const isV52 = selectedModel.includes("nai-diffusion-5");
   const smField = document.getElementById("st-chatu8-nai3-sm-field");
   const dynField = document.getElementById("st-chatu8-nai3-dyn-field");
   const deceispField = document.getElementById("st-chatu8-nai3-deceisp-field");
-  const straightAlphaContainer = document.getElementById("novelai_straight_alpha_container");
-  if (!novelaiModeSelect || !smField || !dynField || !deceispField) return;
-  const selectedModel = novelaiModeSelect.value;
-  const isNai3 = selectedModel === "nai-diffusion-3";
-  const isNai5 = selectedModel.includes("nai-diffusion-5");
-  smField.style.display = isNai3 ? "flex" : "none";
-  dynField.style.display = isNai3 ? "flex" : "none";
-  deceispField.style.display = isNai3 ? "flex" : "none";
-  if (straightAlphaContainer) {
-    straightAlphaContainer.style.display = isNai5 ? "flex" : "none";
+  if (smField) smField.style.display = isNai3 ? "flex" : "none";
+  if (dynField) dynField.style.display = isNai3 ? "flex" : "none";
+  if (deceispField) deceispField.style.display = isNai3 ? "flex" : "none";
+  const straightAlphaField = document.getElementById("novelai_straight_alpha_container");
+  if (straightAlphaField) {
+    straightAlphaField.style.display = isV52 ? "flex" : "none";
   }
+  const varietyField = document.querySelector("#nai3Variety")?.closest(".st-chatu8-field");
+  if (varietyField) {
+    varietyField.style.display = isV52 ? "none" : "flex";
+  }
+  updateNovelaiEffortUIState(selectedModel);
+  updateNovelaiScheduleVisibility(selectedModel);
+  updateNovelaiReferenceSectionsVisibility(selectedModel);
 }
 function updateNovelaiReferenceSectionsVisibility(targetModel = null) {
   const settings3 = extension_settings75[extensionName] || {};
@@ -92493,24 +92525,15 @@ function updateNovelaiModelSchedule(isInitial = false) {
   const samplerSelect = document.getElementById("novelai_sampler");
   if (!novelaiModeSelect) return;
   const selectedModel = novelaiModeSelect.value;
-  updateNovelaiReferenceSectionsVisibility(selectedModel);
+  updateNovelaiModelUIState(selectedModel);
   if (!scheduleSelect || !samplerSelect) return;
   if (!isInitial && lastSelectedNovelaiModel && lastSelectedNovelaiModel !== selectedModel) {
     saveModelConfigFromUI(lastSelectedNovelaiModel);
   }
   loadModelConfigIntoUI(selectedModel);
   lastSelectedNovelaiModel = selectedModel;
-  updateNai3OptionsVisibility();
+  updateNovelaiModelUIState(selectedModel);
   updateNovelaiUcpOptions();
-  const isV5 = selectedModel.includes("nai-diffusion-5");
-  const straightAlphaField = document.getElementById("novelai_straight_alpha_container");
-  if (straightAlphaField) {
-    straightAlphaField.style.display = isV5 ? "flex" : "none";
-  }
-  const varietyField = document.querySelector("#nai3Variety")?.closest(".st-chatu8-field");
-  if (varietyField) {
-    varietyField.style.display = isV5 ? "none" : "flex";
-  }
   const nativeOption = [...scheduleSelect.options].find((opt) => opt.value === "native");
   const ddimOption = [...samplerSelect.options].find((opt) => opt.value === "ddim_v3");
   if (selectedModel === "nai-diffusion-3") {
@@ -92562,15 +92585,20 @@ function updateNovelaiOtherSiteVisibility() {
   const shouldShow = novelaiSiteSelect.value !== "\u5B98\u7F51";
   otherSiteField.style.display = shouldShow ? "flex" : "none";
 }
-function updateNovelaiScheduleVisibility() {
+function updateNovelaiScheduleVisibility(targetModel = null) {
   const novelaiModeSelect = document.getElementById("novelaimode");
-  const isV5 = novelaiModeSelect && novelaiModeSelect.value.includes("nai-diffusion-5");
+  const selectedModel = targetModel || (novelaiModeSelect ? novelaiModeSelect.value : "");
+  const isV52 = selectedModel.includes("nai-diffusion-5");
   const sampler = document.getElementById("novelai_sampler");
   const scheduleField = document.querySelector("#Schedule")?.closest(".st-chatu8-field");
   const scheduleSelect = document.getElementById("Schedule");
+  const v5ScheduleField = document.getElementById("novelai_v5_schedule_container");
+  if (v5ScheduleField) {
+    v5ScheduleField.style.display = isV52 ? "flex" : "none";
+  }
   if (!sampler || !scheduleField || !scheduleSelect) return;
   const selectedSampler = sampler.value;
-  if (isV5 || selectedSampler === "ddim_v3") {
+  if (isV52 || selectedSampler === "ddim_v3") {
     scheduleField.style.display = "none";
   } else {
     scheduleField.style.display = "flex";
@@ -92655,10 +92683,9 @@ function initNovelaiUI(settingsModal) {
       saveSettingsDebounced47();
     }
   });
-  updateNovelaiScheduleVisibility();
   updateNovelaiModelSchedule(true);
   updateNovelaiOtherSiteVisibility();
-  updateNovelaiEffortUIState();
+  updateNovelaiModelUIState();
 }
 
 // utils/settings/vibeTransferGenerator.js
@@ -109946,6 +109973,7 @@ var NOVELAI_PROFILE_KEYS = [
   "novelai_straight_alpha",
   "novelai_sampler",
   "Schedule",
+  "novelai_v5_schedule",
   "nai3Scale",
   "cfg_rescale",
   "AI_use_coords",
@@ -112409,7 +112437,7 @@ async function initUI({ check_update: check_update2 }) {
       settings2.theme_id = "\u9ED8\u8BA4-\u767D\u5929";
     }
     applyTheme(settings2.themes[settings2.theme_id]);
-    const mainKeys = ["scriptEnabled", "helpTipsEnabled", "disablePluginToast", "newlineFixEnabled", "mode", "client", "displayMode", "heavyFrontendMode", "insertOriginalText", "dbclike", "collapseImage", "zidongdianji", "zidongdianji2", "longPressToEdit", "clickToPreview", "startTag", "endTag", "cache", "sdUrl", "st_chatu8_sd_auth", "comfyuiUrl", "comfyui_max_concurrency", "comfyui_timeout", "novelaiApi", "novelaisite", "novelaiOtherSite", "enableCloudQueue", "cloudQueueUrl", "cloudQueueGreeting", "showQueueGreeting", "novelaimode", "novelai_v5_effort", "novelai_sampler", "Schedule", "nai3Scale", "cfg_rescale", "AI_use_coords", "sm", "dyn", "nai3Variety", "nai3Deceisp", "sd_cwidth", "sd_cheight", "sd_csteps", "sd_cseed", "sdCfgScale", "restoreFaces", "novelai_width", "novelai_height", "novelai_steps", "novelai_seed", "nai3VibeTransfer", "enableVibeGroupTransfer", "randomVibeGroup", "normalizeRefStrength", "InformationExtracted", "ReferenceStrength", "nai3CharRef", "nai3StylePerception", "comfyui_width", "comfyui_height", "comfyui_steps", "comfyui_seed", "cfg_comfyui", "worker", "ipa", "c_fenwei", "c_xijie", "c_quanzhong", "c_idquanzhong", "AQT_sd", "UCP_sd", "AQT_novelai", "UCP_novelai", "AQT_comfyui", "UCP_comfyui", "addFurryDataset", "sd_cupscale_factor", "sd_chires_fix", "sd_chires_steps", "sd_cdenoising_strength", "sd_cclip_skip", "sd_cadetailer", "worldBookEnabled", "ai_temperature", "ai_top_p", "ai_presence_penalty", "ai_frequency_penalty", "ai_stream", "ai_private", "ai_token", "vocabulary_search_startswith", "vocabulary_search_limit", "vocabulary_search_sort", "enablePregen", "autoLLMImageGen", "randomYushe", "aiAutonomousResolution", "videoChannel", "imageAlignment", "imageSizeScale", "imageGenInterval", "translation_system_prompt", "ai_test_system", "ai_test_user", "ai_test_output", "jiuguanchucun", "vibeJiuguanchucun", "convertToJpegStorage", "weilin_lora_fix"];
+    const mainKeys = ["scriptEnabled", "helpTipsEnabled", "disablePluginToast", "newlineFixEnabled", "mode", "client", "displayMode", "heavyFrontendMode", "insertOriginalText", "dbclike", "collapseImage", "zidongdianji", "zidongdianji2", "longPressToEdit", "clickToPreview", "startTag", "endTag", "cache", "sdUrl", "st_chatu8_sd_auth", "comfyuiUrl", "comfyui_max_concurrency", "comfyui_timeout", "novelaiApi", "novelaisite", "novelaiOtherSite", "enableCloudQueue", "cloudQueueUrl", "cloudQueueGreeting", "showQueueGreeting", "novelaimode", "novelai_v5_effort", "novelai_sampler", "Schedule", "novelai_v5_schedule", "nai3Scale", "cfg_rescale", "AI_use_coords", "sm", "dyn", "nai3Variety", "nai3Deceisp", "sd_cwidth", "sd_cheight", "sd_csteps", "sd_cseed", "sdCfgScale", "restoreFaces", "novelai_width", "novelai_height", "novelai_steps", "novelai_seed", "nai3VibeTransfer", "enableVibeGroupTransfer", "randomVibeGroup", "normalizeRefStrength", "InformationExtracted", "ReferenceStrength", "nai3CharRef", "nai3StylePerception", "comfyui_width", "comfyui_height", "comfyui_steps", "comfyui_seed", "cfg_comfyui", "worker", "ipa", "c_fenwei", "c_xijie", "c_quanzhong", "c_idquanzhong", "AQT_sd", "UCP_sd", "AQT_novelai", "UCP_novelai", "AQT_comfyui", "UCP_comfyui", "addFurryDataset", "sd_cupscale_factor", "sd_chires_fix", "sd_chires_steps", "sd_cdenoising_strength", "sd_cclip_skip", "sd_cadetailer", "worldBookEnabled", "ai_temperature", "ai_top_p", "ai_presence_penalty", "ai_frequency_penalty", "ai_stream", "ai_private", "ai_token", "vocabulary_search_startswith", "vocabulary_search_limit", "vocabulary_search_sort", "enablePregen", "autoLLMImageGen", "randomYushe", "aiAutonomousResolution", "videoChannel", "imageAlignment", "imageSizeScale", "imageGenInterval", "translation_system_prompt", "ai_test_system", "ai_test_user", "ai_test_output", "jiuguanchucun", "vibeJiuguanchucun", "convertToJpegStorage", "weilin_lora_fix"];
     mainKeys.forEach((key) => {
       const element = document.getElementById(key);
       if (element) {
@@ -112806,7 +112834,7 @@ async function initUI({ check_update: check_update2 }) {
       }
     }
     updateNovelaiOtherSiteVisibility();
-    updateNovelaiReferenceSectionsVisibility(settings2.novelaimode);
+    updateNovelaiModelUIState(settings2.novelaimode);
   }
   loadSettingsIntoUI();
   updateGenerationModeHandlers();
@@ -112900,7 +112928,7 @@ async function initUI({ check_update: check_update2 }) {
         updateErrorStats();
         updateImageGenStats();
       } else if (tabId === "novelai") {
-        updateNovelaiReferenceSectionsVisibility();
+        updateNovelaiModelUIState();
         updateNovelaiOtherSiteVisibility();
       } else if (tabId === "character") {
         refreshCharacterSettings(targetTab);
