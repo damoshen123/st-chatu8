@@ -1,0 +1,737 @@
+/* Form Fields & Controls */
+#st-chatu8-settings .st-chatu8-field,
+#st-chatu8-settings .st-chatu8-field-col {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 16px;
+}
+
+#st-chatu8-settings .st-chatu8-field-col {
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+}
+
+#st-chatu8-settings .st-chatu8-field label,
+#st-chatu8-settings .st-chatu8-field-col label {
+    color: var(--st-chatu8-text-primary);
+    font-size: 1rem;
+}
+
+#st-chatu8-settings .st-chatu8-unsaved-warning {
+    color: #ffc107;
+    /* A more warning-like yellow */
+    margin-left: 8px;
+    display: none;
+    /* Hidden by default */
+    cursor: help;
+    animation: st-chatu8-pulse-warning 2s infinite ease-in-out;
+}
+
+#st-chatu8-settings .st-chatu8-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+#st-chatu8-settings .st-chatu8-input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    position: relative;
+}
+
+#st-chatu8-settings .st-chatu8-url-warning-icon {
+    display: none;
+    position: absolute;
+    left: -22px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--st-chatu8-danger-primary);
+    cursor: help;
+}
+
+#st-chatu8-settings .st-chatu8-input-group.invalid .st-chatu8-url-warning-icon {
+    display: inline-block;
+}
+
+#st-chatu8-settings .st-chatu8-input-group .st-chatu8-text-input {
+    flex-grow: 1;
+    width: auto;
+}
+
+/* Constrain the width of controls inside a field for better aesthetics */
+#st-chatu8-settings .st-chatu8-field>.st-chatu8-select,
+#st-chatu8-settings .st-chatu8-field>.st-chatu8-text-input,
+#st-chatu8-settings .st-chatu8-field>.st-chatu8-input-group {
+    max-width: 420px;
+    flex-grow: 1;
+    min-width: 0;
+    /* Allow shrinking */
+}
+
+#st-chatu8-settings .st-chatu8-field>.st-chatu8-profile-controls {
+    max-width: 480px;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+#st-chatu8-settings .st-chatu8-field>.st-chatu8-text-input {
+    width: auto;
+}
+
+/* Toggle Switch */
+#st-chatu8-settings .st-chatu8-toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+#st-chatu8-settings .st-chatu8-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#st-chatu8-settings .st-chatu8-toggle .st-chatu8-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--st-chatu8-bg-tertiary);
+    transition: background-color 0.3s ease;
+    border-radius: 28px;
+}
+
+#st-chatu8-settings .st-chatu8-toggle .st-chatu8-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border-radius: 50%;
+}
+
+#st-chatu8-settings .st-chatu8-toggle input:checked+.st-chatu8-slider {
+    background-color: var(--st-chatu8-accent-primary);
+}
+
+#st-chatu8-settings .st-chatu8-toggle input:checked+.st-chatu8-slider:before {
+    transform: translateX(22px);
+}
+
+/* Range Slider */
+#st-chatu8-settings .st-chatu8-range-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+#st-chatu8-settings .st-chatu8-range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--st-chatu8-bg-tertiary);
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#st-chatu8-settings .st-chatu8-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--st-chatu8-accent-primary);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#st-chatu8-settings .st-chatu8-range-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--st-chatu8-accent-primary);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+}
+
+#st-chatu8-settings .st-chatu8-range-slider:hover::-webkit-slider-thumb {
+    background: var(--st-chatu8-accent-secondary);
+}
+
+#st-chatu8-settings .st-chatu8-range-slider:hover::-moz-range-thumb {
+    background: var(--st-chatu8-accent-secondary);
+}
+
+#st-chatu8-settings .st-chatu8-range-input {
+    width: 70px;
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-accent-primary);
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 6px 8px;
+    text-align: center;
+}
+
+/* Color Picker */
+#st-chatu8-settings .st-chatu8-color-picker {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#st-chatu8-settings .st-chatu8-color-picker::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 2px solid var(--st-chatu8-border-color);
+}
+
+#st-chatu8-settings .st-chatu8-color-picker::-moz-color-swatch {
+    border-radius: 50%;
+    border: 2px solid var(--st-chatu8-border-color);
+}
+
+/* General Buttons */
+#st-chatu8-settings .st-chatu8-btn,
+#st-chatu8-settings .st-chatu8-icon-btn {
+    background-color: var(--st-chatu8-bg-tertiary);
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-primary);
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+
+#st-chatu8-settings .st-chatu8-btn:hover,
+#st-chatu8-settings .st-chatu8-icon-btn:hover {
+    background-color: var(--st-chatu8-accent-secondary);
+    border-color: var(--st-chatu8-accent-primary);
+    color: var(--st-chatu8-text-highlight, white);
+}
+
+#st-chatu8-settings .st-chatu8-btn.danger,
+#st-chatu8-settings .st-chatu8-icon-btn.danger {
+    background-color: var(--st-chatu8-danger-primary);
+    border-color: var(--st-chatu8-danger-secondary);
+    color: var(--st-chatu8-danger-text, white);
+}
+
+#st-chatu8-settings .st-chatu8-btn.danger:hover,
+#st-chatu8-settings .st-chatu8-icon-btn.danger:hover {
+    background-color: var(--st-chatu8-danger-secondary);
+}
+
+#st-chatu8-settings .st-chatu8-effort-btn.active {
+    background-color: var(--st-chatu8-accent-primary, #4a90e2);
+    border-color: var(--st-chatu8-accent-secondary, #357abd);
+    color: var(--st-chatu8-text-highlight, white);
+    font-weight: bold;
+    box-shadow: 0 0 6px rgba(74, 144, 226, 0.4);
+}
+
+#st-chatu8-settings .st-chatu8-icon-btn {
+    padding: 10px;
+    line-height: 1;
+}
+
+/* Vibration Profile Controls */
+#st-chatu8-settings .st-chatu8-profile-controls {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    align-items: center;
+    min-width: 0;
+    width: 100%;
+}
+
+#st-chatu8-settings .st-chatu8-profile-controls > .st-chatu8-select {
+    flex: 1 1 0%;
+    min-width: 0;
+    width: 0;
+}
+
+#st-chatu8-settings .st-chatu8-profile-controls > .st-chatu8-icon-btn,
+#st-chatu8-settings .st-chatu8-profile-controls > .st-chatu8-preset-box-wrapper {
+    flex-shrink: 0;
+}
+
+#st-chatu8-settings .st-chatu8-select {
+    flex-grow: 1;
+    background: var(--st-chatu8-dropdown-bg, var(--st-chatu8-bg-tertiary));
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-dropdown-text, var(--st-chatu8-text-primary));
+    border-radius: var(--st-chatu8-border-radius);
+    padding: 8px 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    /* Prevent long text from breaking layout */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 120px;
+    /* Prevent squashing to 0 width */
+}
+
+#st-chatu8-settings .st-chatu8-select:hover {
+    border-color: var(--st-chatu8-accent-secondary);
+}
+
+#st-chatu8-settings .st-chatu8-select:focus {
+    outline: none;
+    border-color: var(--st-chatu8-accent-primary);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+#st-chatu8-settings .st-chatu8-select:disabled {
+    background-color: var(--st-chatu8-bg-tertiary);
+    color: var(--st-chatu8-text-secondary);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Custom Dropdown Option Style */
+#st-chatu8-settings .st-chatu8-select option {
+    background-color: var(--st-chatu8-dropdown-list-bg, var(--st-chatu8-bg-secondary));
+    color: var(--st-chatu8-dropdown-text, var(--st-chatu8-text-primary));
+}
+
+
+#st-chatu8-settings .st-chatu8-textarea,
+#st-chatu8-settings .st-chatu8-text-input {
+    width: 100%;
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-primary);
+    border-radius: 6px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#st-chatu8-settings .st-chatu8-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+#st-chatu8-settings .inline-edit-input {
+    background-color: #ffffff;
+    color: #111111;
+    border: 1px solid var(--st-chatu8-accent-primary);
+    padding: 4px;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 3px;
+}
+
+/* --- Autocomplete Styles --- */
+.ch-autocomplete-results {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background-color: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 6px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    top: 100%;
+    /* Position it right below the textarea */
+    left: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ch-autocomplete-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: var(--st-chatu8-text-secondary);
+    font-size: 0.9em;
+}
+
+.ch-autocomplete-item:hover {
+    background-color: var(--st-chatu8-accent-secondary);
+    color: var(--st-chatu8-text-highlight, white);
+}
+
+/* Checkbox Styles */
+#st-chatu8-settings .st-chatu8-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    user-select: none;
+}
+
+#st-chatu8-settings .st-chatu8-checkbox-label:hover {
+    background-color: var(--st-chatu8-bg-tertiary);
+}
+
+#st-chatu8-settings .st-chatu8-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--st-chatu8-accent-primary);
+}
+
+#st-chatu8-settings .st-chatu8-checkbox-label span {
+    font-size: 0.95rem;
+    color: var(--st-chatu8-text-primary);
+}
+
+/* Details/Summary (Collapsible Sections) */
+#st-chatu8-settings .st-chatu8-details {
+    margin-bottom: 16px;
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 6px;
+    background: var(--st-chatu8-bg-secondary);
+    overflow: hidden;
+}
+
+#st-chatu8-settings .st-chatu8-details summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    background: var(--st-chatu8-bg-tertiary);
+    color: var(--st-chatu8-text-primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+    user-select: none;
+}
+
+#st-chatu8-settings .st-chatu8-details summary:hover {
+    background: var(--st-chatu8-accent-secondary);
+    color: var(--st-chatu8-text-highlight, white);
+}
+
+#st-chatu8-settings .st-chatu8-details[open] summary {
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+}
+
+#st-chatu8-settings .st-chatu8-details-content {
+    padding: 16px;
+}
+
+/* Select Search Input */
+#st-chatu8-settings .st-chatu8-select-search {
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 8px 10px;
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-primary);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+}
+
+#st-chatu8-settings .st-chatu8-select-search:focus {
+    outline: none;
+    border-color: var(--st-chatu8-accent-primary);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.15);
+}
+
+#st-chatu8-settings .st-chatu8-select-search::placeholder {
+    color: var(--st-chatu8-text-secondary);
+    opacity: 0.7;
+}
+
+/* ===== Request Type Cards ===== */
+#st-chatu8-settings .st-chatu8-request-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+}
+
+#st-chatu8-settings .st-chatu8-request-card {
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#st-chatu8-settings .st-chatu8-request-card:hover {
+    border-color: var(--st-chatu8-accent-secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Accent variants */
+#st-chatu8-settings .st-chatu8-request-card--accent-pink {
+    border-left: 3px solid #ff69b4;
+}
+
+#st-chatu8-settings .st-chatu8-request-card--accent-purple {
+    border-left: 3px solid #9b59b6;
+}
+
+/* Card header (icon + title) */
+#st-chatu8-settings .st-chatu8-request-card-header {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: var(--st-chatu8-text-primary);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#st-chatu8-settings .st-chatu8-request-card-header i {
+    color: var(--st-chatu8-accent-primary);
+    font-size: 0.9rem;
+}
+
+/* Card description */
+#st-chatu8-settings .st-chatu8-request-card-desc {
+    font-size: 11px;
+    color: var(--st-chatu8-text-secondary);
+    margin: 0 0 10px 0;
+    line-height: 1.5;
+}
+
+/* Selects area */
+#st-chatu8-settings .st-chatu8-request-card-selects {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+#st-chatu8-settings .st-chatu8-request-card-select-item {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#st-chatu8-settings .st-chatu8-request-card-select-item label {
+    font-size: 11px;
+    color: var(--st-chatu8-text-secondary);
+    font-weight: 500;
+}
+
+#st-chatu8-settings .st-chatu8-request-card-select-item .st-chatu8-select {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 6px 8px;
+}
+
+/* RunningHub 专属美化样式 (头部操作栏、仪表盘、Key卡片、并发控制器) */
+.st-chatu8-rh-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    gap: 8px;
+}
+
+.st-chatu8-rh-test-btn {
+    padding: 4px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.st-chatu8-rh-dashboard {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 8px;
+}
+
+.st-chatu8-rh-card {
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+}
+
+.st-chatu8-rh-card:hover {
+    background: rgba(255, 255, 255, 0.055);
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.st-chatu8-rh-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.st-chatu8-rh-badge-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.st-chatu8-rh-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+    line-height: 1.4;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.st-chatu8-rh-badge.badge-today {
+    background: rgba(255, 152, 0, 0.15);
+    color: #ffb74d;
+    border-color: rgba(255, 152, 0, 0.25);
+}
+
+.st-chatu8-rh-badge.badge-7d {
+    background: rgba(255, 87, 34, 0.15);
+    color: #ff8a65;
+    border-color: rgba(255, 87, 34, 0.25);
+}
+
+.st-chatu8-rh-badge.badge-30d {
+    background: rgba(233, 30, 99, 0.15);
+    color: #f06292;
+    border-color: rgba(233, 30, 99, 0.25);
+}
+
+.st-chatu8-rh-badge.badge-total {
+    background: rgba(147, 51, 234, 0.15);
+    color: #c084fc;
+    border-color: rgba(147, 51, 234, 0.25);
+}
+
+.st-chatu8-rh-limit-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    padding-left: 12px;
+    min-width: 96px;
+}
+
+.st-chatu8-rh-limit-label {
+    font-size: 11px;
+    color: var(--st-chatu8-text-secondary, #94a3b8);
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+}
+
+.rh-local-limit-input {
+    width: 52px;
+    height: 26px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    padding: 0 4px;
+    border-radius: 6px;
+    color: var(--st-chatu8-text-primary, #f1f5f9) !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.rh-local-limit-input:focus {
+    background: rgba(0, 0, 0, 0.45) !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.25) !important;
+}
+
+.rh-local-limit-input::placeholder {
+    color: rgba(255, 255, 255, 0.45) !important;
+    font-weight: normal !important;
+}
+
+/* 移动端 (手机浏览器) 适配 */
+@media (max-width: 768px) {
+    .st-chatu8-rh-header-row {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .st-chatu8-rh-dashboard {
+        padding: 10px 10px;
+    }
+
+    .st-chatu8-rh-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .st-chatu8-rh-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .st-chatu8-rh-card-header .rh-key-title {
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+
+    .st-chatu8-rh-limit-group {
+        border-left: none;
+        padding-left: 0;
+        min-width: 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 6px;
+    }
+
+    .st-chatu8-rh-badge-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+        width: 100%;
+    }
+
+    .st-chatu8-rh-badge {
+        justify-content: center;
+        padding: 4px 6px;
+        font-size: 10.5px;
+    }
+}

@@ -1,0 +1,44 @@
+<div id="st-chatu8-summary-manager" class="st-chatu8-summary-manager" style="display:none;">
+    <!-- 顶部工具栏 -->
+    <div class="summary-toolbar">
+        <div class="summary-toolbar-left">
+            <span class="summary-title"><i class="fa-solid fa-layer-group"></i> 聊天总结</span>
+        </div>
+        <div class="summary-toolbar-actions">
+            <button id="summary-toggle-multiselect" class="summary-btn summary-btn--outline" title="开启多选模式">
+                <i class="fa-solid fa-check-double"></i> 多选
+            </button>
+            <button id="summary-generate-selected-btn" class="summary-btn summary-btn--primary" disabled title="对选中项生成合并总结">
+                <i class="fa-solid fa-compress-alt"></i> 总结选中
+            </button>
+            <button id="summary-enable-selected-btn" class="summary-btn summary-btn--success" disabled title="启用选中的总结">
+                <i class="fa-solid fa-check"></i> 启用
+            </button>
+            <button id="summary-disable-selected-btn" class="summary-btn summary-btn--warning" disabled title="取消启用选中的总结">
+                <i class="fa-solid fa-times"></i> 禁用
+            </button>
+        </div>
+        <button id="summary-close-btn" class="summary-btn summary-btn--icon" title="关闭">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <!-- 状态提示栏 -->
+    <div id="summary-status-bar" class="summary-status-bar" style="display:none;"></div>
+
+    <!-- 主体：水平滚动容器 -->
+    <div class="summary-body">
+        <div class="summary-columns" id="summary-columns">
+            <!-- SVG 连线层（绝对定位，随列滚动） -->
+            <svg class="summary-svg-lines" id="summary-svg-lines" xmlns="http://www.w3.org/2000/svg"></svg>
+            <!-- JS 动态按层级创建列 -->
+        </div>
+    </div>
+
+    <!-- 底部提示 -->
+    <div class="summary-footer">
+        <span id="summary-enabled-hint" class="summary-enabled-hint"></span>
+        <span id="summary-total-tokens" class="summary-total-tokens"></span>
+        <span class="summary-footer-tip">提示：启用的总结会替换对应轮次的对话历史发送给 AI（始终保留最近 15 轮）</span>
+    </div>
+</div>

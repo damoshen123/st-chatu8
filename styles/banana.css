@@ -1,0 +1,131 @@
+/* styles/banana.css */
+.st-chatu8-banana-conversation-group {
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.st-chatu8-banana-conversation-turn {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.st-chatu8-banana-turn-user, .st-chatu8-banana-turn-model {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Ensure the container is a positioning context for the button */
+.st-chatu8-image-preview-container.small {
+    position: relative;
+}
+
+/* Style the top-right delete button */
+.st-chatu8-image-preview-container.small .st-chatu8-icon-btn.top-right {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 10;
+    /* The 'danger' class should already make it red */
+}
+
+/* ========== Banana 专属替换词设置样式 ========== */
+
+/* 帮助文本样式 */
+.st-chatu8-settings-banana .st-chatu8-help-text {
+    font-size: 13px;
+    color: var(--st-chatu8-text-secondary);
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.st-chatu8-settings-banana .st-chatu8-help-text code {
+    background: var(--st-chatu8-input-bg);
+    color: var(--st-chatu8-text-primary);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 12px;
+}
+
+/* 替换规则说明折叠面板 */
+.st-chatu8-banana-replace-help {
+    margin-top: 10px;
+}
+
+.st-chatu8-banana-replace-help details {
+    border: 1px solid var(--st-chatu8-border-color, rgba(255,255,255,0.1));
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--st-chatu8-input-bg, rgba(0,0,0,0.15));
+}
+
+.st-chatu8-banana-replace-help summary {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--st-chatu8-text-primary);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease;
+}
+
+.st-chatu8-banana-replace-help summary:hover {
+    background: var(--st-chatu8-hover-bg, rgba(255,255,255,0.05));
+}
+
+.st-chatu8-banana-replace-help summary i {
+    color: var(--st-chatu8-accent-color, #4a9eff);
+}
+
+.st-chatu8-banana-replace-help .st-chatu8-help-content {
+    padding: 12px 15px;
+    border-top: 1px solid var(--st-chatu8-border-color, rgba(255,255,255,0.1));
+    background: var(--st-chatu8-bg-secondary, rgba(0,0,0,0.1));
+}
+
+.st-chatu8-banana-replace-help ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style: none;
+}
+
+.st-chatu8-banana-replace-help li {
+    position: relative;
+    padding: 6px 0;
+    font-size: 13px;
+    color: var(--st-chatu8-text-secondary);
+    line-height: 1.6;
+}
+
+.st-chatu8-banana-replace-help li::before {
+    content: '•';
+    position: absolute;
+    left: -15px;
+    color: var(--st-chatu8-accent-color, #4a9eff);
+}
+
+.st-chatu8-banana-replace-help li strong {
+    color: var(--st-chatu8-text-primary);
+    font-weight: 600;
+}
+
+/* 替换规则文本框特殊样式 */
+#st-chatu8-banana-prompt-replace-text {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 150px;
+    resize: vertical;
+}
+
+#st-chatu8-banana-prompt-replace-text::placeholder {
+    color: var(--st-chatu8-text-muted, #666);
+    opacity: 0.7;
+}
+

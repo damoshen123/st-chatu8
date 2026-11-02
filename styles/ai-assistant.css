@@ -1,0 +1,1852 @@
+/* 智绘姬全局悬浮心动图标 */
+/* AI助手触发心动图标样式 */
+.st-chatu8-ai-heart-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    color: var(--st-chatu8-accent-primary);
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    animation: st-chatu8-heartbeat 2s infinite ease-in-out;
+}
+
+.st-chatu8-ai-heart-icon img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+.st-chatu8-ai-heart-icon:hover {
+    transform: scale(1.2);
+    color: var(--st-chatu8-accent-secondary);
+    animation: none;
+    /* 悬停时停止呼吸动画 */
+}
+
+@keyframes st-chatu8-heartbeat {
+    0% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.15);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.15);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 智绘姬AI助手悬浮对话框 - 毛玻璃风格 */
+.st-chatu8-ai-dialog {
+    position: fixed;
+    /* 默认位置：移出视口外，避免隐藏状态下出现黑条 */
+    top: -9999px;
+    left: -9999px;
+    width: 350px;
+    height: 500px;
+    max-height: calc(100vh - 100px);
+    background: color-mix(in srgb, var(--st-chatu8-bg-primary) 85%, transparent);
+    /* 半透明主题背景 */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--st-chatu8-border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px color-mix(in srgb, var(--st-chatu8-accent-primary) 20%, transparent);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10000;
+    /* 需要在最顶层 */
+    overflow: hidden;
+    /* 初始状态隐藏，通过 JS 切换 class 显示 */
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, left 0s, top 0s;
+}
+
+.st-chatu8-ai-dialog.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.st-chatu8-ai-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--st-chatu8-accent-primary) 20%, transparent), transparent);
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+    cursor: default;
+    /* 默认指针，不再使用 grab */
+    user-select: none;
+}
+
+.st-chatu8-ai-dialog-header:active {
+    cursor: default;
+    /* 拖拽时也保持默认指针 */
+}
+
+.st-chatu8-ai-dialog-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--st-chatu8-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 0 8px color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, transparent);
+    cursor: default;
+    /* 标题也使用默认指针 */
+}
+
+.st-chatu8-ai-dialog-header h3 * {
+    cursor: default !important;
+    /* 标题内的所有元素都使用默认指针 */
+}
+
+.st-chatu8-ai-dialog-header h3 i {
+    color: var(--st-chatu8-accent-primary);
+}
+
+.st-chatu8-ai-dialog-close {
+    color: var(--st-chatu8-text-secondary);
+    cursor: pointer;
+    font-size: 20px;
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.st-chatu8-ai-dialog-close:hover {
+    color: #ff4d4f;
+    background: color-mix(in srgb, #ff4d4f 15%, transparent);
+    transform: scale(1.1);
+}
+
+.st-chatu8-ai-dialog-body {
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    will-change: scroll-position;
+}
+
+/* 隐藏滚动条增强美观 */
+.st-chatu8-ai-dialog-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.st-chatu8-ai-dialog-body::-webkit-scrollbar-thumb {
+    background: var(--st-chatu8-border-color);
+    border-radius: 3px;
+}
+
+.st-chatu8-ai-msg {
+    display: flex;
+    gap: 10px;
+    max-width: 90%;
+    position: relative;
+    contain: layout style;
+}
+
+.st-chatu8-ai-msg.system-msg {
+    align-self: flex-start;
+}
+
+.st-chatu8-ai-msg.user-msg {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+/* 编辑状态高亮 */
+.st-chatu8-ai-msg.editing .msg-content {
+    border: 2px solid var(--st-chatu8-accent-primary);
+    box-shadow: 0 0 15px color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, transparent);
+}
+
+/* 楼层号标识 */
+.st-chatu8-ai-msg-floor {
+    position: absolute;
+    top: -8px;
+    font-size: 10px;
+    color: var(--st-chatu8-text-secondary);
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+    transition: opacity 0.2s;
+}
+
+.st-chatu8-ai-msg:hover .st-chatu8-ai-msg-floor {
+    opacity: 0.85;
+}
+
+.st-chatu8-ai-msg.system-msg .st-chatu8-ai-msg-floor {
+    left: 42px;
+}
+
+.st-chatu8-ai-msg.user-msg .st-chatu8-ai-msg-floor {
+    right: 42px;
+}
+
+/* 消息操作按钮容器 */
+.st-chatu8-ai-msg-actions {
+    display: none;
+    gap: 4px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 10;
+}
+
+.st-chatu8-ai-msg.user-msg:hover .st-chatu8-ai-msg-actions,
+.st-chatu8-ai-msg.system-msg:hover .st-chatu8-ai-msg-actions {
+    display: flex;
+}
+
+/* 编辑、继续、重新生成、TTS朗读 按钮 */
+.st-chatu8-ai-msg-edit,
+.st-chatu8-ai-msg-continue,
+.st-chatu8-ai-msg-regenerate,
+.st-chatu8-ai-msg-tts {
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-secondary);
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.st-chatu8-ai-msg-edit:hover {
+    background: var(--st-chatu8-accent-primary);
+    color: white;
+    border-color: var(--st-chatu8-accent-primary);
+    transform: scale(1.1);
+}
+
+.st-chatu8-ai-msg-continue:hover {
+    background: var(--st-chatu8-accent-secondary);
+    color: white;
+    border-color: var(--st-chatu8-accent-secondary);
+    transform: scale(1.1);
+}
+
+.st-chatu8-ai-msg-regenerate:hover {
+    background: var(--st-chatu8-accent-primary);
+    color: white;
+    border-color: var(--st-chatu8-accent-primary);
+    transform: scale(1.1);
+}
+
+.st-chatu8-ai-msg-tts:hover {
+    background: var(--st-chatu8-accent-secondary);
+    color: white;
+    border-color: var(--st-chatu8-accent-secondary);
+    transform: scale(1.1);
+}
+
+/* TTS 按钮加载中状态 */
+.st-chatu8-ai-msg-tts .fa-spinner {
+    color: var(--st-chatu8-accent-primary);
+}
+
+/* TTS 按钮播放中状态 */
+.st-chatu8-ai-msg-tts .fa-stop {
+    color: #e74c3c;
+}
+
+.st-chatu8-ai-msg-tts:has(.fa-stop) {
+    border-color: #e74c3c;
+}
+
+.st-chatu8-ai-msg-tts:has(.fa-stop):hover {
+    background: #e74c3c;
+    color: white;
+    border-color: #e74c3c;
+}
+
+.st-chatu8-ai-msg-tts:has(.fa-stop):hover .fa-stop {
+    color: white;
+}
+
+.st-chatu8-ai-msg-tts:has(.fa-spinner) {
+    cursor: default;
+    border-color: var(--st-chatu8-accent-primary);
+    opacity: 0.8;
+}
+
+.st-chatu8-ai-msg .msg-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--st-chatu8-accent-primary), var(--st-chatu8-accent-secondary));
+    color: var(--st-chatu8-text-highlight, white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, transparent);
+}
+
+.st-chatu8-ai-msg .msg-avatar img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+.st-chatu8-ai-msg.user-msg .msg-avatar {
+    background: var(--st-chatu8-accent-secondary);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--st-chatu8-accent-secondary) 30%, transparent);
+}
+
+.st-chatu8-ai-msg .msg-content {
+    background: var(--st-chatu8-bg-secondary);
+    color: var(--st-chatu8-text-primary);
+    border: 1px solid var(--st-chatu8-border-color);
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.st-chatu8-ai-msg.system-msg .msg-content {
+    border-top-left-radius: 2px;
+}
+
+.st-chatu8-ai-msg.user-msg .msg-content {
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, var(--st-chatu8-bg-secondary));
+    border-color: color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, var(--st-chatu8-border-color));
+    border-top-right-radius: 2px;
+}
+
+.st-chatu8-ai-dialog-footer {
+    padding: 12px;
+    border-top: 1px solid var(--st-chatu8-border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--st-chatu8-bg-secondary);
+}
+
+/* 图片预览容器 */
+.st-chatu8-ai-image-preview {
+    display: none;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 5%, var(--st-chatu8-bg-primary));
+    border-radius: 8px;
+    border: 1px dashed var(--st-chatu8-border-color);
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.st-chatu8-ai-image-preview::-webkit-scrollbar {
+    width: 4px;
+}
+
+.st-chatu8-ai-image-preview::-webkit-scrollbar-thumb {
+    background: var(--st-chatu8-border-color);
+    border-radius: 2px;
+}
+
+/* 图片预览项 */
+.st-chatu8-ai-image-preview-item {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid var(--st-chatu8-border-color);
+    transition: all 0.2s ease;
+}
+
+.st-chatu8-ai-image-preview-item:hover {
+    border-color: var(--st-chatu8-accent-primary);
+    transform: scale(1.05);
+}
+
+.st-chatu8-ai-image-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.st-chatu8-ai-image-remove {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 77, 79, 0.9);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.st-chatu8-ai-image-preview-item:hover .st-chatu8-ai-image-remove {
+    opacity: 1;
+}
+
+.st-chatu8-ai-image-remove:hover {
+    background: rgba(255, 77, 79, 1);
+    transform: scale(1.1);
+}
+
+/* 输入容器 */
+.st-chatu8-ai-input-container {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.st-chatu8-ai-image-btn {
+    background: color-mix(in srgb, var(--st-chatu8-accent-secondary) 80%, var(--st-chatu8-accent-primary));
+}
+
+.st-chatu8-ai-image-btn:hover {
+    background: var(--st-chatu8-accent-secondary);
+}
+
+/* 屏幕共享状态指示图标 */
+.st-chatu8-ai-capture-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    flex-shrink: 0;
+    position: relative;
+}
+
+#st-chatu8-ai-screen-share-indicator {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+}
+
+#st-chatu8-ai-screen-share-indicator:hover {
+    background: rgba(76, 175, 80, 0.35);
+    transform: scale(1.1);
+}
+
+#st-chatu8-ai-browser-capture-indicator {
+    background: rgba(33, 150, 243, 0.2);
+    color: #2196F3;
+}
+
+#st-chatu8-ai-browser-capture-indicator:hover {
+    background: rgba(33, 150, 243, 0.35);
+    transform: scale(1.1);
+}
+
+/* 指示图标呼吸动画 */
+@keyframes captureIndicatorPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.st-chatu8-ai-capture-indicator i {
+    animation: captureIndicatorPulse 2s ease-in-out infinite;
+}
+
+#st-chatu8-ai-input {
+    flex-grow: 1;
+    background: var(--st-chatu8-input-bg);
+    border: 1px solid var(--st-chatu8-input-border);
+    border-radius: 20px;
+    color: var(--st-chatu8-input-text);
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: none;
+    outline: none;
+    max-height: 100px;
+    transition: border-color 0.2s;
+    line-height: 1.4;
+}
+
+#st-chatu8-ai-input:focus {
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+#st-chatu8-ai-input::placeholder {
+    color: var(--st-chatu8-text-secondary);
+}
+
+.st-chatu8-ai-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--st-chatu8-accent-primary);
+    color: var(--st-chatu8-text-highlight, white);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    flex-shrink: 0;
+}
+
+.st-chatu8-ai-btn:hover {
+    background: var(--st-chatu8-accent-secondary);
+    transform: scale(1.05);
+}
+
+.st-chatu8-ai-btn:active {
+    transform: scale(0.95);
+}
+
+/* 多轮对话模式按钮 - 激活态 */
+.st-chatu8-ai-btn.conv-active {
+    background: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+    animation: st-chatu8-conv-pulse 2s infinite ease-in-out;
+}
+
+.st-chatu8-ai-btn.conv-active:hover {
+    background: #43A047;
+}
+
+.st-chatu8-ai-btn.conv-recording {
+    background: #ff4444;
+    box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.3);
+    animation: st-chatu8-conv-recording-pulse 1s infinite ease-in-out;
+}
+
+@keyframes st-chatu8-conv-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 0 6px rgba(76, 175, 80, 0.15);
+    }
+}
+
+@keyframes st-chatu8-conv-recording-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 0 6px rgba(255, 68, 68, 0.15);
+    }
+}
+
+/* Edge TTS Ping 按钮（非圆形，矩形文字按钮） */
+.st-chatu8-ai-ping-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    font-size: 12px;
+    line-height: 1;
+    white-space: nowrap;
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 6px;
+    background: var(--st-chatu8-bg-secondary, #f5f5f5);
+    color: var(--st-chatu8-text-primary);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.st-chatu8-ai-ping-btn:hover {
+    background: var(--st-chatu8-accent-primary);
+    color: var(--st-chatu8-text-highlight, white);
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+.st-chatu8-ai-ping-btn:active {
+    transform: scale(0.97);
+}
+
+.st-chatu8-ai-ping-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* 智绘姬AI助手设置按钮与面板 */
+.st-chatu8-ai-settings-icon {
+    font-size: 16px;
+    margin-left: 5px;
+    color: var(--st-chatu8-text-secondary);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.st-chatu8-ai-settings-icon:hover {
+    color: var(--st-chatu8-accent-primary);
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, transparent);
+    transform: scale(1.1);
+}
+
+.st-chatu8-ai-settings-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: color-mix(in srgb, var(--st-chatu8-bg-primary) 95%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    z-index: 10001;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.st-chatu8-ai-settings-panel.active {
+    transform: translateY(0);
+}
+
+.st-chatu8-ai-settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+}
+
+.st-chatu8-ai-settings-header h4 {
+    margin: 0;
+    color: var(--st-chatu8-text-primary);
+    font-size: 16px;
+}
+
+.st-chatu8-ai-settings-close {
+    cursor: pointer;
+    color: var(--st-chatu8-text-secondary);
+    font-size: 18px;
+    transition: color 0.2s;
+}
+
+.st-chatu8-ai-settings-close:hover {
+    color: var(--st-chatu8-text-primary);
+}
+
+.st-chatu8-ai-settings-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* 设置面板分页标签栏 */
+.st-chatu8-ai-settings-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+    background: color-mix(in srgb, var(--st-chatu8-bg-secondary) 50%, transparent);
+    flex-shrink: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.st-chatu8-ai-settings-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.st-chatu8-ai-settings-tab {
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--st-chatu8-text-secondary);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    font-family: inherit;
+    flex-shrink: 0;
+}
+
+.st-chatu8-ai-settings-tab:hover {
+    color: var(--st-chatu8-text-primary);
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 8%, transparent);
+}
+
+.st-chatu8-ai-settings-tab.active {
+    color: var(--st-chatu8-accent-primary);
+    border-bottom-color: var(--st-chatu8-accent-primary);
+    font-weight: 600;
+}
+
+/* 设置面板分页内容区 */
+.st-chatu8-ai-settings-tab-content {
+    display: none;
+}
+
+.st-chatu8-ai-settings-tab-content.active {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.st-chatu8-ai-setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.st-chatu8-ai-setting-item.checkbox {
+    flex-direction: row;
+    align-items: center;
+}
+
+.st-chatu8-ai-setting-item label {
+    font-size: 13px;
+    color: var(--st-chatu8-text-secondary);
+}
+
+.st-chatu8-ai-setting-item input[type="text"],
+.st-chatu8-ai-setting-item input[type="password"] {
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 8px;
+    padding: 10px;
+    color: var(--st-chatu8-text-primary);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.st-chatu8-ai-setting-item input[type="text"]:focus,
+.st-chatu8-ai-setting-item input[type="password"]:focus {
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+.st-chatu8-ai-setting-item small {
+    font-size: 11px;
+    color: color-mix(in srgb, var(--st-chatu8-text-secondary) 70%, transparent);
+}
+
+.st-chatu8-ai-save-btn {
+    margin-top: 10px;
+    background: linear-gradient(135deg, var(--st-chatu8-accent-primary), var(--st-chatu8-accent-secondary));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.st-chatu8-ai-save-btn:hover {
+    box-shadow: 0 4px 15px color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, transparent);
+}
+
+.st-chatu8-ai-save-btn:active {
+    transform: scale(0.98);
+}
+
+/* 智绘姬AI设置面板 - 下拉框主题适配 */
+.st-chatu8-ai-select {
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    color: var(--st-chatu8-text-primary);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    cursor: pointer;
+}
+
+.st-chatu8-ai-select:hover {
+    border-color: var(--st-chatu8-accent-secondary);
+}
+
+.st-chatu8-ai-select:focus {
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+.st-chatu8-ai-select option {
+    background: var(--st-chatu8-bg-secondary);
+    color: var(--st-chatu8-text-primary);
+}
+
+/* 智绘姬AI设置面板 - number 输入框主题适配 */
+.st-chatu8-ai-setting-item input[type="number"] {
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 8px;
+    padding: 10px;
+    color: var(--st-chatu8-text-primary);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.st-chatu8-ai-setting-item input[type="number"]:focus {
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+/* 智绘姬AI设置面板 - 获取模型按钮主题适配 */
+.st-chatu8-ai-fetch-btn {
+    width: auto !important;
+    height: auto !important;
+    border-radius: 6px !important;
+    padding: 5px 12px !important;
+    font-size: 0.85em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 智绘姬历史记录卡片样式 */
+.st-chatu8-ai-history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: var(--st-chatu8-bg-secondary);
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.st-chatu8-ai-history-item:hover {
+    border-color: var(--st-chatu8-accent-primary);
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 10%, var(--st-chatu8-bg-secondary));
+    transform: translateY(-2px);
+}
+
+.st-chatu8-ai-history-item.active-chat {
+    border-color: var(--st-chatu8-accent-primary);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, transparent);
+}
+
+.st-chatu8-ai-history-item.selected {
+    border-color: var(--st-chatu8-accent-secondary);
+    background: color-mix(in srgb, var(--st-chatu8-accent-secondary) 15%, var(--st-chatu8-bg-secondary));
+}
+
+.st-chatu8-ai-history-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--st-chatu8-accent-primary);
+    flex-shrink: 0;
+}
+
+.st-chatu8-ai-history-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    overflow: hidden;
+}
+
+.st-chatu8-ai-history-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+    flex: 1;
+}
+
+.st-chatu8-ai-history-title {
+    font-size: 14px;
+    color: var(--st-chatu8-text-primary);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.st-chatu8-ai-history-time {
+    font-size: 11px;
+    color: var(--st-chatu8-text-secondary);
+}
+
+.st-chatu8-ai-history-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.st-chatu8-ai-history-rename {
+    color: var(--st-chatu8-text-secondary);
+    padding: 8px;
+    font-size: 13px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.st-chatu8-ai-history-rename:hover {
+    color: var(--st-chatu8-accent-primary);
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, transparent);
+}
+
+.st-chatu8-ai-history-delete {
+    color: var(--st-chatu8-text-secondary);
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.st-chatu8-ai-history-delete:hover {
+    color: #ff4d4f;
+    background: color-mix(in srgb, #ff4d4f 15%, transparent);
+}
+
+/* 重命名输入框 */
+.st-chatu8-ai-history-rename-input {
+    width: 100%;
+    padding: 2px 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--st-chatu8-text-primary);
+    background: var(--st-chatu8-bg-primary);
+    border: 1px solid var(--st-chatu8-accent-primary);
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--st-chatu8-accent-primary) 25%, transparent);
+}
+
+.st-chatu8-ai-history-rename-input:focus {
+    border-color: var(--st-chatu8-accent-secondary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--st-chatu8-accent-secondary) 30%, transparent);
+}
+
+/* 智绘姬内部查询工具结果 折叠面板样式 */
+.st-chatu8-ai-query-details {
+    margin-top: 5px;
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--st-chatu8-bg-primary) 50%, var(--st-chatu8-bg-secondary));
+}
+
+.st-chatu8-ai-query-summary {
+    padding: 6px 10px;
+    font-size: 13px;
+    color: var(--st-chatu8-accent-secondary);
+    cursor: pointer;
+    user-select: none;
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 10%, transparent);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.st-chatu8-ai-query-summary:hover {
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 20%, transparent);
+}
+
+.st-chatu8-ai-query-content {
+    margin: 0;
+    padding: 8px 10px;
+    font-size: 12px;
+    color: var(--st-chatu8-text-secondary);
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 200px;
+    overflow-y: auto;
+    border-top: 1px dashed var(--st-chatu8-border-color);
+}
+
+
+/* ==================== Thinking Panel Styles ==================== */
+
+/* Thinking Panel Container */
+.st-chatu8-ai-thinking-panel {
+    margin: 8px 0;
+    border: 1px solid color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, var(--st-chatu8-border-color));
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 5%, var(--st-chatu8-bg-secondary));
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--st-chatu8-accent-primary) 10%, transparent);
+}
+
+.st-chatu8-ai-thinking-panel[open] {
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 8%, var(--st-chatu8-bg-secondary));
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, transparent);
+}
+
+/* Thinking Summary (Clickable Header) */
+.st-chatu8-ai-thinking-summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88em;
+    color: var(--st-chatu8-text-primary);
+    background: linear-gradient(90deg,
+            color-mix(in srgb, var(--st-chatu8-accent-primary) 12%, transparent),
+            transparent);
+    transition: all 0.2s ease;
+    list-style: none;
+}
+
+.st-chatu8-ai-thinking-summary::-webkit-details-marker {
+    display: none;
+}
+
+/* 强制所有子元素继承 pointer cursor，避免抽搐 */
+.st-chatu8-ai-thinking-summary * {
+    cursor: pointer !important;
+    pointer-events: none;
+}
+
+.st-chatu8-ai-thinking-summary:hover {
+    background: linear-gradient(90deg,
+            color-mix(in srgb, var(--st-chatu8-accent-primary) 18%, transparent),
+            color-mix(in srgb, var(--st-chatu8-accent-primary) 8%, transparent));
+}
+
+.st-chatu8-ai-thinking-summary .thinking-icon {
+    font-size: 1.3em;
+    filter: drop-shadow(0 0 4px color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, transparent));
+}
+
+.st-chatu8-ai-thinking-summary .thinking-label {
+    flex: 1;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--st-chatu8-accent-primary) 80%, var(--st-chatu8-text-primary));
+}
+
+.st-chatu8-ai-thinking-summary .thinking-toggle {
+    font-size: 0.75em;
+    color: var(--st-chatu8-accent-primary);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.st-chatu8-ai-thinking-panel[open] .thinking-toggle {
+    transform: rotate(180deg);
+}
+
+/* Thinking Content */
+.st-chatu8-ai-thinking-content {
+    padding: 14px;
+    font-size: 0.82em;
+    line-height: 1.7;
+    color: var(--st-chatu8-text-primary);
+    border-top: 1px dashed color-mix(in srgb, var(--st-chatu8-accent-primary) 25%, var(--st-chatu8-border-color));
+    background: color-mix(in srgb, var(--st-chatu8-bg-primary) 50%, var(--st-chatu8-bg-secondary));
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* 美化思考内容滚动条 */
+.st-chatu8-ai-thinking-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.st-chatu8-ai-thinking-content::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, transparent);
+    border-radius: 3px;
+}
+
+.st-chatu8-ai-thinking-content::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 60%, transparent);
+}
+
+/* Thinking Indicator (Streaming) */
+.st-chatu8-ai-thinking-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 10px;
+    background: linear-gradient(135deg,
+            color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, transparent),
+            color-mix(in srgb, var(--st-chatu8-accent-secondary) 10%, transparent));
+    border: 1px solid color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, var(--st-chatu8-border-color));
+    font-size: 0.88em;
+    color: var(--st-chatu8-accent-primary);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, transparent);
+    animation: st-chatu8-thinking-pulse 2s ease-in-out infinite;
+}
+
+@keyframes st-chatu8-thinking-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.85;
+        transform: scale(0.98);
+    }
+}
+
+.st-chatu8-ai-thinking-indicator .thinking-icon {
+    font-size: 1.3em;
+    filter: drop-shadow(0 0 4px color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, transparent));
+}
+
+.st-chatu8-ai-thinking-indicator .thinking-label {
+    font-weight: 500;
+}
+
+.st-chatu8-ai-thinking-indicator .thinking-dots {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.st-chatu8-ai-thinking-indicator .thinking-dots .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--st-chatu8-accent-primary);
+    animation: st-chatu8-dot-bounce 1.4s infinite ease-in-out;
+}
+
+.st-chatu8-ai-thinking-indicator .thinking-dots .dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.st-chatu8-ai-thinking-indicator .thinking-dots .dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.st-chatu8-ai-thinking-indicator .thinking-dots .dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes st-chatu8-dot-bounce {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+
+    30% {
+        transform: translateY(-8px);
+        opacity: 1;
+    }
+}
+
+
+/* 标题栏按钮通用样式 - 新建对话和历史记录按钮 */
+#st-chatu8-ai-new-chat,
+#st-chatu8-ai-history-btn {
+    color: var(--st-chatu8-text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+#st-chatu8-ai-new-chat:hover,
+#st-chatu8-ai-history-btn:hover {
+    color: var(--st-chatu8-accent-primary);
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, transparent);
+    transform: scale(1.1);
+}
+
+#st-chatu8-ai-settings-btn {
+    color: var(--st-chatu8-text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+#st-chatu8-ai-settings-btn:hover {
+    color: var(--st-chatu8-accent-primary);
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, transparent);
+    transform: scale(1.1);
+}
+
+/* ==================== Markdown Content Styles ==================== */
+
+/* 消息内容中的 Markdown 样式 */
+.st-chatu8-ai-msg .msg-content h1,
+.st-chatu8-ai-msg .msg-content h2,
+.st-chatu8-ai-msg .msg-content h3,
+.st-chatu8-ai-msg .msg-content h4,
+.st-chatu8-ai-msg .msg-content h5,
+.st-chatu8-ai-msg .msg-content h6 {
+    margin: 0.8em 0 0.5em 0;
+    color: var(--st-chatu8-text-primary);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.st-chatu8-ai-msg .msg-content h1 {
+    font-size: 1.5em;
+    border-bottom: 2px solid var(--st-chatu8-border-color);
+    padding-bottom: 0.3em;
+}
+
+.st-chatu8-ai-msg .msg-content h2 {
+    font-size: 1.3em;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+    padding-bottom: 0.3em;
+}
+
+.st-chatu8-ai-msg .msg-content h3 {
+    font-size: 1.15em;
+}
+
+.st-chatu8-ai-msg .msg-content h4 {
+    font-size: 1.05em;
+}
+
+.st-chatu8-ai-msg .msg-content h5,
+.st-chatu8-ai-msg .msg-content h6 {
+    font-size: 1em;
+}
+
+/* 段落 */
+.st-chatu8-ai-msg .msg-content p {
+    margin: 0.6em 0;
+    line-height: 1.6;
+}
+
+.st-chatu8-ai-msg .msg-content p:first-child {
+    margin-top: 0;
+}
+
+.st-chatu8-ai-msg .msg-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* 列表 */
+.st-chatu8-ai-msg .msg-content ul,
+.st-chatu8-ai-msg .msg-content ol {
+    margin: 0.6em 0;
+    padding-left: 1.8em;
+}
+
+.st-chatu8-ai-msg .msg-content li {
+    margin: 0.3em 0;
+    line-height: 1.5;
+}
+
+.st-chatu8-ai-msg .msg-content ul ul,
+.st-chatu8-ai-msg .msg-content ol ol,
+.st-chatu8-ai-msg .msg-content ul ol,
+.st-chatu8-ai-msg .msg-content ol ul {
+    margin: 0.2em 0;
+}
+
+/* 代码块 */
+.st-chatu8-ai-msg .msg-content pre {
+    background: color-mix(in srgb, var(--st-chatu8-bg-primary) 80%, transparent);
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 6px;
+    padding: 12px;
+    margin: 0.8em 0;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.st-chatu8-ai-msg .msg-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    color: var(--st-chatu8-text-primary);
+}
+
+/* 行内代码 */
+.st-chatu8-ai-msg .msg-content code {
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, var(--st-chatu8-bg-secondary));
+    border: 1px solid color-mix(in srgb, var(--st-chatu8-accent-primary) 25%, var(--st-chatu8-border-color));
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: var(--st-chatu8-accent-primary);
+}
+
+/* 引用块 */
+.st-chatu8-ai-msg .msg-content blockquote {
+    margin: 0.8em 0;
+    padding: 0.5em 1em;
+    border-left: 4px solid var(--st-chatu8-accent-primary);
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 8%, var(--st-chatu8-bg-secondary));
+    color: var(--st-chatu8-text-secondary);
+    font-style: italic;
+}
+
+.st-chatu8-ai-msg .msg-content blockquote p {
+    margin: 0.3em 0;
+}
+
+/* 水平分割线 */
+.st-chatu8-ai-msg .msg-content hr {
+    border: none;
+    border-top: 2px solid var(--st-chatu8-border-color);
+    margin: 1.2em 0;
+}
+
+/* 链接 */
+.st-chatu8-ai-msg .msg-content a {
+    color: var(--st-chatu8-accent-primary);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--st-chatu8-accent-primary) 50%, transparent);
+    text-underline-offset: 2px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.st-chatu8-ai-msg .msg-content a:hover {
+    text-decoration-color: var(--st-chatu8-accent-primary);
+    color: var(--st-chatu8-accent-secondary);
+    text-shadow: 0 0 8px color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, transparent);
+}
+
+.st-chatu8-ai-msg .msg-content a:visited {
+    color: color-mix(in srgb, var(--st-chatu8-accent-primary) 70%, var(--st-chatu8-accent-secondary));
+}
+
+/* 表格 */
+.st-chatu8-ai-msg .msg-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0.8em 0;
+    font-size: 0.9em;
+}
+
+.st-chatu8-ai-msg .msg-content table th,
+.st-chatu8-ai-msg .msg-content table td {
+    border: 1px solid var(--st-chatu8-border-color);
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.st-chatu8-ai-msg .msg-content table th {
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, var(--st-chatu8-bg-secondary));
+    font-weight: 600;
+    color: var(--st-chatu8-text-primary);
+}
+
+.st-chatu8-ai-msg .msg-content table tr:nth-child(even) {
+    background: color-mix(in srgb, var(--st-chatu8-bg-primary) 30%, var(--st-chatu8-bg-secondary));
+}
+
+/* 强调文本 */
+.st-chatu8-ai-msg .msg-content strong,
+.st-chatu8-ai-msg .msg-content b {
+    font-weight: 700;
+    color: var(--st-chatu8-text-primary);
+}
+
+.st-chatu8-ai-msg .msg-content em,
+.st-chatu8-ai-msg .msg-content i {
+    font-style: italic;
+}
+
+/* 删除线 */
+.st-chatu8-ai-msg .msg-content del {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* 图片 */
+.st-chatu8-ai-msg .msg-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 0.5em 0;
+    border: 1px solid var(--st-chatu8-border-color);
+}
+
+/* 任务列表 */
+.st-chatu8-ai-msg .msg-content input[type="checkbox"] {
+    margin-right: 0.5em;
+}
+
+/* 代码块滚动条美化 */
+.st-chatu8-ai-msg .msg-content pre::-webkit-scrollbar {
+    height: 6px;
+}
+
+.st-chatu8-ai-msg .msg-content pre::-webkit-scrollbar-thumb {
+    background: var(--st-chatu8-border-color);
+    border-radius: 3px;
+}
+
+.st-chatu8-ai-msg .msg-content pre::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 50%, var(--st-chatu8-border-color));
+}
+
+/* 消息中的图片显示 */
+.st-chatu8-ai-message-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.st-chatu8-ai-message-image {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 8px;
+    border: 2px solid var(--st-chatu8-border-color);
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.st-chatu8-ai-message-image:hover {
+    border-color: var(--st-chatu8-accent-primary);
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--st-chatu8-accent-primary) 20%, transparent);
+}
+
+/* ==================== Execute Command Button Styles ==================== */
+
+/* 执行命令按钮容器 */
+.st-chatu8-ai-execute-command-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 8px 0;
+    padding: 12px 16px;
+    background: linear-gradient(135deg,
+            color-mix(in srgb, var(--st-chatu8-accent-primary) 10%, transparent),
+            color-mix(in srgb, var(--st-chatu8-accent-secondary) 5%, transparent));
+    border: 1px solid color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, var(--st-chatu8-border-color));
+    border-radius: 10px;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--st-chatu8-accent-primary) 10%, transparent);
+    max-width: 90%;
+    align-self: flex-start;
+}
+
+/* 执行按钮 */
+.st-chatu8-ai-execute-btn {
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--st-chatu8-accent-primary), var(--st-chatu8-accent-secondary));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 2px 6px color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, transparent);
+    white-space: nowrap;
+    min-width: 140px;
+}
+
+.st-chatu8-ai-execute-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, transparent);
+}
+
+.st-chatu8-ai-execute-btn:active {
+    transform: translateY(0);
+}
+
+/* 禁用状态 */
+.st-chatu8-ai-execute-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.st-chatu8-ai-execute-btn:disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 6px color-mix(in srgb, var(--st-chatu8-accent-primary) 30%, transparent);
+}
+
+/* 加载状态 */
+.st-chatu8-ai-execute-btn.loading {
+    background: linear-gradient(135deg,
+            color-mix(in srgb, var(--st-chatu8-accent-primary) 70%, transparent),
+            color-mix(in srgb, var(--st-chatu8-accent-secondary) 70%, transparent));
+}
+
+/* 成功状态 */
+.st-chatu8-ai-execute-btn.success {
+    background: linear-gradient(135deg, #52c41a, #73d13d);
+}
+
+/* 错误状态 */
+.st-chatu8-ai-execute-btn.error {
+    background: linear-gradient(135deg, #ff4d4f, #ff7875);
+}
+
+/* 提示文本 */
+.st-chatu8-ai-execute-hint {
+    font-size: 12px;
+    color: var(--st-chatu8-text-secondary);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* ==================== Resize Handle Styles ==================== */
+
+/* 调整大小手柄 */
+.st-chatu8-ai-resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    cursor: nwse-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--st-chatu8-text-secondary);
+    font-size: 12px;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+    z-index: 10;
+    border-radius: 0 0 16px 0;
+    background: linear-gradient(135deg, transparent 50%, color-mix(in srgb, var(--st-chatu8-accent-primary) 10%, transparent) 50%);
+}
+
+.st-chatu8-ai-resize-handle:hover {
+    opacity: 1;
+    color: var(--st-chatu8-accent-primary);
+    background: linear-gradient(135deg, transparent 50%, color-mix(in srgb, var(--st-chatu8-accent-primary) 20%, transparent) 50%);
+}
+
+.st-chatu8-ai-resize-handle i {
+    transform: rotate(-45deg);
+    pointer-events: none;
+}
+
+/* ========== AskChoice 选择工具样式 ========== */
+.st-chatu8-ai-ask-choice {
+    margin-top: 12px;
+    padding: 14px;
+    background: linear-gradient(135deg,
+            color-mix(in srgb, var(--st-chatu8-accent-primary) 8%, var(--st-chatu8-bg-secondary)),
+            color-mix(in srgb, var(--st-chatu8-accent-secondary) 6%, var(--st-chatu8-bg-secondary)));
+    border: 1px solid color-mix(in srgb, var(--st-chatu8-accent-primary) 20%, var(--st-chatu8-border-color));
+    border-radius: 12px;
+    transition: opacity 0.3s ease, max-height 0.4s ease;
+}
+
+.st-chatu8-ai-ask-choice-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--st-chatu8-accent-primary);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.st-chatu8-ai-ask-choice-label i {
+    font-size: 14px;
+    animation: st-chatu8-ask-point 1.2s ease-in-out infinite;
+}
+
+@keyframes st-chatu8-ask-point {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+.st-chatu8-ai-ask-choice-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.st-chatu8-ai-ask-choice-btn {
+    position: relative;
+    padding: 8px 18px;
+    border: 1.5px solid color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, var(--st-chatu8-border-color));
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--st-chatu8-bg-primary) 60%, var(--st-chatu8-bg-secondary));
+    color: var(--st-chatu8-text-primary);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+    text-overflow: ellipsis;
+}
+
+.st-chatu8-ai-ask-choice-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, transparent),
+            transparent);
+    transition: left 0.5s ease;
+}
+
+.st-chatu8-ai-ask-choice-btn:hover {
+    border-color: var(--st-chatu8-accent-primary);
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 15%, var(--st-chatu8-bg-secondary));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--st-chatu8-accent-primary) 25%, transparent);
+}
+
+.st-chatu8-ai-ask-choice-btn:hover::before {
+    left: 100%;
+}
+
+.st-chatu8-ai-ask-choice-btn:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: none;
+}
+
+/* 已选中状态 */
+.st-chatu8-ai-ask-choice-btn.selected {
+    background: linear-gradient(135deg, var(--st-chatu8-accent-primary), var(--st-chatu8-accent-secondary));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 2px 10px color-mix(in srgb, var(--st-chatu8-accent-primary) 40%, transparent);
+    pointer-events: none;
+}
+
+/* 已回答状态 - 其他未选中的按钮变暗 */
+.st-chatu8-ai-ask-choice.answered .st-chatu8-ai-ask-choice-btn:not(.selected) {
+    opacity: 0.4;
+    pointer-events: none;
+    filter: grayscale(0.5);
+}
+
+/* 用户手动发送消息后，整个选择区域淡出 */
+.st-chatu8-ai-ask-choice.dismissed {
+    opacity: 0.35;
+    pointer-events: none;
+    filter: grayscale(0.6);
+}
+
+.st-chatu8-ai-ask-choice.dismissed .st-chatu8-ai-ask-choice-hint {
+    display: none;
+}
+
+.st-chatu8-ai-ask-choice-hint {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--st-chatu8-text-secondary);
+    opacity: 0.7;
+}
+
+/* ==================== Floor Message Styles ==================== */
+
+/* 楼层信息状态指示灯 */
+.st-chatu8-ai-floor-status {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-left: 6px;
+    vertical-align: middle;
+    transition: background 0.3s;
+}
+
+.st-chatu8-ai-floor-status.off {
+    background: #888;
+}
+
+.st-chatu8-ai-floor-status.on {
+    background: #4CAF50;
+    box-shadow: 0 0 6px rgba(76, 175, 80, 0.6);
+}
+
+/* 楼层信息指示图标 */
+.st-chatu8-ai-floor-indicator {
+    background: rgba(255, 152, 0, 0.2);
+    color: #FF9800;
+}
+
+.st-chatu8-ai-floor-indicator:hover {
+    background: rgba(255, 152, 0, 0.35);
+    transform: scale(1.1);
+}
+
+
+/* ==================== 滚动优化相关样式 ==================== */
+
+/* "加载更多"提示 */
+.st-chatu8-ai-load-more-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 8%, var(--st-chatu8-bg-secondary));
+    border: 1px dashed var(--st-chatu8-border-color);
+    border-radius: 8px;
+    color: var(--st-chatu8-text-secondary);
+    font-size: 13px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.st-chatu8-ai-load-more-indicator i {
+    color: var(--st-chatu8-accent-primary);
+    font-size: 14px;
+}
+
+.st-chatu8-ai-load-more-indicator:hover {
+    background: color-mix(in srgb, var(--st-chatu8-accent-primary) 12%, var(--st-chatu8-bg-secondary));
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+/* "回到底部"浮动按钮 */
+.st-chatu8-ai-scroll-to-bottom {
+    position: absolute;
+    bottom: 80px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--st-chatu8-accent-primary);
+    color: var(--st-chatu8-text-highlight, white);
+    border: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px) scale(0.85);
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    will-change: opacity, transform;
+}
+
+.st-chatu8-ai-scroll-to-bottom.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.st-chatu8-ai-scroll-to-bottom:hover {
+    transform: translateY(-2px) scale(1.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    background: var(--st-chatu8-accent-secondary);
+}
+
+.st-chatu8-ai-scroll-to-bottom:active {
+    transform: translateY(0) scale(0.95);
+}
+
+/* 未读消息徽章 */
+.st-chatu8-ai-scroll-to-bottom .unread-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4d4f;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(255, 77, 79, 0.4);
+    animation: st-chatu8-badge-pulse 2s infinite ease-in-out;
+}
+
+@keyframes st-chatu8-badge-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}

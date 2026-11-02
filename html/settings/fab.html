@@ -1,0 +1,82 @@
+<div id="ch-tab-fab">
+    <div class="st-chatu8-settings-section">
+        <h3>悬浮球设置</h3>
+        <div class="st-chatu8-field">
+            <label for="enable_chatu8_fab">启用悬浮球</label>
+            <div class="st-chatu8-toggle">
+                <input id="enable_chatu8_fab" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="enable_chatu8_fab_video">启用视频形象</label>
+            <div class="st-chatu8-toggle">
+                <input id="enable_chatu8_fab_video" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field" id="fab-desktop-pet-settings">
+            <label for="enable_chatu8_desktop_pet">智绘姬独立窗口</label>
+            <div class="st-chatu8-toggle">
+                <input id="enable_chatu8_desktop_pet" type="checkbox"/>
+                <span class="st-chatu8-slider"></span>
+            </div>
+            <p class="st-chatu8-hint" style="font-size: 12px; color: #888; margin-top: 4px;">
+                将智绘姬角色弹出到画中画小窗口，始终置顶显示在其他应用上方（纯观看模式，不可交互）
+            </p>
+        </div>
+        <div class="st-chatu8-field" id="fab-traditional-settings">
+            <div class="st-chatu8-field">
+                <label for="chatu8_fab_theme">主题预设</label>
+                <select id="chatu8_fab_theme" class="st-chatu8-select">
+                    <!-- 选项将由JavaScript动态填充 -->
+                </select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="chatu8_fab_bg_color">背景颜色</label>
+                <input type="color" id="chatu8_fab_bg_color" class="st-chatu8-color-picker">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="chatu8_fab_icon_color">图标颜色</label>
+                <input type="color" id="chatu8_fab_icon_color" class="st-chatu8-color-picker">
+            </div>
+            <div class="st-chatu8-field">
+                <label>自定义图标</label>
+                <div class="st-chatu8-fab-icon-config">
+                    <div id="chatu8_fab_icon_preview" class="st-chatu8-fab-icon-preview">
+                        <i class="fa-solid fa-paintbrush"></i>
+                        <img id="chatu8_fab_icon_preview_img" alt="悬浮球图标预览">
+                    </div>
+                    <div class="st-chatu8-fab-icon-actions">
+                        <input type="file" id="chatu8_fab_icon_upload_input" accept="image/png,image/jpeg,image/webp,image/gif" style="display: none;">
+                        <button id="chatu8_fab_icon_upload_btn" class="st-chatu8-btn" type="button">
+                            <i class="fa-solid fa-upload"></i> 上传图片
+                        </button>
+                        <button id="chatu8_fab_icon_remove_btn" class="st-chatu8-btn danger" type="button" style="display: none;">
+                            <i class="fa-solid fa-rotate-left"></i> 恢复默认
+                        </button>
+                        <small>图片会保存到酒馆</small>
+                    </div>
+                </div>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="chatu8_fab_opacity">不透明度</label>
+                <div class="st-chatu8-range-container">
+                    <input type="range" id="chatu8_fab_opacity" class="st-chatu8-range-slider" min="0" max="1" step="0.1">
+                    <input type="number" id="chatu8_fab_opacity_value" class="st-chatu8-range-input" min="0" max="1" step="0.1">
+                </div>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="chatu8_fab_size">大小</label>
+            <div class="st-chatu8-range-container">
+                <input type="range" id="chatu8_fab_size" class="st-chatu8-range-slider" min="30" max="1000" step="1">
+                <input type="number" id="chatu8_fab_size_value" class="st-chatu8-range-input" min="30" max="1000" step="1">
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>位置控制</label>
+            <button id="chatu8_fab_reset_position" class="st-chatu8-btn">重置到屏幕中央</button>
+        </div>
+    </div>
+</div>

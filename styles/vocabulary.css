@@ -1,0 +1,134 @@
+.st-chatu8-vocabulary-list {
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: var(--st-chatu8-bg-color-lighter);
+}
+
+.st-chatu8-vocabulary-ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.st-chatu8-vocabulary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+    transition: background-color 0.2s;
+}
+
+.st-chatu8-vocabulary-item:last-child {
+    border-bottom: none;
+}
+
+.st-chatu8-vocabulary-item:hover {
+    background-color: var(--st-chatu8-bg-color-hover);
+}
+
+.st-chatu8-vocabulary-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.st-chatu8-installed-label {
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-color-secondary);
+}
+
+.st-chatu8-search-result-item {
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.st-chatu8-search-result-item:hover {
+    background-color: var(--st-chatu8-accent-color);
+    color: white;
+}
+
+/* Tag Tree Styles */
+.st-chatu8-tree-container {
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: var(--st-chatu8-bg-color-lighter);
+}
+
+.st-chatu8-tree,
+.st-chatu8-tree-sublist,
+.st-chatu8-tree-taglist {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.st-chatu8-tree {
+    padding-left: 0;
+}
+
+.st-chatu8-tree-item {
+    margin: 5px 0;
+}
+
+.st-chatu8-tree-content {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+}
+
+.st-chatu8-tree-content:hover {
+    background-color: var(--st-chatu8-bg-color-hover);
+}
+
+.st-chatu8-tree-toggle {
+    margin-right: 5px;
+    width: 15px;
+    display: inline-block;
+    text-align: center;
+    font-family: monospace;
+    transition: transform 0.2s;
+}
+
+.st-chatu8-tree-group {
+    font-weight: bold;
+    color: var(--st-chatu8-accent-color);
+}
+
+.st-chatu8-tree-subgroup {
+    font-weight: 500;
+}
+
+.st-chatu8-tree-tag {
+    padding: 3px 0 3px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-color-secondary);
+}
+
+.st-chatu8-tree-tag:hover {
+    background-color: var(--st-chatu8-accent-color);
+    color: #fff;
+}
+
+/* Styles for Tag Browser Input and Actions */
+.st-chatu8-tag-browser-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#vocabulary-selected-tags {
+    margin-bottom: 0; /* The actions div will have margin-top */
+}

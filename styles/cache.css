@@ -1,0 +1,188 @@
+/* Cache Manager */
+#st-chatu8-settings .st-chatu8-cache-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#st-chatu8-settings .st-chatu8-progress-container {
+    margin-bottom: 20px;
+}
+
+#st-chatu8-settings .st-chatu8-cache-list-container {
+    margin-top: 20px;
+}
+
+#st-chatu8-settings #ac-search-input {
+    background-color: var(--st-chatu8-bg-primary);
+    color: var(--st-chatu8-text-primary);
+    border: 1px solid var(--st-chatu8-border-color);
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    padding: 8px;
+    border-radius: 4px;
+}
+#st-chatu8-settings #ac-search-input::placeholder {
+    color: var(--st-chatu8-text-secondary);
+}
+
+/* Generic Cache Item List */
+#st-chatu8-settings .audio-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+    gap: 15px;
+    border-left: 4px solid transparent;
+}
+#st-chatu8-settings .audio-item:nth-child(even) {
+    background-color: #e0e0e0;
+}
+#st-chatu8-settings .audio-item:last-child {
+    border-bottom: none;
+}
+#st-chatu8-settings .audio-item.status-cached {
+    border-left-color: #28a745;
+}
+#st-chatu8-settings .audio-item.status-uncached {
+    border-left-color: #e9ecef;
+}
+#st-chatu8-settings .audio-item-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+#st-chatu8-settings .audio-item-main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+#st-chatu8-settings .audio-name {
+    color: var(--st-chatu8-text-primary);
+}
+#st-chatu8-settings .audio-size {
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-secondary);
+    font-weight: normal;
+}
+#st-chatu8-settings .audio-item-details {
+    display: flex;
+    gap: 15px;
+    font-size: 0.9em;
+    color: var(--st-chatu8-text-secondary);
+}
+#st-chatu8-settings .audio-item-url {
+    font-size: 0.8em;
+    color: var(--st-chatu8-text-secondary);
+    word-break: break-all;
+}
+#st-chatu8-settings .audio-item-url .editable {
+    color: var(--st-chatu8-accent-secondary);
+    background-color: #e0e0e0;
+    padding: 2px 4px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 500;
+}
+#st-chatu8-settings .audio-item-details .editable {
+    color: var(--st-chatu8-accent-secondary);
+    background-color: #e0e0e0;
+    padding: 2px 4px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 500;
+}
+#st-chatu8-settings .audio-item-actions {
+    display: flex;
+    gap: 8px;
+}
+#st-chatu8-settings .audio-item-actions .action-button {
+    background: var(--st-chatu8-accent-primary);
+    border: 1px solid var(--st-chatu8-accent-secondary);
+    color: #ffffff;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+#st-chatu8-settings .audio-item-actions .action-button:hover {
+    background: var(--st-chatu8-accent-secondary);
+}
+#st-chatu8-settings .audio-item-actions .action-button.danger {
+    background: var(--st-chatu8-danger-primary);
+    border-color: var(--st-chatu8-danger-secondary);
+    color: var(--st-chatu8-danger-text, white);
+}
+#st-chatu8-settings .audio-item-actions .action-button.danger:hover {
+    background: var(--st-chatu8-danger-secondary);
+}
+
+#st-chatu8-settings .audio-item-actions .action-button .fa-book-skull {
+    font-size: 1.2em; /* Make the skull icon a bit larger */
+}
+
+#st-chatu8-settings .audio-cache-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#st-chatu8-settings .audio-cache-table th, #st-chatu8-settings .audio-cache-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--st-chatu8-border-color);
+}
+
+#st-chatu8-settings .audio-cache-table th {
+    background-color: var(--st-chatu8-bg-secondary);
+    font-weight: 600;
+}
+
+#st-chatu8-settings .audio-cache-table tr:last-child td {
+    border-bottom: none;
+}
+
+#st-chatu8-settings .audio-cache-table .status-cached {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+#st-chatu8-settings .audio-cache-table .status-uncached {
+    color: #FFC107;
+}
+
+#st-chatu8-settings .audio-cache-table .action-button {
+    background: none;
+    border: none;
+    color: var(--st-chatu8-text-secondary);
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin: 0 5px;
+    transition: color 0.2s;
+}
+
+#st-chatu8-settings .audio-cache-table .action-button:hover {
+    color: var(--st-chatu8-accent-primary);
+}
+
+#st-chatu8-settings .audio-cache-table .action-button.danger:hover {
+    color: var(--st-chatu8-danger-primary);
+}
+
+#st-chatu8-settings .st-chatu8-warning-message {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border: 1px solid #ffeeba;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}

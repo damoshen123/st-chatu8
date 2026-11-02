@@ -1,0 +1,223 @@
+<div id="ch-tab-main">
+    <!-- 1. 核心设置 -->
+    <div class="st-chatu8-settings-section">
+        <h3><i class="fa-solid fa-sliders"></i> 核心设置</h3>
+        <div class="st-chatu8-field">
+            <label for="scriptEnabled">启用插件</label>
+            <div class="st-chatu8-toggle">
+                <input id="scriptEnabled" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="helpTipsEnabled">设置项答疑提示</label>
+            <div class="st-chatu8-toggle">
+                <input id="helpTipsEnabled" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="disablePluginToast">插件提示关闭</label>
+            <div class="st-chatu8-toggle">
+                <input id="disablePluginToast" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="mode">模式</label>
+            <select id="mode" class="st-chatu8-select">
+                <option value="sd">SD</option>
+                <option value="novelai">NovelAI</option>
+                <option value="comfyui">ComfyUI</option>
+                <option value="runninghub">RunningHub</option>
+                <option value="banana">Banana/Grok</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="client">客户端</label>
+            <select id="client" class="st-chatu8-select">
+                <option value="browser">浏览器</option>
+                <option value="jiuguan">酒馆</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="videoChannel">视频渠道选择</label>
+            <select id="videoChannel" class="st-chatu8-select">
+                <option value="none">无</option>
+                <option value="comfyui">ComfyUI</option>
+                <option value="runninghub">RunningHub</option>
+            </select>
+        </div>
+    </div>
+    <!-- 2. 自动化与生成控制 -->
+    <div class="st-chatu8-settings-section">
+        <h3><i class="fa-solid fa-bolt"></i> 自动化与生成控制</h3>
+        <div class="st-chatu8-field">
+            <label for="imageGenInterval">生图间隔时间（毫秒）</label>
+            <input type="number" id="imageGenInterval" class="st-chatu8-text-input" min="0" step="100" placeholder="0">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="enablePregen">启用流式预生成</label>
+            <div class="st-chatu8-toggle">
+                <input id="enablePregen" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="autoLLMImageGen">自动LLM请求生图(非同层)</label>
+            <div class="st-chatu8-toggle">
+                <input id="autoLLMImageGen" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="zidongdianji">自动点击生成</label>
+            <div class="st-chatu8-toggle">
+                <input id="zidongdianji" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="zidongdianji2">自动点击(没事别开)</label>
+            <div class="st-chatu8-toggle">
+                <input id="zidongdianji2" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="aiAutonomousResolution">AI自主分辨率</label>
+            <div class="st-chatu8-toggle">
+                <input id="aiAutonomousResolution" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="randomYushe">随机提示词预设</label>
+            <div class="st-chatu8-toggle">
+                <input id="randomYushe" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="newlineFixEnabled">换行修复</label>
+            <div class="st-chatu8-toggle">
+                <input id="newlineFixEnabled" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 图片交互与显示 -->
+    <div class="st-chatu8-settings-section">
+        <h3><i class="fa-solid fa-image"></i> 图片交互与显示</h3>
+        <div class="st-chatu8-field">
+            <label for="imageAlignment">图片对齐方式</label>
+            <select id="imageAlignment" class="st-chatu8-select">
+                <option value="left">靠左</option>
+                <option value="center">居中</option>
+                <option value="right">靠右</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="imageSizeScale">图片显示大小</label>
+            <select id="imageSizeScale" class="st-chatu8-select">
+                <option value="100">自适应（100%）</option>
+                <option value="75">3/4 大小（75%）</option>
+                <option value="50">1/2 大小（50%）</option>
+                <option value="25">1/4 大小（25%）</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="collapseImage">折叠图片</label>
+            <div class="st-chatu8-toggle">
+                <input id="collapseImage" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="clickToPreview">单击图片预览</label>
+            <div class="st-chatu8-toggle">
+                <input id="clickToPreview" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="longPressToEdit">长按图片修改tag</label>
+            <div class="st-chatu8-toggle">
+                <input id="longPressToEdit" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="dbclike">隐藏按钮（双击图片触发）</label>
+            <div class="st-chatu8-toggle">
+                <input id="dbclike" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+    </div>
+    <!-- 4. 提示词标记与储存 -->
+    <div class="st-chatu8-settings-section">
+        <h3><i class="fa-solid fa-tags"></i> 提示词标记与储存</h3>
+        <div class="st-chatu8-field">
+            <label for="startTag">开始标记</label>
+            <input type="text" id="startTag" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="endTag">结束标记</label>
+            <input type="text" id="endTag" class="st-chatu8-text-input">
+        </div>
+        <div class="st-chatu8-field">
+            <label for="insertOriginalText">插入原文(非同层)</label>
+            <div class="st-chatu8-toggle">
+                <input id="insertOriginalText" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+    </div>
+    <!-- 5. 存储与缓存管理 -->
+    <div class="st-chatu8-settings-section">
+        <h3><i class="fa-solid fa-database"></i> 存储与缓存管理</h3>
+        <div class="st-chatu8-field">
+            <label for="cache">需要清除的缓存</label>
+            <select id="cache" class="st-chatu8-select">
+                <option value="0">不再缓存</option>
+                <option value="1">点击清除一天前的</option>
+                <option value="7">点击清除一星期前的</option>
+                <option value="30">点击清除一个月前的</option>
+                <option value="365">点击清除一年前的</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="jiuguanchucun">缓存图片到酒馆</label>
+            <div class="st-chatu8-toggle">
+                <input id="jiuguanchucun" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="vibeJiuguanchucun">缓存 Vibe 到酒馆</label>
+            <div class="st-chatu8-toggle">
+                <input id="vibeJiuguanchucun" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="convertToJpegStorage">转JPEG储存节省70%空间(噪点明显增加)</label>
+            <div class="st-chatu8-toggle">
+                <input id="convertToJpegStorage" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label>操作</label>
+            <div>
+                <button id="sync-server-images-btn" class="st-chatu8-btn">错误图片清理</button>
+                <button id="migrate-vibe-storage-btn" class="st-chatu8-btn">迁移 Vibe 到酒馆</button>
+                <button id="Clear-Cache" class="st-chatu8-btn danger">清除图片缓存</button>
+                <button id="migrate-database-btn" class="st-chatu8-btn">数据迁移</button>
+                <button id="diagnose-config-storage-btn" class="st-chatu8-btn">错误存储清理</button>
+            </div>
+        </div>
+    </div>
+</div>

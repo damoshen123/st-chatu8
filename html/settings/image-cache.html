@@ -1,0 +1,38 @@
+<div id="ch-tab-image-cache">
+    <div class="st-chatu8-settings-section">
+        <h3>图片缓存管理</h3>
+        <div class="st-chatu8-cache-controls">
+            <button id="image-cache-toggle-multiselect" class="st-chatu8-btn">多选</button>
+            <button id="image-cache-select-all" class="st-chatu8-btn">全选</button>
+            <button id="image-cache-deselect-all" class="st-chatu8-btn">取消全选</button>
+            <button id="image-cache-download-selected" class="st-chatu8-btn"><i class="fa-solid fa-download"></i> 下载选中</button>
+            <button id="image-cache-delete-selected" class="st-chatu8-btn danger"><i class="fa-solid fa-trash"></i> 删除选中</button>
+            <button id="image-cache-recalc-size" class="st-chatu8-btn"><i class="fa-solid fa-calculator"></i> 计算大小</button>
+            <button id="image-cache-recalc-all" class="st-chatu8-btn"><i class="fa-solid fa-rotate"></i> 全部重算</button>
+        </div>
+        <div id="image-cache-recalc-progress" class="st-chatu8-recalc-progress" style="display: none;">
+            <div class="st-chatu8-recalc-header">
+                <span id="image-cache-recalc-title">正在统计...</span>
+                <button id="image-cache-recalc-cancel" class="st-chatu8-btn danger">取消</button>
+            </div>
+            <div class="st-chatu8-recalc-bar-track">
+                <div id="image-cache-recalc-bar" class="st-chatu8-recalc-bar-fill"></div>
+            </div>
+            <div id="image-cache-recalc-detail" class="st-chatu8-recalc-detail"></div>
+        </div>
+        <div id="image-cache-grid" class="st-chatu8-image-cache-grid">
+            <!-- Images will be loaded here -->
+        </div>
+        <div id="image-cache-pagination" class="st-chatu8-pagination">
+            <!-- Pagination controls will be here -->
+            <div class="st-chatu8-field" id="image-cache-jump-container" style="display: none; margin-left: 10px;">
+                <label for="image-cache-jump-input">跳转到</label>
+                <div class="st-chatu8-input-group">
+                    <input type="number" id="image-cache-jump-input" class="st-chatu8-page-jump-input" placeholder="页码" min="1">
+                    <button id="image-cache-jump-button" class="st-chatu8-btn">跳转</button>
+                </div>
+            </div>
+        </div>
+        <div id="image-cache-info" class="st-chatu8-cache-info"></div>
+    </div>
+</div>

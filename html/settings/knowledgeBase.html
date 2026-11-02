@@ -1,0 +1,497 @@
+<div id="ch-tab-knowledgeBase">
+    <!-- 子导航 -->
+    <div class="st-chatu8-sub-nav">
+        <a href="#" class="st-chatu8-sub-nav-link active" data-sub-tab="ch-sub-tab-kb-entries">资料库管理</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-kb-persona">人设管理</a>
+        <a href="#" class="st-chatu8-sub-nav-link" data-sub-tab="ch-sub-tab-kb-user">user管理</a>
+    </div>
+
+    <!-- ===== 资料库管理子标签页（新版：世界书选择 UI） ===== -->
+    <div id="ch-sub-tab-kb-entries" class="st-chatu8-sub-tab-content" style="display: block;">
+
+        <!-- 全局开关 -->
+        <div class="st-chatu8-settings-section">
+            <h4>资料库</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-kb2-enabled">启用资料库功能</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-kb2-enabled" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="ch-kb2-trigger-depth">触发深度</label>
+                <input type="number" id="ch-kb2-trigger-depth" class="st-chatu8-text-input"
+                    min="0" max="20" step="1" style="width:80px;" value="1" />
+            </div>
+            <div class="st-chatu8-field">
+                <label for="ch-kb2-skip-constant">跳过常开</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-kb2-skip-constant" type="checkbox" checked />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <p class="st-chatu8-hint">
+                触发深度 0：只用最后一条用户消息做关键词触发。<br>
+                深度 1：用最后一条用户消息 ＋ 前一条AI回复（共2条）做触发，以此类推。<br>
+                深度越高，被触发的世界书条目越多，但处理时间也略增。<br>
+                启用后：匹配到的世界书条目内容会自动注入 AI 提示词。<br>
+                与「发送数据」的勾选状态完全独立，互不影响。<br>
+                <b>跳过常开</b>：启用后，资料库只获取「强制启用」和「关键词触发」的条目，忽略纯常开条目（除非常开条目同时命中触发关键词）。
+            </p>
+        </div>
+
+
+        <!-- 世界书 + 条目双栏选择（仿 send_data 风格，独立 ID 前缀 ch-kb2-） -->
+        <div class="st-chatu8-settings-section" id="ch-kb2-selector-section">
+
+            <div class="st-chatu8-send-data-layout">
+                <!-- 左栏：世界书列表 -->
+                <div class="st-chatu8-send-data-left">
+                    <div class="st-chatu8-list-header">
+                        <h3>📚 世界书</h3>
+                        <div class="st-chatu8-field">
+                            <input type="text" id="ch-kb2-world-search" class="st-chatu8-text-input"
+                                placeholder="搜索世界书..." />
+                        </div>
+                        <div class="st-chatu8-batch-buttons">
+                            <button id="ch-kb2-refresh-worlds" class="st-chatu8-batch-button">
+                                <i class="fa fa-refresh"></i> 刷新世界书
+                            </button>
+                            <button id="ch-kb2-test-trigger" class="st-chatu8-batch-button">
+                                <i class="fa fa-flask"></i> 测试触发
+                            </button>
+                        </div>
+                    </div>
+                    <div id="ch-kb2-world-list" class="st-chatu8-send-data-list">
+                        <div style="padding:10px; color:#888;">点击刷新按钮加载世界书列表。</div>
+                    </div>
+                </div>
+
+                <!-- 右栏：条目列表 -->
+                <div class="st-chatu8-send-data-right">
+                    <div class="st-chatu8-list-header">
+                        <h3>📝 条目开关</h3>
+                        <div class="st-chatu8-field">
+                            <input type="text" id="ch-kb2-entry-search" class="st-chatu8-text-input"
+                                placeholder="搜索条目..." />
+                        </div>
+                        <!-- 批量操作按钮 -->
+                        <div class="st-chatu8-batch-buttons">
+                            <button id="ch-kb2-select-all" class="st-chatu8-batch-button">全选</button>
+                            <button id="ch-kb2-deselect-all" class="st-chatu8-batch-button">取消全选</button>
+                        </div>
+                    </div>
+                    <div id="ch-kb2-entry-list" class="st-chatu8-send-data-list">
+                        <div style="padding:10px; color:#888;">请先在左侧选择一个世界书。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== User管理子标签页 ===== -->
+    <div id="ch-sub-tab-kb-user" class="st-chatu8-sub-tab-content" style="display: none;">
+
+        <!-- 预设管理栏 -->
+        <div class="st-chatu8-settings-section">
+            <h4>User预设</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-user-preset-id">当前预设</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="ch-user-preset-id" class="st-chatu8-select"></select>
+                    <div class="st-chatu8-preset-box-wrapper">
+                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作选项">
+                            <i class="fa-solid fa-cube"></i>
+                        </button>
+                        <div class="st-chatu8-preset-box-dropdown">
+                            <div class="st-chatu8-preset-box-title">User预设选项</div>
+                            <div class="st-chatu8-preset-box-grid">
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-user-new" title="新建"><i class="fa-solid fa-plus"></i><span>新建</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-user-rename" title="重命名"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-user-save" title="保存"><i class="fa-solid fa-save"></i><span>保存</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-user-save-as" title="另存为"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-user-export" title="导出"><i class="fa-solid fa-upload"></i><span>导出</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-user-export-all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i><span>导出全部</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-user-import" title="导入"><i class="fa-solid fa-download"></i><span>导入</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item danger" id="ch-user-delete" title="删除"><i class="fa-solid fa-trash"></i><span>删除</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="file" id="ch-user-import-file" accept=".json" style="display: none;" />
+        </div>
+
+        <!-- 全局控制区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>User人设控制</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-user-enabled">启用User人设注入</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-user-enabled" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <p class="st-chatu8-hint">
+                User人设内容将直接注入系统提示词，AI 始终可见。<br>
+                提示：User人设与角色人设共享预设池，可使用模板变量 <code>{{userpersona}}</code> 注入。
+            </p>
+        </div>
+
+        <!-- 头像上传区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>头像设置</h4>
+            <div class="st-chatu8-avatar-upload-area">
+                <div class="st-chatu8-avatar-preview" id="ch-user-avatar-preview">
+                    <img id="ch-user-avatar-img" src="" alt="头像预览" />
+                    <div class="st-chatu8-avatar-placeholder">
+                        <i class="fa-solid fa-user"></i>
+                        <span>点击上传头像</span>
+                    </div>
+                </div>
+                <div class="st-chatu8-avatar-controls">
+                    <button class="st-chatu8-btn st-chatu8-btn-small" id="ch-user-avatar-upload-btn">
+                        <i class="fa-solid fa-upload"></i> 上传头像
+                    </button>
+                    <button class="st-chatu8-btn st-chatu8-btn-small danger" id="ch-user-avatar-remove-btn" style="display: none;">
+                        <i class="fa-solid fa-trash"></i> 移除头像
+                    </button>
+                    <input type="file" id="ch-user-avatar-input" accept="image/*" style="display: none;" />
+                </div>
+                <p class="st-chatu8-hint">
+                    推荐尺寸：256x256 或更大的正方形图片，支持 JPG、PNG、WebP 格式
+                </p>
+            </div>
+        </div>
+
+        <!-- 基本信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>基本信息</h4>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-name">角色名称</label>
+                    <input type="text" id="ch-user-name" class="st-chatu8-text-input" placeholder="User的名字" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-age">年龄</label>
+                    <input type="text" id="ch-user-age" class="st-chatu8-text-input" placeholder="如：18岁、不详" />
+                </div>
+            </div>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-gender">性别</label>
+                    <input type="text" id="ch-user-gender" class="st-chatu8-text-input" placeholder="如：女、男、其他" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-user-race">种族/物种</label>
+                    <input type="text" id="ch-user-race" class="st-chatu8-text-input" placeholder="如：人类、精灵、猫娘" />
+                </div>
+            </div>
+        </div>
+
+        <!-- 性格与背景区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>性格与背景</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-personality">性格</label>
+                <textarea id="ch-user-personality" class="st-chatu8-textarea" rows="3" placeholder="角色的性格特征描述..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-background">背景</label>
+                <textarea id="ch-user-background" class="st-chatu8-textarea" rows="3" placeholder="角色的故事背景、出身经历..."></textarea>
+            </div>
+        </div>
+
+        <!-- 外貌描述区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>外貌描述</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-bodyType">身材</label>
+                <textarea id="ch-user-bodyType" class="st-chatu8-textarea" rows="2" placeholder="身高、体型等描述..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-appearance">外貌特征</label>
+                <textarea id="ch-user-appearance" class="st-chatu8-textarea" rows="2" placeholder="发色、瞳色、肤色等外貌细节..."></textarea>
+            </div>
+        </div>
+
+        <!-- 其他信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>其他信息</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-hobbies">爱好</label>
+                <textarea id="ch-user-hobbies" class="st-chatu8-textarea" rows="2" placeholder="角色的兴趣爱好..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-abilities">特殊能力</label>
+                <textarea id="ch-user-abilities" class="st-chatu8-textarea" rows="2" placeholder="角色拥有的特殊能力/技能..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-speechStyle">口癖/说话方式</label>
+                <textarea id="ch-user-speechStyle" class="st-chatu8-textarea" rows="2" placeholder="角色的语言习惯、常用口头禅..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-relationships">人际关系</label>
+                <textarea id="ch-user-relationships" class="st-chatu8-textarea" rows="2" placeholder="与其他角色的关系描述..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-notes">其他备注</label>
+                <textarea id="ch-user-notes" class="st-chatu8-textarea" rows="2" placeholder="其他自定义补充信息..."></textarea>
+            </div>
+        </div>
+
+        <!-- 穿越认知区（次元穿越相关） -->
+        <div class="st-chatu8-settings-section">
+            <h4>🌀 穿越认知 <span class="st-chatu8-hint" style="font-weight:normal;font-size:12px;">（次元穿越设定，可选）</span></h4>
+            <p class="st-chatu8-hint">
+                User 的穿越认知设定。若不需要穿越设定，留空即可。
+            </p>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-isekai_origin">穿越来源</label>
+                <textarea id="ch-user-isekai_origin" class="st-chatu8-textarea" rows="2" placeholder="User来自哪个世界/故事/时代..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-isekai_method">穿越方式</label>
+                <textarea id="ch-user-isekai_method" class="st-chatu8-textarea" rows="2" placeholder="怎么穿越来的？召唤、次元裂缝、魔法传送..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-isekai_reaction">穿越后反应</label>
+                <textarea id="ch-user-isekai_reaction" class="st-chatu8-textarea" rows="3" placeholder="发现自己在电脑世界/酒馆里的感受和反应..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-user-isekai_goal">穿越期间目标</label>
+                <textarea id="ch-user-isekai_goal" class="st-chatu8-textarea" rows="2" placeholder="在穿越期间，除了与角色互动，自己还想做什么..."></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== 人设管理子标签页（新增） ===== -->
+    <div id="ch-sub-tab-kb-persona" class="st-chatu8-sub-tab-content" style="display: none;">
+
+        <!-- 预设管理栏 -->
+        <div class="st-chatu8-settings-section">
+            <h4>人设预设</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-persona-preset-id">当前预设</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="ch-persona-preset-id" class="st-chatu8-select"></select>
+                    <div class="st-chatu8-preset-box-wrapper">
+                        <button type="button" class="st-chatu8-icon-btn st-chatu8-preset-box-btn" title="预设操作选项">
+                            <i class="fa-solid fa-cube"></i>
+                        </button>
+                        <div class="st-chatu8-preset-box-dropdown">
+                            <div class="st-chatu8-preset-box-title">人设预设选项</div>
+                            <div class="st-chatu8-preset-box-grid">
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-persona-new" title="新建"><i class="fa-solid fa-plus"></i><span>新建</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-persona-rename" title="重命名"><i class="fa-solid fa-pen"></i><span>重命名</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-persona-save" title="保存"><i class="fa-solid fa-save"></i><span>保存</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-persona-save-as" title="另存为"><i class="fa-solid fa-file-export"></i><span>另存为</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-persona-export" title="导出"><i class="fa-solid fa-upload"></i><span>导出</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-persona-export-all" title="导出全部"><i class="fa-solid fa-cloud-upload-alt"></i><span>导出全部</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item" id="ch-persona-import" title="导入"><i class="fa-solid fa-download"></i><span>导入</span></button>
+                                <button type="button" class="st-chatu8-preset-box-item danger" id="ch-persona-delete" title="删除"><i class="fa-solid fa-trash"></i><span>删除</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="file" id="ch-persona-import-file" accept=".json" style="display: none;" />
+        </div>
+
+        <!-- 人设生成区域 -->
+        <div class="ch-persona-gen-section">
+            <div class="ch-persona-gen-header">
+                <span class="ch-section-title">✨ AI 人设生成</span>
+            </div>
+            <div class="ch-persona-gen-controls">
+                <!-- 生成类型选择器 -->
+                <div class="ch-persona-gen-type-selector">
+                    <label>生成类型：</label>
+                    <select id="ch-persona-gen-type" class="st-chatu8-select">
+                        <option value="character">角色人设（含穿越设定）</option>
+                        <option value="user">User 人设（无穿越设定）</option>
+                    </select>
+                </div>
+                <!-- 需求输入 -->
+                <div class="ch-persona-gen-demand">
+                    <label>生成需求（可选）</label>
+                    <textarea id="ch-persona-gen-demand" 
+                              class="ch-textarea" 
+                              placeholder="描述你想要的角色人设特点，留空则根据当前角色卡自动生成..."
+                              rows="3"></textarea>
+                </div>
+                <!-- 参考图片上传 -->
+                <div class="ch-persona-gen-upload">
+                    <div class="ch-persona-gen-upload-header">
+                        <label>📎 参考图片（可选）</label>
+                        <button type="button" id="ch-persona-gen-upload-btn" class="ch-btn-small">
+                            <i class="fa-solid fa-plus"></i> 添加图片
+                        </button>
+                        <input type="file" id="ch-persona-gen-upload-input" accept="image/*" style="display: none;" />
+                    </div>
+                    <div id="ch-persona-gen-preview" class="ch-persona-gen-preview-container">
+                        <div class="ch-persona-gen-empty-hint">点击上方按钮添加参考图片，AI 将根据图片内容辅助生成人设</div>
+                    </div>
+                </div>
+                <!-- 生成按钮 -->
+                <div class="ch-persona-gen-actions">
+                    <button id="ch-persona-gen-btn" class="ch-btn ch-btn-primary">
+                        <span class="ch-btn-icon">🎭</span>
+                        <span class="ch-btn-text">生成人设</span>
+                    </button>
+                    <span id="ch-persona-gen-status" class="ch-status-text"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 全局控制区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>人设控制</h4>
+            <div class="st-chatu8-field">
+                <label for="ch-persona-enabled">启用人设注入</label>
+                <div class="st-chatu8-toggle">
+                    <input id="ch-persona-enabled" type="checkbox" />
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <p class="st-chatu8-hint">
+                人设内容将直接注入系统提示词，AI 始终可见。
+            </p>
+        </div>
+
+        <!-- 头像上传区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>头像设置</h4>
+            <div class="st-chatu8-avatar-upload-area">
+                <div class="st-chatu8-avatar-preview" id="ch-persona-avatar-preview">
+                    <img id="ch-persona-avatar-img" src="" alt="头像预览" />
+                    <div class="st-chatu8-avatar-placeholder">
+                        <i class="fa-solid fa-user"></i>
+                        <span>点击上传头像</span>
+                    </div>
+                </div>
+                <div class="st-chatu8-avatar-controls">
+                    <button class="st-chatu8-btn st-chatu8-btn-small" id="ch-persona-avatar-upload-btn">
+                        <i class="fa-solid fa-upload"></i> 上传头像
+                    </button>
+                    <button class="st-chatu8-btn st-chatu8-btn-small danger" id="ch-persona-avatar-remove-btn" style="display: none;">
+                        <i class="fa-solid fa-trash"></i> 移除头像
+                    </button>
+                    <input type="file" id="ch-persona-avatar-input" accept="image/*" style="display: none;" />
+                </div>
+                <p class="st-chatu8-hint">
+                    推荐尺寸：256x256 或更大的正方形图片，支持 JPG、PNG、WebP 格式
+                </p>
+            </div>
+        </div>
+
+        <!-- 基本信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>基本信息</h4>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-name">角色名称</label>
+                    <input type="text" id="ch-persona-name" class="st-chatu8-text-input" placeholder="角色的名字" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-age">年龄</label>
+                    <input type="text" id="ch-persona-age" class="st-chatu8-text-input" placeholder="如：18岁、不详" />
+                </div>
+            </div>
+            <div class="st-chatu8-persona-row">
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-gender">性别</label>
+                    <input type="text" id="ch-persona-gender" class="st-chatu8-text-input" placeholder="如：女、男、其他" />
+                </div>
+                <div class="st-chatu8-field-col st-chatu8-persona-half">
+                    <label for="ch-persona-race">种族/物种</label>
+                    <input type="text" id="ch-persona-race" class="st-chatu8-text-input" placeholder="如：人类、精灵、猫娘" />
+                </div>
+            </div>
+        </div>
+
+        <!-- 性格与背景区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>性格与背景</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-personality">性格</label>
+                <textarea id="ch-persona-personality" class="st-chatu8-textarea" rows="3" placeholder="角色的性格特征描述..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-background">背景</label>
+                <textarea id="ch-persona-background" class="st-chatu8-textarea" rows="3" placeholder="角色的故事背景、出身经历..."></textarea>
+            </div>
+        </div>
+
+        <!-- 外貌描述区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>外貌描述</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-bodyType">身材</label>
+                <textarea id="ch-persona-bodyType" class="st-chatu8-textarea" rows="2" placeholder="身高、体型等描述..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-appearance">外貌特征</label>
+                <textarea id="ch-persona-appearance" class="st-chatu8-textarea" rows="2" placeholder="发色、瞳色、肤色等外貌细节..."></textarea>
+            </div>
+        </div>
+
+        <!-- 其他信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>其他信息</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-hobbies">爱好</label>
+                <textarea id="ch-persona-hobbies" class="st-chatu8-textarea" rows="2" placeholder="角色的兴趣爱好..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-abilities">特殊能力</label>
+                <textarea id="ch-persona-abilities" class="st-chatu8-textarea" rows="2" placeholder="角色拥有的特殊能力/技能..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-speechStyle">口癖/说话方式</label>
+                <textarea id="ch-persona-speechStyle" class="st-chatu8-textarea" rows="2" placeholder="角色的语言习惯、常用口头禅..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-relationships">人际关系</label>
+                <textarea id="ch-persona-relationships" class="st-chatu8-textarea" rows="2" placeholder="与其他角色的关系描述..."></textarea>
+            </div>
+        </div>
+
+        <!-- 穿越认知区（次元穿越相关） -->
+        <div class="st-chatu8-settings-section">
+            <h4>🌀 穿越认知 <span class="st-chatu8-hint" style="font-weight:normal;font-size:12px;">（次元穿越设定，可选）</span></h4>
+            <p class="st-chatu8-hint">
+                角色将通过「次元穿越」来到用户电脑中的酒馆，陪伴用户度过100天。<br>
+                以下字段定义角色对穿越的认知。留空则不使用穿越设定。
+            </p>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-isekai_origin">穿越来源</label>
+                <textarea id="ch-persona-isekai_origin" class="st-chatu8-textarea" rows="2" placeholder="角色来自哪个世界/故事/时代..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-isekai_method">穿越方式</label>
+                <textarea id="ch-persona-isekai_method" class="st-chatu8-textarea" rows="2" placeholder="怎么穿越来的？召唤、次元裂缝、魔法传送..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-isekai_reaction">穿越后反应</label>
+                <textarea id="ch-persona-isekai_reaction" class="st-chatu8-textarea" rows="3" placeholder="发现自己在电脑世界/酒馆里的感受和反应..."></textarea>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-isekai_goal">穿越期间目标</label>
+                <textarea id="ch-persona-isekai_goal" class="st-chatu8-textarea" rows="2" placeholder="在100天陪伴期内，除了陪用户，自己还想做什么..."></textarea>
+            </div>
+        </div>
+
+        <!-- 补充信息区 -->
+        <div class="st-chatu8-settings-section">
+            <h4>补充信息</h4>
+            <div class="st-chatu8-field-col">
+                <label for="ch-persona-notes">其他备注</label>
+                <textarea id="ch-persona-notes" class="st-chatu8-textarea" rows="2" placeholder="其他自定义补充信息..."></textarea>
+            </div>
+        </div>
+
+    </div>
+</div>

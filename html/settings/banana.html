@@ -1,0 +1,350 @@
+<div id="st-chatu8-tab-banana" class="st-chatu8-settings-banana">
+    <!-- 1. 基础设置 -->
+    <div class="st-chatu8-settings-section">
+        <h3>基础设置</h3>
+        <div class="st-chatu8-field-col">
+            <label for="st-chatu8-banana-api-url">API 连接地址</label>
+            <input type="text" id="st-chatu8-banana-api-url" class="st-chatu8-text-input"
+                placeholder="http://localhost:7860">
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="st-chatu8-banana-api-key">API Key</label>
+            <div style="position: relative; display: flex; align-items: center;">
+                <input type="password" id="st-chatu8-banana-api-key" class="st-chatu8-text-input"
+                    placeholder="在此输入您的 API Key" style="padding-right: 2.2em;">
+                <button type="button" id="st-chatu8-banana-api-key-toggle" title="显示/隐藏 API Key"
+                    style="position: absolute; right: 0.4em; background: none; border: none; cursor: pointer; color: inherit; opacity: 0.6; padding: 0; font-size: 1em; line-height: 1;">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="st-chatu8-banana-model-select">图像模型</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="st-chatu8-banana-model-select" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="st-chatu8-banana-fetch-models"
+                    title="获取模型列表（同时填充图像/修图/视频三个下拉框）"><i class="fa-solid fa-rotate"></i></button>
+            </div>
+        </div>
+        <div class="st-chatu8-grid-2">
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-edit-model-select">修图模型</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="st-chatu8-banana-edit-model-select" class="st-chatu8-select"></select>
+                </div>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-video-model-select">视频模型</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="st-chatu8-banana-video-model-select" class="st-chatu8-select"></select>
+                </div>
+            </div>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="st-chatu8-banana-aspect-ratio">长宽比</label>
+            <select id="st-chatu8-banana-aspect-ratio" class="st-chatu8-select">
+                <option value="1:1">1:1</option>
+                <option value="9:16">9:16</option>
+                <option value="16:9">16:9</option>
+                <option value="4:3">4:3</option>
+                <option value="3:4">3:4</option>
+            </select>
+        </div>
+        <div class="st-chatu8-field" style="margin-bottom: 4px;">
+            <label for="st-chatu8-banana-image-size-input">图片大小</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="st-chatu8-banana-image-size-select" class="st-chatu8-select" style="flex: 1.6; min-width: 170px;" title="选择常用尺寸，会自动填入右侧输入框">
+                    <optgroup label="4K 超高清（最长边≤3840，16倍数）">
+                        <option value="3840x2160">3840x2160（16:9 4K横屏）</option>
+                        <option value="2160x3840">2160x3840（9:16 4K竖屏）</option>
+                        <option value="2880x2880">2880x2880（1:1 4K正方形，8.3MP）</option>
+                        <option value="3312x2480">3312x2480（4:3 4K横屏）</option>
+                        <option value="2480x3312">2480x3312（3:4 4K竖屏）</option>
+                        <option value="3520x2336">3520x2336（3:2 4K横屏）</option>
+                        <option value="3840x1920">3840x1920（2:1 4K超宽）</option>
+                    </optgroup>
+                    <optgroup label="2K 高清">
+                        <option value="2560x1440">2560x1440（16:9 2K横屏）</option>
+                        <option value="1440x2560">1440x2560（9:16 2K竖屏）</option>
+                        <option value="2048x2048">2048x2048（1:1 2K正方形）</option>
+                        <option value="2048x1536">2048x1536（4:3 2K横屏）</option>
+                        <option value="1536x2048">1536x2048（3:4 2K竖屏）</option>
+                        <option value="2048x1152">2048x1152（16:9 2K轻量）</option>
+                    </optgroup>
+                    <optgroup label="1080P 全高清">
+                        <option value="1920x1080">1920x1080（16:9 全高清横屏）</option>
+                        <option value="1080x1920">1080x1920（9:16 全高清竖屏）</option>
+                    </optgroup>
+                    <optgroup label="1K / 标清">
+                        <option value="1024x1024">1024x1024（1:1 标准）</option>
+                        <option value="1280x720">1280x720（16:9 标清横屏）</option>
+                        <option value="720x1280">720x1280（9:16 标清竖屏）</option>
+                        <option value="1152x896">1152x896（4:3）</option>
+                        <option value="896x1152">896x1152（3:4）</option>
+                        <option value="768x768">768x768</option>
+                        <option value="512x512">512x512</option>
+                    </optgroup>
+                    <option value="__custom__">自定义尺寸…</option>
+                </select>
+                <input type="text" id="st-chatu8-banana-image-size-input" class="st-chatu8-text-input" style="flex: 1; min-width: 110px;"
+                    placeholder="1024x1024" title="宽x高，最长边≤3840，16的倍数，如 3840x2160、2880x2880">
+            </div>
+        </div>
+        <div style="font-size: 11px; opacity: 0.65; margin: -2px 0 10px 0; line-height: 1.3;">
+            <i class="fa-solid fa-circle-info"></i> GPT Image 2 等 4K 模型规则：最长边 ≤ 3840，宽高需为 16 的倍数，总像素上限约 8.3MP（1:1 满分率为 2880x2880）。
+        </div>
+        <div class="st-chatu8-field">
+            <label for="st-chatu8-banana-use-grok-format">OpenAI / Grok / NewAPI 原生生图接口</label>
+            <label class="st-chatu8-toggle" for="st-chatu8-banana-use-grok-format"
+                title="适用于 xAI Grok (grok-imagine)、DALL-E、Flux 及各类 NewAPI/OneAPI 公益站的标准图片模型。">
+                <input id="st-chatu8-banana-use-grok-format" type="checkbox" />
+                <span class="st-chatu8-slider"></span>
+            </label>
+        </div>
+        <div id="st-chatu8-banana-grok-options" class="st-chatu8-sub-settings" style="display: none; padding: 8px 12px; margin-bottom: 8px; background: rgba(0,0,0,0.15); border-radius: 6px;">
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-grok-ref-image-param">参考图 / 图生图处理策略</label>
+                <select id="st-chatu8-banana-grok-ref-image-param" class="st-chatu8-select">
+                    <option value="auto">启用图生图（有参考图/修图时调用独立的 /v1/images/edits）</option>
+                    <option value="disabled">纯文生图模式（强制走 /v1/images/generations，不调用 edits）</option>
+                </select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-grok-edits-format">Edits 接口编码方式</label>
+                <select id="st-chatu8-banana-grok-edits-format" class="st-chatu8-select">
+                    <option value="form_data">标准表单文件上传（multipart/form-data，OpenAI 官方规范推荐）</option>
+                    <option value="json">JSON 载荷（application/json，供部分非标中转站）</option>
+                </select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-grok-response-format">响应格式参数 (response_format)</label>
+                <select id="st-chatu8-banana-grok-response-format" class="st-chatu8-select">
+                    <option value="none">不发送该参数（默认推荐，兼容绝大多数中转站模型）</option>
+                    <option value="url">图片链接（url）</option>
+                    <option value="b64_json">Base64（b64_json，仅部分原生模型支持）</option>
+                </select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-grok-generations-endpoint">自定义文生图端点（可选）</label>
+                <input type="text" id="st-chatu8-banana-grok-generations-endpoint" class="st-chatu8-text-input"
+                    placeholder="默认留空自动解析，如: /v1/images/generations 或特殊单数 /v1/image/generation" title="留空则根据 API 地址自动映射">
+            </div>
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-grok-edits-endpoint">自定义图生图/修图端点（可选）</label>
+                <input type="text" id="st-chatu8-banana-grok-edits-endpoint" class="st-chatu8-text-input"
+                    placeholder="默认留空自动解析，如: /v1/images/edits 或特殊单数 /v1/image/edit" title="留空则根据 API 地址自动映射">
+            </div>
+        </div>
+        <div class="st-chatu8-banana-replace-help">
+            <details>
+                <summary><i class="fa-solid fa-circle-info"></i> 原生生图与独立 Edits 接口说明</summary>
+                <div class="st-chatu8-help-content">
+                    <ul>
+                        <li><strong>接口彻底分离</strong>：
+                            <ul>
+                                <li><strong>文生图</strong>：调用 <code>/v1/images/generations</code> 接口，严格发送纯 JSON 参数，绝不附加非标 image 字段；</li>
+                                <li><strong>图生图 / 修图</strong>：当有角色参考图、预设图或处于修图模式时，调用独立的 <code>/v1/images/edits</code> 接口，默认使用二进制表单（multipart/form-data）上传图片文件。</li>
+                            </ul>
+                        </li>
+                        <li><strong>特殊公益站兼容</strong>：若公益站使用单数形式（如 <code>/v1/image/generation</code> 与 <code>/v1/image/edit</code>），可在上方对应的自定义输入框中分别指定。</li>
+                        <li><strong>纯文生图模型</strong>：若站点模型仅支持文生图，可将「处理策略」切换为「纯文生图模式」。</li>
+                        <li><strong>响应格式报错排查</strong>：若站点返回 <code>invalid_parameter_value (param: response_format)</code>，说明该模型不接受该字段，将「响应格式参数」保持为「不发送该参数」即可正常生图。</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+        <div class="st-chatu8-grid-2">
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-edit-preset">修图预设选择</label>
+                <select id="st-chatu8-banana-edit-preset" class="st-chatu8-select"></select>
+            </div>
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-video-preset">视频预设选择</label>
+                <select id="st-chatu8-banana-video-preset" class="st-chatu8-select"></select>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Banana 专属替换词设置 -->
+    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="prompt_replace_banana">
+        <div class="st-chatu8-section-header">
+            <h3 class="st-chatu8-section-title">提示词替换规则</h3>
+            <span class="st-chatu8-section-toggle">
+                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
+            </span>
+        </div>
+        <div class="st-chatu8-section-body">
+            <p class="st-chatu8-help-text">Banana/Grok 专属的替换词设置，独立于其他生图后端。格式：<code>触发词=模式|替换内容</code></p>
+            <div class="st-chatu8-field">
+                <label for="st-chatu8-banana-prompt-replace-id">替换规则预设</label>
+                <div class="st-chatu8-profile-controls">
+                    <select id="st-chatu8-banana-prompt-replace-id" class="st-chatu8-select"></select>
+                    <button class="st-chatu8-icon-btn" id="st-chatu8-banana-prompt-replace-new" title="新建"><i
+                            class="fa-solid fa-plus"></i></button>
+                    <button class="st-chatu8-icon-btn" id="st-chatu8-banana-prompt-replace-rename" title="重命名"><i
+                            class="fa-solid fa-pen"></i></button>
+                    <button class="st-chatu8-icon-btn" id="st-chatu8-banana-prompt-replace-save" title="保存"><i
+                            class="fa-solid fa-save"></i></button>
+                    <button class="st-chatu8-icon-btn" id="st-chatu8-banana-prompt-replace-save-as" title="另存为"><i
+                            class="fa-solid fa-file-export"></i></button>
+                    <button class="st-chatu8-icon-btn" id="st-chatu8-banana-prompt-replace-import" title="导入"><i
+                            class="fa-solid fa-download"></i></button>
+                    <button class="st-chatu8-icon-btn" id="st-chatu8-banana-prompt-replace-export" title="导出当前"><i
+                            class="fa-solid fa-upload"></i></button>
+                    <button class="st-chatu8-icon-btn danger" id="st-chatu8-banana-prompt-replace-delete" title="删除"><i
+                            class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="st-chatu8-field-col">
+                <label for="st-chatu8-banana-prompt-replace-text">替换规则内容 <span class="st-chatu8-unsaved-warning"
+                        style="display:none; color: #ff9800; font-size: 12px;"><i
+                            class="fa-solid fa-circle-exclamation"></i> 未保存</span></label>
+                <textarea id="st-chatu8-banana-prompt-replace-text" class="st-chatu8-textarea" rows="6"
+                    placeholder="触发词1=前置前|插入词1&#10;触发词2=前置后|插入词2&#10;触发词3=替换|替换词3&#10;触发词4=后置前|插入词4&#10;触发词5=后置后|插入词5&#10;触发词6=最后置|插入词6"></textarea>
+            </div>
+            <div class="st-chatu8-banana-replace-help">
+                <details>
+                    <summary><i class="fa-solid fa-circle-info"></i> 替换模式说明</summary>
+                    <div class="st-chatu8-help-content">
+                        <ul>
+                            <li><strong>前置前</strong> - 在提示词最前面插入内容</li>
+                            <li><strong>前置后</strong> - 在前置固定词后插入内容</li>
+                            <li><strong>替换</strong> - 直接替换触发词（留空则删除）</li>
+                            <li><strong>替换分角色</strong> - 分角色模式下替换</li>
+                            <li><strong>后置前</strong> - 在后置固定词前插入内容</li>
+                            <li><strong>后置后</strong> - 在后置固定词后插入内容</li>
+                            <li><strong>最后置</strong> - 在提示词最后面插入内容</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. 多轮对话 -->
+    <div id="st-chatu8-banana-multimodal-section" class="st-chatu8-settings-section">
+        <h3>多轮对话 (Gemini)</h3>
+        <div class="st-chatu8-field-col">
+            <label for="st-chatu8-banana-fixed-prompt">固定正面提示词</label>
+            <textarea id="st-chatu8-banana-fixed-prompt" class="st-chatu8-textarea" rows="2"></textarea>
+        </div>
+        <div class="st-chatu8-field-col">
+            <label for="st-chatu8-banana-postfix-prompt">后置固定正面提示词</label>
+            <textarea id="st-chatu8-banana-postfix-prompt" class="st-chatu8-textarea" rows="2"></textarea>
+        </div>
+        <div class="st-chatu8-field">
+            <label for="st-chatu8-banana-conversation-preset-id">对话预设</label>
+            <div class="st-chatu8-profile-controls">
+                <select id="st-chatu8-banana-conversation-preset-id" class="st-chatu8-select"></select>
+                <button class="st-chatu8-icon-btn" id="st-chatu8-banana-conversation-new" title="新建"><i
+                        class="fa-solid fa-plus"></i></button>
+                <button class="st-chatu8-icon-btn" id="st-chatu8-banana-conversation-rename" title="重命名"><i
+                        class="fa-solid fa-pen"></i></button>
+                <button class="st-chatu8-icon-btn" id="st-chatu8-banana-conversation-save" title="保存"><i
+                        class="fa-solid fa-save"></i></button>
+                <button class="st-chatu8-icon-btn" id="st-chatu8-banana-conversation-save-as" title="另存为"><i
+                        class="fa-solid fa-file-export"></i></button>
+                <button class="st-chatu8-icon-btn" id="st-chatu8-banana-conversation-import" title="导入"><i
+                        class="fa-solid fa-download"></i></button>
+                <button class="st-chatu8-icon-btn" id="st-chatu8-banana-conversation-export" title="导出"><i
+                        class="fa-solid fa-upload"></i></button>
+                <button class="st-chatu8-icon-btn danger" id="st-chatu8-banana-conversation-delete" title="删除"><i
+                        class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+
+        <div class="st-chatu8-banana-conversation-group">
+            <h4>第 1 轮</h4>
+            <div class="st-chatu8-banana-conversation-turn">
+                <div class="st-chatu8-banana-turn-user">
+                    <h5>User</h5>
+                    <textarea id="st-chatu8-banana-user-text-1" class="st-chatu8-textarea" rows="3"
+                        placeholder="用户文本..."></textarea>
+                    <div class="st-chatu8-image-preview-container small" id="st-chatu8-banana-user-image-container-1">
+                        <img id="st-chatu8-banana-user-image-1" src="" style="display:none;">
+                        <div class="st-chatu8-image-placeholder"><i class="fa-solid fa-image"></i></div>
+                        <button class="st-chatu8-icon-btn danger top-right" id="st-chatu8-banana-user-image-remove-1"
+                            style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+                        <input type="file" id="st-chatu8-banana-user-image-input-1" accept="image/*"
+                            style="display:none;">
+                    </div>
+                </div>
+                <div class="st-chatu8-banana-turn-model">
+                    <h5>Model</h5>
+                    <textarea id="st-chatu8-banana-model-text-1" class="st-chatu8-textarea" rows="3"
+                        placeholder="模型文本..."></textarea>
+                    <div class="st-chatu8-image-preview-container small" id="st-chatu8-banana-model-image-container-1">
+                        <img id="st-chatu8-banana-model-image-1" src="" style="display:none;">
+                        <div class="st-chatu8-image-placeholder"><i class="fa-solid fa-image"></i></div>
+                        <button class="st-chatu8-icon-btn danger top-right" id="st-chatu8-banana-model-image-remove-1"
+                            style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+                        <input type="file" id="st-chatu8-banana-model-image-input-1" accept="image/*"
+                            style="display:none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="st-chatu8-banana-conversation-group">
+            <h4>第 2 轮</h4>
+            <div class="st-chatu8-banana-conversation-turn">
+                <div class="st-chatu8-banana-turn-user">
+                    <h5>User</h5>
+                    <textarea id="st-chatu8-banana-user-text-2" class="st-chatu8-textarea" rows="3"
+                        placeholder="用户文本..."></textarea>
+                    <div class="st-chatu8-image-preview-container small" id="st-chatu8-banana-user-image-container-2">
+                        <img id="st-chatu8-banana-user-image-2" src="" style="display:none;">
+                        <div class="st-chatu8-image-placeholder"><i class="fa-solid fa-image"></i></div>
+                        <button class="st-chatu8-icon-btn danger top-right" id="st-chatu8-banana-user-image-remove-2"
+                            style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+                        <input type="file" id="st-chatu8-banana-user-image-input-2" accept="image/*"
+                            style="display:none;">
+                    </div>
+                </div>
+                <div class="st-chatu8-banana-turn-model">
+                    <h5>Model</h5>
+                    <textarea id="st-chatu8-banana-model-text-2" class="st-chatu8-textarea" rows="3"
+                        placeholder="模型文本..."></textarea>
+                    <div class="st-chatu8-image-preview-container small" id="st-chatu8-banana-model-image-container-2">
+                        <img id="st-chatu8-banana-model-image-2" src="" style="display:none;">
+                        <div class="st-chatu8-image-placeholder"><i class="fa-solid fa-image"></i></div>
+                        <button class="st-chatu8-icon-btn danger top-right" id="st-chatu8-banana-model-image-remove-2"
+                            style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+                        <input type="file" id="st-chatu8-banana-model-image-input-2" accept="image/*"
+                            style="display:none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="st-chatu8-banana-conversation-group">
+            <h4>第 3 轮</h4>
+            <div class="st-chatu8-banana-conversation-turn">
+                <div class="st-chatu8-banana-turn-user">
+                    <h5>User</h5>
+                    <textarea id="st-chatu8-banana-user-text-3" class="st-chatu8-textarea" rows="3"
+                        placeholder="用户文本..."></textarea>
+                    <div class="st-chatu8-image-preview-container small" id="st-chatu8-banana-user-image-container-3">
+                        <img id="st-chatu8-banana-user-image-3" src="" style="display:none;">
+                        <div class="st-chatu8-image-placeholder"><i class="fa-solid fa-image"></i></div>
+                        <button class="st-chatu8-icon-btn danger top-right" id="st-chatu8-banana-user-image-remove-3"
+                            style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+                        <input type="file" id="st-chatu8-banana-user-image-input-3" accept="image/*"
+                            style="display:none;">
+                    </div>
+                </div>
+                <div class="st-chatu8-banana-turn-model">
+                    <h5>Model</h5>
+                    <textarea id="st-chatu8-banana-model-text-3" class="st-chatu8-textarea" rows="3"
+                        placeholder="模型文本..."></textarea>
+                    <div class="st-chatu8-image-preview-container small" id="st-chatu8-banana-model-image-container-3">
+                        <img id="st-chatu8-banana-model-image-3" src="" style="display:none;">
+                        <div class="st-chatu8-image-placeholder"><i class="fa-solid fa-image"></i></div>
+                        <button class="st-chatu8-icon-btn danger top-right" id="st-chatu8-banana-model-image-remove-3"
+                            style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+                        <input type="file" id="st-chatu8-banana-model-image-input-3" accept="image/*"
+                            style="display:none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

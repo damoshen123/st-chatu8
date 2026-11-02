@@ -1,0 +1,270 @@
+/* About Tab Specifics */
+#st-chatu8-settings .st-chatu8-about-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+#st-chatu8-settings .st-chatu8-about-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: var(--st-chatu8-border-radius);
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+#st-chatu8-settings .st-chatu8-about-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+#st-chatu8-settings .st-chatu8-about-link.support {
+    background: linear-gradient(135deg, #ff69b4, #ff8c00);
+}
+
+#st-chatu8-settings .st-chatu8-about-link.help {
+    background: linear-gradient(135deg, #1e90ff, #32cd32);
+}
+
+#st-chatu8-settings .st-chatu8-about-link .fa-solid {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+
+#st-chatu8-settings .st-chatu8-about-link.st-chatu8-site-link {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 14px 16px;
+    color: var(--st-chatu8-text-primary);
+    background: var(--st-chatu8-bg-tertiary, var(--st-chatu8-bg-secondary));
+    border: 1px solid var(--st-chatu8-border-color);
+}
+
+#st-chatu8-settings .st-chatu8-about-link.st-chatu8-site-link:hover {
+    border-color: var(--st-chatu8-accent-primary);
+}
+
+#st-chatu8-settings .st-chatu8-about-link .st-chatu8-site-icon {
+    min-width: 20px;
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--st-chatu8-accent-primary);
+    text-align: center;
+}
+
+#st-chatu8-settings .st-chatu8-site-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px;
+    text-align: left;
+}
+
+#st-chatu8-settings .st-chatu8-about-link .st-chatu8-site-title {
+    color: var(--st-chatu8-text-primary);
+    font-weight: 700;
+}
+
+#st-chatu8-settings .st-chatu8-about-link .st-chatu8-site-description {
+    color: var(--st-chatu8-text-secondary);
+    font-size: 0.85em;
+    font-weight: 400;
+}
+
+#st-chatu8-settings .st-chatu8-about-link span {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+#st-chatu8-settings .st-chatu8-cute-emoji {
+    position: absolute;
+    font-size: 4rem;
+    opacity: 0.1;
+    right: -10px;
+    bottom: -10px;
+    transition: transform 0.3s ease;
+}
+
+#st-chatu8-settings .st-chatu8-about-link:hover .st-chatu8-cute-emoji {
+    transform: scale(1.2) rotate(15deg);
+}
+
+/* ========== Update Log / Changelog Styles ========== */
+
+/* Update header with button and status */
+#st-chatu8-settings .st-chatu8-update-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+#st-chatu8-settings .st-chatu8-update-status {
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+#st-chatu8-settings .st-chatu8-update-status.available {
+    color: #e65100;
+    background: rgba(255, 152, 0, 0.12);
+}
+
+#st-chatu8-settings .st-chatu8-update-status.uptodate {
+    color: #2e7d32;
+    background: rgba(76, 175, 80, 0.12);
+}
+
+#st-chatu8-settings .st-chatu8-update-status.error {
+    color: #c62828;
+    background: rgba(244, 67, 54, 0.12);
+}
+
+#st-chatu8-settings .st-chatu8-update-status.checking {
+    color: #1565c0;
+    background: rgba(33, 150, 243, 0.12);
+}
+
+/* Changelog container */
+#st-chatu8-settings .st-chatu8-changelog-container {
+    max-height: 420px;
+    overflow-y: auto;
+    padding: 4px;
+    border-radius: var(--st-chatu8-border-radius, 8px);
+    scrollbar-width: thin;
+}
+
+#st-chatu8-settings .st-chatu8-changelog-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+#st-chatu8-settings .st-chatu8-changelog-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#st-chatu8-settings .st-chatu8-changelog-container::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.3);
+    border-radius: 3px;
+}
+
+#st-chatu8-settings .st-chatu8-changelog-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(128, 128, 128, 0.5);
+}
+
+/* Changelog empty/loading states */
+#st-chatu8-settings .st-chatu8-changelog-empty,
+#st-chatu8-settings .st-chatu8-changelog-loading {
+    text-align: center;
+    padding: 24px 16px;
+    color: var(--st-chatu8-text-secondary);
+    opacity: 0.7;
+    font-size: 0.95rem;
+}
+
+/* Individual changelog entry card */
+#st-chatu8-settings .st-chatu8-changelog-entry {
+    background: var(--st-chatu8-bg-tertiary, var(--st-chatu8-bg-secondary));
+    border: 1px solid var(--st-chatu8-border-color);
+    border-radius: var(--st-chatu8-border-radius, 8px);
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+#st-chatu8-settings .st-chatu8-changelog-entry:hover {
+    transform: translateX(3px);
+    border-color: var(--st-chatu8-accent-primary);
+    box-shadow: var(--st-chatu8-box-shadow, 0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+#st-chatu8-settings .st-chatu8-changelog-entry:last-child {
+    margin-bottom: 0;
+}
+
+/* Latest version entry highlight */
+#st-chatu8-settings .st-chatu8-changelog-entry.latest {
+    border-left: 3px solid var(--st-chatu8-accent-primary);
+    background: var(--st-chatu8-bg-tertiary, var(--st-chatu8-bg-secondary));
+}
+
+/* Current version entry highlight */
+#st-chatu8-settings .st-chatu8-changelog-entry.current {
+    border-left: 3px solid var(--st-chatu8-accent-secondary, var(--st-chatu8-accent-primary));
+    background: var(--st-chatu8-bg-tertiary, var(--st-chatu8-bg-secondary));
+}
+
+/* Version row: version number + badge */
+#st-chatu8-settings .st-chatu8-changelog-version-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+#st-chatu8-settings .st-chatu8-changelog-version {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--st-chatu8-text-primary);
+}
+
+/* Badges */
+#st-chatu8-settings .st-chatu8-changelog-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+}
+
+#st-chatu8-settings .st-chatu8-changelog-badge.latest {
+    background: var(--st-chatu8-accent-primary);
+    color: var(--st-chatu8-text-highlight, #fff);
+}
+
+#st-chatu8-settings .st-chatu8-changelog-badge.current {
+    background: var(--st-chatu8-accent-secondary, var(--st-chatu8-accent-primary));
+    color: var(--st-chatu8-text-highlight, #fff);
+}
+
+/* Changes list */
+#st-chatu8-settings .st-chatu8-changelog-changes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#st-chatu8-settings .st-chatu8-changelog-changes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 3px 0;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: var(--st-chatu8-text-secondary);
+    opacity: 0.85;
+}
+
+#st-chatu8-settings .st-chatu8-changelog-changes li:hover {
+    opacity: 1;
+}
+
+#st-chatu8-settings .st-chatu8-changelog-icon {
+    flex-shrink: 0;
+    width: 18px;
+    text-align: center;
+    font-size: 0.85rem;
+}
