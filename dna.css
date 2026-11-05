@@ -610,6 +610,18 @@
     background: var(--dna-accent-soft, rgba(59, 130, 246, 0.12));
 }
 
+/* 全局角色：点亮后高亮，一眼看出这条会跟着所有角色卡和存档 */
+#st-chatu8-settings #dna-tab .dna-mini-global.is-on {
+    color: var(--st-chatu8-accent-primary, #3b82f6);
+    border-color: var(--st-chatu8-accent-primary, #3b82f6);
+    background: var(--dna-accent-soft, rgba(59, 130, 246, 0.12));
+}
+
+#st-chatu8-settings #dna-tab .dna-mini-global.is-on:hover {
+    background: var(--st-chatu8-accent-primary, #3b82f6);
+    color: #fff;
+}
+
 #st-chatu8-settings #dna-tab .dna-mini-dis {
     opacity: 0.45;
     cursor: not-allowed;
@@ -1767,14 +1779,20 @@
     white-space: nowrap;
 }
 
-/* 右边：一排操作按钮，成组靠右，挤不下时自己换行 */
+/* 右边：一排操作按钮，成组靠右；不换行，挤的时候让左边的名字自己省略（否则「×」会被顶到第二行） */
 #st-chatu8-settings #dna-tab .dna-item-acts {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 5px;
+}
+
+/* 纯图标按钮（锁 / 全局 / 导出）窄一点，一排才排得下 */
+#st-chatu8-settings #dna-tab .dna-mini-global,
+#st-chatu8-settings #dna-tab .dna-mini-export {
+    padding: 0 7px;
 }
 
 #st-chatu8-settings #dna-tab .dna-item-acts .dna-mini {

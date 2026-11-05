@@ -4,6 +4,9 @@
  * 本文件是原扩展的构建产物（原 st-chatu8-dna/index.js）。
  * 字段规则已经内联在下方，不需要再跑构建脚本。
  *
+ * v2.9.33：档案分库方式改成三选一（全局共用一份 / 跟随角色卡 / 跟随角色卡存档），
+ *          老的布尔 followChar 自动迁移；条目上的「复制」换成「导出」，单条导出成 JSON；
+ *          小锁旁边新增「设为全局」，全局角色在任何角色卡与任何存档里都能看到
  * v2.9.32：分类操作里新增「清空全部」——把当前库的所有分类和条目一次清空
  *          （内置库是插件里的静态文件，删不掉，所以不逐条记 deleted、只打一个「整库已清空」
  *          标记，合库时跳过内置本体；点「重载内置库」/「恢复内置」可以全部找回来）
@@ -72,7 +75,7 @@ const NO_CARD = '__no_card__';
 /* ------------------------------ 默认设置 ------------------------------ */
 const DEFAULTS = {
     enabled: false,
-    followChar: true,          // 档案跟随当前存档：同一张角色卡的不同存档各一份档案库
+    followMode: 'chat',        // 档案按什么分库：global=全局共用一份 / card=跟随角色卡（同卡各存档共用） / chat=跟随角色卡存档（每个存档一份）
     updateExisting: true,      // AI自动更新档案库：同名角色按当前剧情更新
     libStream: true,           // 档案库流式输出：开着能实时看到 AI 写的字；关掉就等整段回来（只影响档案库）
     scanDepth: 3,              // 每次扫最近 N 层
@@ -238,6 +241,13 @@ function loadSettings() {
     /* 发送数据的上限单位从「字」改成「token」，老字段丢掉直接用新默认 */
     delete out.sendMaxChars;
     delete out.sendMaxTokens;   // 请求长度不再设上限，老字段清掉
+    /* 分库方式：老版本只有一个布尔 followChar（true = 跟随角色卡存档，false = 全局共用） */
+    if (saved.followMode === undefined || saved.followMode === null) {
+        out.followMode = (saved.followChar === false) ? 'global' : 'chat';
+    }
+    /* 分库常量声明在文件后面，而 loadSettings 在模块加载期就执行了，这里不能用它（会 TDZ 报错） */
+    if (['global', 'card', 'chat'].indexOf(out.followMode) < 0) out.followMode = DEFAULTS.followMode;
+    delete out.followChar;
     out.retryCount = clampInt(out.retryCount, 0, 5, 0);
     if (typeof out.libStream !== 'boolean') out.libStream = true;
     /* AI 回复上限：0 = 不设上限（默认就是 0）；老版本没这字段时也给 0 */
@@ -431,6 +441,19 @@ function chatStoreId() {
     return '';
 }
 
+const FOLLOW_MODES = ['global', 'card', 'chat'];
+const FOLLOW_MODE_LABEL = {
+    global: '全局共用一份',
+    card: '跟随角色卡（同一张角色卡的存档共用一份）',
+    chat: '跟随角色卡存档（每个存档各一份）'
+};
+
+/* 分库方式：老数据只有一个布尔 followChar，loadSettings 里已经迁移成 followMode */
+function followMode() {
+    const v = S && S.followMode;
+    return FOLLOW_MODES.indexOf(v) >= 0 ? v : 'chat';
+}
+
 /* 存档名的尾巴：chatId 一般是「角色名 - 2024-1-1 @12h 30m」，显示时间那半截就够了 */
 function shortChatName(id) {
     const t = String(id || '');
@@ -441,7 +464,7 @@ function shortChatName(id) {
 
 /* 角色卡这一层（不含存档）的键 */
 function cardBaseKey() {
-    if (!S.followChar) return SHARED;
+    if (followMode() === 'global') return SHARED;
     const ctx = getContext();
     if (ctx.groupId) {
         const g = (ctx.groups || []).find((x) => x.id === ctx.groupId);
@@ -456,13 +479,13 @@ function cardBaseKey() {
 /* 档案库的键 = 角色卡 + 当前存档；同一个存档反复进出始终是同一份库 */
 function cardKey() {
     const base = cardBaseKey();
-    if (!S.followChar || base === SHARED) return base;
+    if (followMode() !== 'chat' || base === SHARED) return base;
     const chat = chatStoreId();
     return chat ? (base + '::' + chat) : base;
 }
 
 function cardLabel() {
-    if (!S.followChar) return '共用档案库';
+    if (followMode() === 'global') return '共用档案库';
     const ctx = getContext();
     let name;
     if (ctx.groupId) {
@@ -472,6 +495,7 @@ function cardLabel() {
         const ch = (ctx.characters || [])[ctx.characterId];
         name = (ch && ch.name) ? ch.name : '未选择角色卡';
     }
+    if (followMode() === 'card') return name;
     const chat = chatStoreId();
     const tail = chat ? shortChatName(chat) : '';
     return tail ? (name + ' · ' + tail) : name;
@@ -480,7 +504,7 @@ function cardLabel() {
 /* 老版本按角色卡共用一个库。改成按存档分库后，第一次进某个存档时把老库复制过来；
    老库本身原样留着，并打上 _claimed 标记——同一个老库只认领一次，其它存档拿到的是空库。 */
 function adoptLegacyLibrary(k) {
-    if (!S.followChar) return null;
+    if (followMode() === 'global') return null;
     const key = String(k || '');
     const cut = key.indexOf('::');
     if (cut <= 0) return null;
@@ -533,9 +557,90 @@ function bucket(key, create) {
     return b;
 }
 
+/* 全局角色：存在共用库里并带 _global 标记，任何库读的时候都会合并进来 */
+function globalEntries() {
+    const g = S.records[SHARED] && S.records[SHARED].entries;
+    if (!g) return {};
+    const out = {};
+    for (const k in g) if (g[k] && g[k]._global) out[k] = g[k];
+    return out;
+}
+
+function isGlobalName(name) {
+    return !!(name && globalEntries()[name]);
+}
+
+/* 这个名字的档案实际躺在哪个库里：当前库优先，其次是共用库里的全局角色。
+   返回的是真库对象，改它才改得动；currentEntries() 是合并出来的视图，只适合读。 */
+function libOfName(name) {
+    const local = bucket(cardKey(), false);
+    if (local && local.entries && local.entries[name]) return local;
+    const g = S.records[SHARED];
+    if (g && g.entries && g.entries[name]) return g;
+    return local || g || null;
+}
+
+/* 设为全局 / 取消全局：档案本体搬进或搬出共用库，不复制两份，免得各说各话 */
+function setGlobalRecord(name, on) {
+    if (!name) return false;
+    const curKey = cardKey();
+    const cur = bucket(curKey, true);
+    if (!cur) return false;
+    if (on) {
+        const rec = cur.entries[name] || (S.records[SHARED] && S.records[SHARED].entries && S.records[SHARED].entries[name]);
+        if (!rec) return false;
+        if (rec._global) return false;
+        if (curKey === SHARED) {
+            rec._global = true;
+        } else {
+            const g = bucket(SHARED, true);
+            if (g.entries[name] && g.entries[name] !== rec) { toast('全局库里已经有同名角色了：' + name, 'error'); return false; }
+            rec._global = true;
+            g.entries[name] = rec;
+            delete cur.entries[name];
+            g.card = '全局角色库';
+            g.updated = Date.now();
+            cur.updated = Date.now();
+        }
+        saveSettings(true);
+        log('已把「' + name + '」设为全局角色：任何角色卡、任何存档都能看到');
+        toast('「' + name + '」已设为全局角色');
+    } else {
+        const g = S.records[SHARED];
+        const rec = (g && g.entries && g.entries[name]) || cur.entries[name];
+        if (!rec || !rec._global) return false;
+        if (curKey === SHARED) {
+            delete rec._global;
+        } else {
+            delete rec._global;
+            if (g && g.entries[name]) delete g.entries[name];
+            cur.entries[name] = rec;
+            if (g) g.updated = Date.now();
+            cur.updated = Date.now();
+        }
+        saveSettings(true);
+        log('已取消「' + name + '」的全局角色，档案放回当前库');
+        toast('「' + name + '」不再全局，已放回当前档案库');
+    }
+    renderList();
+    return true;
+}
+
+function toggleGlobalRecord(name) {
+    return setGlobalRecord(name, !isGlobalName(name));
+}
+
 function currentEntries() {
     const b = bucket(cardKey(), false);
-    return (b && b.entries) || {};
+    const local = (b && b.entries) || {};
+    const gl = globalEntries();
+    if (!Object.keys(gl).length) return local;
+    /* 浅合并：值还是原来那些对象引用，所以直接改 rec._locked 这类字段照样落到真身上；
+       增删键（改名 / 删除）必须走 libOfName，别在这个视图上做。 */
+    const out = {};
+    for (const k in gl) out[k] = gl[k];
+    for (const k in local) out[k] = local[k];
+    return out;
 }
 
 function countAll() {
@@ -730,7 +835,7 @@ function recordHistory(name) {
 
 /* 回档：把这一版原样写回档案。当前这一版也会被压进历史，所以点错了还能再回回来。 */
 function restoreHistory(name, idx) {
-    const b = bucket(cardKey(), true);
+    const b = libOfName(name) || bucket(cardKey(), true);
     if (!b) return false;
     const rec = b.entries[name];
     if (!rec) return false;
@@ -749,7 +854,7 @@ function restoreHistory(name, idx) {
     out._floor = snap._floor || '';
     out._hist = [snapshotRecord(rec)].concat(hist.filter((x, i) => i !== idx)).slice(0, HIST_MAX);
     b.entries[name] = out;
-    b.card = cardLabel();
+    b.card = (b === bucket(cardKey(), false)) ? cardLabel() : '全局角色库';
     b.updated = Date.now();
     saveSettings(true);
     return true;
@@ -759,7 +864,9 @@ function restoreHistory(name, idx) {
 function saveRecord(profile, floor) {
     let name = String(profile['姓名'] || '').trim();
     if (!name) return 'skipped';
-    const b = bucket(cardKey(), true);
+    const curLib = bucket(cardKey(), true);
+    /* 这条已经是全局角色：更新也要更新那一份，不然当前库会另外长出一条影子档案 */
+    const b = globalEntries()[name] ? bucket(SHARED, true) : curLib;
     const fi = formInfo(name);
     /* 形态档案：同一角色同一形态只留一条。标记变了（[当前] ↔ [非当前]）也算同一条，
        以这次的新内容为准，旧名字那条退场，避免同一个形态在库里出现两份。
@@ -833,7 +940,7 @@ function saveRecord(profile, floor) {
         delete b.entries[sameName];
     }
     b.entries[name] = rec;
-    b.card = cardLabel();
+    b.card = (b === curLib) ? cardLabel() : '全局角色库';
     b.updated = Date.now();
     /* 新的这条是 [当前] → 同组其它 [当前] 自动让位 */
     if (fi.isForm && fi.isCurrent) enforceOneCurrent(fi.base, name);
@@ -1015,7 +1122,7 @@ function toggleFieldLock(name, k) {
 }
 
 function deleteRecord(name) {
-    const b = bucket(cardKey(), false);
+    const b = libOfName(name);
     if (!b || !b.entries[name]) return false;
     delete b.entries[name];
     removeFieldLocks(name);
@@ -6791,6 +6898,30 @@ function downloadJson(filename, obj) {
     setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000);
 }
 
+/* 单独导出一个角色的档案：文件名带角色名，文件里套一层 entries，
+   以后要做「单条导入」时照这个结构读就行 */
+function exportOneRecord(name, rec) {
+    if (!name || !rec) return false;
+    const d = {};
+    for (const k of Object.keys(rec)) {
+        if (k === '_hist') continue;
+        d[k] = rec[k];
+    }
+    const payload = {
+        dna_single_export: 1,
+        exported: new Date().toISOString(),
+        card: cardLabel(),
+        global: !!rec._global,
+        name,
+        entries: {}
+    };
+    payload.entries[name] = d;
+    downloadJson('dna-' + String(name).replace(/[\\/:*?"<>|]/g, '_') + '.json', payload);
+    log('已导出角色档案「' + name + '」');
+    toast('已导出「' + name + '」的档案文件');
+    return true;
+}
+
 /* 下载一份纯文本（导出某条消息用） */
 function downloadText(filename, text) {
     const blob = new Blob([String(text == null ? '' : text)], { type: 'text/plain;charset=utf-8' });
@@ -8541,8 +8672,12 @@ const PANEL_HTML = `
         <div class="st-chatu8-toggle"><input type="checkbox" data-dna="autoScan"><span class="st-chatu8-slider"></span></div>
       </div>
       <div class="st-chatu8-field">
-        <label>档案跟随角色卡存档</label>
-        <div class="st-chatu8-toggle"><input type="checkbox" data-dna="followChar"><span class="st-chatu8-slider"></span></div>
+        <label>档案按什么分库</label>
+        <select class="st-chatu8-select" data-dna="followMode">
+          <option value="global">全局共用一份（所有角色卡、所有存档都一样）</option>
+          <option value="card">跟随角色卡（同一张角色卡的存档共用一份）</option>
+          <option value="chat">跟随角色卡存档（每个存档各一份）</option>
+        </select>
       </div>
       <div class="st-chatu8-field">
         <label>AI自动更新档案库</label>
@@ -9996,7 +10131,7 @@ let dnaToggleSyncing = false;
 /* 开关的中文名（写日志用，用户看不到控制台，靠日志判断有没有同步上） */
 function toggleLabelOf(key) {
     const map = {
-        enabled: '启用插件', autoScan: '自动记录', followChar: '档案跟随角色卡存档',
+        enabled: '启用插件', autoScan: '自动记录', followMode: '档案分库方式',
         updateExisting: 'AI自动更新档案库', notify: '完成后弹提示', libStream: '档案库流式输出', useRegex: '正文先过正则',
         breakTool: '自定义 Tool', breakTail: '末尾多 Role', sendEnabled: '发送 DNA',
         presetEnabled: '档案库用上下文预设', presetMergeSystem: '档案库合并 system',
@@ -10019,7 +10154,6 @@ function syncTogglesFromDom() {
         if (!!S[key] === now) return;
         S[key] = now;
         changed.push(key);
-        if (key === 'followChar') followChanged = true;
         if (key === 'genBookFollowCard') bookFollowChanged = true;
     });
     if (!changed.length) return false;
@@ -10174,7 +10308,8 @@ function bindPanel() {
         applyFolds();
         tab.querySelector('[data-dna="enabled"]').checked = !!S.enabled;
         tab.querySelector('[data-dna="autoScan"]').checked = !!S.autoScan;
-        tab.querySelector('[data-dna="followChar"]').checked = !!S.followChar;
+        const fmEl = tab.querySelector('[data-dna="followMode"]');
+        if (fmEl) fmEl.value = followMode();
         tab.querySelector('[data-dna="updateExisting"]').checked = !!S.updateExisting;
         tab.querySelector('[data-dna="replyMaxTokens"]').value = String(S.replyMaxTokens);
         tab.querySelector('[data-dna="notify"]').checked = !!S.notify;
@@ -10236,7 +10371,6 @@ function bindPanel() {
             S[key] = read();
             saveSettings(true);
             updateDerivedUI();
-            if (key === 'followChar') { selected = null; renderList(); }
             renderPresetCard('lib');
             renderPresetCard('gen');
             renderPresetCard('ranobe');
@@ -10246,7 +10380,23 @@ function bindPanel() {
         }
     };
 
-    ['enabled', 'autoScan', 'followChar', 'updateExisting', 'notify', 'libStream', 'useRegex', 'breakTool', 'breakTail'].forEach((k) => onChange(k, 'bool'));
+    /* 分库方式：三选一下拉，不走 onChange 的布尔通道 */
+    const fmSel = tab.querySelector('[data-dna="followMode"]');
+    if (fmSel) {
+        fmSel.addEventListener('change', () => {
+            const v = String(fmSel.value || '');
+            if (FOLLOW_MODES.indexOf(v) < 0) return;
+            S.followMode = v;
+            saveSettings(true);
+            selected = null;
+            updateDerivedUI();
+            renderList();
+            log('档案分库方式：' + FOLLOW_MODE_LABEL[v]);
+            toast('档案库已切换为：' + FOLLOW_MODE_LABEL[v]);
+        });
+    }
+
+    ['enabled', 'autoScan', 'updateExisting', 'notify', 'libStream', 'useRegex', 'breakTool', 'breakTail'].forEach((k) => onChange(k, 'bool'));
     onChange('scanDepth', 'int');
     onChange('replyMaxTokens', 'int');
     onChange('retryCount', 'int');
@@ -10741,9 +10891,15 @@ function bindPanel() {
             log('已删除「' + name + '」');
             return;
         }
-        if (e.target.closest('[data-act="copy"]')) {
+        if (e.target.closest('[data-act="global"]')) {
+            e.stopPropagation();
+            toggleGlobalRecord(name);
+            return;
+        }
+        if (e.target.closest('[data-act="export"]')) {
+            e.stopPropagation();
             const rec = currentEntries()[name];
-            if (rec) copyText(buildContent(rec), '已复制「' + name + '」的完整档案');
+            if (rec) exportOneRecord(name, rec);
             return;
         }
         /* 底部详情编辑页已删除：点角色块不再展开第二套编辑界面，改档案走条目上的小铅笔 */
@@ -10907,9 +11063,12 @@ function updateDerivedUI() {
     if (label) label.textContent = cardLabel();
     const hint = tab.querySelector('[data-dna="storeHint"]');
     if (hint) {
-        hint.textContent = S.followChar
-            ? '每张角色卡各存一份，切换角色卡自动切换档案库'
-            : '所有角色卡共用同一份档案库';
+        const fm = followMode();
+        hint.textContent = fm === 'global'
+            ? '全局共用一份：所有角色卡、所有存档看到的是同一份档案库'
+            : (fm === 'card'
+                ? '跟随角色卡：同一张角色卡的所有存档共用一份档案库'
+                : '跟随角色卡存档：每张角色卡的每个存档各一份，切换存档自动切换档案库');
     }
     refreshLLMCard();
     renderRegexInfo();
@@ -10951,10 +11110,18 @@ function renderList() {
     try { migrateFieldLocks(); } catch (e) { /* 迁移失败不影响查看 */ }
     try { sanitizeAliases(); } catch (e) { /* 清别称失败就下次再说 */ }
     const entries = currentEntries();
+    const gMap = globalEntries();
     /* 列表顺序按「本名」分组：同一角色的各个形态排在一起，[当前] 形态排最前 */
     const groups = formGroups();
     const allOrdered = [];
-    for (const base of [...groups.keys()].sort((a, b) => String(a).localeCompare(String(b), 'zh'))) {
+    /* 设有全局角色的组自动置顶，其余照旧按本名排 */
+    const groupHasGlobal = (base) => (groups.get(base) || []).some((x) => gMap[x.name]);
+    for (const base of [...groups.keys()].sort((a, b) => {
+        const ga = groupHasGlobal(a) ? 0 : 1;
+        const gb = groupHasGlobal(b) ? 0 : 1;
+        if (ga !== gb) return ga - gb;
+        return String(a).localeCompare(String(b), 'zh');
+    })) {
         for (const x of groups.get(base)) allOrdered.push(x);
     }
     const q = String(searchTerm || '').trim().toLowerCase();
@@ -11003,6 +11170,7 @@ function renderList() {
         /* 第二行小字：更新时间 + 这条现在的状态（强制发送 / 已锁定） */
         const subBits = [esc(fmtTime(rec._updated))];
         if (forced) subBits.push('强制发送');
+        if (gMap[n]) subBits.push('全局');
         if (lk) subBits.push('已锁定');
         return '<div class="dna-item' + active + (lk ? ' dna-item-locked' : '') + (fi.isForm ? ' dna-item-form' : '') + '" data-name="' + esc(n) + '">' +
             '<span class="dna-item-main">' +
@@ -11013,11 +11181,14 @@ function renderList() {
             '<button class="dna-mini dna-mini-lock' + (lk ? ' is-locked' : '') + '" data-act="lock" title="' +
             (lk ? '已锁定：AI 不会改这条（点一下解锁）' : '未锁定：点一下锁住，AI 就不会再改这条') + '">' +
             '<i class="fa-solid ' + (lk ? 'fa-lock' : 'fa-lock-open') + '"></i></button>' +
+            '<button class="dna-mini dna-mini-global' + (gMap[n] ? ' is-on' : '') + '" data-act="global" title="' +
+            (gMap[n] ? '已是全局角色：任何角色卡与存档都能看到这条（点一下取消）' : '设为全局角色：以后任何角色卡、任何存档都能看到这条档案') + '">' +
+            '<i class="fa-solid fa-globe"></i></button>' +
             '<button class="dna-mini dna-mini-force' + (forced ? ' is-on' : '') + '" data-act="force" title="' +
             (forced ? '强制发送已开：以后每次发送都会带上这条（不管正文提没提到）' : '强制发送：打开后每次发送都会带上这条档案，不管正文提没提到') + '">' +
             '<i class="fa-solid fa-paper-plane"></i></button>' +
             '<button class="dna-mini" data-act="edit" title="编辑这条档案：名字 + 所有字段内容"><i class="fa-solid fa-pen"></i></button>' +
-            '<button class="dna-mini" data-act="copy" title="复制完整档案">复制</button>' +
+            '<button class="dna-mini dna-mini-export" data-act="export" title="导出这一条档案（.json 文件）"><i class="fa-solid fa-file-export"></i></button>' +
             '<button class="dna-mini dna-mini-del" data-act="del" title="删除">×</button>' +
             '</span>' +
             '</div>';
@@ -11195,7 +11366,9 @@ function openRecordEditor(name) {
         }
     }));
     dnaModalWire((mask) => {
-        const list = currentEntries();
+        /* 改名要落在真库上：全局角色的档案存在共用库里 */
+        const lib = libOfName(name);
+        const list = (lib && lib.entries) || currentEntries();
         const rec = list[name];
         if (!rec) { toast('这条档案已经不存在了', 'error'); dnaModalClose(); return; }
         const nameEl = mask.querySelector('[data-rec-name]');
@@ -11290,7 +11463,8 @@ function openRenameModal(oldName) {
         const nm = String((input && input.value) || '').trim();
         if (!nm) { toast('名字不能为空', 'error'); return; }
         if (nm === oldName) { dnaModalClose(); return; }
-        const list = currentEntries();
+        const libRn = libOfName(oldName);
+        const list = (libRn && libRn.entries) || currentEntries();
         if (list[nm]) { toast('已经有同名档案了：' + nm, 'error'); return; }
         const rec = list[oldName];
         if (!rec) { dnaModalClose(); return; }
