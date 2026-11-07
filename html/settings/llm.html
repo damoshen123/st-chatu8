@@ -159,13 +159,19 @@
         </p>
     </div>
 
-    <div class="st-chatu8-settings-section">
-        <!-- OpenAI 模型参数 -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <h4 style="margin: 0;">模型参数</h4>
-            <span style="font-size: 12px; color: var(--st-chatu8-text-secondary);">可单独开启/关闭每个参数（关闭后请求不携带该字段）</span>
+    <!-- OpenAI 模型参数 -->
+    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="llm_model_parameters">
+        <div class="st-chatu8-section-header">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <h4 class="st-chatu8-section-title" style="margin: 0;"><i class="fa-solid fa-sliders"></i> 模型参数</h4>
+                <span style="font-size: 12px; color: var(--st-chatu8-text-secondary);">可单独开启/关闭每个参数（关闭后请求不携带该字段）</span>
+            </div>
+            <span class="st-chatu8-section-toggle">
+                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
+            </span>
         </div>
-        <div class="st-chatu8-grid">
+        <div class="st-chatu8-section-body">
+            <div class="st-chatu8-grid">
             <div class="st-chatu8-field" id="ch-llm_temperature_field">
                 <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                     <label for="ch-llm_enable_temperature" style="display: flex; align-items: center; gap: 6px; cursor: pointer; margin: 0;">
@@ -209,6 +215,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- 自定义请求标头与附加参数 -->
@@ -426,20 +433,26 @@
         </div>
     </div>
 
-    <div class="st-chatu8-settings-section">
-        <!-- 上下文历史配置 -->
-        <h4>上下文历史</h4>
+    <!-- 上下文历史配置 -->
+    <div class="st-chatu8-settings-section st-chatu8-collapsible-section is-collapsed" data-section-id="llm_context_history">
+        <div class="st-chatu8-section-header">
+            <h4 class="st-chatu8-section-title"><i class="fa-solid fa-clock-rotate-left"></i> 上下文历史</h4>
+            <span class="st-chatu8-section-toggle">
+                <i class="fa-solid fa-chevron-down st-chatu8-section-toggle-icon"></i>
+            </span>
+        </div>
+        <div class="st-chatu8-section-body">
         <div class="st-chatu8-field">
             <label for="ch-llm_history_depth">发送历史层数</label>
             <div class="st-chatu8-range-container">
-                <input class="st-chatu8-range-slider" type="range" id="ch-llm_history_depth" min="0" max="20"
+                <input class="st-chatu8-range-slider" type="range" id="ch-llm_history_depth" min="0" max="5"
                     step="1" value="2">
                 <input class="st-chatu8-range-input" type="number" id="ch-llm_history_depth_value"
-                    data-for="ch-llm_history_depth" min="0" max="20" step="1" value="2">
+                    data-for="ch-llm_history_depth" min="0" max="5" step="1" value="2">
             </div>
         </div>
         <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
-            设置发送给 LLM 的历史对话层数。0 表示不发送历史。
+            设置发送给 LLM 的历史对话层数。0 表示不发送历史，最多可设置 5 层。
         </p>
         <div class="st-chatu8-field" style="margin-top: 16px;">
             <label for="ch-tagthink_echo">Tagthink回显</label>
@@ -473,6 +486,7 @@
         <p style="font-size: 12px; color: var(--st-chatu8-text-secondary); margin-top: 8px;">
             当 LLM 返回空响应、429 等网络错误或标签格式解析失败时，自动重试的次数（每次间隔 1.5~2 秒）。0 表示不重试。
         </p>
+        </div>
     </div>
 
     <div class="st-chatu8-settings-section">

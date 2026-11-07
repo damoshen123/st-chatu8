@@ -169,12 +169,56 @@
     <div class="st-chatu8-settings-section">
         <h3>NovelAI 设置</h3>
             <div class="st-chatu8-field-col">
-                <label for="novelaiApi">NovelAI API</label>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                    <label for="novelaiApi">NovelAI API</label>
+                    <button type="button" id="novelaiCheckQuotaBtn" class="st-chatu8-quota-query-btn" title="查询 Anlas 点数余额与 V5 额度">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        <span>查询额度</span>
+                    </button>
+                </div>
                 <div style="position: relative; display: flex; align-items: center;">
                     <input type="password" id="novelaiApi" class="st-chatu8-text-input" style="padding-right: 2.2em;">
                     <button type="button" id="novelaiApiToggle" title="显示/隐藏 API Key" style="position: absolute; right: 0.4em; background: none; border: none; cursor: pointer; color: inherit; opacity: 0.6; padding: 0; font-size: 1em; line-height: 1;">
                         <i class="fa-solid fa-eye"></i>
                     </button>
+                </div>
+                <!-- 额度与点数显示面板 -->
+                <div id="novelaiQuotaPanel" class="st-chatu8-quota-card" style="display: none;">
+                    <div class="st-chatu8-quota-header">
+                        <div class="st-chatu8-quota-tier-info">
+                            <i class="fa-solid fa-gem st-chatu8-quota-tier-icon"></i>
+                            <span class="st-chatu8-quota-tier-name" id="novelaiQuotaTierName">--</span>
+                            <span class="st-chatu8-quota-status-badge" id="novelaiQuotaStatusBadge">有效</span>
+                        </div>
+                        <div class="st-chatu8-quota-refresh-time" id="novelaiQuotaRefreshTime" title="最近查询时间"></div>
+                    </div>
+                    <div class="st-chatu8-quota-v5-section">
+                        <div class="st-chatu8-quota-v5-title-row">
+                            <span class="st-chatu8-quota-label">
+                                <i class="fa-solid fa-bolt"></i> V5 模型额度
+                            </span>
+                            <span class="st-chatu8-quota-value">
+                                <strong id="novelaiV5PercentNum">--</strong>%
+                                <span class="st-chatu8-quota-v5-sub" id="novelaiV5RefillInfo"></span>
+                            </span>
+                        </div>
+                        <div class="st-chatu8-quota-progress-track">
+                            <div class="st-chatu8-quota-progress-bar" id="novelaiV5ProgressBar" style="width: 0%;">
+                                <div class="st-chatu8-quota-progress-shine"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="st-chatu8-quota-anlas-section">
+                        <div class="st-chatu8-quota-anlas-item">
+                            <span class="st-chatu8-quota-label"><i class="fa-solid fa-coins"></i> Anlas 点数余额</span>
+                            <span class="st-chatu8-quota-anlas-total" id="novelaiAnlasTotal">--</span>
+                        </div>
+                        <div class="st-chatu8-quota-anlas-details">
+                            <span id="novelaiAnlasFixed" title="本月订阅包含的固定点数">套餐: --</span>
+                            <span class="st-chatu8-quota-separator">|</span>
+                            <span id="novelaiAnlasPurchased" title="额外充值购买的永久点数">充值: --</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="st-chatu8-field">

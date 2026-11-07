@@ -111,7 +111,7 @@
 ## 帮助与支持
 
 -   [飞书文档](https://gxcgf4l6b2y.feishu.cn/docx/XDo7dLpvhov6AexuLu3c8mpynSC?from=from_copylink)
--   [投喂作者](https://afdian.com/a/cqgnyy)
+
 
 ## 许可证
 
