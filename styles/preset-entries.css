@@ -425,9 +425,9 @@
         opacity: 0.6;
     }
 }
-/* ==================== ÒÆ¶¯ÅÅĞòÑùÊ½ ==================== */
+/* ==================== ç§»åŠ¨æ’åºæ ·å¼ ==================== */
 
-/* ÒÆ¶¯°´Å¥»ù´¡ÑùÊ½ */
+/* ç§»åŠ¨æŒ‰é’®åŸºç¡€æ ·å¼ */
 #st-chatu8-settings .st-chatu8-entry-move-btn {
     color: var(--st-chatu8-text-secondary);
     transition: all 0.2s ease;
@@ -438,16 +438,16 @@
     background: rgba(var(--st-chatu8-accent-primary-rgb, 74, 144, 226), 0.1);
 }
 
-/* ÕıÔÚ±»ÒÆ¶¯µÄÌõÄ¿°´Å¥×´Ì¬ */
+/* æ­£åœ¨è¢«ç§»åŠ¨çš„æ¡ç›®æŒ‰é’®çŠ¶æ€ */
 #st-chatu8-settings .st-chatu8-entry-move-btn.active {
     color: var(--st-chatu8-accent-primary);
     background: rgba(var(--st-chatu8-accent-primary-rgb, 74, 144, 226), 0.2);
     animation: move-active-pulse 1.5s infinite;
 }
 
-/* ÒÆ¶¯Ä£Ê½ÏÂµÄÄ¿±ê°´Å¥×´Ì¬ (¸ßÁÁ) */
+/* ç§»åŠ¨æ¨¡å¼ä¸‹çš„ç›®æ ‡æŒ‰é’®çŠ¶æ€ (é«˜äº®) */
 #st-chatu8-settings .st-chatu8-preset-entries-container.move-mode .st-chatu8-preset-entry:not(.moving-source) .st-chatu8-entry-move-btn {
-    color: #10b981; /* ÂÌÉ«ÌáÊ¾×÷ÎªÄ¿±ê */
+    color: #10b981; /* ç»¿è‰²æç¤ºä½œä¸ºç›®æ ‡ */
     background: rgba(16, 185, 129, 0.15);
     border: 1px dashed #10b981;
     animation: move-target-pulse 2s infinite;
@@ -458,7 +458,7 @@
     border-style: solid;
 }
 
-/* ÒÆ¶¯Ô´ÌõÄ¿µÄÈİÆ÷ÑùÊ½ */
+/* ç§»åŠ¨æºæ¡ç›®çš„å®¹å™¨æ ·å¼ */
 #st-chatu8-settings .st-chatu8-preset-entry.moving-source {
     border-color: var(--st-chatu8-accent-primary);
     box-shadow: 0 0 8px rgba(var(--st-chatu8-accent-primary-rgb, 74, 144, 226), 0.4);

@@ -218,6 +218,7 @@ const CD = {
     firing: false,  // 刚点过「立即记录」
     holdAtOne: false, // 已经触发过记录、数字停在 1，等这一轮记录跑完再回落到初始值
     lastDiag: '',   // 上次写进日志的「到点没触发」原因（相同原因不重复写）
+    awaitChat: false, // 启动/换卡时聊天还没加载出楼层，等真正读到楼层再对齐（不补记历史楼层）
     timer: 0,
 };
 let selected = null;           // 当前在详情区查看的角色名
@@ -11878,6 +11879,9 @@ function cdReset(reason) {
     CD.pending = false;
     CD.holdAtOne = false;
     CD.lastDiag = '';
+    /* 重置时聊天还是空的（刚启动 / 还没加载出楼层）：等真正读到楼层再对齐一次，
+       否则那批历史楼层会被当成「这一会儿新涨的」，一进卡就白跑一次记录 */
+    CD.awaitChat = (CD.floors === 0);
     if (reason === 'chat') log('楼层倒计时重置为 ' + CD.left + ' 层');
     cdRender();
 }
@@ -11926,6 +11930,38 @@ function cdTick() {
         const ctx = getContext();
         const chat = ctx.chat || [];
         const { n, sig } = cdScanFloors(chat);
+
+        /* 启动 / 换卡时聊天还没加载完（那时对齐到 0 层），现在读到真正的楼层了：
+           只重新对齐，绝不把这批历史楼层当成新涨的扣掉——这正是「切回 A 卡还没到层数就
+           自动记录一次」的来源 */
+        if (CD.awaitChat) {
+            CD.awaitChat = false;
+            /* 一次带回 2 层以上：这是进来之前就存在的历史楼层，只对齐，一层都不扣 */
+            if (n >= 2) {
+                CD.floors = n;
+                CD.tailSig = sig;
+                CD.stableAt = Date.now();
+                CD.left = cdStartNum();
+                cdDiag('进入会话后聊天才加载出来，已按 ' + n + ' 层重新对齐（不补记历史楼层）');
+                cdRender();
+                return;
+            }
+            /* 只有 0～1 层：就是刚聊起来的第一层，按正常流程往下数 */
+            if (n === 0) { cdRender(); return; }
+        }
+
+        /* 2 秒轮询里一次涨 2 层以上是不可能的（那就不是逐层新增，是换会话 / 楼层突变）：
+           只对齐，不扣层也不触发 */
+        const jump = n - CD.floors;
+        if (CD.floors >= 0 && jump >= 2) {
+            CD.floors = n;
+            CD.tailSig = sig;
+            CD.stableAt = Date.now();
+            CD.left = cdStartNum();
+            cdDiag('楼层数一次跳了 ' + jump + ' 层，按换会话处理：只对齐，不触发记录');
+            cdRender();
+            return;
+        }
 
         /* 刚进来 / 换会话 / 删了楼层：重新对齐，倒计时不给负数 */
         if (CD.floors < 0 || n < CD.floors) {
