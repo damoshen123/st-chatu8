@@ -1,9 +1,9 @@
 /**
  * ====================================================
- * st-chatu8 · 智绘姬 3.1.9 + 角色DNA 融合版 —— 统一入口
+ * st-chatu8 · 智绘姬 3.2.1 + 角色DNA 融合版 —— 统一入口
  *
  * 这个文件只做一件事：按顺序加载两份代码。
- *   1) ./chatu8.js   智绘姬本体（文生图 / LLM / 酒馆陪伴，v3.1.9）
+ *   1) ./chatu8.js   智绘姬本体（文生图 / LLM / 酒馆陪伴，v3.2.1）
  *   2) ./dna.js      档案库记录器（v2.9.33 · 内置预设自动更新 + 组合生成 +
  *                    AI回复折叠 + 档案模板编辑器 + 字段锁 + 别称机制 + 同人标签）
  *
@@ -12,7 +12,7 @@
  * 并复用智绘姬的 LLM 配置、正则配置与发送请求。
  *
  * 融合来源：
- *   st-chatu8        3.1.9  (C) 从前跟你一样   AFPL v9
+ *   st-chatu8        3.2.1  (C) 从前跟你一样   AFPL v9
  *   档案库记录器    2.9.33  moran99123
  *
  * 模块求值顺序由 import 声明保证：chatu8.js 先完整执行，
@@ -25,7 +25,7 @@ import './dna.js';
 /** 方便在控制台确认融合包是否生效：__chatu8Fusion.version */
 globalThis.__chatu8Fusion = Object.freeze({
     name: 'st-chatu8-fusion',
-    base: 'st-chatu8 3.1.9',
+    base: 'st-chatu8 3.2.1',
     dna: 'st-chatu8-dna 2.9.33',
     entry: 'index.js',
 });

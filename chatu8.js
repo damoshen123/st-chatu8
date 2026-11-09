@@ -1,5 +1,5 @@
 /* ============================================================
- * 【融合版】st-chatu8 v3.1.9 原始核心代码
+ * 【融合版】st-chatu8 v3.2.1 原始核心代码
  * 本文件保持原版逻辑，仅把「在线更新」替换为提示，
  * 以免整包更新把融合进来的角色DNA覆盖掉。
  * 统一入口见同目录 index.js，角色DNA 代码在同目录 dna.js。
@@ -45991,7 +45991,7 @@ var init_runninghubScheduler = __esm({
                   continue;
                 }
                 if (zeroBalanceCount > 0 && zeroBalanceCount + pausedCount === keys.length) {
-                  this.finishWaiter(w, new Error("\u914D\u7F6E\u7684\u5168\u90E8\u53EF\u7528 RunningHub API Key \u4F59\u989D\u5747\u5C0F\u4E8E\u7B49\u4E8E0\uFF0C\u8BF7\u5145\u503C\u540E\u91CD\u8BD5\uFF01"));
+                  this.finishWaiter(w, new Error("\u914D\u7F6E\u7684\u5168\u90E8\u53EF\u7528 RunningHub API Key \u989D\u5EA6\uFF08\u79EF\u5206\u3001RH\u5E01\u3001\u94B1\u5305\u4F59\u989D\uFF09\u5747\u5C0F\u4E8E\u7B49\u4E8E0\uFF0C\u8BF7\u5145\u503C\u540E\u91CD\u8BD5\uFF01"));
                   continue;
                 }
               }
@@ -46017,6 +46017,7 @@ var init_runninghubScheduler = __esm({
           cancelled: false,
           queueInfo: s.info?.queue,
           remainCoins: s.info?.balance?.remainCoins,
+          remainPoint: s.info?.balance?.remainPoint,
           isCancelled: () => lease.cancelled,
           // 晚绑定与孤儿终止，防止网络间隙期取消导致云端任务泄漏
           setRemoteTaskId: (rId) => {
@@ -46358,12 +46359,14 @@ async function checkKeyHasBalance(apiKey, forceRefresh = false) {
   try {
     const data = await fetchRunningHubAccountStatus(apiKey);
     if (data && data.code === 0 && data.data) {
+      const remainPoint = parseFloat(data.data.remainPoint ?? 0);
       const remainCoins = parseFloat(data.data.remainCoins ?? 0);
       const remainMoney = parseFloat(data.data.remainMoney ?? 0);
-      const hasBalance = remainCoins > 0 || remainMoney > 0;
+      const hasBalance = remainPoint > 0 || remainCoins > 0 || remainMoney > 0;
       const result = {
         isValid: true,
         hasBalance,
+        remainPoint,
         remainCoins,
         remainMoney,
         raw: data.data,
@@ -46375,6 +46378,7 @@ async function checkKeyHasBalance(apiKey, forceRefresh = false) {
       const result = {
         isValid: false,
         hasBalance: false,
+        remainPoint: 0,
         remainCoins: 0,
         remainMoney: 0,
         raw: data,
@@ -46389,6 +46393,7 @@ async function checkKeyHasBalance(apiKey, forceRefresh = false) {
     return {
       isValid: false,
       hasBalance: false,
+      remainPoint: 0,
       remainCoins: 0,
       remainMoney: 0,
       errorCode: -1,
@@ -98832,6 +98837,7 @@ function initRunningHubUI(settingsModal) {
         const maskedKey = res.key.length > 12 ? `${res.key.slice(0, 6)}...${res.key.slice(-4)}` : res.key;
         if (res.accountOk || res.queueOk) {
           successCount++;
+          const remainPoint = res.accountData.remainPoint ?? 0;
           const remainCoins = res.accountData.remainCoins ?? "0";
           const remainMoney = res.accountData.remainMoney ?? "0.00";
           const currency = res.accountData.currency || "CNY";
@@ -98881,6 +98887,9 @@ function initRunningHubUI(settingsModal) {
                                         </span>
                                         <span class="st-chatu8-rh-badge" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border-color: rgba(168, 85, 247, 0.25);">
                                             \u26A1 \u8FDC\u7AEF\u4EFB\u52A1: <strong>\u8FD0\u884C\u4E2D ${running} / \u6392\u961F ${queued}</strong>
+                                        </span>
+                                        <span class="st-chatu8-rh-badge" style="background: rgba(14, 165, 233, 0.15); color: #38bdf8; border-color: rgba(14, 165, 233, 0.25);">
+                                            \u{1F3AF} \u79EF\u5206: <strong>${remainPoint}</strong>
                                         </span>
                                         <span class="st-chatu8-rh-badge" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; border-color: rgba(245, 158, 11, 0.25);">
                                             \u{1FA99} RH\u5E01: <strong>${remainCoins}</strong>
