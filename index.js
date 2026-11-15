@@ -48979,9 +48979,6 @@ function resolveGrokGenerationsUrl(apiUrl, customEndpoint) {
   if (/\/v1$/i.test(base) || /\/v1beta$/i.test(base)) {
     return base + "/images/generations";
   }
-  if (/\/api$/i.test(base)) {
-    return base + "/openai/v1/images/generations";
-  }
   return base + "/v1/images/generations";
 }
 function resolveGrokEditsUrl(apiUrl, customEndpoint) {
@@ -49000,9 +48997,6 @@ function resolveGrokEditsUrl(apiUrl, customEndpoint) {
   }
   if (/\/v1$/i.test(base) || /\/v1beta$/i.test(base)) {
     return base + "/images/edits";
-  }
-  if (/\/api$/i.test(base)) {
-    return base + "/openai/v1/images/edits";
   }
   return base + "/v1/images/edits";
 }
