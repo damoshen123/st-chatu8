@@ -110315,10 +110315,21 @@ function collectNovelaiProfile() {
   const profile = {};
   for (const key of NOVELAI_PROFILE_KEYS) {
     let val = settings3[key];
+    const el = document.getElementById(key);
+    if (el) {
+      if (el.type === "checkbox") {
+        val = el.checked ? "true" : "false";
+      } else if (el.type === "number") {
+        val = el.value === "" ? "" : Number(el.value);
+      } else if (typeof el.value !== "undefined") {
+        val = el.value;
+      }
+    }
     if (key === "novelaiApi" && typeof val === "string") {
       val = val.trim();
     }
     profile[key] = val;
+    settings3[key] = val;
   }
   if (settings3.novelai_model_configs) {
     profile.novelai_model_configs = JSON.parse(JSON.stringify(settings3.novelai_model_configs));
