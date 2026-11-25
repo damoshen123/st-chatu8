@@ -12093,6 +12093,7 @@ function stylInput(message, defaultValue = "") {
     const parent = document.getElementById("st-chatu8-settings") || document.body;
     const backdrop = document.createElement("div");
     backdrop.className = "st-chatu8-confirm-backdrop";
+    backdrop.style.zIndex = "99999";
     const confirmBox = document.createElement("div");
     confirmBox.className = "st-chatu8-confirm-box";
     const messageText = document.createElement("p");
@@ -12116,12 +12117,26 @@ function stylInput(message, defaultValue = "") {
     buttonContainer.appendChild(confirmButton);
     backdrop.appendChild(confirmBox);
     parent.appendChild(backdrop);
+    let closed = false;
     const close = (value) => {
-      parent.removeChild(backdrop);
+      if (closed) return;
+      closed = true;
+      if (backdrop.parentNode === parent) {
+        parent.removeChild(backdrop);
+      }
       resolve(value);
     };
     cancelButton.addEventListener("click", () => close(false));
     confirmButton.addEventListener("click", () => close(messageinput.value));
+    messageinput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        close(messageinput.value);
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        close(false);
+      }
+    });
     messageinput.focus();
   });
 }
