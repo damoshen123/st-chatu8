@@ -138,81 +138,81 @@ import { eventSource as eventSource28 } from "../../../../script.js";
 import { eventSource as eventSource29, event_types as event_types4 } from "../../../../script.js";
 import { extension_settings as extension_settings57 } from "../../../extensions.js";
 import { getContext as getContext15 } from "../../../st-context.js";
-import { extension_settings as extension_settings85 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced57 } from "../../../../script.js";
-import { eventSource as eventSource36, event_types as event_types5, saveSettingsDebounced as saveSettingsDebounced58, saveChatConditional as saveChatConditional5, saveMetadata } from "../../../../script.js";
 import { extension_settings as extension_settings86 } from "../../../extensions.js";
-import { getContext as getContext17 } from "../../../st-context.js";
+import { saveSettingsDebounced as saveSettingsDebounced58 } from "../../../../script.js";
+import { eventSource as eventSource36, event_types as event_types5, saveSettingsDebounced as saveSettingsDebounced59, saveChatConditional as saveChatConditional5, saveMetadata } from "../../../../script.js";
 import { extension_settings as extension_settings87 } from "../../../extensions.js";
+import { getContext as getContext17 } from "../../../st-context.js";
+import { extension_settings as extension_settings88 } from "../../../extensions.js";
 import { getContext as getContext18 } from "../../../st-context.js";
 import { eventSource as eventSource37 } from "../../../../script.js";
 import { eventSource as eventSource38 } from "../../../../script.js";
 import { getContext as getContext19 } from "../../../st-context.js";
-import { extension_settings as extension_settings88 } from "../../../extensions.js";
-import { extension_settings as extension_settings91 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced60 } from "../../../../script.js";
-import { world_info as world_info2 } from "../../../world-info.js";
+import { extension_settings as extension_settings89 } from "../../../extensions.js";
 import { extension_settings as extension_settings92 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced61 } from "../../../../script.js";
+import { world_info as world_info2 } from "../../../world-info.js";
 import { extension_settings as extension_settings93 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced62 } from "../../../../script.js";
 import { extension_settings as extension_settings94 } from "../../../extensions.js";
-import { extension_settings as extension_settings97 } from "../../../extensions.js";
+import { extension_settings as extension_settings95 } from "../../../extensions.js";
 import { extension_settings as extension_settings98 } from "../../../extensions.js";
-import { eventSource as eventSource40, saveSettingsDebounced as saveSettingsDebounced64 } from "../../../../script.js";
-import { eventSource as eventSource41, saveSettingsDebounced as saveSettingsDebounced65 } from "../../../../script.js";
 import { extension_settings as extension_settings99 } from "../../../extensions.js";
+import { eventSource as eventSource40, saveSettingsDebounced as saveSettingsDebounced65 } from "../../../../script.js";
+import { eventSource as eventSource41, saveSettingsDebounced as saveSettingsDebounced66 } from "../../../../script.js";
 import { extension_settings as extension_settings100 } from "../../../extensions.js";
 import { extension_settings as extension_settings101 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced66 } from "../../../../script.js";
 import { extension_settings as extension_settings102 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced67 } from "../../../../script.js";
 import { extension_settings as extension_settings103 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced68 } from "../../../../script.js";
-import { eventSource as eventSource42 } from "../../../../script.js";
 import { extension_settings as extension_settings104 } from "../../../extensions.js";
-import { eventSource as eventSource43 } from "../../../../script.js";
+import { saveSettingsDebounced as saveSettingsDebounced69 } from "../../../../script.js";
+import { eventSource as eventSource42 } from "../../../../script.js";
 import { extension_settings as extension_settings105 } from "../../../extensions.js";
+import { eventSource as eventSource43 } from "../../../../script.js";
 import { extension_settings as extension_settings106 } from "../../../extensions.js";
 import { extension_settings as extension_settings107 } from "../../../extensions.js";
-import { getContext as getContext21 } from "../../../st-context.js";
 import { extension_settings as extension_settings108 } from "../../../extensions.js";
+import { getContext as getContext21 } from "../../../st-context.js";
 import { extension_settings as extension_settings109 } from "../../../extensions.js";
-import { eventSource as eventSource44, saveSettingsDebounced as saveSettingsDebounced69 } from "../../../../script.js";
-import { extension_settings as extension_settings116, extensionTypes } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced72, eventSource as eventSource48, event_types as event_types8, reloadCurrentChat, saveChatConditional as saveChatConditional6, chat as chat3, messageFormatting as messageFormatting3, saveChat } from "../../../../script.js";
+import { extension_settings as extension_settings110 } from "../../../extensions.js";
+import { eventSource as eventSource44, saveSettingsDebounced as saveSettingsDebounced70 } from "../../../../script.js";
+import { extension_settings as extension_settings117, extensionTypes } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced73, eventSource as eventSource48, event_types as event_types8, reloadCurrentChat, saveChatConditional as saveChatConditional6, chat as chat3, messageFormatting as messageFormatting3, saveChat } from "../../../../script.js";
 import { extension_settings as extension_settings58 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced33, eventSource as eventSource30 } from "../../../../script.js";
-import { extension_settings as extension_settings62 } from "../../../extensions.js";
-import { saveChatDebounced as saveChatDebounced2, saveSettingsDebounced as saveSettingsDebounced36, eventSource as eventSource31 } from "../../../../script.js";
+import { extension_settings as extension_settings64 } from "../../../extensions.js";
+import { saveChatDebounced as saveChatDebounced2, saveSettingsDebounced as saveSettingsDebounced38, eventSource as eventSource31 } from "../../../../script.js";
 import { extension_settings as extension_settings59 } from "../../../extensions.js";
 import { extension_settings as extension_settings61 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced35 } from "../../../../script.js";
 import { extension_settings as extension_settings60 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced34 } from "../../../../script.js";
-import { extension_settings as extension_settings113 } from "../../../extensions.js";
-import { getContext as getContext23 } from "../../../st-context.js";
-import { saveSettingsDebounced as saveSettingsDebounced71 } from "../../../../script.js";
 import { extension_settings as extension_settings63 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced37 } from "../../../../script.js";
-import { extension_settings as extension_settings64 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced38 } from "../../../../script.js";
-import { extension_settings as extension_settings66 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced39 } from "../../../../script.js";
-import { eventSource as eventSource32 } from "../../../../script.js";
+import { extension_settings as extension_settings62 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced36 } from "../../../../script.js";
+import { extension_settings as extension_settings114 } from "../../../extensions.js";
+import { getContext as getContext23 } from "../../../st-context.js";
+import { saveSettingsDebounced as saveSettingsDebounced72 } from "../../../../script.js";
 import { extension_settings as extension_settings65 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced39 } from "../../../../script.js";
+import { extension_settings as extension_settings66 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced40 } from "../../../../script.js";
 import { extension_settings as extension_settings68 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced41 } from "../../../../script.js";
+import { eventSource as eventSource32 } from "../../../../script.js";
 import { extension_settings as extension_settings67 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced40 } from "../../../../script.js";
+import { extension_settings as extension_settings70 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced43 } from "../../../../script.js";
 import { extension_settings as extension_settings69 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced42 } from "../../../../script.js";
 import { extension_settings as extension_settings71 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced43 } from "../../../../script.js";
-import { extension_settings as extension_settings70 } from "../../../extensions.js";
-import { extension_settings as extension_settings72 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced44 } from "../../../../script.js";
 import { extension_settings as extension_settings73 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced45 } from "../../../../script.js";
+import { extension_settings as extension_settings72 } from "../../../extensions.js";
 import { extension_settings as extension_settings74 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced46 } from "../../../../script.js";
 import { extension_settings as extension_settings75 } from "../../../extensions.js";
@@ -223,36 +223,38 @@ import { extension_settings as extension_settings77 } from "../../../extensions.
 import { saveSettingsDebounced as saveSettingsDebounced49 } from "../../../../script.js";
 import { extension_settings as extension_settings78 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced50 } from "../../../../script.js";
-import { saveSettingsDebounced as saveSettingsDebounced51 } from "../../../../script.js";
 import { extension_settings as extension_settings79 } from "../../../extensions.js";
-import { extension_settings as extension_settings81 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced53, eventSource as eventSource33 } from "../../../../script.js";
-import { extension_settings as extension_settings80 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced51 } from "../../../../script.js";
 import { saveSettingsDebounced as saveSettingsDebounced52 } from "../../../../script.js";
+import { extension_settings as extension_settings80 } from "../../../extensions.js";
 import { extension_settings as extension_settings82 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced54, eventSource as eventSource34 } from "../../../../script.js";
+import { saveSettingsDebounced as saveSettingsDebounced54, eventSource as eventSource33 } from "../../../../script.js";
+import { extension_settings as extension_settings81 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced53 } from "../../../../script.js";
 import { extension_settings as extension_settings83 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced55, eventSource as eventSource35 } from "../../../../script.js";
-import { getContext as getContext16 } from "../../../st-context.js";
-import { extension_settings as extension_settings90 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced59, eventSource as eventSource39 } from "../../../../script.js";
+import { saveSettingsDebounced as saveSettingsDebounced55, eventSource as eventSource34 } from "../../../../script.js";
 import { extension_settings as extension_settings84 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced56 } from "../../../../script.js";
+import { saveSettingsDebounced as saveSettingsDebounced56, eventSource as eventSource35 } from "../../../../script.js";
+import { getContext as getContext16 } from "../../../st-context.js";
+import { extension_settings as extension_settings91 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced60, eventSource as eventSource39 } from "../../../../script.js";
+import { extension_settings as extension_settings85 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced57 } from "../../../../script.js";
 import { getContext as getContext20 } from "../../../st-context.js";
-import { extension_settings as extension_settings89 } from "../../../extensions.js";
-import { extension_settings as extension_settings95 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced62 } from "../../../../script.js";
+import { extension_settings as extension_settings90 } from "../../../extensions.js";
 import { extension_settings as extension_settings96 } from "../../../extensions.js";
 import { saveSettingsDebounced as saveSettingsDebounced63 } from "../../../../script.js";
-import { extension_settings as extension_settings110 } from "../../../extensions.js";
-import { saveSettingsDebounced as saveSettingsDebounced70 } from "../../../../script.js";
+import { extension_settings as extension_settings97 } from "../../../extensions.js";
+import { saveSettingsDebounced as saveSettingsDebounced64 } from "../../../../script.js";
 import { extension_settings as extension_settings111 } from "../../../extensions.js";
-import { eventSource as eventSource45, event_types as event_types6 } from "../../../../script.js";
+import { saveSettingsDebounced as saveSettingsDebounced71 } from "../../../../script.js";
 import { extension_settings as extension_settings112 } from "../../../extensions.js";
+import { eventSource as eventSource45, event_types as event_types6 } from "../../../../script.js";
+import { extension_settings as extension_settings113 } from "../../../extensions.js";
 import { getContext as getContext22 } from "../../../st-context.js";
-import { extension_settings as extension_settings115 } from "../../../extensions.js";
+import { extension_settings as extension_settings116 } from "../../../extensions.js";
 import { eventSource as eventSource47, event_types as event_types7 } from "../../../../script.js";
-import { extension_settings as extension_settings114 } from "../../../extensions.js";
+import { extension_settings as extension_settings115 } from "../../../extensions.js";
 import { eventSource as eventSource46 } from "../../../../script.js";
 
 var __defProp = Object.defineProperty;
@@ -2705,6 +2707,7 @@ var init_config = __esm({
       randomVibeGroup: "false",
       normalizeRefStrength: "false",
       nai3CharRef: "false",
+      nai5PreciseCharRef: "false",
       nai3StylePerception: "false",
       InformationExtracted: "0.3",
       ReferenceStrength: "0.6",
@@ -10658,6 +10661,7 @@ var init_genParams = __esm({
       promptReplaceId: "\u63D0\u793A\u8BCD\u66FF\u6362\u89C4\u5219\u9884\u8BBE",
       vibeGroup: "Vibe \u7EC4\uFF08\u6C1B\u56F4\u8F6C\u79FB\uFF09",
       charRefGroup: "\u89D2\u8272\u53C2\u8003\u7EC4",
+      preciseCharRefGroup: "\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u7EC4",
       resolvedPrompt: "\u5B9E\u9645\u63D0\u793A\u8BCD",
       negativePrompt: "\u8D1F\u9762\u63D0\u793A\u8BCD",
       width: "\u5BBD\u5EA6",
@@ -47055,6 +47059,7 @@ function renderNodeProperties(panel, node, workflow, objectInfo, connections, on
   const displayName = node.meta.title || node.classType;
   const skipCheck = checkNodeSkippable(node.id, workflow, connections, objectInfo);
   const isSkipped = workflow[node.id]._skip === true;
+  const existingMobileCloseBtn = panel.querySelector(".st-chatu8-workflow-viz-properties-close-mobile");
   panel.innerHTML = `
         <div class="st-chatu8-workflow-viz-properties-header">
             <h4>${displayName}</h4>
@@ -47063,6 +47068,9 @@ function renderNodeProperties(panel, node, workflow, objectInfo, connections, on
         <div class="st-chatu8-workflow-viz-skip-section" id="viz-skip-section"></div>
         <div class="st-chatu8-workflow-viz-properties-content" id="viz-properties-inputs"></div>
     `;
+  if (existingMobileCloseBtn) {
+    panel.insertBefore(existingMobileCloseBtn, panel.firstChild);
+  }
   const skipSection = panel.querySelector("#viz-skip-section");
   const skipGroup = document.createElement("div");
   skipGroup.className = "st-chatu8-workflow-viz-skip-group";
@@ -57469,7 +57477,7 @@ var init_avatarConfig = __esm({
 
 
 function ensureDataStructure() {
-  const settings3 = extension_settings85[extensionName];
+  const settings3 = extension_settings86[extensionName];
   if (!settings3.personaProfiles) {
     settings3.personaProfiles = {
       presets: {},
@@ -57566,7 +57574,7 @@ async function onPresetChange() {
   const newPresetId = $container2?.find("#ch-persona-preset-id").val() || "";
   profiles.currentPresetId = newPresetId;
   await loadPersonaPresetData();
-  saveSettingsDebounced57();
+  saveSettingsDebounced58();
 }
 async function onNewPreset() {
   clearTimeout(_autoSaveTimer);
@@ -57584,7 +57592,7 @@ async function onNewPreset() {
   });
   profiles.presets[name] = emptyPreset;
   profiles.currentPresetId = name;
-  saveSettingsDebounced57();
+  saveSettingsDebounced58();
   loadPersonaPresetList();
   clearPersonaFields();
   toastr.success(`\u4EBA\u8BBE\u9884\u8BBE\u300C${name}\u300D\u5DF2\u521B\u5EFA\u3002`);
@@ -57607,7 +57615,7 @@ async function onSaveAsPreset() {
   const name = result.trim();
   saveCurrentPersonaData(name);
   profiles.currentPresetId = name;
-  saveSettingsDebounced57();
+  saveSettingsDebounced58();
   loadPersonaPresetList();
   toastr.success(`\u4EBA\u8BBE\u9884\u8BBE\u300C${name}\u300D\u5DF2\u4FDD\u5B58\u3002`);
 }
@@ -57635,7 +57643,7 @@ async function onRenamePreset() {
   if (profiles.currentUserPresetId === currentName) {
     profiles.currentUserPresetId = newName;
   }
-  saveSettingsDebounced57();
+  saveSettingsDebounced58();
   loadPersonaPresetList();
   toastr.success(`\u4EBA\u8BBE\u9884\u8BBE\u5DF2\u91CD\u547D\u540D\u4E3A\u300C${newName}\u300D`);
 }
@@ -57660,7 +57668,7 @@ async function onDeletePreset() {
   delete profiles.presets[presetId];
   const remaining = Object.keys(profiles.presets);
   profiles.currentPresetId = remaining.length > 0 ? remaining[0] : "";
-  saveSettingsDebounced57();
+  saveSettingsDebounced58();
   loadPersonaPresetList();
   await loadPersonaPresetData();
   toastr.success(`\u4EBA\u8BBE\u9884\u8BBE\u300C${presetId}\u300D\u5DF2\u5220\u9664\u3002`);
@@ -57769,7 +57777,7 @@ async function onImportPreset(event) {
     if (firstKey) {
       profiles.currentPresetId = firstKey;
     }
-    saveSettingsDebounced57();
+    saveSettingsDebounced58();
     loadPersonaPresetList();
     await loadPersonaPresetData();
     const total = Object.keys(presetsToImport).length;
@@ -57783,7 +57791,7 @@ async function onImportPreset(event) {
 function onGlobalSettingChange() {
   const profiles = ensureDataStructure();
   profiles.enabled = $container2?.find("#ch-persona-enabled").prop("checked") || false;
-  saveSettingsDebounced57();
+  saveSettingsDebounced58();
 }
 function bindFieldAutoSave(container) {
   PERSONA_FIELDS.forEach((field) => {
@@ -57827,7 +57835,7 @@ function createPersonaPreset(name, data = {}) {
   });
   profiles.presets[finalName] = preset;
   profiles.currentPresetId = finalName;
-  saveSettingsDebounced57();
+  saveSettingsDebounced58();
   loadPersonaPresetList();
   loadPersonaPresetData();
   return finalName;
@@ -57842,7 +57850,7 @@ function saveCurrentPersonaData(presetId) {
     }
   });
   profiles.presets[presetId] = preset;
-  saveSettingsDebounced57();
+  saveSettingsDebounced58();
 }
 function downloadJson(data, filename) {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
@@ -57886,7 +57894,7 @@ async function onPersonaAvatarUpload(event) {
         await deleteConfigImage(oldAvatarId);
       }
       profiles.presets[presetId].avatarId = avatarId;
-      saveSettingsDebounced57();
+      saveSettingsDebounced58();
     }
     displayPersonaAvatar(compressedBase64);
     toastr.success("\u5934\u50CF\u4E0A\u4F20\u6210\u529F\uFF01");
@@ -57911,7 +57919,7 @@ async function onPersonaAvatarRemove() {
   try {
     await deleteConfigImage(avatarId);
     profiles.presets[presetId].avatarId = "";
-    saveSettingsDebounced57();
+    saveSettingsDebounced58();
     clearPersonaAvatarDisplay();
     toastr.success("\u5934\u50CF\u5DF2\u79FB\u9664\u3002");
   } catch (error) {
@@ -58322,7 +58330,7 @@ __export(send_data_exports, {
 
 
 function getWorldBookConfig() {
-  const settings3 = extension_settings86[extensionName];
+  const settings3 = extension_settings87[extensionName];
   if (!settings3.worldBookConfig) {
     settings3.worldBookConfig = {
       worldBookSelections: {},
@@ -58373,7 +58381,7 @@ function recalculateEffectiveWorldBooks() {
     }
   }
   config.worldEntrySelections = effectiveEntries;
-  saveSettingsDebounced58();
+  saveSettingsDebounced59();
 }
 function saveWorldBookConfig() {
   const config = getWorldBookConfig();
@@ -59016,7 +59024,7 @@ function initSendData(settingsModal) {
   eventSource36.on(event_types5.GENERATION_STARTED, loadAndRenderWorlds);
   const intervalId = setInterval(async () => {
     let conet = getContext17();
-    const settings3 = extension_settings86[extensionName];
+    const settings3 = extension_settings87[extensionName];
     if (conet && conet.chatId && conet.chat && conet.chat.length > 0) {
       if (!conet.chatMetadata) conet.chatMetadata = {};
       if (!conet.chatMetadata.variables) conet.chatMetadata.variables = {};
@@ -59037,7 +59045,7 @@ function initSendData(settingsModal) {
       console.error("[send_data] \u540C\u6B65\u89D2\u8272\u4E16\u754C\u4E66\u5931\u8D25:", e);
     }
     let conet = getContext17();
-    const settings3 = extension_settings86[extensionName];
+    const settings3 = extension_settings87[extensionName];
     if (conet && conet.chatId && conet.chat && conet.chat.length > 0) {
       if (!conet.chatMetadata) conet.chatMetadata = {};
       if (!conet.chatMetadata.variables) conet.chatMetadata.variables = {};
@@ -59538,7 +59546,7 @@ function setFloorTargetElement(element) {
       text: cleanedText,
       timestamp: Date.now()
     });
-    const settings3 = extension_settings87[extensionName]?.chatu8_ai_assistant;
+    const settings3 = extension_settings88[extensionName]?.chatu8_ai_assistant;
     const maxCount = settings3?.floor_count || 1;
     if (manualCollectedMessages.length > maxCount) {
       const removed = manualCollectedMessages.splice(0, manualCollectedMessages.length - maxCount);
@@ -59631,7 +59639,7 @@ function processTextThroughRegex2(text) {
   });
 }
 async function buildFloorContext() {
-  const settings3 = extension_settings87[extensionName]?.chatu8_ai_assistant;
+  const settings3 = extension_settings88[extensionName]?.chatu8_ai_assistant;
   if (!settings3?.floor_message_enabled) {
     return "";
   }
@@ -59672,7 +59680,7 @@ async function showFloorInfoPanel() {
     console.warn("[FloorMessage] \u672A\u6536\u96C6\u697C\u5C42\u4FE1\u606F");
     return;
   }
-  const settings3 = extension_settings87[extensionName]?.chatu8_ai_assistant;
+  const settings3 = extension_settings88[extensionName]?.chatu8_ai_assistant;
   const count = settings3?.floor_count || 1;
   const messages = await collectFloorMessagesFromContext(count);
   if (messages.length === 0) {
@@ -60444,7 +60452,7 @@ async function handlePersonaGenRequest(el = null, extraContext = "", overrideDem
     let contextElements = [];
     let nowtxt = extraContext || "";
     if (el) {
-      const historyDepth = (extension_settings88[extensionName]?.llm_history_depth ?? 2) + 1;
+      const historyDepth = (extension_settings89[extensionName]?.llm_history_depth ?? 2) + 1;
       contextElements = await getElContext(el, historyDepth) || [];
       if (contextElements.length > 0) {
         nowtxt = contextElements[contextElements.length - 1];
@@ -60514,11 +60522,11 @@ ${extraContext}`);
 `;
     }
     updateCombinedPrompt(prompt2, diagnosticText);
-    const isRegexTestMode = extension_settings88[extensionName]?.regexTestMode ?? false;
+    const isRegexTestMode = extension_settings89[extensionName]?.regexTestMode ?? false;
     if (isRegexTestMode) {
       setStatus(statusEl, "\u{1F9EA} \u6B63\u5219\u6D4B\u8BD5\u6A21\u5F0F\uFF1A\u5DF2\u505C\u6B62 LLM \u8BF7\u6C42\uFF0C\u4EC5\u5C55\u793A Prompt");
       console.log("[PersonaGen] \u6B63\u5219\u6D4B\u8BD5\u6A21\u5F0F - LLM \u8BF7\u6C42\u5DF2\u8DF3\u8FC7");
-      extension_settings88[extensionName].regexTestMode = false;
+      extension_settings89[extensionName].regexTestMode = false;
       $("#ch-regex-test-mode").prop("checked", false);
       console.log("[PersonaGen] \u6B63\u5219\u6D4B\u8BD5\u6A21\u5F0F\u5DF2\u81EA\u52A8\u5173\u95ED\uFF08\u4E00\u6B21\u6027\u89E6\u53D1\uFF09");
       if (btnEl) btnEl.disabled = false;
@@ -61107,7 +61115,7 @@ async function refreshWorldBookCache(worldName) {
   }
 }
 function getKnowledgeBaseConfig() {
-  const settings3 = extension_settings91[extensionName];
+  const settings3 = extension_settings92[extensionName];
   if (!settings3.knowledgeBaseConfig) {
     settings3.knowledgeBaseConfig = {
       enabled: false,
@@ -61131,7 +61139,7 @@ function isKnowledgeBaseEnabled() {
 }
 function setKnowledgeBaseEnabled(enabled) {
   getKnowledgeBaseConfig().enabled = enabled;
-  saveSettingsDebounced60();
+  saveSettingsDebounced61();
 }
 async function buildKnowledgeBasePromptContent(lastUserText = "") {
   const config = getKnowledgeBaseConfig();
@@ -61365,7 +61373,7 @@ var init_knowledgeBaseService = __esm({
 
 
 function ensureDataStructure2() {
-  const settings3 = extension_settings92[extensionName];
+  const settings3 = extension_settings93[extensionName];
   if (!settings3.personaProfiles) {
     settings3.personaProfiles = {
       presets: {},
@@ -61474,7 +61482,7 @@ async function onPresetChange2() {
   const newPresetId = $container3?.find("#ch-user-preset-id").val() || "";
   profiles.currentUserPresetId = newPresetId;
   await loadUserPresetData();
-  saveSettingsDebounced61();
+  saveSettingsDebounced62();
 }
 async function onNewPreset2() {
   clearTimeout(_autoSaveTimer2);
@@ -61492,7 +61500,7 @@ async function onNewPreset2() {
   });
   profiles.presets[name] = emptyPreset;
   profiles.currentUserPresetId = name;
-  saveSettingsDebounced61();
+  saveSettingsDebounced62();
   loadUserPresetList();
   clearUserFields();
   toastr.success(`User\u9884\u8BBE\u300C${name}\u300D\u5DF2\u521B\u5EFA\u3002`);
@@ -61515,7 +61523,7 @@ async function onSaveAsPreset2() {
   const name = result.trim();
   saveCurrentUserData(name);
   profiles.currentUserPresetId = name;
-  saveSettingsDebounced61();
+  saveSettingsDebounced62();
   loadUserPresetList();
   toastr.success(`User\u9884\u8BBE\u300C${name}\u300D\u5DF2\u4FDD\u5B58\u3002`);
 }
@@ -61543,7 +61551,7 @@ async function onRenamePreset2() {
   if (profiles.currentPresetId === currentName) {
     profiles.currentPresetId = newName;
   }
-  saveSettingsDebounced61();
+  saveSettingsDebounced62();
   loadUserPresetList();
   toastr.success(`User\u9884\u8BBE\u5DF2\u91CD\u547D\u540D\u4E3A\u300C${newName}\u300D`);
 }
@@ -61571,7 +61579,7 @@ async function onDeletePreset2() {
   if (profiles.currentPresetId === presetId) {
     profiles.currentPresetId = "";
   }
-  saveSettingsDebounced61();
+  saveSettingsDebounced62();
   loadUserPresetList();
   await loadUserPresetData();
   toastr.success(`\u9884\u8BBE\u300C${presetId}\u300D\u5DF2\u5220\u9664\u3002`);
@@ -61678,7 +61686,7 @@ async function onImportPreset2(event) {
     if (firstKey) {
       profiles.currentUserPresetId = firstKey;
     }
-    saveSettingsDebounced61();
+    saveSettingsDebounced62();
     loadUserPresetList();
     await loadUserPresetData();
     const total = Object.keys(presetsToImport).length;
@@ -61692,7 +61700,7 @@ async function onImportPreset2(event) {
 function onGlobalSettingChange2() {
   const profiles = ensureDataStructure2();
   profiles.userEnabled = $container3?.find("#ch-user-enabled").prop("checked") || false;
-  saveSettingsDebounced61();
+  saveSettingsDebounced62();
 }
 function bindFieldAutoSave2(container) {
   PERSONA_FIELDS.forEach((field) => {
@@ -61732,7 +61740,7 @@ function saveCurrentUserData(presetId) {
     }
   });
   profiles.presets[presetId] = preset;
-  saveSettingsDebounced61();
+  saveSettingsDebounced62();
 }
 function downloadJson2(data, filename) {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
@@ -61776,7 +61784,7 @@ async function onUserAvatarUpload(event) {
         await deleteConfigImage(oldAvatarId);
       }
       profiles.presets[presetId].avatarId = avatarId;
-      saveSettingsDebounced61();
+      saveSettingsDebounced62();
     }
     displayUserAvatar(compressedBase64);
     toastr.success("\u5934\u50CF\u4E0A\u4F20\u6210\u529F\uFF01");
@@ -61801,7 +61809,7 @@ async function onUserAvatarRemove() {
   try {
     await deleteConfigImage(avatarId);
     profiles.presets[presetId].avatarId = "";
-    saveSettingsDebounced61();
+    saveSettingsDebounced62();
     clearUserAvatarDisplay();
     toastr.success("\u5934\u50CF\u5DF2\u79FB\u9664\u3002");
   } catch (error) {
@@ -61897,12 +61905,12 @@ var init_userPreset = __esm({
 // utils/settings/knowledgeBase/personaService.js
 
 function isPersonaEnabled() {
-  const profiles = extension_settings93[extensionName]?.personaProfiles;
+  const profiles = extension_settings94[extensionName]?.personaProfiles;
   if (!profiles) return false;
   return profiles.enabled === true && !!profiles.currentPresetId && !!profiles.presets?.[profiles.currentPresetId];
 }
 function getCurrentPersona() {
-  const profiles = extension_settings93[extensionName]?.personaProfiles;
+  const profiles = extension_settings94[extensionName]?.personaProfiles;
   if (!profiles || !profiles.currentPresetId) return null;
   return profiles.presets?.[profiles.currentPresetId] || null;
 }
@@ -61981,12 +61989,12 @@ var init_personaService = __esm({
 // utils/settings/knowledgeBase/userService.js
 
 function isUserEnabled() {
-  const profiles = extension_settings94[extensionName]?.personaProfiles;
+  const profiles = extension_settings95[extensionName]?.personaProfiles;
   if (!profiles) return false;
   return profiles.userEnabled === true && !!profiles.currentUserPresetId && !!profiles.presets?.[profiles.currentUserPresetId];
 }
 function getCurrentUser() {
-  const profiles = extension_settings94[extensionName]?.personaProfiles;
+  const profiles = extension_settings95[extensionName]?.personaProfiles;
   if (!profiles || !profiles.currentUserPresetId) return null;
   return profiles.presets?.[profiles.currentUserPresetId] || null;
 }
@@ -62106,12 +62114,12 @@ function clearAvatarCache() {
   _userAvatarCache = { key: null, value: null };
 }
 async function getCurrentCharAvatar() {
-  const aiConfig = extension_settings97[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings98[extensionName]?.chatu8_ai_assistant || {};
   const systemPromptKey = aiConfig.system_prompt_key || "default";
   if (systemPromptKey !== "custom") {
     return DEFAULT_AVATARS.persona;
   }
-  const personaProfiles = extension_settings97[extensionName]?.personaProfiles;
+  const personaProfiles = extension_settings98[extensionName]?.personaProfiles;
   if (!personaProfiles || !personaProfiles.enabled) {
     return DEFAULT_AVATARS.persona;
   }
@@ -62128,12 +62136,12 @@ async function getCurrentCharAvatar() {
   return result;
 }
 async function getCurrentUserAvatar() {
-  const aiConfig = extension_settings97[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings98[extensionName]?.chatu8_ai_assistant || {};
   const systemPromptKey = aiConfig.system_prompt_key || "default";
   if (systemPromptKey !== "custom") {
     return DEFAULT_AVATARS.user;
   }
-  const personaProfiles = extension_settings97[extensionName]?.personaProfiles;
+  const personaProfiles = extension_settings98[extensionName]?.personaProfiles;
   if (!personaProfiles || !personaProfiles.userEnabled) {
     return DEFAULT_AVATARS.user;
   }
@@ -62150,10 +62158,10 @@ async function getCurrentUserAvatar() {
   return result;
 }
 function getAssistantDisplayName() {
-  const aiConfig = extension_settings97[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings98[extensionName]?.chatu8_ai_assistant || {};
   const systemPromptKey = aiConfig.system_prompt_key || "default";
   if (systemPromptKey === "custom") {
-    const personaProfiles = extension_settings97[extensionName]?.personaProfiles;
+    const personaProfiles = extension_settings98[extensionName]?.personaProfiles;
     if (personaProfiles?.enabled) {
       const presetId = personaProfiles.currentPresetId;
       const preset = presetId ? personaProfiles.presets?.[presetId] : null;
@@ -62186,11 +62194,11 @@ async function updateChatAvatars(chatBody) {
 function initAvatarUpdateListener(chatBody) {
   if (!chatBody || !chatBody.length) return;
   const checkInterval = setInterval(async () => {
-    const personaProfiles = extension_settings97[extensionName]?.personaProfiles;
+    const personaProfiles = extension_settings98[extensionName]?.personaProfiles;
     if (!personaProfiles) return;
     const currentPresetId = personaProfiles.currentPresetId;
     const currentUserPresetId = personaProfiles.currentUserPresetId;
-    const aiConfig = extension_settings97[extensionName]?.chatu8_ai_assistant || {};
+    const aiConfig = extension_settings98[extensionName]?.chatu8_ai_assistant || {};
     const currentPromptKey = aiConfig.system_prompt_key || "default";
     const lastPresetId = chatBody.data("last-persona-preset-id");
     const lastUserPresetId = chatBody.data("last-user-preset-id");
@@ -62598,18 +62606,18 @@ Step 2: \u7B2C\u4E00\u4EBA\u79F0\u5177\u8C61\u5316\u6B63\u6587\u8F93\u51FA
 
 
 function saveEdgePingToSettings() {
-  if (!extension_settings98[extensionName]) return;
-  extension_settings98[extensionName].edgePingCache = {
+  if (!extension_settings99[extensionName]) return;
+  extension_settings99[extensionName].edgePingCache = {
     servers: availableEdgeServers.map((s) => ({ name: s.name, url: s.url, latency: s.latency })),
     pingResult: lastEdgePingResult,
     pingTime: lastEdgePingTime
   };
-  saveSettingsDebounced64();
+  saveSettingsDebounced65();
   log("\u{1F4BE} Edge ping \u7ED3\u679C\u5DF2\u4FDD\u5B58\u5230\u63D2\u4EF6\u8BBE\u7F6E (edgePingCache)");
 }
 function loadEdgePingFromSettings() {
-  if (!extension_settings98[extensionName]) return false;
-  const cache = extension_settings98[extensionName].edgePingCache;
+  if (!extension_settings99[extensionName]) return false;
+  const cache = extension_settings99[extensionName].edgePingCache;
   if (!cache || !cache.servers || !cache.pingTime) return false;
   const validUrls = new Set(EDGE_TTS_CONFIG.proxyServers.map((s) => s.url));
   const validServers = cache.servers.filter((s) => validUrls.has(s.url));
@@ -63616,7 +63624,7 @@ function log2(msg) {
   console.log("[ASR]", msg);
 }
 function getASRConfig() {
-  const settings3 = extension_settings99[extensionName];
+  const settings3 = extension_settings100[extensionName];
   const defaults = defaultSettings.asr;
   return {
     ...defaults,
@@ -63624,12 +63632,12 @@ function getASRConfig() {
   };
 }
 function saveASRConfig(partial) {
-  if (!extension_settings99[extensionName]) return;
-  if (!extension_settings99[extensionName].asr) {
-    extension_settings99[extensionName].asr = { ...defaultSettings.asr };
+  if (!extension_settings100[extensionName]) return;
+  if (!extension_settings100[extensionName].asr) {
+    extension_settings100[extensionName].asr = { ...defaultSettings.asr };
   }
-  Object.assign(extension_settings99[extensionName].asr, partial);
-  saveSettingsDebounced65();
+  Object.assign(extension_settings100[extensionName].asr, partial);
+  saveSettingsDebounced66();
 }
 async function ensureMic() {
   if (persistentStream && persistentStream.active) return true;
@@ -64513,7 +64521,7 @@ function notifyAiGenerating() {
 }
 function notifyAiGenerationDone() {
   if (!conversationModeActive) return;
-  const settings3 = extension_settings99[extensionName];
+  const settings3 = extension_settings100[extensionName];
   const aiConfig = settings3?.chatu8_ai_assistant || {};
   if (!aiConfig.tts_enabled) {
     conversationMuted = false;
@@ -65615,6 +65623,14 @@ var init_novelaiSettingsModule = __esm({
 \u6253\u5F00\u89D2\u8272\u7EC4\u7F16\u8F91\u5668\uFF08UI \u64CD\u4F5C\uFF09\uFF1A
 <SystemQuery>{"type": "ui_action", "action": "click_button", "selector": "#novelai-char-ref-group-editor-btn"}</SystemQuery>
 
+\u25A0 \u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u914D\u7F6E\uFF08\u4EC5 NAI5\uFF09
+
+\u542F\u7528/\u5173\u95ED\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\uFF08\u4EC5 NAI5\uFF09\uFF1A
+<SystemQuery>{"type": "write", "path": "nai5PreciseCharRef", "value": "true"}</SystemQuery>
+
+\u6253\u5F00\u7CBE\u51C6\u89D2\u8272\u7EC4\u7F16\u8F91\u5668\uFF08UI \u64CD\u4F5C\uFF09\uFF1A
+<SystemQuery>{"type": "ui_action", "action": "click_button", "selector": "#novelai-precise-char-ref-group-editor-btn"}</SystemQuery>
+
 \u25A0 \u914D\u7F6E\u6863\u6848\u7BA1\u7406
 
 \u67E5\u770B\u5F53\u524D\u914D\u7F6E\u6863\u6848\uFF1A
@@ -65736,6 +65752,16 @@ var init_novelaiSettingsModule = __esm({
   - character\uFF1A\u89D2\u8272\uFF08\u5916\u89C2\u548C\u98CE\u683C\uFF09
   - character_style\uFF1A\u89D2\u8272\u548C\u98CE\u683C
   - style\uFF1A\u4EC5\u98CE\u683C
+
+\u25A0 \u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u533A\u57DF\uFF08\u4EC5 NAI5\uFF0C\u4E0D\u652F\u6301 Full Medium \u7701\u6D41\u6863\u4F4D\uFF09
+- nai5PreciseCharRef\uFF1A\u542F\u7528 V5 \u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u529F\u80FD\uFF08\u4EC5\u652F\u6301 nai-diffusion-5-curated \u4E0E nai-diffusion-5-full \u7684 High \u6863\u4F4D\uFF1B\u5F00\u542F Medium \u7701\u6D41\u6863\u4F4D\u65F6\u4E0D\u652F\u6301\u4E14\u4F1A\u81EA\u52A8\u8DF3\u8FC7\uFF0C\u26A0\uFE0F \u6BCF\u5F20\u542F\u7528\u53C2\u8003\u56FE\u989D\u5916\u6536\u8D39 5 \u70B9\uFF09
+- \u53C2\u8003\u56FE\u7BA1\u7406\uFF1A\u5171\u7528\u89D2\u8272\u53C2\u8003\u56FE\u5E93\uFF08charRefPresets\uFF09\uFF0C\u53C2\u6570\u5728\u7CBE\u51C6\u89D2\u8272\u7EC4\u5185\u72EC\u7ACB\u4FDD\u5B58
+- \u7CBE\u51C6\u89D2\u8272\u7EC4\u7F16\u8F91\u5668\uFF1A\u521B\u5EFA\u548C\u7BA1\u7406\u6700\u591A\u5305\u542B 4 \u4E2A\u53C2\u8003\u7684\u7EC4\u5408\u9884\u8BBE\uFF08\u652F\u6301\u5355\u5361\u542F\u7528\u5F00\u5173\u3001Strength 0~5\u3001Prefer same outfit\uFF09
+- \u7CBE\u51C6\u53C2\u8003\u7C7B\u578B\uFF1A
+  - character_style\uFF08Character & Style\uFF09\uFF1A\u540C\u65F6\u53C2\u8003\u89D2\u8272\u548C\u98CE\u683C
+  - character\uFF08Character\uFF09\uFF1A\u4EC5\u53C2\u8003\u89D2\u8272\u7279\u5F81
+  - style\uFF08Style\uFF09\uFF1A\u4EC5\u53C2\u8003\u98CE\u683C\u7279\u5F81
+  - costume\uFF08Outfit\uFF09\uFF1A\u4EC5\u53C2\u8003\u670D\u88C5\u9020\u578B
 
 \u25A0 \u914D\u7F6E\u6863\u6848\u533A\u57DF
 - novelai_profile_id\uFF1A\u5F53\u524D\u914D\u7F6E\u6863\u6848\u540D\u79F0
@@ -67222,8 +67248,21 @@ var init_charRefSettingsModule = __esm({
 
 \u25A0 \u53C2\u6570\u914D\u7F6E\u547D\u4EE4
 
-\u542F\u7528/\u7981\u7528\u89D2\u8272\u53C2\u8003\u529F\u80FD\uFF1A
-<SystemQuery>{"type": "write", "path": "novelai.reference_image_active", "value": true}</SystemQuery>
+\u542F\u7528/\u7981\u7528\u89D2\u8272\u53C2\u8003\u529F\u80FD\uFF08NAI4.5\uFF09\uFF1A
+<SystemQuery>{"type": "write", "path": "nai3CharRef", "value": "true"}</SystemQuery>
+
+\u25A0 \u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u547D\u4EE4\uFF08\u4EC5 NAI5\uFF09
+
+\u6253\u5F00\u7CBE\u51C6\u89D2\u8272\u7EC4\u7F16\u8F91\u5668\u5BF9\u8BDD\u6846\uFF1A
+<SystemQuery>{"type": "ui_action", "action": "click_button", "selector": "#novelai-precise-char-ref-group-editor-btn"}</SystemQuery>
+
+\u67E5\u8BE2/\u5207\u6362\u5F53\u524D\u9009\u4E2D\u7684\u7CBE\u51C6\u89D2\u8272\u7EC4\uFF1A
+<SystemQuery>{"type": "read", "path": "novelai.preciseCharRefGroupId"}</SystemQuery>
+<SystemQuery>{"type": "read", "path": "novelai.preciseCharRefGroups"}</SystemQuery>
+<SystemQuery>{"type": "write", "path": "novelai.preciseCharRefGroupId", "value": "\u7EC4\u540D\u79F0"}</SystemQuery>
+
+\u542F\u7528/\u7981\u7528\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u529F\u80FD\uFF08\u4EC5 NAI5\uFF0C\u4E0D\u652F\u6301 Full Medium \u7701\u6D41\u6863\u4F4D\uFF09\uFF1A
+<SystemQuery>{"type": "write", "path": "nai5PreciseCharRef", "value": "true"}</SystemQuery>
 
 \u8BBE\u7F6E\u89D2\u8272\u53C2\u8003\u4FE1\u606F\u5F3A\u5EA6\uFF080-1\uFF09\uFF1A
 <SystemQuery>{"type": "write", "path": "novelai.reference_information_extracted", "value": 0.8}</SystemQuery>
@@ -71452,6 +71491,7 @@ var init_configDescriptions = __esm({
       randomVibeGroup: "NAI \u662F\u5426\u542F\u7528\u968F\u673A Vibe \u7EC4\uFF08\u6BCF\u6B21\u751F\u56FE\u4ECE\u975E\u7A7A\u7684 Vibe \u7EC4\u4E2D\u968F\u673A\u9009\u62E9\u4E00\u4E2A\uFF09(\u5E03\u5C14\u5B57\u7B26\u4E32 'true'/'false')",
       normalizeRefStrength: "NAI \u662F\u5426\u5F52\u4E00\u5316 Vibe \u53C2\u8003\u5F3A\u5EA6 (\u5E03\u5C14\u5B57\u7B26\u4E32 'true'/'false')",
       nai3CharRef: "NAI \u662F\u5426\u542F\u7528\u89D2\u8272\u53C2\u8003\u529F\u80FD (\u5E03\u5C14\u5B57\u7B26\u4E32 'true'/'false')",
+      nai5PreciseCharRef: "NAI V5 \u662F\u5426\u542F\u7528\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u529F\u80FD (\u5E03\u5C14\u5B57\u7B26\u4E32 'true'/'false')",
       nai3StylePerception: "NAI \u662F\u5426\u542F\u7528\u98CE\u683C\u611F\u77E5\u529F\u80FD (\u5E03\u5C14\u5B57\u7B26\u4E32 'true'/'false')",
       AI_use_coords: "NAI \u662F\u5426\u4F7F\u7528ai\u81EA\u52A8\u5750\u6807\u533A\u57DF\u6765\u63A7\u5236\u751F\u6210\u5185\u5BB9\u7684\u4F4D\u7F6E true\u4EE3\u8868\u4F7F\u7528ai\u800C\u4E0D\u662F\u8BBE\u7F6E\u7684\u5750\u6807 (\u5E03\u5C14\u5B57\u7B26\u4E32 'true'/'false')",
       novelaisite: "NAI \u7AD9\u70B9\u9009\u62E9\uFF1A'\u5B98\u7F51' \u4F7F\u7528\u5B98\u65B9\u670D\u52A1\u5668\uFF0C\u5176\u4ED6\u503C\u4F7F\u7528\u7B2C\u4E09\u65B9\u7AD9\u70B9",
@@ -71630,7 +71670,7 @@ __export(configUIRefresh_exports, {
 
 async function refreshAffectedUI(changedSettings) {
   try {
-    const settings3 = extension_settings100[extensionName];
+    const settings3 = extension_settings101[extensionName];
     if (changedSettings.workers || changedSettings.workerid || changedSettings.editWorkerid) {
       refreshWorkflowSelectors(settings3);
     }
@@ -72616,7 +72656,7 @@ function syncRangeInputs(key, value) {
     const maxTokensSlider2 = document.getElementById("ch-llm_max_tokens");
     const maxTokensInput = document.getElementById("ch-llm_max_tokens_value");
     if (maxTokensSlider2 && maxTokensInput) {
-      const settings3 = extension_settings100[extensionName];
+      const settings3 = extension_settings101[extensionName];
       const currentProfile = settings3.llm_profiles?.[settings3.current_llm_profile];
       if (currentProfile?.max_tokens !== void 0) {
         if (document.activeElement !== maxTokensSlider2) {
@@ -72639,7 +72679,7 @@ var init_configUIRefresh = __esm({
 
 
 function getExposedSettings() {
-  const rawSettings = extension_settings101[extensionName];
+  const rawSettings = extension_settings102[extensionName];
   if (!rawSettings) return {};
   const safeSettings = JSON.parse(JSON.stringify(rawSettings));
   delete safeSettings.themes;
@@ -72648,7 +72688,7 @@ function getExposedSettings() {
 }
 function updateSettingSafely(newSettings) {
   if (!newSettings || typeof newSettings !== "object") return false;
-  const currentSettings = extension_settings101[extensionName];
+  const currentSettings = extension_settings102[extensionName];
   if (!currentSettings) return false;
   let isModified = false;
   for (const [key, value] of Object.entries(newSettings)) {
@@ -72661,7 +72701,7 @@ function updateSettingSafely(newSettings) {
     }
   }
   if (isModified) {
-    saveSettingsDebounced66();
+    saveSettingsDebounced67();
     document.dispatchEvent(new CustomEvent("st-chatu8-config-updated", { detail: { changed: newSettings } }));
     refreshAffectedUI(newSettings);
     return true;
@@ -72669,12 +72709,12 @@ function updateSettingSafely(newSettings) {
   return false;
 }
 function getDetailedConfigKeys() {
-  const rawSettings = extension_settings101[extensionName];
+  const rawSettings = extension_settings102[extensionName];
   if (!rawSettings) return [];
   return Object.keys(rawSettings);
 }
 function getSpecificConfigData(key) {
-  const rawSettings = extension_settings101[extensionName];
+  const rawSettings = extension_settings102[extensionName];
   if (!rawSettings || !(key in rawSettings)) {
     return `[\u83B7\u53D6\u5931\u8D25] \u6240\u6709\u7684\u8BBE\u7F6E\u4E2D\u4E0D\u5B58\u5728\u952E\u540D\u4E3A: ${key} \u7684\u6570\u636E\u3002`;
   }
@@ -72689,7 +72729,7 @@ function getSpecificConfigData(key) {
   return String(data);
 }
 function checkRequiredConfigs() {
-  const s = extension_settings101[extensionName];
+  const s = extension_settings102[extensionName];
   if (!s) return "\u274C \u63D2\u4EF6\u914D\u7F6E\u5C1A\u672A\u521D\u59CB\u5316\u3002";
   const results = [];
   const mode = s.mode || "comfyui";
@@ -72780,7 +72820,7 @@ var init_configValidation = __esm({
 
 
 function resolveConfigPath(dotPath) {
-  const rawSettings = extension_settings102[extensionName];
+  const rawSettings = extension_settings103[extensionName];
   if (!rawSettings) return { target: null, error: "[\u9519\u8BEF] \u63D2\u4EF6\u914D\u7F6E\u5C1A\u672A\u521D\u59CB\u5316\u3002" };
   if (!dotPath || dotPath === "") {
     return { target: rawSettings, error: null };
@@ -72882,7 +72922,7 @@ ${jsonStr}`;
 }
 function writeConfigPath(dotPath, newValue) {
   if (!dotPath) return "[\u9519\u8BEF] write \u64CD\u4F5C\u9700\u8981\u6307\u5B9A\u8DEF\u5F84\u3002";
-  const rawSettings = extension_settings102[extensionName];
+  const rawSettings = extension_settings103[extensionName];
   if (!rawSettings) return "[\u9519\u8BEF] \u63D2\u4EF6\u914D\u7F6E\u5C1A\u672A\u521D\u59CB\u5316\u3002";
   const parts = dotPath.split(".");
   const lastKey = parts.pop();
@@ -72934,7 +72974,7 @@ function writeConfigPath(dotPath, newValue) {
   }
   const oldValue = isNewKey ? void 0 : parent[lastKey];
   parent[lastKey] = newValue;
-  saveSettingsDebounced67();
+  saveSettingsDebounced68();
   document.dispatchEvent(new CustomEvent("st-chatu8-config-updated", {
     detail: { changed: { [dotPath]: newValue } }
   }));
@@ -73197,7 +73237,7 @@ var init_configRegexBridge = __esm({
 
 
 function getWorkflowStorage(target = "comfyui", name = "") {
-  const s = extension_settings103[extensionName];
+  const s = extension_settings104[extensionName];
   if (!s) return { storage: null, currentId: "", currentIdKey: "", currentContentKey: "", targetLabel: "", settings: null };
   const t = String(target || "").toLowerCase().trim();
   let isRunningHub = false;
@@ -73285,7 +73325,7 @@ function getWorkflowList(target = "comfyui") {
 `;
   }
   const t = String(target || "").toLowerCase().trim();
-  const s = extension_settings103[extensionName];
+  const s = extension_settings104[extensionName];
   if ((t === "comfyui" || t === "") && s?.comfyui_video_workers) {
     const videoCount = Object.keys(s.comfyui_video_workers).length;
     result += `
@@ -73440,7 +73480,7 @@ function replaceWorkflowVariable(name, variable, value, target = "comfyui") {
   if (currentId === name && settings3 && currentContentKey) {
     settings3[currentContentKey] = content;
   }
-  saveSettingsDebounced68();
+  saveSettingsDebounced69();
   try {
     refreshWorkflowSelectors(settings3);
   } catch (_e) {
@@ -73462,7 +73502,7 @@ function saveWorkflow(name, content, target = "comfyui") {
   if (currentId === name && currentContentKey) {
     settings3[currentContentKey] = content;
   }
-  saveSettingsDebounced68();
+  saveSettingsDebounced69();
   try {
     refreshWorkflowSelectors(settings3);
   } catch (_e) {
@@ -73566,7 +73606,7 @@ function updateWorkflowNodeInput(name, nodeId, inputKey, value, target = "comfyu
   if (currentId === name && settings3 && currentContentKey) {
     settings3[currentContentKey] = newContent;
   }
-  saveSettingsDebounced68();
+  saveSettingsDebounced69();
   try {
     refreshWorkflowSelectors(settings3);
   } catch (_e) {
@@ -73634,7 +73674,7 @@ function batchUpdateWorkflowNodes(name, updates, target = "comfyui") {
   if (currentId === name && settings3 && currentContentKey) {
     settings3[currentContentKey] = newContent;
   }
-  saveSettingsDebounced68();
+  saveSettingsDebounced69();
   try {
     refreshWorkflowSelectors(settings3);
   } catch (_e) {
@@ -73675,7 +73715,7 @@ function deleteWorkflowNode(name, nodeId, target = "comfyui") {
   if (currentId === name && settings3 && currentContentKey) {
     settings3[currentContentKey] = newContent;
   }
-  saveSettingsDebounced68();
+  saveSettingsDebounced69();
   try {
     refreshWorkflowSelectors(settings3);
   } catch (_e) {
@@ -73710,7 +73750,7 @@ function addWorkflowNode(name, nodeId, nodeData, target = "comfyui") {
   if (currentId === name && settings3 && currentContentKey) {
     settings3[currentContentKey] = newContent;
   }
-  saveSettingsDebounced68();
+  saveSettingsDebounced69();
   try {
     refreshWorkflowSelectors(settings3);
   } catch (_e) {
@@ -75197,7 +75237,7 @@ function extractDialogueForTTS(rawReply, scope = "dialogue") {
   return { text: joinedText, segments };
 }
 function getEdgeTTSParams() {
-  const aiConfig = extension_settings104[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings105[extensionName]?.chatu8_ai_assistant || {};
   if (aiConfig.tts_engine !== "edge") return {};
   return {
     edgeVoice: aiConfig.tts_edge_voice,
@@ -75207,7 +75247,7 @@ function getEdgeTTSParams() {
   };
 }
 function speakNotification(text) {
-  const aiConfig = extension_settings104[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings105[extensionName]?.chatu8_ai_assistant || {};
   if (!aiConfig.tts_enabled || !text) return;
   eventSource43.emit(eventNames.TTS_STOP);
   const reqId = "tts-notify-" + Date.now();
@@ -75215,7 +75255,7 @@ function speakNotification(text) {
   eventSource43.emit(eventNames.TTS_REQUEST, { id: reqId, text, ...edgeParams });
 }
 function injectTTSStyleInstruction(systemPromptStr) {
-  const aiConfig = extension_settings104[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings105[extensionName]?.chatu8_ai_assistant || {};
   if (!aiConfig.tts_enabled || aiConfig.tts_engine !== "edge") return systemPromptStr;
   const voiceId = aiConfig.tts_edge_voice || "zh-CN-XiaoxiaoNeural";
   const styles = getEdgeVoiceStyles(voiceId);
@@ -75361,7 +75401,7 @@ function playCachedAudio(blobUrls, messageIndex) {
   playNext();
 }
 function tryPlayTTS(accumulatedReply, messageIndex = -1) {
-  const aiConfig = extension_settings104[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings105[extensionName]?.chatu8_ai_assistant || {};
   if (!aiConfig.tts_enabled) return;
   const scope = aiConfig.tts_scope || "dialogue";
   const result = extractDialogueForTTS(accumulatedReply, scope);
@@ -75409,7 +75449,7 @@ function handleTTSButtonClick(messageIndex) {
   const msgContent = activeChat.messages[messageIndex].content;
   const rawText = typeof msgContent === "string" ? msgContent : "";
   if (!rawText) return;
-  const aiConfig = extension_settings104[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings105[extensionName]?.chatu8_ai_assistant || {};
   const scope = aiConfig.tts_scope || "dialogue";
   const result = extractDialogueForTTS(rawText, scope);
   if (!result || !result.text) {
@@ -75461,7 +75501,7 @@ function setupTTSEventListeners() {
           if (activeChat && activeChat.messages[ttsActiveMessageIndex]) {
             const msgContent = activeChat.messages[ttsActiveMessageIndex].content;
             const rawText = typeof msgContent === "string" ? msgContent : "";
-            const aiConfig = extension_settings104[extensionName]?.chatu8_ai_assistant || {};
+            const aiConfig = extension_settings105[extensionName]?.chatu8_ai_assistant || {};
             const scope = aiConfig.tts_scope || "dialogue";
             const cacheResult = extractDialogueForTTS(rawText, scope);
             if (cacheResult && cacheResult.text) {
@@ -77310,7 +77350,7 @@ var init_assistantSession = __esm({
 // utils/assistant/assistantCommand.js
 
 function getAutoExecuteMode() {
-  const aiConfig = extension_settings106[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings107[extensionName]?.chatu8_ai_assistant || {};
   return aiConfig.auto_execute_commands === true;
 }
 function createPendingCommand(messageElement, commandContent) {
@@ -77790,11 +77830,11 @@ __export(assistantLLM_exports, {
 
 
 function isCustomMode() {
-  const aiConfig = extension_settings107[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings108[extensionName]?.chatu8_ai_assistant || {};
   return (aiConfig.system_prompt_key || defaultSystemPromptKey) === "custom";
 }
 function buildProfileData() {
-  const aiConfig = extension_settings107[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings108[extensionName]?.chatu8_ai_assistant || {};
   const useLlmApi = !!aiConfig.use_llm_api;
   let effectiveCfg = null;
   try {
@@ -77868,7 +77908,7 @@ function buildProfileData() {
   };
 }
 async function buildSystemPrompt(kbTriggerText = "") {
-  const aiConfig = extension_settings107[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings108[extensionName]?.chatu8_ai_assistant || {};
   const promptKey = aiConfig.system_prompt_key || defaultSystemPromptKey;
   if (promptKey === "custom") {
     return null;
@@ -77883,7 +77923,7 @@ async function buildSystemPrompt(kbTriggerText = "") {
     systemPromptStr = systemPromptStr.replace("{settings}", "\n" + contextStr + "\n");
   }
   if (systemPromptStr.includes("{chatu8_code}")) {
-    const settings3 = extension_settings107[extensionName];
+    const settings3 = extension_settings108[extensionName];
     const chatu8Code = settings3?.chatu8_code || "\u672A\u5206\u914D";
     systemPromptStr = systemPromptStr.replace(/{chatu8_code}/g, chatu8Code);
   }
@@ -78282,7 +78322,7 @@ function _buildConversationHistory(rawMessages, imageCache) {
 }
 async function runLlmChain(activeChatRef, profileData, requestId, iterState, handleSendFn, handleRegenerateFn, boundAppendMessage) {
   const chatMessages = Array.isArray(activeChatRef.messages) ? activeChatRef.messages.filter((msg) => msg && typeof msg === "object") : [];
-  const kbConfig = extension_settings107[extensionName]?.knowledgeBaseConfig || {};
+  const kbConfig = extension_settings108[extensionName]?.knowledgeBaseConfig || {};
   const kbTriggerDepth = typeof kbConfig.triggerDepth === "number" ? kbConfig.triggerDepth : 1;
   const kbTriggerMessages = chatMessages.slice(-(kbTriggerDepth + 1));
   const kbTriggerText = kbTriggerMessages.map((m) => Array.isArray(m.content) ? m.content.find((c) => c.type === "text")?.text || "" : String(m.content || "")).filter((t) => t.trim()).join("\n");
@@ -78621,7 +78661,7 @@ async function handleSend(handleSendFn, handleRegenerateFn, boundAppendMessage, 
       return;
     }
   }
-  const aiConfig = extension_settings107[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings108[extensionName]?.chatu8_ai_assistant || {};
   const apiKey = (aiConfig.api_key || "").trim();
   if (!apiKey) {
     toastr?.error("\u672A\u914D\u7F6E\u667A\u7ED8\u59EC API Key\uFF0C\u8BF7\u70B9\u51FB\u9F7F\u8F6E\u56FE\u6807\u8BBE\u7F6E\u3002");
@@ -80210,7 +80250,7 @@ function updateLlmApiToggleUI(isUseLlmApi) {
   }
 }
 function refreshSettingsPanel() {
-  const aiConfig = extension_settings109[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings110[extensionName]?.chatu8_ai_assistant || {};
   const useLlmApi = !!aiConfig.use_llm_api;
   dom.checkUseLlmApi?.prop("checked", useLlmApi);
   updateLlmApiToggleUI(useLlmApi);
@@ -80284,7 +80324,7 @@ function refreshSettingsPanel() {
   dom.inputTopP.val(aiConfig.top_p ?? 1);
 }
 function checkAndShowSettings() {
-  const aiConfig = extension_settings109[extensionName]?.chatu8_ai_assistant || {};
+  const aiConfig = extension_settings110[extensionName]?.chatu8_ai_assistant || {};
   if (!aiConfig.api_key) {
     dom.settingsPanel.addClass("active");
     toastr?.info("\u521D\u6B21\u4F7F\u7528\u8BF7\u5148\u914D\u7F6E\u597D API \u548C \u6A21\u578B\u4FE1\u606F\u54E6~");
@@ -80292,10 +80332,10 @@ function checkAndShowSettings() {
   refreshSettingsPanel();
 }
 function autoSaveSettings() {
-  if (!extension_settings109[extensionName].chatu8_ai_assistant) {
-    extension_settings109[extensionName].chatu8_ai_assistant = {};
+  if (!extension_settings110[extensionName].chatu8_ai_assistant) {
+    extension_settings110[extensionName].chatu8_ai_assistant = {};
   }
-  const aiConfig = extension_settings109[extensionName].chatu8_ai_assistant;
+  const aiConfig = extension_settings110[extensionName].chatu8_ai_assistant;
   aiConfig.api_url = dom.inputApiUrl.val().trim();
   aiConfig.api_key = dom.inputApiKey.val().trim();
   aiConfig.model = dom.inputModel.val().trim();
@@ -80329,7 +80369,7 @@ function autoSaveSettings() {
   aiConfig.temperature = !isNaN(temp) ? temp : 0.8;
   const topP = parseFloat(dom.inputTopP.val());
   aiConfig.top_p = !isNaN(topP) ? topP : 1;
-  saveSettingsDebounced69();
+  saveSettingsDebounced70();
 }
 function debouncedAutoSaveSettings() {
   if (assistantAutoSaveTimer) clearTimeout(assistantAutoSaveTimer);
@@ -80459,7 +80499,7 @@ function initDialogEvents() {
     setTTSEngineType(engine);
     ttsQwenOptions.toggle(engine === "qwen");
     ttsEdgeOptions.toggle(engine === "edge");
-    const aiConfig = extension_settings109[extensionName]?.chatu8_ai_assistant || {};
+    const aiConfig = extension_settings110[extensionName]?.chatu8_ai_assistant || {};
     if (engine === "qwen") {
       populateQwenVoices(aiConfig.tts_qwen_voice);
     } else if (engine === "edge") {
@@ -80503,11 +80543,11 @@ function initDialogEvents() {
         bestLatency: result.servers.length > 0 ? result.servers[0].latency : 0,
         timestamp: result.timestamp
       };
-      if (!extension_settings109[extensionName].chatu8_ai_assistant) {
-        extension_settings109[extensionName].chatu8_ai_assistant = {};
+      if (!extension_settings110[extensionName].chatu8_ai_assistant) {
+        extension_settings110[extensionName].chatu8_ai_assistant = {};
       }
-      extension_settings109[extensionName].chatu8_ai_assistant.tts_edge_ping = pingData;
-      saveSettingsDebounced69();
+      extension_settings110[extensionName].chatu8_ai_assistant.tts_edge_ping = pingData;
+      saveSettingsDebounced70();
       updatePingStatusDisplay(pingData);
     } catch (e) {
       ttsEdgePingStatus.text("\u68C0\u6D4B\u5931\u8D25: " + e.message).css("color", "#f44336");
@@ -80693,7 +80733,7 @@ function initDialogEvents() {
   let pipVideoElement = null;
   checkDesktopPet.on("change", async function() {
     const checked = $(this).prop("checked");
-    const settings3 = extension_settings109[extensionName];
+    const settings3 = extension_settings110[extensionName];
     if (checked) {
       try {
         const videoModeWasOff = !(settings3.enable_chatu8_fab_video === true || settings3.enable_chatu8_fab_video === "true");
@@ -84722,6 +84762,1900 @@ function initVibeGroupEditor(settingsModal) {
   }
 }
 
+// utils/settings/preciseCharRefGroupEditor.js
+init_config();
+init_configDatabase();
+init_ui_common();
+
+
+
+// utils/settings/charRefGroupEditor.js
+init_config();
+init_configDatabase();
+
+
+function ensureCharRefGroups() {
+  const settings3 = extension_settings62[extensionName];
+  if (!settings3.charRefGroups || typeof settings3.charRefGroups !== "object" || Array.isArray(settings3.charRefGroups)) {
+    if (settings3.charRefGroups) {
+      console.error("[CharRef] Corrupted charRefGroups data detected, resetting to default:", settings3.charRefGroups);
+    }
+    settings3.charRefGroups = {
+      "\u9ED8\u8BA4\u7EC4": {
+        references: [],
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      }
+    };
+    console.log("[CharRef] Initialized charRefGroups with default group");
+  }
+  for (const groupName in settings3.charRefGroups) {
+    const group = settings3.charRefGroups[groupName];
+    if (!group || typeof group !== "object") {
+      console.error("[CharRef] Corrupted group data for:", groupName, "- removing");
+      delete settings3.charRefGroups[groupName];
+      continue;
+    }
+    if (!Array.isArray(group.references)) {
+      console.warn("[CharRef] Group missing references array:", groupName, "- initializing");
+      group.references = [];
+    }
+    if (typeof group.createdAt !== "number") {
+      group.createdAt = Date.now();
+    }
+    if (typeof group.updatedAt !== "number") {
+      group.updatedAt = Date.now();
+    }
+  }
+  if (Object.keys(settings3.charRefGroups).length === 0) {
+    console.warn("[CharRef] No valid groups found, creating default group");
+    settings3.charRefGroups["\u9ED8\u8BA4\u7EC4"] = {
+      references: [],
+      createdAt: Date.now(),
+      updatedAt: Date.now()
+    };
+  }
+  if (!settings3.charRefGroupId || !settings3.charRefGroups[settings3.charRefGroupId]) {
+    const firstGroupName = Object.keys(settings3.charRefGroups)[0];
+    settings3.charRefGroupId = firstGroupName || "\u9ED8\u8BA4\u7EC4";
+    console.log("[CharRef] Set charRefGroupId to:", settings3.charRefGroupId);
+  }
+  return settings3.charRefGroups;
+}
+function showCharRefStatus(statusDiv, message, type = "info") {
+  statusDiv.textContent = message;
+  statusDiv.style.display = "block";
+  if (type === "success") {
+    statusDiv.style.backgroundColor = "rgba(76, 175, 80, 0.1)";
+    statusDiv.style.color = "#4caf50";
+    statusDiv.style.border = "1px solid rgba(76, 175, 80, 0.3)";
+  } else if (type === "error") {
+    statusDiv.style.backgroundColor = "rgba(244, 67, 54, 0.1)";
+    statusDiv.style.color = "#f44336";
+    statusDiv.style.border = "1px solid rgba(244, 67, 54, 0.3)";
+  } else {
+    statusDiv.style.backgroundColor = "rgba(33, 150, 243, 0.1)";
+    statusDiv.style.color = "#2196f3";
+    statusDiv.style.border = "1px solid rgba(33, 150, 243, 0.3)";
+  }
+  setTimeout(() => {
+    statusDiv.style.display = "none";
+  }, 5e3);
+}
+function ensureCharRefPresets() {
+  const settings3 = extension_settings62[extensionName];
+  if (!settings3.charRefPresets || typeof settings3.charRefPresets !== "object" || Array.isArray(settings3.charRefPresets)) {
+    if (settings3.charRefPresets) {
+      console.error("[CharRef] Corrupted charRefPresets data detected, resetting to default:", settings3.charRefPresets);
+    }
+    settings3.charRefPresets = {
+      "\u9ED8\u8BA4": {
+        imageId: null,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      }
+    };
+    console.log("[CharRef] Initialized charRefPresets with default preset");
+  }
+  if (Object.keys(settings3.charRefPresets).length === 0) {
+    console.warn("[CharRef] No valid presets found, creating default preset");
+    settings3.charRefPresets["\u9ED8\u8BA4"] = {
+      imageId: null,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
+    };
+  }
+  if (!settings3.charRefPresetId || !settings3.charRefPresets[settings3.charRefPresetId]) {
+    const firstPresetName = Object.keys(settings3.charRefPresets)[0];
+    settings3.charRefPresetId = firstPresetName || "\u9ED8\u8BA4";
+    console.log("[CharRef] Set charRefPresetId to:", settings3.charRefPresetId);
+  }
+  return settings3.charRefPresets;
+}
+function showCharRefUploadDialog() {
+  const parent = document.getElementById("st-chatu8-settings") || document.body;
+  const settings3 = extension_settings62[extensionName];
+  ensureCharRefPresets();
+  const backdrop = document.createElement("div");
+  backdrop.className = "st-chatu8-workflow-viz-backdrop";
+  backdrop.innerHTML = `
+        <div class="st-chatu8-workflow-viz-dialog st-chatu8-char-ref-upload-dialog">
+            <div class="st-chatu8-workflow-viz-header">
+                <h3>\u89D2\u8272\u53C2\u8003\u56FE\u9884\u8BBE</h3>
+                <span class="st-chatu8-workflow-viz-close">&times;</span>
+            </div>
+            <div class="st-chatu8-workflow-viz-body" style="padding: 2rem;">
+                <div class="st-chatu8-char-ref-upload-content">
+                    <!-- Preset Selector -->
+                    <div class="st-chatu8-field" style="margin-bottom: 1.2rem;">
+                        <label for="char-ref-preset-select">\u53C2\u8003\u56FE\u9884\u8BBE</label>
+                        <div class="st-chatu8-profile-controls">
+                            <select id="char-ref-preset-select" class="st-chatu8-select"></select>
+                            <button class="st-chatu8-icon-btn" id="char-ref-preset-new" title="\u65B0\u5EFA\u9884\u8BBE">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button class="st-chatu8-icon-btn" id="char-ref-preset-export-current" title="\u5BFC\u51FA\u5F53\u524D\u9884\u8BBE">
+                                <i class="fa-solid fa-upload"></i>
+                            </button>
+                            <button class="st-chatu8-icon-btn" id="char-ref-preset-export-all" title="\u5BFC\u51FA\u5168\u90E8\u9884\u8BBE">
+                                <i class="fa-solid fa-file-export"></i>
+                            </button>
+                            <button class="st-chatu8-icon-btn" id="char-ref-preset-import" title="\u5BFC\u5165\u9884\u8BBE">
+                                <i class="fa-solid fa-download"></i>
+                            </button>
+                            <button class="st-chatu8-icon-btn danger" id="char-ref-preset-delete" title="\u5220\u9664\u5F53\u524D\u9884\u8BBE">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Image Preview -->
+                    <div class="st-chatu8-field-col" style="margin-bottom: 1.2rem;">
+                        <label>\u53C2\u8003\u56FE\u7247\u9884\u89C8</label>
+                        <div class="st-chatu8-image-preview-container" id="char-ref-upload-preview-container">
+                            <div class="st-chatu8-image-placeholder">
+                                <i class="fa-solid fa-image"></i>
+                                <span>\u6CA1\u6709\u9009\u62E9\u56FE\u7247</span>
+                            </div>
+                            <img id="char-ref-upload-preview" src="" alt="\u53C2\u8003\u56FE\u9884\u89C8" style="display: none;">
+                        </div>
+                        <div class="st-chatu8-image-controls" style="margin-top: 0.5rem;">
+                            <input type="file" id="char-ref-upload-input" accept="image/png, image/jpeg, image/webp" style="display:none;">
+                            <button type="button" class="st-chatu8-btn" id="char-ref-select-btn">
+                                <i class="fa-solid fa-upload"></i> \u9009\u62E9\u56FE\u7247
+                            </button>
+                            <button type="button" class="st-chatu8-btn danger" id="char-ref-remove-preview-btn" style="display: none;">
+                                <i class="fa-solid fa-trash"></i> \u79FB\u9664\u56FE\u7247
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="char-ref-upload-status" style="margin-top: 1.5rem; padding: 1rem; border-radius: 6px; font-size: 0.9rem; display: none; line-height: 1.4;"></div>
+                </div>
+            </div>
+        </div>
+    `;
+  parent.appendChild(backdrop);
+  const closeBtn = backdrop.querySelector(".st-chatu8-workflow-viz-close");
+  closeBtn.onclick = () => parent.removeChild(backdrop);
+  backdrop.onclick = (e) => {
+    if (e.target === backdrop) {
+      parent.removeChild(backdrop);
+    }
+  };
+  const presetSelect = document.getElementById("char-ref-preset-select");
+  const newBtn = document.getElementById("char-ref-preset-new");
+  const deleteBtn = document.getElementById("char-ref-preset-delete");
+  const exportCurrentBtn = document.getElementById("char-ref-preset-export-current");
+  const exportAllBtn = document.getElementById("char-ref-preset-export-all");
+  const importBtn = document.getElementById("char-ref-preset-import");
+  const imageInput = document.getElementById("char-ref-upload-input");
+  const previewImage = document.getElementById("char-ref-upload-preview");
+  const previewContainer = document.getElementById("char-ref-upload-preview-container");
+  const selectBtn = document.getElementById("char-ref-select-btn");
+  const removePreviewBtn = document.getElementById("char-ref-remove-preview-btn");
+  const statusDiv = document.getElementById("char-ref-upload-status");
+  let currentImageId = null;
+  function loadPresetList() {
+    presetSelect.innerHTML = "";
+    const presets = settings3.charRefPresets;
+    const sortedKeys = Object.keys(presets).sort((a, b) => {
+      if (a === "\u9ED8\u8BA4") return -1;
+      if (b === "\u9ED8\u8BA4") return 1;
+      return a.localeCompare(b, "zh-CN");
+    });
+    for (const key of sortedKeys) {
+      const option = new Option(key, key);
+      presetSelect.add(option);
+    }
+    presetSelect.value = settings3.charRefPresetId;
+  }
+  async function loadCurrentPreset() {
+    const presetId = presetSelect.value;
+    const preset = settings3.charRefPresets[presetId];
+    if (!preset) return;
+    currentImageId = preset.imageId;
+    if (currentImageId) {
+      try {
+        const imageData = await getConfigImage(currentImageId);
+        if (imageData) {
+          previewImage.src = imageData;
+          previewImage.style.display = "block";
+          previewContainer.querySelector(".st-chatu8-image-placeholder").style.display = "none";
+          removePreviewBtn.style.display = "inline-block";
+        } else {
+          resetImagePreview();
+        }
+      } catch (error) {
+        console.error("[CharRef] \u52A0\u8F7D\u56FE\u7247\u9884\u89C8\u5931\u8D25:", error);
+        resetImagePreview();
+      }
+    } else {
+      resetImagePreview();
+    }
+  }
+  function resetImagePreview() {
+    currentImageId = null;
+    imageInput.value = "";
+    previewImage.src = "";
+    previewImage.style.display = "none";
+    previewContainer.querySelector(".st-chatu8-image-placeholder").style.display = "flex";
+    removePreviewBtn.style.display = "none";
+  }
+  loadPresetList();
+  loadCurrentPreset();
+  presetSelect.onchange = () => {
+    settings3.charRefPresetId = presetSelect.value;
+    saveSettingsDebounced36();
+    loadCurrentPreset();
+  };
+  selectBtn.onclick = () => imageInput.click();
+  imageInput.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const validTypes = ["image/png", "image/jpeg", "image/webp"];
+    if (!validTypes.includes(file.type)) {
+      showCharRefStatus(statusDiv, "\u4E0D\u652F\u6301\u7684\u56FE\u7247\u683C\u5F0F\u3002\u8BF7\u9009\u62E9 PNG\u3001JPEG \u6216 WebP \u683C\u5F0F\u7684\u56FE\u7247\u3002", "error");
+      return;
+    }
+    try {
+      showCharRefStatus(statusDiv, "\u6B63\u5728\u4FDD\u5B58\u56FE\u7247...", "info");
+      const imageData = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e2) => resolve(e2.target.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+      if (currentImageId) {
+        try {
+          await deleteConfigImage(currentImageId);
+        } catch (error) {
+          console.error("[CharRef] \u5220\u9664\u65E7\u56FE\u7247\u5931\u8D25:", error);
+        }
+      }
+      const presetId = presetSelect.value;
+      const newImageId = await saveConfigImage(imageData, {
+        format: file.type.split("/")[1] || "png",
+        filename: `char_ref_${presetId}_${Date.now()}`
+      });
+      currentImageId = newImageId;
+      settings3.charRefPresets[presetId] = {
+        imageId: currentImageId,
+        createdAt: settings3.charRefPresets[presetId]?.createdAt || Date.now(),
+        updatedAt: Date.now()
+      };
+      saveSettingsDebounced36();
+      previewImage.src = imageData;
+      previewImage.style.display = "block";
+      previewContainer.querySelector(".st-chatu8-image-placeholder").style.display = "none";
+      removePreviewBtn.style.display = "inline-block";
+      showCharRefStatus(statusDiv, "\u56FE\u7247\u5DF2\u4FDD\u5B58\uFF01", "success");
+      console.log("[CharRef] Image saved with ID:", newImageId);
+    } catch (error) {
+      console.error("[CharRef] \u4FDD\u5B58\u56FE\u7247\u5931\u8D25:", error);
+      if (error.name === "QuotaExceededError") {
+        showCharRefStatus(statusDiv, "\u5B58\u50A8\u7A7A\u95F4\u4E0D\u8DB3\uFF0C\u8BF7\u5220\u9664\u4E00\u4E9B\u65E7\u56FE\u7247", "error");
+      } else {
+        showCharRefStatus(statusDiv, `\u4FDD\u5B58\u5931\u8D25: ${error.message || "\u672A\u77E5\u9519\u8BEF"}`, "error");
+      }
+    }
+  };
+  removePreviewBtn.onclick = async () => {
+    if (currentImageId) {
+      try {
+        await deleteConfigImage(currentImageId);
+        const presetId = presetSelect.value;
+        settings3.charRefPresets[presetId].imageId = null;
+        saveSettingsDebounced36();
+      } catch (error) {
+        console.error("[CharRef] \u5220\u9664\u56FE\u7247\u5931\u8D25:", error);
+      }
+    }
+    resetImagePreview();
+  };
+  newBtn.onclick = async () => {
+    const newName = prompt("\u8BF7\u8F93\u5165\u65B0\u9884\u8BBE\u540D\u79F0:");
+    if (!newName) return;
+    if (settings3.charRefPresets[newName]) {
+      alert("\u8BE5\u9884\u8BBE\u540D\u79F0\u5DF2\u5B58\u5728\uFF0C\u8BF7\u4F7F\u7528\u5176\u4ED6\u540D\u79F0\u3002");
+      return;
+    }
+    try {
+      settings3.charRefPresets[newName] = {
+        imageId: null,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      };
+      settings3.charRefPresetId = newName;
+      saveSettingsDebounced36();
+      loadPresetList();
+      loadCurrentPreset();
+      showCharRefStatus(statusDiv, "\u65B0\u9884\u8BBE\u5DF2\u521B\u5EFA\uFF01", "success");
+    } catch (error) {
+      console.error("[CharRef] \u521B\u5EFA\u9884\u8BBE\u5931\u8D25:", error);
+      showCharRefStatus(statusDiv, "\u521B\u5EFA\u5931\u8D25: " + error.message, "error");
+    }
+  };
+  deleteBtn.onclick = async () => {
+    const presetId = presetSelect.value;
+    if (presetId === "\u9ED8\u8BA4") {
+      alert("\u9ED8\u8BA4\u9884\u8BBE\u4E0D\u53EF\u5220\u9664\u3002");
+      return;
+    }
+    if (!confirm(`\u786E\u5B9A\u8981\u5220\u9664\u9884\u8BBE "${presetId}" \u5417\uFF1F\u6B64\u64CD\u4F5C\u4E0D\u53EF\u6062\u590D\uFF01`)) return;
+    try {
+      const preset = settings3.charRefPresets[presetId];
+      if (preset && preset.imageId) {
+        await deleteConfigImage(preset.imageId);
+      }
+      delete settings3.charRefPresets[presetId];
+      settings3.charRefPresetId = "\u9ED8\u8BA4";
+      saveSettingsDebounced36();
+      loadPresetList();
+      loadCurrentPreset();
+      showCharRefStatus(statusDiv, "\u9884\u8BBE\u5DF2\u5220\u9664\uFF01", "success");
+    } catch (error) {
+      console.error("[CharRef] \u5220\u9664\u9884\u8BBE\u5931\u8D25:", error);
+      showCharRefStatus(statusDiv, "\u5220\u9664\u5931\u8D25: " + error.message, "error");
+    }
+  };
+  exportCurrentBtn.onclick = async () => {
+    const presetId = presetSelect.value;
+    const preset = settings3.charRefPresets[presetId];
+    if (!preset) {
+      alert("\u6CA1\u6709\u9009\u4E2D\u7684\u9884\u8BBE\u53EF\u5BFC\u51FA\u3002");
+      return;
+    }
+    try {
+      const dataToExport = { presets: { [presetId]: preset }, images: {} };
+      if (preset.imageId) {
+        try {
+          const imageData = await getConfigImage(preset.imageId);
+          if (imageData) dataToExport.images[preset.imageId] = imageData;
+        } catch (error) {
+          console.error("[CharRef] \u83B7\u53D6\u56FE\u7247\u5931\u8D25:", error);
+        }
+      }
+      const dataStr = JSON.stringify(dataToExport, null, 2);
+      const blob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `char-ref-preset-${presetId}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showCharRefStatus(statusDiv, "\u9884\u8BBE\u5DF2\u5BFC\u51FA\uFF01", "success");
+    } catch (error) {
+      console.error("[CharRef] \u5BFC\u51FA\u9884\u8BBE\u5931\u8D25:", error);
+      showCharRefStatus(statusDiv, "\u5BFC\u51FA\u5931\u8D25: " + error.message, "error");
+    }
+  };
+  exportAllBtn.onclick = async () => {
+    if (!settings3.charRefPresets || Object.keys(settings3.charRefPresets).length === 0) {
+      alert("\u6CA1\u6709\u9884\u8BBE\u53EF\u5BFC\u51FA\u3002");
+      return;
+    }
+    try {
+      const dataToExport = { presets: settings3.charRefPresets, images: {} };
+      const imageIdsToExport = /* @__PURE__ */ new Set();
+      for (const presetName in settings3.charRefPresets) {
+        const preset = settings3.charRefPresets[presetName];
+        if (preset.imageId) imageIdsToExport.add(preset.imageId);
+      }
+      for (const imageId of imageIdsToExport) {
+        try {
+          const imageData = await getConfigImage(imageId);
+          if (imageData) dataToExport.images[imageId] = imageData;
+        } catch (error) {
+          console.error(`[CharRef] \u83B7\u53D6\u56FE\u7247 ${imageId} \u5931\u8D25:`, error);
+        }
+      }
+      const dataStr = JSON.stringify(dataToExport, null, 2);
+      const blob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "char-ref-presets-all.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showCharRefStatus(statusDiv, `\u5DF2\u5BFC\u51FA ${Object.keys(settings3.charRefPresets).length} \u4E2A\u9884\u8BBE\uFF01`, "success");
+    } catch (error) {
+      console.error("[CharRef] \u5BFC\u51FA\u5168\u90E8\u9884\u8BBE\u5931\u8D25:", error);
+      showCharRefStatus(statusDiv, "\u5BFC\u51FA\u5931\u8D25: " + error.message, "error");
+    }
+  };
+  importBtn.onclick = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".json";
+    input.onchange = async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = async (readerEvent) => {
+        try {
+          const importedData = JSON.parse(readerEvent.target.result);
+          let presetsToImport = {};
+          let imagesToImport = importedData.images || {};
+          if (importedData.presets) {
+            presetsToImport = importedData.presets;
+          } else {
+            presetsToImport = importedData;
+          }
+          let importedCount = 0;
+          let skippedCount = 0;
+          for (const key in presetsToImport) {
+            if (settings3.charRefPresets[key]) {
+              const overwrite = confirm(`\u9884\u8BBE "${key}" \u5DF2\u5B58\u5728\uFF0C\u662F\u5426\u8986\u76D6\uFF1F`);
+              if (!overwrite) {
+                skippedCount++;
+                continue;
+              }
+            }
+            const presetData = presetsToImport[key];
+            if (presetData.imageId && imagesToImport[presetData.imageId]) {
+              try {
+                const newImageId = await saveConfigImage(imagesToImport[presetData.imageId], {
+                  format: "png",
+                  filename: `char_ref_${key}_${Date.now()}`
+                });
+                presetData.imageId = newImageId;
+              } catch (error) {
+                console.error(`[CharRef] \u5BFC\u5165\u56FE\u7247\u5931\u8D25:`, error);
+                presetData.imageId = null;
+              }
+            }
+            settings3.charRefPresets[key] = presetData;
+            importedCount++;
+          }
+          saveSettingsDebounced36();
+          loadPresetList();
+          loadCurrentPreset();
+          showCharRefStatus(statusDiv, `\u6210\u529F\u5BFC\u5165 ${importedCount} \u4E2A\u9884\u8BBE${skippedCount > 0 ? `\uFF0C\u8DF3\u8FC7 ${skippedCount} \u4E2A` : ""}\uFF01`, "success");
+        } catch (error) {
+          console.error("[CharRef] \u5BFC\u5165\u9884\u8BBE\u5931\u8D25:", error);
+          showCharRefStatus(statusDiv, "\u5BFC\u5165\u5931\u8D25: " + error.message, "error");
+        }
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  };
+  console.log("[CharRef] Upload dialog opened");
+}
+function loadCharRefGroupList(selectElement) {
+  const settings3 = extension_settings62[extensionName];
+  const charRefGroups = settings3.charRefGroups || {};
+  const currentGroupId = settings3.charRefGroupId || "\u9ED8\u8BA4\u7EC4";
+  selectElement.innerHTML = "";
+  const groupNames = Object.keys(charRefGroups).sort((a, b) => {
+    if (a === "\u9ED8\u8BA4\u7EC4") return -1;
+    if (b === "\u9ED8\u8BA4\u7EC4") return 1;
+    return a.localeCompare(b, "zh-CN");
+  });
+  groupNames.forEach((groupName) => {
+    const option = document.createElement("option");
+    option.value = groupName;
+    option.textContent = groupName;
+    if (groupName === currentGroupId) {
+      option.selected = true;
+    }
+    selectElement.appendChild(option);
+  });
+  console.log("[CharRef] Loaded preset list:", groupNames.length, "groups");
+}
+function createNewCharRefGroup(selectElement, statusDiv) {
+  const settings3 = extension_settings62[extensionName];
+  const charRefGroups = settings3.charRefGroups || {};
+  const groupName = prompt("\u8BF7\u8F93\u5165\u65B0\u7EC4\u540D\u79F0:");
+  if (!groupName) {
+    return;
+  }
+  const trimmedName = groupName.trim();
+  if (!trimmedName) {
+    showCharRefStatus(statusDiv, "\u7EC4\u540D\u4E0D\u80FD\u4E3A\u7A7A", "error");
+    return;
+  }
+  if (charRefGroups[trimmedName]) {
+    showCharRefStatus(statusDiv, `\u7EC4\u540D "${trimmedName}" \u5DF2\u5B58\u5728`, "error");
+    return;
+  }
+  charRefGroups[trimmedName] = {
+    references: [],
+    createdAt: Date.now(),
+    updatedAt: Date.now()
+  };
+  settings3.charRefGroupId = trimmedName;
+  try {
+    saveSettingsDebounced36();
+  } catch (error) {
+    console.error("[CharRef] Failed to save settings after creating new group:", {
+      groupName: trimmedName,
+      error: error.message,
+      errorName: error.name,
+      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+      stack: error.stack
+    });
+    showCharRefStatus(statusDiv, `\u521B\u5EFA\u6210\u529F\u4F46\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
+    return;
+  }
+  loadCharRefGroupList(selectElement);
+  showCharRefStatus(statusDiv, `\u5DF2\u521B\u5EFA\u65B0\u7EC4 "${trimmedName}"`, "success");
+  console.log("[CharRef] Created new group:", trimmedName);
+}
+function saveCurrentCharRefGroup(selectElement, statusDiv) {
+  const settings3 = extension_settings62[extensionName];
+  const charRefGroups = settings3.charRefGroups || {};
+  const currentGroupId = selectElement.value;
+  if (!currentGroupId) {
+    showCharRefStatus(statusDiv, "\u672A\u9009\u62E9\u7EC4", "error");
+    return;
+  }
+  const currentGroup = charRefGroups[currentGroupId];
+  if (!currentGroup) {
+    showCharRefStatus(statusDiv, "\u5F53\u524D\u7EC4\u4E0D\u5B58\u5728", "error");
+    return;
+  }
+  currentGroup.updatedAt = Date.now();
+  settings3.charRefGroupId = currentGroupId;
+  try {
+    saveSettingsDebounced36();
+  } catch (error) {
+    console.error("[CharRef] Failed to save settings after saving group:", {
+      groupId: currentGroupId,
+      error: error.message,
+      errorName: error.name,
+      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+      stack: error.stack
+    });
+    showCharRefStatus(statusDiv, `\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
+    return;
+  }
+  showCharRefStatus(statusDiv, `\u5DF2\u4FDD\u5B58\u7EC4 "${currentGroupId}"`, "success");
+  console.log("[CharRef] Saved group:", currentGroupId);
+}
+async function deleteCharRefGroup(selectElement, statusDiv) {
+  const settings3 = extension_settings62[extensionName];
+  const charRefGroups = settings3.charRefGroups || {};
+  const currentGroupId = selectElement.value;
+  if (!currentGroupId) {
+    showCharRefStatus(statusDiv, "\u672A\u9009\u62E9\u7EC4", "error");
+    return;
+  }
+  if (currentGroupId === "\u9ED8\u8BA4\u7EC4" && Object.keys(charRefGroups).length === 1) {
+    showCharRefStatus(statusDiv, "\u4E0D\u80FD\u5220\u9664\u552F\u4E00\u7684\u7EC4", "error");
+    return;
+  }
+  const confirmed = confirm(`\u786E\u5B9A\u8981\u5220\u9664\u7EC4 "${currentGroupId}" \u5417\uFF1F\u6B64\u64CD\u4F5C\u65E0\u6CD5\u64A4\u9500\u3002`);
+  if (!confirmed) {
+    return;
+  }
+  const group = charRefGroups[currentGroupId];
+  if (group && Array.isArray(group.references)) {
+    for (const ref of group.references) {
+      try {
+        await deleteConfigImage(ref.imageId);
+      } catch (error) {
+        console.error("[CharRef] Failed to delete image:", ref.imageId, error);
+      }
+    }
+  }
+  delete charRefGroups[currentGroupId];
+  if (charRefGroups["\u9ED8\u8BA4\u7EC4"]) {
+    settings3.charRefGroupId = "\u9ED8\u8BA4\u7EC4";
+  } else {
+    const remainingGroups = Object.keys(charRefGroups);
+    settings3.charRefGroupId = remainingGroups.length > 0 ? remainingGroups[0] : "\u9ED8\u8BA4\u7EC4";
+    if (remainingGroups.length === 0) {
+      charRefGroups["\u9ED8\u8BA4\u7EC4"] = {
+        references: [],
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      };
+      settings3.charRefGroupId = "\u9ED8\u8BA4\u7EC4";
+    }
+  }
+  try {
+    saveSettingsDebounced36();
+  } catch (error) {
+    console.error("[CharRef] Failed to save settings after deleting group:", {
+      groupId: currentGroupId,
+      error: error.message,
+      errorName: error.name,
+      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+      stack: error.stack
+    });
+    showCharRefStatus(statusDiv, `\u5220\u9664\u6210\u529F\u4F46\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
+  }
+  loadCharRefGroupList(selectElement);
+  showCharRefStatus(statusDiv, `\u5DF2\u5220\u9664\u7EC4 "${currentGroupId}"`, "success");
+  console.log("[CharRef] Deleted group:", currentGroupId);
+}
+function showCharRefGroupEditorDialog() {
+  const parent = document.getElementById("st-chatu8-settings") || document.body;
+  const settings3 = extension_settings62[extensionName];
+  ensureCharRefGroups();
+  const backdrop = document.createElement("div");
+  backdrop.className = "st-chatu8-workflow-viz-backdrop";
+  backdrop.innerHTML = `
+        <div class="st-chatu8-workflow-viz-dialog st-chatu8-char-ref-group-editor-dialog">
+            <div class="st-chatu8-workflow-viz-header">
+                <h3>\u89D2\u8272\u7EC4\u7F16\u8F91\u5668</h3>
+                <span class="st-chatu8-workflow-viz-close">&times;</span>
+            </div>
+            <div class="st-chatu8-workflow-viz-body" style="padding: 2rem;">
+                <div class="st-chatu8-char-ref-group-editor-content">
+                    <!-- Group Preset Selector -->
+                    <div class="st-chatu8-field" style="margin-bottom: 1.2rem;">
+                        <label for="char-ref-group-select">\u89D2\u8272\u7EC4\u9884\u8BBE</label>
+                        <div class="st-chatu8-profile-controls">
+                            <select id="char-ref-group-select" class="st-chatu8-select"></select>
+                            <button class="st-chatu8-icon-btn" id="char-ref-group-new" title="\u65B0\u5EFA\u7EC4">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button class="st-chatu8-icon-btn" id="char-ref-group-save" title="\u4FDD\u5B58\u5F53\u524D\u7EC4">
+                                <i class="fa-solid fa-save"></i>
+                            </button>
+                            <button class="st-chatu8-icon-btn danger" id="char-ref-group-delete" title="\u5220\u9664\u5F53\u524D\u7EC4">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Add Reference Button -->
+                    <button type="button" class="st-chatu8-btn" id="char-ref-group-add-ref" style="width: 100%; padding: 1rem; font-size: 16px; font-weight: 600; margin-bottom: 1.5rem;">
+                        <i class="fa-solid fa-plus"></i> \u6DFB\u52A0\u89D2\u8272\u53C2\u8003 (0/4)
+                    </button>
+
+                    <!-- Reference Slots Container -->
+                    <div id="char-ref-slots-container" class="st-chatu8-char-ref-slots">
+                        <!-- Dynamically rendered slots (0-4) -->
+                    </div>
+
+                    <!-- Status Message Area -->
+                    <div id="char-ref-group-status" style="margin-top: 1.5rem; padding: 1rem; border-radius: 6px; font-size: 0.9rem; display: none; line-height: 1.4;"></div>
+                </div>
+            </div>
+        </div>
+    `;
+  parent.appendChild(backdrop);
+  const closeBtn = backdrop.querySelector(".st-chatu8-workflow-viz-close");
+  closeBtn.onclick = () => parent.removeChild(backdrop);
+  backdrop.onclick = (e) => {
+    if (e.target === backdrop) {
+      parent.removeChild(backdrop);
+    }
+  };
+  const groupSelect = document.getElementById("char-ref-group-select");
+  const newBtn = document.getElementById("char-ref-group-new");
+  const saveBtn = document.getElementById("char-ref-group-save");
+  const deleteBtn = document.getElementById("char-ref-group-delete");
+  const addRefBtn = document.getElementById("char-ref-group-add-ref");
+  const slotsContainer = document.getElementById("char-ref-slots-container");
+  const statusDiv = document.getElementById("char-ref-group-status");
+  loadCharRefGroupList(groupSelect);
+  newBtn.onclick = () => createNewCharRefGroup(groupSelect, statusDiv);
+  saveBtn.onclick = () => saveCurrentCharRefGroup(groupSelect, statusDiv);
+  deleteBtn.onclick = () => deleteCharRefGroup(groupSelect, statusDiv);
+  addRefBtn.onclick = () => addCharRefToGroup(groupSelect, slotsContainer, addRefBtn, statusDiv);
+  renderCharRefSlots(slotsContainer, groupSelect, addRefBtn);
+  groupSelect.onchange = () => {
+    settings3.charRefGroupId = groupSelect.value;
+    renderCharRefSlots(slotsContainer, groupSelect, addRefBtn);
+  };
+  console.log("[CharRef] Group editor dialog opened");
+}
+async function renderCharRefSlots(slotsContainer, groupSelect, addRefBtn) {
+  const settings3 = extension_settings62[extensionName];
+  const charRefGroups = settings3.charRefGroups || {};
+  const currentGroupId = groupSelect.value;
+  const currentGroup = charRefGroups[currentGroupId];
+  slotsContainer.innerHTML = "";
+  if (!currentGroup) {
+    console.warn("[CharRef] Current group not found:", currentGroupId);
+    slotsContainer.innerHTML = `
+            <div style="text-align: center; padding: 3rem; color: rgba(255, 255, 255, 0.5);">
+                <i class="fa-solid fa-exclamation-circle" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                <p>\u65E0\u6CD5\u52A0\u8F7D\u7EC4\u6570\u636E</p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">\u8BF7\u5C1D\u8BD5\u9009\u62E9\u5176\u4ED6\u7EC4\u6216\u521B\u5EFA\u65B0\u7EC4</p>
+            </div>
+        `;
+    addRefBtn.disabled = true;
+    addRefBtn.style.opacity = "0.5";
+    return;
+  }
+  if (!Array.isArray(currentGroup.references)) {
+    console.error("[CharRef] Corrupted group data - references is not an array:", currentGroupId, currentGroup);
+    currentGroup.references = [];
+    currentGroup.updatedAt = Date.now();
+    saveSettingsDebounced36();
+    console.log("[CharRef] Fixed corrupted group data");
+  }
+  const references = currentGroup.references;
+  const refCount = references.length;
+  addRefBtn.innerHTML = `<i class="fa-solid fa-plus"></i> \u6DFB\u52A0\u89D2\u8272\u53C2\u8003 (${refCount}/4)`;
+  addRefBtn.disabled = refCount >= 4;
+  addRefBtn.style.opacity = refCount >= 4 ? "0.5" : "1";
+  if (refCount === 0) {
+    slotsContainer.innerHTML = `
+            <div style="text-align: center; padding: 3rem; color: rgba(255, 255, 255, 0.5);">
+                <i class="fa-solid fa-image" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                <p>\u6B64\u7EC4\u8FD8\u6CA1\u6709\u89D2\u8272\u53C2\u8003</p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">\u70B9\u51FB\u4E0A\u65B9\u6309\u94AE\u6DFB\u52A0\u89D2\u8272\u53C2\u8003\u56FE</p>
+            </div>
+        `;
+    return;
+  }
+  for (let i = 0; i < references.length; i++) {
+    const ref = references[i];
+    const slotDiv = document.createElement("div");
+    slotDiv.className = "st-chatu8-char-ref-slot";
+    slotDiv.style.cssText = "border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; background: rgba(0, 0, 0, 0.2);";
+    let imageDataUrl = "";
+    try {
+      imageDataUrl = await getConfigImage(ref.imageId);
+    } catch (error) {
+      console.error("[CharRef] Failed to load image:", ref.imageId, error);
+    }
+    slotDiv.innerHTML = `
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                <!-- Image Thumbnail -->
+                <div style="flex-shrink: 0;">
+                    <img src="${imageDataUrl || ""}" alt="\u53C2\u8003\u56FE ${i + 1}" 
+                         style="width: 120px; height: 120px; object-fit: cover; border-radius: 6px; background: rgba(255, 255, 255, 0.05);"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="width: 120px; height: 120px; display: ${imageDataUrl ? "none" : "flex"}; align-items: center; justify-content: center; border-radius: 6px; background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.3);">
+                        <i class="fa-solid fa-image" style="font-size: 2rem;"></i>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem;">
+                    <!-- Reference Type -->
+                    <div class="st-chatu8-field">
+                        <label for="char-ref-type-${i}">\u53C2\u8003\u7C7B\u578B</label>
+                        <select id="char-ref-type-${i}" class="st-chatu8-select char-ref-type-select" data-index="${i}">
+                            <option value="character" ${ref.type === "character" ? "selected" : ""}>Character</option>
+                            <option value="character_style" ${ref.type === "character_style" ? "selected" : ""}>Character & Style</option>
+                            <option value="style" ${ref.type === "style" ? "selected" : ""}>Style</option>
+                        </select>
+                    </div>
+
+                    <!-- Strength Slider -->
+                    <div class="st-chatu8-field">
+                        <label for="char-ref-strength-${i}">Strength: <span id="char-ref-strength-val-${i}">${ref.strength ?? 0.6}</span></label>
+                        <div class="st-chatu8-range-container">
+                            <input type="range" id="char-ref-strength-range-${i}" class="st-chatu8-range-slider char-ref-strength-range" 
+                                   data-index="${i}" min="0" max="2" step="0.01" value="${ref.strength ?? 0.6}">
+                            <input type="number" id="char-ref-strength-${i}" class="st-chatu8-range-input char-ref-strength-input" 
+                                   data-index="${i}" min="0" step="0.01" value="${ref.strength ?? 0.6}">
+                        </div>
+                    </div>
+
+                    <!-- Fidelity Slider -->
+                    <div class="st-chatu8-field">
+                        <label for="char-ref-fidelity-${i}">Fidelity: <span id="char-ref-fidelity-val-${i}">${ref.fidelity ?? 0.6}</span></label>
+                        <div class="st-chatu8-range-container">
+                            <input type="range" id="char-ref-fidelity-range-${i}" class="st-chatu8-range-slider char-ref-fidelity-range" 
+                                   data-index="${i}" min="0" max="2" step="0.01" value="${ref.fidelity ?? 0.6}">
+                            <input type="number" id="char-ref-fidelity-${i}" class="st-chatu8-range-input char-ref-fidelity-input" 
+                                   data-index="${i}" min="0" step="0.01" value="${ref.fidelity ?? 0.6}">
+                        </div>
+                    </div>
+
+                    <!-- Remove Button -->
+                    <button type="button" class="st-chatu8-btn danger char-ref-remove-btn" data-index="${i}" 
+                            style="align-self: flex-start;">
+                        <i class="fa-solid fa-trash"></i> \u79FB\u9664
+                    </button>
+                </div>
+            </div>
+        `;
+    slotsContainer.appendChild(slotDiv);
+  }
+  bindCharRefSlotEvents(slotsContainer, groupSelect, addRefBtn);
+  console.log("[CharRef] Rendered", refCount, "reference slots");
+}
+async function showCharRefImageLibrary(onSelect) {
+  const parent = document.getElementById("st-chatu8-settings") || document.body;
+  const settings3 = extension_settings62[extensionName];
+  ensureCharRefPresets();
+  const charRefPresets = settings3.charRefPresets || {};
+  let currentPage = 1;
+  let pageSize = 12;
+  let filteredPresets = [];
+  let searchQuery = "";
+  const backdrop = document.createElement("div");
+  backdrop.className = "st-chatu8-workflow-viz-backdrop";
+  backdrop.innerHTML = `
+        <div class="st-chatu8-workflow-viz-dialog st-chatu8-vibe-visual-selector-dialog">
+            <div class="st-chatu8-workflow-viz-header">
+                <h3>\u9009\u62E9\u89D2\u8272\u53C2\u8003\u56FE</h3>
+                <span class="st-chatu8-workflow-viz-close">&times;</span>
+            </div>
+            <div class="st-chatu8-workflow-viz-toolbar" style="justify-content: space-between; align-items: center; gap: 15px; padding: 12px 20px; background: rgba(30, 30, 46, 0.6); border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <div class="st-chatu8-viz-search-container" style="position: relative; flex-grow: 1; max-width: 300px;">
+                    <i class="fa-solid fa-search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #aaa; pointer-events: none;"></i>
+                    <input type="text" class="st-chatu8-viz-search-input" placeholder="\u641C\u7D22\u53C2\u8003\u56FE..." style="width: 100%; padding: 8px 12px 8px 36px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; color: white; outline: none; transition: all 0.3s;">
+                </div>
+            </div>
+            <div class="st-chatu8-pagination-container">
+                <button class="st-chatu8-pagination-btn st-chatu8-pagination-prev" title="\u4E0A\u4E00\u9875">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="st-chatu8-pagination-info">
+                    <span class="st-chatu8-pagination-current">1</span>
+                    <span>/</span>
+                    <span class="st-chatu8-pagination-total">1</span>
+                    <span style="margin-left: 8px; color: #666;">|</span>
+                    <span style="margin-left: 8px;">\u5171 <span class="st-chatu8-pagination-count">0</span> \u4E2A</span>
+                </div>
+                <button class="st-chatu8-pagination-btn st-chatu8-pagination-next" title="\u4E0B\u4E00\u9875">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <div class="st-chatu8-pagination-size-container">
+                    <span class="st-chatu8-pagination-size-label">\u6BCF\u9875</span>
+                    <select class="st-chatu8-pagination-size">
+                        <option value="8">8</option>
+                        <option value="12" selected>12</option>
+                        <option value="16">16</option>
+                        <option value="24">24</option>
+                    </select>
+                </div>
+            </div>
+            <div class="st-chatu8-workflow-viz-body">
+                <div class="st-chatu8-vibe-visual-selector-grid">
+                    <!-- Character reference cards will be inserted here -->
+                </div>
+            </div>
+        </div>
+    `;
+  parent.appendChild(backdrop);
+  const closeBtn = backdrop.querySelector(".st-chatu8-workflow-viz-close");
+  closeBtn.onclick = () => parent.removeChild(backdrop);
+  backdrop.onclick = (e) => {
+    if (e.target === backdrop) {
+      parent.removeChild(backdrop);
+    }
+  };
+  const gridContainer = backdrop.querySelector(".st-chatu8-vibe-visual-selector-grid");
+  const searchInput = backdrop.querySelector(".st-chatu8-viz-search-input");
+  const paginationPrev = backdrop.querySelector(".st-chatu8-pagination-prev");
+  const paginationNext = backdrop.querySelector(".st-chatu8-pagination-next");
+  const paginationCurrent = backdrop.querySelector(".st-chatu8-pagination-current");
+  const paginationTotal = backdrop.querySelector(".st-chatu8-pagination-total");
+  const paginationCount = backdrop.querySelector(".st-chatu8-pagination-count");
+  const paginationSizeSelect = backdrop.querySelector(".st-chatu8-pagination-size");
+  const allPresetNames = Object.keys(charRefPresets).filter((name) => charRefPresets[name].imageId).sort((a, b) => {
+    if (a === "\u9ED8\u8BA4") return -1;
+    if (b === "\u9ED8\u8BA4") return 1;
+    return a.localeCompare(b, "zh-CN");
+  });
+  function updateFilteredPresets() {
+    if (searchQuery) {
+      filteredPresets = allPresetNames.filter(
+        (name) => name.toLowerCase().includes(searchQuery)
+      );
+    } else {
+      filteredPresets = [...allPresetNames];
+    }
+  }
+  function updatePaginationUI() {
+    const totalPages = Math.ceil(filteredPresets.length / pageSize) || 1;
+    paginationCurrent.textContent = currentPage;
+    paginationTotal.textContent = totalPages;
+    paginationCount.textContent = filteredPresets.length;
+    paginationPrev.disabled = currentPage <= 1;
+    paginationPrev.style.opacity = currentPage <= 1 ? "0.5" : "1";
+    paginationPrev.style.cursor = currentPage <= 1 ? "not-allowed" : "pointer";
+    paginationNext.disabled = currentPage >= totalPages;
+    paginationNext.style.opacity = currentPage >= totalPages ? "0.5" : "1";
+    paginationNext.style.cursor = currentPage >= totalPages ? "not-allowed" : "pointer";
+  }
+  async function renderCurrentPage() {
+    gridContainer.style.opacity = "0";
+    gridContainer.style.transform = "translateY(10px)";
+    await new Promise((resolve) => setTimeout(resolve, 150));
+    gridContainer.innerHTML = "";
+    if (filteredPresets.length === 0) {
+      gridContainer.innerHTML = `
+                <div style="
+                    grid-column: 1 / -1;
+                    text-align: center;
+                    padding: 3rem;
+                    color: rgba(255, 255, 255, 0.5);
+                ">
+                    <i class="fa-solid fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                    <p>${searchQuery ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u53C2\u8003\u56FE" : "\u56FE\u7247\u5E93\u4E3A\u7A7A"}</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">${searchQuery ? "\u8BF7\u5C1D\u8BD5\u5176\u4ED6\u641C\u7D22\u8BCD" : "\u8BF7\u5148\u4E0A\u4F20\u4E00\u4E9B\u89D2\u8272\u53C2\u8003\u56FE"}</p>
+                </div>
+            `;
+      updatePaginationUI();
+      gridContainer.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+      gridContainer.style.opacity = "1";
+      gridContainer.style.transform = "translateY(0)";
+      return;
+    }
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const pagePresets = filteredPresets.slice(startIndex, endIndex);
+    for (const presetName of pagePresets) {
+      const preset = charRefPresets[presetName];
+      const card = document.createElement("div");
+      card.className = "st-chatu8-vibe-card";
+      const thumbnailDiv = document.createElement("div");
+      thumbnailDiv.className = "st-chatu8-vibe-card-thumbnail";
+      try {
+        const imageData = await getConfigImage(preset.imageId);
+        if (imageData) {
+          const img = document.createElement("img");
+          img.src = imageData;
+          img.alt = presetName;
+          thumbnailDiv.appendChild(img);
+        } else {
+          thumbnailDiv.innerHTML = `
+                        <div class="st-chatu8-vibe-card-placeholder">
+                            <i class="fa-solid fa-image"></i>
+                            <div>\u65E0\u56FE\u50CF</div>
+                        </div>
+                    `;
+        }
+      } catch (error) {
+        thumbnailDiv.innerHTML = `
+                    <div class="st-chatu8-vibe-card-error">
+                        <i class="fa-solid fa-exclamation-triangle"></i>
+                        <div>\u52A0\u8F7D\u5931\u8D25</div>
+                    </div>
+                `;
+        thumbnailDiv.title = `\u52A0\u8F7D\u5931\u8D25: ${error.message}`;
+        console.error("[CharRef] Failed to load image:", preset.imageId, error);
+      }
+      const infoDiv = document.createElement("div");
+      infoDiv.className = "st-chatu8-vibe-card-info";
+      const nameDiv = document.createElement("div");
+      nameDiv.className = "st-chatu8-vibe-card-name";
+      nameDiv.textContent = presetName;
+      infoDiv.appendChild(nameDiv);
+      card.appendChild(thumbnailDiv);
+      card.appendChild(infoDiv);
+      card.onclick = () => {
+        onSelect(preset.imageId);
+        parent.removeChild(backdrop);
+        console.log("[CharRef] Selected image:", presetName, preset.imageId);
+      };
+      gridContainer.appendChild(card);
+    }
+    gridContainer.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+    gridContainer.style.opacity = "1";
+    gridContainer.style.transform = "translateY(0)";
+    updatePaginationUI();
+  }
+  searchInput.addEventListener("input", (e) => {
+    searchQuery = e.target.value.toLowerCase();
+    currentPage = 1;
+    updateFilteredPresets();
+    renderCurrentPage();
+  });
+  paginationPrev.onclick = () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderCurrentPage();
+    }
+  };
+  paginationNext.onclick = () => {
+    const totalPages = Math.ceil(filteredPresets.length / pageSize) || 1;
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderCurrentPage();
+    }
+  };
+  paginationSizeSelect.onchange = (e) => {
+    pageSize = parseInt(e.target.value);
+    currentPage = 1;
+    renderCurrentPage();
+  };
+  updateFilteredPresets();
+  renderCurrentPage();
+}
+function addCharRefToGroup(groupSelect, slotsContainer, addRefBtn, statusDiv) {
+  const settings3 = extension_settings62[extensionName];
+  const charRefGroups = settings3.charRefGroups || {};
+  const currentGroupId = groupSelect.value;
+  const currentGroup = charRefGroups[currentGroupId];
+  if (!currentGroup) {
+    showCharRefStatus(statusDiv, "\u9519\u8BEF: \u672A\u9009\u62E9\u7EC4\u3002\u8BF7\u5148\u9009\u62E9\u6216\u521B\u5EFA\u4E00\u4E2A\u7EC4\u3002", "error");
+    console.error("[CharRef] No group selected when attempting to add reference");
+    return;
+  }
+  const references = currentGroup.references || [];
+  if (references.length >= 4) {
+    showCharRefStatus(statusDiv, "\u5DF2\u8FBE\u5230\u6700\u5927\u6570\u91CF (4\u4E2A)\u3002\u6BCF\u4E2A\u7EC4\u6700\u591A\u53EF\u5305\u542B 4 \u4E2A\u89D2\u8272\u53C2\u8003\u3002", "error");
+    console.warn("[CharRef] Maximum reference limit reached for group:", currentGroupId);
+    return;
+  }
+  try {
+    showCharRefImageLibrary((imageId) => {
+      try {
+        if (!imageId || typeof imageId !== "string") {
+          showCharRefStatus(statusDiv, "\u9519\u8BEF: \u65E0\u6548\u7684\u56FE\u7247 ID", "error");
+          console.error("[CharRef] Invalid imageId received:", imageId);
+          return;
+        }
+        currentGroup.references.push({
+          imageId,
+          type: "character",
+          strength: 0.6,
+          fidelity: 0.6
+        });
+        currentGroup.updatedAt = Date.now();
+        try {
+          saveSettingsDebounced36();
+        } catch (error) {
+          console.error("[CharRef] Failed to save settings after adding reference:", {
+            imageId: imageId.substring(0, 12) + "...",
+            error: error.message,
+            errorName: error.name,
+            groupId: currentGroupId,
+            timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+            stack: error.stack
+          });
+          showCharRefStatus(statusDiv, `\u9519\u8BEF: \u4FDD\u5B58\u8BBE\u7F6E\u5931\u8D25 - ${error.message}`, "error");
+          return;
+        }
+        renderCharRefSlots(slotsContainer, groupSelect, addRefBtn);
+        showCharRefStatus(statusDiv, "\u89D2\u8272\u53C2\u8003\u5DF2\u6210\u529F\u6DFB\u52A0\u5230\u7EC4", "success");
+        console.log("[CharRef] Successfully added reference to group:", currentGroupId, imageId);
+      } catch (error) {
+        console.error("[CharRef] Error adding reference to group:", {
+          error: error.message,
+          errorName: error.name,
+          groupId: currentGroupId,
+          timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+          stack: error.stack
+        });
+        showCharRefStatus(statusDiv, `\u9519\u8BEF: \u6DFB\u52A0\u89D2\u8272\u53C2\u8003\u5931\u8D25 - ${error.message}`, "error");
+      }
+    });
+  } catch (error) {
+    console.error("[CharRef] Error opening image library:", {
+      error: error.message,
+      errorName: error.name,
+      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+      stack: error.stack
+    });
+    showCharRefStatus(statusDiv, `\u9519\u8BEF: \u65E0\u6CD5\u6253\u5F00\u56FE\u7247\u5E93 - ${error.message}`, "error");
+  }
+}
+async function removeCharRefFromGroup(index, groupSelect, slotsContainer, addRefBtn, statusDiv) {
+  const settings3 = extension_settings62[extensionName];
+  const charRefGroups = settings3.charRefGroups || {};
+  const currentGroupId = groupSelect.value;
+  const currentGroup = charRefGroups[currentGroupId];
+  if (!currentGroup || !Array.isArray(currentGroup.references)) {
+    showCharRefStatus(statusDiv, "\u9519\u8BEF: \u7EC4\u6570\u636E\u65E0\u6548", "error");
+    return;
+  }
+  if (index < 0 || index >= currentGroup.references.length) {
+    showCharRefStatus(statusDiv, "\u9519\u8BEF: \u65E0\u6548\u7684\u7D22\u5F15", "error");
+    return;
+  }
+  const confirmed = confirm("\u786E\u5B9A\u8981\u79FB\u9664\u8FD9\u4E2A\u89D2\u8272\u53C2\u8003\u5417\uFF1F");
+  if (!confirmed) {
+    return;
+  }
+  const ref = currentGroup.references[index];
+  currentGroup.references.splice(index, 1);
+  currentGroup.updatedAt = Date.now();
+  try {
+    saveSettingsDebounced36();
+  } catch (error) {
+    console.error("[CharRef] Failed to save settings after removing reference:", error);
+    showCharRefStatus(statusDiv, `\u9519\u8BEF: \u4FDD\u5B58\u8BBE\u7F6E\u5931\u8D25 - ${error.message}`, "error");
+    return;
+  }
+  await renderCharRefSlots(slotsContainer, groupSelect, addRefBtn);
+  showCharRefStatus(statusDiv, "\u89D2\u8272\u53C2\u8003\u5DF2\u79FB\u9664", "success");
+  console.log("[CharRef] Removed reference at index:", index);
+}
+function bindCharRefSlotEvents(slotsContainer, groupSelect, addRefBtn) {
+  const settings3 = extension_settings62[extensionName];
+  const charRefGroups = settings3.charRefGroups || {};
+  const currentGroupId = groupSelect.value;
+  const currentGroup = charRefGroups[currentGroupId];
+  const statusDiv = document.getElementById("char-ref-group-status");
+  if (!currentGroup) return;
+  const typeSelects = slotsContainer.querySelectorAll(".char-ref-type-select");
+  typeSelects.forEach((select) => {
+    select.onchange = (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const newType = e.target.value;
+      if (currentGroup.references[index]) {
+        currentGroup.references[index].type = newType;
+        currentGroup.updatedAt = Date.now();
+        try {
+          saveSettingsDebounced36();
+          console.log("[CharRef] Updated reference type:", index, newType);
+        } catch (error) {
+          console.error("[CharRef] Failed to save after type change:", error);
+          showCharRefStatus(statusDiv, `\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
+        }
+      }
+    };
+  });
+  const strengthRanges = slotsContainer.querySelectorAll(".char-ref-strength-range");
+  const strengthInputs = slotsContainer.querySelectorAll(".char-ref-strength-input");
+  strengthRanges.forEach((range) => {
+    range.oninput = (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const value = parseFloat(e.target.value);
+      const valueSpan = document.getElementById(`char-ref-strength-val-${index}`);
+      if (valueSpan) valueSpan.textContent = value.toFixed(2);
+      const numberInput = document.getElementById(`char-ref-strength-${index}`);
+      if (numberInput) numberInput.value = value;
+      if (currentGroup.references[index]) {
+        currentGroup.references[index].strength = value;
+        currentGroup.updatedAt = Date.now();
+        try {
+          saveSettingsDebounced36();
+        } catch (error) {
+          console.error("[CharRef] Failed to save after strength change:", error);
+        }
+      }
+    };
+  });
+  strengthInputs.forEach((input) => {
+    input.oninput = (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const value = parseFloat(e.target.value);
+      const clampedValue = Math.max(0, value);
+      const valueSpan = document.getElementById(`char-ref-strength-val-${index}`);
+      if (valueSpan) valueSpan.textContent = clampedValue.toFixed(2);
+      const rangeInput = document.getElementById(`char-ref-strength-range-${index}`);
+      if (rangeInput) rangeInput.value = clampedValue;
+      if (currentGroup.references[index]) {
+        currentGroup.references[index].strength = clampedValue;
+        currentGroup.updatedAt = Date.now();
+        try {
+          saveSettingsDebounced36();
+        } catch (error) {
+          console.error("[CharRef] Failed to save after strength change:", error);
+        }
+      }
+    };
+  });
+  const fidelityRanges = slotsContainer.querySelectorAll(".char-ref-fidelity-range");
+  const fidelityInputs = slotsContainer.querySelectorAll(".char-ref-fidelity-input");
+  fidelityRanges.forEach((range) => {
+    range.oninput = (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const value = parseFloat(e.target.value);
+      const valueSpan = document.getElementById(`char-ref-fidelity-val-${index}`);
+      if (valueSpan) valueSpan.textContent = value.toFixed(2);
+      const numberInput = document.getElementById(`char-ref-fidelity-${index}`);
+      if (numberInput) numberInput.value = value;
+      if (currentGroup.references[index]) {
+        currentGroup.references[index].fidelity = value;
+        currentGroup.updatedAt = Date.now();
+        try {
+          saveSettingsDebounced36();
+        } catch (error) {
+          console.error("[CharRef] Failed to save after fidelity change:", error);
+        }
+      }
+    };
+  });
+  fidelityInputs.forEach((input) => {
+    input.oninput = (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const value = parseFloat(e.target.value);
+      const clampedValue = Math.max(0, value);
+      const valueSpan = document.getElementById(`char-ref-fidelity-val-${index}`);
+      if (valueSpan) valueSpan.textContent = clampedValue.toFixed(2);
+      const rangeInput = document.getElementById(`char-ref-fidelity-range-${index}`);
+      if (rangeInput) rangeInput.value = clampedValue;
+      if (currentGroup.references[index]) {
+        currentGroup.references[index].fidelity = clampedValue;
+        currentGroup.updatedAt = Date.now();
+        try {
+          saveSettingsDebounced36();
+        } catch (error) {
+          console.error("[CharRef] Failed to save after fidelity change:", error);
+        }
+      }
+    };
+  });
+  const removeButtons = slotsContainer.querySelectorAll(".char-ref-remove-btn");
+  removeButtons.forEach((button) => {
+    button.onclick = (e) => {
+      const index = parseInt(e.target.closest(".char-ref-remove-btn").dataset.index);
+      removeCharRefFromGroup(index, groupSelect, slotsContainer, addRefBtn, statusDiv);
+    };
+  });
+}
+function initCharRefGroupEditor(settingsModal) {
+  ensureCharRefGroups();
+  ensureCharRefPresets();
+  const charRefUploadBtn = settingsModal.find("#novelai-char-ref-upload-btn");
+  if (charRefUploadBtn.length) {
+    charRefUploadBtn.on("click", () => {
+      showCharRefUploadDialog();
+    });
+  }
+  const charRefGroupEditorBtn = settingsModal.find("#novelai-char-ref-group-editor-btn");
+  if (charRefGroupEditorBtn.length) {
+    charRefGroupEditorBtn.on("click", () => {
+      showCharRefGroupEditorDialog();
+    });
+  }
+}
+
+// utils/settings/preciseCharRefGroupEditor.js
+var MAX_PRECISE_REFERENCES = 4;
+var DEFAULT_GROUP_NAME = "\u9ED8\u8BA4\u7EC4";
+var PRECISE_REF_TYPES = [
+  { value: "character_style", label: "Character & Style", supportsOutfitPref: true, defaultPreferSameOutfit: false },
+  { value: "character", label: "Character", supportsOutfitPref: true, defaultPreferSameOutfit: false },
+  { value: "style", label: "Style", supportsOutfitPref: false, defaultPreferSameOutfit: false },
+  { value: "costume", label: "Outfit", supportsOutfitPref: false, defaultPreferSameOutfit: false }
+];
+var PRECISE_REF_TYPE_MAP = Object.fromEntries(PRECISE_REF_TYPES.map((item) => [item.value, item]));
+var statusHideTimer = null;
+var renderSeqToken = 0;
+function normalizePreciseReference(ref) {
+  const rawType = ref && PRECISE_REF_TYPE_MAP[ref.type] ? ref.type : "character_style";
+  const typeMeta = PRECISE_REF_TYPE_MAP[rawType];
+  const parsedStrength = Number(ref?.strength);
+  const strength = Number.isFinite(parsedStrength) ? Math.min(5, Math.max(0, parsedStrength)) : 1;
+  const preferSameOutfit = typeof ref?.preferSameOutfit === "boolean" ? ref.preferSameOutfit : typeMeta.defaultPreferSameOutfit;
+  return {
+    imageId: typeof ref?.imageId === "string" ? ref.imageId : "",
+    type: rawType,
+    preferSameOutfit,
+    strength,
+    enabled: ref?.enabled !== false
+  };
+}
+function supportsOutfitPreference(type) {
+  return Boolean(PRECISE_REF_TYPE_MAP[type]?.supportsOutfitPref);
+}
+function ensurePreciseCharRefGroups() {
+  const settings3 = extension_settings63[extensionName];
+  if (!settings3.preciseCharRefGroups || typeof settings3.preciseCharRefGroups !== "object" || Array.isArray(settings3.preciseCharRefGroups)) {
+    if (settings3.preciseCharRefGroups) {
+      console.error("[PreciseCharRef] \u68C0\u6D4B\u5230\u635F\u574F\u7684\u7EC4\u6570\u636E\uFF0C\u6B63\u5728\u91CD\u7F6E\u4E3A\u9ED8\u8BA4\u7EC4:", settings3.preciseCharRefGroups);
+    }
+    settings3.preciseCharRefGroups = {
+      [DEFAULT_GROUP_NAME]: {
+        references: [],
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      }
+    };
+  }
+  for (const groupName of Object.keys(settings3.preciseCharRefGroups)) {
+    const group = settings3.preciseCharRefGroups[groupName];
+    if (!group || typeof group !== "object") {
+      console.error("[PreciseCharRef] \u6E05\u7406\u65E0\u6548\u7684\u7EC4:", groupName);
+      delete settings3.preciseCharRefGroups[groupName];
+      continue;
+    }
+    if (!Array.isArray(group.references)) {
+      group.references = [];
+    } else {
+      group.references = group.references.map((item) => normalizePreciseReference(item));
+    }
+    if (typeof group.createdAt !== "number") {
+      group.createdAt = Date.now();
+    }
+    if (typeof group.updatedAt !== "number") {
+      group.updatedAt = Date.now();
+    }
+  }
+  if (Object.keys(settings3.preciseCharRefGroups).length === 0) {
+    settings3.preciseCharRefGroups[DEFAULT_GROUP_NAME] = {
+      references: [],
+      createdAt: Date.now(),
+      updatedAt: Date.now()
+    };
+  }
+  if (!settings3.preciseCharRefGroupId || !settings3.preciseCharRefGroups[settings3.preciseCharRefGroupId]) {
+    const firstGroupName = Object.keys(settings3.preciseCharRefGroups)[0];
+    settings3.preciseCharRefGroupId = firstGroupName || DEFAULT_GROUP_NAME;
+  }
+  return settings3.preciseCharRefGroups;
+}
+function validatePreciseReference(ref) {
+  const errors = [];
+  if (!ref || !ref.imageId) {
+    errors.push("\u7F3A\u5C11\u56FE\u7247ID");
+  }
+  if (!ref || !PRECISE_REF_TYPE_MAP[ref.type]) {
+    errors.push("\u65E0\u6548\u7684\u53C2\u8003\u7C7B\u578B");
+  }
+  if (typeof ref?.strength !== "number" || Number.isNaN(ref.strength) || ref.strength < 0 || ref.strength > 5) {
+    errors.push("Strength \u503C\u5FC5\u987B\u5728 0 \u5230 5 \u4E4B\u95F4");
+  }
+  return errors;
+}
+function validatePreciseGroup(group) {
+  const errors = [];
+  if (!group || typeof group !== "object") {
+    errors.push("\u7EC4\u6570\u636E\u65E0\u6548");
+    return errors;
+  }
+  if (!Array.isArray(group.references)) {
+    errors.push("references \u5FC5\u987B\u662F\u6570\u7EC4");
+  } else {
+    if (group.references.length > MAX_PRECISE_REFERENCES) {
+      errors.push(`\u6BCF\u4E2A\u7EC4\u6700\u591A\u53EA\u80FD\u5305\u542B ${MAX_PRECISE_REFERENCES} \u4E2A\u53C2\u8003\u56FE`);
+    }
+    group.references.forEach((ref, index) => {
+      const refErrors = validatePreciseReference(ref);
+      refErrors.forEach((err) => errors.push(`\u53C2\u8003 ${index + 1}: ${err}`));
+    });
+  }
+  return errors;
+}
+function showPreciseStatus(statusDiv, message, type = "info") {
+  if (!statusDiv) return;
+  const styleMap = {
+    success: {
+      bg: "rgba(76, 175, 80, 0.1)",
+      color: "#4caf50",
+      border: "1px solid rgba(76, 175, 80, 0.3)"
+    },
+    error: {
+      bg: "rgba(244, 67, 54, 0.1)",
+      color: "#f44336",
+      border: "1px solid rgba(244, 67, 54, 0.3)"
+    },
+    info: {
+      bg: "rgba(33, 150, 243, 0.1)",
+      color: "#2196f3",
+      border: "1px solid rgba(33, 150, 243, 0.3)"
+    }
+  };
+  const palette = styleMap[type] || styleMap.info;
+  statusDiv.textContent = message;
+  statusDiv.style.display = "block";
+  statusDiv.style.backgroundColor = palette.bg;
+  statusDiv.style.color = palette.color;
+  statusDiv.style.border = palette.border;
+  if (statusHideTimer) {
+    clearTimeout(statusHideTimer);
+  }
+  statusHideTimer = setTimeout(() => {
+    statusDiv.style.display = "none";
+  }, 5e3);
+}
+function loadPreciseGroupList(selectElement) {
+  const settings3 = extension_settings63[extensionName];
+  const groups = settings3.preciseCharRefGroups || {};
+  const currentGroupId = settings3.preciseCharRefGroupId || DEFAULT_GROUP_NAME;
+  selectElement.innerHTML = "";
+  const groupNames = Object.keys(groups).sort((a, b) => {
+    if (a === DEFAULT_GROUP_NAME) return -1;
+    if (b === DEFAULT_GROUP_NAME) return 1;
+    return a.localeCompare(b, "zh-CN");
+  });
+  groupNames.forEach((groupName) => {
+    const option = document.createElement("option");
+    option.value = groupName;
+    option.textContent = groupName;
+    if (groupName === currentGroupId) {
+      option.selected = true;
+    }
+    selectElement.appendChild(option);
+  });
+}
+async function createNewPreciseGroup(selectElement, slotsContainer, addRefBtn, statusDiv) {
+  const settings3 = extension_settings63[extensionName];
+  const groups = settings3.preciseCharRefGroups || {};
+  const groupName = await stylInput("\u8BF7\u8F93\u5165\u65B0\u7CBE\u51C6\u89D2\u8272\u7EC4\u540D\u79F0:");
+  if (!groupName) return;
+  const trimmedName = groupName.trim();
+  if (!trimmedName) {
+    showPreciseStatus(statusDiv, "\u7EC4\u540D\u4E0D\u80FD\u4E3A\u7A7A", "error");
+    return;
+  }
+  if (groups[trimmedName]) {
+    showPreciseStatus(statusDiv, `\u7EC4\u540D "${trimmedName}" \u5DF2\u5B58\u5728`, "error");
+    return;
+  }
+  groups[trimmedName] = {
+    references: [],
+    createdAt: Date.now(),
+    updatedAt: Date.now()
+  };
+  settings3.preciseCharRefGroupId = trimmedName;
+  try {
+    saveSettingsDebounced37();
+  } catch (error) {
+    console.error("[PreciseCharRef] \u4FDD\u5B58\u65B0\u5EFA\u7EC4\u5931\u8D25:", error);
+    showPreciseStatus(statusDiv, `\u521B\u5EFA\u6210\u529F\u4F46\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
+    return;
+  }
+  loadPreciseGroupList(selectElement);
+  await renderPreciseSlots(slotsContainer, selectElement, addRefBtn, statusDiv);
+  showPreciseStatus(statusDiv, `\u5DF2\u521B\u5EFA\u7CBE\u51C6\u89D2\u8272\u7EC4 "${trimmedName}"`, "success");
+}
+function saveCurrentPreciseGroup(selectElement, statusDiv) {
+  const settings3 = extension_settings63[extensionName];
+  const groups = settings3.preciseCharRefGroups || {};
+  const currentGroupId = selectElement.value;
+  if (!currentGroupId || !groups[currentGroupId]) {
+    showPreciseStatus(statusDiv, "\u5F53\u524D\u7EC4\u4E0D\u5B58\u5728", "error");
+    return;
+  }
+  const errors = validatePreciseGroup(groups[currentGroupId]);
+  if (errors.length > 0) {
+    showPreciseStatus(statusDiv, `\u6821\u9A8C\u5931\u8D25:
+${errors.join("\n")}`, "error");
+    return;
+  }
+  groups[currentGroupId].updatedAt = Date.now();
+  settings3.preciseCharRefGroupId = currentGroupId;
+  try {
+    saveSettingsDebounced37();
+    showPreciseStatus(statusDiv, `\u5DF2\u4FDD\u5B58\u7EC4 "${currentGroupId}"`, "success");
+  } catch (error) {
+    console.error("[PreciseCharRef] \u4FDD\u5B58\u7EC4\u5931\u8D25:", error);
+    showPreciseStatus(statusDiv, `\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
+  }
+}
+async function deleteCurrentPreciseGroup(selectElement, slotsContainer, addRefBtn, statusDiv) {
+  const settings3 = extension_settings63[extensionName];
+  const groups = settings3.preciseCharRefGroups || {};
+  const currentGroupId = selectElement.value;
+  if (!currentGroupId) {
+    showPreciseStatus(statusDiv, "\u672A\u9009\u62E9\u7EC4", "error");
+    return;
+  }
+  if (currentGroupId === DEFAULT_GROUP_NAME && Object.keys(groups).length === 1) {
+    showPreciseStatus(statusDiv, "\u4E0D\u80FD\u5220\u9664\u552F\u4E00\u7684\u9ED8\u8BA4\u7EC4", "error");
+    return;
+  }
+  const confirmed = await stylishConfirm(`\u786E\u5B9A\u8981\u5220\u9664\u7CBE\u51C6\u89D2\u8272\u7EC4 "${currentGroupId}" \u5417\uFF1F\uFF08\u5171\u4EAB\u56FE\u5E93\u4E2D\u7684\u539F\u56FE\u4E0D\u4F1A\u88AB\u5220\u9664\uFF09`);
+  if (!confirmed) return;
+  delete groups[currentGroupId];
+  if (groups[DEFAULT_GROUP_NAME]) {
+    settings3.preciseCharRefGroupId = DEFAULT_GROUP_NAME;
+  } else {
+    const remaining = Object.keys(groups);
+    if (remaining.length === 0) {
+      groups[DEFAULT_GROUP_NAME] = {
+        references: [],
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      };
+      settings3.preciseCharRefGroupId = DEFAULT_GROUP_NAME;
+    } else {
+      settings3.preciseCharRefGroupId = remaining[0];
+    }
+  }
+  try {
+    saveSettingsDebounced37();
+  } catch (error) {
+    console.error("[PreciseCharRef] \u5220\u9664\u7EC4\u540E\u4FDD\u5B58\u5931\u8D25:", error);
+    showPreciseStatus(statusDiv, `\u5220\u9664\u6210\u529F\u4F46\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
+  }
+  loadPreciseGroupList(selectElement);
+  await renderPreciseSlots(slotsContainer, selectElement, addRefBtn, statusDiv);
+  showPreciseStatus(statusDiv, `\u5DF2\u5220\u9664\u7EC4 "${currentGroupId}"`, "success");
+}
+function addReferenceToPreciseGroup(groupSelect, slotsContainer, addRefBtn, statusDiv) {
+  const settings3 = extension_settings63[extensionName];
+  const groups = settings3.preciseCharRefGroups || {};
+  const currentGroupId = groupSelect.value;
+  const currentGroup = groups[currentGroupId];
+  if (!currentGroup) {
+    showPreciseStatus(statusDiv, "\u9519\u8BEF: \u672A\u627E\u5230\u76EE\u6807\u7EC4\uFF0C\u8BF7\u5148\u9009\u62E9\u6216\u65B0\u5EFA\u7EC4\u3002", "error");
+    return;
+  }
+  if (!Array.isArray(currentGroup.references)) {
+    currentGroup.references = [];
+  }
+  if (currentGroup.references.length >= MAX_PRECISE_REFERENCES) {
+    showPreciseStatus(statusDiv, `\u6BCF\u4E2A\u7CBE\u51C6\u89D2\u8272\u7EC4\u6700\u591A\u53EA\u80FD\u6DFB\u52A0 ${MAX_PRECISE_REFERENCES} \u4E2A\u53C2\u8003\u56FE\u3002`, "error");
+    return;
+  }
+  try {
+    showCharRefImageLibrary((imageId) => {
+      if (!imageId || typeof imageId !== "string") {
+        showPreciseStatus(statusDiv, "\u9519\u8BEF: \u65E0\u6548\u7684\u56FE\u7247 ID", "error");
+        return;
+      }
+      currentGroup.references.push(normalizePreciseReference({
+        imageId,
+        type: "character_style",
+        preferSameOutfit: false,
+        strength: 1,
+        enabled: true
+      }));
+      currentGroup.updatedAt = Date.now();
+      try {
+        saveSettingsDebounced37();
+      } catch (error) {
+        console.error("[PreciseCharRef] \u6DFB\u52A0\u53C2\u8003\u56FE\u540E\u4FDD\u5B58\u5931\u8D25:", error);
+        showPreciseStatus(statusDiv, `\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
+        return;
+      }
+      renderPreciseSlots(slotsContainer, groupSelect, addRefBtn, statusDiv);
+      showPreciseStatus(statusDiv, "\u5DF2\u6DFB\u52A0\u53C2\u8003\u56FE\u5230\u5F53\u524D\u7CBE\u51C6\u89D2\u8272\u7EC4", "success");
+    });
+  } catch (error) {
+    console.error("[PreciseCharRef] \u6253\u5F00\u5171\u4EAB\u56FE\u7247\u5E93\u5931\u8D25:", error);
+    showPreciseStatus(statusDiv, `\u65E0\u6CD5\u6253\u5F00\u56FE\u7247\u5E93: ${error.message}`, "error");
+  }
+}
+function createPreciseSlotElement(rawRef, index, imageDataUrl, callbacks) {
+  const ref = normalizePreciseReference(rawRef);
+  const slotDiv = document.createElement("div");
+  slotDiv.className = `st-chatu8-char-ref-slot${ref.enabled ? "" : " is-disabled"}`;
+  const row = document.createElement("div");
+  row.style.cssText = "display: flex; gap: 1rem; align-items: flex-start;";
+  const thumbWrap = document.createElement("div");
+  thumbWrap.style.flexShrink = "0";
+  const img = document.createElement("img");
+  img.alt = `\u7CBE\u51C6\u53C2\u8003\u56FE ${index + 1}`;
+  img.style.cssText = "width: 120px; height: 120px; object-fit: cover; border-radius: 6px; background: rgba(255, 255, 255, 0.05);";
+  const placeholder = document.createElement("div");
+  placeholder.style.cssText = "width: 120px; height: 120px; align-items: center; justify-content: center; border-radius: 6px; background: var(--st-chatu8-bg-tertiary, rgba(255, 255, 255, 0.08)); color: var(--st-chatu8-text-secondary, #888);";
+  placeholder.innerHTML = '<i class="fa-solid fa-image" style="font-size: 2rem;"></i>';
+  if (imageDataUrl) {
+    img.src = imageDataUrl;
+    img.style.display = "block";
+    placeholder.style.display = "none";
+    img.onerror = () => {
+      img.style.display = "none";
+      placeholder.style.display = "flex";
+    };
+  } else {
+    img.style.display = "none";
+    placeholder.style.display = "flex";
+  }
+  thumbWrap.appendChild(img);
+  thumbWrap.appendChild(placeholder);
+  const controlsWrap = document.createElement("div");
+  controlsWrap.style.cssText = "flex: 1; display: flex; flex-direction: column; gap: 0.85rem;";
+  const typeField = document.createElement("div");
+  typeField.className = "st-chatu8-field";
+  const typeLabel = document.createElement("label");
+  typeLabel.htmlFor = `precise-char-ref-type-${index}`;
+  typeLabel.textContent = "\u53C2\u8003\u7C7B\u578B";
+  const typeSelect = document.createElement("select");
+  typeSelect.id = `precise-char-ref-type-${index}`;
+  typeSelect.className = "st-chatu8-select";
+  PRECISE_REF_TYPES.forEach((opt) => {
+    const optionEl = document.createElement("option");
+    optionEl.value = opt.value;
+    optionEl.textContent = opt.label;
+    optionEl.selected = ref.type === opt.value;
+    typeSelect.appendChild(optionEl);
+  });
+  typeSelect.value = ref.type;
+  typeField.appendChild(typeLabel);
+  typeField.appendChild(typeSelect);
+  controlsWrap.appendChild(typeField);
+  const outfitField = document.createElement("div");
+  outfitField.className = "st-chatu8-field";
+  outfitField.style.display = supportsOutfitPreference(ref.type) ? "flex" : "none";
+  const outfitLabel = document.createElement("label");
+  outfitLabel.className = "st-chatu8-precise-outfit-row";
+  outfitLabel.htmlFor = `precise-char-ref-outfit-${index}`;
+  const outfitCheckbox = document.createElement("input");
+  outfitCheckbox.type = "checkbox";
+  outfitCheckbox.id = `precise-char-ref-outfit-${index}`;
+  outfitCheckbox.className = "st-chatu8-precise-outfit-checkbox";
+  outfitCheckbox.checked = ref.preferSameOutfit;
+  const outfitText = document.createElement("span");
+  outfitText.textContent = "Prefer same outfit";
+  outfitLabel.appendChild(outfitCheckbox);
+  outfitLabel.appendChild(outfitText);
+  outfitField.appendChild(outfitLabel);
+  controlsWrap.appendChild(outfitField);
+  const strengthField = document.createElement("div");
+  strengthField.className = "st-chatu8-field";
+  const strengthLabel = document.createElement("label");
+  strengthLabel.htmlFor = `precise-char-ref-strength-${index}`;
+  strengthLabel.textContent = "Strength: ";
+  const strengthValSpan = document.createElement("span");
+  strengthValSpan.textContent = ref.strength.toFixed(2);
+  strengthLabel.appendChild(strengthValSpan);
+  const rangeContainer = document.createElement("div");
+  rangeContainer.className = "st-chatu8-range-container";
+  const rangeInput = document.createElement("input");
+  rangeInput.type = "range";
+  rangeInput.className = "st-chatu8-range-slider";
+  rangeInput.min = "0";
+  rangeInput.max = "5";
+  rangeInput.step = "0.01";
+  rangeInput.value = String(ref.strength);
+  const numberInput = document.createElement("input");
+  numberInput.type = "number";
+  numberInput.id = `precise-char-ref-strength-${index}`;
+  numberInput.className = "st-chatu8-range-input";
+  numberInput.min = "0";
+  numberInput.max = "5";
+  numberInput.step = "0.01";
+  numberInput.value = String(ref.strength);
+  rangeContainer.appendChild(rangeInput);
+  rangeContainer.appendChild(numberInput);
+  strengthField.appendChild(strengthLabel);
+  strengthField.appendChild(rangeContainer);
+  controlsWrap.appendChild(strengthField);
+  const actionsRow = document.createElement("div");
+  actionsRow.className = "st-chatu8-precise-slot-actions";
+  const toggleBtn = document.createElement("button");
+  toggleBtn.type = "button";
+  toggleBtn.className = `st-chatu8-precise-toggle-btn${ref.enabled ? " is-active" : ""}`;
+  const updateToggleVisual = (isEnabled) => {
+    toggleBtn.classList.toggle("is-active", isEnabled);
+    slotDiv.classList.toggle("is-disabled", !isEnabled);
+    toggleBtn.innerHTML = isEnabled ? '<i class="fa-solid fa-check"></i><span>\u5DF2\u542F\u7528</span>' : '<i class="fa-solid fa-xmark"></i><span>\u5DF2\u7981\u7528</span>';
+  };
+  updateToggleVisual(ref.enabled);
+  const removeBtn = document.createElement("button");
+  removeBtn.type = "button";
+  removeBtn.className = "st-chatu8-btn danger";
+  removeBtn.innerHTML = '<i class="fa-solid fa-trash"></i> \u79FB\u9664';
+  actionsRow.appendChild(toggleBtn);
+  actionsRow.appendChild(removeBtn);
+  controlsWrap.appendChild(actionsRow);
+  typeSelect.onchange = () => {
+    const nextType = typeSelect.value;
+    outfitField.style.display = supportsOutfitPreference(nextType) ? "flex" : "none";
+    callbacks.onTypeChange(index, nextType);
+  };
+  outfitCheckbox.onchange = () => {
+    callbacks.onOutfitChange(index, outfitCheckbox.checked);
+  };
+  const syncStrength = (rawVal, updateNumber) => {
+    const num = parseFloat(rawVal);
+    if (Number.isNaN(num)) return;
+    const clamped = Math.min(5, Math.max(0, num));
+    strengthValSpan.textContent = clamped.toFixed(2);
+    rangeInput.value = String(clamped);
+    if (updateNumber) {
+      numberInput.value = String(clamped);
+    }
+    callbacks.onStrengthChange(index, clamped);
+  };
+  rangeInput.oninput = () => syncStrength(rangeInput.value, true);
+  numberInput.oninput = () => syncStrength(numberInput.value, false);
+  numberInput.onblur = () => {
+    const parsed = parseFloat(numberInput.value);
+    const clamped = Number.isNaN(parsed) ? 1 : Math.min(5, Math.max(0, parsed));
+    numberInput.value = String(clamped);
+    rangeInput.value = String(clamped);
+    strengthValSpan.textContent = clamped.toFixed(2);
+    callbacks.onStrengthChange(index, clamped);
+  };
+  toggleBtn.onclick = () => {
+    const nextEnabled = callbacks.onToggleEnabled(index);
+    updateToggleVisual(nextEnabled);
+  };
+  removeBtn.onclick = () => callbacks.onRemove(index);
+  row.appendChild(thumbWrap);
+  row.appendChild(controlsWrap);
+  slotDiv.appendChild(row);
+  return slotDiv;
+}
+async function renderPreciseSlots(slotsContainer, groupSelect, addRefBtn, statusDiv) {
+  const currentRenderToken = ++renderSeqToken;
+  const settings3 = extension_settings63[extensionName];
+  const groups = settings3.preciseCharRefGroups || {};
+  const currentGroupId = groupSelect.value;
+  const currentGroup = groups[currentGroupId];
+  slotsContainer.innerHTML = "";
+  if (!currentGroup) {
+    slotsContainer.innerHTML = `
+            <div style="text-align: center; padding: 3rem; color: var(--st-chatu8-text-secondary, #888); grid-column: 1 / -1;">
+                <i class="fa-solid fa-exclamation-circle" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                <p>\u65E0\u6CD5\u52A0\u8F7D\u7EC4\u6570\u636E</p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">\u8BF7\u5C1D\u8BD5\u9009\u62E9\u5176\u4ED6\u7EC4\u6216\u521B\u5EFA\u65B0\u7EC4</p>
+            </div>
+        `;
+    addRefBtn.disabled = true;
+    return;
+  }
+  if (!Array.isArray(currentGroup.references)) {
+    currentGroup.references = [];
+    currentGroup.updatedAt = Date.now();
+    saveSettingsDebounced37();
+  }
+  const references = currentGroup.references;
+  const refCount = references.length;
+  addRefBtn.innerHTML = `<i class="fa-solid fa-plus"></i> \u6DFB\u52A0\u7CBE\u51C6\u53C2\u8003 (${refCount}/${MAX_PRECISE_REFERENCES})`;
+  addRefBtn.disabled = refCount >= MAX_PRECISE_REFERENCES;
+  if (refCount === 0) {
+    slotsContainer.innerHTML = `
+            <div style="text-align: center; padding: 3rem; color: var(--st-chatu8-text-secondary, #888); grid-column: 1 / -1;">
+                <i class="fa-solid fa-image" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                <p>\u6B64\u7EC4\u8FD8\u6CA1\u6709\u7CBE\u51C6\u89D2\u8272\u53C2\u8003</p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">\u70B9\u51FB\u4E0A\u65B9\u6309\u94AE\u4ECE\u5171\u4EAB\u56FE\u5E93\u4E2D\u6DFB\u52A0\u53C2\u8003\u56FE</p>
+            </div>
+        `;
+    return;
+  }
+  const persistGroupUpdate = () => {
+    currentGroup.updatedAt = Date.now();
+    try {
+      saveSettingsDebounced37();
+    } catch (error) {
+      console.error("[PreciseCharRef] \u81EA\u52A8\u4FDD\u5B58\u7EC4\u914D\u7F6E\u5931\u8D25:", error);
+      showPreciseStatus(statusDiv, `\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
+    }
+  };
+  const callbacks = {
+    onTypeChange: (idx, nextType) => {
+      if (!currentGroup.references[idx]) return;
+      currentGroup.references[idx].type = nextType;
+      persistGroupUpdate();
+    },
+    onOutfitChange: (idx, checked) => {
+      if (!currentGroup.references[idx]) return;
+      currentGroup.references[idx].preferSameOutfit = Boolean(checked);
+      persistGroupUpdate();
+    },
+    onStrengthChange: (idx, value) => {
+      if (!currentGroup.references[idx]) return;
+      currentGroup.references[idx].strength = value;
+      persistGroupUpdate();
+    },
+    onToggleEnabled: (idx) => {
+      if (!currentGroup.references[idx]) return true;
+      const nextState = currentGroup.references[idx].enabled === false;
+      currentGroup.references[idx].enabled = nextState;
+      persistGroupUpdate();
+      return nextState;
+    },
+    onRemove: async (idx) => {
+      const confirmed = await stylishConfirm("\u786E\u5B9A\u8981\u4ECE\u5F53\u524D\u7CBE\u51C6\u89D2\u8272\u7EC4\u4E2D\u79FB\u9664\u6B64\u53C2\u8003\u56FE\u5417\uFF1F");
+      if (!confirmed) return;
+      currentGroup.references.splice(idx, 1);
+      persistGroupUpdate();
+      await renderPreciseSlots(slotsContainer, groupSelect, addRefBtn, statusDiv);
+      showPreciseStatus(statusDiv, "\u5DF2\u79FB\u9664\u53C2\u8003\u56FE", "success");
+    }
+  };
+  const renderedSlots = [];
+  for (let i = 0; i < references.length; i++) {
+    currentGroup.references[i] = normalizePreciseReference(references[i]);
+    const ref = currentGroup.references[i];
+    let imageDataUrl = "";
+    if (ref.imageId) {
+      try {
+        imageDataUrl = await getConfigImage(ref.imageId);
+      } catch (error) {
+        console.error("[PreciseCharRef] \u52A0\u8F7D\u53C2\u8003\u56FE\u5931\u8D25:", ref.imageId, error);
+      }
+    }
+    if (currentRenderToken !== renderSeqToken) {
+      return;
+    }
+    renderedSlots.push(createPreciseSlotElement(ref, i, imageDataUrl, callbacks));
+  }
+  if (currentRenderToken !== renderSeqToken) {
+    return;
+  }
+  slotsContainer.innerHTML = "";
+  renderedSlots.forEach((slotEl) => slotsContainer.appendChild(slotEl));
+}
+function showPreciseCharRefGroupEditorDialog() {
+  const parent = document.getElementById("st-chatu8-settings") || document.body;
+  const settings3 = extension_settings63[extensionName];
+  ensurePreciseCharRefGroups();
+  const backdrop = document.createElement("div");
+  backdrop.className = "st-chatu8-workflow-viz-backdrop";
+  backdrop.innerHTML = `
+        <div class="st-chatu8-workflow-viz-dialog st-chatu8-char-ref-group-editor-dialog st-chatu8-precise-char-ref-dialog">
+            <div class="st-chatu8-workflow-viz-header">
+                <h3>\u7CBE\u51C6\u89D2\u8272\u7EC4\u7F16\u8F91\u5668 (V5 \u4E13\u7528)</h3>
+                <span class="st-chatu8-workflow-viz-close">&times;</span>
+            </div>
+            <div class="st-chatu8-workflow-viz-body" style="padding: 2rem;">
+                <div class="st-chatu8-char-ref-group-editor-content">
+                    <div class="st-chatu8-field" style="margin-bottom: 1.2rem;">
+                        <label for="precise-char-ref-group-select">\u7CBE\u51C6\u89D2\u8272\u7EC4\u9884\u8BBE</label>
+                        <div class="st-chatu8-profile-controls">
+                            <select id="precise-char-ref-group-select" class="st-chatu8-select"></select>
+                            <button class="st-chatu8-icon-btn" id="precise-char-ref-group-new" title="\u65B0\u5EFA\u7EC4">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button class="st-chatu8-icon-btn" id="precise-char-ref-group-save" title="\u4FDD\u5B58\u5F53\u524D\u7EC4">
+                                <i class="fa-solid fa-save"></i>
+                            </button>
+                            <button class="st-chatu8-icon-btn danger" id="precise-char-ref-group-delete" title="\u5220\u9664\u5F53\u524D\u7EC4">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="button" class="st-chatu8-btn" id="precise-char-ref-group-add-ref">
+                        <i class="fa-solid fa-plus"></i> \u6DFB\u52A0\u7CBE\u51C6\u53C2\u8003 (0/${MAX_PRECISE_REFERENCES})
+                    </button>
+
+                    <div id="precise-char-ref-slots-container" class="st-chatu8-char-ref-slots"></div>
+
+                    <div id="precise-char-ref-group-status" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    `;
+  parent.appendChild(backdrop);
+  const closeBtn = backdrop.querySelector(".st-chatu8-workflow-viz-close");
+  const closeDialog = () => {
+    if (backdrop.parentNode === parent) {
+      parent.removeChild(backdrop);
+    }
+  };
+  closeBtn.onclick = closeDialog;
+  backdrop.onclick = (e) => {
+    if (e.target === backdrop) {
+      closeDialog();
+    }
+  };
+  const groupSelect = backdrop.querySelector("#precise-char-ref-group-select");
+  const newBtn = backdrop.querySelector("#precise-char-ref-group-new");
+  const saveBtn = backdrop.querySelector("#precise-char-ref-group-save");
+  const deleteBtn = backdrop.querySelector("#precise-char-ref-group-delete");
+  const addRefBtn = backdrop.querySelector("#precise-char-ref-group-add-ref");
+  const slotsContainer = backdrop.querySelector("#precise-char-ref-slots-container");
+  const statusDiv = backdrop.querySelector("#precise-char-ref-group-status");
+  loadPreciseGroupList(groupSelect);
+  renderPreciseSlots(slotsContainer, groupSelect, addRefBtn, statusDiv);
+  newBtn.onclick = () => createNewPreciseGroup(groupSelect, slotsContainer, addRefBtn, statusDiv);
+  saveBtn.onclick = () => saveCurrentPreciseGroup(groupSelect, statusDiv);
+  deleteBtn.onclick = () => deleteCurrentPreciseGroup(groupSelect, slotsContainer, addRefBtn, statusDiv);
+  addRefBtn.onclick = () => addReferenceToPreciseGroup(groupSelect, slotsContainer, addRefBtn, statusDiv);
+  groupSelect.onchange = () => {
+    settings3.preciseCharRefGroupId = groupSelect.value;
+    saveSettingsDebounced37();
+    renderPreciseSlots(slotsContainer, groupSelect, addRefBtn, statusDiv);
+  };
+}
+function initPreciseCharRefGroupEditor(settingsModal) {
+  ensurePreciseCharRefGroups();
+  ensureCharRefPresets();
+  const uploadBtn = settingsModal.find("#novelai-precise-char-ref-upload-btn");
+  if (uploadBtn.length) {
+    uploadBtn.on("click", () => {
+      showCharRefUploadDialog();
+    });
+  }
+  const editorBtn = settingsModal.find("#novelai-precise-char-ref-group-editor-btn");
+  if (editorBtn.length) {
+    editorBtn.on("click", () => {
+      showPreciseCharRefGroupEditorDialog();
+    });
+  }
+}
+
 // utils/novelai.js
 init_genParams();
 var NOVELAI_TIMEOUT_SECONDS = 300;
@@ -84759,7 +86693,7 @@ function evictNovelAIUrlCache(rawOtherSite, endpointPath = "/ai/generate-image")
   workingNovelAIUrlCache.delete(`${rawOtherSite}|${normalizedPath}`);
 }
 function getNovelAICandidateUrls(endpointPath = "/ai/generate-image") {
-  const settings3 = extension_settings62[extensionName];
+  const settings3 = extension_settings64[extensionName];
   if (settings3.novelaisite === "\u5B98\u7F51") {
     return {
       candidates: [`https://image.novelai.net${endpointPath}`],
@@ -84925,7 +86859,7 @@ function cleanNovelAIPayload(payload, modelVersion) {
     delete cleanedPayload.reference_image_multiple;
     delete cleanedPayload.reference_information_extracted_multiple;
     delete cleanedPayload.skip_cfg_above_sigma;
-    const v5Schedule = extension_settings62[extensionName]?.novelai_v5_schedule;
+    const v5Schedule = extension_settings64[extensionName]?.novelai_v5_schedule;
     if (!v5Schedule || v5Schedule === "none") {
       delete cleanedPayload.noise_schedule;
       addLog("[PayloadClean] NAI5 \u566A\u70B9\u8868\u8BBE\u4E3A\u4E0D\u53D1\u9001 (\u9ED8\u8BA4)\uFF0C\u5DF2\u6E05\u7406 noise_schedule");
@@ -84939,14 +86873,26 @@ function cleanNovelAIPayload(payload, modelVersion) {
     if (Array.isArray(cleanedPayload.reference_image_multiple_cached) && cleanedPayload.reference_image_multiple_cached.length === 0) {
       delete cleanedPayload.reference_image_multiple_cached;
     }
+    if (Array.isArray(cleanedPayload.director_reference_images_cached) && cleanedPayload.director_reference_images_cached.length === 0) {
+      delete cleanedPayload.director_reference_images_cached;
+      delete cleanedPayload.director_reference_descriptions;
+      delete cleanedPayload.director_reference_information_extracted;
+      delete cleanedPayload.director_reference_strength_values;
+      delete cleanedPayload.director_reference_secondary_strength_values;
+    }
     if (cleanedPayload.sampler === "ddim_v3") {
       cleanedPayload.sampler = "k_euler_ancestral";
     }
     if (modelVersion.includes("medium")) {
       delete cleanedPayload.cfg_rescale;
+      delete cleanedPayload.director_reference_images_cached;
+      delete cleanedPayload.director_reference_descriptions;
+      delete cleanedPayload.director_reference_information_extracted;
+      delete cleanedPayload.director_reference_strength_values;
+      delete cleanedPayload.director_reference_secondary_strength_values;
       cleanedPayload.steps = 14;
       cleanedPayload.sampler = "k_euler_ancestral";
-      addLog("[PayloadClean] \u5DF2\u9488\u5BF9 NAI5 Medium \u6863\u4F4D\u6E05\u7406 cfg_rescale \u5E76\u9501\u5B9A\u6B65\u6570 14\u3001\u91C7\u6837\u5668 Euler Ancestral");
+      addLog("[PayloadClean] \u5DF2\u9488\u5BF9 NAI5 Medium \u6863\u4F4D\u6E05\u7406 cfg_rescale \u4E0E\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u53C2\u6570\uFF0C\u5E76\u9501\u5B9A\u6B65\u6570 14\u3001\u91C7\u6837\u5668 Euler Ancestral");
     }
     addLog("[PayloadClean] \u5DF2\u9488\u5BF9 NAI5 \u6A21\u578B\u6E05\u7406\u7279\u5B9A\u4E0D\u652F\u6301\u7684\u53C2\u6570");
   }
@@ -84984,7 +86930,7 @@ function validateNovelAIPayload(payload, modelVersion) {
       addLog(`[\u9A8C\u8BC1] NAI4/4.5 Vibe Transfer \u6570\u7EC4\u957F\u5EA6\u4E00\u81F4: ${refCachedLen} \u4E2A Vibe`);
     }
   }
-  if (modelVersion.includes("4-5")) {
+  if (modelVersion.includes("4-5") || modelVersion.includes("nai-diffusion-5")) {
     const directorImages = payload.director_reference_images_cached?.length || 0;
     const directorDescriptions = payload.director_reference_descriptions?.length || 0;
     const directorInfo = payload.director_reference_information_extracted?.length || 0;
@@ -85009,8 +86955,8 @@ async function applySingleVibeTransfer(preset_data) {
   try {
     addLog("[SingleVibe] \u5904\u7406 NAI3 \u5355\u4E2A Vibe Transfer");
     const processedImage = await processReferenceImage(window.nai3VibeTransferImage);
-    const infoExtracted = Number(extension_settings62[extensionName].InformationExtracted);
-    const strength = Number(extension_settings62[extensionName].ReferenceStrength);
+    const infoExtracted = Number(extension_settings64[extensionName].InformationExtracted);
+    const strength = Number(extension_settings64[extensionName].ReferenceStrength);
     if (isNaN(infoExtracted) || infoExtracted < 0 || infoExtracted > 1) {
       throw new Error(`InformationExtracted \u503C\u65E0\u6548: ${infoExtracted}\u3002\u5FC5\u987B\u5728 0 \u5230 1 \u4E4B\u95F4\u3002`);
     }
@@ -85073,7 +87019,7 @@ function createLoggableNovelAIPayload(payload) {
   return loggablePayload;
 }
 async function applyVibeGroupTransfer(preset_data) {
-  const settings3 = extension_settings62[extensionName];
+  const settings3 = extension_settings64[extensionName];
   const vibeGroups = settings3.vibeGroups || {};
   const currentGroupId = getRandomVibeGroupId();
   if (!vibeGroups || Object.keys(vibeGroups).length === 0) {
@@ -85178,8 +87124,8 @@ async function applyVibeGroupTransfer(preset_data) {
     return;
   }
   const totalStrength = vibeDataArray.reduce((sum, v) => sum + v.strength, 0);
-  const shouldNormalize = extension_settings62[extensionName].normalizeRefStrength === "true";
-  const isNAI45Model = ["nai-diffusion-4-5-full", "nai-diffusion-4-5-curated"].includes(extension_settings62[extensionName].novelaimode);
+  const shouldNormalize = extension_settings64[extensionName].normalizeRefStrength === "true";
+  const isNAI45Model = ["nai-diffusion-4-5-full", "nai-diffusion-4-5-curated"].includes(extension_settings64[extensionName].novelaimode);
   let normalizedStrength;
   if (shouldNormalize && isNAI45Model) {
     normalizedStrength = vibeDataArray.map((v) => v.strength);
@@ -85216,7 +87162,7 @@ async function applyVibeGroupTransfer(preset_data) {
   return currentGroup.name || currentGroupId;
 }
 async function applyCharacterReferenceGroup(preset_data) {
-  const settings3 = extension_settings62[extensionName];
+  const settings3 = extension_settings64[extensionName];
   const charRefGroups = settings3.charRefGroups || {};
   const currentGroupId = settings3.charRefGroupId;
   if (!charRefGroups || Object.keys(charRefGroups).length === 0) {
@@ -85310,6 +87256,113 @@ async function applyCharacterReferenceGroup(preset_data) {
   }
   if (successCount === 0) {
     toastr.error("\u6240\u6709\u89D2\u8272\u53C2\u8003\u5904\u7406\u5931\u8D25\uFF0C\u5C06\u4E0D\u4F7F\u7528\u89D2\u8272\u53C2\u8003", "\u89D2\u8272\u53C2\u8003");
+  }
+}
+function resolvePreciseBaseCaption(ref) {
+  if (ref.type === "character_style") {
+    return ref.preferSameOutfit ? "character&style" : "character&style_anyoutfit";
+  }
+  if (ref.type === "character") {
+    return ref.preferSameOutfit ? "character_mainoutfit" : "character";
+  }
+  if (ref.type === "style") {
+    return "style";
+  }
+  if (ref.type === "costume") {
+    return "costume";
+  }
+  return "character";
+}
+async function applyPreciseCharacterReferenceGroup(preset_data) {
+  const settings3 = extension_settings64[extensionName];
+  const groups = settings3.preciseCharRefGroups || {};
+  const currentGroupId = settings3.preciseCharRefGroupId;
+  if (!groups || Object.keys(groups).length === 0) {
+    const warningMsg = "\u8B66\u544A: \u672A\u627E\u5230\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u7EC4\u3002\u8BF7\u5148\u521B\u5EFA\u81F3\u5C11\u4E00\u4E2A\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u7EC4\u3002";
+    console.warn("[PreciseCharRef] No precise character reference groups exist");
+    addLog(`[PreciseCharRef] ${warningMsg}`);
+    toastr.warning(warningMsg, "\u7CBE\u51C6\u89D2\u8272\u53C2\u8003");
+    return;
+  }
+  if (!currentGroupId || !groups[currentGroupId]) {
+    const warningMsg = "\u8B66\u544A: \u672A\u9009\u62E9\u6709\u6548\u7684\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u7EC4\u3002\u8BF7\u5728\u7CBE\u51C6\u89D2\u8272\u7EC4\u7F16\u8F91\u5668\u4E2D\u9009\u62E9\u4E00\u4E2A\u7EC4\u3002";
+    console.warn("[PreciseCharRef] No valid precise character reference group selected");
+    addLog(`[PreciseCharRef] ${warningMsg}`);
+    toastr.warning(warningMsg, "\u7CBE\u51C6\u89D2\u8272\u53C2\u8003");
+    return;
+  }
+  const currentGroup = groups[currentGroupId];
+  const rawReferences = Array.isArray(currentGroup.references) ? currentGroup.references : [];
+  const activeReferences = rawReferences.map((item) => normalizePreciseReference(item)).filter((item) => item.enabled && item.imageId);
+  if (activeReferences.length === 0) {
+    const warningMsg = rawReferences.length === 0 ? "\u8B66\u544A: \u9009\u4E2D\u7684\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u7EC4\u4E3A\u7A7A\uFF0C\u5C06\u4E0D\u4F7F\u7528\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u3002" : "\u8B66\u544A: \u5F53\u524D\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u7EC4\u4E2D\u6CA1\u6709\u542F\u7528\u7684\u53C2\u8003\u56FE\uFF0C\u5C06\u4E0D\u4F7F\u7528\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u3002";
+    console.warn("[PreciseCharRef] No active references in selected group");
+    addLog(`[PreciseCharRef] ${warningMsg}`);
+    toastr.warning(warningMsg, "\u7CBE\u51C6\u89D2\u8272\u53C2\u8003");
+    return;
+  }
+  console.log(`[PreciseCharRef] Applying precise group: ${currentGroupId} (${activeReferences.length}/${rawReferences.length} active)`);
+  addLog(`[PreciseCharRef] \u5E94\u7528\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u7EC4: ${currentGroupId} (${activeReferences.length}/${rawReferences.length} \u4E2A\u5DF2\u542F\u7528)`);
+  let successCount = 0;
+  let failureCount = 0;
+  preset_data.director_reference_images_cached = [];
+  preset_data.director_reference_descriptions = [];
+  preset_data.director_reference_information_extracted = [];
+  preset_data.director_reference_strength_values = [];
+  preset_data.director_reference_secondary_strength_values = [];
+  for (const ref of activeReferences) {
+    try {
+      const imageDataUrl = await getConfigImage(ref.imageId);
+      if (!imageDataUrl) {
+        failureCount++;
+        console.warn("[PreciseCharRef] Reference image not found:", ref.imageId);
+        addLog(`[PreciseCharRef] \u8B66\u544A: \u672A\u627E\u5230\u7CBE\u51C6\u53C2\u8003\u56FE\u50CF: ${ref.imageId.substring(0, 12)}...`);
+        continue;
+      }
+      const processedImage = await processReferenceImage(imageDataUrl);
+      const cacheSecretKey = generateRandomUUID();
+      const baseCaption = resolvePreciseBaseCaption(ref);
+      preset_data.director_reference_images_cached.push({
+        cache_secret_key: cacheSecretKey,
+        data: processedImage
+      });
+      preset_data.director_reference_descriptions.push({
+        caption: {
+          base_caption: baseCaption,
+          char_captions: []
+        },
+        legacy_uc: false
+      });
+      preset_data.director_reference_information_extracted.push(1);
+      preset_data.director_reference_strength_values.push(ref.strength);
+      preset_data.director_reference_secondary_strength_values.push(0);
+      successCount++;
+      addLog(`[PreciseCharRef] \u5DF2\u6DFB\u52A0\u7CBE\u51C6\u53C2\u8003: type=${ref.type}, preferSameOutfit=${ref.preferSameOutfit}, base_caption=${baseCaption}, strength=${ref.strength}, secondary=0, information_extracted=1.0`);
+    } catch (error) {
+      failureCount++;
+      console.error("[PreciseCharRef] Error processing reference:", error);
+      addLog(`[PreciseCharRef] \u9519\u8BEF: \u5904\u7406\u7CBE\u51C6\u53C2\u8003\u56FE\u5931\u8D25: ${error.message}`);
+    }
+  }
+  addLog(`[PreciseCharRef] \u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u5E94\u7528\u5B8C\u6210: ${successCount} \u4E2A\u6210\u529F, ${failureCount} \u4E2A\u5931\u8D25`);
+  if (failureCount > 0 && successCount > 0) {
+    toastr.warning(`\u90E8\u5206\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u5904\u7406\u5931\u8D25 (${failureCount}/${activeReferences.length})\uFF0C\u5C06\u7EE7\u7EED\u751F\u6210`, "\u7CBE\u51C6\u89D2\u8272\u53C2\u8003");
+  }
+  if (successCount === 0) {
+    delete preset_data.director_reference_images_cached;
+    delete preset_data.director_reference_descriptions;
+    delete preset_data.director_reference_information_extracted;
+    delete preset_data.director_reference_strength_values;
+    delete preset_data.director_reference_secondary_strength_values;
+    toastr.error("\u6240\u6709\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u5904\u7406\u5931\u8D25\uFF0C\u5C06\u4E0D\u4F7F\u7528\u7CBE\u51C6\u89D2\u8272\u53C2\u8003", "\u7CBE\u51C6\u89D2\u8272\u53C2\u8003");
+  } else {
+    preset_data.normalize_reference_strength_multiple = true;
+    const estimatedAnlasCost = successCount * 5;
+    const applyNotice = `\u5DF2\u4F7F\u7528 ${successCount} \u5F20\u7CBE\u51C6\u53C2\u8003\u56FE\uFF08\u7EC4\uFF1A${currentGroupId}\uFF09\uFF0C\u9884\u8BA1\u591A\u6D88\u8017\u7EA6 ${estimatedAnlasCost} \u70B9`;
+    addLog(`[PreciseCharRef] ${applyNotice}`);
+    if (typeof toastr !== "undefined") {
+      toastr.info(applyNotice, "\u7CBE\u51C6\u89D2\u8272\u53C2\u8003");
+    }
   }
 }
 async function unzipFile(inputData) {
@@ -85491,7 +87544,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
   if (!isPluginToastDisabled()) {
     toastr.info("\u{1F3A8} \u5DF2\u53D1\u8D77 NovelAI \u751F\u56FE\u8BF7\u6C42...");
   }
-  addLog(`\u5F00\u59CB NovelAI \u751F\u56FE\u6D41\u7A0B...\u5BA2\u6237\u7AEF\u4E3A${extension_settings62[extensionName].client}`);
+  addLog(`\u5F00\u59CB NovelAI \u751F\u56FE\u6D41\u7A0B...\u5BA2\u6237\u7AEF\u4E3A${extension_settings64[extensionName].client}`);
   addLog(`\u8BF7\u6C42\u5C3A\u5BF8: \u5BBD\u5EA6 - ${Xwidth || "\u9ED8\u8BA4"}, \u9AD8\u5EA6 - ${Xheight || "\u9ED8\u8BA4"}`);
   let _nai_vibe_group_name;
   let _nai_gen_params = null;
@@ -85506,7 +87559,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
   if (typeof link === "string") {
     const match = link.match(sizeRegex);
     if (match) {
-      if (String(extension_settings62[extensionName].aiAutonomousResolution) !== "false") {
+      if (String(extension_settings64[extensionName].aiAutonomousResolution) !== "false") {
         Xwidth = parseInt(match[1], 10);
         Xheight = parseInt(match[2], 10);
       }
@@ -85516,7 +87569,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
   if (typeof change === "string") {
     const match = change.match(sizeRegex);
     if (match) {
-      if (String(extension_settings62[extensionName].aiAutonomousResolution) !== "false") {
+      if (String(extension_settings64[extensionName].aiAutonomousResolution) !== "false") {
         Xwidth = parseInt(match[1], 10);
         Xheight = parseInt(match[2], 10);
       }
@@ -85529,7 +87582,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
   link = await stripChineseAnnotations(link);
   change = await stripChineseAnnotations(change);
   console.log("\u6B63\u5728\u5904\u7406\u4E2D\u6587\u6CE8\u91CA\u5B8C\u6210...", link);
-  if (extension_settings62[extensionName].novelaiApi == "000000") {
+  if (extension_settings64[extensionName].novelaiApi == "000000") {
     addLog("\u8BF7\u586B\u5199 NovelAI API Key");
     toastr.error("\u8BF7\u586B\u5199 NovelAI API Key");
     taskQueue.completeTask(taskId, false);
@@ -85539,26 +87592,26 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
   const promptForGeneration = change && change.trim() !== "" ? change : link;
   addLog(`\u7528\u4E8E\u751F\u6210\u7684Tag: ${promptForGeneration}`);
   let Divide_roles = false;
-  const modelMode = extension_settings62[extensionName].novelaimode || "";
+  const modelMode = extension_settings64[extensionName].novelaimode || "";
   if (promptForGeneration.includes("Scene Composition") && (modelMode.includes("nai-diffusion-4") || modelMode.includes("nai-diffusion-5"))) {
     Divide_roles = true;
   }
   addLog(`\u662F\u5426\u542F\u7528\u5206\u89D2\u8272\u6A21\u5F0F (Divide_roles): ${Divide_roles}`);
-  let access_token = (extension_settings62[extensionName].novelaiApi || "").trim();
+  let access_token = (extension_settings64[extensionName].novelaiApi || "").trim();
   let aqt = "";
-  if (extension_settings62[extensionName].AQT_novelai != "" && extension_settings62[extensionName].novelaimode == "nai-diffusion-4-curated-preview") {
+  if (extension_settings64[extensionName].AQT_novelai != "" && extension_settings64[extensionName].novelaimode == "nai-diffusion-4-curated-preview") {
     aqt = "rating:general, best quality, very aesthetic, absurdres";
-  } else if (extension_settings62[extensionName].AQT_novelai != "" && extension_settings62[extensionName].novelaimode == "nai-diffusion-4-full") {
+  } else if (extension_settings64[extensionName].AQT_novelai != "" && extension_settings64[extensionName].novelaimode == "nai-diffusion-4-full") {
     aqt = "no text, best quality, very aesthetic, absurdres";
-  } else if (extension_settings62[extensionName].AQT_novelai != "" && extension_settings62[extensionName].novelaimode == "nai-diffusion-4-5-full") {
+  } else if (extension_settings64[extensionName].AQT_novelai != "" && extension_settings64[extensionName].novelaimode == "nai-diffusion-4-5-full") {
     aqt = "very aesthetic, masterpiece, no text";
-  } else if (extension_settings62[extensionName].AQT_novelai != "" && extension_settings62[extensionName].novelaimode == "nai-diffusion-4-5-curated") {
+  } else if (extension_settings64[extensionName].AQT_novelai != "" && extension_settings64[extensionName].novelaimode == "nai-diffusion-4-5-curated") {
     aqt = "very aesthetic, masterpiece, no text, -0.8::feet::, rating:general";
-  } else if (extension_settings62[extensionName].AQT_novelai != "" && extension_settings62[extensionName].novelaimode == "nai-diffusion-5-full") {
+  } else if (extension_settings64[extensionName].AQT_novelai != "" && extension_settings64[extensionName].novelaimode == "nai-diffusion-5-full") {
     aqt = "very aesthetic, masterpiece, no text";
-  } else if (extension_settings62[extensionName].AQT_novelai != "" && extension_settings62[extensionName].novelaimode == "nai-diffusion-5-curated") {
+  } else if (extension_settings64[extensionName].AQT_novelai != "" && extension_settings64[extensionName].novelaimode == "nai-diffusion-5-curated") {
     aqt = "very aesthetic, masterpiece, no text";
-  } else if (extension_settings62[extensionName].AQT_novelai != "" && extension_settings62[extensionName].novelaimode == "nai-diffusion-3") {
+  } else if (extension_settings64[extensionName].AQT_novelai != "" && extension_settings64[extensionName].novelaimode == "nai-diffusion-3") {
     aqt = "best quality, amazing quality, very aesthetic, absurdres";
   }
   addLog(`AQT (\u8D28\u91CF\u6807\u7B7E) \u8BBE\u7F6E: ${aqt || "\u65E0"}`);
@@ -85573,7 +87626,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
     const charIds = getSortedCharacterIds(prompt_data);
     for (const i of charIds) {
       if (prompt_data[`Character ${i} coordinates`]) {
-        const isAiDefaultCoords2 = extension_settings62[extensionName].AI_use_coords === true || extension_settings62[extensionName].AI_use_coords === "true";
+        const isAiDefaultCoords2 = extension_settings64[extensionName].AI_use_coords === true || extension_settings64[extensionName].AI_use_coords === "true";
         if (isAiDefaultCoords2) {
           prompt_data[`Character ${i} coordinates`] = {};
         }
@@ -85587,7 +87640,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
     mainPrompt = deduplicateTags(promptForGeneration);
   }
   let { modifiedPrompt, insertions } = await prompt_replace(mainPrompt, other_prompt);
-  if (Divide_roles && extension_settings62[extensionName].client == "jiuguan") {
+  if (Divide_roles && extension_settings64[extensionName].client == "jiuguan") {
     const charIds = getSortedCharacterIds(prompt_data);
     for (const i of charIds) {
       if (prompt_data[`Character ${i} Prompt`]) {
@@ -85596,13 +87649,13 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
     }
   }
   const _nai_yushe_id = getRandomYusheId("yusheid_novelai");
-  if (!extension_settings62[extensionName].yushe || !extension_settings62[extensionName].yushe[_nai_yushe_id]) {
+  if (!extension_settings64[extensionName].yushe || !extension_settings64[extensionName].yushe[_nai_yushe_id]) {
     toastr.error("\u672A\u80FD\u627E\u5230\u6240\u9009\u7684\u56FA\u5B9A\u63D0\u793A\u8BCD\u9884\u8BBE\u3002\u8BF7\u524D\u5F80\u63D2\u4EF6\u8BBE\u7F6E\u4E2D\u65B0\u5EFA\u6216\u9009\u62E9\u4E00\u4E2A\u56FA\u5B9A\u63D0\u793A\u8BCD\u3002", "NovelAI \u751F\u56FE\u9519\u8BEF");
     taskQueue.completeTask(taskId, false);
     currentTaskId = null;
     throw new Error("\u56FA\u5B9A\u63D0\u793A\u8BCD\u9884\u8BBE\u672A\u914D\u7F6E");
   }
-  const _nai_preset = extension_settings62[extensionName].yushe[_nai_yushe_id];
+  const _nai_preset = extension_settings64[extensionName].yushe[_nai_yushe_id];
   prompt2 = await zhengmian(
     _nai_preset.fixedPrompt,
     modifiedPrompt,
@@ -85610,61 +87663,61 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
     aqt,
     insertions
   );
-  if (isSettingTrue3(extension_settings62[extensionName].addFurryDataset)) {
+  if (isSettingTrue3(extension_settings64[extensionName].addFurryDataset)) {
     prompt2 = "fur dataset, " + prompt2;
     addLog("\u6DFB\u52A0\u4E86 'fur dataset' \u5230\u63D0\u793A\u8BCD\u3002");
   }
   let UCP_novelai = "";
-  addLog(`\u6B63\u5728\u6839\u636E\u6A21\u578B (${extension_settings62[extensionName].novelaimode}) \u548C UCP \u9884\u8BBE (${extension_settings62[extensionName].UCP_novelai}) \u9009\u62E9\u8D1F\u9762\u63D0\u793A\u8BCD...`);
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-3" && extension_settings62[extensionName].UCP_novelai == "Heavy") {
+  addLog(`\u6B63\u5728\u6839\u636E\u6A21\u578B (${extension_settings64[extensionName].novelaimode}) \u548C UCP \u9884\u8BBE (${extension_settings64[extensionName].UCP_novelai}) \u9009\u62E9\u8D1F\u9762\u63D0\u793A\u8BCD...`);
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-3" && extension_settings64[extensionName].UCP_novelai == "Heavy") {
     UCP_novelai = "lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract]";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-3" && extension_settings62[extensionName].UCP_novelai == "Light") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-3" && extension_settings64[extensionName].UCP_novelai == "Light") {
     UCP_novelai = "lowres, jpeg artifacts, worst quality, watermark, blurry, very displeasing";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-3" && extension_settings62[extensionName].UCP_novelai == "Human Focus") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-3" && extension_settings64[extensionName].UCP_novelai == "Human Focus") {
     UCP_novelai = "lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract], bad anatomy, bad hands, @_@, mismatched pupils, heart-shaped pupils, glowing eyes";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-full" && extension_settings62[extensionName].UCP_novelai == "Human Focus") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-full" && extension_settings64[extensionName].UCP_novelai == "Human Focus") {
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-full" && extension_settings62[extensionName].UCP_novelai == "Heavy") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-full" && extension_settings64[extensionName].UCP_novelai == "Heavy") {
     UCP_novelai = "blurry, lowres, error, film grain, scan artifacts, worst quality, bad quality, jpeg artifacts, very displeasing, chromatic aberration, multiple views, logo, too many watermarks, white blank page, blank page";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-full" && extension_settings62[extensionName].UCP_novelai == "Light") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-full" && extension_settings64[extensionName].UCP_novelai == "Light") {
     UCP_novelai = "blurry, lowres, error, worst quality, bad quality, jpeg artifacts, very displeasing, white blank page, blank page";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-curated-preview" && extension_settings62[extensionName].UCP_novelai == "Human Focus") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-curated-preview" && extension_settings64[extensionName].UCP_novelai == "Human Focus") {
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-curated-preview" && extension_settings62[extensionName].UCP_novelai == "Heavy") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-curated-preview" && extension_settings64[extensionName].UCP_novelai == "Heavy") {
     UCP_novelai = "blurry, lowres, error, film grain, scan artifacts, worst quality, bad quality, jpeg artifacts, very displeasing, chromatic aberration, logo, dated, signature, multiple views, gigantic breasts, white blank page, blank page";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-curated-preview" && extension_settings62[extensionName].UCP_novelai == "Light") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-curated-preview" && extension_settings64[extensionName].UCP_novelai == "Light") {
     UCP_novelai = "blurry, lowres, error, worst quality, bad quality, jpeg artifacts, very displeasing, logo, dated, signature, white blank page, blank page";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-5-curated" && extension_settings62[extensionName].UCP_novelai == "Human Focus") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-5-curated" && extension_settings64[extensionName].UCP_novelai == "Human Focus") {
     UCP_novelai = "blurry, lowres, upscaled, artistic error, film grain, scan artifacts, bad anatomy, bad hands, worst quality, bad quality, jpeg artifacts, very displeasing, chromatic aberration, halftone, multiple views, logo, too many watermarks, @_@, mismatched pupils, glowing eyes, negative space, blank page";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-5-curated" && extension_settings62[extensionName].UCP_novelai == "Heavy") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-5-curated" && extension_settings64[extensionName].UCP_novelai == "Heavy") {
     UCP_novelai = "blurry, lowres, upscaled, artistic error, film grain, scan artifacts, worst quality, bad quality, jpeg artifacts, very displeasing, chromatic aberration, halftone, multiple views, logo, too many watermarks, negative space, blank page";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-5-curated" && extension_settings62[extensionName].UCP_novelai == "Light") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-5-curated" && extension_settings64[extensionName].UCP_novelai == "Light") {
     UCP_novelai = "blurry, lowres, upscaled, artistic error, film grain, scan artifacts, worst quality, bad quality, jpeg artifacts, very displeasing, chromatic aberration, halftone, multiple views, logo, too many watermarks, negative space, blank page";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-5-full" && extension_settings62[extensionName].UCP_novelai == "Human Focus") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-5-full" && extension_settings64[extensionName].UCP_novelai == "Human Focus") {
     UCP_novelai = "lowres, artistic error, film grain, scan artifacts, worst quality, bad quality, jpeg artifacts, very displeasing, chromatic aberration, dithering, halftone, screentone, multiple views, logo, too many watermarks, negative space, blank page, @_@, mismatched pupils, glowing eyes, bad anatomy";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-5-full" && extension_settings62[extensionName].UCP_novelai == "Heavy") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-5-full" && extension_settings64[extensionName].UCP_novelai == "Heavy") {
     UCP_novelai = "lowres, artistic error, film grain, scan artifacts, worst quality, bad quality, jpeg artifacts, very displeasing, chromatic aberration, dithering, halftone, screentone, multiple views, logo, too many watermarks, negative space, blank page";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-5-full" && extension_settings62[extensionName].UCP_novelai == "Light") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-5-full" && extension_settings64[extensionName].UCP_novelai == "Light") {
     UCP_novelai = "lowres, artistic error, scan artifacts, worst quality, bad quality, jpeg artifacts, multiple views, very displeasing, too many watermarks, negative space, blank page";
   }
-  if (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-5-full" && extension_settings62[extensionName].UCP_novelai == "Furry Focus") {
+  if (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-5-full" && extension_settings64[extensionName].UCP_novelai == "Furry Focus") {
     UCP_novelai = "{worst quality}, distracting watermark, unfinished, bad quality, {widescreen}, upscale, {sequence}, {{grandfathered content}}, blurred foreground, chromatic aberration, sketch, everyone, [sketch background], simple, [flat colors], ych (character), outline, multiple scenes, [[horror (theme)]], comic";
   }
-  const isV5ModelUcp = extension_settings62[extensionName].novelaimode.includes("nai-diffusion-5");
+  const isV5ModelUcp = extension_settings64[extensionName].novelaimode.includes("nai-diffusion-5");
   if (isV5ModelUcp) {
-    const ucpKey = String(extension_settings62[extensionName].UCP_novelai || "").toLowerCase().replace(/[\s_-]+/g, "");
+    const ucpKey = String(extension_settings64[extensionName].UCP_novelai || "").toLowerCase().replace(/[\s_-]+/g, "");
     if (ucpKey === "humanfocus") {
       UCP_novelai = "lowres, artistic error, film grain, scan artifacts, worst quality, bad quality, jpeg artifacts, very displeasing, chromatic aberration, dithering, halftone, screentone, multiple views, logo, too many watermarks, negative space, blank page, @_@, mismatched pupils, glowing eyes, bad anatomy";
     } else if (ucpKey === "heavy") {
@@ -85692,47 +87745,47 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
     addLog(`[\u667A\u7ED8\u59EC] \u6DFB\u52A0\u989D\u5916\u8D1F\u9762\u63D0\u793A\u8BCD: ${trimmedExtra}`);
     console.log("[NovelAI] \u5408\u5E76\u667A\u7ED8\u59EC\u989D\u5916\u8D1F\u9762\u63D0\u793A\u8BCD:", trimmedExtra);
   }
-  const isAiDefaultCoords = extension_settings62[extensionName].AI_use_coords === true || extension_settings62[extensionName].AI_use_coords === "true";
+  const isAiDefaultCoords = extension_settings64[extensionName].AI_use_coords === true || extension_settings64[extensionName].AI_use_coords === "true";
   let use_coords = !isAiDefaultCoords;
   let preset_data = {
-    "params_version": extension_settings62[extensionName].novelaimode.includes("nai-diffusion-5") ? 4 : 3,
-    "width": Number(Xwidth ? Xwidth : extension_settings62[extensionName].novelai_width),
-    "height": Number(Xheight ? Xheight : extension_settings62[extensionName].novelai_height),
-    "scale": Number(extension_settings62[extensionName].nai3Scale),
+    "params_version": extension_settings64[extensionName].novelaimode.includes("nai-diffusion-5") ? 4 : 3,
+    "width": Number(Xwidth ? Xwidth : extension_settings64[extensionName].novelai_width),
+    "height": Number(Xheight ? Xheight : extension_settings64[extensionName].novelai_height),
+    "scale": Number(extension_settings64[extensionName].nai3Scale),
     //提示词关联性
-    "sampler": extension_settings62[extensionName].novelai_sampler,
+    "sampler": extension_settings64[extensionName].novelai_sampler,
     //"k_euler",//使用的采样器   "k_dpm_2"   "k_dpmpp_2m"    "ddim_v3"  "k_dpmpp_2s_ancestral"
-    "steps": Number(extension_settings62[extensionName].novelai_steps),
+    "steps": Number(extension_settings64[extensionName].novelai_steps),
     //生成的步数
     "n_samples": 1,
     "ucPreset": 3,
     //预设
     "qualityToggle": true,
-    "sm": isSettingFalse(extension_settings62[extensionName].sm) ? false : true,
-    "sm_dyn": isSettingFalse(extension_settings62[extensionName].dyn) || isSettingFalse(extension_settings62[extensionName].sm) ? false : true,
-    "dynamic_thresholding": isSettingFalse(extension_settings62[extensionName].nai3Deceisp) ? false : true,
+    "sm": isSettingFalse(extension_settings64[extensionName].sm) ? false : true,
+    "sm_dyn": isSettingFalse(extension_settings64[extensionName].dyn) || isSettingFalse(extension_settings64[extensionName].sm) ? false : true,
+    "dynamic_thresholding": isSettingFalse(extension_settings64[extensionName].nai3Deceisp) ? false : true,
     "controlnet_strength": 1,
     "legacy": false,
     "legacy_uc": false,
     "add_original_image": true,
-    "cfg_rescale": Number(extension_settings62[extensionName].cfg_rescale),
+    "cfg_rescale": Number(extension_settings64[extensionName].cfg_rescale),
     //关联性调整
-    "noise_schedule": extension_settings62[extensionName].Schedule,
-    "skip_cfg_above_sigma": isSettingFalse(extension_settings62[extensionName].nai3Variety) ? null : 19,
+    "noise_schedule": extension_settings64[extensionName].Schedule,
+    "skip_cfg_above_sigma": isSettingFalse(extension_settings64[extensionName].nai3Variety) ? null : 19,
     "legacy_v3_extend": false,
     "stream": "msgpack",
-    "params_version": extension_settings62[extensionName].novelaimode.includes("nai-diffusion-5") ? 4 : 3,
-    "seed": extension_settings62[extensionName].novelai_seed === "0" || extension_settings62[extensionName].novelai_seed === "" || extension_settings62[extensionName].novelai_seed === "-1" ? generateRandomSeed() : Number(extension_settings62[extensionName].novelai_seed),
+    "params_version": extension_settings64[extensionName].novelaimode.includes("nai-diffusion-5") ? 4 : 3,
+    "seed": extension_settings64[extensionName].novelai_seed === "0" || extension_settings64[extensionName].novelai_seed === "" || extension_settings64[extensionName].novelai_seed === "-1" ? generateRandomSeed() : Number(extension_settings64[extensionName].novelai_seed),
     //生成的种子，下面是固定的负面提示词
     "negative_prompt": negative_prompt,
     "reference_image_multiple": [],
     "reference_information_extracted_multiple": [],
     "reference_strength_multiple": [],
     "reference_image_multiple_cached": [],
-    "normalize_reference_strength_multiple": isSettingTrue3(extension_settings62[extensionName].normalizeRefStrength),
+    "normalize_reference_strength_multiple": isSettingTrue3(extension_settings64[extensionName].normalizeRefStrength),
     "use_coords": use_coords
   };
-  if (extension_settings62[extensionName].novelaimode !== "nai-diffusion-3") {
+  if (extension_settings64[extensionName].novelaimode !== "nai-diffusion-3") {
     if (Divide_roles) {
       const charIds = getSortedCharacterIds(prompt_data);
       for (const i of charIds) {
@@ -85759,25 +87812,25 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
           v4_prompt.caption.char_captions.push({ char_caption: prompt_data[`Character ${i} Prompt`], centers: [prompt_data[`Character ${i} coordinates`]] });
         }
       }
-      preset_data = { ...preset_data, characterPrompts, v4_prompt, v4_negative_prompt, add_original_image: true, skip_cfg_above_sigma: isSettingFalse(extension_settings62[extensionName].nai3Variety) ? null : 19.343056794463642 };
-      if (!isSettingFalse(extension_settings62[extensionName].nai3Variety) && extension_settings62[extensionName].novelaimode == "nai-diffusion-4-full") {
+      preset_data = { ...preset_data, characterPrompts, v4_prompt, v4_negative_prompt, add_original_image: true, skip_cfg_above_sigma: isSettingFalse(extension_settings64[extensionName].nai3Variety) ? null : 19.343056794463642 };
+      if (!isSettingFalse(extension_settings64[extensionName].nai3Variety) && extension_settings64[extensionName].novelaimode == "nai-diffusion-4-full") {
         preset_data["skip_cfg_above_sigma"] = 19;
       }
-      if (!isSettingFalse(extension_settings62[extensionName].nai3Variety) && (extension_settings62[extensionName].novelaimode == "nai-diffusion-4-5-curated" || extension_settings62[extensionName].novelaimode == "nai-diffusion-4-5-full")) {
+      if (!isSettingFalse(extension_settings64[extensionName].nai3Variety) && (extension_settings64[extensionName].novelaimode == "nai-diffusion-4-5-curated" || extension_settings64[extensionName].novelaimode == "nai-diffusion-4-5-full")) {
         preset_data["skip_cfg_above_sigma"] = 59.04722600415217;
       }
       preset_data = {
         "autoSmea": false,
-        "normalize_reference_strength_multiple": isSettingTrue3(extension_settings62[extensionName].normalizeRefStrength),
+        "normalize_reference_strength_multiple": isSettingTrue3(extension_settings64[extensionName].normalizeRefStrength),
         "inpaintImg2ImgStrength": 1,
-        "params_version": extension_settings62[extensionName].novelaimode.includes("nai-diffusion-5") ? 4 : 3,
-        "width": Number(Xwidth ? Xwidth : extension_settings62[extensionName].novelai_width),
-        "height": Number(Xheight ? Xheight : extension_settings62[extensionName].novelai_height),
-        "scale": Number(extension_settings62[extensionName].nai3Scale),
+        "params_version": extension_settings64[extensionName].novelaimode.includes("nai-diffusion-5") ? 4 : 3,
+        "width": Number(Xwidth ? Xwidth : extension_settings64[extensionName].novelai_width),
+        "height": Number(Xheight ? Xheight : extension_settings64[extensionName].novelai_height),
+        "scale": Number(extension_settings64[extensionName].nai3Scale),
         //提示词关联性
-        "sampler": extension_settings62[extensionName].novelai_sampler,
+        "sampler": extension_settings64[extensionName].novelai_sampler,
         //"k_euler",//使用的采样器   "k_dpm_2"   "k_dpmpp_2m"    "ddim_v3"  "k_dpmpp_2s_ancestral"
-        "steps": Number(extension_settings62[extensionName].novelai_steps),
+        "steps": Number(extension_settings64[extensionName].novelai_steps),
         //生成的步数
         "n_samples": 1,
         "ucPreset": 3,
@@ -85788,12 +87841,12 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
         "legacy": false,
         "legacy_uc": false,
         "add_original_image": true,
-        "cfg_rescale": Number(extension_settings62[extensionName].cfg_rescale),
+        "cfg_rescale": Number(extension_settings64[extensionName].cfg_rescale),
         //关联性调整
-        "noise_schedule": extension_settings62[extensionName].Schedule,
-        "skip_cfg_above_sigma": isSettingFalse(extension_settings62[extensionName].nai3Variety) ? null : 19.343056794463642,
+        "noise_schedule": extension_settings64[extensionName].Schedule,
+        "skip_cfg_above_sigma": isSettingFalse(extension_settings64[extensionName].nai3Variety) ? null : 19.343056794463642,
         "legacy_v3_extend": false,
-        "seed": extension_settings62[extensionName].novelai_seed === "0" || extension_settings62[extensionName].novelai_seed === "" || extension_settings62[extensionName].novelai_seed === "-1" ? generateRandomSeed() : Number(extension_settings62[extensionName].novelai_seed),
+        "seed": extension_settings64[extensionName].novelai_seed === "0" || extension_settings64[extensionName].novelai_seed === "" || extension_settings64[extensionName].novelai_seed === "-1" ? generateRandomSeed() : Number(extension_settings64[extensionName].novelai_seed),
         //生成的种子，下面是固定的负面提示词
         "negative_prompt": negative_prompt,
         "reference_image_multiple": [],
@@ -85809,16 +87862,16 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
     } else {
       preset_data = {
         "autoSmea": false,
-        "normalize_reference_strength_multiple": isSettingTrue3(extension_settings62[extensionName].normalizeRefStrength),
+        "normalize_reference_strength_multiple": isSettingTrue3(extension_settings64[extensionName].normalizeRefStrength),
         "inpaintImg2ImgStrength": 1,
-        "params_version": extension_settings62[extensionName].novelaimode.includes("nai-diffusion-5") ? 4 : 3,
-        "width": Number(Xwidth ? Xwidth : extension_settings62[extensionName].novelai_width),
-        "height": Number(Xheight ? Xheight : extension_settings62[extensionName].novelai_height),
-        "scale": Number(extension_settings62[extensionName].nai3Scale),
+        "params_version": extension_settings64[extensionName].novelaimode.includes("nai-diffusion-5") ? 4 : 3,
+        "width": Number(Xwidth ? Xwidth : extension_settings64[extensionName].novelai_width),
+        "height": Number(Xheight ? Xheight : extension_settings64[extensionName].novelai_height),
+        "scale": Number(extension_settings64[extensionName].nai3Scale),
         //提示词关联性
-        "sampler": extension_settings62[extensionName].novelai_sampler,
+        "sampler": extension_settings64[extensionName].novelai_sampler,
         //"k_euler",//使用的采样器   "k_dpm_2"   "k_dpmpp_2m"    "ddim_v3"  "k_dpmpp_2s_ancestral"
-        "steps": Number(extension_settings62[extensionName].novelai_steps),
+        "steps": Number(extension_settings64[extensionName].novelai_steps),
         //生成的步数
         "n_samples": 1,
         "ucPreset": 3,
@@ -85829,12 +87882,12 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
         "legacy": false,
         "legacy_uc": false,
         "add_original_image": true,
-        "cfg_rescale": Number(extension_settings62[extensionName].cfg_rescale),
+        "cfg_rescale": Number(extension_settings64[extensionName].cfg_rescale),
         //关联性调整
-        "noise_schedule": extension_settings62[extensionName].Schedule,
-        "skip_cfg_above_sigma": isSettingFalse(extension_settings62[extensionName].nai3Variety) ? null : 19.343056794463642,
+        "noise_schedule": extension_settings64[extensionName].Schedule,
+        "skip_cfg_above_sigma": isSettingFalse(extension_settings64[extensionName].nai3Variety) ? null : 19.343056794463642,
         "legacy_v3_extend": false,
-        "seed": extension_settings62[extensionName].novelai_seed === "0" || extension_settings62[extensionName].novelai_seed === "" || extension_settings62[extensionName].novelai_seed === "-1" ? generateRandomSeed() : Number(extension_settings62[extensionName].novelai_seed),
+        "seed": extension_settings64[extensionName].novelai_seed === "0" || extension_settings64[extensionName].novelai_seed === "" || extension_settings64[extensionName].novelai_seed === "-1" ? generateRandomSeed() : Number(extension_settings64[extensionName].novelai_seed),
         //生成的种子，下面是固定的负面提示词
         "negative_prompt": negative_prompt,
         "reference_image_multiple": [],
@@ -85862,37 +87915,57 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
       };
     }
   }
-  if (extension_settings62[extensionName].novelaimode.includes("nai-diffusion-5")) {
+  if (extension_settings64[extensionName].novelaimode.includes("nai-diffusion-5")) {
     let ucPresetInt = 0;
-    const ucpVal = String(extension_settings62[extensionName].UCP_novelai || "").toLowerCase().replace(/[\s_-]+/g, "");
+    const ucpVal = String(extension_settings64[extensionName].UCP_novelai || "").toLowerCase().replace(/[\s_-]+/g, "");
     if (ucpVal === "heavy") ucPresetInt = 1;
     else if (ucpVal === "furryfocus") ucPresetInt = 2;
     else if (ucpVal === "light") ucPresetInt = 3;
     else if (ucpVal === "humanfocus") ucPresetInt = 4;
     preset_data.tag_hint_uc_preset = ucPresetInt;
     preset_data.tag_hint_qt = 1;
-    preset_data.straight_alpha = extension_settings62[extensionName].novelai_straight_alpha === true;
-    if (extension_settings62[extensionName].novelai_straight_alpha === true) {
+    preset_data.straight_alpha = extension_settings64[extensionName].novelai_straight_alpha === true;
+    if (extension_settings64[extensionName].novelai_straight_alpha === true) {
       preset_data.tag_hint_transparent_background = true;
     }
   }
-  if (extension_settings62[extensionName].novelai_sampler == "k_euler_ancestral") {
+  if (extension_settings64[extensionName].novelai_sampler == "k_euler_ancestral") {
     preset_data["deliberate_euler_ancestral_bug"] = false;
     preset_data["prefer_brownian"] = true;
   }
-  if (!isSettingFalse(extension_settings62[extensionName].nai3Variety)) {
-    preset_data["skip_cfg_above_sigma"] = calculateSkipCfgAboveSigma(preset_data.width, preset_data.height, extension_settings62[extensionName].novelaimode);
+  if (!isSettingFalse(extension_settings64[extensionName].nai3Variety)) {
+    preset_data["skip_cfg_above_sigma"] = calculateSkipCfgAboveSigma(preset_data.width, preset_data.height, extension_settings64[extensionName].novelaimode);
   }
-  const isNAI3 = extension_settings62[extensionName].novelaimode === "nai-diffusion-3";
-  const isNAI45 = ["nai-diffusion-4-5-full", "nai-diffusion-4-5-curated"].includes(extension_settings62[extensionName].novelaimode);
+  const baseModel = extension_settings64[extensionName].novelaimode;
+  const isMediumEffort = baseModel === "nai-diffusion-5-full" && extension_settings64[extensionName].novelai_v5_effort === "medium";
+  const actualModel = isMediumEffort ? "nai-diffusion-5-full-medium" : baseModel;
+  const isNAI3 = baseModel === "nai-diffusion-3";
+  const isNAI45 = ["nai-diffusion-4-5-full", "nai-diffusion-4-5-curated"].includes(baseModel);
+  const isNAI5 = String(baseModel || "").includes("nai-diffusion-5");
   const isNAI4or45 = [
     "nai-diffusion-4-full",
     "nai-diffusion-4-curated-preview",
     "nai-diffusion-4-5-full",
     "nai-diffusion-4-5-curated"
-  ].includes(extension_settings62[extensionName].novelaimode);
-  const isBrowserClient = extension_settings62[extensionName].client !== "jiuguan";
-  if (isSettingTrue3(extension_settings62[extensionName].nai3CharRef) && isNAI45 && isBrowserClient) {
+  ].includes(baseModel);
+  const isBrowserClient = extension_settings64[extensionName].client !== "jiuguan";
+  if (isSettingTrue3(extension_settings64[extensionName].nai5PreciseCharRef) && isNAI5 && !isMediumEffort && isBrowserClient) {
+    try {
+      await applyPreciseCharacterReferenceGroup(preset_data);
+    } catch (error) {
+      console.error("[PreciseCharRef] Unexpected error in Precise Character Reference:", error);
+      addLog(`[PreciseCharRef] \u9519\u8BEF: \u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u5E94\u7528\u5931\u8D25: ${error.message}`);
+      toastr.error("\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\u5E94\u7528\u5931\u8D25\uFF0C\u5C06\u7EE7\u7EED\u8FDB\u884C\u56FE\u50CF\u751F\u6210", "\u7CBE\u51C6\u89D2\u8272\u53C2\u8003");
+    }
+  } else if (isSettingTrue3(extension_settings64[extensionName].nai5PreciseCharRef) && isNAI5) {
+    if (isMediumEffort) {
+      addLog("[PreciseCharRef] \u8DF3\u8FC7: V5 Full Medium (\u7701\u6D41) \u6863\u4F4D\u4E0D\u652F\u6301\u7CBE\u51C6\u89D2\u8272\u53C2\u8003");
+      console.warn("[PreciseCharRef] Skipped: V5 Full Medium effort mode does not support Precise Character Reference");
+    } else if (!isBrowserClient) {
+      addLog("[PreciseCharRef] \u8DF3\u8FC7: \u9152\u9986\u7AEF\u4E0D\u652F\u6301\u7CBE\u51C6\u89D2\u8272\u53C2\u8003");
+      console.warn("[PreciseCharRef] Skipped: Tavern client does not support Precise Character Reference");
+    }
+  } else if (isSettingTrue3(extension_settings64[extensionName].nai3CharRef) && isNAI45 && isBrowserClient) {
     try {
       await applyCharacterReferenceGroup(preset_data);
     } catch (error) {
@@ -85900,7 +87973,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
       addLog(`[CharRef] \u9519\u8BEF: \u89D2\u8272\u53C2\u8003\u5E94\u7528\u5931\u8D25: ${error.message}`);
       toastr.error("\u89D2\u8272\u53C2\u8003\u5E94\u7528\u5931\u8D25\uFF0C\u5C06\u7EE7\u7EED\u8FDB\u884C\u56FE\u50CF\u751F\u6210", "\u89D2\u8272\u53C2\u8003");
     }
-  } else if (isSettingTrue3(extension_settings62[extensionName].nai3CharRef)) {
+  } else if (isSettingTrue3(extension_settings64[extensionName].nai3CharRef)) {
     if (!isNAI45) {
       addLog("[CharRef] \u8DF3\u8FC7: \u5F53\u524D\u6A21\u578B\u4E0D\u652F\u6301\u89D2\u8272\u53C2\u8003 (\u4EC5\u652F\u6301 NAI4.5)");
       console.warn("[CharRef] Skipped: Current model does not support Character Reference (NAI4.5 only)");
@@ -85909,7 +87982,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
       addLog("[CharRef] \u8DF3\u8FC7: \u9152\u9986\u7AEF\u4E0D\u652F\u6301\u89D2\u8272\u53C2\u8003");
       console.warn("[CharRef] Skipped: Tavern client does not support Character Reference");
     }
-  } else if (isSettingTrue3(extension_settings62[extensionName].enableVibeGroupTransfer) && isNAI4or45 && isBrowserClient) {
+  } else if (isSettingTrue3(extension_settings64[extensionName].enableVibeGroupTransfer) && isNAI4or45 && isBrowserClient) {
     try {
       _nai_vibe_group_name = await applyVibeGroupTransfer(preset_data);
     } catch (error) {
@@ -85917,7 +87990,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
       addLog(`[VibeGroup] \u9519\u8BEF: Vibe \u7EC4\u6C1B\u56F4\u8F6C\u79FB\u5931\u8D25: ${error.message}`);
       toastr.error("Vibe \u7EC4\u6C1B\u56F4\u8F6C\u79FB\u5931\u8D25\uFF0C\u5C06\u7EE7\u7EED\u8FDB\u884C\u56FE\u50CF\u751F\u6210", "Vibe \u7EC4\u6C1B\u56F4\u8F6C\u79FB");
     }
-  } else if (isSettingTrue3(extension_settings62[extensionName].enableVibeGroupTransfer)) {
+  } else if (isSettingTrue3(extension_settings64[extensionName].enableVibeGroupTransfer)) {
     if (!isNAI4or45) {
       addLog("[VibeGroup] \u8DF3\u8FC7: \u5F53\u524D\u6A21\u578B\u4E0D\u652F\u6301 Vibe \u7EC4\u6C1B\u56F4\u8F6C\u79FB (\u4EC5\u652F\u6301 NAI4/4.5)");
       console.warn("[VibeGroup] Skipped: Current model does not support Vibe Group Transfer (NAI4/4.5 only)");
@@ -85926,7 +87999,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
       addLog("[VibeGroup] \u8DF3\u8FC7: \u9152\u9986\u7AEF\u4E0D\u652F\u6301 Vibe \u7EC4\u6C1B\u56F4\u8F6C\u79FB");
       console.warn("[VibeGroup] Skipped: Tavern client does not support Vibe Group Transfer");
     }
-  } else if (isSettingTrue3(extension_settings62[extensionName].nai3VibeTransfer) && isNAI3) {
+  } else if (isSettingTrue3(extension_settings64[extensionName].nai3VibeTransfer) && isNAI3) {
     try {
       await applySingleVibeTransfer(preset_data);
     } catch (error) {
@@ -85934,16 +88007,13 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
       addLog(`[SingleVibe] \u9519\u8BEF: \u5355\u4E2A Vibe \u8F6C\u79FB\u5931\u8D25: ${error.message}`);
       toastr.error("Vibe \u8F6C\u79FB\u5931\u8D25\uFF0C\u5C06\u7EE7\u7EED\u8FDB\u884C\u56FE\u50CF\u751F\u6210", "Vibe \u8F6C\u79FB");
     }
-  } else if (isSettingTrue3(extension_settings62[extensionName].nai3VibeTransfer)) {
+  } else if (isSettingTrue3(extension_settings64[extensionName].nai3VibeTransfer)) {
     if (!isNAI3) {
       addLog("[SingleVibe] \u8DF3\u8FC7: \u5F53\u524D\u6A21\u578B\u4E0D\u652F\u6301\u5355\u4E2A Vibe \u8F6C\u79FB (\u4EC5\u652F\u6301 NAI3)");
       console.warn("[SingleVibe] Skipped: Current model does not support Single Vibe Transfer (NAI3 only)");
     }
   }
   addLog("[Payload] \u5F00\u59CB\u6E05\u7406\u548C\u9A8C\u8BC1 payload...");
-  const baseModel = extension_settings62[extensionName].novelaimode;
-  const isMediumEffort = baseModel === "nai-diffusion-5-full" && extension_settings62[extensionName].novelai_v5_effort === "medium";
-  const actualModel = isMediumEffort ? "nai-diffusion-5-full-medium" : baseModel;
   if (isMediumEffort) {
     addLog("[NovelAI] \u68C0\u6D4B\u5230\u542F\u7528 V5 Full Medium \u8D28\u91CF/\u7B97\u529B\u6863\u4F4D\uFF0C\u5207\u6362\u4E3A nai-diffusion-5-full-medium\uFF08\u9501\u5B9A 14 \u6B65\uFF09");
   }
@@ -85962,11 +88032,12 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
     model: actualModel,
     effort: isMediumEffort ? "medium" : "high",
     yushe: _nai_yushe_id,
-    yusheRandom: isSettingTrue3(extension_settings62[extensionName].randomYushe),
-    promptReplaceId: extension_settings62[extensionName].prompt_replace_id,
+    yusheRandom: isSettingTrue3(extension_settings64[extensionName].randomYushe),
+    promptReplaceId: extension_settings64[extensionName].prompt_replace_id,
     vibeGroup: _nai_vibe_group_name,
-    vibeGroupRandom: isSettingTrue3(extension_settings62[extensionName].randomVibeGroup),
-    charRefGroup: isSettingTrue3(extension_settings62[extensionName].nai3CharRef) ? extension_settings62[extensionName].charRefGroupId : void 0,
+    vibeGroupRandom: isSettingTrue3(extension_settings64[extensionName].randomVibeGroup),
+    charRefGroup: isSettingTrue3(extension_settings64[extensionName].nai3CharRef) && isNAI45 ? extension_settings64[extensionName].charRefGroupId : void 0,
+    preciseCharRefGroup: isSettingTrue3(extension_settings64[extensionName].nai5PreciseCharRef) && actualModel.includes("nai-diffusion-5") && !isMediumEffort ? extension_settings64[extensionName].preciseCharRefGroupId : void 0,
     resolvedPrompt: prompt2,
     negativePrompt: payload.negative_prompt,
     width: payload.width,
@@ -85978,15 +88049,15 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
     cfgScale: payload.scale
   });
   const loggablePayload = createLoggableNovelAIPayload(payload);
-  if (extension_settings62[extensionName].client != "jiuguan") {
+  if (extension_settings64[extensionName].client != "jiuguan") {
     addLog(`\u6700\u7EC8\u751F\u56FE\u53C2\u6570 (payload): ${JSON.stringify(loggablePayload, null, 2)}`);
   }
-  if (extension_settings62[extensionName].novelaisite != "\u5B98\u7F51") {
-    if (extension_settings62[extensionName].client == "jiuguan") {
+  if (extension_settings64[extensionName].novelaisite != "\u5B98\u7F51") {
+    if (extension_settings64[extensionName].client == "jiuguan") {
       taskQueue.completeTask(taskId, false);
       throw new Error("\u9152\u9986\u7AEF\u4E0D\u652F\u6301\u81EA\u5B9A\u4E49\u7AD9\u70B9\uFF01");
     }
-    let otherSite = normalizeNovelAIOtherSiteUrl(extension_settings62[extensionName].novelaiOtherSite);
+    let otherSite = normalizeNovelAIOtherSiteUrl(extension_settings64[extensionName].novelaiOtherSite);
     if (!otherSite) {
       taskQueue.completeTask(taskId, false);
       throw new Error("\u5DF2\u9009\u62E9\u7B2C\u4E09\u65B9\u7AD9\u70B9\uFF0C\u4F46\u672A\u586B\u5199 novelaiOtherSite \u5730\u5740");
@@ -85998,7 +88069,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
       addLog("\u6B63\u5F0F\u8BF7\u6C42\u524D\u68C0\u6D4B\u5230\u4EFB\u52A1\u5DF2\u88AB\u53D6\u6D88\u3002");
       throw new Error("\u4EFB\u52A1\u5DF2\u53D6\u6D88");
     }
-    if (isSettingTrue3(extension_settings62[extensionName].enableCloudQueue)) {
+    if (isSettingTrue3(extension_settings64[extensionName].enableCloudQueue)) {
       const keyHash = await hashKey(access_token);
       const userId = getUserId();
       try {
@@ -86015,24 +88086,24 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
       }
     }
     resetGenerationTimeout(NOVELAI_TIMEOUT_SECONDS);
-    if (extension_settings62[extensionName].client == "jiuguan") {
+    if (extension_settings64[extensionName].client == "jiuguan") {
       const read = await fetch("/api/secrets/read", {
         method: "POST",
         headers: getRequestHeaders(window.token),
         body: JSON.stringify({})
       });
       if (read.ok) {
-        if (extension_settings62[extensionName].novelaiApi_id != "") {
+        if (extension_settings64[extensionName].novelaiApi_id != "") {
           await fetch("/api/secrets/delete", {
             method: "POST",
             headers: getRequestHeaders(window.token),
-            body: JSON.stringify({ id: extension_settings62[extensionName].novelaiApi_id, key: "api_key_novel" })
+            body: JSON.stringify({ id: extension_settings64[extensionName].novelaiApi_id, key: "api_key_novel" })
           });
         }
         const reSecret = await fetch("/api/secrets/write", {
           method: "POST",
           headers: getRequestHeaders(window.token),
-          body: JSON.stringify({ key: "api_key_novel", value: extension_settings62[extensionName].novelaiApi, label: "\u63D2\u4EF6\u8BBE\u7F6E\u7684api_key_novel" })
+          body: JSON.stringify({ key: "api_key_novel", value: extension_settings64[extensionName].novelaiApi, label: "\u63D2\u4EF6\u8BBE\u7F6E\u7684api_key_novel" })
         });
         if (!reSecret.ok) {
           const errorText = await reSecret.text();
@@ -86042,8 +88113,8 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
         try {
           const novelid = JSON.parse(responseText);
           if (novelid && novelid.id) {
-            extension_settings62[extensionName].novelaiApi_id = novelid.id;
-            saveSettingsDebounced36();
+            extension_settings64[extensionName].novelaiApi_id = novelid.id;
+            saveSettingsDebounced38();
             await fetch("/api/secrets/rotate", {
               method: "POST",
               headers: getRequestHeaders(window.token),
@@ -86116,13 +88187,13 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
     if (!isPluginToastDisabled()) {
       toastr.success(`\u2705 NovelAI \u751F\u56FE\u5B8C\u6210\uFF0C\u8017\u65F6 ${duration} \u79D2`);
     }
-    if (String(extension_settings62[extensionName].convertToJpegStorage) === "true") {
+    if (String(extension_settings64[extensionName].convertToJpegStorage) === "true") {
       imageUrl = await convertImageToJpeg(imageUrl);
     }
     return { image: imageUrl, change: change_ || "", genParams: _nai_gen_params };
   } catch (error) {
-    if (extension_settings62[extensionName].novelaisite !== "\u5B98\u7F51") {
-      const otherSite = normalizeNovelAIOtherSiteUrl(extension_settings62[extensionName].novelaiOtherSite);
+    if (extension_settings64[extensionName].novelaisite !== "\u5B98\u7F51") {
+      const otherSite = normalizeNovelAIOtherSiteUrl(extension_settings64[extensionName].novelaiOtherSite);
       evictNovelAIUrlCache(otherSite, "/ai/generate-image");
     }
     isTaskAborted = error.name === "AbortError" || error.message === "\u4EFB\u52A1\u5DF2\u53D6\u6D88" || abortController.signal.aborted || error.message?.includes("\u8D85\u65F6");
@@ -86148,7 +88219,7 @@ async function generateNovelAIImage({ prompt: link, width: Xwidth, height: Xheig
       currentCloudQueueInfo = null;
     }
     if (lockAcquired) {
-      const interval = Math.max(0, parseInt(extension_settings62[extensionName]?.imageGenInterval, 10) || 0);
+      const interval = Math.max(0, parseInt(extension_settings64[extensionName]?.imageGenInterval, 10) || 0);
       releaseSerialLock(taskId, interval);
     }
   }
@@ -86160,7 +88231,7 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
   if (typeof link === "string") {
     const match = link.match(sizeRegex);
     if (match) {
-      if (String(extension_settings62[extensionName].aiAutonomousResolution) !== "false") {
+      if (String(extension_settings64[extensionName].aiAutonomousResolution) !== "false") {
         Xwidth = parseInt(match[1], 10);
         Xheight = parseInt(match[2], 10);
       }
@@ -86170,7 +88241,7 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
   if (typeof change === "string") {
     const match = change.match(sizeRegex);
     if (match) {
-      if (String(extension_settings62[extensionName].aiAutonomousResolution) !== "false") {
+      if (String(extension_settings64[extensionName].aiAutonomousResolution) !== "false") {
         Xwidth = parseInt(match[1], 10);
         Xheight = parseInt(match[2], 10);
       }
@@ -86229,20 +88300,20 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
     addLog(`[NovelAI Inpaint] \u63D0\u793A\u8BCD: ${inpaintPrompt}`);
     addLog(`[NovelAI Inpaint] \u8D1F\u9762\u63D0\u793A\u8BCD: ${negativePrompt}`);
     addLog(`[NovelAI Inpaint] \u5F3A\u5EA6: ${strength}`);
-    const access_token = (extension_settings62[extensionName].novelaiApi || "").trim();
+    const access_token = (extension_settings64[extensionName].novelaiApi || "").trim();
     if (!access_token || access_token === "000000") {
       throw new Error("\u8BF7\u586B\u5199 NovelAI API Key");
     }
-    const imgWidth = Number(window.novelaiInpaintWidth) || Number(Xwidth) || Number(extension_settings62[extensionName].novelai_width) || 1024;
-    const imgHeight = Number(window.novelaiInpaintHeight) || Number(Xheight) || Number(extension_settings62[extensionName].novelai_height) || 1024;
+    const imgWidth = Number(window.novelaiInpaintWidth) || Number(Xwidth) || Number(extension_settings64[extensionName].novelai_width) || 1024;
+    const imgHeight = Number(window.novelaiInpaintHeight) || Number(Xheight) || Number(extension_settings64[extensionName].novelai_height) || 1024;
     addLog(`[NovelAI Inpaint] \u56FE\u50CF\u5C3A\u5BF8: ${imgWidth}x${imgHeight}`);
-    const seed = extension_settings62[extensionName].novelai_seed === "0" || extension_settings62[extensionName].novelai_seed === "" || extension_settings62[extensionName].novelai_seed === "-1" ? generateRandomSeed() : Number(extension_settings62[extensionName].novelai_seed);
-    const baseMode = extension_settings62[extensionName].novelaimode || "";
+    const seed = extension_settings64[extensionName].novelai_seed === "0" || extension_settings64[extensionName].novelai_seed === "" || extension_settings64[extensionName].novelai_seed === "-1" ? generateRandomSeed() : Number(extension_settings64[extensionName].novelai_seed);
+    const baseMode = extension_settings64[extensionName].novelaimode || "";
     let inpaintModel = "nai-diffusion-4-5-curated-inpainting";
-    let inpaintSteps = Number(extension_settings62[extensionName].novelai_steps) || 28;
-    let inpaintSampler = extension_settings62[extensionName].novelai_sampler || "k_euler_ancestral";
+    let inpaintSteps = Number(extension_settings64[extensionName].novelai_steps) || 28;
+    let inpaintSampler = extension_settings64[extensionName].novelai_sampler || "k_euler_ancestral";
     if (baseMode === "nai-diffusion-5-full") {
-      if (extension_settings62[extensionName].novelai_v5_effort === "medium") {
+      if (extension_settings64[extensionName].novelai_v5_effort === "medium") {
         inpaintModel = "nai-diffusion-5-full-medium-inpainting";
         inpaintSteps = 14;
         inpaintSampler = "k_euler_ancestral";
@@ -86257,14 +88328,14 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
       "parameters": {
         "width": imgWidth,
         "height": imgHeight,
-        "scale": Number(extension_settings62[extensionName].nai3Scale) || 5,
+        "scale": Number(extension_settings64[extensionName].nai3Scale) || 5,
         "sampler": inpaintSampler,
         "steps": inpaintSteps,
         "seed": seed,
         "n_samples": 1,
         "image": imageBase64,
         "mask": maskBase64,
-        "params_version": extension_settings62[extensionName].novelaimode.includes("nai-diffusion-5") ? 4 : 3,
+        "params_version": extension_settings64[extensionName].novelaimode.includes("nai-diffusion-5") ? 4 : 3,
         "prefer_brownian": true,
         "autoSmea": false,
         "strength": 0.7,
@@ -86279,8 +88350,8 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
         "legacy": false,
         "legacy_uc": false,
         "legacy_v3_extend": false,
-        "normalize_reference_strength_multiple": isSettingTrue3(extension_settings62[extensionName].normalizeRefStrength),
-        "noise_schedule": extension_settings62[extensionName].Schedule || "karras",
+        "normalize_reference_strength_multiple": isSettingTrue3(extension_settings64[extensionName].normalizeRefStrength),
+        "noise_schedule": extension_settings64[extensionName].Schedule || "karras",
         "qualityToggle": true,
         "skip_cfg_above_sigma": 19,
         "ucPreset": 0,
@@ -86310,7 +88381,7 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
       }
     };
     if (inpaintModel.includes("nai-diffusion-5")) {
-      const v5Schedule = extension_settings62[extensionName]?.novelai_v5_schedule;
+      const v5Schedule = extension_settings64[extensionName]?.novelai_v5_schedule;
       if (!v5Schedule || v5Schedule === "none") {
         delete payload.parameters.noise_schedule;
         addLog("[NovelAI Inpaint] NAI5 \u566A\u70B9\u8868\u8BBE\u4E3A\u4E0D\u53D1\u9001 (\u9ED8\u8BA4)\uFF0C\u5DF2\u6E05\u7406 noise_schedule");
@@ -86322,7 +88393,7 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
     addLog(`[NovelAI Inpaint] \u8BF7\u6C42\u53C2\u6570\u5DF2\u6784\u5EFA\u5B8C\u6210`);
     _inpaint_gen_params = buildGenParams("NovelAI \u5C40\u90E8\u91CD\u7ED8", {
       model: payload.model,
-      promptReplaceId: extension_settings62[extensionName].prompt_replace_id,
+      promptReplaceId: extension_settings64[extensionName].prompt_replace_id,
       resolvedPrompt: inpaintPrompt,
       negativePrompt,
       width: payload.parameters.width,
@@ -86337,7 +88408,7 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
       addLog("[NovelAI Inpaint] \u6B63\u5F0F\u5F00\u59CB\u524D\u4EFB\u52A1\u5DF2\u88AB\u53D6\u6D88");
       throw new Error("\u4EFB\u52A1\u5DF2\u53D6\u6D88");
     }
-    if (isSettingTrue3(extension_settings62[extensionName].enableCloudQueue)) {
+    if (isSettingTrue3(extension_settings64[extensionName].enableCloudQueue)) {
       const keyHash = await hashKey(access_token);
       const userId = getUserId();
       try {
@@ -86354,7 +88425,7 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
       }
     }
     resetInpaintTimeout(NOVELAI_TIMEOUT_SECONDS);
-    if (extension_settings62[extensionName].novelaisite != "\u5B98\u7F51" && extension_settings62[extensionName].client == "jiuguan") {
+    if (extension_settings64[extensionName].novelaisite != "\u5B98\u7F51" && extension_settings64[extensionName].client == "jiuguan") {
       throw new Error("\u9152\u9986\u7AEF\u4E0D\u652F\u6301\u81EA\u5B9A\u4E49\u7AD9\u70B9\u7684\u5C40\u90E8\u91CD\u7ED8\uFF01");
     }
     const Authorization = "Bearer " + access_token;
@@ -86393,14 +88464,14 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
     if (!isPluginToastDisabled()) {
       toastr.success(`\u2705 NovelAI \u5C40\u90E8\u91CD\u7ED8\u5B8C\u6210\uFF0C\u8017\u65F6 ${inpaintDuration} \u79D2`);
     }
-    if (String(extension_settings62[extensionName].convertToJpegStorage) === "true") {
+    if (String(extension_settings64[extensionName].convertToJpegStorage) === "true") {
       imageUrl = await convertImageToJpeg(imageUrl);
     }
     addLog(`[NovelAI Inpaint] \u5C40\u90E8\u91CD\u7ED8\u5B8C\u6210 (\u8017\u65F6 ${inpaintDuration} \u79D2)\uFF01`);
     return { image: imageUrl, change: change || "", genParams: _inpaint_gen_params };
   } catch (error) {
-    if (extension_settings62[extensionName].novelaisite !== "\u5B98\u7F51") {
-      const otherSite = normalizeNovelAIOtherSiteUrl(extension_settings62[extensionName].novelaiOtherSite);
+    if (extension_settings64[extensionName].novelaisite !== "\u5B98\u7F51") {
+      const otherSite = normalizeNovelAIOtherSiteUrl(extension_settings64[extensionName].novelaiOtherSite);
       evictNovelAIUrlCache(otherSite, "/ai/generate-image");
     }
     isTaskAborted = error.name === "AbortError" || error.message === "\u4EFB\u52A1\u5DF2\u53D6\u6D88" || abortController.signal.aborted || error.message?.includes("\u8D85\u65F6");
@@ -86426,7 +88497,7 @@ async function generateNovelAIInpaint({ prompt: link, width: Xwidth, height: Xhe
       currentCloudQueueInfo = null;
     }
     if (lockAcquired) {
-      const interval = Math.max(0, parseInt(extension_settings62[extensionName]?.imageGenInterval, 10) || 0);
+      const interval = Math.max(0, parseInt(extension_settings64[extensionName]?.imageGenInterval, 10) || 0);
       releaseSerialLock(taskId, interval);
     }
     delete window.novelaiInpaintImage;
@@ -86454,7 +88525,7 @@ async function novelaigenerate(requestData) {
       const { image: imageUrl, change: returnedChange, isVideo, format, genParams } = await generateComfyUIImage({ prompt: prompt2, width, height, change, extraNegativePrompt });
       const cleanedChange = returnedChange.replaceAll("{ComfyUI\u5C40\u90E8\u91CD\u7ED8}", "");
       try {
-        if (extension_settings62[extensionName].cache != "0") {
+        if (extension_settings64[extensionName].cache != "0") {
           await setItemImg(prompt2, imageUrl, {
             change: cleanedChange,
             isVideo,
@@ -86496,7 +88567,7 @@ async function novelaigenerate(requestData) {
       const { image: imageUrl, change: returnedChange, genParams } = await generateNovelAIInpaint({ prompt: prompt2, width, height, change });
       const cleanedChange = returnedChange.replaceAll("{NovelAI\u5C40\u90E8\u91CD\u7ED8}", "");
       try {
-        if (extension_settings62[extensionName].cache != "0") {
+        if (extension_settings64[extensionName].cache != "0") {
           await setItemImg(prompt2, imageUrl, {
             change: cleanedChange,
             genParams,
@@ -86556,7 +88627,7 @@ async function novelaigenerate(requestData) {
   try {
     const { image: imageUrl, change: returnedChange, genParams } = await generateNovelAIImage({ prompt: prompt2, width, height, change, extraNegativePrompt });
     try {
-      if (extension_settings62[extensionName].cache != "0") {
+      if (extension_settings64[extensionName].cache != "0") {
         await setItemImg(prompt2, imageUrl, {
           change: returnedChange,
           genParams,
@@ -86639,7 +88710,7 @@ function initializeNovelAIListener() {
   addLog("NovelAI \u751F\u56FE\u4E8B\u4EF6\u76D1\u542C\u5668\u5DF2\u521D\u59CB\u5316\u3002");
 }
 async function replaceWithnovelai() {
-  if (isPluginEnabled() && extension_settings62[extensionName].mode == "novelai") {
+  if (isPluginEnabled() && extension_settings64[extensionName].mode == "novelai") {
     if (!window.initializeNovelAIListener) {
       window.initializeNovelAIListener = true;
       initializeNovelAIListener();
@@ -86866,7 +88937,7 @@ async function diagnoseConfigStorage(options = {}) {
     out.serverFileCount = serverFiles.length;
     console.log("\u30101. \u670D\u52A1\u5668\u5B9E\u9645\u6587\u4EF6\u3011");
     console.log(`  \u603B\u6570: ${serverFiles.length}`, extCount(serverFiles));
-    const registry = extension_settings63[extensionName]?.configImageStorage || {};
+    const registry = extension_settings65[extensionName]?.configImageStorage || {};
     const registryKeys = Object.keys(registry);
     const kindCount = {};
     const referencedFiles = /* @__PURE__ */ new Set();
@@ -86891,7 +88962,7 @@ async function diagnoseConfigStorage(options = {}) {
     out.indexedDbCount = dbIds.length;
     console.log("\u30103. \u6D4F\u89C8\u5668 IndexedDB \u6761\u76EE\u3011");
     console.log(`  \u6761\u76EE\u6570: ${dbIds.length}`);
-    const activeRefs = collectActiveConfigReferences(extension_settings63[extensionName] || {});
+    const activeRefs = collectActiveConfigReferences(extension_settings65[extensionName] || {});
     out.activeRefCount = activeRefs.activeIds.size;
     console.log("\u30104. \u4E1A\u52A1\u6D3B\u8DC3\u5F15\u7528\u9006\u5411\u6BD4\u5BF9\u3011");
     console.log(`  \u771F\u6B63\u88AB\u89D2\u8272\u3001\u670D\u88C5\u3001\u9884\u8BBE\u5F15\u7528\u7684\u56FE\u7247/\u5A92\u4F53 ID: ${activeRefs.activeIds.size} \u4E2A`);
@@ -86945,7 +89016,7 @@ async function diagnoseConfigStorage(options = {}) {
     console.log(`  \u26A0 \u5931\u6548\u5F15\u7528\uFF08\u6CE8\u518C\u8868\u6709\u3001\u670D\u52A1\u5668\u5DF2\u65E0\u6587\u4EF6\uFF09: ${missing.length} \u4E2A\u6587\u4EF6\u540D / ${out.missingEntries.length} \u6761\u6CE8\u518C\u8868\u952E`);
     let settingsBlob = "";
     try {
-      settingsBlob = JSON.stringify(extension_settings63[extensionName] || {});
+      settingsBlob = JSON.stringify(extension_settings65[extensionName] || {});
     } catch (_) {
     }
     const orphanSafe = [];
@@ -87012,7 +89083,7 @@ async function diagnoseConfigStorage(options = {}) {
 async function cleanupConfigStorage(options = {}) {
   const { orphanFiles = [], deadKeys = [], unreferencedIds = [], onProgress = null } = options;
   const result = { deletedFiles: [], deletedKeys: [], deletedUnreferenced: [], skipped: [], errors: [] };
-  const latestSettings = extension_settings63[extensionName] || {};
+  const latestSettings = extension_settings65[extensionName] || {};
   const latestRefs = collectActiveConfigReferences(latestSettings);
   const total = orphanFiles.length + unreferencedIds.length;
   let step = 0;
@@ -87076,7 +89147,7 @@ async function cleanupConfigStorage(options = {}) {
           result.deletedKeys.push(key);
         }
       }
-      if (result.deletedKeys.length) saveSettingsDebounced37();
+      if (result.deletedKeys.length) saveSettingsDebounced39();
     }
   }
   console.log(`[ConfigDB \u6E05\u7406] \u5B8C\u6210\uFF1A\u6E05\u7406\u65E0\u4E3B\u56FE\u7247 ${result.deletedUnreferenced.length} \u4E2A\uFF0C\u5220\u9664\u5B64\u513F\u6587\u4EF6 ${result.deletedFiles.length} \u4E2A\uFF0C\u79FB\u9664\u6CE8\u518C\u8868\u6761\u76EE ${result.deletedKeys.length} \u6761\uFF0C\u8DF3\u8FC7 ${result.skipped.length} \u4E2A\uFF0C\u5931\u8D25 ${result.errors.length} \u4E2A`);
@@ -87453,7 +89524,7 @@ init_ui_common();
 
 var generationTabs = ["sd", "novelai", "comfyui", "runninghub"];
 function syncAllPromptReplaceFields(force = false) {
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const presetName = settings3.prompt_replace_id;
   const currentPreset = settings3.prompt_replace[presetName] || {};
   generationTabs.forEach((mode) => {
@@ -87470,7 +89541,7 @@ function syncAllPromptReplaceFields(force = false) {
   });
 }
 function prompt_replace_change(mode) {
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const suffix = getSuffix(mode);
   const selectElement = document.getElementById("prompt_replace_id" + suffix);
   const newPresetId = selectElement.value;
@@ -87482,7 +89553,7 @@ function prompt_replace_change(mode) {
     stylishConfirm("\u60A8\u6709\u672A\u4FDD\u5B58\u7684\u66FF\u6362\u89C4\u5219\u3002\u8981\u653E\u5F03\u8FD9\u4E9B\u66F4\u6539\u5E76\u5207\u6362\u9884\u8BBE\u5417\uFF1F").then((confirmed) => {
       if (confirmed) {
         settings3.prompt_replace_id = newPresetId;
-        saveSettingsDebounced38();
+        saveSettingsDebounced40();
         syncAllPromptReplaceFields(true);
       } else {
         selectElement.value = currentPresetId;
@@ -87490,12 +89561,12 @@ function prompt_replace_change(mode) {
     });
   } else {
     settings3.prompt_replace_id = newPresetId;
-    saveSettingsDebounced38();
+    saveSettingsDebounced40();
     syncAllPromptReplaceFields(true);
   }
 }
 function prompt_replace_new(mode) {
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings66[extensionName];
   stylInput("\u8BF7\u8F93\u5165\u65B0\u66FF\u6362\u89C4\u5219\u914D\u7F6E\u7684\u540D\u79F0").then((newName) => {
     if (newName && newName.trim() !== "") {
       if (settings3.prompt_replace[newName]) {
@@ -87504,7 +89575,7 @@ function prompt_replace_new(mode) {
       }
       settings3.prompt_replace[newName] = { "text": "" };
       settings3.prompt_replace_id = newName;
-      saveSettingsDebounced38();
+      saveSettingsDebounced40();
       try {
         if (typeof window.loadSilterTavernChatu8Settings === "function") {
           window.loadSilterTavernChatu8Settings();
@@ -87516,7 +89587,7 @@ function prompt_replace_new(mode) {
   });
 }
 function prompt_replace_rename(mode) {
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const currentName = settings3.prompt_replace_id;
   if (currentName === "\u9ED8\u8BA4" || !settings3.prompt_replace[currentName]) {
     alert("\u9ED8\u8BA4\u914D\u7F6E\u6216\u4E0D\u5B58\u5728\u7684\u914D\u7F6E\u4E0D\u80FD\u91CD\u547D\u540D\u3002");
@@ -87531,7 +89602,7 @@ function prompt_replace_rename(mode) {
       settings3.prompt_replace[newName] = settings3.prompt_replace[currentName];
       delete settings3.prompt_replace[currentName];
       settings3.prompt_replace_id = newName;
-      saveSettingsDebounced38();
+      saveSettingsDebounced40();
       try {
         if (typeof window.loadSilterTavernChatu8Settings === "function") {
           window.loadSilterTavernChatu8Settings();
@@ -87543,14 +89614,14 @@ function prompt_replace_rename(mode) {
   });
 }
 function prompt_replace_save(mode) {
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const suffix = getSuffix(mode);
   stylInput("\u8BF7\u8F93\u5165\u65B0\u66FF\u6362\u89C4\u5219\u914D\u7F6E\u7684\u540D\u79F0").then((result) => {
     if (result && result.trim() !== "") {
       const text = document.getElementById("prompt_replace_text" + suffix).value;
       settings3.prompt_replace[result] = { "text": text };
       settings3.prompt_replace_id = result;
-      saveSettingsDebounced38();
+      saveSettingsDebounced40();
       try {
         if (typeof window.loadSilterTavernChatu8Settings === "function") {
           window.loadSilterTavernChatu8Settings();
@@ -87563,7 +89634,7 @@ function prompt_replace_save(mode) {
   });
 }
 function prompt_replace_update(mode) {
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const suffix = getSuffix(mode);
   const presetName = settings3.prompt_replace_id;
   if (!presetName || !settings3.prompt_replace[presetName]) {
@@ -87574,7 +89645,7 @@ function prompt_replace_update(mode) {
     if (confirmed) {
       const text = document.getElementById("prompt_replace_text" + suffix).value;
       settings3.prompt_replace[presetName] = { "text": text };
-      saveSettingsDebounced38();
+      saveSettingsDebounced40();
       const textarea = document.getElementById("prompt_replace_text" + suffix);
       const warning = textarea.closest(".st-chatu8-field-col").querySelector(".st-chatu8-unsaved-warning");
       if (warning) $(warning).hide();
@@ -87582,7 +89653,7 @@ function prompt_replace_update(mode) {
   });
 }
 function prompt_replace_delete(mode) {
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const suffix = getSuffix(mode);
   const selectElement = document.getElementById("prompt_replace_id" + suffix);
   const valueToDelete = selectElement.value;
@@ -87594,7 +89665,7 @@ function prompt_replace_delete(mode) {
     if (result) {
       Reflect.deleteProperty(settings3.prompt_replace, valueToDelete);
       settings3.prompt_replace_id = "\u9ED8\u8BA4";
-      saveSettingsDebounced38();
+      saveSettingsDebounced40();
       try {
         if (typeof window.loadSilterTavernChatu8Settings === "function") {
           window.loadSilterTavernChatu8Settings();
@@ -87606,7 +89677,7 @@ function prompt_replace_delete(mode) {
   });
 }
 function prompt_replace_export_current() {
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const selectedId = settings3.prompt_replace_id;
   if (!selectedId || !settings3.prompt_replace[selectedId]) {
     alert("\u6CA1\u6709\u9009\u4E2D\u7684\u66FF\u6362\u89C4\u5219\u53EF\u5BFC\u51FA\u3002");
@@ -87625,7 +89696,7 @@ function prompt_replace_export_current() {
   URL.revokeObjectURL(url);
 }
 function prompt_replace_export_all() {
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings66[extensionName];
   if (!settings3.prompt_replace || Object.keys(settings3.prompt_replace).length === 0) {
     alert("\u6CA1\u6709\u66FF\u6362\u89C4\u5219\u53EF\u5BFC\u51FA\u3002");
     return;
@@ -87642,7 +89713,7 @@ function prompt_replace_export_all() {
   URL.revokeObjectURL(url);
 }
 function prompt_replace_import() {
-  const settings3 = extension_settings64[extensionName];
+  const settings3 = extension_settings66[extensionName];
   const input = document.createElement("input");
   input.type = "file";
   input.accept = ".json";
@@ -87662,7 +89733,7 @@ function prompt_replace_import() {
             settings3.prompt_replace[key] = importedData[key];
           }
         }
-        saveSettingsDebounced38();
+        saveSettingsDebounced40();
         try {
           if (typeof window.loadSilterTavernChatu8Settings === "function") {
             window.loadSilterTavernChatu8Settings();
@@ -87693,7 +89764,7 @@ function initPromptReplaceControls(settingsModal) {
     settingsModal.find(`#prompt_replace_export_all${suffix}`).on("click", prompt_replace_export_all);
     settingsModal.find(`#prompt_replace_import${suffix}`).on("click", prompt_replace_import);
     $(`#prompt_replace_text${suffix}`).on("input", function() {
-      const settings3 = extension_settings64[extensionName];
+      const settings3 = extension_settings66[extensionName];
       const presetName = settings3.prompt_replace_id;
       const currentPreset = settings3.prompt_replace[presetName] || {};
       const isDirty = $(this).val() !== (currentPreset.text ?? "");
@@ -87823,7 +89894,7 @@ function handleCancelTask(taskId) {
     eventSource32.emit("st_chatu8_cancel_comfyui_task", { taskId });
     eventSource32.emit("st_chatu8_cancel_task", { taskId });
     console.log("[TaskManager] \u5DF2\u89E6\u53D1 ComfyUI \u53D6\u6D88\u4E8B\u4EF6");
-  } else if (extension_settings65[extensionName]?.client === "jiuguan") {
+  } else if (extension_settings67[extensionName]?.client === "jiuguan") {
     eventSource32.emit("sd_stop_generation");
     console.log("[TaskManager] \u5DF2\u901A\u77E5\u9152\u9986\u53D6\u6D88\u4EFB\u52A1");
   } else {
@@ -87851,7 +89922,7 @@ function handleCancelAll() {
   eventSource32.emit("st_chatu8_cancel_comfyui_task", {});
   eventSource32.emit("st_chatu8_cancel_llm_task", {});
   eventSource32.emit("st_chatu8_cancel_task", {});
-  if (extension_settings65[extensionName]?.client === "jiuguan") {
+  if (extension_settings67[extensionName]?.client === "jiuguan") {
     eventSource32.emit("sd_stop_generation");
   }
   clearAllGenerating();
@@ -87960,8 +90031,8 @@ async function handleExportLog() {
     alert("\u65E5\u5FD7\u4E3A\u7A7A\u3002");
     return;
   }
-  const { extension_settings: extension_settings117 } = await import("../../../extensions.js");
-  const settings3 = extension_settings117["st-chatu8"] || {};
+  const { extension_settings: extension_settings118 } = await import("../../../extensions.js");
+  const settings3 = extension_settings118["st-chatu8"] || {};
   let settingsInfo = "========== st-chatu8 \u63D2\u4EF6\u8BBE\u7F6E\u4FE1\u606F ==========\n";
   const extensionVersion = await getLocalExtensionVersion();
   settingsInfo += `1. \u667A\u7ED8\u59EC\u7684\u7248\u672C: ${extensionVersion} (\u6839\u636Emanifest.json)
@@ -88251,7 +90322,7 @@ function handleClearLog() {
   stylishConfirm("\u786E\u5B9A\u8981\u6E05\u7A7A\u6240\u6709\u65E5\u5FD7\u5417\uFF1F\u6B64\u64CD\u4F5C\u5C06\u5F7B\u5E95\u5220\u9664\u6240\u6709\u5386\u53F2\u65E5\u5FD7\uFF0C\u4E0D\u53EF\u64A4\u9500\u3002").then((confirmed) => {
     if (confirmed) {
       clearAllLogs();
-      saveSettingsDebounced39();
+      saveSettingsDebounced41();
       updateLogView();
       toastr.success("\u65E5\u5FD7\u5DF2\u5168\u90E8\u6E05\u7A7A\u3002");
     }
@@ -89212,7 +91283,7 @@ async function showPresetVisualSelector(mode, settings3, onSelect) {
           settings3[yusheIdKey2] = "\u9ED8\u8BA4";
         }
       }
-      await saveSettingsDebounced40();
+      await saveSettingsDebounced42();
       alert(`\u6210\u529F\u5220\u9664 ${deletedCount} \u4E2A\u9884\u8BBE\u3002`);
       exitBulkDeleteMode();
       updateFilteredPresets();
@@ -89357,14 +91428,14 @@ async function showPresetVisualSelector(mode, settings3, onSelect) {
   paginationSizeSelect.onchange = (e) => {
     pageSize = parseInt(e.target.value);
     settings3.presetVisualPageSize = pageSize;
-    saveSettingsDebounced40();
+    saveSettingsDebounced42();
     currentPage = 1;
     renderCurrentPage();
   };
   gridColumnsSelect.onchange = (e) => {
     gridColumns = parseInt(e.target.value);
     settings3.presetVisualGridColumns = gridColumns;
-    saveSettingsDebounced40();
+    saveSettingsDebounced42();
     updateGridLayout();
   };
   parent.appendChild(backdrop);
@@ -89419,7 +91490,7 @@ async function createPresetCard2(presetName, preset, isSelected, settings3, mode
       if (confirm(`\u786E\u5B9A\u8981\u5220\u9664\u9884\u8BBE "${presetName}" \u7684\u9884\u89C8\u56FE\u5417\uFF1F`)) {
         await deleteConfigImage(previewImageId);
         delete preset.previewImageId;
-        saveSettingsDebounced40();
+        saveSettingsDebounced42();
         refreshCardImage2(imageContainer, null);
       }
     };
@@ -89451,7 +91522,7 @@ async function createPresetCard2(presetName, preset, isSelected, settings3, mode
         settings3[yusheIdKey] = newName;
       }
       renameMember(settings3, GROUP_SCOPE, presetName, newName);
-      saveSettingsDebounced40();
+      saveSettingsDebounced42();
       if (onRefreshGrid) onRefreshGrid();
     }
   };
@@ -89474,7 +91545,7 @@ async function createPresetCard2(presetName, preset, isSelected, settings3, mode
       if (isDeletingCurrentPreset) {
         settings3[yusheIdKey] = "\u9ED8\u8BA4";
       }
-      saveSettingsDebounced40();
+      saveSettingsDebounced42();
       if (isDeletingCurrentPreset) {
         if (onCloseDialog) onCloseDialog();
         if (typeof window.loadSilterTavernChatu8Settings === "function") {
@@ -89551,7 +91622,7 @@ function handleImageUpload2(presetName, settings3, container) {
           settings3.yushe[presetName] = {};
         }
         settings3.yushe[presetName].previewImageId = newImageId;
-        saveSettingsDebounced40();
+        saveSettingsDebounced42();
         refreshCardImage2(container, newImageId);
       };
       reader.readAsDataURL(file);
@@ -89821,7 +91892,7 @@ async function handleAutocomplete3(inputEl, resultsEl) {
     return;
   }
   try {
-    const settings3 = extension_settings68[extensionName];
+    const settings3 = extension_settings70[extensionName];
     const startsWith = String(settings3.vocabulary_search_startswith) === "true";
     const limit = parseInt(settings3.vocabulary_search_limit, 10);
     const sortBy = settings3.vocabulary_search_sort;
@@ -89910,7 +91981,7 @@ function initPromptSettings(settingsModal, settings3) {
       $(warning).hide();
       if (presetName && settings3.yushe[presetName]) {
         settings3.yushe[presetName][field] = $(this).val();
-        saveSettingsDebounced41();
+        saveSettingsDebounced43();
       }
     });
     settingsModal.find(`#translate_fixedPrompt${suffix}`).on("click", () => translateAndAnnotateField("fixedPrompt", suffix));
@@ -89920,8 +91991,8 @@ function initPromptSettings(settingsModal, settings3) {
         const fixedPromptEl = document.getElementById(`fixedPrompt${suffix}`);
         const fixedPromptEndEl = document.getElementById(`fixedPrompt_end${suffix}`);
         const negativePromptEl = document.getElementById(`negativePrompt${suffix}`);
-        const presetsText = getNovelAIQualityPresetsText(extension_settings68[extensionName]);
-        const maxTokens = getNovelAIMaxTokens(extension_settings68[extensionName]);
+        const presetsText = getNovelAIQualityPresetsText(extension_settings70[extensionName]);
+        const maxTokens = getNovelAIMaxTokens(extension_settings70[extensionName]);
         if (fixedPromptEl && fixedPromptEndEl) {
           const t1 = await calculateNovelAITokens(fixedPromptEl.value);
           const t2 = await calculateNovelAITokens(fixedPromptEndEl.value);
@@ -89976,7 +92047,7 @@ function st_chatu8_tishici_change(mode, settings3) {
   const isDirty = fixedPrompt !== (currentPreset.fixedPrompt ?? "") || fixedPrompt_end !== (currentPreset.fixedPrompt_end ?? "") || negativePrompt !== (currentPreset.negativePrompt ?? "");
   const switchPreset = () => {
     settings3[yusheIdKey] = newPresetId;
-    saveSettingsDebounced41();
+    saveSettingsDebounced43();
     const newPreset = settings3.yushe[newPresetId] || {};
     document.getElementById("fixedPrompt" + suffix).value = newPreset.fixedPrompt ?? "";
     document.getElementById("fixedPrompt_end" + suffix).value = newPreset.fixedPrompt_end ?? "";
@@ -90014,7 +92085,7 @@ function st_chatu8_tishici_new(mode, settings3) {
       }
       settings3.yushe[newName] = { fixedPrompt: "", fixedPrompt_end: "", negativePrompt: "" };
       settings3[yusheIdKey] = newName;
-      saveSettingsDebounced41();
+      saveSettingsDebounced43();
       window.loadSilterTavernChatu8Settings();
       toastr.success(`\u5DF2\u521B\u5EFA\u7A7A\u9884\u8BBE "${newName}"`);
     }
@@ -90037,7 +92108,7 @@ function st_chatu8_tishici_rename(mode, settings3) {
       settings3.yushe[newName] = settings3.yushe[currentName];
       delete settings3.yushe[currentName];
       settings3[yusheIdKey] = newName;
-      saveSettingsDebounced41();
+      saveSettingsDebounced43();
       window.loadSilterTavernChatu8Settings();
       toastr.success(`\u9884\u8BBE\u5DF2\u91CD\u547D\u540D\u4E3A "${newName}"`);
     }
@@ -90053,7 +92124,7 @@ function st_chatu8_tishici_save(mode, settings3) {
       const yusheIdKey = `yusheid${mode === "sd" ? "_sd" : suffix}`;
       settings3.yushe[result] = { ...settings3.yushe[result] || {}, "fixedPrompt": fixedPrompt, "fixedPrompt_end": fixedPrompt_end, "negativePrompt": negativePrompt };
       settings3[yusheIdKey] = result;
-      saveSettingsDebounced41();
+      saveSettingsDebounced43();
       window.loadSilterTavernChatu8Settings();
       alert(`\u9884\u8BBE "${result}" \u5DF2\u4FDD\u5B58\u3002`);
     }
@@ -90073,7 +92144,7 @@ function st_chatu8_tishici_update(mode, settings3) {
       const fixedPrompt_end = document.getElementById("fixedPrompt_end" + suffix).value;
       const negativePrompt = document.getElementById("negativePrompt" + suffix).value;
       settings3.yushe[presetName] = { ...settings3.yushe[presetName], "fixedPrompt": fixedPrompt, "fixedPrompt_end": fixedPrompt_end, "negativePrompt": negativePrompt };
-      saveSettingsDebounced41();
+      saveSettingsDebounced43();
       const fields = ["fixedPrompt", "fixedPrompt_end", "negativePrompt"];
       fields.forEach((field) => {
         const textarea = document.getElementById(field + suffix);
@@ -90115,7 +92186,7 @@ function st_chatu8_tishici_delete(mode, settings3) {
     if (result) {
       Reflect.deleteProperty(settings3.yushe, valueToDelete);
       settings3[yusheIdKey] = "\u9ED8\u8BA4";
-      saveSettingsDebounced41();
+      saveSettingsDebounced43();
       window.loadSilterTavernChatu8Settings();
     }
   });
@@ -90126,7 +92197,7 @@ async function st_chatu8_tishici_export_current(mode, settings3) {
     mode = null;
   }
   if (!settings3) {
-    settings3 = extension_settings68[extensionName];
+    settings3 = extension_settings70[extensionName];
   }
   if (!mode) {
     const activeTabEl = document.querySelector(".st-chatu8-tab-content.active") || document.querySelector(".st-chatu8-nav-link.active");
@@ -90260,7 +92331,7 @@ function st_chatu8_tishici_import(settings3) {
             settings3.yushe[key] = presetsToImport[key];
           }
         }
-        saveSettingsDebounced41();
+        saveSettingsDebounced43();
         window.loadSilterTavernChatu8Settings();
         let message = `\u6210\u529F\u5BFC\u5165 ${Object.keys(presetsToImport).length} \u4E2A\u9884\u8BBE\uFF0C\u5176\u4E2D ${newPresetsCount} \u4E2A\u662F\u5168\u65B0\u7684\u3002`;
         if (importedImagesCount > 0) {
@@ -90450,7 +92521,7 @@ function removeComfyUIImage() {
   dbs.storeDelete(COMFYUI_REF_CACHE_KEY);
 }
 async function handleImageUpload22(event) {
-  const settings3 = extension_settings69[extensionName];
+  const settings3 = extension_settings71[extensionName];
   const file = event.target.files[0];
   if (!file) return;
   try {
@@ -90581,14 +92652,14 @@ var PING_TIMEOUT = 5e3;
 var consecutiveErrors = 0;
 var keepAliveSuspended = false;
 function shouldKeepAlive() {
-  const settings3 = extension_settings70[extensionName];
+  const settings3 = extension_settings72[extensionName];
   if (!settings3) return false;
   const isEnabled = settings3.scriptEnabled === true || settings3.scriptEnabled === "true";
   const isComfyUIMode = settings3.mode === "comfyui";
   return isEnabled && isComfyUIMode && !keepAliveSuspended;
 }
 function pingViaSillyTavern() {
-  const comfyUrl = extension_settings70[extensionName]?.comfyuiUrl?.trim();
+  const comfyUrl = extension_settings72[extensionName]?.comfyuiUrl?.trim();
   if (!comfyUrl) {
     return;
   }
@@ -90613,7 +92684,7 @@ function pingViaSillyTavern() {
   });
 }
 function pingDirect() {
-  const comfyUrl = extension_settings70[extensionName]?.comfyuiUrl?.trim();
+  const comfyUrl = extension_settings72[extensionName]?.comfyuiUrl?.trim();
   if (!comfyUrl) {
     return;
   }
@@ -90647,7 +92718,7 @@ function doPing() {
   if (!shouldKeepAlive()) {
     return;
   }
-  const client = extension_settings70[extensionName]?.client;
+  const client = extension_settings72[extensionName]?.client;
   if (client === "jiuguan") {
     pingViaSillyTavern();
   } else {
@@ -90694,7 +92765,7 @@ function resetKeepAliveState() {
 // utils/settings/api_connections.js
 init_configDatabase();
 async function testComfyui() {
-  const settings3 = extension_settings71[extensionName];
+  const settings3 = extension_settings73[extensionName];
   let el = document.getElementById("comfyuiUrl");
   let testurl1 = removeTrailingSlash(el.value);
   let testurl = testurl1 + "/object_info";
@@ -90770,7 +92841,7 @@ async function testComfyui() {
   }
 }
 async function testSd() {
-  const settings3 = extension_settings71[extensionName];
+  const settings3 = extension_settings73[extensionName];
   const el = document.getElementById("sdUrl");
   const baseUrl = removeTrailingSlash(el.value);
   if (!isValidUrl(baseUrl)) {
@@ -90872,7 +92943,7 @@ function ComfyuiaddLORA() {
   const fixedPrompt = activeTab.find("#fixedPrompt_comfyui");
   const loraSelect = document.getElementById("ComfyuiLORA");
   if (!loraSelect.value || loraSelect.value.trim() === "" || loraSelect.disabled) {
-    if (extension_settings72[extensionName].client == "jiuguan") {
+    if (extension_settings74[extensionName].client == "jiuguan") {
       alert("\u62B1\u6B49\u9152\u9986\u5BA2\u6237\u7AEF\u65E0\u6CD5\u652F\u6301lora\u83B7\u53D6,\u8BF7\u53C2\u8003\u6587\u6863\u5C1D\u8BD5\u4F7F\u7528\u6D4F\u89C8\u5668\u5BA2\u6237\u7AEF");
     } else {
       alert("\u8BF7\u5148\u8FDE\u63A5ComfyUI\u83B7\u53D6lora");
@@ -90889,7 +92960,7 @@ function sd_add_lora() {
   const fixedPrompt = activeTab.find("#fixedPrompt");
   const loraSelect = document.getElementById("sd_cchatu_8_lora");
   if (!loraSelect.value || loraSelect.value.trim() === "" || loraSelect.disabled) {
-    if (extension_settings72[extensionName].client == "jiuguan") {
+    if (extension_settings74[extensionName].client == "jiuguan") {
       alert("\u62B1\u6B49\u9152\u9986\u5BA2\u6237\u7AEF\u65E0\u6CD5\u652F\u6301lora\u83B7\u53D6,\u8BF7\u53C2\u8003\u6587\u6863\u5C1D\u8BD5\u4F7F\u7528\u6D4F\u89C8\u5668\u5BA2\u6237\u7AEF");
     } else {
       alert("\u8BF7\u5148\u8FDE\u63A5SD\u83B7\u53D6lora");
@@ -90918,12 +92989,12 @@ function onRestoreDefaultSettingsClick() {
       stylishConfirm("\u4F60\u771F\u7684\u786E\u5B9A\u5417\uFF1F").then(async (result2) => {
         if (result2) {
           const defaults = JSON.parse(JSON.stringify(defaultSettings));
-          const settings3 = extension_settings73[extensionName];
+          const settings3 = extension_settings75[extensionName];
           Object.keys(settings3).forEach((key) => {
             delete settings3[key];
           });
           Object.assign(settings3, defaults);
-          saveSettingsDebounced45();
+          saveSettingsDebounced47();
           try {
             await initJiuguanStorage();
             console.log("[Settings] \u5DF2\u4ECE\u9690\u5199\u56FE\u7247\u91CD\u65B0\u52A0\u8F7D\u56FE\u7247\u7F13\u5B58");
@@ -90938,7 +93009,7 @@ function onRestoreDefaultSettingsClick() {
   });
 }
 function onExportSettingsClick() {
-  const settingsString = JSON.stringify(extension_settings73[extensionName], null, 4);
+  const settingsString = JSON.stringify(extension_settings75[extensionName], null, 4);
   const blob = new Blob([settingsString], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -90961,8 +93032,8 @@ function onImportSettingsClick() {
       reader.onload = async (e) => {
         try {
           const importedSettings = JSON.parse(e.target.result);
-          Object.assign(extension_settings73[extensionName], importedSettings);
-          saveSettingsDebounced45();
+          Object.assign(extension_settings75[extensionName], importedSettings);
+          saveSettingsDebounced47();
           try {
             await initJiuguanStorage();
             console.log("[Settings] \u5DF2\u4ECE\u9690\u5199\u56FE\u7247\u91CD\u65B0\u52A0\u8F7D\u56FE\u7247\u7F13\u5B58");
@@ -91711,7 +93782,7 @@ async function loadImageCache(options = {}) {
   }
 }
 async function clearCache() {
-  const settings3 = extension_settings74[extensionName];
+  const settings3 = extension_settings76[extensionName];
   stylishConfirm(`\u4F60\u786E\u5B9A\u8981\u6E05\u9664\u6240\u6709\u8FC7\u671F\u7684\u56FE\u7247\u7F13\u5B58\u5417\uFF1F (\u8FC7\u671F\u65F6\u95F4: ${settings3.cache} \u5929)`).then(async (confirmed) => {
     if (confirmed) {
       try {
@@ -92268,7 +94339,7 @@ var NOVELAI_MODEL_PARAM_KEYS = [
 ];
 var lastSelectedNovelaiModel = null;
 function getEffectiveModelConfig(modelName) {
-  const settings3 = extension_settings75[extensionName] || {};
+  const settings3 = extension_settings77[extensionName] || {};
   const modelConfigs = settings3.novelai_model_configs || {};
   const officialDefault = OFFICIAL_NOVELAI_MODEL_DEFAULTS[modelName] || OFFICIAL_NOVELAI_MODEL_DEFAULTS["nai-diffusion-4-5-full"] || {};
   const userModelConfig = modelConfigs[modelName] || {};
@@ -92286,7 +94357,7 @@ function getEffectiveModelConfig(modelName) {
 }
 function saveModelConfigFromUI(modelName) {
   if (!modelName) return;
-  const settings3 = extension_settings75[extensionName];
+  const settings3 = extension_settings77[extensionName];
   if (!settings3) return;
   settings3.novelai_model_configs = settings3.novelai_model_configs || {};
   const currentConfig = settings3.novelai_model_configs[modelName] || {};
@@ -92309,7 +94380,7 @@ function saveModelConfigFromUI(modelName) {
 }
 function loadModelConfigIntoUI(modelName) {
   if (!modelName) return;
-  const settings3 = extension_settings75[extensionName];
+  const settings3 = extension_settings77[extensionName];
   if (!settings3) return;
   const config = getEffectiveModelConfig(modelName);
   NOVELAI_MODEL_PARAM_KEYS.forEach((key) => {
@@ -92418,19 +94489,19 @@ function resetCurrentModelToOfficialDefault() {
     }
     return;
   }
-  const settings3 = extension_settings75[extensionName];
+  const settings3 = extension_settings77[extensionName];
   if (!settings3) return;
   settings3.novelai_model_configs = settings3.novelai_model_configs || {};
   settings3.novelai_model_configs[currentModel] = JSON.parse(JSON.stringify(officialDefault));
   loadModelConfigIntoUI(currentModel);
   updateNovelaiModelSchedule();
-  saveSettingsDebounced47();
+  saveSettingsDebounced49();
   if (typeof toastr !== "undefined") {
     toastr.success(`\u5DF2\u5C06\u6A21\u578B\u3010${currentModel}\u3011\u7684\u5168\u90E8\u53C2\u6570\u91CD\u7F6E\u4E3A\u5B98\u7F51\u9ED8\u8BA4\u503C`, "NovelAI \u53C2\u6570\u91CD\u7F6E");
   }
 }
 function updateNovelaiModelUIState(targetModel = null) {
-  const settings3 = extension_settings75[extensionName] || {};
+  const settings3 = extension_settings77[extensionName] || {};
   const novelaiModeSelect = document.getElementById("novelaimode");
   const selectedModel = targetModel || (novelaiModeSelect ? novelaiModeSelect.value : null) || settings3.novelaimode || "nai-diffusion-4-5-full";
   if (!selectedModel) return;
@@ -92455,10 +94526,11 @@ function updateNovelaiModelUIState(targetModel = null) {
   updateNovelaiReferenceSectionsVisibility(selectedModel);
 }
 function updateNovelaiReferenceSectionsVisibility(targetModel = null) {
-  const settings3 = extension_settings75[extensionName] || {};
+  const settings3 = extension_settings77[extensionName] || {};
   const novelaiModeSelect = document.getElementById("novelaimode");
   const vibeSection = document.getElementById("nai-vibe-transfer-section");
   const charRefSection = document.getElementById("nai-char-ref-section");
+  const preciseCharRefSection = document.getElementById("nai-precise-char-ref-section");
   const vibeGroupSection = document.getElementById("nai-vibe-group-section");
   const selectedModel = targetModel || (novelaiModeSelect ? novelaiModeSelect.value : null) || settings3.novelaimode;
   if (!selectedModel) return;
@@ -92469,13 +94541,34 @@ function updateNovelaiReferenceSectionsVisibility(targetModel = null) {
     const isCharRefVisible = selectedModel === "nai-diffusion-4-5-curated" || selectedModel === "nai-diffusion-4-5-full";
     charRefSection.style.display = isCharRefVisible ? "block" : "none";
   }
+  if (preciseCharRefSection) {
+    const isPreciseCharRefVisible = selectedModel.includes("nai-diffusion-5");
+    preciseCharRefSection.style.display = isPreciseCharRefVisible ? "block" : "none";
+    const effortInput = document.getElementById("novelai_v5_effort");
+    const currentEffort = effortInput ? effortInput.value || settings3.novelai_v5_effort || "high" : settings3.novelai_v5_effort || "high";
+    const isMediumBlocked = selectedModel === "nai-diffusion-5-full" && currentEffort === "medium";
+    const mediumNotice = document.getElementById("nai-precise-char-ref-medium-notice");
+    if (mediumNotice) {
+      mediumNotice.style.display = isMediumBlocked ? "block" : "none";
+    }
+    const preciseToggleInput = document.getElementById("nai5PreciseCharRef");
+    if (preciseToggleInput) {
+      preciseToggleInput.disabled = isMediumBlocked;
+      preciseToggleInput.title = isMediumBlocked ? "Medium\uFF08\u7701\u6D41\uFF09\u6863\u4F4D\u4E0D\u652F\u6301\u7CBE\u51C6\u89D2\u8272\u53C2\u8003\uFF0C\u8BF7\u5207\u56DE High \u6863\u4F4D" : "\u4EC5\u7528\u4E8E NovelAI V5 \u7CFB\u5217\u3002\u4E0D\u5EFA\u8BAE\u4F7F\u7528\uFF0C\u6BCF\u591A\u4E00\u5F20\u53C2\u8003\u56FE\u7247\u5C31\u591A\u6536\u8D395\u70B9\uFF0C\u6BCF\u6B21\u751F\u56FE\u6536\u8D39\u4E00\u6B21\uFF01";
+      const toggleWrapper = preciseToggleInput.closest(".st-chatu8-toggle");
+      if (toggleWrapper) {
+        toggleWrapper.style.opacity = isMediumBlocked ? "0.45" : "1";
+        toggleWrapper.style.pointerEvents = isMediumBlocked ? "none" : "auto";
+      }
+    }
+  }
   if (vibeGroupSection) {
     const isVibeGroupVisible = selectedModel.includes("nai-diffusion-4");
     vibeGroupSection.style.display = isVibeGroupVisible ? "block" : "none";
   }
 }
 function updateNovelaiUcpOptions() {
-  const settings3 = extension_settings75[extensionName];
+  const settings3 = extension_settings77[extensionName];
   const novelaiModeSelect = document.getElementById("novelaimode");
   const ucpSelect = document.getElementById("UCP_novelai");
   if (!novelaiModeSelect || !ucpSelect) return;
@@ -92526,11 +94619,11 @@ function updateNovelaiUcpOptions() {
     const defaultVal = isV5Model ? "heavy" : "Heavy";
     ucpSelect.value = defaultVal;
     settings3.UCP_novelai = defaultVal;
-    saveSettingsDebounced47();
+    saveSettingsDebounced49();
   }
 }
 function updateNovelaiModelSchedule(isInitial = false) {
-  const settings3 = extension_settings75[extensionName];
+  const settings3 = extension_settings77[extensionName];
   const novelaiModeSelect = document.getElementById("novelaimode");
   const scheduleSelect = document.getElementById("Schedule");
   const samplerSelect = document.getElementById("novelai_sampler");
@@ -92573,14 +94666,14 @@ function updateNovelaiModelSchedule(isInitial = false) {
     }
   }
   updateNovelaiScheduleVisibility();
-  saveSettingsDebounced47();
+  saveSettingsDebounced49();
   const fixedPromptEl = document.getElementById("fixedPrompt_novelai");
   if (fixedPromptEl) {
     $(fixedPromptEl).trigger("input");
   }
 }
 function refreshNovelaiUIFromSettings(targetModel = null) {
-  const settings3 = extension_settings75[extensionName] || {};
+  const settings3 = extension_settings77[extensionName] || {};
   const novelaiModeSelect = document.getElementById("novelaimode");
   const model = targetModel || settings3.novelaimode || (novelaiModeSelect ? novelaiModeSelect.value : "nai-diffusion-4-5-full");
   if (novelaiModeSelect && novelaiModeSelect.value !== model) {
@@ -92731,7 +94824,7 @@ async function queryNovelaiQuota(settingsModal) {
   }
 }
 function initNovelaiUI(settingsModal) {
-  const settings3 = extension_settings75[extensionName];
+  const settings3 = extension_settings77[extensionName];
   const novelaiModeSelect = document.getElementById("novelaimode");
   if (novelaiModeSelect) {
     lastSelectedNovelaiModel = novelaiModeSelect.value;
@@ -92745,7 +94838,7 @@ function initNovelaiUI(settingsModal) {
       const currentModel = modeSelect ? modeSelect.value : null;
       if (currentModel) {
         saveModelConfigFromUI(currentModel);
-        saveSettingsDebounced47();
+        saveSettingsDebounced49();
       }
     });
   });
@@ -92774,7 +94867,7 @@ function initNovelaiUI(settingsModal) {
         if (typeof toastr !== "undefined") {
           toastr.info("\u5DF2\u81EA\u52A8\u4E3A\u60A8\u5207\u6362\u5BA2\u6237\u7AEF\u4E3A\uFF1A\u6D4F\u89C8\u5668\uFF08\u7B2C\u4E09\u65B9 NovelAI \u7AD9\u70B9\u4EC5\u652F\u6301\u6D4F\u89C8\u5668\u7AEF\u8BF7\u6C42\uFF09");
         }
-        saveSettingsDebounced47();
+        saveSettingsDebounced49();
       }
     }
     clearNovelAIUrlCache();
@@ -92805,17 +94898,24 @@ function initNovelaiUI(settingsModal) {
   });
   settingsModal.find(".st-chatu8-effort-btn").on("click", function() {
     const effort = $(this).data("effort");
+    const prevEffort = document.getElementById("novelai_v5_effort")?.value || "high";
     const effortInput = document.getElementById("novelai_v5_effort");
     if (effortInput) {
       effortInput.value = effort;
       $(effortInput).trigger("change");
     }
+    const stepsInput = document.getElementById("novelai_steps");
+    if (effort === "high" && stepsInput && (prevEffort === "medium" || Number(stepsInput.value) === 14)) {
+      stepsInput.value = 23;
+      $(stepsInput).trigger("change");
+    }
     updateNovelaiEffortUIState();
+    updateNovelaiReferenceSectionsVisibility();
     const modeSelect = document.getElementById("novelaimode");
     const currentModel = modeSelect ? modeSelect.value : null;
     if (currentModel) {
       saveModelConfigFromUI(currentModel);
-      saveSettingsDebounced47();
+      saveSettingsDebounced49();
     }
   });
   updateNovelaiModelSchedule(true);
@@ -92929,7 +95029,7 @@ async function buildVibeJson(imageBase64, vibeBase64, model, extractVal, strengt
   };
 }
 function ensureVibePresets() {
-  const settings3 = extension_settings76[extensionName];
+  const settings3 = extension_settings78[extensionName];
   if (!settings3.vibePresets) {
     settings3.vibePresets = {
       "\u9ED8\u8BA4": {
@@ -92948,7 +95048,7 @@ function ensureVibePresets() {
 }
 function showVibeGeneratorDialog() {
   const parent = document.getElementById("st-chatu8-settings") || document.body;
-  const settings3 = extension_settings76[extensionName];
+  const settings3 = extension_settings78[extensionName];
   ensureVibePresets();
   const backdrop = document.createElement("div");
   backdrop.className = "st-chatu8-workflow-viz-backdrop";
@@ -93158,7 +95258,7 @@ function showVibeGeneratorDialog() {
   loadCurrentPreset();
   presetSelect.onchange = () => {
     settings3.vibePresetId = presetSelect.value;
-    saveSettingsDebounced48();
+    saveSettingsDebounced50();
     loadCurrentPreset();
   };
   strengthRange.oninput = (e) => {
@@ -93198,7 +95298,7 @@ function showVibeGeneratorDialog() {
       selectedFile = null;
       settings3.vibePresets[presetId].imageId = newImageId;
       settings3.vibePresets[presetId].thumbnail = null;
-      saveSettingsDebounced48();
+      saveSettingsDebounced50();
       previewImage.src = imageData;
       previewImage.style.display = "block";
       previewContainer.querySelector(".st-chatu8-image-placeholder").style.display = "none";
@@ -93215,7 +95315,7 @@ function showVibeGeneratorDialog() {
         await deleteConfigImage(currentImageId);
         const presetId = presetSelect.value;
         settings3.vibePresets[presetId].imageId = null;
-        saveSettingsDebounced48();
+        saveSettingsDebounced50();
       } catch (error) {
         console.error("[Vibe] \u5220\u9664\u56FE\u7247\u5931\u8D25:", error);
       }
@@ -93237,7 +95337,7 @@ function showVibeGeneratorDialog() {
         vibeDataId: currentVibeDataId,
         thumbnail: settings3.vibePresets[presetId]?.thumbnail || null
       };
-      saveSettingsDebounced48();
+      saveSettingsDebounced50();
       showStatus3("\u9884\u8BBE\u5DF2\u4FDD\u5B58\uFF01", "success");
     } catch (error) {
       console.error("[Vibe] \u4FDD\u5B58\u9884\u8BBE\u5931\u8D25:", error);
@@ -93261,7 +95361,7 @@ function showVibeGeneratorDialog() {
         thumbnail: null
       };
       settings3.vibePresetId = newName;
-      saveSettingsDebounced48();
+      saveSettingsDebounced50();
       loadPresetList();
       loadCurrentPreset();
       showStatus3("\u65B0\u9884\u8BBE\u5DF2\u521B\u5EFA\uFF01", "success");
@@ -93285,7 +95385,7 @@ function showVibeGeneratorDialog() {
       }
       delete settings3.vibePresets[presetId];
       settings3.vibePresetId = "\u9ED8\u8BA4";
-      saveSettingsDebounced48();
+      saveSettingsDebounced50();
       loadPresetList();
       loadCurrentPreset();
       showStatus3("\u9884\u8BBE\u5DF2\u5220\u9664\uFF01", "success");
@@ -93441,7 +95541,7 @@ function showVibeGeneratorDialog() {
             settings3.vibePresets[key] = presetData;
             importedCount++;
           }
-          saveSettingsDebounced48();
+          saveSettingsDebounced50();
           loadPresetList();
           loadCurrentPreset();
           showStatus3(`\u6210\u529F\u5BFC\u5165 ${importedCount} \u4E2A\u9884\u8BBE${skippedCount > 0 ? `\uFF0C\u8DF3\u8FC7 ${skippedCount} \u4E2A` : ""}\uFF01`, "success");
@@ -93532,7 +95632,7 @@ function showVibeGeneratorDialog() {
             vibeDataId,
             thumbnail: thumbnailDataUrl
           };
-          saveSettingsDebounced48();
+          saveSettingsDebounced50();
           updateDownloadButtonState();
           if (warnings.length > 0) {
             showStatus3(`\u26A0\uFE0F Vibe \u6587\u4EF6\u5DF2\u4FDD\u5B58\uFF0C\u4F46\u5B58\u5728\u4EE5\u4E0B\u95EE\u9898\uFF1A<br>${warnings.map((w) => "\u2022 " + w).join("<br>")}`, "success");
@@ -93667,7 +95767,7 @@ function showVibeGeneratorDialog() {
         vibeDataId,
         thumbnail: finalJson.thumbnail || null
       };
-      saveSettingsDebounced48();
+      saveSettingsDebounced50();
       updateDownloadButtonState();
       const filename = `${finalJson.name}.naiv4vibe`;
       showStatus3(`\u2705 \u5B8C\u6210\uFF01Vibe \u6570\u636E\u5DF2\u81EA\u52A8\u4FDD\u5B58\u5230\u9884\u8BBE "${presetId}"<br>\u70B9\u51FB"\u4E0B\u8F7D Vibe \u6587\u4EF6"\u53EF\u5BFC\u51FA ${filename}`, "success");
@@ -93738,1250 +95838,6 @@ function initVibeGenerator(settingsModal) {
   if (vibeGeneratorBtn.length) {
     vibeGeneratorBtn.on("click", () => {
       showVibeGeneratorDialog();
-    });
-  }
-}
-
-// utils/settings/charRefGroupEditor.js
-init_config();
-init_configDatabase();
-
-
-function ensureCharRefGroups() {
-  const settings3 = extension_settings77[extensionName];
-  if (!settings3.charRefGroups || typeof settings3.charRefGroups !== "object" || Array.isArray(settings3.charRefGroups)) {
-    if (settings3.charRefGroups) {
-      console.error("[CharRef] Corrupted charRefGroups data detected, resetting to default:", settings3.charRefGroups);
-    }
-    settings3.charRefGroups = {
-      "\u9ED8\u8BA4\u7EC4": {
-        references: [],
-        createdAt: Date.now(),
-        updatedAt: Date.now()
-      }
-    };
-    console.log("[CharRef] Initialized charRefGroups with default group");
-  }
-  for (const groupName in settings3.charRefGroups) {
-    const group = settings3.charRefGroups[groupName];
-    if (!group || typeof group !== "object") {
-      console.error("[CharRef] Corrupted group data for:", groupName, "- removing");
-      delete settings3.charRefGroups[groupName];
-      continue;
-    }
-    if (!Array.isArray(group.references)) {
-      console.warn("[CharRef] Group missing references array:", groupName, "- initializing");
-      group.references = [];
-    }
-    if (typeof group.createdAt !== "number") {
-      group.createdAt = Date.now();
-    }
-    if (typeof group.updatedAt !== "number") {
-      group.updatedAt = Date.now();
-    }
-  }
-  if (Object.keys(settings3.charRefGroups).length === 0) {
-    console.warn("[CharRef] No valid groups found, creating default group");
-    settings3.charRefGroups["\u9ED8\u8BA4\u7EC4"] = {
-      references: [],
-      createdAt: Date.now(),
-      updatedAt: Date.now()
-    };
-  }
-  if (!settings3.charRefGroupId || !settings3.charRefGroups[settings3.charRefGroupId]) {
-    const firstGroupName = Object.keys(settings3.charRefGroups)[0];
-    settings3.charRefGroupId = firstGroupName || "\u9ED8\u8BA4\u7EC4";
-    console.log("[CharRef] Set charRefGroupId to:", settings3.charRefGroupId);
-  }
-  return settings3.charRefGroups;
-}
-function showCharRefStatus(statusDiv, message, type = "info") {
-  statusDiv.textContent = message;
-  statusDiv.style.display = "block";
-  if (type === "success") {
-    statusDiv.style.backgroundColor = "rgba(76, 175, 80, 0.1)";
-    statusDiv.style.color = "#4caf50";
-    statusDiv.style.border = "1px solid rgba(76, 175, 80, 0.3)";
-  } else if (type === "error") {
-    statusDiv.style.backgroundColor = "rgba(244, 67, 54, 0.1)";
-    statusDiv.style.color = "#f44336";
-    statusDiv.style.border = "1px solid rgba(244, 67, 54, 0.3)";
-  } else {
-    statusDiv.style.backgroundColor = "rgba(33, 150, 243, 0.1)";
-    statusDiv.style.color = "#2196f3";
-    statusDiv.style.border = "1px solid rgba(33, 150, 243, 0.3)";
-  }
-  setTimeout(() => {
-    statusDiv.style.display = "none";
-  }, 5e3);
-}
-function ensureCharRefPresets() {
-  const settings3 = extension_settings77[extensionName];
-  if (!settings3.charRefPresets || typeof settings3.charRefPresets !== "object" || Array.isArray(settings3.charRefPresets)) {
-    if (settings3.charRefPresets) {
-      console.error("[CharRef] Corrupted charRefPresets data detected, resetting to default:", settings3.charRefPresets);
-    }
-    settings3.charRefPresets = {
-      "\u9ED8\u8BA4": {
-        imageId: null,
-        createdAt: Date.now(),
-        updatedAt: Date.now()
-      }
-    };
-    console.log("[CharRef] Initialized charRefPresets with default preset");
-  }
-  if (Object.keys(settings3.charRefPresets).length === 0) {
-    console.warn("[CharRef] No valid presets found, creating default preset");
-    settings3.charRefPresets["\u9ED8\u8BA4"] = {
-      imageId: null,
-      createdAt: Date.now(),
-      updatedAt: Date.now()
-    };
-  }
-  if (!settings3.charRefPresetId || !settings3.charRefPresets[settings3.charRefPresetId]) {
-    const firstPresetName = Object.keys(settings3.charRefPresets)[0];
-    settings3.charRefPresetId = firstPresetName || "\u9ED8\u8BA4";
-    console.log("[CharRef] Set charRefPresetId to:", settings3.charRefPresetId);
-  }
-  return settings3.charRefPresets;
-}
-function showCharRefUploadDialog() {
-  const parent = document.getElementById("st-chatu8-settings") || document.body;
-  const settings3 = extension_settings77[extensionName];
-  ensureCharRefPresets();
-  const backdrop = document.createElement("div");
-  backdrop.className = "st-chatu8-workflow-viz-backdrop";
-  backdrop.innerHTML = `
-        <div class="st-chatu8-workflow-viz-dialog st-chatu8-char-ref-upload-dialog">
-            <div class="st-chatu8-workflow-viz-header">
-                <h3>\u89D2\u8272\u53C2\u8003\u56FE\u9884\u8BBE</h3>
-                <span class="st-chatu8-workflow-viz-close">&times;</span>
-            </div>
-            <div class="st-chatu8-workflow-viz-body" style="padding: 2rem;">
-                <div class="st-chatu8-char-ref-upload-content">
-                    <!-- Preset Selector -->
-                    <div class="st-chatu8-field" style="margin-bottom: 1.2rem;">
-                        <label for="char-ref-preset-select">\u53C2\u8003\u56FE\u9884\u8BBE</label>
-                        <div class="st-chatu8-profile-controls">
-                            <select id="char-ref-preset-select" class="st-chatu8-select"></select>
-                            <button class="st-chatu8-icon-btn" id="char-ref-preset-new" title="\u65B0\u5EFA\u9884\u8BBE">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <button class="st-chatu8-icon-btn" id="char-ref-preset-export-current" title="\u5BFC\u51FA\u5F53\u524D\u9884\u8BBE">
-                                <i class="fa-solid fa-upload"></i>
-                            </button>
-                            <button class="st-chatu8-icon-btn" id="char-ref-preset-export-all" title="\u5BFC\u51FA\u5168\u90E8\u9884\u8BBE">
-                                <i class="fa-solid fa-file-export"></i>
-                            </button>
-                            <button class="st-chatu8-icon-btn" id="char-ref-preset-import" title="\u5BFC\u5165\u9884\u8BBE">
-                                <i class="fa-solid fa-download"></i>
-                            </button>
-                            <button class="st-chatu8-icon-btn danger" id="char-ref-preset-delete" title="\u5220\u9664\u5F53\u524D\u9884\u8BBE">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Image Preview -->
-                    <div class="st-chatu8-field-col" style="margin-bottom: 1.2rem;">
-                        <label>\u53C2\u8003\u56FE\u7247\u9884\u89C8</label>
-                        <div class="st-chatu8-image-preview-container" id="char-ref-upload-preview-container">
-                            <div class="st-chatu8-image-placeholder">
-                                <i class="fa-solid fa-image"></i>
-                                <span>\u6CA1\u6709\u9009\u62E9\u56FE\u7247</span>
-                            </div>
-                            <img id="char-ref-upload-preview" src="" alt="\u53C2\u8003\u56FE\u9884\u89C8" style="display: none;">
-                        </div>
-                        <div class="st-chatu8-image-controls" style="margin-top: 0.5rem;">
-                            <input type="file" id="char-ref-upload-input" accept="image/png, image/jpeg, image/webp" style="display:none;">
-                            <button type="button" class="st-chatu8-btn" id="char-ref-select-btn">
-                                <i class="fa-solid fa-upload"></i> \u9009\u62E9\u56FE\u7247
-                            </button>
-                            <button type="button" class="st-chatu8-btn danger" id="char-ref-remove-preview-btn" style="display: none;">
-                                <i class="fa-solid fa-trash"></i> \u79FB\u9664\u56FE\u7247
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div id="char-ref-upload-status" style="margin-top: 1.5rem; padding: 1rem; border-radius: 6px; font-size: 0.9rem; display: none; line-height: 1.4;"></div>
-                </div>
-            </div>
-        </div>
-    `;
-  parent.appendChild(backdrop);
-  const closeBtn = backdrop.querySelector(".st-chatu8-workflow-viz-close");
-  closeBtn.onclick = () => parent.removeChild(backdrop);
-  backdrop.onclick = (e) => {
-    if (e.target === backdrop) {
-      parent.removeChild(backdrop);
-    }
-  };
-  const presetSelect = document.getElementById("char-ref-preset-select");
-  const newBtn = document.getElementById("char-ref-preset-new");
-  const deleteBtn = document.getElementById("char-ref-preset-delete");
-  const exportCurrentBtn = document.getElementById("char-ref-preset-export-current");
-  const exportAllBtn = document.getElementById("char-ref-preset-export-all");
-  const importBtn = document.getElementById("char-ref-preset-import");
-  const imageInput = document.getElementById("char-ref-upload-input");
-  const previewImage = document.getElementById("char-ref-upload-preview");
-  const previewContainer = document.getElementById("char-ref-upload-preview-container");
-  const selectBtn = document.getElementById("char-ref-select-btn");
-  const removePreviewBtn = document.getElementById("char-ref-remove-preview-btn");
-  const statusDiv = document.getElementById("char-ref-upload-status");
-  let currentImageId = null;
-  function loadPresetList() {
-    presetSelect.innerHTML = "";
-    const presets = settings3.charRefPresets;
-    const sortedKeys = Object.keys(presets).sort((a, b) => {
-      if (a === "\u9ED8\u8BA4") return -1;
-      if (b === "\u9ED8\u8BA4") return 1;
-      return a.localeCompare(b, "zh-CN");
-    });
-    for (const key of sortedKeys) {
-      const option = new Option(key, key);
-      presetSelect.add(option);
-    }
-    presetSelect.value = settings3.charRefPresetId;
-  }
-  async function loadCurrentPreset() {
-    const presetId = presetSelect.value;
-    const preset = settings3.charRefPresets[presetId];
-    if (!preset) return;
-    currentImageId = preset.imageId;
-    if (currentImageId) {
-      try {
-        const imageData = await getConfigImage(currentImageId);
-        if (imageData) {
-          previewImage.src = imageData;
-          previewImage.style.display = "block";
-          previewContainer.querySelector(".st-chatu8-image-placeholder").style.display = "none";
-          removePreviewBtn.style.display = "inline-block";
-        } else {
-          resetImagePreview();
-        }
-      } catch (error) {
-        console.error("[CharRef] \u52A0\u8F7D\u56FE\u7247\u9884\u89C8\u5931\u8D25:", error);
-        resetImagePreview();
-      }
-    } else {
-      resetImagePreview();
-    }
-  }
-  function resetImagePreview() {
-    currentImageId = null;
-    imageInput.value = "";
-    previewImage.src = "";
-    previewImage.style.display = "none";
-    previewContainer.querySelector(".st-chatu8-image-placeholder").style.display = "flex";
-    removePreviewBtn.style.display = "none";
-  }
-  loadPresetList();
-  loadCurrentPreset();
-  presetSelect.onchange = () => {
-    settings3.charRefPresetId = presetSelect.value;
-    saveSettingsDebounced49();
-    loadCurrentPreset();
-  };
-  selectBtn.onclick = () => imageInput.click();
-  imageInput.onchange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const validTypes = ["image/png", "image/jpeg", "image/webp"];
-    if (!validTypes.includes(file.type)) {
-      showCharRefStatus(statusDiv, "\u4E0D\u652F\u6301\u7684\u56FE\u7247\u683C\u5F0F\u3002\u8BF7\u9009\u62E9 PNG\u3001JPEG \u6216 WebP \u683C\u5F0F\u7684\u56FE\u7247\u3002", "error");
-      return;
-    }
-    try {
-      showCharRefStatus(statusDiv, "\u6B63\u5728\u4FDD\u5B58\u56FE\u7247...", "info");
-      const imageData = await new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (e2) => resolve(e2.target.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-      if (currentImageId) {
-        try {
-          await deleteConfigImage(currentImageId);
-        } catch (error) {
-          console.error("[CharRef] \u5220\u9664\u65E7\u56FE\u7247\u5931\u8D25:", error);
-        }
-      }
-      const presetId = presetSelect.value;
-      const newImageId = await saveConfigImage(imageData, {
-        format: file.type.split("/")[1] || "png",
-        filename: `char_ref_${presetId}_${Date.now()}`
-      });
-      currentImageId = newImageId;
-      settings3.charRefPresets[presetId] = {
-        imageId: currentImageId,
-        createdAt: settings3.charRefPresets[presetId]?.createdAt || Date.now(),
-        updatedAt: Date.now()
-      };
-      saveSettingsDebounced49();
-      previewImage.src = imageData;
-      previewImage.style.display = "block";
-      previewContainer.querySelector(".st-chatu8-image-placeholder").style.display = "none";
-      removePreviewBtn.style.display = "inline-block";
-      showCharRefStatus(statusDiv, "\u56FE\u7247\u5DF2\u4FDD\u5B58\uFF01", "success");
-      console.log("[CharRef] Image saved with ID:", newImageId);
-    } catch (error) {
-      console.error("[CharRef] \u4FDD\u5B58\u56FE\u7247\u5931\u8D25:", error);
-      if (error.name === "QuotaExceededError") {
-        showCharRefStatus(statusDiv, "\u5B58\u50A8\u7A7A\u95F4\u4E0D\u8DB3\uFF0C\u8BF7\u5220\u9664\u4E00\u4E9B\u65E7\u56FE\u7247", "error");
-      } else {
-        showCharRefStatus(statusDiv, `\u4FDD\u5B58\u5931\u8D25: ${error.message || "\u672A\u77E5\u9519\u8BEF"}`, "error");
-      }
-    }
-  };
-  removePreviewBtn.onclick = async () => {
-    if (currentImageId) {
-      try {
-        await deleteConfigImage(currentImageId);
-        const presetId = presetSelect.value;
-        settings3.charRefPresets[presetId].imageId = null;
-        saveSettingsDebounced49();
-      } catch (error) {
-        console.error("[CharRef] \u5220\u9664\u56FE\u7247\u5931\u8D25:", error);
-      }
-    }
-    resetImagePreview();
-  };
-  newBtn.onclick = async () => {
-    const newName = prompt("\u8BF7\u8F93\u5165\u65B0\u9884\u8BBE\u540D\u79F0:");
-    if (!newName) return;
-    if (settings3.charRefPresets[newName]) {
-      alert("\u8BE5\u9884\u8BBE\u540D\u79F0\u5DF2\u5B58\u5728\uFF0C\u8BF7\u4F7F\u7528\u5176\u4ED6\u540D\u79F0\u3002");
-      return;
-    }
-    try {
-      settings3.charRefPresets[newName] = {
-        imageId: null,
-        createdAt: Date.now(),
-        updatedAt: Date.now()
-      };
-      settings3.charRefPresetId = newName;
-      saveSettingsDebounced49();
-      loadPresetList();
-      loadCurrentPreset();
-      showCharRefStatus(statusDiv, "\u65B0\u9884\u8BBE\u5DF2\u521B\u5EFA\uFF01", "success");
-    } catch (error) {
-      console.error("[CharRef] \u521B\u5EFA\u9884\u8BBE\u5931\u8D25:", error);
-      showCharRefStatus(statusDiv, "\u521B\u5EFA\u5931\u8D25: " + error.message, "error");
-    }
-  };
-  deleteBtn.onclick = async () => {
-    const presetId = presetSelect.value;
-    if (presetId === "\u9ED8\u8BA4") {
-      alert("\u9ED8\u8BA4\u9884\u8BBE\u4E0D\u53EF\u5220\u9664\u3002");
-      return;
-    }
-    if (!confirm(`\u786E\u5B9A\u8981\u5220\u9664\u9884\u8BBE "${presetId}" \u5417\uFF1F\u6B64\u64CD\u4F5C\u4E0D\u53EF\u6062\u590D\uFF01`)) return;
-    try {
-      const preset = settings3.charRefPresets[presetId];
-      if (preset && preset.imageId) {
-        await deleteConfigImage(preset.imageId);
-      }
-      delete settings3.charRefPresets[presetId];
-      settings3.charRefPresetId = "\u9ED8\u8BA4";
-      saveSettingsDebounced49();
-      loadPresetList();
-      loadCurrentPreset();
-      showCharRefStatus(statusDiv, "\u9884\u8BBE\u5DF2\u5220\u9664\uFF01", "success");
-    } catch (error) {
-      console.error("[CharRef] \u5220\u9664\u9884\u8BBE\u5931\u8D25:", error);
-      showCharRefStatus(statusDiv, "\u5220\u9664\u5931\u8D25: " + error.message, "error");
-    }
-  };
-  exportCurrentBtn.onclick = async () => {
-    const presetId = presetSelect.value;
-    const preset = settings3.charRefPresets[presetId];
-    if (!preset) {
-      alert("\u6CA1\u6709\u9009\u4E2D\u7684\u9884\u8BBE\u53EF\u5BFC\u51FA\u3002");
-      return;
-    }
-    try {
-      const dataToExport = { presets: { [presetId]: preset }, images: {} };
-      if (preset.imageId) {
-        try {
-          const imageData = await getConfigImage(preset.imageId);
-          if (imageData) dataToExport.images[preset.imageId] = imageData;
-        } catch (error) {
-          console.error("[CharRef] \u83B7\u53D6\u56FE\u7247\u5931\u8D25:", error);
-        }
-      }
-      const dataStr = JSON.stringify(dataToExport, null, 2);
-      const blob = new Blob([dataStr], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `char-ref-preset-${presetId}.json`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showCharRefStatus(statusDiv, "\u9884\u8BBE\u5DF2\u5BFC\u51FA\uFF01", "success");
-    } catch (error) {
-      console.error("[CharRef] \u5BFC\u51FA\u9884\u8BBE\u5931\u8D25:", error);
-      showCharRefStatus(statusDiv, "\u5BFC\u51FA\u5931\u8D25: " + error.message, "error");
-    }
-  };
-  exportAllBtn.onclick = async () => {
-    if (!settings3.charRefPresets || Object.keys(settings3.charRefPresets).length === 0) {
-      alert("\u6CA1\u6709\u9884\u8BBE\u53EF\u5BFC\u51FA\u3002");
-      return;
-    }
-    try {
-      const dataToExport = { presets: settings3.charRefPresets, images: {} };
-      const imageIdsToExport = /* @__PURE__ */ new Set();
-      for (const presetName in settings3.charRefPresets) {
-        const preset = settings3.charRefPresets[presetName];
-        if (preset.imageId) imageIdsToExport.add(preset.imageId);
-      }
-      for (const imageId of imageIdsToExport) {
-        try {
-          const imageData = await getConfigImage(imageId);
-          if (imageData) dataToExport.images[imageId] = imageData;
-        } catch (error) {
-          console.error(`[CharRef] \u83B7\u53D6\u56FE\u7247 ${imageId} \u5931\u8D25:`, error);
-        }
-      }
-      const dataStr = JSON.stringify(dataToExport, null, 2);
-      const blob = new Blob([dataStr], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "char-ref-presets-all.json";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showCharRefStatus(statusDiv, `\u5DF2\u5BFC\u51FA ${Object.keys(settings3.charRefPresets).length} \u4E2A\u9884\u8BBE\uFF01`, "success");
-    } catch (error) {
-      console.error("[CharRef] \u5BFC\u51FA\u5168\u90E8\u9884\u8BBE\u5931\u8D25:", error);
-      showCharRefStatus(statusDiv, "\u5BFC\u51FA\u5931\u8D25: " + error.message, "error");
-    }
-  };
-  importBtn.onclick = () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = ".json";
-    input.onchange = async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = async (readerEvent) => {
-        try {
-          const importedData = JSON.parse(readerEvent.target.result);
-          let presetsToImport = {};
-          let imagesToImport = importedData.images || {};
-          if (importedData.presets) {
-            presetsToImport = importedData.presets;
-          } else {
-            presetsToImport = importedData;
-          }
-          let importedCount = 0;
-          let skippedCount = 0;
-          for (const key in presetsToImport) {
-            if (settings3.charRefPresets[key]) {
-              const overwrite = confirm(`\u9884\u8BBE "${key}" \u5DF2\u5B58\u5728\uFF0C\u662F\u5426\u8986\u76D6\uFF1F`);
-              if (!overwrite) {
-                skippedCount++;
-                continue;
-              }
-            }
-            const presetData = presetsToImport[key];
-            if (presetData.imageId && imagesToImport[presetData.imageId]) {
-              try {
-                const newImageId = await saveConfigImage(imagesToImport[presetData.imageId], {
-                  format: "png",
-                  filename: `char_ref_${key}_${Date.now()}`
-                });
-                presetData.imageId = newImageId;
-              } catch (error) {
-                console.error(`[CharRef] \u5BFC\u5165\u56FE\u7247\u5931\u8D25:`, error);
-                presetData.imageId = null;
-              }
-            }
-            settings3.charRefPresets[key] = presetData;
-            importedCount++;
-          }
-          saveSettingsDebounced49();
-          loadPresetList();
-          loadCurrentPreset();
-          showCharRefStatus(statusDiv, `\u6210\u529F\u5BFC\u5165 ${importedCount} \u4E2A\u9884\u8BBE${skippedCount > 0 ? `\uFF0C\u8DF3\u8FC7 ${skippedCount} \u4E2A` : ""}\uFF01`, "success");
-        } catch (error) {
-          console.error("[CharRef] \u5BFC\u5165\u9884\u8BBE\u5931\u8D25:", error);
-          showCharRefStatus(statusDiv, "\u5BFC\u5165\u5931\u8D25: " + error.message, "error");
-        }
-      };
-      reader.readAsText(file);
-    };
-    input.click();
-  };
-  console.log("[CharRef] Upload dialog opened");
-}
-function loadCharRefGroupList(selectElement) {
-  const settings3 = extension_settings77[extensionName];
-  const charRefGroups = settings3.charRefGroups || {};
-  const currentGroupId = settings3.charRefGroupId || "\u9ED8\u8BA4\u7EC4";
-  selectElement.innerHTML = "";
-  const groupNames = Object.keys(charRefGroups).sort((a, b) => {
-    if (a === "\u9ED8\u8BA4\u7EC4") return -1;
-    if (b === "\u9ED8\u8BA4\u7EC4") return 1;
-    return a.localeCompare(b, "zh-CN");
-  });
-  groupNames.forEach((groupName) => {
-    const option = document.createElement("option");
-    option.value = groupName;
-    option.textContent = groupName;
-    if (groupName === currentGroupId) {
-      option.selected = true;
-    }
-    selectElement.appendChild(option);
-  });
-  console.log("[CharRef] Loaded preset list:", groupNames.length, "groups");
-}
-function createNewCharRefGroup(selectElement, statusDiv) {
-  const settings3 = extension_settings77[extensionName];
-  const charRefGroups = settings3.charRefGroups || {};
-  const groupName = prompt("\u8BF7\u8F93\u5165\u65B0\u7EC4\u540D\u79F0:");
-  if (!groupName) {
-    return;
-  }
-  const trimmedName = groupName.trim();
-  if (!trimmedName) {
-    showCharRefStatus(statusDiv, "\u7EC4\u540D\u4E0D\u80FD\u4E3A\u7A7A", "error");
-    return;
-  }
-  if (charRefGroups[trimmedName]) {
-    showCharRefStatus(statusDiv, `\u7EC4\u540D "${trimmedName}" \u5DF2\u5B58\u5728`, "error");
-    return;
-  }
-  charRefGroups[trimmedName] = {
-    references: [],
-    createdAt: Date.now(),
-    updatedAt: Date.now()
-  };
-  settings3.charRefGroupId = trimmedName;
-  try {
-    saveSettingsDebounced49();
-  } catch (error) {
-    console.error("[CharRef] Failed to save settings after creating new group:", {
-      groupName: trimmedName,
-      error: error.message,
-      errorName: error.name,
-      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
-      stack: error.stack
-    });
-    showCharRefStatus(statusDiv, `\u521B\u5EFA\u6210\u529F\u4F46\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
-    return;
-  }
-  loadCharRefGroupList(selectElement);
-  showCharRefStatus(statusDiv, `\u5DF2\u521B\u5EFA\u65B0\u7EC4 "${trimmedName}"`, "success");
-  console.log("[CharRef] Created new group:", trimmedName);
-}
-function saveCurrentCharRefGroup(selectElement, statusDiv) {
-  const settings3 = extension_settings77[extensionName];
-  const charRefGroups = settings3.charRefGroups || {};
-  const currentGroupId = selectElement.value;
-  if (!currentGroupId) {
-    showCharRefStatus(statusDiv, "\u672A\u9009\u62E9\u7EC4", "error");
-    return;
-  }
-  const currentGroup = charRefGroups[currentGroupId];
-  if (!currentGroup) {
-    showCharRefStatus(statusDiv, "\u5F53\u524D\u7EC4\u4E0D\u5B58\u5728", "error");
-    return;
-  }
-  currentGroup.updatedAt = Date.now();
-  settings3.charRefGroupId = currentGroupId;
-  try {
-    saveSettingsDebounced49();
-  } catch (error) {
-    console.error("[CharRef] Failed to save settings after saving group:", {
-      groupId: currentGroupId,
-      error: error.message,
-      errorName: error.name,
-      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
-      stack: error.stack
-    });
-    showCharRefStatus(statusDiv, `\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
-    return;
-  }
-  showCharRefStatus(statusDiv, `\u5DF2\u4FDD\u5B58\u7EC4 "${currentGroupId}"`, "success");
-  console.log("[CharRef] Saved group:", currentGroupId);
-}
-async function deleteCharRefGroup(selectElement, statusDiv) {
-  const settings3 = extension_settings77[extensionName];
-  const charRefGroups = settings3.charRefGroups || {};
-  const currentGroupId = selectElement.value;
-  if (!currentGroupId) {
-    showCharRefStatus(statusDiv, "\u672A\u9009\u62E9\u7EC4", "error");
-    return;
-  }
-  if (currentGroupId === "\u9ED8\u8BA4\u7EC4" && Object.keys(charRefGroups).length === 1) {
-    showCharRefStatus(statusDiv, "\u4E0D\u80FD\u5220\u9664\u552F\u4E00\u7684\u7EC4", "error");
-    return;
-  }
-  const confirmed = confirm(`\u786E\u5B9A\u8981\u5220\u9664\u7EC4 "${currentGroupId}" \u5417\uFF1F\u6B64\u64CD\u4F5C\u65E0\u6CD5\u64A4\u9500\u3002`);
-  if (!confirmed) {
-    return;
-  }
-  const group = charRefGroups[currentGroupId];
-  if (group && Array.isArray(group.references)) {
-    for (const ref of group.references) {
-      try {
-        await deleteConfigImage(ref.imageId);
-      } catch (error) {
-        console.error("[CharRef] Failed to delete image:", ref.imageId, error);
-      }
-    }
-  }
-  delete charRefGroups[currentGroupId];
-  if (charRefGroups["\u9ED8\u8BA4\u7EC4"]) {
-    settings3.charRefGroupId = "\u9ED8\u8BA4\u7EC4";
-  } else {
-    const remainingGroups = Object.keys(charRefGroups);
-    settings3.charRefGroupId = remainingGroups.length > 0 ? remainingGroups[0] : "\u9ED8\u8BA4\u7EC4";
-    if (remainingGroups.length === 0) {
-      charRefGroups["\u9ED8\u8BA4\u7EC4"] = {
-        references: [],
-        createdAt: Date.now(),
-        updatedAt: Date.now()
-      };
-      settings3.charRefGroupId = "\u9ED8\u8BA4\u7EC4";
-    }
-  }
-  try {
-    saveSettingsDebounced49();
-  } catch (error) {
-    console.error("[CharRef] Failed to save settings after deleting group:", {
-      groupId: currentGroupId,
-      error: error.message,
-      errorName: error.name,
-      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
-      stack: error.stack
-    });
-    showCharRefStatus(statusDiv, `\u5220\u9664\u6210\u529F\u4F46\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
-  }
-  loadCharRefGroupList(selectElement);
-  showCharRefStatus(statusDiv, `\u5DF2\u5220\u9664\u7EC4 "${currentGroupId}"`, "success");
-  console.log("[CharRef] Deleted group:", currentGroupId);
-}
-function showCharRefGroupEditorDialog() {
-  const parent = document.getElementById("st-chatu8-settings") || document.body;
-  const settings3 = extension_settings77[extensionName];
-  ensureCharRefGroups();
-  const backdrop = document.createElement("div");
-  backdrop.className = "st-chatu8-workflow-viz-backdrop";
-  backdrop.innerHTML = `
-        <div class="st-chatu8-workflow-viz-dialog st-chatu8-char-ref-group-editor-dialog">
-            <div class="st-chatu8-workflow-viz-header">
-                <h3>\u89D2\u8272\u7EC4\u7F16\u8F91\u5668</h3>
-                <span class="st-chatu8-workflow-viz-close">&times;</span>
-            </div>
-            <div class="st-chatu8-workflow-viz-body" style="padding: 2rem;">
-                <div class="st-chatu8-char-ref-group-editor-content">
-                    <!-- Group Preset Selector -->
-                    <div class="st-chatu8-field" style="margin-bottom: 1.2rem;">
-                        <label for="char-ref-group-select">\u89D2\u8272\u7EC4\u9884\u8BBE</label>
-                        <div class="st-chatu8-profile-controls">
-                            <select id="char-ref-group-select" class="st-chatu8-select"></select>
-                            <button class="st-chatu8-icon-btn" id="char-ref-group-new" title="\u65B0\u5EFA\u7EC4">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <button class="st-chatu8-icon-btn" id="char-ref-group-save" title="\u4FDD\u5B58\u5F53\u524D\u7EC4">
-                                <i class="fa-solid fa-save"></i>
-                            </button>
-                            <button class="st-chatu8-icon-btn danger" id="char-ref-group-delete" title="\u5220\u9664\u5F53\u524D\u7EC4">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Add Reference Button -->
-                    <button type="button" class="st-chatu8-btn" id="char-ref-group-add-ref" style="width: 100%; padding: 1rem; font-size: 16px; font-weight: 600; margin-bottom: 1.5rem;">
-                        <i class="fa-solid fa-plus"></i> \u6DFB\u52A0\u89D2\u8272\u53C2\u8003 (0/4)
-                    </button>
-
-                    <!-- Reference Slots Container -->
-                    <div id="char-ref-slots-container" class="st-chatu8-char-ref-slots">
-                        <!-- Dynamically rendered slots (0-4) -->
-                    </div>
-
-                    <!-- Status Message Area -->
-                    <div id="char-ref-group-status" style="margin-top: 1.5rem; padding: 1rem; border-radius: 6px; font-size: 0.9rem; display: none; line-height: 1.4;"></div>
-                </div>
-            </div>
-        </div>
-    `;
-  parent.appendChild(backdrop);
-  const closeBtn = backdrop.querySelector(".st-chatu8-workflow-viz-close");
-  closeBtn.onclick = () => parent.removeChild(backdrop);
-  backdrop.onclick = (e) => {
-    if (e.target === backdrop) {
-      parent.removeChild(backdrop);
-    }
-  };
-  const groupSelect = document.getElementById("char-ref-group-select");
-  const newBtn = document.getElementById("char-ref-group-new");
-  const saveBtn = document.getElementById("char-ref-group-save");
-  const deleteBtn = document.getElementById("char-ref-group-delete");
-  const addRefBtn = document.getElementById("char-ref-group-add-ref");
-  const slotsContainer = document.getElementById("char-ref-slots-container");
-  const statusDiv = document.getElementById("char-ref-group-status");
-  loadCharRefGroupList(groupSelect);
-  newBtn.onclick = () => createNewCharRefGroup(groupSelect, statusDiv);
-  saveBtn.onclick = () => saveCurrentCharRefGroup(groupSelect, statusDiv);
-  deleteBtn.onclick = () => deleteCharRefGroup(groupSelect, statusDiv);
-  addRefBtn.onclick = () => addCharRefToGroup(groupSelect, slotsContainer, addRefBtn, statusDiv);
-  renderCharRefSlots(slotsContainer, groupSelect, addRefBtn);
-  groupSelect.onchange = () => {
-    settings3.charRefGroupId = groupSelect.value;
-    renderCharRefSlots(slotsContainer, groupSelect, addRefBtn);
-  };
-  console.log("[CharRef] Group editor dialog opened");
-}
-async function renderCharRefSlots(slotsContainer, groupSelect, addRefBtn) {
-  const settings3 = extension_settings77[extensionName];
-  const charRefGroups = settings3.charRefGroups || {};
-  const currentGroupId = groupSelect.value;
-  const currentGroup = charRefGroups[currentGroupId];
-  slotsContainer.innerHTML = "";
-  if (!currentGroup) {
-    console.warn("[CharRef] Current group not found:", currentGroupId);
-    slotsContainer.innerHTML = `
-            <div style="text-align: center; padding: 3rem; color: rgba(255, 255, 255, 0.5);">
-                <i class="fa-solid fa-exclamation-circle" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
-                <p>\u65E0\u6CD5\u52A0\u8F7D\u7EC4\u6570\u636E</p>
-                <p style="font-size: 0.9rem; margin-top: 0.5rem;">\u8BF7\u5C1D\u8BD5\u9009\u62E9\u5176\u4ED6\u7EC4\u6216\u521B\u5EFA\u65B0\u7EC4</p>
-            </div>
-        `;
-    addRefBtn.disabled = true;
-    addRefBtn.style.opacity = "0.5";
-    return;
-  }
-  if (!Array.isArray(currentGroup.references)) {
-    console.error("[CharRef] Corrupted group data - references is not an array:", currentGroupId, currentGroup);
-    currentGroup.references = [];
-    currentGroup.updatedAt = Date.now();
-    saveSettingsDebounced49();
-    console.log("[CharRef] Fixed corrupted group data");
-  }
-  const references = currentGroup.references;
-  const refCount = references.length;
-  addRefBtn.innerHTML = `<i class="fa-solid fa-plus"></i> \u6DFB\u52A0\u89D2\u8272\u53C2\u8003 (${refCount}/4)`;
-  addRefBtn.disabled = refCount >= 4;
-  addRefBtn.style.opacity = refCount >= 4 ? "0.5" : "1";
-  if (refCount === 0) {
-    slotsContainer.innerHTML = `
-            <div style="text-align: center; padding: 3rem; color: rgba(255, 255, 255, 0.5);">
-                <i class="fa-solid fa-image" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
-                <p>\u6B64\u7EC4\u8FD8\u6CA1\u6709\u89D2\u8272\u53C2\u8003</p>
-                <p style="font-size: 0.9rem; margin-top: 0.5rem;">\u70B9\u51FB\u4E0A\u65B9\u6309\u94AE\u6DFB\u52A0\u89D2\u8272\u53C2\u8003\u56FE</p>
-            </div>
-        `;
-    return;
-  }
-  for (let i = 0; i < references.length; i++) {
-    const ref = references[i];
-    const slotDiv = document.createElement("div");
-    slotDiv.className = "st-chatu8-char-ref-slot";
-    slotDiv.style.cssText = "border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; background: rgba(0, 0, 0, 0.2);";
-    let imageDataUrl = "";
-    try {
-      imageDataUrl = await getConfigImage(ref.imageId);
-    } catch (error) {
-      console.error("[CharRef] Failed to load image:", ref.imageId, error);
-    }
-    slotDiv.innerHTML = `
-            <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                <!-- Image Thumbnail -->
-                <div style="flex-shrink: 0;">
-                    <img src="${imageDataUrl || ""}" alt="\u53C2\u8003\u56FE ${i + 1}" 
-                         style="width: 120px; height: 120px; object-fit: cover; border-radius: 6px; background: rgba(255, 255, 255, 0.05);"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div style="width: 120px; height: 120px; display: ${imageDataUrl ? "none" : "flex"}; align-items: center; justify-content: center; border-radius: 6px; background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.3);">
-                        <i class="fa-solid fa-image" style="font-size: 2rem;"></i>
-                    </div>
-                </div>
-
-                <!-- Controls -->
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem;">
-                    <!-- Reference Type -->
-                    <div class="st-chatu8-field">
-                        <label for="char-ref-type-${i}">\u53C2\u8003\u7C7B\u578B</label>
-                        <select id="char-ref-type-${i}" class="st-chatu8-select char-ref-type-select" data-index="${i}">
-                            <option value="character" ${ref.type === "character" ? "selected" : ""}>Character</option>
-                            <option value="character_style" ${ref.type === "character_style" ? "selected" : ""}>Character & Style</option>
-                            <option value="style" ${ref.type === "style" ? "selected" : ""}>Style</option>
-                        </select>
-                    </div>
-
-                    <!-- Strength Slider -->
-                    <div class="st-chatu8-field">
-                        <label for="char-ref-strength-${i}">Strength: <span id="char-ref-strength-val-${i}">${ref.strength ?? 0.6}</span></label>
-                        <div class="st-chatu8-range-container">
-                            <input type="range" id="char-ref-strength-range-${i}" class="st-chatu8-range-slider char-ref-strength-range" 
-                                   data-index="${i}" min="0" max="2" step="0.01" value="${ref.strength ?? 0.6}">
-                            <input type="number" id="char-ref-strength-${i}" class="st-chatu8-range-input char-ref-strength-input" 
-                                   data-index="${i}" min="0" step="0.01" value="${ref.strength ?? 0.6}">
-                        </div>
-                    </div>
-
-                    <!-- Fidelity Slider -->
-                    <div class="st-chatu8-field">
-                        <label for="char-ref-fidelity-${i}">Fidelity: <span id="char-ref-fidelity-val-${i}">${ref.fidelity ?? 0.6}</span></label>
-                        <div class="st-chatu8-range-container">
-                            <input type="range" id="char-ref-fidelity-range-${i}" class="st-chatu8-range-slider char-ref-fidelity-range" 
-                                   data-index="${i}" min="0" max="2" step="0.01" value="${ref.fidelity ?? 0.6}">
-                            <input type="number" id="char-ref-fidelity-${i}" class="st-chatu8-range-input char-ref-fidelity-input" 
-                                   data-index="${i}" min="0" step="0.01" value="${ref.fidelity ?? 0.6}">
-                        </div>
-                    </div>
-
-                    <!-- Remove Button -->
-                    <button type="button" class="st-chatu8-btn danger char-ref-remove-btn" data-index="${i}" 
-                            style="align-self: flex-start;">
-                        <i class="fa-solid fa-trash"></i> \u79FB\u9664
-                    </button>
-                </div>
-            </div>
-        `;
-    slotsContainer.appendChild(slotDiv);
-  }
-  bindCharRefSlotEvents(slotsContainer, groupSelect, addRefBtn);
-  console.log("[CharRef] Rendered", refCount, "reference slots");
-}
-async function showCharRefImageLibrary(onSelect) {
-  const parent = document.getElementById("st-chatu8-settings") || document.body;
-  const settings3 = extension_settings77[extensionName];
-  ensureCharRefPresets();
-  const charRefPresets = settings3.charRefPresets || {};
-  let currentPage = 1;
-  let pageSize = 12;
-  let filteredPresets = [];
-  let searchQuery = "";
-  const backdrop = document.createElement("div");
-  backdrop.className = "st-chatu8-workflow-viz-backdrop";
-  backdrop.innerHTML = `
-        <div class="st-chatu8-workflow-viz-dialog st-chatu8-vibe-visual-selector-dialog">
-            <div class="st-chatu8-workflow-viz-header">
-                <h3>\u9009\u62E9\u89D2\u8272\u53C2\u8003\u56FE</h3>
-                <span class="st-chatu8-workflow-viz-close">&times;</span>
-            </div>
-            <div class="st-chatu8-workflow-viz-toolbar" style="justify-content: space-between; align-items: center; gap: 15px; padding: 12px 20px; background: rgba(30, 30, 46, 0.6); border-bottom: 1px solid rgba(255,255,255,0.05);">
-                <div class="st-chatu8-viz-search-container" style="position: relative; flex-grow: 1; max-width: 300px;">
-                    <i class="fa-solid fa-search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #aaa; pointer-events: none;"></i>
-                    <input type="text" class="st-chatu8-viz-search-input" placeholder="\u641C\u7D22\u53C2\u8003\u56FE..." style="width: 100%; padding: 8px 12px 8px 36px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; color: white; outline: none; transition: all 0.3s;">
-                </div>
-            </div>
-            <div class="st-chatu8-pagination-container">
-                <button class="st-chatu8-pagination-btn st-chatu8-pagination-prev" title="\u4E0A\u4E00\u9875">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <div class="st-chatu8-pagination-info">
-                    <span class="st-chatu8-pagination-current">1</span>
-                    <span>/</span>
-                    <span class="st-chatu8-pagination-total">1</span>
-                    <span style="margin-left: 8px; color: #666;">|</span>
-                    <span style="margin-left: 8px;">\u5171 <span class="st-chatu8-pagination-count">0</span> \u4E2A</span>
-                </div>
-                <button class="st-chatu8-pagination-btn st-chatu8-pagination-next" title="\u4E0B\u4E00\u9875">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-                <div class="st-chatu8-pagination-size-container">
-                    <span class="st-chatu8-pagination-size-label">\u6BCF\u9875</span>
-                    <select class="st-chatu8-pagination-size">
-                        <option value="8">8</option>
-                        <option value="12" selected>12</option>
-                        <option value="16">16</option>
-                        <option value="24">24</option>
-                    </select>
-                </div>
-            </div>
-            <div class="st-chatu8-workflow-viz-body">
-                <div class="st-chatu8-vibe-visual-selector-grid">
-                    <!-- Character reference cards will be inserted here -->
-                </div>
-            </div>
-        </div>
-    `;
-  parent.appendChild(backdrop);
-  const closeBtn = backdrop.querySelector(".st-chatu8-workflow-viz-close");
-  closeBtn.onclick = () => parent.removeChild(backdrop);
-  backdrop.onclick = (e) => {
-    if (e.target === backdrop) {
-      parent.removeChild(backdrop);
-    }
-  };
-  const gridContainer = backdrop.querySelector(".st-chatu8-vibe-visual-selector-grid");
-  const searchInput = backdrop.querySelector(".st-chatu8-viz-search-input");
-  const paginationPrev = backdrop.querySelector(".st-chatu8-pagination-prev");
-  const paginationNext = backdrop.querySelector(".st-chatu8-pagination-next");
-  const paginationCurrent = backdrop.querySelector(".st-chatu8-pagination-current");
-  const paginationTotal = backdrop.querySelector(".st-chatu8-pagination-total");
-  const paginationCount = backdrop.querySelector(".st-chatu8-pagination-count");
-  const paginationSizeSelect = backdrop.querySelector(".st-chatu8-pagination-size");
-  const allPresetNames = Object.keys(charRefPresets).filter((name) => charRefPresets[name].imageId).sort((a, b) => {
-    if (a === "\u9ED8\u8BA4") return -1;
-    if (b === "\u9ED8\u8BA4") return 1;
-    return a.localeCompare(b, "zh-CN");
-  });
-  function updateFilteredPresets() {
-    if (searchQuery) {
-      filteredPresets = allPresetNames.filter(
-        (name) => name.toLowerCase().includes(searchQuery)
-      );
-    } else {
-      filteredPresets = [...allPresetNames];
-    }
-  }
-  function updatePaginationUI() {
-    const totalPages = Math.ceil(filteredPresets.length / pageSize) || 1;
-    paginationCurrent.textContent = currentPage;
-    paginationTotal.textContent = totalPages;
-    paginationCount.textContent = filteredPresets.length;
-    paginationPrev.disabled = currentPage <= 1;
-    paginationPrev.style.opacity = currentPage <= 1 ? "0.5" : "1";
-    paginationPrev.style.cursor = currentPage <= 1 ? "not-allowed" : "pointer";
-    paginationNext.disabled = currentPage >= totalPages;
-    paginationNext.style.opacity = currentPage >= totalPages ? "0.5" : "1";
-    paginationNext.style.cursor = currentPage >= totalPages ? "not-allowed" : "pointer";
-  }
-  async function renderCurrentPage() {
-    gridContainer.style.opacity = "0";
-    gridContainer.style.transform = "translateY(10px)";
-    await new Promise((resolve) => setTimeout(resolve, 150));
-    gridContainer.innerHTML = "";
-    if (filteredPresets.length === 0) {
-      gridContainer.innerHTML = `
-                <div style="
-                    grid-column: 1 / -1;
-                    text-align: center;
-                    padding: 3rem;
-                    color: rgba(255, 255, 255, 0.5);
-                ">
-                    <i class="fa-solid fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
-                    <p>${searchQuery ? "\u6CA1\u6709\u627E\u5230\u5339\u914D\u7684\u53C2\u8003\u56FE" : "\u56FE\u7247\u5E93\u4E3A\u7A7A"}</p>
-                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">${searchQuery ? "\u8BF7\u5C1D\u8BD5\u5176\u4ED6\u641C\u7D22\u8BCD" : "\u8BF7\u5148\u4E0A\u4F20\u4E00\u4E9B\u89D2\u8272\u53C2\u8003\u56FE"}</p>
-                </div>
-            `;
-      updatePaginationUI();
-      gridContainer.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-      gridContainer.style.opacity = "1";
-      gridContainer.style.transform = "translateY(0)";
-      return;
-    }
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    const pagePresets = filteredPresets.slice(startIndex, endIndex);
-    for (const presetName of pagePresets) {
-      const preset = charRefPresets[presetName];
-      const card = document.createElement("div");
-      card.className = "st-chatu8-vibe-card";
-      const thumbnailDiv = document.createElement("div");
-      thumbnailDiv.className = "st-chatu8-vibe-card-thumbnail";
-      try {
-        const imageData = await getConfigImage(preset.imageId);
-        if (imageData) {
-          const img = document.createElement("img");
-          img.src = imageData;
-          img.alt = presetName;
-          thumbnailDiv.appendChild(img);
-        } else {
-          thumbnailDiv.innerHTML = `
-                        <div class="st-chatu8-vibe-card-placeholder">
-                            <i class="fa-solid fa-image"></i>
-                            <div>\u65E0\u56FE\u50CF</div>
-                        </div>
-                    `;
-        }
-      } catch (error) {
-        thumbnailDiv.innerHTML = `
-                    <div class="st-chatu8-vibe-card-error">
-                        <i class="fa-solid fa-exclamation-triangle"></i>
-                        <div>\u52A0\u8F7D\u5931\u8D25</div>
-                    </div>
-                `;
-        thumbnailDiv.title = `\u52A0\u8F7D\u5931\u8D25: ${error.message}`;
-        console.error("[CharRef] Failed to load image:", preset.imageId, error);
-      }
-      const infoDiv = document.createElement("div");
-      infoDiv.className = "st-chatu8-vibe-card-info";
-      const nameDiv = document.createElement("div");
-      nameDiv.className = "st-chatu8-vibe-card-name";
-      nameDiv.textContent = presetName;
-      infoDiv.appendChild(nameDiv);
-      card.appendChild(thumbnailDiv);
-      card.appendChild(infoDiv);
-      card.onclick = () => {
-        onSelect(preset.imageId);
-        parent.removeChild(backdrop);
-        console.log("[CharRef] Selected image:", presetName, preset.imageId);
-      };
-      gridContainer.appendChild(card);
-    }
-    gridContainer.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-    gridContainer.style.opacity = "1";
-    gridContainer.style.transform = "translateY(0)";
-    updatePaginationUI();
-  }
-  searchInput.addEventListener("input", (e) => {
-    searchQuery = e.target.value.toLowerCase();
-    currentPage = 1;
-    updateFilteredPresets();
-    renderCurrentPage();
-  });
-  paginationPrev.onclick = () => {
-    if (currentPage > 1) {
-      currentPage--;
-      renderCurrentPage();
-    }
-  };
-  paginationNext.onclick = () => {
-    const totalPages = Math.ceil(filteredPresets.length / pageSize) || 1;
-    if (currentPage < totalPages) {
-      currentPage++;
-      renderCurrentPage();
-    }
-  };
-  paginationSizeSelect.onchange = (e) => {
-    pageSize = parseInt(e.target.value);
-    currentPage = 1;
-    renderCurrentPage();
-  };
-  updateFilteredPresets();
-  renderCurrentPage();
-}
-function addCharRefToGroup(groupSelect, slotsContainer, addRefBtn, statusDiv) {
-  const settings3 = extension_settings77[extensionName];
-  const charRefGroups = settings3.charRefGroups || {};
-  const currentGroupId = groupSelect.value;
-  const currentGroup = charRefGroups[currentGroupId];
-  if (!currentGroup) {
-    showCharRefStatus(statusDiv, "\u9519\u8BEF: \u672A\u9009\u62E9\u7EC4\u3002\u8BF7\u5148\u9009\u62E9\u6216\u521B\u5EFA\u4E00\u4E2A\u7EC4\u3002", "error");
-    console.error("[CharRef] No group selected when attempting to add reference");
-    return;
-  }
-  const references = currentGroup.references || [];
-  if (references.length >= 4) {
-    showCharRefStatus(statusDiv, "\u5DF2\u8FBE\u5230\u6700\u5927\u6570\u91CF (4\u4E2A)\u3002\u6BCF\u4E2A\u7EC4\u6700\u591A\u53EF\u5305\u542B 4 \u4E2A\u89D2\u8272\u53C2\u8003\u3002", "error");
-    console.warn("[CharRef] Maximum reference limit reached for group:", currentGroupId);
-    return;
-  }
-  try {
-    showCharRefImageLibrary((imageId) => {
-      try {
-        if (!imageId || typeof imageId !== "string") {
-          showCharRefStatus(statusDiv, "\u9519\u8BEF: \u65E0\u6548\u7684\u56FE\u7247 ID", "error");
-          console.error("[CharRef] Invalid imageId received:", imageId);
-          return;
-        }
-        currentGroup.references.push({
-          imageId,
-          type: "character",
-          strength: 0.6,
-          fidelity: 0.6
-        });
-        currentGroup.updatedAt = Date.now();
-        try {
-          saveSettingsDebounced49();
-        } catch (error) {
-          console.error("[CharRef] Failed to save settings after adding reference:", {
-            imageId: imageId.substring(0, 12) + "...",
-            error: error.message,
-            errorName: error.name,
-            groupId: currentGroupId,
-            timestamp: (/* @__PURE__ */ new Date()).toISOString(),
-            stack: error.stack
-          });
-          showCharRefStatus(statusDiv, `\u9519\u8BEF: \u4FDD\u5B58\u8BBE\u7F6E\u5931\u8D25 - ${error.message}`, "error");
-          return;
-        }
-        renderCharRefSlots(slotsContainer, groupSelect, addRefBtn);
-        showCharRefStatus(statusDiv, "\u89D2\u8272\u53C2\u8003\u5DF2\u6210\u529F\u6DFB\u52A0\u5230\u7EC4", "success");
-        console.log("[CharRef] Successfully added reference to group:", currentGroupId, imageId);
-      } catch (error) {
-        console.error("[CharRef] Error adding reference to group:", {
-          error: error.message,
-          errorName: error.name,
-          groupId: currentGroupId,
-          timestamp: (/* @__PURE__ */ new Date()).toISOString(),
-          stack: error.stack
-        });
-        showCharRefStatus(statusDiv, `\u9519\u8BEF: \u6DFB\u52A0\u89D2\u8272\u53C2\u8003\u5931\u8D25 - ${error.message}`, "error");
-      }
-    });
-  } catch (error) {
-    console.error("[CharRef] Error opening image library:", {
-      error: error.message,
-      errorName: error.name,
-      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
-      stack: error.stack
-    });
-    showCharRefStatus(statusDiv, `\u9519\u8BEF: \u65E0\u6CD5\u6253\u5F00\u56FE\u7247\u5E93 - ${error.message}`, "error");
-  }
-}
-async function removeCharRefFromGroup(index, groupSelect, slotsContainer, addRefBtn, statusDiv) {
-  const settings3 = extension_settings77[extensionName];
-  const charRefGroups = settings3.charRefGroups || {};
-  const currentGroupId = groupSelect.value;
-  const currentGroup = charRefGroups[currentGroupId];
-  if (!currentGroup || !Array.isArray(currentGroup.references)) {
-    showCharRefStatus(statusDiv, "\u9519\u8BEF: \u7EC4\u6570\u636E\u65E0\u6548", "error");
-    return;
-  }
-  if (index < 0 || index >= currentGroup.references.length) {
-    showCharRefStatus(statusDiv, "\u9519\u8BEF: \u65E0\u6548\u7684\u7D22\u5F15", "error");
-    return;
-  }
-  const confirmed = confirm("\u786E\u5B9A\u8981\u79FB\u9664\u8FD9\u4E2A\u89D2\u8272\u53C2\u8003\u5417\uFF1F");
-  if (!confirmed) {
-    return;
-  }
-  const ref = currentGroup.references[index];
-  currentGroup.references.splice(index, 1);
-  currentGroup.updatedAt = Date.now();
-  try {
-    saveSettingsDebounced49();
-  } catch (error) {
-    console.error("[CharRef] Failed to save settings after removing reference:", error);
-    showCharRefStatus(statusDiv, `\u9519\u8BEF: \u4FDD\u5B58\u8BBE\u7F6E\u5931\u8D25 - ${error.message}`, "error");
-    return;
-  }
-  await renderCharRefSlots(slotsContainer, groupSelect, addRefBtn);
-  showCharRefStatus(statusDiv, "\u89D2\u8272\u53C2\u8003\u5DF2\u79FB\u9664", "success");
-  console.log("[CharRef] Removed reference at index:", index);
-}
-function bindCharRefSlotEvents(slotsContainer, groupSelect, addRefBtn) {
-  const settings3 = extension_settings77[extensionName];
-  const charRefGroups = settings3.charRefGroups || {};
-  const currentGroupId = groupSelect.value;
-  const currentGroup = charRefGroups[currentGroupId];
-  const statusDiv = document.getElementById("char-ref-group-status");
-  if (!currentGroup) return;
-  const typeSelects = slotsContainer.querySelectorAll(".char-ref-type-select");
-  typeSelects.forEach((select) => {
-    select.onchange = (e) => {
-      const index = parseInt(e.target.dataset.index);
-      const newType = e.target.value;
-      if (currentGroup.references[index]) {
-        currentGroup.references[index].type = newType;
-        currentGroup.updatedAt = Date.now();
-        try {
-          saveSettingsDebounced49();
-          console.log("[CharRef] Updated reference type:", index, newType);
-        } catch (error) {
-          console.error("[CharRef] Failed to save after type change:", error);
-          showCharRefStatus(statusDiv, `\u4FDD\u5B58\u5931\u8D25: ${error.message}`, "error");
-        }
-      }
-    };
-  });
-  const strengthRanges = slotsContainer.querySelectorAll(".char-ref-strength-range");
-  const strengthInputs = slotsContainer.querySelectorAll(".char-ref-strength-input");
-  strengthRanges.forEach((range) => {
-    range.oninput = (e) => {
-      const index = parseInt(e.target.dataset.index);
-      const value = parseFloat(e.target.value);
-      const valueSpan = document.getElementById(`char-ref-strength-val-${index}`);
-      if (valueSpan) valueSpan.textContent = value.toFixed(2);
-      const numberInput = document.getElementById(`char-ref-strength-${index}`);
-      if (numberInput) numberInput.value = value;
-      if (currentGroup.references[index]) {
-        currentGroup.references[index].strength = value;
-        currentGroup.updatedAt = Date.now();
-        try {
-          saveSettingsDebounced49();
-        } catch (error) {
-          console.error("[CharRef] Failed to save after strength change:", error);
-        }
-      }
-    };
-  });
-  strengthInputs.forEach((input) => {
-    input.oninput = (e) => {
-      const index = parseInt(e.target.dataset.index);
-      const value = parseFloat(e.target.value);
-      const clampedValue = Math.max(0, value);
-      const valueSpan = document.getElementById(`char-ref-strength-val-${index}`);
-      if (valueSpan) valueSpan.textContent = clampedValue.toFixed(2);
-      const rangeInput = document.getElementById(`char-ref-strength-range-${index}`);
-      if (rangeInput) rangeInput.value = clampedValue;
-      if (currentGroup.references[index]) {
-        currentGroup.references[index].strength = clampedValue;
-        currentGroup.updatedAt = Date.now();
-        try {
-          saveSettingsDebounced49();
-        } catch (error) {
-          console.error("[CharRef] Failed to save after strength change:", error);
-        }
-      }
-    };
-  });
-  const fidelityRanges = slotsContainer.querySelectorAll(".char-ref-fidelity-range");
-  const fidelityInputs = slotsContainer.querySelectorAll(".char-ref-fidelity-input");
-  fidelityRanges.forEach((range) => {
-    range.oninput = (e) => {
-      const index = parseInt(e.target.dataset.index);
-      const value = parseFloat(e.target.value);
-      const valueSpan = document.getElementById(`char-ref-fidelity-val-${index}`);
-      if (valueSpan) valueSpan.textContent = value.toFixed(2);
-      const numberInput = document.getElementById(`char-ref-fidelity-${index}`);
-      if (numberInput) numberInput.value = value;
-      if (currentGroup.references[index]) {
-        currentGroup.references[index].fidelity = value;
-        currentGroup.updatedAt = Date.now();
-        try {
-          saveSettingsDebounced49();
-        } catch (error) {
-          console.error("[CharRef] Failed to save after fidelity change:", error);
-        }
-      }
-    };
-  });
-  fidelityInputs.forEach((input) => {
-    input.oninput = (e) => {
-      const index = parseInt(e.target.dataset.index);
-      const value = parseFloat(e.target.value);
-      const clampedValue = Math.max(0, value);
-      const valueSpan = document.getElementById(`char-ref-fidelity-val-${index}`);
-      if (valueSpan) valueSpan.textContent = clampedValue.toFixed(2);
-      const rangeInput = document.getElementById(`char-ref-fidelity-range-${index}`);
-      if (rangeInput) rangeInput.value = clampedValue;
-      if (currentGroup.references[index]) {
-        currentGroup.references[index].fidelity = clampedValue;
-        currentGroup.updatedAt = Date.now();
-        try {
-          saveSettingsDebounced49();
-        } catch (error) {
-          console.error("[CharRef] Failed to save after fidelity change:", error);
-        }
-      }
-    };
-  });
-  const removeButtons = slotsContainer.querySelectorAll(".char-ref-remove-btn");
-  removeButtons.forEach((button) => {
-    button.onclick = (e) => {
-      const index = parseInt(e.target.closest(".char-ref-remove-btn").dataset.index);
-      removeCharRefFromGroup(index, groupSelect, slotsContainer, addRefBtn, statusDiv);
-    };
-  });
-}
-function initCharRefGroupEditor(settingsModal) {
-  ensureCharRefGroups();
-  ensureCharRefPresets();
-  const charRefUploadBtn = settingsModal.find("#novelai-char-ref-upload-btn");
-  if (charRefUploadBtn.length) {
-    charRefUploadBtn.on("click", () => {
-      showCharRefUploadDialog();
-    });
-  }
-  const charRefGroupEditorBtn = settingsModal.find("#novelai-char-ref-group-editor-btn");
-  if (charRefGroupEditorBtn.length) {
-    charRefGroupEditorBtn.on("click", () => {
-      showCharRefGroupEditorDialog();
     });
   }
 }
@@ -95691,7 +96547,7 @@ var updateImageUI = (role, index, imageData) => {
   }
 };
 function initBananaUI(settingsModal) {
-  const getBananaSettings = () => extension_settings79[extensionName].banana;
+  const getBananaSettings = () => extension_settings80[extensionName].banana;
   const presetSelect = document.getElementById("st-chatu8-banana-conversation-preset-id");
   const saveButton = document.getElementById("st-chatu8-banana-conversation-save");
   const saveAsButton = document.getElementById("st-chatu8-banana-conversation-save-as");
@@ -95782,7 +96638,7 @@ function initBananaUI(settingsModal) {
     if (!preset) return;
     const migrated = await migratePresetIfNeeded(preset);
     if (migrated) {
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
       console.log("[BananaUI] \u9884\u8BBE\u5DF2\u8FC1\u79FB\u5230\u65B0\u683C\u5F0F");
     }
     fixedPromptInput.value = preset.fixedPrompt || "";
@@ -95852,7 +96708,7 @@ function initBananaUI(settingsModal) {
       postfixPrompt: postfixPromptInput.value,
       conversation
     };
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u9884\u8BBE "${presetId}" \u5DF2\u4FDD\u5B58!`);
   });
   saveAsButton.addEventListener("click", async () => {
@@ -95896,7 +96752,7 @@ function initBananaUI(settingsModal) {
     populateDropdown();
     populateEditPresetDropdown();
     populateVideoPresetDropdown();
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u65B0\u9884\u8BBE "${newPresetName}" \u5DF2\u521B\u5EFA\u5E76\u52A0\u8F7D!`);
   });
   newButton.addEventListener("click", async () => {
@@ -95917,7 +96773,7 @@ function initBananaUI(settingsModal) {
     populateEditPresetDropdown();
     populateVideoPresetDropdown();
     await loadPreset(newPresetName);
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u7A7A\u9884\u8BBE "${newPresetName}" \u5DF2\u521B\u5EFA!`);
   });
   renameButton.addEventListener("click", async () => {
@@ -95944,7 +96800,7 @@ function initBananaUI(settingsModal) {
     populateDropdown();
     populateEditPresetDropdown();
     populateVideoPresetDropdown();
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u9884\u8BBE\u5DF2\u91CD\u547D\u540D\u4E3A "${newName}"`);
   });
   deleteButton.addEventListener("click", async () => {
@@ -95967,7 +96823,7 @@ function initBananaUI(settingsModal) {
     populateEditPresetDropdown();
     populateVideoPresetDropdown();
     await loadPreset(newPresetId);
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u9884\u8BBE "${presetId}" \u5DF2\u5220\u9664\u3002`);
   });
   exportButton.addEventListener("click", async () => {
@@ -96067,7 +96923,7 @@ function initBananaUI(settingsModal) {
           populateEditPresetDropdown();
           populateVideoPresetDropdown();
           await loadPreset(presetName);
-          saveSettingsDebounced51();
+          saveSettingsDebounced52();
           toastr.success(`\u9884\u8BBE "${presetName}" \u5DF2\u6210\u529F\u5BFC\u5165\u5E76\u52A0\u8F7D\uFF01`);
         } catch (error) {
           toastr.error(`\u5BFC\u5165\u5931\u8D25: ${error.message}`);
@@ -96082,7 +96938,7 @@ function initBananaUI(settingsModal) {
   const triggerBananaApiAutoSave = () => {
     if (bananaApiAutoSaveTimer) clearTimeout(bananaApiAutoSaveTimer);
     bananaApiAutoSaveTimer = setTimeout(() => {
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     }, 1e3);
   };
   apiUrlInput2.addEventListener("input", () => {
@@ -96108,24 +96964,24 @@ function initBananaUI(settingsModal) {
   }
   modelSelect2.addEventListener("change", () => {
     getBananaSettings().model = modelSelect2.value;
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     updateVisibility();
   });
   if (editModelSelect) {
     editModelSelect.addEventListener("change", () => {
       getBananaSettings().editModel = editModelSelect.value;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     });
   }
   if (videoModelSelect) {
     videoModelSelect.addEventListener("change", () => {
       getBananaSettings().videoModel = videoModelSelect.value;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     });
   }
   aspectRatioSelect.addEventListener("change", () => {
     getBananaSettings().aspectRatio = aspectRatioSelect.value;
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
   });
   if (imageSizeSelect && imageSizeInput) {
     imageSizeSelect.addEventListener("change", () => {
@@ -96135,64 +96991,64 @@ function initBananaUI(settingsModal) {
       }
       imageSizeInput.value = imageSizeSelect.value;
       getBananaSettings().imageSize = imageSizeSelect.value;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     });
     imageSizeInput.addEventListener("input", () => {
       const val = imageSizeInput.value.trim();
       getBananaSettings().imageSize = val;
       const matched = Array.from(imageSizeSelect.options).some((opt) => opt.value === val);
       imageSizeSelect.value = matched ? val : "__custom__";
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     });
   }
   if (useGrokFormatCheckbox) {
     useGrokFormatCheckbox.addEventListener("change", () => {
       getBananaSettings().useGrokFormat = useGrokFormatCheckbox.checked ? "true" : "false";
       updateGrokOptionsVisibility();
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     });
   }
   if (grokRefImageParamSelect) {
     grokRefImageParamSelect.addEventListener("change", () => {
       getBananaSettings().grokRefImageParam = grokRefImageParamSelect.value;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     });
   }
   if (grokEditsFormatSelect) {
     grokEditsFormatSelect.addEventListener("change", () => {
       getBananaSettings().grokEditsFormat = grokEditsFormatSelect.value;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     });
   }
   if (grokResponseFormatSelect) {
     grokResponseFormatSelect.addEventListener("change", () => {
       getBananaSettings().grokResponseFormat = grokResponseFormatSelect.value;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     });
   }
   if (grokGenerationsEndpointInput) {
     grokGenerationsEndpointInput.addEventListener("input", () => {
       getBananaSettings().grokGenerationsEndpoint = grokGenerationsEndpointInput.value.trim();
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     });
   }
   if (grokEditsEndpointInput) {
     grokEditsEndpointInput.addEventListener("input", () => {
       getBananaSettings().grokEditsEndpoint = grokEditsEndpointInput.value.trim();
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
     });
   }
   if (editPresetSelect) {
     editPresetSelect.addEventListener("change", () => {
       getBananaSettings().editPresetId = editPresetSelect.value;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
       toastr.success(`\u4FEE\u56FE\u9884\u8BBE\u5DF2\u8BBE\u7F6E\u4E3A: "${editPresetSelect.value}"`);
     });
   }
   if (videoPresetSelect) {
     videoPresetSelect.addEventListener("change", () => {
       getBananaSettings().videoPresetId = videoPresetSelect.value;
-      saveSettingsDebounced51();
+      saveSettingsDebounced52();
       toastr.success(`\u89C6\u9891\u9884\u8BBE\u5DF2\u8BBE\u7F6E\u4E3A: "${videoPresetSelect.value}"`);
     });
   }
@@ -96211,7 +97067,7 @@ function initBananaUI(settingsModal) {
         fetchModelsButton2.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
         let baseUrl = apiUrl.replace(/\/$/, "");
         let directModelsUrl = baseUrl + "/models";
-        const client = extension_settings79[extensionName].client;
+        const client = extension_settings80[extensionName].client;
         let response;
         if (client === "jiuguan") {
           let proxyBaseUrl = baseUrl;
@@ -96298,7 +97154,7 @@ function initBananaUI(settingsModal) {
         } else {
           modelSelect2.value = models[0].id;
           getBananaSettings().model = models[0].id;
-          saveSettingsDebounced51();
+          saveSettingsDebounced52();
         }
         if (editModelSelect) {
           if (models.some((m) => m.id === currentEditModel)) {
@@ -96306,7 +97162,7 @@ function initBananaUI(settingsModal) {
           } else {
             editModelSelect.value = models[0].id;
             getBananaSettings().editModel = models[0].id;
-            saveSettingsDebounced51();
+            saveSettingsDebounced52();
           }
         }
         if (videoModelSelect) {
@@ -96315,7 +97171,7 @@ function initBananaUI(settingsModal) {
           } else {
             videoModelSelect.value = models[0].id;
             getBananaSettings().videoModel = models[0].id;
-            saveSettingsDebounced51();
+            saveSettingsDebounced52();
           }
         }
         toastr.success(`\u6210\u529F\u83B7\u53D6 ${models.length} \u4E2A\u6A21\u578B`);
@@ -96403,7 +97259,7 @@ function initBananaUI(settingsModal) {
   initBananaPromptReplace();
 }
 function initBananaPromptReplace() {
-  const getBananaSettings = () => extension_settings79[extensionName].banana;
+  const getBananaSettings = () => extension_settings80[extensionName].banana;
   const presetSelect = document.getElementById("st-chatu8-banana-prompt-replace-id");
   const textarea = document.getElementById("st-chatu8-banana-prompt-replace-text");
   const saveBtn = document.getElementById("st-chatu8-banana-prompt-replace-save");
@@ -96460,7 +97316,7 @@ function initBananaPromptReplace() {
       }
     }
     loadReplacePreset(presetSelect.value);
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u5DF2\u52A0\u8F7D\u66FF\u6362\u89C4\u5219: "${presetSelect.value}"`);
   });
   textarea.addEventListener("input", checkUnsaved);
@@ -96473,7 +97329,7 @@ function initBananaPromptReplace() {
     const confirmed = await stylishConfirm(`\u786E\u5B9A\u8981\u8986\u76D6\u5F53\u524D\u66FF\u6362\u89C4\u5219 "${presetId}" \u5417\uFF1F`);
     if (!confirmed) return;
     bananaSettings.prompt_replace[presetId] = { text: textarea.value };
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     if (unsavedWarning) unsavedWarning.style.display = "none";
     toastr.success(`\u66FF\u6362\u89C4\u5219 "${presetId}" \u5DF2\u4FDD\u5B58!`);
   });
@@ -96490,7 +97346,7 @@ function initBananaPromptReplace() {
     bananaSettings.prompt_replace[newName] = { text: textarea.value };
     bananaSettings.prompt_replace_id = newName;
     populateReplaceDropdown();
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     if (unsavedWarning) unsavedWarning.style.display = "none";
     toastr.success(`\u66FF\u6362\u89C4\u5219 "${newName}" \u5DF2\u4FDD\u5B58!`);
   });
@@ -96505,7 +97361,7 @@ function initBananaPromptReplace() {
     bananaSettings.prompt_replace_id = newName;
     populateReplaceDropdown();
     loadReplacePreset(newName);
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     if (unsavedWarning) unsavedWarning.style.display = "none";
     toastr.success(`\u7A7A\u66FF\u6362\u89C4\u5219 "${newName}" \u5DF2\u521B\u5EFA!`);
   });
@@ -96529,7 +97385,7 @@ function initBananaPromptReplace() {
     delete bananaSettings.prompt_replace[currentName];
     bananaSettings.prompt_replace_id = newName;
     populateReplaceDropdown();
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u66FF\u6362\u89C4\u5219\u5DF2\u91CD\u547D\u540D\u4E3A "${newName}"`);
   });
   deleteBtn.addEventListener("click", async () => {
@@ -96544,7 +97400,7 @@ function initBananaPromptReplace() {
     bananaSettings.prompt_replace_id = "\u9ED8\u8BA4";
     populateReplaceDropdown();
     loadReplacePreset("\u9ED8\u8BA4");
-    saveSettingsDebounced51();
+    saveSettingsDebounced52();
     toastr.success(`\u66FF\u6362\u89C4\u5219 "${presetId}" \u5DF2\u5220\u9664\u3002`);
   });
   exportBtn.addEventListener("click", () => {
@@ -96588,7 +97444,7 @@ function initBananaPromptReplace() {
             }
           }
           populateReplaceDropdown();
-          saveSettingsDebounced51();
+          saveSettingsDebounced52();
           toastr.success(`\u6210\u529F\u5BFC\u5165 ${Object.keys(importedData).length} \u4E2A\u66FF\u6362\u89C4\u5219\uFF0C\u5176\u4E2D ${newCount} \u4E2A\u662F\u5168\u65B0\u7684\u3002`);
         } catch (err) {
           toastr.error("\u5BFC\u5165\u5931\u8D25\uFF0C\u8BF7\u786E\u4FDD\u6587\u4EF6\u662F\u6B63\u786E\u7684 JSON \u683C\u5F0F\u3002");
@@ -96775,7 +97631,7 @@ function showInheritWorkflowSelectModal(candidateNames, currentName) {
   });
 }
 async function inheritRunningHubWork(targetTextareaId = "runninghub_worker", targetWorkeridKey = "runninghub_workerid", targetWorkerKey = "runninghub_worker") {
-  const settings3 = extension_settings80[extensionName];
+  const settings3 = extension_settings81[extensionName];
   const el = document.getElementById(targetTextareaId);
   if (!el) return;
   let currentWf;
@@ -96844,7 +97700,7 @@ async function inheritRunningHubWork(targetTextareaId = "runninghub_worker", tar
       settings3.runninghub_workers[currentName] = newJsonStr;
     }
     settings3[targetWorkerKey] = newJsonStr;
-    saveSettingsDebounced52();
+    saveSettingsDebounced53();
     let tip = `\u5DF2\u4ECE\u7236\u5DE5\u4F5C\u6D41\u3010${selectedParentName}\u3011\u6210\u529F\u7EE7\u627F ${updatedNodes.size} \u4E2A\u8282\u70B9\u7684 ${updatedCount} \u5904\u5360\u4F4D\u7B26\u4FEE\u6539\uFF01`;
     if (skippedTypeMismatchNodes.size > 0) {
       tip += ` (\u5DF2\u5B89\u5168\u8DF3\u8FC7 ${skippedTypeMismatchNodes.size} \u4E2A\u7C7B\u578B\u4E0D\u5339\u914D\u7684\u8282\u70B9)`;
@@ -96998,7 +97854,7 @@ function renderRunningHubNodeProperties(panel, node, workflow, onUpdate) {
   }
 }
 async function visualizeRunningHubWorkflow(targetTextareaId = "runninghub_worker", targetWorkeridKey = "runninghub_workerid", targetWorkerKey = "runninghub_worker") {
-  const settings3 = extension_settings80[extensionName];
+  const settings3 = extension_settings81[extensionName];
   const workerEl = document.getElementById(targetTextareaId);
   const rawJson = (workerEl ? workerEl.value : settings3[targetWorkerKey]) || settings3.runninghub_workers?.[settings3[targetWorkeridKey]] || "";
   let workflow;
@@ -97327,13 +98183,13 @@ async function visualizeRunningHubWorkflow(targetTextareaId = "runninghub_worker
           settings3.runninghub_workers[name] = workflowJson;
           settings3[targetWorkeridKey] = name;
           settings3[targetWorkerKey] = workflowJson;
-          saveSettingsDebounced52();
+          saveSettingsDebounced53();
           toastr.success(`\u5DE5\u4F5C\u6D41\u5DF2\u4FDD\u5B58\u4E3A "${name}"`);
         }
       } else {
         settings3.runninghub_workers[presetName] = workflowJson;
         settings3[targetWorkerKey] = workflowJson;
-        saveSettingsDebounced52();
+        saveSettingsDebounced53();
         toastr.success(`\u5DE5\u4F5C\u6D41 "${presetName}" \u5DF2\u4FDD\u5B58\uFF01`);
       }
     } catch (e) {
@@ -97402,7 +98258,7 @@ async function uploadRunningHubMedia(file, type, index, apiKey) {
       console.warn("[RunningHubUI] \u56FE\u7247\u9884\u5904\u7406\u5931\u8D25\uFF0C\u4F7F\u7528\u539F\u59CB\u6587\u4EF6:", procErr);
     }
   }
-  const settings3 = extension_settings81[extensionName] || {};
+  const settings3 = extension_settings82[extensionName] || {};
   if (!settings3.runninghub_upload_cache) {
     settings3.runninghub_upload_cache = {};
   }
@@ -97434,7 +98290,7 @@ async function uploadRunningHubMedia(file, type, index, apiKey) {
       fileName,
       timestamp: now
     };
-    saveSettingsDebounced53();
+    saveSettingsDebounced54();
     if (index !== void 0 && sessionUploadedMedia[type]) {
       sessionUploadedMedia[type][index] = fileName;
     }
@@ -97444,7 +98300,7 @@ async function uploadRunningHubMedia(file, type, index, apiKey) {
   }
 }
 function openRunningHubSelectOptionsEditor({ title, settingKey, optionsKey, defaultOptions = [], selectEl }) {
-  const settings3 = extension_settings81[extensionName] || {};
+  const settings3 = extension_settings82[extensionName] || {};
   let currentOptions = Array.isArray(settings3[optionsKey]) ? [...settings3[optionsKey]] : [...defaultOptions];
   const currentVal = settings3[settingKey] || (selectEl ? selectEl.value : "");
   if (currentVal && !currentOptions.includes(currentVal)) {
@@ -97637,14 +98493,14 @@ function openRunningHubSelectOptionsEditor({ title, settingKey, optionsKey, defa
         settings3[settingKey] = "";
       }
     }
-    saveSettingsDebounced53();
+    saveSettingsDebounced54();
     if (window.toastr) toastr.success("\u5DF2\u4FDD\u5B58\u9009\u9879\u5217\u8868");
     $modal2.remove();
   });
   $modal2.find(".rh-modal-close").on("click", () => $modal2.remove());
 }
 function initRunningHubUI(settingsModal) {
-  const settings3 = extension_settings81[extensionName];
+  const settings3 = extension_settings82[extensionName];
   if (!settings3.runninghub_uploadedMedia) {
     settings3.runninghub_uploadedMedia = { img: {}, aud: {} };
   }
@@ -97671,7 +98527,7 @@ function initRunningHubUI(settingsModal) {
       else delete sessionUploadedMedia.imgFiles[idxA];
       if (fileA !== void 0) sessionUploadedMedia.imgFiles[idxB] = fileA;
       else delete sessionUploadedMedia.imgFiles[idxB];
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
       renderRunningHubImageCards();
       toastr.success(`\u5DF2\u6210\u529F\u4EA4\u6362 <Picture ${idxA}> \u4E0E <Picture ${idxB}> \u7684\u4F4D\u7F6E\u4E0E\u914D\u7F6E\uFF01`);
     } else if (type === "aud") {
@@ -97694,7 +98550,7 @@ function initRunningHubUI(settingsModal) {
       else delete sessionUploadedMedia.audFiles[idxA];
       if (fileA !== void 0) sessionUploadedMedia.audFiles[idxB] = fileA;
       else delete sessionUploadedMedia.audFiles[idxB];
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
       renderRunningHubAudioCards();
       toastr.success(`\u5DF2\u6210\u529F\u4EA4\u6362 <Audio ${idxA}> \u4E0E <Audio ${idxB}> \u7684\u4F4D\u7F6E\u4E0E\u914D\u7F6E\uFF01`);
     }
@@ -97787,7 +98643,7 @@ function initRunningHubUI(settingsModal) {
       $(`#runninghub_img_ctrl_${i}`).on("change", (e) => {
         const val = e.target.value;
         settings3[`runninghub_img_ctrl_${i}`] = val;
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
         const hasMedia = Boolean(sessionUploadedMedia.img?.[i] || sessionUploadedMedia.imgFiles?.[i]);
         const $overlay = $(`#runninghub_img_mute_overlay_${i}`);
         const $img = $(`#runninghub_preview_img_${i}`);
@@ -97801,7 +98657,7 @@ function initRunningHubUI(settingsModal) {
       });
       $(`#runninghub_img_desc_${i}`).on("input", (e) => {
         settings3[`runninghub_img_desc_${i}`] = e.target.value;
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
       });
       $(`#runninghub_upload_btn_img_${i}`).on("click", () => {
         $(`#runninghub_file_img_${i}`).click();
@@ -97846,7 +98702,7 @@ function initRunningHubUI(settingsModal) {
                 $(`#runninghub_img_desc_${i}`).val(newDesc);
                 settings3[`runninghub_img_desc_${i}`] = newDesc;
               }
-              saveSettingsDebounced53();
+              saveSettingsDebounced54();
               if (window.toastr) toastr.success(`\u56FE\u7247 ${i} \u5DF2\u4ECE\u89C6\u9891\u8D44\u4EA7\u8F7D\u5165\uFF01`);
             } catch (err) {
               if (stat) {
@@ -97999,7 +98855,7 @@ function initRunningHubUI(settingsModal) {
       $(`#runninghub_aud_ctrl_${i}`).on("change", (e) => {
         const val = e.target.value;
         settings3[`runninghub_aud_ctrl_${i}`] = val;
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
         const hasMedia = Boolean(sessionUploadedMedia.aud?.[i] || sessionUploadedMedia.audFiles?.[i]);
         const $overlay = $(`#runninghub_aud_mute_overlay_${i}`);
         const $aud = $(`#runninghub_preview_aud_${i}`);
@@ -98013,7 +98869,7 @@ function initRunningHubUI(settingsModal) {
       });
       $(`#runninghub_aud_desc_${i}`).on("input", (e) => {
         settings3[`runninghub_aud_desc_${i}`] = e.target.value;
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
       });
       $(`#runninghub_upload_btn_aud_${i}`).on("click", () => {
         $(`#runninghub_file_aud_${i}`).click();
@@ -98058,7 +98914,7 @@ function initRunningHubUI(settingsModal) {
                 $(`#runninghub_aud_desc_${i}`).val(newDesc);
                 settings3[`runninghub_aud_desc_${i}`] = newDesc;
               }
-              saveSettingsDebounced53();
+              saveSettingsDebounced54();
               if (window.toastr) toastr.success(`\u97F3\u9891 ${i} \u5DF2\u4ECE\u89C6\u9891\u8D44\u4EA7\u8F7D\u5165\uFF01`);
             } catch (err) {
               if (stat) {
@@ -98212,7 +99068,7 @@ function initRunningHubUI(settingsModal) {
         const boundWfId = settings3.runninghub_workflow_ids?.[selected] || "";
         if (wfInputEl) wfInputEl.value = boundWfId;
         settings3[cat.workflowIdKey] = boundWfId;
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
       });
     }
     if (textareaEl) {
@@ -98221,7 +99077,7 @@ function initRunningHubUI(settingsModal) {
         if (currentId) {
           settings3.runninghub_workers[currentId] = textareaEl.value;
           settings3[cat.workerKey] = textareaEl.value;
-          saveSettingsDebounced53();
+          saveSettingsDebounced54();
         }
       });
     }
@@ -98233,7 +99089,7 @@ function initRunningHubUI(settingsModal) {
           if (!settings3.runninghub_workflow_ids) settings3.runninghub_workflow_ids = {};
           settings3.runninghub_workflow_ids[currentId] = val;
           settings3[cat.workflowIdKey] = val;
-          saveSettingsDebounced53();
+          saveSettingsDebounced54();
         }
       });
     }
@@ -98252,7 +99108,7 @@ function initRunningHubUI(settingsModal) {
         settings3[cat.workerKey] = settings3.runninghub_workers[trimmed];
         settings3[cat.workflowIdKey] = settings3.runninghub_workflow_ids[trimmed];
         refreshAllWorkerSelects();
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
         toastr.success(`\u5DF2\u521B\u5EFA\u5DE5\u4F5C\u6D41\u9884\u8BBE "${trimmed}"`);
       }
     });
@@ -98264,7 +99120,7 @@ function initRunningHubUI(settingsModal) {
         if (!settings3.runninghub_workflow_ids) settings3.runninghub_workflow_ids = {};
         settings3.runninghub_workflow_ids[currentId] = wfInputEl?.value?.trim() || "";
         settings3[cat.workflowIdKey] = wfInputEl?.value?.trim() || "";
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
         toastr.success(`\u3010${cat.name}\u3011\u9884\u8BBE "${currentId}" \u53CA\u7ED1\u5B9A\u7684\u5DE5\u4F5C\u6D41 ID \u5DF2\u4FDD\u5B58`);
       }
     });
@@ -98279,7 +99135,7 @@ function initRunningHubUI(settingsModal) {
         settings3[cat.workerKey] = settings3.runninghub_workers[trimmed];
         settings3[cat.workflowIdKey] = settings3.runninghub_workflow_ids[trimmed];
         refreshAllWorkerSelects();
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
         toastr.success(`\u5DF2\u53E6\u5B58\u4E3A "${trimmed}"`);
       }
     });
@@ -98300,7 +99156,7 @@ function initRunningHubUI(settingsModal) {
           }
         });
         refreshAllWorkerSelects();
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
         toastr.success(`\u5DF2\u91CD\u547D\u540D\u4E3A "${trimmed}"`);
       }
     });
@@ -98359,7 +99215,7 @@ function initRunningHubUI(settingsModal) {
                 settings3[cat.workeridKey] = name;
                 settings3[cat.workerKey] = workflowData;
                 refreshAllWorkerSelects();
-                saveSettingsDebounced53();
+                saveSettingsDebounced54();
                 toastr.success(`\u5DE5\u4F5C\u6D41\u9884\u8BBE\u3010${name}\u3011\u5BFC\u5165\u6210\u529F\uFF01`);
               }
               return;
@@ -98374,7 +99230,7 @@ function initRunningHubUI(settingsModal) {
                 }
               }
               refreshAllWorkerSelects();
-              saveSettingsDebounced53();
+              saveSettingsDebounced54();
               toastr.success("\u5DE5\u4F5C\u6D41\u914D\u7F6E\u5305\u5BFC\u5165\u6210\u529F\uFF01");
               return;
             }
@@ -98387,7 +99243,7 @@ function initRunningHubUI(settingsModal) {
               settings3[cat.workeridKey] = name;
               settings3[cat.workerKey] = settings3.runninghub_workers[name];
               refreshAllWorkerSelects();
-              saveSettingsDebounced53();
+              saveSettingsDebounced54();
               toastr.success(`\u5DE5\u4F5C\u6D41\u9884\u8BBE\u3010${name}\u3011\u5BFC\u5165\u6210\u529F\uFF01`);
               return;
             }
@@ -98396,7 +99252,7 @@ function initRunningHubUI(settingsModal) {
                 settings3.runninghub_workers[k] = typeof imported[k] === "string" ? imported[k] : JSON.stringify(imported[k], null, 2);
               }
               refreshAllWorkerSelects();
-              saveSettingsDebounced53();
+              saveSettingsDebounced54();
               toastr.success("\u5DE5\u4F5C\u6D41\u9884\u8BBE\u5B57\u5178\u5BFC\u5165\u6210\u529F\uFF01");
               return;
             }
@@ -98427,7 +99283,7 @@ function initRunningHubUI(settingsModal) {
           }
         });
         refreshAllWorkerSelects();
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
         toastr.success(`\u5DF2\u5220\u9664\u9884\u8BBE "${current}"`);
       }
     });
@@ -98539,7 +99395,7 @@ function initRunningHubUI(settingsModal) {
     }
     $(selectEl).off("change.rh_other").on("change.rh_other", (e) => {
       settings3[cfg.id] = e.target.value;
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
     });
     $(cfg.editBtnId).off("click.rh_edit").on("click.rh_edit", () => {
       openRunningHubSelectOptionsEditor({
@@ -98564,7 +99420,7 @@ function initRunningHubUI(settingsModal) {
       el.value = settings3[id] !== void 0 ? settings3[id] : defVal;
       $(el).off("input change.rh_gen").on("input change.rh_gen", (e) => {
         settings3[id] = e.target.value;
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
       });
     }
   });
@@ -98585,7 +99441,7 @@ function initRunningHubUI(settingsModal) {
         if (wEl) wEl.value = w;
         if (hEl) hEl.value = h;
       }
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
     });
   }
   const videoParamKeys = [
@@ -98602,7 +99458,7 @@ function initRunningHubUI(settingsModal) {
       el.value = settings3[id] !== void 0 ? settings3[id] : defVal;
       $(el).off("input change.rh_vid").on("input change.rh_vid", (e) => {
         settings3[id] = e.target.value;
-        saveSettingsDebounced53();
+        saveSettingsDebounced54();
       });
     }
   });
@@ -98611,7 +99467,7 @@ function initRunningHubUI(settingsModal) {
     apiKeyEl.value = settings3.runninghub_apiKey || "";
     $(apiKeyEl).off("input change.rh_api").on("input change.rh_api", (e) => {
       settings3.runninghub_apiKey = e.target.value;
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
       invalidateBalanceCache();
       renderRunningHubKeyConsumptionSummary();
     });
@@ -98633,12 +99489,12 @@ function initRunningHubUI(settingsModal) {
     if (!validTypes.includes(curType)) {
       curType = "default";
       settings3.runninghub_instance_type = "default";
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
     }
     instanceTypeEl.value = curType;
     $(instanceTypeEl).off("change.rh_inst").on("change.rh_inst", (e) => {
       settings3.runninghub_instance_type = e.target.value;
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
     });
   }
   const retainSecEl = document.getElementById("runninghub_retain_seconds");
@@ -98646,7 +99502,7 @@ function initRunningHubUI(settingsModal) {
     retainSecEl.value = settings3.runninghub_retain_seconds ?? "";
     $(retainSecEl).off("input change.rh_retain").on("input change.rh_retain", (e) => {
       settings3.runninghub_retain_seconds = e.target.value;
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
     });
   }
   function renderRunningHubKeyConsumptionSummary() {
@@ -98930,7 +99786,7 @@ function initRunningHubUI(settingsModal) {
     testDemandEl.value = settings3.runninghub_video_test_demand || "";
     $(testDemandEl).off("input change.rh_demand").on("input change.rh_demand", (e) => {
       settings3.runninghub_video_test_demand = e.target.value;
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
     });
   }
   const testPromptEl = document.getElementById("runninghub_video_test_prompt");
@@ -98938,7 +99794,7 @@ function initRunningHubUI(settingsModal) {
     testPromptEl.value = settings3.runninghub_video_test_prompt || "";
     $(testPromptEl).off("input change.rh_test").on("input change.rh_test", (e) => {
       settings3.runninghub_video_test_prompt = e.target.value;
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
     });
   }
   let currentTestAbortController = null;
@@ -99447,7 +100303,7 @@ ${imgName}` : `
         $(promptEl).trigger("input");
       }
       settings3.runninghub_video_test_prompt = finalPrompt;
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
       toastr.success("\u{1F3AC} \u56FE\u751F\u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210\u6210\u529F\u5E76\u5DF2\u586B\u5165\u6D4B\u8BD5\u6846\uFF01");
     } catch (err) {
       console.error("[RunningHubVideoTest] \u56FE\u751F\u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210\u5931\u8D25:", err);
@@ -99590,7 +100446,7 @@ ${audioDescLines}
         $(promptEl).trigger("input");
       }
       settings3.runninghub_video_test_prompt = finalPrompt;
-      saveSettingsDebounced53();
+      saveSettingsDebounced54();
       toastr.success("\u{1F3AC} \u89C6\u6750\u51C6\u5907\u63D0\u793A\u8BCD\u751F\u6210\u6210\u529F\u5E76\u5DF2\u586B\u5165\u6D4B\u8BD5\u6846\uFF01");
     } catch (err) {
       console.error("[RunningHubVideoTest] \u53C2\u8003\u751F\u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210\u5931\u8D25:", err);
@@ -99628,7 +100484,7 @@ function escapeHtml7(str) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 async function uploadComfyUIImageDirect(imageBlob, fileName) {
-  const settings3 = extension_settings82[extensionName];
+  const settings3 = extension_settings83[extensionName];
   const url = (settings3?.comfyuiUrl || "http://localhost:8188").trim();
   if (!url) {
     throw new Error("\u8BF7\u5148\u5728 ComfyUI \u8BBE\u7F6E\u4E2D\u914D\u7F6E API \u5730\u5740");
@@ -99659,7 +100515,7 @@ async function uploadComfyUIImageDirect(imageBlob, fileName) {
   return result.name;
 }
 function initComfyUIVideoUI() {
-  const settings3 = extension_settings82[extensionName];
+  const settings3 = extension_settings83[extensionName];
   if (!settings3) return;
   if (!settings3.comfyui_video_workers) {
     settings3.comfyui_video_workers = { ...defaultSettings.comfyui_video_workers };
@@ -99723,7 +100579,7 @@ function initComfyUIVideoUI() {
         const jsonStr = settings3.comfyui_video_workers[selected] || "";
         settings3[cat.workerKey] = jsonStr;
         if (textareaEl) textareaEl.value = jsonStr;
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
       });
     }
     if (textareaEl) {
@@ -99732,7 +100588,7 @@ function initComfyUIVideoUI() {
         if (currentId) {
           settings3.comfyui_video_workers[currentId] = textareaEl.value;
           settings3[cat.workerKey] = textareaEl.value;
-          saveSettingsDebounced54();
+          saveSettingsDebounced55();
         }
       });
     }
@@ -99748,7 +100604,7 @@ function initComfyUIVideoUI() {
         settings3[cat.workeridKey] = trimmed;
         settings3[cat.workerKey] = settings3.comfyui_video_workers[trimmed];
         refreshAllWorkerSelects();
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
         toastr.success(`\u5DF2\u521B\u5EFA\u5DE5\u4F5C\u6D41\u9884\u8BBE "${trimmed}"`);
       }
     });
@@ -99757,7 +100613,7 @@ function initComfyUIVideoUI() {
       if (currentId) {
         settings3.comfyui_video_workers[currentId] = textareaEl?.value || "";
         settings3[cat.workerKey] = textareaEl?.value || "";
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
         toastr.success(`\u3010${cat.name}\u3011\u9884\u8BBE "${currentId}" \u5DF2\u4FDD\u5B58`);
       }
     });
@@ -99773,7 +100629,7 @@ function initComfyUIVideoUI() {
         settings3[cat.workeridKey] = trimmed;
         settings3[cat.workerKey] = settings3.comfyui_video_workers[trimmed];
         refreshAllWorkerSelects();
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
         toastr.success(`\u5DF2\u53E6\u5B58\u4E3A\u5DE5\u4F5C\u6D41\u9884\u8BBE "${trimmed}"`);
       }
     });
@@ -99796,7 +100652,7 @@ function initComfyUIVideoUI() {
           }
         });
         refreshAllWorkerSelects();
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
         toastr.success(`\u5DF2\u91CD\u547D\u540D\u4E3A "${trimmed}"`);
       }
     });
@@ -99840,7 +100696,7 @@ function initComfyUIVideoUI() {
             if (confirm(`\u5373\u5C06\u5BFC\u5165\u5168\u90E8 ${count} \u4E2A\u5DE5\u4F5C\u6D41\u9884\u8BBE\uFF0C\u662F\u5426\u5408\u5E76\uFF1F`)) {
               Object.assign(settings3.comfyui_video_workers, parsed.workers);
               refreshAllWorkerSelects();
-              saveSettingsDebounced54();
+              saveSettingsDebounced55();
               toastr.success(`\u6210\u529F\u5BFC\u5165 ${count} \u4E2A\u5DE5\u4F5C\u6D41\u9884\u8BBE`);
             }
           } else {
@@ -99852,7 +100708,7 @@ function initComfyUIVideoUI() {
               settings3[cat.workeridKey] = trimmed;
               settings3[cat.workerKey] = text;
               refreshAllWorkerSelects();
-              saveSettingsDebounced54();
+              saveSettingsDebounced55();
               toastr.success(`\u5DF2\u5BFC\u5165\u5DE5\u4F5C\u6D41\u9884\u8BBE "${trimmed}"`);
             }
           }
@@ -99880,7 +100736,7 @@ function initComfyUIVideoUI() {
           }
         });
         refreshAllWorkerSelects();
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
         toastr.success(`\u5DF2\u5220\u9664\u9884\u8BBE "${currentId}"`);
       }
     });
@@ -99905,7 +100761,7 @@ function initComfyUIVideoUI() {
       el.value = settings3[id] !== void 0 ? settings3[id] : defVal;
       $(el).off("input change.comfy_vid").on("input change.comfy_vid", (e) => {
         settings3[id] = e.target.value;
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
       });
     }
   });
@@ -99940,7 +100796,7 @@ function initComfyUIVideoUI() {
       else delete sessionUploadedMedia2.imgFiles[idxA];
       if (fileA !== void 0) sessionUploadedMedia2.imgFiles[idxB] = fileA;
       else delete sessionUploadedMedia2.imgFiles[idxB];
-      saveSettingsDebounced54();
+      saveSettingsDebounced55();
       renderComfyUIImageCards();
       toastr.success(`\u5DF2\u6210\u529F\u4EA4\u6362 <Picture ${idxA}> \u4E0E <Picture ${idxB}> \u7684\u4F4D\u7F6E\u4E0E\u914D\u7F6E\uFF01`);
     } else if (type === "aud") {
@@ -99971,7 +100827,7 @@ function initComfyUIVideoUI() {
       else delete sessionUploadedMedia2.audFiles[idxA];
       if (fileA !== void 0) sessionUploadedMedia2.audFiles[idxB] = fileA;
       else delete sessionUploadedMedia2.audFiles[idxB];
-      saveSettingsDebounced54();
+      saveSettingsDebounced55();
       renderComfyUIAudioCards();
       toastr.success(`\u5DF2\u6210\u529F\u4EA4\u6362 <Audio ${idxA}> \u4E0E <Audio ${idxB}> \u7684\u4F4D\u7F6E\u4E0E\u914D\u7F6E\uFF01`);
     }
@@ -100060,7 +100916,7 @@ function initComfyUIVideoUI() {
       $(`#${ctrlKey}`).on("change", (e) => {
         const val = e.target.value;
         settings3[ctrlKey] = val;
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
         const hasMedia = Boolean(settings3.runninghub_uploadedMedia?.img?.[i] || sessionUploadedMedia2.imgFiles?.[i]);
         const $overlay = $(`#comfyui_img_mute_overlay_${i}`);
         const $img = $(`#comfyui_preview_img_${i}`);
@@ -100074,7 +100930,7 @@ function initComfyUIVideoUI() {
       });
       $(`#${descKey}`).on("input", (e) => {
         settings3[descKey] = e.target.value;
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
       });
       $(`#comfyui_img_upload_btn_${i}`).on("click", () => {
         $(`#comfyui_img_file_${i}`).click();
@@ -100114,7 +100970,7 @@ function initComfyUIVideoUI() {
                 $(`#${descKey}`).val(newDesc);
                 settings3[descKey] = newDesc;
               }
-              saveSettingsDebounced54();
+              saveSettingsDebounced55();
               toastr.success(`\u56FE\u7247 ${i} \u5DF2\u4ECE\u89C6\u9891\u8D44\u4EA7\u8F7D\u5165: ${serverFileName}`);
             } catch (err) {
               alert("\u4ECE\u89C6\u9891\u8D44\u4EA7\u8F7D\u5165\u5931\u8D25: " + err.message);
@@ -100148,7 +101004,7 @@ function initComfyUIVideoUI() {
           sessionUploadedMedia2.img[i] = serverFileName;
           $(`#comfyui_img_status_${i}`).html(`<i class="fa-solid fa-check-circle"></i> \u5DF2\u4E0A\u4F20: ${serverFileName}`).css("color", "#4caf50");
           $(`#comfyui_img_clear_btn_${i}`).show();
-          saveSettingsDebounced54();
+          saveSettingsDebounced55();
           toastr.success(`\u56FE\u7247 ${i} \u4E0A\u4F20\u6210\u529F: ${serverFileName}`);
         } catch (err) {
           alert("\u4E0A\u4F20\u5931\u8D25: " + err.message);
@@ -100167,7 +101023,7 @@ function initComfyUIVideoUI() {
         $(`#comfyui_img_mute_overlay_${i}`).hide();
         $(`#comfyui_img_status_${i}`).text("\u672A\u6307\u5B9A\u672C\u5730\u56FE\u7247\uFF08\u81EA\u52A8\u4F7F\u7528\u9ED8\u8BA4\u6216\u63D0\u793A\u8BCD\u89C6\u6750\uFF09").css("color", "var(--st-chatu8-text-secondary, #888)");
         $(`#comfyui_img_clear_btn_${i}`).hide();
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
         toastr.info(`\u5DF2\u6E05\u9664\u56FE\u7247 ${i}`);
       });
     }
@@ -100257,7 +101113,7 @@ function initComfyUIVideoUI() {
       $(`#${ctrlKey}`).on("change", (e) => {
         const val = e.target.value;
         settings3[ctrlKey] = val;
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
         const hasMedia = Boolean(settings3.runninghub_uploadedMedia?.aud?.[i] || sessionUploadedMedia2.audFiles?.[i]);
         const $overlay = $(`#comfyui_aud_mute_overlay_${i}`);
         const $aud = $(`#comfyui_preview_aud_${i}`);
@@ -100271,7 +101127,7 @@ function initComfyUIVideoUI() {
       });
       $(`#${descKey}`).on("input", (e) => {
         settings3[descKey] = e.target.value;
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
       });
       $(`#comfyui_aud_upload_btn_${i}`).on("click", () => {
         $(`#comfyui_aud_file_${i}`).click();
@@ -100311,7 +101167,7 @@ function initComfyUIVideoUI() {
                 $(`#${descKey}`).val(newDesc);
                 settings3[descKey] = newDesc;
               }
-              saveSettingsDebounced54();
+              saveSettingsDebounced55();
               toastr.success(`\u97F3\u9891 ${i} \u5DF2\u4ECE\u89C6\u9891\u8D44\u4EA7\u8F7D\u5165: ${serverFileName}`);
             } catch (err) {
               alert("\u97F3\u9891\u8F7D\u5165\u5931\u8D25: " + err.message);
@@ -100345,7 +101201,7 @@ function initComfyUIVideoUI() {
           sessionUploadedMedia2.aud[i] = serverFileName;
           $(`#comfyui_aud_status_${i}`).html(`<i class="fa-solid fa-check-circle"></i> \u5DF2\u4E0A\u4F20: ${serverFileName}`).css("color", "#4caf50");
           $(`#comfyui_aud_clear_btn_${i}`).show();
-          saveSettingsDebounced54();
+          saveSettingsDebounced55();
           toastr.success(`\u97F3\u9891 ${i} \u4E0A\u4F20\u6210\u529F: ${serverFileName}`);
         } catch (err) {
           alert("\u97F3\u9891\u4E0A\u4F20\u5931\u8D25: " + err.message);
@@ -100364,7 +101220,7 @@ function initComfyUIVideoUI() {
         $(`#comfyui_aud_mute_overlay_${i}`).hide();
         $(`#comfyui_aud_status_${i}`).text("\u672A\u6307\u5B9A\u672C\u5730\u97F3\u9891\uFF08\u81EA\u52A8\u4F7F\u7528\u9ED8\u8BA4\u6216\u63D0\u793A\u8BCD\u89C6\u6750\uFF09").css("color", "var(--st-chatu8-text-secondary, #888)");
         $(`#comfyui_aud_clear_btn_${i}`).hide();
-        saveSettingsDebounced54();
+        saveSettingsDebounced55();
         toastr.info(`\u5DF2\u6E05\u9664\u97F3\u9891 ${i}`);
       });
     }
@@ -100375,7 +101231,7 @@ function initComfyUIVideoUI() {
     testDemandEl.value = settings3.comfyui_video_test_demand || "";
     $(testDemandEl).off("input change.comfy_demand").on("input change.comfy_demand", (e) => {
       settings3.comfyui_video_test_demand = e.target.value;
-      saveSettingsDebounced54();
+      saveSettingsDebounced55();
     });
   }
   const testPromptEl = document.getElementById("comfyui_video_test_prompt");
@@ -100383,7 +101239,7 @@ function initComfyUIVideoUI() {
     testPromptEl.value = settings3.comfyui_video_test_prompt || "";
     $(testPromptEl).off("input change.comfy_test").on("input change.comfy_test", (e) => {
       settings3.comfyui_video_test_prompt = e.target.value;
-      saveSettingsDebounced54();
+      saveSettingsDebounced55();
     });
   }
   let currentTestAbortController = null;
@@ -100576,7 +101432,7 @@ function initComfyUIVideoUI() {
       if (currentTestAbortController) {
         currentTestAbortController.abort();
       }
-      const settings4 = extension_settings82[extensionName];
+      const settings4 = extension_settings83[extensionName];
       const url = (settings4?.comfyuiUrl || "http://localhost:8188").trim();
       if (url) {
         try {
@@ -100894,7 +101750,7 @@ ${imgName}` : `
         $(promptEl).trigger("input");
       }
       settings3.comfyui_video_test_prompt = finalPrompt;
-      saveSettingsDebounced54();
+      saveSettingsDebounced55();
       toastr.success("\u{1F3AC} \u56FE\u751F\u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210\u6210\u529F\u5E76\u5DF2\u586B\u5165\u6D4B\u8BD5\u6846\uFF01");
     } catch (err) {
       console.error("[ComfyUIVideoTest] \u56FE\u751F\u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210\u5931\u8D25:", err);
@@ -101037,7 +101893,7 @@ ${audioDescLines}
         $(promptEl).trigger("input");
       }
       settings3.comfyui_video_test_prompt = finalPrompt;
-      saveSettingsDebounced54();
+      saveSettingsDebounced55();
       toastr.success("\u{1F3AC} \u89C6\u6750\u51C6\u5907\u63D0\u793A\u8BCD\u751F\u6210\u6210\u529F\u5E76\u5DF2\u586B\u5165\u6D4B\u8BD5\u6846\uFF01");
     } catch (err) {
       console.error("[ComfyUIVideoTest] \u53C2\u8003\u751F\u89C6\u9891\u63D0\u793A\u8BCD\u751F\u6210\u5931\u8D25:", err);
@@ -103901,7 +104757,7 @@ function updateImg2ImgUI() {
     $name.text("");
     $badge.text("\u7EAF\u6587\u751F\u56FE").css({ background: "", color: "" });
   }
-  const currentMode2 = extension_settings83[extensionName]?.mode;
+  const currentMode2 = extension_settings84[extensionName]?.mode;
   if (currentImg2ImgRefImage && currentMode2 !== "banana") {
     $channelHint.show();
   } else {
@@ -103913,7 +104769,7 @@ function escapeHtml10(str) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 function getSettings2() {
-  return extension_settings83[extensionName] || {};
+  return extension_settings84[extensionName] || {};
 }
 function findUserDemandMessageIndex(messages) {
   if (!Array.isArray(messages)) return -1;
@@ -104046,7 +104902,7 @@ function renderAttachmentsList() {
     $item.find(".vag-attachment-desc-input").on("input", function() {
       const val = $(this).val();
       att.description = val;
-      saveSettingsDebounced55();
+      saveSettingsDebounced56();
     });
     $item.find(".vag-btn-move-up").on("click", (e) => {
       e.stopPropagation();
@@ -104054,7 +104910,7 @@ function renderAttachmentsList() {
         const temp = attachments[index - 1];
         attachments[index - 1] = attachments[index];
         attachments[index] = temp;
-        saveSettingsDebounced55();
+        saveSettingsDebounced56();
         renderAttachmentsList();
       }
     });
@@ -104064,14 +104920,14 @@ function renderAttachmentsList() {
         const temp = attachments[index + 1];
         attachments[index + 1] = attachments[index];
         attachments[index] = temp;
-        saveSettingsDebounced55();
+        saveSettingsDebounced56();
         renderAttachmentsList();
       }
     });
     $item.find(".vag-btn-remove").on("click", (e) => {
       e.stopPropagation();
       attachments.splice(index, 1);
-      saveSettingsDebounced55();
+      saveSettingsDebounced56();
       renderAttachmentsList();
       toastr.info(`\u5DF2\u79FB\u9664\u9644\u4EF6 #${index + 1}`);
     });
@@ -104094,7 +104950,7 @@ function addAttachmentItem(item) {
     settings3.video_asset_gen_attachments = [];
   }
   settings3.video_asset_gen_attachments.push(item);
-  saveSettingsDebounced55();
+  saveSettingsDebounced56();
   renderAttachmentsList();
 }
 async function getCurrentCharWorldSafe() {
@@ -104293,7 +105149,7 @@ async function renderWorldListUI() {
       }
       settings3.video_asset_gen_world_selections = selections;
       settings3.video_asset_gen_world_entries = entriesMap;
-      saveSettingsDebounced55();
+      saveSettingsDebounced56();
       renderWorldListUI();
       if (activeInspectingWorldName === worldName) {
         renderEntryListUI(worldName);
@@ -104401,7 +105257,7 @@ async function renderEntryListUI(worldName) {
   if (!Array.isArray(entriesMap[worldName])) {
     entriesMap[worldName] = entries.filter((entry) => entry && !entry.disable).map((entry) => String(entry.uid));
     settings3.video_asset_gen_world_entries = entriesMap;
-    saveSettingsDebounced55();
+    saveSettingsDebounced56();
   }
   const selectedUids = new Set((entriesMap[worldName] || []).map(String));
   const totalEntriesCount = entries.length;
@@ -104489,7 +105345,7 @@ async function renderEntryListUI(worldName) {
       }
       entriesMap[worldName] = Array.from(selectedUids);
       settings3.video_asset_gen_world_entries = entriesMap;
-      saveSettingsDebounced55();
+      saveSettingsDebounced56();
       updateWorldBookBadgeAndCount();
       renderWorldListUI();
       const curChecked = selectedUids.size;
@@ -104545,7 +105401,7 @@ async function selectAllWorlds() {
       settings3.video_asset_gen_world_entries[worldName] = entries.filter((e) => e && !e.disable).map((e) => String(e.uid));
     }
   }
-  saveSettingsDebounced55();
+  saveSettingsDebounced56();
   renderWorldListUI();
   if (activeInspectingWorldName) {
     renderEntryListUI(activeInspectingWorldName);
@@ -104556,7 +105412,7 @@ async function selectAllWorlds() {
 function deselectAllWorlds() {
   const settings3 = getSettings2();
   settings3.video_asset_gen_world_selections = {};
-  saveSettingsDebounced55();
+  saveSettingsDebounced56();
   renderWorldListUI();
   if (activeInspectingWorldName) {
     renderEntryListUI(activeInspectingWorldName);
@@ -104570,7 +105426,7 @@ async function selectAllCurrentWorldEntries() {
   const settings3 = getSettings2();
   if (!settings3.video_asset_gen_world_entries) settings3.video_asset_gen_world_entries = {};
   settings3.video_asset_gen_world_entries[activeInspectingWorldName] = entries.map((e) => String(e.uid));
-  saveSettingsDebounced55();
+  saveSettingsDebounced56();
   renderEntryListUI(activeInspectingWorldName);
   renderWorldListUI();
   updateWorldBookBadgeAndCount();
@@ -104581,7 +105437,7 @@ function deselectAllCurrentWorldEntries() {
   const settings3 = getSettings2();
   if (!settings3.video_asset_gen_world_entries) settings3.video_asset_gen_world_entries = {};
   settings3.video_asset_gen_world_entries[activeInspectingWorldName] = [];
-  saveSettingsDebounced55();
+  saveSettingsDebounced56();
   renderEntryListUI(activeInspectingWorldName);
   renderWorldListUI();
   updateWorldBookBadgeAndCount();
@@ -104594,7 +105450,7 @@ async function selectConstantCurrentWorldEntries() {
   if (!settings3.video_asset_gen_world_entries) settings3.video_asset_gen_world_entries = {};
   const constantUids = entries.filter((e) => e && e.constant === true).map((e) => String(e.uid));
   settings3.video_asset_gen_world_entries[activeInspectingWorldName] = constantUids;
-  saveSettingsDebounced55();
+  saveSettingsDebounced56();
   renderEntryListUI(activeInspectingWorldName);
   renderWorldListUI();
   updateWorldBookBadgeAndCount();
@@ -104687,7 +105543,7 @@ ${single.text}` : single.text;
 ${m.text}`).join("\n\n");
   }
   settings3.video_asset_gen_body_text = finalText;
-  saveSettingsDebounced55();
+  saveSettingsDebounced56();
   const $input = $("#vag-body-text-input");
   if ($input.length) {
     $input.val(finalText);
@@ -104912,7 +105768,7 @@ async function executeVideoAssetGeneration() {
     const cleanedResult = extractVideoAssetGenPrompt(resultText2) || resultText2.trim();
     $("#vag-reply-output").val(cleanedResult).trigger("input");
     settings3.video_asset_gen_reply = cleanedResult;
-    saveSettingsDebounced55();
+    saveSettingsDebounced56();
     $("#vag-status-text").text(`\u751F\u6210\u6210\u529F (\u8017\u65F6 ${durationSec}s)`);
     toastr.success(`\u{1F389} \u89C6\u9891\u8D44\u4EA7\u751F\u6210\u5B8C\u6210\uFF01(\u8017\u65F6 ${durationSec}s)`);
   } catch (err) {
@@ -105126,7 +105982,7 @@ async function executeImageGeneration() {
     promptToUse = rawReply || rawDemand;
   }
   const hasImg2ImgRef = !!currentImg2ImgRefImage;
-  const currentMode2 = extension_settings83[extensionName]?.mode;
+  const currentMode2 = extension_settings84[extensionName]?.mode;
   if (hasImg2ImgRef && currentMode2 !== "banana") {
     toastr.warning("\u26A0\uFE0F \u5F53\u524D\u63D2\u4EF6\u751F\u56FE\u6E20\u9053\u975E OpenAI (Banana)\uFF0C\u56FE\u751F\u56FE\u53C2\u8003\u56FE\u4EC5\u5728 OpenAI / Grok \u6E20\u9053\u4E0B\u652F\u6301\uFF0C\u8BF7\u5148\u5728\u63D2\u4EF6\u751F\u56FE\u8BBE\u7F6E\u4E2D\u5207\u6362\u751F\u56FE\u6E20\u9053\uFF01");
     return;
@@ -105225,7 +106081,7 @@ function sendReplyToVideoTestPrompt() {
   const settings3 = getSettings2();
   settings3.comfyui_video_test_prompt = replyText;
   settings3.runninghub_video_test_prompt = replyText;
-  saveSettingsDebounced55();
+  saveSettingsDebounced56();
   const $comfyInput = $("#comfyui_video_test_prompt");
   if ($comfyInput.length) {
     $comfyInput.val(replyText).trigger("input");
@@ -105286,14 +106142,14 @@ function initVideoAssetGenUI($modal2) {
     const val = $(this).val();
     settings3.video_asset_gen_demand = val;
     $("#vag-demand-count").text(`${val.length} \u5B57`);
-    saveSettingsDebounced55();
+    saveSettingsDebounced56();
   });
   const $replyOutput = $("#vag-reply-output");
   $replyOutput.val(settings3.video_asset_gen_reply || "");
   $replyOutput.on("input", function() {
     const val = $(this).val();
     settings3.video_asset_gen_reply = val;
-    saveSettingsDebounced55();
+    saveSettingsDebounced56();
   });
   $("#vag-btn-clear-demand").on("click", () => {
     $demandInput.val("").trigger("input");
@@ -105306,7 +106162,7 @@ function initVideoAssetGenUI($modal2) {
     const val = $(this).val();
     settings3.video_asset_gen_body_text = val;
     $("#vag-body-text-count").text(`${val.length} \u5B57`);
-    saveSettingsDebounced55();
+    saveSettingsDebounced56();
   });
   const $depthInput = $("#vag-floor-depth");
   $depthInput.val(settings3.video_asset_gen_floor_depth || 1);
@@ -105316,7 +106172,7 @@ function initVideoAssetGenUI($modal2) {
     if (depth > 50) depth = 50;
     $(this).val(depth);
     settings3.video_asset_gen_floor_depth = depth;
-    saveSettingsDebounced55();
+    saveSettingsDebounced56();
   });
   $("#vag-btn-clear-body-text").on("click", () => {
     $bodyInput.val("").trigger("input");
@@ -105423,7 +106279,7 @@ function initVideoAssetGenUI($modal2) {
     }
     if (confirm(`\u786E\u5B9A\u8981\u6E05\u7A7A\u5168\u90E8 ${curAtts.length} \u4E2A\u9644\u4EF6\u7D20\u6750\u5417\uFF1F`)) {
       settings3.video_asset_gen_attachments = [];
-      saveSettingsDebounced55();
+      saveSettingsDebounced56();
       renderAttachmentsList();
       toastr.success("\u5DF2\u6E05\u7A7A\u6240\u6709\u9644\u4EF6\u7D20\u6750");
     }
@@ -105562,7 +106418,7 @@ function initVideoAssetGenUI($modal2) {
     const currentCollapsed = !!settings4.video_asset_gen_worldbook_collapsed;
     const nextCollapsed = !currentCollapsed;
     settings4.video_asset_gen_worldbook_collapsed = nextCollapsed;
-    saveSettingsDebounced55();
+    saveSettingsDebounced56();
     setWorldBookPanelCollapsed(nextCollapsed, true);
   });
   $("#vag-world-search-input").on("input", function() {
@@ -105618,7 +106474,7 @@ function initVideoAssetGenUI($modal2) {
       setWorldBookPanelCollapsed(true, false);
       $("#vag-image-result-card").hide().empty();
       updateImageUIState(false, "\u5C31\u7EEA");
-      saveSettingsDebounced55();
+      saveSettingsDebounced56();
       renderAttachmentsList();
       toastr.success("\u5DF2\u91CD\u7F6E\u5168\u90E8\u5185\u5BB9");
     }
@@ -105676,7 +106532,7 @@ function parseTemplate(pattern) {
   return pattern.map((row) => row.split("").map((c) => c === "1" ? 1 : 0));
 }
 function createGestureCanvas(doc) {
-  if (isMobile() && !extension_settings84[extensionName].gestureShowTrail) return;
+  if (isMobile() && !extension_settings85[extensionName].gestureShowTrail) return;
   const existing = doc.getElementById("gesture-canvas");
   if (existing) existing.remove();
   gestureCanvas = doc.createElement("canvas");
@@ -105698,7 +106554,7 @@ function createGestureCanvas(doc) {
   gestureCtx = gestureCanvas.getContext("2d");
 }
 function removeGestureCanvas() {
-  if (isMobile() && !extension_settings84[extensionName].gestureShowTrail) return;
+  if (isMobile() && !extension_settings85[extensionName].gestureShowTrail) return;
   if (gestureCanvas && gestureCanvas.parentNode) {
     gestureCanvas.remove();
   }
@@ -105706,15 +106562,15 @@ function removeGestureCanvas() {
   gestureCtx = null;
 }
 function drawGestureTrail() {
-  if (isMobile() && !extension_settings84[extensionName].gestureShowTrail) return;
-  if (!gestureCtx || gesturePoints.length < 2 || !extension_settings84[extensionName].gestureShowTrail) return;
+  if (isMobile() && !extension_settings85[extensionName].gestureShowTrail) return;
+  if (!gestureCtx || gesturePoints.length < 2 || !extension_settings85[extensionName].gestureShowTrail) return;
   gestureCtx.clearRect(0, 0, gestureCanvas.width, gestureCanvas.height);
   gestureCtx.beginPath();
   gestureCtx.moveTo(gesturePoints[0].x, gesturePoints[0].y);
   for (let i = 1; i < gesturePoints.length; i++) {
     gestureCtx.lineTo(gesturePoints[i].x, gesturePoints[i].y);
   }
-  const trailColor = extension_settings84[extensionName].gestureTrailColor ?? "#00ff00";
+  const trailColor = extension_settings85[extensionName].gestureTrailColor ?? "#00ff00";
   gestureCtx.strokeStyle = trailColor;
   gestureCtx.lineWidth = 4;
   gestureCtx.lineCap = "round";
@@ -105834,11 +106690,11 @@ function matchGesture(points) {
   const gestureTemplates = {
     "gesture1": {
       name: "\u624B\u52BF\u4E00",
-      pattern: extension_settings84[extensionName].gesture1
+      pattern: extension_settings85[extensionName].gesture1
     },
     "gesture2": {
       name: "\u624B\u52BF\u4E8C",
-      pattern: extension_settings84[extensionName].gesture2
+      pattern: extension_settings85[extensionName].gesture2
     }
   };
   const results = [];
@@ -105865,7 +106721,7 @@ function matchGesture(points) {
   results.sort((a, b) => b.score - a.score);
   const best = results[0];
   best.allResults = results.slice(0, 5);
-  const threshold = (extension_settings84[extensionName].gestureMatchThreshold ?? 60) / 100;
+  const threshold = (extension_settings85[extensionName].gestureMatchThreshold ?? 60) / 100;
   if (best.score < threshold) {
     return {
       key: "unknown",
@@ -105888,8 +106744,8 @@ function getGestureEmoji(key) {
   return emojis[key] || "\u2753";
 }
 function showGestureResult(doc, result, userGrid, targetElement) {
-  if (isMobile() && !extension_settings84[extensionName].gestureShowTrail) return;
-  if (!extension_settings84[extensionName].gestureShowRecognition) {
+  if (isMobile() && !extension_settings85[extensionName].gestureShowTrail) return;
+  if (!extension_settings85[extensionName].gestureShowRecognition) {
     console.log("[\u624B\u52BF] \u5DF2\u7981\u7528\u8BC6\u522B\u7ED3\u679C\u5C55\u793A\u3002");
     return;
   }
@@ -105932,8 +106788,8 @@ function showGestureResult(doc, result, userGrid, targetElement) {
     (r, i) => `<span style="color: ${i === 0 ? "#0f0" : "#666"}">${i + 1}. ${r.name} (${Math.round(r.score * 100)}%)</span>`
   ).join("<br>");
   const gestureTemplates = {
-    "gesture1": { pattern: extension_settings84[extensionName].gesture1 },
-    "gesture2": { pattern: extension_settings84[extensionName].gesture2 }
+    "gesture1": { pattern: extension_settings85[extensionName].gesture1 },
+    "gesture2": { pattern: extension_settings85[extensionName].gesture2 }
   };
   resultDiv.innerHTML = `
         <div style="font-size: 40px; margin-bottom: 10px;">
@@ -105978,8 +106834,8 @@ function showGestureResult(doc, result, userGrid, targetElement) {
   }, 3500);
 }
 function showGestureHint(doc, text = "\u{1F3AF} \u7ED8\u5236\u624B\u52BF...") {
-  if (isMobile() && !extension_settings84[extensionName].gestureShowTrail) return;
-  if (!extension_settings84[extensionName].gestureShowTrail) return;
+  if (isMobile() && !extension_settings85[extensionName].gestureShowTrail) return;
+  if (!extension_settings85[extensionName].gestureShowTrail) return;
   const existing = doc.getElementById("gesture-hint");
   if (existing) existing.remove();
   const hint = doc.createElement("div");
@@ -106131,7 +106987,7 @@ function initDocumentGestureEvents(doc = document) {
   doc._gestureEventsInitialized = true;
   const handlers = {
     mousedown: (e) => {
-      if (!extension_settings84[extensionName].gestureEnabled) return;
+      if (!extension_settings85[extensionName].gestureEnabled) return;
       if (isMobile() || !isRecording && e.button !== 2) return;
       const mesText = e.target.closest('.mes_text[data-gesture-bindied="true"]');
       let targetEl = mesText;
@@ -106195,7 +107051,7 @@ function initDocumentGestureEvents(doc = document) {
       }
     },
     touchstart: (e) => {
-      if (!extension_settings84[extensionName].gestureEnabled) return;
+      if (!extension_settings85[extensionName].gestureEnabled) return;
       if (!isMobile() || e.touches.length !== 1) return;
       const mesText = e.target.closest('.mes_text[data-gesture-bindied="true"]');
       let targetEl = mesText;
@@ -106817,7 +107673,7 @@ function handleDoubleClick(e, targetElement, clickPoint) {
     timer.end("\u5DF2\u5FFD\u7565 - \u5F39\u7A97\u5DF2\u5B58\u5728");
     return;
   }
-  const clickTriggerEnabled = extension_settings89[extensionName]?.clickTriggerEnabled;
+  const clickTriggerEnabled = extension_settings90[extensionName]?.clickTriggerEnabled;
   if (!clickTriggerEnabled) {
     debugBranch("handleDoubleClick", "\u70B9\u51FB\u89E6\u53D1\u529F\u80FD\u672A\u542F\u7528", true, {
       \u6761\u4EF6: "clickTriggerEnabled",
@@ -107790,17 +108646,17 @@ function collectRegexEntriesFromUI() {
 function saveRegexEntriesToProfile() {
   const profileName = profileSelect2.val();
   if (!profileName) return;
-  const profiles = extension_settings90[extensionName].regex_profiles;
+  const profiles = extension_settings91[extensionName].regex_profiles;
   if (!profiles[profileName]) {
     profiles[profileName] = {};
   }
   profiles[profileName].regexEntries = collectRegexEntriesFromUI();
-  saveSettingsDebounced59();
+  saveSettingsDebounced60();
 }
 function loadRegexEntriesFromProfile() {
   const profileName = profileSelect2.val();
   if (!profileName) return;
-  const profiles = extension_settings90[extensionName].regex_profiles;
+  const profiles = extension_settings91[extensionName].regex_profiles;
   const profile = profiles[profileName];
   console.log("[st-chatu8] \u52A0\u8F7D\u6B63\u5219\u914D\u7F6E:", {
     \u914D\u7F6E\u540D\u79F0: profileName,
@@ -107942,8 +108798,8 @@ function bindRegexEntryEvents() {
   });
 }
 function loadRegexProfiles() {
-  const profiles = extension_settings90[extensionName].regex_profiles || {};
-  const currentProfileName = extension_settings90[extensionName].current_regex_profile;
+  const profiles = extension_settings91[extensionName].regex_profiles || {};
+  const currentProfileName = extension_settings91[extensionName].current_regex_profile;
   profileSelect2.empty();
   Object.keys(profiles).forEach((name) => {
     const option = new Option(name, name, name === currentProfileName, name === currentProfileName);
@@ -107956,13 +108812,13 @@ function loadRegexProfiles() {
 function onProfileSelectChange2() {
   const profileName = $(this).val();
   if (!profileName) return;
-  const profiles = extension_settings90[extensionName].regex_profiles;
+  const profiles = extension_settings91[extensionName].regex_profiles;
   const profile = profiles[profileName];
   if (profile) {
     beforeAfterEditor.val(profile.beforeAfterRegex || "");
     textEditor.val(profile.textRegex || "");
-    extension_settings90[extensionName].current_regex_profile = profileName;
-    saveSettingsDebounced59();
+    extension_settings91[extensionName].current_regex_profile = profileName;
+    saveSettingsDebounced60();
     loadRegexEntriesFromProfile();
   }
 }
@@ -107972,20 +108828,20 @@ function onSaveProfileClick2() {
     toastr.warning("\u6CA1\u6709\u9009\u4E2D\u7684\u914D\u7F6E\u3002");
     return;
   }
-  const profiles = extension_settings90[extensionName].regex_profiles;
+  const profiles = extension_settings91[extensionName].regex_profiles;
   const existingEntries = profiles[profileName]?.regexEntries || [];
   profiles[profileName] = {
     beforeAfterRegex: beforeAfterEditor.val(),
     textRegex: textEditor.val(),
     regexEntries: existingEntries
   };
-  saveSettingsDebounced59();
+  saveSettingsDebounced60();
   toastr.success(`\u914D\u7F6E "${profileName}" \u5DF2\u4FDD\u5B58\u3002`);
 }
 function onNewProfileClick2() {
   stylInput("\u8BF7\u8F93\u5165\u65B0\u7684\u6B63\u5219\u914D\u7F6E\u540D\u79F0").then((newName) => {
     if (!newName || newName.trim() === "") return;
-    const profiles = extension_settings90[extensionName].regex_profiles;
+    const profiles = extension_settings91[extensionName].regex_profiles;
     if (profiles[newName]) {
       toastr.error(`\u914D\u7F6E "${newName}" \u5DF2\u5B58\u5728\u3002`);
       return;
@@ -107995,8 +108851,8 @@ function onNewProfileClick2() {
       textRegex: "",
       regexEntries: []
     };
-    extension_settings90[extensionName].current_regex_profile = newName;
-    saveSettingsDebounced59();
+    extension_settings91[extensionName].current_regex_profile = newName;
+    saveSettingsDebounced60();
     loadRegexProfiles();
     toastr.success(`\u7A7A\u914D\u7F6E "${newName}" \u5DF2\u521B\u5EFA\u5E76\u9009\u4E2D\u3002`);
   });
@@ -108004,7 +108860,7 @@ function onNewProfileClick2() {
 function onSaveAsProfileClick() {
   stylInput("\u8BF7\u8F93\u5165\u53E6\u5B58\u4E3A\u7684\u914D\u7F6E\u540D\u79F0").then((newName) => {
     if (!newName || newName.trim() === "") return;
-    const profiles = extension_settings90[extensionName].regex_profiles;
+    const profiles = extension_settings91[extensionName].regex_profiles;
     if (profiles[newName]) {
       toastr.error(`\u914D\u7F6E "${newName}" \u5DF2\u5B58\u5728\u3002`);
       return;
@@ -108016,8 +108872,8 @@ function onSaveAsProfileClick() {
       textRegex: currentProfile.textRegex || "",
       regexEntries: JSON.parse(JSON.stringify(currentProfile.regexEntries || []))
     };
-    extension_settings90[extensionName].current_regex_profile = newName;
-    saveSettingsDebounced59();
+    extension_settings91[extensionName].current_regex_profile = newName;
+    saveSettingsDebounced60();
     loadRegexProfiles();
     toastr.success(`\u914D\u7F6E\u5DF2\u53E6\u5B58\u4E3A "${newName}"\u3002`);
   });
@@ -108034,15 +108890,15 @@ function onRenameProfileClick() {
   }
   stylInput("\u8BF7\u8F93\u5165\u65B0\u7684\u914D\u7F6E\u540D\u79F0", currentName).then((newName) => {
     if (newName && newName.trim() !== "" && newName !== currentName) {
-      const profiles = extension_settings90[extensionName].regex_profiles;
+      const profiles = extension_settings91[extensionName].regex_profiles;
       if (profiles[newName]) {
         toastr.error(`\u914D\u7F6E "${newName}" \u5DF2\u5B58\u5728\uFF0C\u8BF7\u6362\u4E00\u4E2A\u540D\u79F0\u3002`);
         return;
       }
       profiles[newName] = profiles[currentName];
       delete profiles[currentName];
-      extension_settings90[extensionName].current_regex_profile = newName;
-      saveSettingsDebounced59();
+      extension_settings91[extensionName].current_regex_profile = newName;
+      saveSettingsDebounced60();
       loadRegexProfiles();
       toastr.success(`\u914D\u7F6E\u5DF2\u91CD\u547D\u540D\u4E3A "${newName}"`);
     }
@@ -108054,14 +108910,14 @@ function onDeleteProfileClick2() {
     toastr.warning("\u6CA1\u6709\u9009\u4E2D\u7684\u914D\u7F6E\u3002");
     return;
   }
-  if (Object.keys(extension_settings90[extensionName].regex_profiles).length <= 1) {
+  if (Object.keys(extension_settings91[extensionName].regex_profiles).length <= 1) {
     toastr.error("\u4E0D\u80FD\u5220\u9664\u6700\u540E\u4E00\u4E2A\u914D\u7F6E\u3002");
     return;
   }
   if (confirm(`\u4F60\u786E\u5B9A\u8981\u5220\u9664\u914D\u7F6E "${profileName}" \u5417\uFF1F`)) {
-    delete extension_settings90[extensionName].regex_profiles[profileName];
-    extension_settings90[extensionName].current_regex_profile = Object.keys(extension_settings90[extensionName].regex_profiles)[0];
-    saveSettingsDebounced59();
+    delete extension_settings91[extensionName].regex_profiles[profileName];
+    extension_settings91[extensionName].current_regex_profile = Object.keys(extension_settings91[extensionName].regex_profiles)[0];
+    saveSettingsDebounced60();
     loadRegexProfiles();
     toastr.success(`\u914D\u7F6E "${profileName}" \u5DF2\u5220\u9664\u3002`);
   }
@@ -108072,7 +108928,7 @@ function onExportProfileClick2() {
     toastr.warning("\u6CA1\u6709\u9009\u4E2D\u7684\u914D\u7F6E\u53EF\u5BFC\u51FA\u3002");
     return;
   }
-  const profile = extension_settings90[extensionName].regex_profiles[profileName];
+  const profile = extension_settings91[extensionName].regex_profiles[profileName];
   const exportData = { [profileName]: profile };
   const blob = new Blob([JSON.stringify(exportData, null, 4)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -108098,11 +108954,11 @@ function onImportProfileClick2() {
           let importedCount = 0;
           for (const name in importedProfiles) {
             if (Object.prototype.hasOwnProperty.call(importedProfiles, name)) {
-              extension_settings90[extensionName].regex_profiles[name] = importedProfiles[name];
+              extension_settings91[extensionName].regex_profiles[name] = importedProfiles[name];
               importedCount++;
             }
           }
-          saveSettingsDebounced59();
+          saveSettingsDebounced60();
           loadRegexProfiles();
           toastr.success(`\u6210\u529F\u5BFC\u5165 ${importedCount} \u4E2A\u914D\u7F6E\u3002`);
         } catch (error) {
@@ -108460,7 +109316,7 @@ async function onTestRegexClick(requestId, options = {}) {
     } else {
       debugBranch("onTestRegexClick", "\u524D\u540E\u6B63\u5219\u4E3A\u7A7A\uFF0C\u8DF3\u8FC7", true);
     }
-    const settings3 = extension_settings90[extensionName];
+    const settings3 = extension_settings91[extensionName];
     const startTag = settings3?.startTag || "image###";
     const endTag = settings3?.endTag || "###";
     const escapedStart = startTag.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -108569,7 +109425,7 @@ async function onTestRegexClick(requestId, options = {}) {
     addLog(`[Regex \u5904\u7406\u540E\u6587\u672C]
 ${final_text}`);
     const isAutomatedCall = !!requestId;
-    const isTestMode = extension_settings90[extensionName].regexTestMode;
+    const isTestMode = extension_settings91[extensionName].regexTestMode;
     if (isAutomatedCall || !isTestMode) {
       debugBranch("onTestRegexClick", "\u53D1\u9001\u6B63\u5219\u5904\u7406\u7ED3\u679C", true, {
         \u662F\u81EA\u52A8\u8C03\u7528: isAutomatedCall,
@@ -108593,13 +109449,13 @@ ${final_text}`);
   }
 }
 function onRegexTestModeChange() {
-  extension_settings90[extensionName].regexTestMode = $(this).is(":checked");
-  saveSettingsDebounced59();
+  extension_settings91[extensionName].regexTestMode = $(this).is(":checked");
+  saveSettingsDebounced60();
 }
 function onGestureEnabledChange() {
   const enabled = $(this).is(":checked");
-  extension_settings90[extensionName].gestureEnabled = enabled;
-  saveSettingsDebounced59();
+  extension_settings91[extensionName].gestureEnabled = enabled;
+  saveSettingsDebounced60();
   if (enabled) {
     initGestureMonitor();
   } else {
@@ -108608,8 +109464,8 @@ function onGestureEnabledChange() {
 }
 function onClickTriggerEnabledChange() {
   const enabled = $(this).is(":checked");
-  extension_settings90[extensionName].clickTriggerEnabled = enabled;
-  saveSettingsDebounced59();
+  extension_settings91[extensionName].clickTriggerEnabled = enabled;
+  saveSettingsDebounced60();
   if (enabled) {
     initClickTriggerMonitor();
   } else {
@@ -108617,33 +109473,33 @@ function onClickTriggerEnabledChange() {
   }
 }
 function onGestureShowRecognitionChange() {
-  extension_settings90[extensionName].gestureShowRecognition = $(this).is(":checked");
-  saveSettingsDebounced59();
+  extension_settings91[extensionName].gestureShowRecognition = $(this).is(":checked");
+  saveSettingsDebounced60();
 }
 function onGestureShowTrailChange() {
-  extension_settings90[extensionName].gestureShowTrail = $(this).is(":checked");
-  saveSettingsDebounced59();
+  extension_settings91[extensionName].gestureShowTrail = $(this).is(":checked");
+  saveSettingsDebounced60();
 }
 function onGestureTrailColorChange() {
-  extension_settings90[extensionName].gestureTrailColor = $(this).val();
-  saveSettingsDebounced59();
+  extension_settings91[extensionName].gestureTrailColor = $(this).val();
+  saveSettingsDebounced60();
 }
 function onImageGenDemandEnabledChange() {
-  extension_settings90[extensionName].imageGenDemandEnabled = $(this).is(":checked");
-  saveSettingsDebounced59();
+  extension_settings91[extensionName].imageGenDemandEnabled = $(this).is(":checked");
+  saveSettingsDebounced60();
 }
 function onVisualPrepDemandEnabledChange() {
-  extension_settings90[extensionName].visualPrepDemandEnabled = $(this).is(":checked");
-  saveSettingsDebounced59();
+  extension_settings91[extensionName].visualPrepDemandEnabled = $(this).is(":checked");
+  saveSettingsDebounced60();
 }
 function onGestureMatchThresholdChange() {
   const value = $(this).val();
   gestureMatchThresholdValue.text(`${value}%`);
-  extension_settings90[extensionName].gestureMatchThreshold = parseInt(value, 10);
-  saveSettingsDebounced59();
+  extension_settings91[extensionName].gestureMatchThreshold = parseInt(value, 10);
+  saveSettingsDebounced60();
 }
 function ensureDemandProfiles() {
-  const settings3 = extension_settings90[extensionName];
+  const settings3 = extension_settings91[extensionName];
   if (!settings3.demand_profiles || typeof settings3.demand_profiles !== "object") {
     settings3.demand_profiles = {
       "\u9ED8\u8BA4": {
@@ -108667,7 +109523,7 @@ function ensureDemandProfiles() {
 }
 function applyCurrentDemandProfileToUI() {
   ensureDemandProfiles();
-  const settings3 = extension_settings90[extensionName];
+  const settings3 = extension_settings91[extensionName];
   const currentName = settings3.current_demand_profile;
   const profile = settings3.demand_profiles[currentName] || {
     defaultCharDemand: "",
@@ -108683,7 +109539,7 @@ function applyCurrentDemandProfileToUI() {
 }
 function loadDemandProfiles(selectTargetProfile = null) {
   ensureDemandProfiles();
-  const settings3 = extension_settings90[extensionName];
+  const settings3 = extension_settings91[extensionName];
   const profiles = settings3.demand_profiles;
   let currentName = selectTargetProfile || settings3.current_demand_profile;
   if (!profiles[currentName]) {
@@ -108702,11 +109558,11 @@ function loadDemandProfiles(selectTargetProfile = null) {
 function onDemandProfileSelectChange() {
   const profileName = $(this).val();
   if (!profileName) return;
-  const settings3 = extension_settings90[extensionName];
+  const settings3 = extension_settings91[extensionName];
   if (settings3.demand_profiles?.[profileName]) {
     settings3.current_demand_profile = profileName;
     applyCurrentDemandProfileToUI();
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
   }
 }
 function onNewDemandProfileClick() {
@@ -108714,7 +109570,7 @@ function onNewDemandProfileClick() {
     if (!newName || !newName.trim()) return;
     const name = newName.trim();
     ensureDemandProfiles();
-    const settings3 = extension_settings90[extensionName];
+    const settings3 = extension_settings91[extensionName];
     if (settings3.demand_profiles[name]) {
       toastr.error(`\u9884\u8BBE "${name}" \u5DF2\u5B58\u5728\u3002`);
       return;
@@ -108725,14 +109581,14 @@ function onNewDemandProfileClick() {
       defaultVisualPrepDemand: defaultVisualPrepDemandTextarea?.val() ?? ""
     };
     settings3.current_demand_profile = name;
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     loadDemandProfiles(name);
     toastr.success(`\u9700\u6C42\u9884\u8BBE "${name}" \u5DF2\u521B\u5EFA\u5E76\u9009\u4E2D\u3002`);
   });
 }
 function onRenameDemandProfileClick() {
   ensureDemandProfiles();
-  const settings3 = extension_settings90[extensionName];
+  const settings3 = extension_settings91[extensionName];
   const currentName = settings3.current_demand_profile;
   stylInput(`\u8BF7\u8F93\u5165\u65B0\u7684\u9884\u8BBE\u540D\u79F0\uFF08\u539F\u540D\u79F0\uFF1A${currentName}\uFF09`, currentName).then((newName) => {
     if (!newName || !newName.trim()) return;
@@ -108745,14 +109601,14 @@ function onRenameDemandProfileClick() {
     settings3.demand_profiles[name] = settings3.demand_profiles[currentName];
     delete settings3.demand_profiles[currentName];
     settings3.current_demand_profile = name;
-    saveSettingsDebounced59();
+    saveSettingsDebounced60();
     loadDemandProfiles(name);
     toastr.success(`\u9884\u8BBE "${currentName}" \u5DF2\u91CD\u547D\u540D\u4E3A "${name}"\u3002`);
   });
 }
 function onSaveDemandProfileClick() {
   ensureDemandProfiles();
-  const settings3 = extension_settings90[extensionName];
+  const settings3 = extension_settings91[extensionName];
   const currentName = settings3.current_demand_profile;
   settings3.demand_profiles[currentName] = {
     defaultCharDemand: defaultCharDemandTextarea?.val() ?? "",
@@ -108762,12 +109618,12 @@ function onSaveDemandProfileClick() {
   settings3.defaultCharDemand = settings3.demand_profiles[currentName].defaultCharDemand;
   settings3.defaultImageDemand = settings3.demand_profiles[currentName].defaultImageDemand;
   settings3.defaultVisualPrepDemand = settings3.demand_profiles[currentName].defaultVisualPrepDemand;
-  saveSettingsDebounced59();
+  saveSettingsDebounced60();
   toastr.success(`\u9700\u6C42\u9884\u8BBE "${currentName}" \u5DF2\u4FDD\u5B58\u3002`);
 }
 function onDeleteDemandProfileClick() {
   ensureDemandProfiles();
-  const settings3 = extension_settings90[extensionName];
+  const settings3 = extension_settings91[extensionName];
   const currentName = settings3.current_demand_profile;
   const profileNames = Object.keys(settings3.demand_profiles);
   if (profileNames.length <= 1) {
@@ -108781,42 +109637,42 @@ function onDeleteDemandProfileClick() {
   const remainingProfiles = Object.keys(settings3.demand_profiles);
   const nextProfile = remainingProfiles[0];
   settings3.current_demand_profile = nextProfile;
-  saveSettingsDebounced59();
+  saveSettingsDebounced60();
   loadDemandProfiles(nextProfile);
   toastr.success(`\u9700\u6C42\u9884\u8BBE "${currentName}" \u5DF2\u5220\u9664\uFF0C\u5DF2\u5207\u6362\u81F3 "${nextProfile}"\u3002`);
 }
 function onDefaultCharDemandChange() {
   const val = $(this).val();
-  const settings3 = extension_settings90[extensionName];
+  const settings3 = extension_settings91[extensionName];
   settings3.defaultCharDemand = val;
   ensureDemandProfiles();
   const currentName = settings3.current_demand_profile;
   if (settings3.demand_profiles?.[currentName]) {
     settings3.demand_profiles[currentName].defaultCharDemand = val;
   }
-  saveSettingsDebounced59();
+  saveSettingsDebounced60();
 }
 function onDefaultImageDemandChange() {
   const val = $(this).val();
-  const settings3 = extension_settings90[extensionName];
+  const settings3 = extension_settings91[extensionName];
   settings3.defaultImageDemand = val;
   ensureDemandProfiles();
   const currentName = settings3.current_demand_profile;
   if (settings3.demand_profiles?.[currentName]) {
     settings3.demand_profiles[currentName].defaultImageDemand = val;
   }
-  saveSettingsDebounced59();
+  saveSettingsDebounced60();
 }
 function onDefaultVisualPrepDemandChange() {
   const val = $(this).val();
-  const settings3 = extension_settings90[extensionName];
+  const settings3 = extension_settings91[extensionName];
   settings3.defaultVisualPrepDemand = val;
   ensureDemandProfiles();
   const currentName = settings3.current_demand_profile;
   if (settings3.demand_profiles?.[currentName]) {
     settings3.demand_profiles[currentName].defaultVisualPrepDemand = val;
   }
-  saveSettingsDebounced59();
+  saveSettingsDebounced60();
 }
 function initRegexSettings() {
   profileSelect2 = $("#ch-regex-profile-select");
@@ -108838,20 +109694,20 @@ function initRegexSettings() {
   defaultCharDemandTextarea = $("#ch-default-char-demand");
   defaultImageDemandTextarea = $("#ch-default-image-demand");
   defaultVisualPrepDemandTextarea = $("#ch-default-visual-prep-demand");
-  regexTestModeSwitch.prop("checked", extension_settings90[extensionName].regexTestMode ?? false);
-  gestureEnabledSwitch.prop("checked", extension_settings90[extensionName].gestureEnabled ?? false);
-  clickTriggerEnabledSwitch.prop("checked", extension_settings90[extensionName].clickTriggerEnabled ?? true);
-  gestureShowRecognitionSwitch.prop("checked", extension_settings90[extensionName].gestureShowRecognition ?? true);
-  gestureShowTrailSwitch.prop("checked", extension_settings90[extensionName].gestureShowTrail ?? true);
-  gestureTrailColorPicker.val(extension_settings90[extensionName].gestureTrailColor ?? "#00ff00");
-  const threshold = extension_settings90[extensionName].gestureMatchThreshold ?? 60;
+  regexTestModeSwitch.prop("checked", extension_settings91[extensionName].regexTestMode ?? false);
+  gestureEnabledSwitch.prop("checked", extension_settings91[extensionName].gestureEnabled ?? false);
+  clickTriggerEnabledSwitch.prop("checked", extension_settings91[extensionName].clickTriggerEnabled ?? true);
+  gestureShowRecognitionSwitch.prop("checked", extension_settings91[extensionName].gestureShowRecognition ?? true);
+  gestureShowTrailSwitch.prop("checked", extension_settings91[extensionName].gestureShowTrail ?? true);
+  gestureTrailColorPicker.val(extension_settings91[extensionName].gestureTrailColor ?? "#00ff00");
+  const threshold = extension_settings91[extensionName].gestureMatchThreshold ?? 60;
   gestureMatchThresholdSlider.val(threshold);
   gestureMatchThresholdValue.text(`${threshold}%`);
-  imageGenDemandEnabledSwitch.prop("checked", extension_settings90[extensionName].imageGenDemandEnabled ?? false);
-  visualPrepDemandEnabledSwitch.prop("checked", extension_settings90[extensionName].visualPrepDemandEnabled ?? false);
-  defaultCharDemandTextarea.val(extension_settings90[extensionName].defaultCharDemand ?? "");
-  defaultImageDemandTextarea.val(extension_settings90[extensionName].defaultImageDemand ?? "");
-  defaultVisualPrepDemandTextarea.val(extension_settings90[extensionName].defaultVisualPrepDemand ?? "");
+  imageGenDemandEnabledSwitch.prop("checked", extension_settings91[extensionName].imageGenDemandEnabled ?? false);
+  visualPrepDemandEnabledSwitch.prop("checked", extension_settings91[extensionName].visualPrepDemandEnabled ?? false);
+  defaultCharDemandTextarea.val(extension_settings91[extensionName].defaultCharDemand ?? "");
+  defaultImageDemandTextarea.val(extension_settings91[extensionName].defaultImageDemand ?? "");
+  defaultVisualPrepDemandTextarea.val(extension_settings91[extensionName].defaultVisualPrepDemand ?? "");
   $("#ch-new-regex-profile-button").on("click", onNewProfileClick2);
   $("#ch-rename-regex-profile-button").on("click", onRenameProfileClick);
   $("#ch-save-regex-profile-button").on("click", onSaveProfileClick2);
@@ -108904,8 +109760,8 @@ async function onRecordGestureClick(gestureKey) {
   try {
     const newPattern = await recordGesture();
     if (newPattern) {
-      extension_settings90[extensionName][gestureKey] = newPattern;
-      saveSettingsDebounced59();
+      extension_settings91[extensionName][gestureKey] = newPattern;
+      saveSettingsDebounced60();
       toastr.success(`\u624B\u52BF "${gestureKey === "gesture1" ? "\u4E00" : "\u4E8C"}" \u5DF2\u66F4\u65B0\u3002`);
     }
   } catch (error) {
@@ -108914,7 +109770,7 @@ async function onRecordGestureClick(gestureKey) {
   }
 }
 function getRegexTestStatus() {
-  const testMode = extension_settings90[extensionName].regexTestMode ?? false;
+  const testMode = extension_settings91[extensionName].regexTestMode ?? false;
   const live = (cached, selector) => {
     if (cached && cached.length && cached[0] && $.contains(document, cached[0])) {
       return cached;
@@ -108939,8 +109795,8 @@ function getRegexTestStatus() {
     findRegex: (e.findRegex || "").substring(0, 60),
     replaceString: (e.replaceString || "").substring(0, 60)
   }));
-  const gestureEnabled = extension_settings90[extensionName].gestureEnabled ?? false;
-  const clickTriggerEnabled = extension_settings90[extensionName].clickTriggerEnabled ?? false;
+  const gestureEnabled = extension_settings91[extensionName].gestureEnabled ?? false;
+  const clickTriggerEnabled = extension_settings91[extensionName].clickTriggerEnabled ?? false;
   return {
     testMode,
     currentProfile,
@@ -109089,7 +109945,7 @@ init_worldEntrySelection();
 
 
 function getKBConfig() {
-  const settings3 = extension_settings95[extensionName];
+  const settings3 = extension_settings96[extensionName];
   if (!settings3.knowledgeBaseConfig) {
     settings3.knowledgeBaseConfig = {
       enabled: false,
@@ -109104,7 +109960,7 @@ function getKBConfig() {
   return settings3.knowledgeBaseConfig;
 }
 function saveKBConfig() {
-  saveSettingsDebounced62();
+  saveSettingsDebounced63();
 }
 var kbWorldList = [];
 var kbActiveWorld = null;
@@ -110126,6 +110982,7 @@ var NOVELAI_PROFILE_KEYS = [
   // Vibe Transfer 与参考图
   "nai3VibeTransfer",
   "nai3CharRef",
+  "nai5PreciseCharRef",
   "enableVibeGroupTransfer",
   "randomVibeGroup",
   "normalizeRefStrength",
@@ -110253,7 +111110,7 @@ var RUNNINGHUB_PROFILE_KEYS = [
   "UCP_runninghub"
 ];
 function getSettings3() {
-  return extension_settings96[extensionName];
+  return extension_settings97[extensionName];
 }
 function refreshNovelaiProfileSelect() {
   const settings3 = getSettings3();
@@ -110562,7 +111419,7 @@ function initProfileControls(settingsModal) {
     if (profile) {
       applyNovelaiProfile(profile);
       settings3.novelai_profile_id = profileId;
-      saveSettingsDebounced63();
+      saveSettingsDebounced64();
       toastr.success(`\u5DF2\u52A0\u8F7D\u914D\u7F6E: ${profileId}`);
     }
   });
@@ -110577,7 +111434,7 @@ function initProfileControls(settingsModal) {
     settings3.novelai_profiles[trimmedName] = collectNovelaiProfile();
     settings3.novelai_profile_id = trimmedName;
     refreshNovelaiProfileSelect();
-    saveSettingsDebounced63();
+    saveSettingsDebounced64();
     toastr.success(`\u5DF2\u521B\u5EFA\u914D\u7F6E: ${trimmedName}`);
   });
   settingsModal.find("#novelai_profile_save").on("click", async function() {
@@ -110588,7 +111445,7 @@ function initProfileControls(settingsModal) {
     const confirmed = await stylishConfirm("\u786E\u8BA4\u4FDD\u5B58", `\u786E\u5B9A\u8981\u5C06\u5F53\u524D\u6240\u6709\u8BBE\u7F6E\u4FDD\u5B58\u5E76\u8986\u76D6\u5230\u914D\u7F6E "${profileId}" \u4E2D\u5417\uFF1F`);
     if (!confirmed) return;
     settings3.novelai_profiles[profileId] = collectNovelaiProfile();
-    saveSettingsDebounced63();
+    saveSettingsDebounced64();
     toastr.success(`\u5DF2\u4FDD\u5B58\u5F53\u524D\u914D\u7F6E: ${profileId}`);
   });
   settingsModal.find("#novelai_profile_delete").on("click", async function() {
@@ -110604,7 +111461,7 @@ function initProfileControls(settingsModal) {
     delete settings3.novelai_profiles[profileId];
     settings3.novelai_profile_id = "\u9ED8\u8BA4";
     refreshNovelaiProfileSelect();
-    saveSettingsDebounced63();
+    saveSettingsDebounced64();
     toastr.success(`\u5DF2\u5220\u9664\u914D\u7F6E: ${profileId}`);
   });
   settingsModal.find("#novelai_profile_id").on("change", function() {
@@ -110613,7 +111470,7 @@ function initProfileControls(settingsModal) {
     if (profile) {
       applyNovelaiProfile(profile);
       settings3.novelai_profile_id = profileId;
-      saveSettingsDebounced63();
+      saveSettingsDebounced64();
     }
   });
   settingsModal.find("#comfyui_profile_load").on("click", function() {
@@ -110624,7 +111481,7 @@ function initProfileControls(settingsModal) {
     if (profile) {
       applyComfyuiProfile(profile);
       settings3.comfyui_profile_id = profileId;
-      saveSettingsDebounced63();
+      saveSettingsDebounced64();
       toastr.success(`\u5DF2\u52A0\u8F7D\u914D\u7F6E: ${profileId}`);
     }
   });
@@ -110639,7 +111496,7 @@ function initProfileControls(settingsModal) {
     settings3.comfyui_profiles[trimmedName] = collectComfyuiProfile();
     settings3.comfyui_profile_id = trimmedName;
     refreshComfyuiProfileSelect();
-    saveSettingsDebounced63();
+    saveSettingsDebounced64();
     toastr.success(`\u5DF2\u521B\u5EFA\u914D\u7F6E: ${trimmedName}`);
   });
   settingsModal.find("#comfyui_profile_save").on("click", async function() {
@@ -110650,7 +111507,7 @@ function initProfileControls(settingsModal) {
     const confirmed = await stylishConfirm("\u786E\u8BA4\u4FDD\u5B58", `\u786E\u5B9A\u8981\u5C06\u5F53\u524D\u6240\u6709\u8BBE\u7F6E\u4FDD\u5B58\u5E76\u8986\u76D6\u5230\u914D\u7F6E "${profileId}" \u4E2D\u5417\uFF1F`);
     if (!confirmed) return;
     settings3.comfyui_profiles[profileId] = collectComfyuiProfile();
-    saveSettingsDebounced63();
+    saveSettingsDebounced64();
     toastr.success(`\u5DF2\u4FDD\u5B58\u5F53\u524D\u914D\u7F6E: ${profileId}`);
   });
   settingsModal.find("#comfyui_profile_delete").on("click", async function() {
@@ -110666,7 +111523,7 @@ function initProfileControls(settingsModal) {
     delete settings3.comfyui_profiles[profileId];
     settings3.comfyui_profile_id = "\u9ED8\u8BA4";
     refreshComfyuiProfileSelect();
-    saveSettingsDebounced63();
+    saveSettingsDebounced64();
     toastr.success(`\u5DF2\u5220\u9664\u914D\u7F6E: ${profileId}`);
   });
   settingsModal.find("#comfyui_profile_id").on("change", function() {
@@ -110675,7 +111532,7 @@ function initProfileControls(settingsModal) {
     if (profile) {
       applyComfyuiProfile(profile);
       settings3.comfyui_profile_id = profileId;
-      saveSettingsDebounced63();
+      saveSettingsDebounced64();
     }
   });
   settingsModal.find("#runninghub_profile_load").on("click", function() {
@@ -110686,7 +111543,7 @@ function initProfileControls(settingsModal) {
     if (profile) {
       applyRunninghubProfile(profile);
       settings3.runninghub_profile_id = profileId;
-      saveSettingsDebounced63();
+      saveSettingsDebounced64();
       toastr.success(`\u5DF2\u52A0\u8F7D\u914D\u7F6E: ${profileId}`);
     }
   });
@@ -110702,7 +111559,7 @@ function initProfileControls(settingsModal) {
     settings3.runninghub_profiles[trimmedName] = collectRunninghubProfile();
     settings3.runninghub_profile_id = trimmedName;
     refreshRunninghubProfileSelect();
-    saveSettingsDebounced63();
+    saveSettingsDebounced64();
     toastr.success(`\u5DF2\u521B\u5EFA\u914D\u7F6E: ${trimmedName}`);
   });
   settingsModal.find("#runninghub_profile_save").on("click", async function() {
@@ -110714,7 +111571,7 @@ function initProfileControls(settingsModal) {
     if (!confirmed) return;
     if (!settings3.runninghub_profiles) settings3.runninghub_profiles = {};
     settings3.runninghub_profiles[profileId] = collectRunninghubProfile();
-    saveSettingsDebounced63();
+    saveSettingsDebounced64();
     toastr.success(`\u5DF2\u4FDD\u5B58\u5F53\u524D\u914D\u7F6E: ${profileId}`);
   });
   settingsModal.find("#runninghub_profile_delete").on("click", async function() {
@@ -110730,7 +111587,7 @@ function initProfileControls(settingsModal) {
     delete settings3.runninghub_profiles[profileId];
     settings3.runninghub_profile_id = "\u9ED8\u8BA4";
     refreshRunninghubProfileSelect();
-    saveSettingsDebounced63();
+    saveSettingsDebounced64();
     toastr.success(`\u5DF2\u5220\u9664\u914D\u7F6E: ${profileId}`);
   });
   settingsModal.find("#runninghub_profile_id").on("change", function() {
@@ -110739,7 +111596,7 @@ function initProfileControls(settingsModal) {
     if (profile) {
       applyRunninghubProfile(profile);
       settings3.runninghub_profile_id = profileId;
-      saveSettingsDebounced63();
+      saveSettingsDebounced64();
     }
   });
   refreshNovelaiProfileSelect();
@@ -110860,11 +111717,11 @@ function showCodeGenerationAnimation() {
       rollCount++;
       if (rollCount >= maxRolls) {
         clearInterval(rollInterval);
-        const settings3 = extension_settings110[extensionName];
+        const settings3 = extension_settings111[extensionName];
         const finalCode = settings3 && settings3.chatu8_code || generateRandomCode();
         if (settings3 && !settings3.chatu8_code) {
           settings3.chatu8_code = finalCode;
-          saveSettingsDebounced70();
+          saveSettingsDebounced71();
           addLog(`[OpeningVideo] \u667A\u7ED8\u59EC\u7F16\u53F7\u515C\u5E95\u4FDD\u5B58: ${finalCode}`);
         }
         codeDisplay.textContent = finalCode;
@@ -111175,7 +112032,7 @@ function createVideoContainer() {
   return videoContainer;
 }
 function playOpeningVideo() {
-  const settings3 = extension_settings110[extensionName];
+  const settings3 = extension_settings111[extensionName];
   if (settings3 && settings3.chatu8_code) {
     addLog(`[OpeningVideo] \u5DF2\u6709\u667A\u7ED8\u59EC\u7F16\u53F7 ${settings3.chatu8_code}\uFF0C\u8DF3\u8FC7\u5F00\u573A\u89C6\u9891`);
     return;
@@ -111187,7 +112044,7 @@ function playOpeningVideo() {
   if (settings3 && !settings3.chatu8_code) {
     const preGeneratedCode = generateRandomCode();
     settings3.chatu8_code = preGeneratedCode;
-    saveSettingsDebounced70();
+    saveSettingsDebounced71();
     addLog(`[OpeningVideo] \u7F16\u53F7\u524D\u7F6E\u751F\u6210\u5E76\u4FDD\u5B58: ${preGeneratedCode}`);
   }
   try {
@@ -111576,6 +112433,7 @@ image### 1girl, solo, blue hair ###
   InformationExtracted: "\u4FE1\u606F\u63D0\u53D6\u5EA6 `0~1`\uFF0C\u8D8A\u5927\u8D8A\u591A\u5730\u4F7F\u7528\u53C2\u8003\u56FE\u7684\u7EC6\u8282",
   ReferenceStrength: "\u53C2\u8003\u5F3A\u5EA6 `0~1`\uFF0C\u8D8A\u5927\u8D8A\u8D34\u8FD1\u53C2\u8003\u56FE",
   nai3CharRef: "\u542F\u7528 Character Reference\uFF08\u89D2\u8272\u4E00\u81F4\u6027\u53C2\u8003\uFF0C\u6BCF\u5F20 +5 \u70B9\uFF09",
+  nai5PreciseCharRef: "\u542F\u7528 V5 \u7CBE\u51C6\u89D2\u8272\u53C2\u8003\uFF08\u4EC5\u652F\u6301 nai-diffusion-5-curated \u4E0E nai-diffusion-5-full High \u6863\u4F4D\uFF0CMedium \u7701\u6D41\u6A21\u5F0F\u4E0D\u652F\u6301\uFF1B\u6BCF\u5F20\u542F\u7528\u53C2\u8003\u56FE +5 \u70B9\uFF09",
   nai3StylePerception: "Style Perception\uFF1A\u53C2\u8003\u56FE\u7684\u753B\u98CE\u611F\u77E5\u5F3A\u5EA6",
   addFurryDataset: "\u542F\u7528 NovelAI \u7684 Furry \u6570\u636E\u96C6\uFF08\u517D\u4EBA\u98CE\u683C\uFF09",
   AQT_novelai: "\u6B63\u9762\u8D28\u91CF\u9884\u8BBE\uFF08best quality, amazing quality...\uFF09",
@@ -111795,7 +112653,7 @@ var INJECTED_FLAG = "chatu8HelpTipInjected";
 var globalsInitialized = false;
 var markedLoadingTriggered = false;
 function isHelpTipsEnabled() {
-  const v = extension_settings111?.[extensionName]?.helpTipsEnabled;
+  const v = extension_settings112?.[extensionName]?.helpTipsEnabled;
   if (v === void 0 || v === null) return true;
   if (typeof v === "boolean") return v;
   return String(v).toLowerCase() !== "false";
@@ -112010,7 +112868,7 @@ var processedAutoLLMMessageIds = /* @__PURE__ */ new Set();
 var generationStartChatLength = 0;
 var generationStartSwipesLength = 0;
 function isPluginEnabled2() {
-  const scriptEnabled = extension_settings112[extensionName]?.scriptEnabled;
+  const scriptEnabled = extension_settings113[extensionName]?.scriptEnabled;
   const enabled = scriptEnabled === true || scriptEnabled === "true";
   debugLog("autoLLMClick.isPluginEnabled", "\u68C0\u67E5\u63D2\u4EF6\u662F\u5426\u542F\u7528", {
     scriptEnabled,
@@ -112025,7 +112883,7 @@ function isAutoLLMEnabled() {
     });
     return false;
   }
-  const autoLLMImageGen = extension_settings112[extensionName]?.autoLLMImageGen;
+  const autoLLMImageGen = extension_settings113[extensionName]?.autoLLMImageGen;
   const enabled = autoLLMImageGen === true || autoLLMImageGen === "true";
   debugLog("autoLLMClick.isAutoLLMEnabled", "\u68C0\u67E5\u81EA\u52A8LLM\u751F\u56FE\u662F\u5426\u542F\u7528", {
     autoLLMImageGen,
@@ -112169,8 +113027,8 @@ eventSource45.on(event_types6.GENERATION_ENDED, async (data) => {
       debugBranch("autoLLMClick.GENERATION_ENDED", "\u6D88\u606F\u957F\u5EA6\u68C0\u67E5\u901A\u8FC7", true, {
         \u6D88\u606F\u957F\u5EA6: messageContent.length
       });
-      if (extension_settings112[extensionName]?.insertOriginalText !== "true") {
-        extension_settings112[extensionName].insertOriginalText = "true";
+      if (extension_settings113[extensionName]?.insertOriginalText !== "true") {
+        extension_settings113[extensionName].insertOriginalText = "true";
         console.log("[st-chatu8] Auto-enabled insertOriginalText due to message length > 500");
         debugLog("autoLLMClick.GENERATION_ENDED", "\u81EA\u52A8\u542F\u7528 insertOriginalText", {
           \u539F\u56E0: "\u6D88\u606F\u957F\u5EA6 > 500"
@@ -112180,8 +113038,8 @@ eventSource45.on(event_types6.GENERATION_ENDED, async (data) => {
           insertTextSwitch.checked = true;
         }
         try {
-          const { saveSettingsDebounced: saveSettingsDebounced73 } = await import("../../../../script.js");
-          saveSettingsDebounced73();
+          const { saveSettingsDebounced: saveSettingsDebounced74 } = await import("../../../../script.js");
+          saveSettingsDebounced74();
         } catch (e) {
           console.warn("[st-chatu8] Failed to save settings:", e);
         }
@@ -112359,7 +113217,7 @@ async function handleFabIconUpload(event) {
       forceServer: true
     });
     settings2.chatu8_fab_icon_image_id = imageId;
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     await refreshFabIconPreview(iconData);
     applyFabSettings();
     if (oldImageId && oldImageId !== imageId) {
@@ -112389,7 +113247,7 @@ async function removeFabIconImage() {
     console.warn("[st-chatu8] \u5220\u9664\u60AC\u6D6E\u7403\u56FE\u6807\u5931\u8D25:", error);
   }
   settings2.chatu8_fab_icon_image_id = "";
-  saveSettingsDebounced71();
+  saveSettingsDebounced72();
   await refreshFabIconPreview("");
   applyFabSettings();
   toastr.success("\u5DF2\u6062\u590D\u9ED8\u8BA4\u60AC\u6D6E\u7403\u56FE\u6807\u3002");
@@ -112508,14 +113366,14 @@ function updateGenerationModeHandlers() {
   replaceWithcomfyui();
   replaceWithBanana();
   replaceWithRunningHub();
-  addLog("[UI] Generation mode handlers updated for mode: " + extension_settings113[extensionName].mode);
+  addLog("[UI] Generation mode handlers updated for mode: " + extension_settings114[extensionName].mode);
 }
 async function initUI({ check_update: check_update2 }) {
   const existingPanel = document.getElementById("st-chatu8-settings");
   if (existingPanel) {
     existingPanel.remove();
   }
-  settings2 = extension_settings113[extensionName];
+  settings2 = extension_settings114[extensionName];
   try {
     await initJiuguanStorage();
   } catch (error) {
@@ -112540,10 +113398,10 @@ async function initUI({ check_update: check_update2 }) {
     return;
   }
   async function loadSettingsIntoUI() {
-    settings2 = extension_settings113[extensionName];
+    settings2 = extension_settings114[extensionName];
     if (settings2.vibeJiuguanchucun === void 0) {
       settings2.vibeJiuguanchucun = defaultSettings.vibeJiuguanchucun;
-      saveSettingsDebounced71();
+      saveSettingsDebounced72();
     }
     if (!settings2.cacheStorageMigrated) {
       console.log("[UI] \u68C0\u6D4B\u5230\u672A\u8FC1\u79FB\u7684 cache \u6570\u636E\uFF0C\u5F00\u59CB\u8FC1\u79FB...");
@@ -112560,14 +113418,14 @@ async function initUI({ check_update: check_update2 }) {
       addLog("[CharRef] Conflict resolved on load: Character Reference takes priority over Vibe Transfer");
       console.warn("[CharRef] Conflict detected: Both Character Reference and Vibe Transfer were enabled. Disabling Vibe Transfer (Character Reference takes priority).");
       toastr.warning("\u68C0\u6D4B\u5230\u51B2\u7A81\uFF1A\u89D2\u8272\u53C2\u8003\u4F18\u5148\uFF0CVibe Transfer \u5DF2\u7981\u7528", "\u529F\u80FD\u51B2\u7A81");
-      saveSettingsDebounced71();
+      saveSettingsDebounced72();
     }
     if (String(settings2.enablePregen) === "true" && (String(settings2.zidongdianji) === "true" || String(settings2.zidongdianji2) === "true")) {
       settings2.enablePregen = "false";
       addLog("[Pregen] \u68C0\u6D4B\u5230\u5386\u53F2\u914D\u7F6E\u53CC\u5F00\u51B2\u7A81\uFF0C\u5DF2\u81EA\u52A8\u5173\u95ED\u6D41\u5F0F\u9884\u751F\u6210\uFF08\u4FDD\u7559\u81EA\u52A8\u70B9\u51FB\uFF09");
       console.warn("[Pregen] \u5386\u53F2\u914D\u7F6E\u51B2\u7A81\uFF1A\u6D41\u5F0F\u9884\u751F\u6210\u4E0E\u81EA\u52A8\u70B9\u51FB\u540C\u65F6\u5F00\u542F\uFF0C\u5DF2\u81EA\u52A8\u5173\u95ED\u6D41\u5F0F\u9884\u751F\u6210\u3002");
       toastr.info("\u68C0\u6D4B\u5230\u5386\u53F2\u914D\u7F6E\u51B2\u7A81\uFF1A\u5DF2\u81EA\u52A8\u5173\u95ED\u300C\u542F\u7528\u6D41\u5F0F\u9884\u751F\u6210\u300D\uFF0C\u4FDD\u7559\u300C\u81EA\u52A8\u70B9\u51FB\u751F\u6210\u300D", "\u529F\u80FD\u4E92\u65A5\u63D0\u793A");
-      saveSettingsDebounced71();
+      saveSettingsDebounced72();
     }
     if (!settings2.themes) {
       settings2.themes = JSON.parse(JSON.stringify(defaultThemes));
@@ -112576,7 +113434,7 @@ async function initUI({ check_update: check_update2 }) {
       settings2.theme_id = "\u9ED8\u8BA4-\u767D\u5929";
     }
     applyTheme(settings2.themes[settings2.theme_id]);
-    const mainKeys = ["scriptEnabled", "helpTipsEnabled", "disablePluginToast", "newlineFixEnabled", "mode", "client", "displayMode", "heavyFrontendMode", "insertOriginalText", "dbclike", "collapseImage", "zidongdianji", "zidongdianji2", "longPressToEdit", "clickToPreview", "startTag", "endTag", "cache", "sdUrl", "st_chatu8_sd_auth", "comfyuiUrl", "comfyui_max_concurrency", "comfyui_timeout", "novelaiApi", "novelaisite", "novelaiOtherSite", "enableCloudQueue", "cloudQueueUrl", "cloudQueueGreeting", "showQueueGreeting", "novelaimode", "novelai_v5_effort", "novelai_sampler", "Schedule", "novelai_v5_schedule", "nai3Scale", "cfg_rescale", "AI_use_coords", "sm", "dyn", "nai3Variety", "nai3Deceisp", "sd_cwidth", "sd_cheight", "sd_csteps", "sd_cseed", "sdCfgScale", "restoreFaces", "novelai_width", "novelai_height", "novelai_steps", "novelai_seed", "nai3VibeTransfer", "enableVibeGroupTransfer", "randomVibeGroup", "normalizeRefStrength", "InformationExtracted", "ReferenceStrength", "nai3CharRef", "nai3StylePerception", "comfyui_width", "comfyui_height", "comfyui_steps", "comfyui_seed", "cfg_comfyui", "worker", "ipa", "c_fenwei", "c_xijie", "c_quanzhong", "c_idquanzhong", "AQT_sd", "UCP_sd", "AQT_novelai", "UCP_novelai", "AQT_comfyui", "UCP_comfyui", "addFurryDataset", "sd_cupscale_factor", "sd_chires_fix", "sd_chires_steps", "sd_cdenoising_strength", "sd_cclip_skip", "sd_cadetailer", "worldBookEnabled", "ai_temperature", "ai_top_p", "ai_presence_penalty", "ai_frequency_penalty", "ai_stream", "ai_private", "ai_token", "vocabulary_search_startswith", "vocabulary_search_limit", "vocabulary_search_sort", "enablePregen", "autoLLMImageGen", "randomYushe", "aiAutonomousResolution", "videoChannel", "imageAlignment", "imageSizeScale", "imageGenInterval", "translation_system_prompt", "ai_test_system", "ai_test_user", "ai_test_output", "jiuguanchucun", "vibeJiuguanchucun", "convertToJpegStorage", "weilin_lora_fix"];
+    const mainKeys = ["scriptEnabled", "helpTipsEnabled", "disablePluginToast", "newlineFixEnabled", "mode", "client", "displayMode", "heavyFrontendMode", "insertOriginalText", "dbclike", "collapseImage", "zidongdianji", "zidongdianji2", "longPressToEdit", "clickToPreview", "startTag", "endTag", "cache", "sdUrl", "st_chatu8_sd_auth", "comfyuiUrl", "comfyui_max_concurrency", "comfyui_timeout", "novelaiApi", "novelaisite", "novelaiOtherSite", "enableCloudQueue", "cloudQueueUrl", "cloudQueueGreeting", "showQueueGreeting", "novelaimode", "novelai_v5_effort", "novelai_sampler", "Schedule", "novelai_v5_schedule", "nai3Scale", "cfg_rescale", "AI_use_coords", "sm", "dyn", "nai3Variety", "nai3Deceisp", "sd_cwidth", "sd_cheight", "sd_csteps", "sd_cseed", "sdCfgScale", "restoreFaces", "novelai_width", "novelai_height", "novelai_steps", "novelai_seed", "nai3VibeTransfer", "enableVibeGroupTransfer", "randomVibeGroup", "normalizeRefStrength", "InformationExtracted", "ReferenceStrength", "nai3CharRef", "nai5PreciseCharRef", "nai3StylePerception", "comfyui_width", "comfyui_height", "comfyui_steps", "comfyui_seed", "cfg_comfyui", "worker", "ipa", "c_fenwei", "c_xijie", "c_quanzhong", "c_idquanzhong", "AQT_sd", "UCP_sd", "AQT_novelai", "UCP_novelai", "AQT_comfyui", "UCP_comfyui", "addFurryDataset", "sd_cupscale_factor", "sd_chires_fix", "sd_chires_steps", "sd_cdenoising_strength", "sd_cclip_skip", "sd_cadetailer", "worldBookEnabled", "ai_temperature", "ai_top_p", "ai_presence_penalty", "ai_frequency_penalty", "ai_stream", "ai_private", "ai_token", "vocabulary_search_startswith", "vocabulary_search_limit", "vocabulary_search_sort", "enablePregen", "autoLLMImageGen", "randomYushe", "aiAutonomousResolution", "videoChannel", "imageAlignment", "imageSizeScale", "imageGenInterval", "translation_system_prompt", "ai_test_system", "ai_test_user", "ai_test_output", "jiuguanchucun", "vibeJiuguanchucun", "convertToJpegStorage", "weilin_lora_fix"];
     mainKeys.forEach((key) => {
       const element = document.getElementById(key);
       if (element) {
@@ -112854,15 +113712,15 @@ async function initUI({ check_update: check_update2 }) {
     if (!settings2.workers["\u56FE\u50CF\u7F16\u8F91"]) {
       settings2.workers["\u56FE\u50CF\u7F16\u8F91"] = editwk;
       console.log('[Chatu8] \u5DF2\u81EA\u52A8\u6DFB\u52A0 "\u56FE\u50CF\u7F16\u8F91" \u5DE5\u4F5C\u6D41\u9884\u8BBE');
-      saveSettingsDebounced71();
+      saveSettingsDebounced72();
     }
     if (!settings2.editWorkerid) {
       settings2.editWorkerid = "\u56FE\u50CF\u7F16\u8F91";
-      saveSettingsDebounced71();
+      saveSettingsDebounced72();
     }
     if (!settings2.editWorker && settings2.workers[settings2.editWorkerid]) {
       settings2.editWorker = settings2.workers[settings2.editWorkerid];
-      saveSettingsDebounced71();
+      saveSettingsDebounced72();
     }
     if (!settings2.worldBookList) {
       settings2.worldBookList = { "\u9ED8\u8BA4": { "content": "" } };
@@ -112997,6 +113855,7 @@ async function initUI({ check_update: check_update2 }) {
   initVibeGenerator(settingsModal);
   initVibeGroupEditor(settingsModal);
   initCharRefGroupEditor(settingsModal);
+  initPreciseCharRefGroupEditor(settingsModal);
   settingsModal.find("#ch-settings-modal-close").on("click", hideSettingsPanel);
   const scrollTopBtn = settingsModal.find("#ch-scroll-top");
   const scrollBottomBtn = settingsModal.find("#ch-scroll-bottom");
@@ -113032,7 +113891,7 @@ async function initUI({ check_update: check_update2 }) {
     const content = settingsModal.find(".st-chatu8-content");
     content.animate({ scrollTop: content[0].scrollHeight }, 300);
   });
-  if (extension_settings113[extensionName].gestureEnabled == true || extension_settings113[extensionName].gestureEnabled === "true") {
+  if (extension_settings114[extensionName].gestureEnabled == true || extension_settings114[extensionName].gestureEnabled === "true") {
     initGestureMonitor();
   }
   initAutoLLMClick();
@@ -113250,20 +114109,20 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.find("#novelai_size").on("change", () => size_change("novelai"));
   settingsModal.find("#comfyui_size").on("change", () => size_change("comfyui"));
   const allIDs = Object.keys(defaultSettings);
-  const ignoreIDs = ["yushe", "yusheid", "fixedPrompt", "fixedPrompt_end", "negativePrompt", "workers", "workerid", "worker", "themes", "theme_id", "prompt_replace", "prompt_replace_id", "prompt_replace_text", "UCP", "AQT", "nai3CharRef", "worldBookList", "worldBookList_id", "worldbook_content", "insertOriginalText", "convertToJpegStorage", "randomYushe", "randomVibeGroup", "enablePregen", "zidongdianji", "zidongdianji2"];
+  const ignoreIDs = ["yushe", "yusheid", "fixedPrompt", "fixedPrompt_end", "negativePrompt", "workers", "workerid", "worker", "themes", "theme_id", "prompt_replace", "prompt_replace_id", "prompt_replace_text", "UCP", "AQT", "nai3CharRef", "nai5PreciseCharRef", "worldBookList", "worldBookList_id", "worldbook_content", "insertOriginalText", "convertToJpegStorage", "randomYushe", "randomVibeGroup", "enablePregen", "zidongdianji", "zidongdianji2"];
   $("#InformationExtracted, #InformationExtracted_range").on("input", (event) => {
     const value = $(event.target).val();
     $("#InformationExtracted").val(value);
     $("#InformationExtracted_range").val(value);
     settings2.InformationExtracted = value;
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
   });
   $("#ReferenceStrength, #ReferenceStrength_range").on("input", (event) => {
     const value = $(event.target).val();
     $("#ReferenceStrength").val(value);
     $("#ReferenceStrength_range").val(value);
     settings2.ReferenceStrength = value;
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
   });
   const CHATU8_IMAGE_REGEX_SCRIPT_NAME = "st-chatu8-\u4E0D\u53D1\u9001image\u6807\u7B7E";
   const CHATU8_IMAGE_REGEX_SCRIPT = {
@@ -113377,7 +114236,7 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.on("change", "#helpTipsEnabled", function() {
     const isEnabled = $(this).prop("checked");
     settings2.helpTipsEnabled = isEnabled ? "true" : "false";
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     const container = settingsModal[0]?.querySelector(".st-chatu8-content");
     if (!container) return;
     if (isEnabled) {
@@ -113389,13 +114248,13 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.find("#insertOriginalText").on("change", async function() {
     const isEnabled = $(this).prop("checked");
     settings2.insertOriginalText = isEnabled.toString();
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     await handleInsertOriginalTextRegex(isEnabled);
   });
   settingsModal.find("#convertToJpegStorage").on("change", function() {
     const isEnabled = $(this).prop("checked");
     settings2.convertToJpegStorage = isEnabled.toString();
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     if (isEnabled) {
       toastr.info("\u65B0\u56FE\u7247\u5C06\u4EE5JPEG\u683C\u5F0F\u50A8\u5B58\uFF0C\u53EF\u8282\u7701\u7EA670%\u7A7A\u95F4", "JPEG\u50A8\u5B58\u5DF2\u542F\u7528");
       addLog("[\u7F13\u5B58] JPEG\u50A8\u5B58\u5DF2\u542F\u7528\uFF0C\u8D28\u91CF: 0.78");
@@ -113406,14 +114265,14 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.find("#autoLLMImageGen").on("change", async function() {
     const isEnabled = $(this).prop("checked");
     settings2.autoLLMImageGen = isEnabled.toString();
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     if (isEnabled) {
       const changes = [];
       const insertTextSwitch = settingsModal.find("#insertOriginalText");
       if (insertTextSwitch.length && !insertTextSwitch.prop("checked")) {
         insertTextSwitch.prop("checked", true);
         settings2.insertOriginalText = "true";
-        saveSettingsDebounced71();
+        saveSettingsDebounced72();
         await handleInsertOriginalTextRegex(true);
         changes.push('\u5DF2\u5F00\u542F"\u63D2\u5165\u539F\u6587(\u975E\u540C\u5C42)"');
       }
@@ -113425,7 +114284,7 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.find("#randomYushe").on("change", function() {
     const isEnabled = $(this).prop("checked");
     settings2.randomYushe = isEnabled.toString();
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     if (isEnabled) {
       const yusheKeys = Object.keys(settings2.yushe || {});
       toastr.info(`\u5F53\u524D\u5171\u6709 ${yusheKeys.length} \u4E2A\u63D0\u793A\u8BCD\u9884\u8BBE\uFF0C\u6BCF\u6B21\u751F\u56FE\u5C06\u968F\u673A\u9009\u62E9`, "\u968F\u673A\u9884\u8BBE\u5DF2\u542F\u7528");
@@ -113437,7 +114296,7 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.find("#enablePregen").on("change", function() {
     const isEnabled = $(this).prop("checked");
     settings2.enablePregen = isEnabled.toString();
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     if (isEnabled) {
       let hasAutoClickTurnedOff = false;
       if (String(settings2.zidongdianji) === "true" || String(settings2.zidongdianji2) === "true") {
@@ -113448,7 +114307,7 @@ async function initUI({ check_update: check_update2 }) {
         if ($zd1.length) $zd1.prop("checked", false);
         if ($zd2.length) $zd2.prop("checked", false);
         hasAutoClickTurnedOff = true;
-        saveSettingsDebounced71();
+        saveSettingsDebounced72();
       }
       if (hasAutoClickTurnedOff) {
         toastr.info("\u5DF2\u5F00\u542F\u300C\u542F\u7528\u6D41\u5F0F\u9884\u751F\u6210\u300D\uFF0C\u5DF2\u81EA\u52A8\u5173\u95ED\u300C\u81EA\u52A8\u70B9\u51FB\u751F\u6210\u300D\u4EE5\u907F\u514D\u529F\u80FD\u91CD\u590D", "\u529F\u80FD\u4E92\u65A5\u63D0\u793A");
@@ -113463,7 +114322,7 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.find("#zidongdianji").on("change", function() {
     const isEnabled = $(this).prop("checked");
     settings2.zidongdianji = isEnabled.toString();
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     if (isEnabled) {
       let hasPregenTurnedOff = false;
       if (String(settings2.enablePregen) === "true") {
@@ -113471,7 +114330,7 @@ async function initUI({ check_update: check_update2 }) {
         const $pregen = settingsModal.find("#enablePregen");
         if ($pregen.length) $pregen.prop("checked", false);
         hasPregenTurnedOff = true;
-        saveSettingsDebounced71();
+        saveSettingsDebounced72();
       }
       if (hasPregenTurnedOff) {
         toastr.info("\u5DF2\u5F00\u542F\u300C\u81EA\u52A8\u70B9\u51FB\u751F\u6210\u300D\uFF0C\u5DF2\u81EA\u52A8\u5173\u95ED\u300C\u542F\u7528\u6D41\u5F0F\u9884\u751F\u6210\u300D\u4EE5\u907F\u514D\u529F\u80FD\u91CD\u590D", "\u529F\u80FD\u4E92\u65A5\u63D0\u793A");
@@ -113486,7 +114345,7 @@ async function initUI({ check_update: check_update2 }) {
   settingsModal.find("#zidongdianji2").on("change", function() {
     const isEnabled = $(this).prop("checked");
     settings2.zidongdianji2 = isEnabled.toString();
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     if (isEnabled) {
       let hasPregenTurnedOff = false;
       if (String(settings2.enablePregen) === "true") {
@@ -113494,7 +114353,7 @@ async function initUI({ check_update: check_update2 }) {
         const $pregen = settingsModal.find("#enablePregen");
         if ($pregen.length) $pregen.prop("checked", false);
         hasPregenTurnedOff = true;
-        saveSettingsDebounced71();
+        saveSettingsDebounced72();
       }
       if (hasPregenTurnedOff) {
         toastr.info("\u5DF2\u5F00\u542F\u300C\u81EA\u52A8\u70B9\u51FB(\u6CA1\u4E8B\u522B\u5F00)\u300D\uFF0C\u5DF2\u81EA\u52A8\u5173\u95ED\u300C\u542F\u7528\u6D41\u5F0F\u9884\u751F\u6210\u300D\u4EE5\u907F\u514D\u529F\u80FD\u91CD\u590D", "\u529F\u80FD\u4E92\u65A5\u63D0\u793A");
@@ -113508,12 +114367,12 @@ async function initUI({ check_update: check_update2 }) {
   });
   $("#enable_chatu8_fab").on("change", (event) => {
     settings2.enable_chatu8_fab = $(event.target).prop("checked").toString();
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     applyFabSettings();
   });
   $("#enable_chatu8_fab_video").on("change", (event) => {
     settings2.enable_chatu8_fab_video = $(event.target).prop("checked");
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     toggleTraditionalFabSettings();
     applyFabSettings();
   });
@@ -113521,7 +114380,7 @@ async function initUI({ check_update: check_update2 }) {
   $("#enable_chatu8_desktop_pet").on("change", async (event) => {
     const checked = $(event.target).prop("checked");
     settings2.enable_chatu8_desktop_pet = checked;
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     if (checked) {
       try {
         const videoPlayer = getGlobalVideoPlayer();
@@ -113529,7 +114388,7 @@ async function initUI({ check_update: check_update2 }) {
           toastr.error("\u672A\u627E\u5230\u89C6\u9891\u64AD\u653E\u5668\uFF0C\u8BF7\u5148\u542F\u7528\u89C6\u9891\u5F62\u8C61", "\u72EC\u7ACB\u7A97\u53E3");
           $(event.target).prop("checked", false);
           settings2.enable_chatu8_desktop_pet = false;
-          saveSettingsDebounced71();
+          saveSettingsDebounced72();
           return;
         }
         const glCanvas = document.getElementById("st-chatu8-fab-video-canvas");
@@ -113537,7 +114396,7 @@ async function initUI({ check_update: check_update2 }) {
           toastr.error("\u672A\u627E\u5230\u89C6\u9891\u753B\u5E03\u5143\u7D20\uFF0C\u8BF7\u5148\u542F\u7528\u89C6\u9891\u5F62\u8C61", "\u72EC\u7ACB\u7A97\u53E3");
           $(event.target).prop("checked", false);
           settings2.enable_chatu8_desktop_pet = false;
-          saveSettingsDebounced71();
+          saveSettingsDebounced72();
           return;
         }
         videoPlayer.setPipBackground(true);
@@ -113569,7 +114428,7 @@ async function initUI({ check_update: check_update2 }) {
           }
           settings2.enable_chatu8_desktop_pet = false;
           $("#enable_chatu8_desktop_pet").prop("checked", false);
-          saveSettingsDebounced71();
+          saveSettingsDebounced72();
           toastr.info("\u753B\u4E2D\u753B\u5DF2\u5173\u95ED\uFF0C\u667A\u7ED8\u59EC\u56DE\u5230\u6D4F\u89C8\u5668\u5185", "\u72EC\u7ACB\u7A97\u53E3");
         });
         toastr.success("\u667A\u7ED8\u59EC\u5DF2\u5F39\u51FA\u5230\u753B\u4E2D\u753B\u7A97\u53E3\uFF0C\u53EF\u7F6E\u9876\u663E\u793A\u5728\u5176\u4ED6\u5E94\u7528\u4E0A\u65B9", "\u72EC\u7ACB\u7A97\u53E3");
@@ -113586,7 +114445,7 @@ async function initUI({ check_update: check_update2 }) {
         }
         $(event.target).prop("checked", false);
         settings2.enable_chatu8_desktop_pet = false;
-        saveSettingsDebounced71();
+        saveSettingsDebounced72();
         if (err.name === "NotAllowedError") {
           toastr.warning(
             "\u753B\u4E2D\u753B\u8BF7\u6C42\u88AB\u62D2\u7EDD\u3002\u8BF7\u786E\u4FDD\u901A\u8FC7\u7528\u6237\u64CD\u4F5C\uFF08\u5982\u70B9\u51FB\uFF09\u89E6\u53D1\uFF0C\u4E14\u6D4F\u89C8\u5668\u5141\u8BB8\u753B\u4E2D\u753B\u3002",
@@ -113631,7 +114490,7 @@ async function initUI({ check_update: check_update2 }) {
       if (settings2.enable_chatu8_desktop_pet) {
         settings2.enable_chatu8_desktop_pet = false;
         $("#enable_chatu8_desktop_pet").prop("checked", false);
-        saveSettingsDebounced71();
+        saveSettingsDebounced72();
         if (document.pictureInPictureElement) {
           document.exitPictureInPicture().catch(() => {
           });
@@ -113663,7 +114522,7 @@ async function initUI({ check_update: check_update2 }) {
       $("#chatu8_fab_opacity").val(theme.opacity);
       $("#chatu8_fab_opacity_value").val(theme.opacity);
     }
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     applyFabSettings();
   });
   $("#chatu8_fab_bg_color").on("change", (event) => {
@@ -113675,7 +114534,7 @@ async function initUI({ check_update: check_update2 }) {
       }
       $("#chatu8_fab_theme").val("\u81EA\u5B9A\u4E49");
     }
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     applyFabSettings();
   });
   $("#chatu8_fab_icon_color").on("change", (event) => {
@@ -113687,7 +114546,7 @@ async function initUI({ check_update: check_update2 }) {
       }
       $("#chatu8_fab_theme").val("\u81EA\u5B9A\u4E49");
     }
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     applyFabSettings();
   });
   $("#chatu8_fab_icon_upload_btn").on("click", () => {
@@ -113707,7 +114566,7 @@ async function initUI({ check_update: check_update2 }) {
       }
       $("#chatu8_fab_theme").val("\u81EA\u5B9A\u4E49");
     }
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     applyFabSettings();
   });
   function centerFabPosition() {
@@ -113729,7 +114588,7 @@ async function initUI({ check_update: check_update2 }) {
       settings2.chatu8_fab_position.desktop.top = fab.style.top;
       settings2.chatu8_fab_position.desktop.left = fab.style.left;
     }
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
   }
   $("#chatu8_fab_size, #chatu8_fab_size_value").on("input", (event) => {
     const value = parseInt($(event.target).val(), 10);
@@ -113748,7 +114607,7 @@ async function initUI({ check_update: check_update2 }) {
     } else {
       settings2.chatu8_fab_size.desktop = value;
     }
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     updateFabSize(value);
     setTimeout(() => {
       centerFabPosition();
@@ -113790,7 +114649,7 @@ async function initUI({ check_update: check_update2 }) {
         settings2[settingKey] = value;
         if (settingKey == "scriptEnabled") {
           let conet = getContext23();
-          const settings3 = extension_settings113[extensionName];
+          const settings3 = extension_settings114[extensionName];
           if (conet && conet.chatId) {
             if (!conet.chatMetadata) conet.chatMetadata = {};
             if (!conet.chatMetadata.variables) conet.chatMetadata.variables = {};
@@ -113798,7 +114657,7 @@ async function initUI({ check_update: check_update2 }) {
           }
           updateGenerationModeHandlers();
         }
-        saveSettingsDebounced71();
+        saveSettingsDebounced72();
         if (settingKey === "mode") {
           updateGenerationModeHandlers();
           updateKeepAliveStatus();
@@ -113838,14 +114697,30 @@ async function initUI({ check_update: check_update2 }) {
             toastr.info("Vibe Transfer \u5DF2\u81EA\u52A8\u5173\u95ED\uFF0C\u56E0\u4E3A\u89D2\u8272\u53C2\u8003\u5DF2\u542F\u7528", "\u89D2\u8272\u53C2\u8003");
             addLog("[CharRef] Vibe Transfer disabled due to Character Reference activation");
           }
-          saveSettingsDebounced71();
+          saveSettingsDebounced72();
         } else {
           checkbox.prop("checked", false);
         }
       });
     } else {
       settings2.nai3CharRef = "false";
-      saveSettingsDebounced71();
+      saveSettingsDebounced72();
+    }
+  });
+  settingsModal.find("#nai5PreciseCharRef").on("change", function() {
+    const checkbox = $(this);
+    if (checkbox.prop("checked")) {
+      stylishConfirm("\u4E0D\u5EFA\u8BAE\u4F7F\u7528\uFF0C\u6BCF\u591A\u4E00\u5F20\u542F\u7528\u7684\u53C2\u8003\u56FE\u7247\u5C31\u591A\u6536\u8D395\u70B9\uFF0C\u6BCF\u6B21\u751F\u56FE\u6536\u8D39\u4E00\u6B21\uFF01").then((confirmed) => {
+        if (confirmed) {
+          settings2.nai5PreciseCharRef = "true";
+          saveSettingsDebounced72();
+        } else {
+          checkbox.prop("checked", false);
+        }
+      });
+    } else {
+      settings2.nai5PreciseCharRef = "false";
+      saveSettingsDebounced72();
     }
   });
   settingsModal.find("#enableVibeGroupTransfer").on("change", function() {
@@ -113868,13 +114743,13 @@ async function initUI({ check_update: check_update2 }) {
       toastr.info("\u89D2\u8272\u53C2\u8003\u5DF2\u81EA\u52A8\u5173\u95ED\uFF0C\u56E0\u4E3A Vibe Transfer \u5DF2\u542F\u7528", "Vibe Transfer");
       addLog("[VibeTransfer] Character Reference disabled due to Vibe Transfer activation");
     }
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     console.log("[VibeGroup] Vibe group transfer:", settings2.enableVibeGroupTransfer);
   });
   settingsModal.find("#randomVibeGroup").on("change", function() {
     const isEnabled = $(this).prop("checked");
     settings2.randomVibeGroup = isEnabled ? "true" : "false";
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     if (isEnabled) {
       const vibeGroups = settings2.vibeGroups || {};
       const usableCount = Object.keys(vibeGroups).filter(
@@ -113904,7 +114779,7 @@ async function initUI({ check_update: check_update2 }) {
       }
       console.log("[VibeGroup] Disabled Vibe group transfer (mutual exclusivity)");
     }
-    saveSettingsDebounced71();
+    saveSettingsDebounced72();
     console.log("[NovelAI] Single Vibe transfer:", settings2.nai3VibeTransfer);
   });
   window.addEventListener("comfyui-cache-updated", async (event) => {
@@ -114016,7 +114891,7 @@ async function dispatchPregenTask(normPrompt) {
     let finalHeight = null;
     const sizeRegex = /,?\s*(\d{2,4})x(\d{2,4})(?=[;\s]|$)/i;
     const linkMatch = normPrompt.match(sizeRegex);
-    if (linkMatch && String(extension_settings114[extensionName]?.aiAutonomousResolution) !== "false") {
+    if (linkMatch && String(extension_settings115[extensionName]?.aiAutonomousResolution) !== "false") {
       finalWidth = linkMatch[1];
       finalHeight = linkMatch[2];
     }
@@ -114084,7 +114959,7 @@ function stripThinkingForPregen(text) {
   return cleaned;
 }
 function parsePrompts(text) {
-  const settings3 = extension_settings115[extensionName];
+  const settings3 = extension_settings116[extensionName];
   if (!settings3.startTag || !settings3.endTag) return [];
   const visibleText = stripThinkingForPregen(text);
   if (!visibleText) return [];
@@ -114099,17 +114974,17 @@ function parsePrompts(text) {
 }
 var genStartedEvent = event_types7.GENERATION_STARTED || "generation_started";
 eventSource47.on(genStartedEvent, () => {
-  if (String(extension_settings115[extensionName]?.enablePregen) !== "true") return;
+  if (String(extension_settings116[extensionName]?.enablePregen) !== "true") return;
   pregenManager.clear();
 });
 var genStoppedEvent = event_types7.GENERATION_STOPPED || "generation_stopped";
 eventSource47.on(genStoppedEvent, () => {
-  if (String(extension_settings115[extensionName]?.enablePregen) !== "true") return;
+  if (String(extension_settings116[extensionName]?.enablePregen) !== "true") return;
   pregenManager.clear();
 });
 var genEndedEvent = event_types7.GENERATION_ENDED || "generation_ended";
 eventSource47.on(genEndedEvent, () => {
-  if (String(extension_settings115[extensionName]?.enablePregen) !== "true") return;
+  if (String(extension_settings116[extensionName]?.enablePregen) !== "true") return;
   pregenManager.clear();
 });
 if (event_types7.CHAT_CHANGED) {
@@ -114118,7 +114993,7 @@ if (event_types7.CHAT_CHANGED) {
   });
 }
 eventSource47.on(event_types7.STREAM_TOKEN_RECEIVED, (text) => {
-  if (String(extension_settings115[extensionName]?.enablePregen) !== "true" || !text) return;
+  if (String(extension_settings116[extensionName]?.enablePregen) !== "true" || !text) return;
   const prompts = parsePrompts(text);
   if (prompts.length > 0) {
     pregenManager.add(prompts);
@@ -114651,7 +115526,7 @@ async function main() {
     "styles/summary-manager.css"
   ];
   cssFiles.forEach(loadCSS);
-  const mergedSettings = { ...JSON.parse(JSON.stringify(defaultSettings)), ...extension_settings116[extensionName] };
+  const mergedSettings = { ...JSON.parse(JSON.stringify(defaultSettings)), ...extension_settings117[extensionName] };
   if (mergedSettings.chatu8_fab_video_paths) {
     let pathsChanged = false;
     if (mergedSettings.chatu8_fab_video_paths.idle && mergedSettings.chatu8_fab_video_paths.idle.includes(".mp4")) {
@@ -114669,9 +115544,9 @@ async function main() {
   const configMigrated = migrateToolAndTailConfigIfOldDefault(mergedSettings);
   if (configMigrated) {
     console.log("[st-chatu8] \u81EA\u52A8\u66F4\u65B0\u5168\u5C40 Tool Call / Tail \u9ED8\u8BA4\u914D\u7F6E");
-    saveSettingsDebounced72();
+    saveSettingsDebounced73();
   }
-  extension_settings116[extensionName] = mergedSettings;
+  extension_settings117[extensionName] = mergedSettings;
   ensureInjectionTemplatesInit();
   installGlobalErrorHandler();
   initImageGenStatsListener();
