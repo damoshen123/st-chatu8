@@ -474,6 +474,41 @@
                 </div>
             </div>
     </div>
+    <div class="st-chatu8-settings-section" id="nai-precise-char-ref-section">
+        <h3>精准角色参考设置</h3>
+            <div id="nai-precise-char-ref-medium-notice" style="display: none; margin-bottom: 12px; padding: 10px 12px; border-radius: 6px; background: rgba(255, 193, 7, 0.12); border: 1px solid rgba(255, 193, 7, 0.4); color: #ffd54f; font-size: 0.9em; line-height: 1.4;">
+                ⚠️ 当前处于 <strong>Medium（省流·14步）</strong> 档位，NovelAI V5 省流模式不支持精准角色参考，生图时将自动跳过。如需使用请切换回 <strong>High（高质量·23步）</strong> 档位。
+            </div>
+            <div class="st-chatu8-field">
+                <label for="nai5PreciseCharRef">启用精准角色参考</label>
+                <div class="st-chatu8-toggle" title="仅用于 NovelAI V5 系列。不建议使用，每多一张参考图片就多收费5点，每次生图收费一次！">
+                    <input id="nai5PreciseCharRef" type="checkbox"/>
+                    <span class="st-chatu8-slider"></span>
+                </div>
+            </div>
+            <div class="st-chatu8-field">
+                <label>角色参考图管理</label>
+                <div style="max-width: 420px; flex-grow: 1;">
+                    <button type="button" class="st-chatu8-btn" id="novelai-precise-char-ref-upload-btn">
+                        <i class="fa-solid fa-upload"></i> 打开添加参考图
+                    </button>
+                    <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                        上传角色参考图片到共享图库中（参数在精准角色组内独立配置）
+                    </small>
+                </div>
+            </div>
+            <div class="st-chatu8-field">
+                <label>精准角色组管理</label>
+                <div style="max-width: 420px; flex-grow: 1;">
+                    <button type="button" class="st-chatu8-btn" id="novelai-precise-char-ref-group-editor-btn" title="管理仅用于 V5 系列的精准角色参考组预设">
+                        <i class="fa-solid fa-layer-group"></i> 精准角色组编辑
+                    </button>
+                    <small style="display: block; margin-top: 8px; color: #888; font-size: 0.85em;">
+                        创建和管理仅用于 NovelAI V5 系列的精准角色参考组合预设（最多 4 个）
+                    </small>
+                </div>
+            </div>
+    </div>
     <div class="st-chatu8-settings-section" id="nai-vibe-group-section">
         <h3>氛围转移设置</h3>
             <div class="st-chatu8-field">

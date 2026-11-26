@@ -311,3 +311,125 @@
         transform: none;
     }
 }
+
+/* ==================== V5 精准角色参考专属样式 ==================== */
+.st-chatu8-precise-char-ref-dialog {
+    background-color: var(--st-chatu8-bg-primary, #1a1a2e);
+    color: var(--st-chatu8-text-primary, #f0f0f0);
+    border-color: var(--st-chatu8-border-color, #333);
+}
+
+.st-chatu8-precise-char-ref-dialog .st-chatu8-workflow-viz-header {
+    background-color: var(--st-chatu8-bg-secondary, #252542);
+    border-bottom-color: var(--st-chatu8-border-color, #333);
+}
+
+.st-chatu8-precise-char-ref-dialog .st-chatu8-workflow-viz-header h3 {
+    color: var(--st-chatu8-text-primary, #e0e0e0);
+}
+
+.st-chatu8-precise-char-ref-dialog .st-chatu8-workflow-viz-close {
+    color: var(--st-chatu8-text-secondary, #888);
+}
+
+.st-chatu8-precise-char-ref-dialog .st-chatu8-workflow-viz-close:hover {
+    color: var(--st-chatu8-accent-primary, #4a90e2);
+}
+
+.st-chatu8-precise-char-ref-dialog .st-chatu8-char-ref-slot {
+    background: var(--st-chatu8-bg-secondary, rgba(0, 0, 0, 0.2));
+    border-color: var(--st-chatu8-border-color, rgba(255, 255, 255, 0.14));
+    color: var(--st-chatu8-text-primary, #f0f0f0);
+}
+
+.st-chatu8-precise-char-ref-dialog .st-chatu8-char-ref-slot:hover {
+    background: var(--st-chatu8-bg-tertiary, var(--st-chatu8-bg-secondary, rgba(0, 0, 0, 0.28)));
+    border-color: var(--st-chatu8-accent-primary, #4a90e2);
+}
+
+.st-chatu8-precise-char-ref-dialog .st-chatu8-char-ref-slots:empty::before {
+    color: var(--st-chatu8-text-secondary, #888);
+}
+
+#precise-char-ref-group-add-ref {
+    width: 100%;
+    padding: 1rem;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+#precise-char-ref-group-add-ref:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#precise-char-ref-group-add-ref:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+#precise-char-ref-group-status {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+.st-chatu8-char-ref-slot.is-disabled {
+    opacity: 0.58;
+    border-style: dashed;
+}
+
+.st-chatu8-precise-outfit-row {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.92rem;
+    margin: 0;
+    color: var(--st-chatu8-text-primary, #f0f0f0);
+}
+
+.st-chatu8-precise-outfit-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--st-chatu8-accent-primary, #7c4dff);
+    cursor: pointer;
+}
+
+.st-chatu8-precise-slot-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+}
+
+.st-chatu8-precise-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 6px;
+    border: 1px solid #5c636a;
+    background: #6c757d;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.st-chatu8-precise-toggle-btn.is-active {
+    background: #2e7d32;
+    border-color: #256628;
+    color: #ffffff;
+}
+
+.st-chatu8-precise-toggle-btn:hover {
+    filter: brightness(1.08);
+}
